@@ -1,0 +1,66 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Sprite.OverrideGeometry</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Sprite.html">Sprite</a>.OverrideGeometry</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">OverrideGeometry</span>(Vector2[] <span class="sig-kw">vertices</span>,
+ushort[] <span class="sig-kw">triangles</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">vertices</td><td class="desc"></td><td class="desc1">Array of vertex positions in Sprite Rect space.</td></tr><tr><td class="name lbl">triangles</td><td class="desc"></td><td class="desc1">Array of sprite mesh triangle indices.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Sets up new Sprite geometry.</p></div><div class="subsection"><p>Vertex positions are in <a href="Sprite-rect.html">Sprite.rect</a> space meaning from <a href="Rect-zero.html">Rect.zero</a>
+        to <a href="Rect-size.html">Rect.size</a>. Pivot offset and transformation to unit space is done automatically.<br /><br />The size of the triangle array must always be a multiple of 3.  The vertices connected to the
+triangle can be shared by simply indexing into the same vertex.<br /><br />Sprite UVs are calculated automatically by mapping the provided geometry onto the Sprite texture.<br /><br />See Also: <a href="Sprite-rect.html">rect</a>.<br /><br />In the script example below the polygon shown in the
+            <a href="../Manual/SpriteEditor.html">Sprite Editor - Polygon Resizing</a> is used.  In this
+            case the sprite has 8 sides.  The right-most vertex is moved 50 pixels into the sprite.
+            This is the third vertex.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Obtain the vertices from the script and modify the position
+// of one of them. Use OverrideGeometry() for this.
+using UnityEngine;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private <a href="SpriteRenderer.html">SpriteRenderer</a> spriteR;
+    private <a href="Rect.html">Rect</a> buttonPos1;
+    private <a href="Rect.html">Rect</a> buttonPos2;<br /><br />    void Start()
+    {
+        spriteR = gameObject.GetComponent&lt;<a href="SpriteRenderer.html">SpriteRenderer</a>&gt;();
+        // Create a blank <a href="Texture.html">Texture</a> and <a href="Sprite.html">Sprite</a> to override later on.
+        var texture2D = new <a href="Texture2D.html">Texture2D</a>(64, 64);
+        spriteR.sprite = <a href="Sprite.Create.html">Sprite.Create</a>(texture2D, new <a href="Rect.html">Rect</a>(0, 0, texture2D.width, texture2D.height), <a href="Vector2-zero.html">Vector2.zero</a>, 100);<br /><br />        buttonPos1 = new <a href="Rect.html">Rect</a>(10.0f, 10.0f, 200.0f, 30.0f);
+        buttonPos2 = new <a href="Rect.html">Rect</a>(10.0f, 50.0f, 200.0f, 30.0f);
+    }<br /><br />    void OnGUI()
+    {
+        if (<a href="GUI.Button.html">GUI.Button</a>(buttonPos1, "Draw <a href="Debug.html">Debug</a>"))
+            DrawDebug();<br /><br />        if (<a href="GUI.Button.html">GUI.Button</a>(buttonPos2, "Perform OverrideGeometry"))
+            ChangeSprite();
+    }<br /><br />    // Show the sprite triangles
+    void DrawDebug()
+    {
+        <a href="Sprite.html">Sprite</a> sprite = spriteR.sprite;<br /><br />        ushort[]  t = sprite.triangles;
+        <a href="Vector2.html">Vector2</a>[] v = sprite.vertices;
+        int a, b, c;<br /><br />        // draw the triangles using grabbed vertices
+        for (int i = 0; i &lt; t.Length; i = i + 3)
+        {
+            a = t[i];
+            b = t[i + 1];
+            c = t[i + 2];
+            <a href="Debug.DrawLine.html">Debug.DrawLine</a>(v[a], v[b], <a href="Color-white.html">Color.white</a>, 100.0f);
+            <a href="Debug.DrawLine.html">Debug.DrawLine</a>(v[b], v[c], <a href="Color-white.html">Color.white</a>, 100.0f);
+            <a href="Debug.DrawLine.html">Debug.DrawLine</a>(v[c], v[a], <a href="Color-white.html">Color.white</a>, 100.0f);
+        }
+    }<br /><br />    // Edit the vertices obtained from the sprite.  Use OverrideGeometry to
+    // submit the changes.
+    void ChangeSprite()
+    {
+        <a href="Sprite.html">Sprite</a> o = spriteR.sprite;
+        <a href="Vector2.html">Vector2</a>[] sv = o.vertices;<br /><br />        for (int i = 0; i &lt; sv.Length; i++)
+        {
+            sv[i].x = <a href="Mathf.Clamp.html">Mathf.Clamp</a>(
+                (o.vertices[i].x - o.bounds.center.x -
+                    (o.textureRectOffset.x / o.texture.width) + o.bounds.extents.x) /
+                (2.0f * o.bounds.extents.x) * o.rect.width,
+                0.0f, o.rect.width);<br /><br />            sv[i].y = <a href="Mathf.Clamp.html">Mathf.Clamp</a>(
+                (o.vertices[i].y - o.bounds.center.y -
+                    (o.textureRectOffset.y / o.texture.height) + o.bounds.extents.y) /
+                (2.0f * o.bounds.extents.y) * o.rect.height,
+                0.0f, o.rect.height);<br /><br />            // make a small change to the 3rd vertex
+            if (i == 2)
+                sv[i].x = sv[i].x - 50;
+        }<br /><br />        o.OverrideGeometry(sv, o.triangles);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

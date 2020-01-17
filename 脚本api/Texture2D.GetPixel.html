@@ -1,0 +1,23 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Texture2D.GetPixel</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Texture2D.html">Texture2D</a>.GetPixel</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Color.html">Color</a> <span class="sig-kw">GetPixel</span>(int <span class="sig-kw">x</span>,
+int <span class="sig-kw">y</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Returns pixel color at coordinates (x, y).</p></div><div class="subsection"><p>If the pixel coordinates are out of bounds (larger than width/height or small than 0),
+they will be clamped or repeated based on the texture's wrap mode.<br /><br />Texture coordinates start at lower left corner.<br /><br />If you are reading a large block of pixels from the texture, it may be faster
+to use <a href="Texture2D.GetPixels32.html">GetPixels32</a> or <a href="Texture2D.GetPixels.html">GetPixels</a> which returns a whole block of pixel colors.<br /><br />The texture must have the <a href="TextureImporter-isReadable.html">read/write enabled</a> flag set in the <a href="../Manual/Textures.html">texture import settings</a>, otherwise this function will fail. GetPixel is not available on Textures using Crunch texture compression.<br /><br />See Also: <a href="Texture2D.GetPixels32.html">GetPixels32</a>, <a href="Texture2D.GetPixels.html">GetPixels</a>, <a href="Texture2D.SetPixel.html">SetPixel</a>, <a href="Texture2D.GetPixelBilinear.html">GetPixelBilinear</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Sets the y coordinate of the transform to follow the heightmap
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Texture2D.html">Texture2D</a> heightmap;
+    public <a href="Vector3.html">Vector3</a> size = new <a href="Vector3.html">Vector3</a>(100, 10, 100);<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        int x = <a href="Mathf.FloorToInt.html">Mathf.FloorToInt</a>(transform.position.x / size.x * heightmap.width);
+        int z = <a href="Mathf.FloorToInt.html">Mathf.FloorToInt</a>(transform.position.z / size.z * heightmap.height);
+        <a href="Vector3.html">Vector3</a> pos = transform.position;
+        pos.y = heightmap.GetPixel(x, z).grayscale * size.y;
+        transform.position = pos;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

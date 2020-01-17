@@ -1,0 +1,74 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorGUI.EnumPopup</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorGUI.html">EditorGUI</a>.EnumPopup</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static Enum <span class="sig-kw">EnumPopup</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+Enum <span class="sig-kw">selected</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span> = EditorStyles.popup);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static Enum <span class="sig-kw">EnumPopup</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+string <span class="sig-kw">label</span>,
+Enum <span class="sig-kw">selected</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span> = EditorStyles.popup);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static Enum <span class="sig-kw">EnumPopup</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+<a href="GUIContent.html">GUIContent</a> <span class="sig-kw">label</span>,
+Enum <span class="sig-kw">selected</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span> = EditorStyles.popup);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static Enum <span class="sig-kw">EnumPopup</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+<a href="GUIContent.html">GUIContent</a> <span class="sig-kw">label</span>,
+Enum <span class="sig-kw">selected</span>,
+Func&lt;Enum,bool&gt; <span class="sig-kw">checkEnabled</span> = null,
+bool <span class="sig-kw">includeObsolete</span> = false,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span> = null);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">position</td><td class="desc"></td><td class="desc1">Rectangle on the screen to use for the field.</td></tr><tr><td class="name lbl">label</td><td class="desc"></td><td class="desc1">Optional label in front of the field.</td></tr><tr><td class="name lbl">selected</td><td class="desc"></td><td class="desc1">The enum option the field shows.</td></tr><tr><td class="name lbl">style</td><td class="desc"></td><td class="desc1">Optional <a href="GUIStyle.html">GUIStyle</a>.</td></tr><tr><td class="name lbl">includeObsolete</td><td class="desc"></td><td class="desc1">Set to true to include Enum values with ObsoleteAttribute. Set to false to exclude Enum values with ObsoleteAttribute.</td></tr><tr><td class="name lbl">checkEnabled</td><td class="desc"></td><td class="desc1">Method called for each Enum value displayed. The specified method should return true if the option can be selected, false otherwise.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>Enum</strong>
+        The enum option that has been selected by the user.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Makes an enum popup selection field.</p></div><div class="subsection"><p>Takes the currently selected enum value as a parameter and returns the enum value selected by the user.
+<img src="../StaticFiles/ScriptRefImages/EditorGUIEnumPopup.png" /><br />
+<em>Enum Popup in an Editor Window.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;<br /><br />
+// Shows info of a <a href="GameObject.html">GameObject</a> depending on the selected option<br /><br />public enum OPTIONS
+{
+    <a href="UIElements.Position.html">Position</a> = 0,
+    Rotation = 1,
+    Scale = 2,
+}<br /><br />
+public class EditorGUIEnumPopup : <a href="EditorWindow.html">EditorWindow</a>
+{
+    OPTIONS display = OPTIONS.Position;<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Examples/<a href="Editor.html">Editor</a> <a href="GUI.html">GUI</a> Enum Popup usage")]
+    static void Init()
+    {
+        <a href="EditorWindow.html">EditorWindow</a> window = GetWindow(typeof(EditorGUIEnumPopup));
+        window.position = new <a href="Rect.html">Rect</a>(0, 0, 220, 80);
+        window.Show();
+    }<br /><br />    void OnGUI()
+    {
+        <a href="Transform.html">Transform</a> selectedObj = <a href="Selection-activeTransform.html">Selection.activeTransform</a>;<br /><br />        display = (OPTIONS)<a href="EditorGUI.EnumPopup.html">EditorGUI.EnumPopup</a>(
+            new <a href="Rect.html">Rect</a>(3, 3, position.width - 6, 15),
+            "Show:",
+            display);<br /><br />        <a href="EditorGUI.LabelField.html">EditorGUI.LabelField</a>(new <a href="Rect.html">Rect</a>(0, 20, position.width, 15),
+            "Name:",
+            selectedObj ? selectedObj.name : "Select an Object");
+        if (selectedObj)
+        {
+            switch (display)
+            {
+                case OPTIONS.Position:
+                    <a href="EditorGUI.LabelField.html">EditorGUI.LabelField</a>(new <a href="Rect.html">Rect</a>(0, 40, position.width, 15),
+                        "<a href="UIElements.Position.html">Position</a>:",
+                        selectedObj.position.ToString());
+                    break;<br /><br />                case OPTIONS.Rotation:
+                    <a href="EditorGUI.LabelField.html">EditorGUI.LabelField</a>(new <a href="Rect.html">Rect</a>(0, 40, position.width, 15),
+                        "Rotation:",
+                        selectedObj.rotation.ToString());
+                    break;<br /><br />                case OPTIONS.Scale:
+                    <a href="EditorGUI.LabelField.html">EditorGUI.LabelField</a>(new <a href="Rect.html">Rect</a>(0, 40, position.width, 15),
+                        "Scale:",
+                        selectedObj.localScale.ToString());
+                    break;<br /><br />                default:
+                    <a href="Debug.LogError.html">Debug.LogError</a>("Unrecognized Option");
+                    break;
+            }
+        }<br /><br />        if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(3, position.height - 25, position.width - 6, 24), "Close"))
+            this.Close();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

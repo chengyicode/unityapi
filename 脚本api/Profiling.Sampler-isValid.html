@@ -1,0 +1,19 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Profiling.Sampler.isValid</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Profiling.Sampler.html">Sampler</a>.isValid</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public bool <span class="sig-kw">isValid</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Returns true if Sampler is valid. (Read Only)</p></div><div class="subsection"><p>Invalid Sampler represents non-existing Profiler label.<br /><br /><strong>Note:</strong> At the moment all built-in counters are available only in the Editor and Development Players. <a href="Profiling.Sampler.Get.html">Sampler.Get</a> in non-Development Players returns invalid Sampler.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.Profiling;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        var sampler = <a href="Profiling.Sampler.Get.html">Sampler.Get</a>("BehaviourUpdate");
+        if (sampler.isValid)
+            <a href="Debug.Log.html">Debug.Log</a>("Retrieved a <a href="Profiling.Sampler.html">Sampler</a> for BehaviourUpdate!");<br /><br />        sampler = <a href="Profiling.Sampler.Get.html">Sampler.Get</a>("TerrainRenderer");
+        if (!sampler.isValid)
+            <a href="Debug.Log.html">Debug.Log</a>("<a href="Profiling.Profiler.html">Profiler</a> label TerrainRenderer does not exist!");
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

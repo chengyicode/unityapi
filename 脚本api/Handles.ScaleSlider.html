@@ -1,0 +1,47 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Handles.ScaleSlider</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Handles.html">Handles</a>.ScaleSlider</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static float <span class="sig-kw">ScaleSlider</span>(float <span class="sig-kw">scale</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">position</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">direction</span>,
+<a href="Quaternion.html">Quaternion</a> <span class="sig-kw">rotation</span>,
+float <span class="sig-kw">size</span>,
+float <span class="sig-kw">snap</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">scale</td><td class="desc"></td><td class="desc1">The value the user can modify.</td></tr><tr><td class="name lbl">position</td><td class="desc"></td><td class="desc1">The position of the handle in the space of <a href="Handles-matrix.html">Handles.matrix</a>.</td></tr><tr><td class="name lbl">direction</td><td class="desc"></td><td class="desc1">The direction of the handle in the space of <a href="Handles-matrix.html">Handles.matrix</a>.</td></tr><tr><td class="name lbl">rotation</td><td class="desc"></td><td class="desc1">The rotation of the handle in the space of <a href="Handles-matrix.html">Handles.matrix</a>.</td></tr><tr><td class="name lbl">size</td><td class="desc"></td><td class="desc1">The size of the handle in the space of <a href="Handles-matrix.html">Handles.matrix</a>. Use <a href="HandleUtility.GetHandleSize.html">HandleUtility.GetHandleSize</a> if you want a constant screen-space size.</td></tr><tr><td class="name lbl">snap</td><td class="desc"></td><td class="desc1">The snap increment. See <a href="Handles.SnapValue.html">Handles.SnapValue</a>.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>float</strong>
+        The new value modified by the user's interaction with the handle. If the user has not moved the handle, it will return the same value as you passed into the function.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Make a directional scale slider.</p></div><div class="subsection"><p>This method will draw a 3D-draggable handle on the screen that looks like one axis on Unity's built-in scale tool. The handle will stretch and will scale a single float up and down.<br />
+<br />
+<img src="../StaticFiles/ScriptRefImages/ScaleSliderHandle.png" /><br />
+<em>Scale slider handle in the Scene View.</em><br /><br />Add the following script to your Assets folder as ScaleSliderExample.cs and add the ScaleSliderExample component to an object in a Scene.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />[<a href="ExecuteInEditMode.html">ExecuteInEditMode</a>]
+public class ScaleSliderExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public float scale { get { return m_Scale; } set { m_Scale = value; } }
+    [<a href="SerializeField.html">SerializeField</a>]
+    private float m_Scale = 1f;<br /><br />    public virtual void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        transform.localScale = new <a href="Vector3.html">Vector3</a>(scale, 1f, 1f);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Add the following script to Assets/Editor as ScaleSliderExampleEditor.cs and select the object with the ScaleSliderExample component.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;<br /><br />[<a href="CustomEditor.html">CustomEditor</a>(typeof(ScaleSliderExample)), <a href="CanEditMultipleObjects.html">CanEditMultipleObjects</a>]
+public class ScaleSliderExampleEditor : <a href="Editor.html">Editor</a>
+{
+    public void OnSceneGUI()
+    {
+        ScaleSliderExample example = (ScaleSliderExample)target;<br /><br />        float size = <a href="HandleUtility.GetHandleSize.html">HandleUtility.GetHandleSize</a>(example.transform.position) * 1f;
+        float snap = 0.5f;<br /><br />        <a href="EditorGUI.BeginChangeCheck.html">EditorGUI.BeginChangeCheck</a>();
+        float scale = <a href="Handles.ScaleSlider.html">Handles.ScaleSlider</a>(example.scale, example.transform.position, example.transform.right, example.transform.rotation, size, snap);
+        if (<a href="EditorGUI.EndChangeCheck.html">EditorGUI.EndChangeCheck</a>())
+        {
+            <a href="Undo.RecordObject.html">Undo.RecordObject</a>(target, "Change Scale Value");
+            example.scale = scale;
+            example.Update();
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

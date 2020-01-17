@@ -1,0 +1,35 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Handles.DrawWireArc</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Handles.html">Handles</a>.DrawWireArc</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">DrawWireArc</span>(<a href="Vector3.html">Vector3</a> <span class="sig-kw">center</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">normal</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">from</span>,
+float <span class="sig-kw">angle</span>,
+float <span class="sig-kw">radius</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">center</td><td class="desc"></td><td class="desc1">The center of the circle.</td></tr><tr><td class="name lbl">normal</td><td class="desc"></td><td class="desc1">The normal of the circle.</td></tr><tr><td class="name lbl">from</td><td class="desc"></td><td class="desc1">The direction of the point on the circle circumference, relative to the center, where the arc begins.</td></tr><tr><td class="name lbl">angle</td><td class="desc"></td><td class="desc1">The angle of the arc, in degrees.</td></tr><tr><td class="name lbl">radius</td><td class="desc"></td><td class="desc1">The radius of the circle<br /><br /><strong>Note:</strong> Use HandleUtility.GetHandleSize where you might want to have constant screen-sized handles.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Draw a circular arc in 3D space.</p></div><div class="subsection"><p>
+        <img src="../StaticFiles/ScriptRefImages/DrawWireArc.png" />
+        <br />
+<em>Wire Arc in the Scene View.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;
+using System.Collections;<br /><br />//this class should exist somewhere in your project
+public class WireArcExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public float shieldArea;<br /><br />    // ...other code...
+}<br /><br />// Create a 180 degrees wire arc with a ScaleValueHandle attached to the disc
+// that lets you modify the "shieldArea" var in the WireArcExample.js
+[<a href="CustomEditor.html">CustomEditor</a>(typeof(WireArcExample))]
+public class DrawWireArc : <a href="Editor.html">Editor</a>
+{
+    void OnSceneGUI()
+    {
+        <a href="Handles-color.html">Handles.color</a> = <a href="Color-red.html">Color.red</a>;
+        WireArcExample myObj = (WireArcExample)target;
+        <a href="Handles.DrawWireArc.html">Handles.DrawWireArc</a>(myObj.transform.position, myObj.transform.up, -myObj.transform.right, 180, myObj.shieldArea);
+        myObj.shieldArea = (float)<a href="Handles.ScaleValueHandle.html">Handles.ScaleValueHandle</a>(myObj.shieldArea, myObj.transform.position + myObj.transform.forward * myObj.shieldArea, myObj.transform.rotation, 1, Handles.ConeCap, 1);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>And the script attached to this Handle:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">no example available in C#</pre>
+      </div></div></div></div></body></html>

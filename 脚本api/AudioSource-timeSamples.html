@@ -1,0 +1,24 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AudioSource.timeSamples</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="AudioSource.html">AudioSource</a>.timeSamples</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-AudioSource.html' title='Go to AudioSource Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public int <span class="sig-kw">timeSamples</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Playback position in PCM samples.</p></div><div class="subsection"><p>Use this to read current playback time or to seek to a new playback time in samples,
+if you want more precise timing than what <a href="AudioSource-time.html">time</a> variable allows.<br /><br />See Also: <a href="AudioSource-time.html">time</a> variable.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />[<a href="RequireComponent.html">RequireComponent</a>(typeof(<a href="AudioSource.html">AudioSource</a>))]
+public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="AudioSource.html">AudioSource</a> audioSource;<br /><br />    void Start()
+    {
+        audioSource = GetComponent&lt;<a href="AudioSource.html">AudioSource</a>&gt;();
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        if (<a href="Input.GetKeyDown.html">Input.GetKeyDown</a>(<a href="KeyCode.Return.html">KeyCode.Return</a>))
+        {
+            audioSource.Stop();
+            audioSource.Play();
+        }
+        <a href="Debug.Log.html">Debug.Log</a>(audioSource.timeSamples);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

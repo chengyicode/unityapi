@@ -1,0 +1,44 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: GUI.BeginScrollView</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="GUI.html">GUI</a>.BeginScrollView</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Vector2.html">Vector2</a> <span class="sig-kw">BeginScrollView</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+<a href="Vector2.html">Vector2</a> <span class="sig-kw">scrollPosition</span>,
+<a href="Rect.html">Rect</a> <span class="sig-kw">viewRect</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Vector2.html">Vector2</a> <span class="sig-kw">BeginScrollView</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+<a href="Vector2.html">Vector2</a> <span class="sig-kw">scrollPosition</span>,
+<a href="Rect.html">Rect</a> <span class="sig-kw">viewRect</span>,
+bool <span class="sig-kw">alwaysShowHorizontal</span>,
+bool <span class="sig-kw">alwaysShowVertical</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Vector2.html">Vector2</a> <span class="sig-kw">BeginScrollView</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+<a href="Vector2.html">Vector2</a> <span class="sig-kw">scrollPosition</span>,
+<a href="Rect.html">Rect</a> <span class="sig-kw">viewRect</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">horizontalScrollbar</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">verticalScrollbar</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Vector2.html">Vector2</a> <span class="sig-kw">BeginScrollView</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+<a href="Vector2.html">Vector2</a> <span class="sig-kw">scrollPosition</span>,
+<a href="Rect.html">Rect</a> <span class="sig-kw">viewRect</span>,
+bool <span class="sig-kw">alwaysShowHorizontal</span>,
+bool <span class="sig-kw">alwaysShowVertical</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">horizontalScrollbar</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">verticalScrollbar</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">position</td><td class="desc"></td><td class="desc1">Rectangle on the screen to use for the ScrollView.</td></tr><tr><td class="name lbl">scrollPosition</td><td class="desc"></td><td class="desc1">The pixel distance that the view is scrolled in the X and Y directions.</td></tr><tr><td class="name lbl">viewRect</td><td class="desc"></td><td class="desc1">The rectangle used inside the scrollview.</td></tr><tr><td class="name lbl">horizontalScrollbar</td><td class="desc"></td><td class="desc1">Optional <a href="GUIStyle.html">GUIStyle</a> to use for the horizontal scrollbar. If left out, the <code class="varname">horizontalScrollbar</code> style from the current <a href="GUISkin.html">GUISkin</a> is used.</td></tr><tr><td class="name lbl">verticalScrollbar</td><td class="desc"></td><td class="desc1">Optional <a href="GUIStyle.html">GUIStyle</a> to use for the vertical scrollbar. If left out, the <code class="varname">verticalScrollbar</code> style from the current <a href="GUISkin.html">GUISkin</a> is used.</td></tr><tr><td class="name lbl">alwaysShowHorizontal</td><td class="desc"></td><td class="desc1">Optional parameter to always show the horizontal scrollbar. If false or left out, it is only shown when <code class="varname">viewRect</code> is wider than <code class="varname">position</code>.</td></tr><tr><td class="name lbl">alwaysShowVertical</td><td class="desc"></td><td class="desc1">Optional parameter to always show the vertical scrollbar. If false or left out, it is only shown when <code class="varname">viewRect</code> is taller than <code class="varname">position</code>.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>Vector2</strong>
+        The modified scrollPosition. Feed this back into the variable you pass in, as shown in the example.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Begin a scrolling view inside your GUI.</p></div><div class="subsection"><p>ScrollViews let you make a smaller area on-screen look 'into' a much larger area, using scrollbars placed on the sides of the ScrollView.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // The position on of the scrolling viewport
+    public <a href="Vector2.html">Vector2</a> scrollPosition = <a href="Vector2-zero.html">Vector2.zero</a>;<br /><br />    void OnGUI()
+    {
+        // An absolute-positioned example: We make a scrollview that has a really large client
+        // rect and put it in a small rect on the screen.
+        scrollPosition = <a href="GUI.BeginScrollView.html">GUI.BeginScrollView</a>(new <a href="Rect.html">Rect</a>(10, 300, 100, 100), scrollPosition, new <a href="Rect.html">Rect</a>(0, 0, 220, 200));<br /><br />        // Make four buttons - one in each corner. The coordinate system is defined
+        // by the last parameter to BeginScrollView.
+        <a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(0, 0, 100, 20), "Top-left");
+        <a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(120, 0, 100, 20), "Top-right");
+        <a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(0, 180, 100, 20), "Bottom-left");
+        <a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(120, 180, 100, 20), "Bottom-right");<br /><br />        // End the scroll view that we began above.
+        <a href="GUI.EndScrollView.html">GUI.EndScrollView</a>();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

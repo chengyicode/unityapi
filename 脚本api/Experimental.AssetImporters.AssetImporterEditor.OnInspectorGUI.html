@@ -1,0 +1,34 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Experimental.AssetImporters.AssetImporterEditor.OnInspectorGUI</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Experimental</b>: this API is experimental and might be changed or removed in the future.</div><h1 class="heading inherit"><a href="Experimental.AssetImporters.AssetImporterEditor.html">AssetImporterEditor</a>.OnInspectorGUI</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">OnInspectorGUI</span>();
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Override this method to create your own Inpsector GUI for a ScriptedImporter.</p></div><div class="subsection"><p>For the OnInspectorGUI Undo/Redo and cancel feature to work in the Inspector, you must either call ApplyRevertGUI or override needsApplyRevert to return false.<br /><br />Example of an InspectorGUI using ApplyRevertGUI:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEditor.Experimental.AssetImporters;
+using UnityEngine;<br /><br />public class CustomInspector : <a href="Experimental.AssetImporters.ScriptedImporterEditor.html">ScriptedImporterEditor</a>
+{
+    <a href="SerializedProperty.html">SerializedProperty</a> myProperty;<br /><br />    public override void OnEnable()
+    {
+        base.OnEnable();<br /><br />        myProperty = serializedObject.FindProperty("m_MyProperty");
+    }<br /><br />    public override void OnInspectorGUI()
+    {
+        serializedObject.Update();<br /><br />        <a href="EditorGUILayout.PropertyField.html">EditorGUILayout.PropertyField</a>(myProperty);<br /><br />        serializedObject.ApplyModifiedProperties();<br /><br />        ApplyRevertGUI();
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Example of an InspectorGUI where the user cannot change anything and does not require an ApplyRevertGUI:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEditor.Experimental.AssetImporters;
+using UnityEngine;<br /><br />public class CustomInspector : <a href="Experimental.AssetImporters.ScriptedImporterEditor.html">ScriptedImporterEditor</a>
+{
+    <a href="SerializedProperty.html">SerializedProperty</a> myProperty;<br /><br />    public override void OnEnable()
+    {
+        base.OnEnable();<br /><br />        myProperty = serializedObject.FindProperty("m_MyProperty");
+    }<br /><br />    protected override bool needsApplyRevert =&gt; false;<br /><br />    public override void OnInspectorGUI()
+    {
+        serializedObject.Update();<br /><br />        <a href="EditorGUILayout.LabelField.html">EditorGUILayout.LabelField</a>(myProperty.displayName, myProperty.stringValue);<br /><br />        serializedObject.ApplyModifiedProperties();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

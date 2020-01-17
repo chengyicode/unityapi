@@ -1,0 +1,34 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ParticleSystem.SubEmittersModule.GetSubEmitterEmitProbability</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="ParticleSystem.SubEmittersModule.html">ParticleSystem.SubEmittersModule</a>.GetSubEmitterEmitProbability</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-ParticleSystem.html' title='Go to ParticleSystem Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public float <span class="sig-kw">GetSubEmitterEmitProbability</span>(int <span class="sig-kw">index</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">index</td><td class="desc"></td><td class="desc1">The index of the desired sub-emitter.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>float</strong>
+        The emission probability for the desired sub-emitter
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Returns the probability that the sub-emitter emits particles.</p></div><div class="subsection"><p>The return value ranges from 0 to 1, where 0 is never and 1 is always.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        // A simple particle material with no texture.
+        var particleMaterial = new <a href="Material.html">Material</a>(<a href="Shader.Find.html">Shader.Find</a>("Particles/Standard Surface"));<br /><br />        // Emit 1 particle per second.
+        var particleSystemGameObject = new <a href="GameObject.html">GameObject</a>("<a href="ParticleSystem.Particle.html">Particle</a> System");
+        var particleSystemMain = particleSystemGameObject.AddComponent&lt;<a href="ParticleSystem.html">ParticleSystem</a>&gt;();
+        var emitMain = particleSystemMain.emission;
+        emitMain.rateOverTime = 1;
+        particleSystemGameObject.GetComponent&lt;<a href="ParticleSystemRenderer.html">ParticleSystemRenderer</a>&gt;().material = particleMaterial;<br /><br />        // Create a sub-emitter that has a 10% chance of emitting a red particle when "<a href="ParticleSystem.Particle.html">Particle</a> System" emits.
+        var subEmitterGo = new <a href="GameObject.html">GameObject</a>("Sub Emitter");
+        subEmitterGo.transform.SetParent(particleSystemGameObject.transform);
+        var subEmitter = subEmitterGo.AddComponent&lt;<a href="ParticleSystem.html">ParticleSystem</a>&gt;();
+        var emitSub = subEmitter.emission;
+        emitSub.rateOverTime = 0;
+        emitSub.burstCount = 1;
+        emitSub.SetBurst(0, new <a href="ParticleSystem.Burst.html">ParticleSystem.Burst</a>(0, 1));
+        var mainModule = subEmitter.main;
+        mainModule.startColor = <a href="Color-red.html">Color.red</a>;
+        subEmitterGo.GetComponent&lt;<a href="ParticleSystemRenderer.html">ParticleSystemRenderer</a>&gt;().material = particleMaterial;<br /><br />        // Add the sub-emitter, and set the probability.
+        var subEmittersModule = particleSystemMain.subEmitters;
+        subEmittersModule.enabled = true;
+        subEmittersModule.AddSubEmitter(subEmitter, <a href="ParticleSystemSubEmitterType.Birth.html">ParticleSystemSubEmitterType.Birth</a>, new <a href="ParticleSystemSubEmitterProperties.html">ParticleSystemSubEmitterProperties</a>(), 0.1f);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

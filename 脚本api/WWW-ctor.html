@@ -1,0 +1,58 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: WWW.WWW</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Method group is Obsolete</b><br /></div><h1 class="heading inherit">WWW Constructor</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public <span class="sig-kw">WWW</span>(string <span class="sig-kw">url</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">url</td><td class="desc"></td><td class="desc1">The url to download. Must be '%' escaped.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>void</strong>
+        A new WWW object. When it has been downloaded, the results can be fetched from the returned object.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Creates a WWW request with the given URL.</p></div><div class="subsection"><p>This function creates and sends a GET request.
+The stream will automatically start downloading the response.<br /><br />After the stream is created you have to wait for it to complete, then you can access the downloaded data.
+As a convenience the stream can be yielded, so you can very easily tell Unity to wait for the download to complete.<br /><br /><strong><em>Note:</em></strong> URL must be '%' escaped.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Get the latest webcam shot from outside "Friday's" in Times Square<br /><br />using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public string url = "http://images.earthcam.com/ec_metros/ourcams/fridays.jpg";
+    IEnumerator Start()
+    {
+        // Start a download of the given URL
+        using (WWW www = new WWW(url))
+        {
+            // Wait for download to complete
+            yield return www;<br /><br />            // assign texture
+            <a href="Renderer.html">Renderer</a> renderer = GetComponent&lt;<a href="Renderer.html">Renderer</a>&gt;();
+            renderer.material.mainTexture = www.textureNonReadable;
+        }
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public <span class="sig-kw">WWW</span>(string <span class="sig-kw">url</span>,
+<a href="WWWForm.html">WWWForm</a> <span class="sig-kw">form</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">url</td><td class="desc"></td><td class="desc1">The url to download. Must be '%' escaped.</td></tr><tr><td class="name lbl">form</td><td class="desc"></td><td class="desc1">A <a href="WWWForm.html">WWWForm</a> instance containing the form data to post.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>void</strong>
+        A new WWW object. When it has been downloaded, the results can be fetched from the returned object.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Creates a WWW request with the given URL.</p></div><div class="subsection"><p>This function creates and sends a POST request with form data contained in a <a href="WWWForm.html">WWWForm</a>
+parameter. This is the same as calling <code class="mono">new WWW(url,form.data, form.headers)</code>.
+The stream will automatically start downloading the response.<br /><br />After the stream is created you have to wait for it to complete, then you can access the downloaded data.
+As a convenience the stream can be yielded, so you can very easily tell Unity to wait for the download to complete.<br /><br /><strong><em>Note:</em></strong> URL must be '%' escaped.</p></div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public <span class="sig-kw">WWW</span>(string <span class="sig-kw">url</span>,
+byte[] <span class="sig-kw">postData</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">url</td><td class="desc"></td><td class="desc1">The url to download. Must be '%' escaped.</td></tr><tr><td class="name lbl">postData</td><td class="desc"></td><td class="desc1">A byte array of data to be posted to the url.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>void</strong>
+        A new WWW object. When it has been downloaded, the results can be fetched from the returned object.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Creates a WWW request with the given URL.</p></div><div class="subsection"><p>This function creates and sends a POST request with raw post data contained in postData.
+The stream will automatically start downloading the response.
+Use this version if you need to post raw post data in a custom format to the server.<br /><br />After the stream is created you have to wait for it to complete, then you can access the downloaded data.
+As a convenience the stream can be yielded, so you can very easily tell Unity to wait for the download to complete.<br /><br /><strong><em>Note:</em></strong> URL must be '%' escaped.</p></div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public <span class="sig-kw">WWW</span>(string <span class="sig-kw">url</span>,
+byte[] <span class="sig-kw">postData</span>,
+<a href="Hashtable.html">Hashtable</a> <span class="sig-kw">headers</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">url</td><td class="desc"></td><td class="desc1">The url to download. Must be '%' escaped.</td></tr><tr><td class="name lbl">postData</td><td class="desc"></td><td class="desc1">A byte array of data to be posted to the url.</td></tr><tr><td class="name lbl">headers</td><td class="desc"></td><td class="desc1">A hash table of custom headers to send with the request.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>void</strong>
+        A new WWW object. When it has been downloaded, the results can be fetched from the returned object.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Creates a WWW request with the given URL.</p></div><div class="subsection"><p>This function creates and sends a POST request with raw post data contained in
+postData and custom request headers supplied in the <code class="varname">headers</code> hashtable.
+The stream will automatically start downloading the response.
+Use this version if you need to post raw post data in a custom format to the server or if you need to supply custom request headers.<br /><br />After the stream is created you have to wait for it to complete, then you can access the downloaded data.
+As a convenience the stream can be yielded, so you can very easily tell Unity to wait for the download to complete.<br /><br /><strong><em>Note:</em></strong> URL must be '%' escaped.</p></div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public <span class="sig-kw">WWW</span>(string <span class="sig-kw">url</span>,
+byte[] <span class="sig-kw">postData</span>,
+Dictionary&lt;string,string&gt; <span class="sig-kw">headers</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">url</td><td class="desc"></td><td class="desc1">The url to download. Must be '%' escaped.</td></tr><tr><td class="name lbl">postData</td><td class="desc"></td><td class="desc1">A byte array of data to be posted to the url.</td></tr><tr><td class="name lbl">headers</td><td class="desc"></td><td class="desc1">A dictionary that contains the header keys and values to pass to the server.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>void</strong>
+        A new WWW object. When it has been downloaded, the results can be fetched from the returned object.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Creates a WWW request with the given URL.</p></div><div class="subsection"><p>This function creates and sends a POST request with raw post data contained in
+postData and custom request headers supplied in the <code class="varname">headers</code> Dictionary.
+The stream will automatically start downloading the response.
+Use this version if you need to post raw post data in a custom format to the server or if you need to supply custom request headers.<br /><br />After the stream is created you have to wait for it to complete, then you can access the downloaded data.
+As a convenience the stream can be yielded, so you can very easily tell Unity to wait for the download to complete.<br /><br /><strong><em>Note:</em></strong> URL must be '%' escaped.</p></div></div></div></div></body></html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: GeometryUtility.TestPlanesAABB</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="GeometryUtility.html">GeometryUtility</a>.TestPlanesAABB</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">TestPlanesAABB</span>(Plane[] <span class="sig-kw">planes</span>,
+<a href="Bounds.html">Bounds</a> <span class="sig-kw">bounds</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Returns true if bounds are inside the plane array.</p></div><div class="subsection"><p>Will return true if the bounding box is inside the planes or intersects any of the planes.<br /><br />The TestPlanesAABB function uses the Plane array to test whether a bounding box is in the frustum or not.<br />
+You can use this function with CalculateFrustrumPlanes to test whether a camera's view contains an object
+regardless of whether it is rendered or not.<br /><br />See Also: <a href="GeometryUtility.CalculateFrustumPlanes.html">GeometryUtility.CalculateFrustumPlanes</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Detects manually if obj is being seen by the main camera<br /><br />    <a href="GameObject.html">GameObject</a> obj;
+    <a href="Collider.html">Collider</a> objCollider;<br /><br />    <a href="Camera.html">Camera</a> cam;
+    <a href="Plane.html">Plane</a>[] planes;<br /><br />    void Start()
+    {
+        cam = <a href="Camera-main.html">Camera.main</a>;
+        planes = <a href="GeometryUtility.CalculateFrustumPlanes.html">GeometryUtility.CalculateFrustumPlanes</a>(cam);
+        objCollider =  GetComponent&lt;<a href="Collider.html">Collider</a>&gt;();
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        if (<a href="GeometryUtility.TestPlanesAABB.html">GeometryUtility.TestPlanesAABB</a>(planes, objCollider.bounds))
+        {
+            <a href="Debug.Log.html">Debug.Log</a>(obj.name + " has been detected!");
+        }
+        else
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("Nothing has been detected");
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

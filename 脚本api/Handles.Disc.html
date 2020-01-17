@@ -1,0 +1,54 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Handles.Disc</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Handles.html">Handles</a>.Disc</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Quaternion.html">Quaternion</a> <span class="sig-kw">Disc</span>(int <span class="sig-kw">id</span>,
+<a href="Quaternion.html">Quaternion</a> <span class="sig-kw">rotation</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">position</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">axis</span>,
+float <span class="sig-kw">size</span>,
+bool <span class="sig-kw">cutoffPlane</span>,
+float <span class="sig-kw">snap</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Quaternion.html">Quaternion</a> <span class="sig-kw">Disc</span>(<a href="Quaternion.html">Quaternion</a> <span class="sig-kw">rotation</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">position</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">axis</span>,
+float <span class="sig-kw">size</span>,
+bool <span class="sig-kw">cutoffPlane</span>,
+float <span class="sig-kw">snap</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">id</td><td class="desc"></td><td class="desc1">Control id of the handle.</td></tr><tr><td class="name lbl">rotation</td><td class="desc"></td><td class="desc1">The rotation of the disc.</td></tr><tr><td class="name lbl">position</td><td class="desc"></td><td class="desc1">The center of the disc.</td></tr><tr><td class="name lbl">axis</td><td class="desc"></td><td class="desc1">The axis to rotate around.</td></tr><tr><td class="name lbl">size</td><td class="desc"></td><td class="desc1">The size of the disc in world space.</td></tr><tr><td class="name lbl">cutoffPlane</td><td class="desc"></td><td class="desc1">If true, only the front-facing half of the circle is draw / draggable. This is useful when you have many overlapping rotation axes (like in the default rotate tool) to avoid clutter.</td></tr><tr><td class="name lbl">snap</td><td class="desc"></td><td class="desc1">The grid size to snap to.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>Quaternion</strong>
+        The new rotation value modified by the user's interaction with the handle. If the user has not moved the handle, it will return the same value as you passed into the function.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Make a 3D disc that can be dragged with the mouse.</p></div><div class="subsection"><p>
+        <strong>Note:</strong> Use <a href="HandleUtility.GetHandleSize.html">HandleUtility.GetHandleSize</a> where you might want to have constant screen-sized handles.<br /><br /><img src="../StaticFiles/ScriptRefImages/DiscHandle.png" /><br />
+<em>Disc Handle on the Scene View.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Name this script "DiscHandleEditor"
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />[<a href="CustomEditor.html">CustomEditor</a>(typeof(DiscHandle))]
+[<a href="CanEditMultipleObjects.html">CanEditMultipleObjects</a>]
+public class DiscHandleEditor : <a href="Editor.html">Editor</a>
+{
+    public void OnSceneGUI()
+    {
+        DiscHandle t = (target as DiscHandle);<br /><br />        <a href="EditorGUI.BeginChangeCheck.html">EditorGUI.BeginChangeCheck</a>();
+        <a href="Quaternion.html">Quaternion</a> rot = <a href="Handles.Disc.html">Handles.Disc</a>(t.rot, t.transform.position, new <a href="Vector3.html">Vector3</a>(1, 1, 0), 5, false, 1);<br /><br />        if (<a href="EditorGUI.EndChangeCheck.html">EditorGUI.EndChangeCheck</a>())
+        {
+            <a href="Undo.RecordObject.html">Undo.RecordObject</a>(target, "Disc Rotate");
+            t.rot = rot;
+            t.Update();
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>And the script attached to this Handle:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Name this script "DiscHandle"
+using UnityEngine;
+[<a href="ExecuteInEditMode.html">ExecuteInEditMode</a>]
+public class DiscHandle : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Quaternion.html">Quaternion</a> rot = <a href="Quaternion-identity.html">Quaternion.identity</a>;
+    public void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        transform.rotation = rot;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

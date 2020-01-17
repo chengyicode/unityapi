@@ -1,0 +1,58 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorWindow.OnInspectorUpdate()</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorWindow.html">EditorWindow</a>.OnInspectorUpdate()</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>OnInspectorUpdate is called at 10 frames per second to give the inspector a chance to update.</p></div><div class="subsection"><p>
+        <img src="../StaticFiles/ScriptRefImages/AlignPosition.png" />
+        <br />
+<em>Align position of the selected objects.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;
+using System.Collections;<br /><br />// Simple script that aligns the position of several selected GameObjects
+// with the first selected one.<br /><br />public class Example : <a href="EditorWindow.html">EditorWindow</a>
+{
+    bool alignToX = true;
+    bool alignToY = true;
+    bool alignToZ = true;
+    string selected = "";
+    string alignTo = "";<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Example/OnInspectorUpdate example")]
+    static void Init()
+    {
+        Example window = (Example)GetWindow(typeof(Example));
+        window.Show();
+    }<br /><br />    void  OnInspectorUpdate()
+    {
+        // Call Repaint on OnInspectorUpdate as it repaints the windows
+        // less times as if it was OnGUI/<a href="Experimental.PlayerLoop.Update.html">Update</a>
+        Repaint();
+    }<br /><br />    void  OnGUI()
+    {
+        <a href="GUILayout.Label.html">GUILayout.Label</a>("Select various Objects in the <a href="UIElements.VisualElement.Hierarchy.html">Hierarchy</a> view");
+        selected = <a href="Selection-activeTransform.html">Selection.activeTransform</a> ? Selection.activeTransform.name : "";<br /><br />        foreach (<a href="Transform.html">Transform</a> t in <a href="Selection-transforms.html">Selection.transforms</a>)
+        {
+            if (t.GetInstanceID() != Selection.activeTransform.GetInstanceID())
+            {
+                alignTo += t.name + " ";
+            }
+        }<br /><br />        <a href="EditorGUILayout.LabelField.html">EditorGUILayout.LabelField</a>("<a href="UIElements.Align.html">Align</a>: ", alignTo);
+        alignTo = "";
+        <a href="EditorGUILayout.LabelField.html">EditorGUILayout.LabelField</a>("With: ", selected);<br /><br />        alignToX = <a href="EditorGUILayout.Toggle.html">EditorGUILayout.Toggle</a>("X", alignToX);
+        alignToY = <a href="EditorGUILayout.Toggle.html">EditorGUILayout.Toggle</a>("Y", alignToY);
+        alignToZ = <a href="EditorGUILayout.Toggle.html">EditorGUILayout.Toggle</a>("Z", alignToZ);<br /><br />        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("<a href="UIElements.Align.html">Align</a>"))
+        {
+            <a href="UIElements.Align.html">Align</a>();
+        }
+    }<br /><br />    void <a href="UIElements.Align.html">Align</a>()
+    {
+        if (selected == "" || alignTo == "")
+        {
+            <a href="Debug.LogError.html">Debug.LogError</a>("No objects selected to align");
+        }<br /><br />        foreach (<a href="Transform.html">Transform</a> t in <a href="Selection-transforms.html">Selection.transforms</a>)
+        {
+            <a href="Vector3.html">Vector3</a> alignementPosition = Selection.activeTransform.position;
+            <a href="Vector3.html">Vector3</a> newPosition;<br /><br />            newPosition.x = alignToX ? alignementPosition.x : t.position.x;
+            newPosition.y = alignToY ? alignementPosition.y : t.position.y;
+            newPosition.z = alignToZ ? alignementPosition.z : t.position.z;<br /><br />            t.position = newPosition;
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

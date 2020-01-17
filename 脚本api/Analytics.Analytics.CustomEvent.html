@@ -1,0 +1,54 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Analytics.Analytics.CustomEvent</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Analytics.Analytics.html">Analytics</a>.CustomEvent</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Analytics.AnalyticsResult.html">Analytics.AnalyticsResult</a> <span class="sig-kw">CustomEvent</span>(string <span class="sig-kw">customEventName</span>,
+IDictionary&lt;string,object&gt; <span class="sig-kw">eventData</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">customEventName</td><td class="desc"></td><td class="desc1">Name of custom event. Name cannot include the prefix "unity." - This is a reserved keyword.</td></tr><tr><td class="name lbl">eventData</td><td class="desc"></td><td class="desc1">Additional parameters sent to Unity Analytics at the time the custom event was triggered. Dictionary key cannot include the prefix "unity." - This is a reserved keyword.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Custom Events (optional).</p></div><div class="subsection"><p>Unity Analytics allows you to track specific events within your game. By configuring a series of Custom Events within your game, you can create your own Funnel Analysis to observe your players' game behavior. Good places to put custom events include: milestones, new levels, Scene transitions, etc.<br /><br />In addition to tracking custom events, Unity Analytics also allows you to pass in custom dimensions (dictionary) relating to the event. These custom dimensions are primarily useful to know additional specifications about the user at the time the custom event was reached.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Analytics;<br /><br />public class GameLoginMonoBehaviour : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public void OnGameOver()
+    {
+        int totalPotions = 5;
+        int totalCoins = 100;
+        <a href="Analytics.Analytics.CustomEvent.html">Analytics.CustomEvent</a>("gameOver", new Dictionary&lt;string, object&gt;
+        {
+            { "potions", totalPotions },
+            { "coins", totalCoins }
+        });
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Analytics.AnalyticsResult.html">Analytics.AnalyticsResult</a> <span class="sig-kw">CustomEvent</span>(string <span class="sig-kw">customEventName</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Custom Events (optional).</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Analytics;<br /><br />public class GameLoginMonoBehaviour : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public void OnGameOver()
+    {
+        <a href="Analytics.Analytics.CustomEvent.html">Analytics.CustomEvent</a>("gameOver");
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Analytics.AnalyticsResult.html">Analytics.AnalyticsResult</a> <span class="sig-kw">CustomEvent</span>(string <span class="sig-kw">customEventName</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">position</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Custom Events (optional).</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Analytics;<br /><br />public class GameLoginMonoBehaviour : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public void OnGameOver(<a href="Vector3.html">Vector3</a> v)
+    {
+        <a href="Analytics.Analytics.CustomEvent.html">Analytics.CustomEvent</a>("gameOver", v);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Handles.ScaleValueHandle</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Handles.html">Handles</a>.ScaleValueHandle</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static float <span class="sig-kw">ScaleValueHandle</span>(float <span class="sig-kw">value</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">position</span>,
+<a href="Quaternion.html">Quaternion</a> <span class="sig-kw">rotation</span>,
+float <span class="sig-kw">size</span>,
+<a href="Handles.CapFunction.html">Handles.CapFunction</a> <span class="sig-kw">capFunction</span>,
+float <span class="sig-kw">snap</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">value</td><td class="desc"></td><td class="desc1">The value the user can modify.</td></tr><tr><td class="name lbl">position</td><td class="desc"></td><td class="desc1">The position of the handle in the space of <a href="Handles-matrix.html">Handles.matrix</a>.</td></tr><tr><td class="name lbl">rotation</td><td class="desc"></td><td class="desc1">The rotation of the handle in the space of <a href="Handles-matrix.html">Handles.matrix</a>.</td></tr><tr><td class="name lbl">size</td><td class="desc"></td><td class="desc1">The size of the handle in the space of <a href="Handles-matrix.html">Handles.matrix</a>. Use <a href="HandleUtility.GetHandleSize.html">HandleUtility.GetHandleSize</a> if you want a constant screen-space size.</td></tr><tr><td class="name lbl">snap</td><td class="desc"></td><td class="desc1">The snap increment. See <a href="Handles.SnapValue.html">Handles.SnapValue</a>.</td></tr><tr><td class="name lbl">capFunction</td><td class="desc"></td><td class="desc1">The function to call for doing the actual drawing.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>float</strong>
+        The new value modified by the user's interaction with the handle. If the user has not moved the handle, it will return the same value as you passed into the function.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Make a 3D handle that scales a single float.</p></div><div class="subsection"><p>This method will draw a 3D-draggable handle on the screen. The handle does not move and will scale a single float up and down.<br />
+<br />
+<img src="../StaticFiles/ScriptRefImages/ScaleValueHandle.png" /><br />
+<em>Scale Value handle in the Scene view with an arrow cap as the handle.</em><br />
+<br />
+Add the following script to your Assets folder as LightColorLerp.cs and add the LightColorLerp component to an object in a Scene.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />[<a href="ExecuteInEditMode.html">ExecuteInEditMode</a>, <a href="RequireComponent.html">RequireComponent</a>(typeof(<a href="Light.html">Light</a>))]
+public class LightColorLerp : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    [<a href="SerializeField.html">SerializeField</a>]
+    private <a href="Color.html">Color</a> m_Color1 = <a href="Color-red.html">Color.red</a>;
+    [<a href="SerializeField.html">SerializeField</a>]
+    private <a href="Color.html">Color</a> m_Color2 = <a href="Color-green.html">Color.green</a>;<br /><br />    public float amount { get { return m_Amount; } set { m_Amount = <a href="Mathf.Clamp01.html">Mathf.Clamp01</a>(value); } }
+    [<a href="SerializeField.html">SerializeField</a>, <a href="SocialPlatforms.Range.html">Range</a>(0f, 1f)]
+    private float m_Amount = 1f;<br /><br />    private <a href="Light.html">Light</a> m_Light;<br /><br />    protected virtual void OnEnable()
+    {
+        m_Light = GetComponent&lt;<a href="Light.html">Light</a>&gt;();
+    }<br /><br />    public virtual void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        m_Light.color = <a href="Color.Lerp.html">Color.Lerp</a>(m_Color1, m_Color2, m_Amount);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Add the following script to Assets/Editor as LightColorLerpEditor.cs and select the object with the LightColorLerp component.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;<br /><br />[<a href="CustomEditor.html">CustomEditor</a>(typeof(LightColorLerp)), <a href="CanEditMultipleObjects.html">CanEditMultipleObjects</a>]
+public class LightColorLerpEditor : <a href="Editor.html">Editor</a>
+{
+    protected virtual void OnSceneGUI()
+    {
+        LightColorLerp colorLerp = (LightColorLerp)target;<br /><br />        float size = <a href="HandleUtility.GetHandleSize.html">HandleUtility.GetHandleSize</a>(colorLerp.transform.position) * 5f;
+        float snap = 0.1f;<br /><br />        <a href="EditorGUI.BeginChangeCheck.html">EditorGUI.BeginChangeCheck</a>();
+        float newAmount = <a href="Handles.ScaleValueHandle.html">Handles.ScaleValueHandle</a>(colorLerp.amount, colorLerp.transform.position, <a href="Quaternion-identity.html">Quaternion.identity</a>, size, <a href="Handles.ArrowHandleCap.html">Handles.ArrowHandleCap</a>, snap);
+        if (<a href="EditorGUI.EndChangeCheck.html">EditorGUI.EndChangeCheck</a>())
+        {
+            <a href="Undo.RecordObject.html">Undo.RecordObject</a>(colorLerp, "Change <a href="Light.html">Light</a> <a href="Color.html">Color</a> Interpolation");
+            colorLerp.amount = newAmount;
+            colorLerp.Update();
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Texture2D.GetPixelBilinear</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Texture2D.html">Texture2D</a>.GetPixelBilinear</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Color.html">Color</a> <span class="sig-kw">GetPixelBilinear</span>(float <span class="sig-kw">u</span>,
+float <span class="sig-kw">v</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Returns filtered pixel color at normalized coordinates (u, v).</p></div><div class="subsection"><p>Coordinates <code class="varname">u</code> and <code class="varname">v</code> go from 0.0 to 1.0, just like UV coordinates in meshes.
+If coordinates are out of bounds (larger than 1.0 or smaller than 0.0),
+they will be clamped or repeated based on the texture's wrap mode.<br /><br />Texture coordinates start at lower left corner. UV of (0,0) lands exactly on the bottom
+left texel; and UV of ((width-1)/width, (height-1)/height) lands exactly on the top right
+texel.<br /><br />Returned pixel color is bilinearly filtered.<br /><br />The texture must have the <a href="TextureImporter-isReadable.html">read/write enabled</a> flag set in the <a href="../Manual/Textures.html">texture import settings</a>, otherwise this function will fail. GetPixelBilinear is not available on Textures using Crunch texture compression.<br /><br />See Also: <a href="Texture2D.GetPixel.html">GetPixel</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // "Warp" a texture by squashing its pixels to one side.
+    // This involves sampling the image at non-integer pixel
+    // positions to ensure a smooth effect.<br /><br />    // Source image.
+    public <a href="Texture2D.html">Texture2D</a> sourceTex;<br /><br />    // Amount of "warping".
+    public float warpFactor = 1.0f;<br /><br />    <a href="Texture2D.html">Texture2D</a> destTex;
+    <a href="Color.html">Color</a>[] destPix;<br /><br />
+    void Start()
+    {
+        // Set up a new texture with the same dimensions as the original.
+        destTex = new <a href="Texture2D.html">Texture2D</a>(sourceTex.width, sourceTex.height);
+        destPix = new <a href="Color.html">Color</a>[destTex.width * destTex.height];<br /><br />        // For each pixel in the destination texture...
+        for (var y = 0; y &lt; destTex.height; y++)
+        {
+            for (var x = 0; x &lt; destTex.width; x++)
+            {
+                // Calculate the fraction of the way across the image
+                // that this pixel positon corresponds to.
+                float xFrac = x * 1.0f / (destTex.width - 1);
+                float yFrac = y * 1.0f / (destTex.height - 1);<br /><br />                // Take the fractions (0..1)and raise them to a power to apply
+                // the distortion.
+                float warpXFrac = <a href="Mathf.Pow.html">Mathf.Pow</a>(xFrac, warpFactor);
+                float warpYFrac = <a href="Mathf.Pow.html">Mathf.Pow</a>(yFrac, warpFactor);<br /><br />                // Get the non-integer pixel positions using GetPixelBilinear.
+                destPix[y * destTex.width + x] = sourceTex.GetPixelBilinear(warpXFrac, warpYFrac);
+            }
+        }<br /><br />        // Copy the pixel data to the destination texture and apply the change.
+        destTex.SetPixels(destPix);
+        destTex.Apply();<br /><br />        // Set our object's texture to the newly warped image.
+        GetComponent&lt;<a href="Renderer.html">Renderer</a>&gt;().material.mainTexture = destTex;
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="Texture2D.GetPixel.html">GetPixel</a>.</p></div></div></div></div></body></html>

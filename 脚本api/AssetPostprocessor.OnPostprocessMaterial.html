@@ -1,0 +1,13 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AssetPostprocessor.OnPostprocessMaterial(Material)</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="AssetPostprocessor.html">AssetPostprocessor</a>.OnPostprocessMaterial(Material)</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Add this function to a subclass to get a notification when a Material asset has completed importing.</p></div><div class="subsection"><p>Use this method to modify the properties of newly created Material assets during import.<br /><br />This method is only called by the ModelImporter.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class MakeMaterialsRed : <a href="AssetPostprocessor.html">AssetPostprocessor</a>
+{
+    void OnPostprocessMaterial(<a href="Material.html">Material</a> material)
+    {
+        material.color = <a href="Color-red.html">Color.red</a>;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

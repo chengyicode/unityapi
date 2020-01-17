@@ -1,0 +1,47 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: IShortcutManager</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">IShortcutManager</h1><div class="clear"></div><p class="cl mb0 left mr10">interface in
+          UnityEditor.ShortcutManagement</p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Represents a manager that configures a particular instance of the shortcuts system.</p></div><div class="subsection"><p>The manager maintains a list of <em>available</em> profiles which can be retrieved with <a href="ShortcutManagement.IShortcutManager.GetAvailableProfiles.html">GetAvailableProfiles</a>. Some of the methods require the passed profile ID to be available at the time it is called. Creating a new profile with <a href="ShortcutManagement.IShortcutManager.CreateProfile.html">CreateProfile</a> makes it available and deleting a profile with <a href="ShortcutManagement.IShortcutManager.DeleteProfile.html">DeleteProfile</a> makes it not available anymore.<br /><br />It also maintains a reference to the <em>active</em> profile (<a href="ShortcutManagement.IShortcutManager-activeProfileId.html">activeProfileId</a>) which determines the active bindings based on the shortcut overrides of the active profile. <a href="ShortcutManagement.IShortcutManager.RebindShortcut.html">RebindShortcut</a> and <a href="ShortcutManagement.IShortcutManager.ClearShortcutOverride.html">ClearShortcutOverride</a> requires the active profile to not be <em>read-only</em> (i.e. <a href="ShortcutManagement.IShortcutManager.IsProfileReadOnly.html">IsProfileReadOnly</a> returns <code class="mono">false</code> for <a href="ShortcutManagement.IShortcutManager-activeProfileId.html">activeProfileId</a>) since these two methods modify the active profile.<br /><br />Finally, it maintains a list of available shortcuts which can be retrieved with <a href="ShortcutManagement.IShortcutManager.GetAvailableShortcuts.html">GetAvailableShortcuts</a>. All methods that take a shortcut ID require that the shortcut is avaliable.</p></div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="ShortcutManagement.IShortcutManager-activeProfileId.html">activeProfileId</a></td><td class="desc"></td><td class="desc1">Gets or sets the ID of the currently active profile.</td></tr>
+    </table></div><div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="ShortcutManagement.IShortcutManager.ClearShortcutOverride.html">ClearShortcutOverride</a></td><td class="desc"></td><td class="desc1">Clears the binding for shortcut with given shortcut ID from the active profile.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="ShortcutManagement.IShortcutManager.CreateProfile.html">CreateProfile</a></td><td class="desc"></td><td class="desc1">Creates a new profile with the given profile ID.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="ShortcutManagement.IShortcutManager.DeleteProfile.html">DeleteProfile</a></td><td class="desc"></td><td class="desc1">Deletes profile with the given profile ID.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="ShortcutManagement.IShortcutManager.GetAvailableProfileIds.html">GetAvailableProfileIds</a></td><td class="desc"></td><td class="desc1">Returns an enumeration of all of avaliable profile IDs.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="ShortcutManagement.IShortcutManager.GetAvailableShortcutIds.html">GetAvailableShortcutIds</a></td><td class="desc"></td><td class="desc1">Returns an enumeration of all available shortcut IDs.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="ShortcutManagement.IShortcutManager.GetShortcutBinding.html">GetShortcutBinding</a></td><td class="desc"></td><td class="desc1">Returns the active binding for the given shortcut ID.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="ShortcutManagement.IShortcutManager.IsProfileIdValid.html">IsProfileIdValid</a></td><td class="desc"></td><td class="desc1">Checks that the profile ID is valid.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="ShortcutManagement.IShortcutManager.IsProfileReadOnly.html">IsProfileReadOnly</a></td><td class="desc"></td><td class="desc1">Is the profile for the given profile ID read-only?</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="ShortcutManagement.IShortcutManager.IsShortcutOverridden.html">IsShortcutOverridden</a></td><td class="desc"></td><td class="desc1">Does the active profile override the binding for the given shortcut ID?</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="ShortcutManagement.IShortcutManager.RebindShortcut.html">RebindShortcut</a></td><td class="desc"></td><td class="desc1">Rebinds the shortcut for the given shortcut ID to the given binding in the active profile.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="ShortcutManagement.IShortcutManager.RenameProfile.html">RenameProfile</a></td><td class="desc"></td><td class="desc1">Renames the ID of a profile.</td></tr>
+    </table></div><div class="subsection"><h2>Events</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="ShortcutManagement.IShortcutManager-activeProfileChanged.html">activeProfileChanged</a></td><td class="desc"></td><td class="desc1">Raised when the ID of the active profile is changed.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="ShortcutManagement.IShortcutManager-shortcutBindingChanged.html">shortcutBindingChanged</a></td><td class="desc"></td><td class="desc1">Raised when shortcut overrides are changed on the active profile.</td></tr>
+    </table></div></div></div></div></body></html>

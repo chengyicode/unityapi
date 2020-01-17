@@ -1,0 +1,30 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: PlayerPrefsException</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">PlayerPrefsException</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.CoreModule.html" class="cl">UnityEngine.CoreModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>An exception thrown by the <a href="PlayerPrefs.html">PlayerPrefs</a> class in a  web player build.</p></div><div class="subsection"><p>The exception is thrown when writing to a preference file exceeds the allotted storage space.  This exception is not thrown on other platforms.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        // create a one megabyte character string
+        string s16 = "0123456789abcdef";
+        string s1024 = "";
+        for (int j = 0; j &lt; 64; j++)
+            s1024 += s16;
+        string s1024x1024 = "";
+        for (int i  = 0; i &lt; 1024; i++)
+            s1024x1024 += s1024;<br /><br />        // try to save the string
+        try
+        {
+            <a href="PlayerPrefs.SetString.html">PlayerPrefs.SetString</a>("fail", s1024x1024);
+        }
+        // handle the error
+        catch (System.Exception err)
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("Got: " + err);
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Note that web player is not supported from 5.4.0 onwards.</p></div></div></div></div></body></html>

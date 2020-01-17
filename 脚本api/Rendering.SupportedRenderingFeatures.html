@@ -1,0 +1,49 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: SupportedRenderingFeatures</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">SupportedRenderingFeatures</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine.Rendering</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.CoreModule.html" class="cl">UnityEngine.CoreModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Describes the rendering features supported by a given render pipeline.</p></div><div class="subsection"><p>Set the active supported rendering features when enabling a render pipeline. This will change the state of the editor UI to reflect the changes.</p></div><div class="subsection"><h2>Static Properties</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.SupportedRenderingFeatures-active.html">active</a></td><td class="desc"></td><td class="desc1">Get / Set a SupportedRenderingFeatures.</td></tr>
+    </table></div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.SupportedRenderingFeatures-defaultMixedLightingModes.html">defaultMixedLightingModes</a></td><td class="desc"></td><td class="desc1">This is the fallback mode if the mode the user had previously selected is no longer available. See SupportedRenderingFeatures.mixedLightingModes.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.SupportedRenderingFeatures-editableMaterialRenderQueue.html">editableMaterialRenderQueue</a></td><td class="desc"></td><td class="desc1">Determines whether the Scriptable Render Pipeline will override the default Material’s Render Queue settings and, if true, hides the Render Queue property in the Inspector.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.SupportedRenderingFeatures-lightmapBakeTypes.html">lightmapBakeTypes</a></td><td class="desc"></td><td class="desc1">What baking types are supported. The unsupported ones will be hidden from the UI. See LightmapBakeType.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.SupportedRenderingFeatures-lightmapsModes.html">lightmapsModes</a></td><td class="desc"></td><td class="desc1">Specifies what modes are supported. Has to be at least one. See LightmapsMode.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.SupportedRenderingFeatures-lightProbeProxyVolumes.html">lightProbeProxyVolumes</a></td><td class="desc"></td><td class="desc1">Are light probe proxy volumes supported?</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.SupportedRenderingFeatures-mixedLightingModes.html">mixedLightingModes</a></td><td class="desc"></td><td class="desc1">Specifies what LightmapMixedBakeModes that are supported. Please define a SupportedRenderingFeatures.defaultMixedLightingModes in case multiple modes are supported.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.SupportedRenderingFeatures-motionVectors.html">motionVectors</a></td><td class="desc"></td><td class="desc1">Are motion vectors supported?</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.SupportedRenderingFeatures-overridesEnvironmentLighting.html">overridesEnvironmentLighting</a></td><td class="desc"></td><td class="desc1">Determines if the renderer will override the Environment Lighting and will no longer need the built-in UI for it.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.SupportedRenderingFeatures-overridesFog.html">overridesFog</a></td><td class="desc"></td><td class="desc1">Determines if the renderer will override the fog settings in the Lighting Panel and will no longer need the built-in UI for it.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.SupportedRenderingFeatures-overridesOtherLightingSettings.html">overridesOtherLightingSettings</a></td><td class="desc"></td><td class="desc1">Determines if the renderer will override halo and flare settings in the Lighting Panel and will no longer need the built-in UI for it.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.SupportedRenderingFeatures-receiveShadows.html">receiveShadows</a></td><td class="desc"></td><td class="desc1">Can renderers support receiving shadows?</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.SupportedRenderingFeatures-reflectionProbeModes.html">reflectionProbeModes</a></td><td class="desc"></td><td class="desc1">Flags for supported reflection probes.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.SupportedRenderingFeatures-reflectionProbes.html">reflectionProbes</a></td><td class="desc"></td><td class="desc1">Are reflection probes supported?</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.SupportedRenderingFeatures-rendererPriority.html">rendererPriority</a></td><td class="desc"></td><td class="desc1">Determines if the renderer supports renderer priority sorting.</td></tr>
+    </table></div></div></div></div></body></html>

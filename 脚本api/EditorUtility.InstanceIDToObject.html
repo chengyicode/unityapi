@@ -1,0 +1,32 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorUtility.InstanceIDToObject</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorUtility.html">EditorUtility</a>.InstanceIDToObject</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static Object <span class="sig-kw">InstanceIDToObject</span>(int <span class="sig-kw">instanceID</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Translates an instance ID to a reference to an object.</p></div><div class="subsection"><p>If the object is not loaded from disk, loads it from disk.<br /><br /><img src="../StaticFiles/ScriptRefImages/EditorUtilityInstanceIDToObject.png" /><br />
+<em>Editor Window to enter the instance ID and print the name of the object.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class InstanceIDToObjectExample : <a href="EditorWindow.html">EditorWindow</a>
+{
+    static int id;<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Example/ID To Name")]
+    static void Init()
+    {
+        // Get existing open window or if none, make a new one:
+        InstanceIDToObjectExample window = (InstanceIDToObjectExample)<a href="EditorWindow.GetWindow.html">EditorWindow.GetWindow</a>(typeof(InstanceIDToObjectExample));
+        window.Show();
+    }<br /><br />    void OnGUI()
+    {
+        id = <a href="EditorGUILayout.IntField.html">EditorGUILayout.IntField</a>("Instance ID:", id);
+        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Find Name"))
+        {
+            Object obj = <a href="EditorUtility.InstanceIDToObject.html">EditorUtility.InstanceIDToObject</a>(id);
+            if (!obj)
+                <a href="Debug.LogError.html">Debug.LogError</a>("No object could be found with instance id: " + id);
+            else
+                <a href="Debug.Log.html">Debug.Log</a>("Object's name: " + obj.name);
+        }
+    }<br /><br />    void OnInspectorUpdate()
+    {
+        Repaint();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

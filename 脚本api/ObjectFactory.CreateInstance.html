@@ -1,0 +1,18 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ObjectFactory.CreateInstance</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="ObjectFactory.html">ObjectFactory</a>.CreateInstance</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static Object <span class="sig-kw">CreateInstance</span>(Type <span class="sig-kw">type</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static T <span class="sig-kw">CreateInstance</span>();
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">type</td><td class="desc"></td><td class="desc1">The type of instance to create.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Create a new instance of the given type.</p></div><div class="subsection"><p>Use this method to create any type of serialized object in the Editor. The created instance uses default values.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class CreateInstanceExample
+{
+    [<a href="MenuItem.html">MenuItem</a>("ObjectFactoryExample/Create <a href="Material.html">Material</a> <a href="VersionControl.Asset.html">Asset</a>")]
+    public void CreateMaterialEditor()
+    {
+        <a href="Material.html">Material</a> material = <a href="ObjectFactory.CreateInstance.html">ObjectFactory.CreateInstance</a>&lt;<a href="Material.html">Material</a>&gt;();
+        material.shader = <a href="Shader.Find.html">Shader.Find</a>("Transparent/Diffuse");
+        <a href="AssetDatabase.CreateAsset.html">AssetDatabase.CreateAsset</a>(material, "Assets/newMaterial.mat");
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

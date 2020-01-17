@@ -1,0 +1,36 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorGUI.DropShadowLabel</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorGUI.html">EditorGUI</a>.DropShadowLabel</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">DropShadowLabel</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+string <span class="sig-kw">text</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">DropShadowLabel</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+<a href="GUIContent.html">GUIContent</a> <span class="sig-kw">content</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">DropShadowLabel</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+string <span class="sig-kw">text</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">DropShadowLabel</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+<a href="GUIContent.html">GUIContent</a> <span class="sig-kw">content</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">position</td><td class="desc"></td><td class="desc1">Where to show the label.</td></tr><tr><td class="name lbl">content</td><td class="desc"></td><td class="desc1">Text to show
+@style style to use.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Draws a label with a drop shadow.</p></div><div class="subsection"><p>Not superfast, so use with caution.<br /><br /><img src="../StaticFiles/ScriptRefImages/EditorGUIDropShadowLabel.png" /><br />
+<em>Shadow Label in and editor window.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class EditorGUIDropShadowLabel : <a href="EditorWindow.html">EditorWindow</a>
+{
+    // Write some text using a Shadow <a href="UIElements.Label.html">Label</a>.
+    string text = "This is some text with a Shadow <a href="UIElements.Label.html">Label</a>";<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Examples/Shadow <a href="UIElements.Label.html">Label</a>")]
+    static void Init()
+    {
+        var window = GetWindow&lt;EditorGUIDropShadowLabel&gt;();
+        window.position = new <a href="Rect.html">Rect</a>(0, 0, 250, 60);
+        window.Show();
+    }<br /><br />    void OnGUI()
+    {
+        <a href="EditorGUI.DropShadowLabel.html">EditorGUI.DropShadowLabel</a>(new <a href="Rect.html">Rect</a>(0, 5, 245, 20), text);<br /><br />        if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(0, 30, 250, 20), "Close"))
+            this.Close();
+    }<br /><br />    void OnInspectorUpdate()
+    {
+        Repaint();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Object.operator ==</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Object.html">Object</a>.operator ==</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">operator ==</span>(<a href="Object.html">Object</a> <span class="sig-kw">x</span>,
+<a href="Object.html">Object</a> <span class="sig-kw">y</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">x</td><td class="desc"></td><td class="desc1">The first Object.</td></tr><tr><td class="name lbl">y</td><td class="desc"></td><td class="desc1">The Object to compare against the first.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Compares two object references to see if they refer to the same object.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Collider.html">Collider</a> target;
+    void OnTriggerEnter(<a href="Collider.html">Collider</a> trigger)
+    {
+        if (trigger == target)
+        {
+            print("We hit the target trigger");
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Get early out if there is no target.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Transform.html">Transform</a> target;
+    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        // Early out if the target is gone
+        if (target == null)
+        {
+            return;
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Be careful when comparing with <code class="mono">null</code>.<br /><br />e.g.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        <a href="GameObject.html">GameObject</a> go = new <a href="GameObject.html">GameObject</a>();
+        <a href="Debug.Log.html">Debug.Log</a>(go == null); // false<br /><br />        Object obj = new Object();
+        <a href="Debug.Log.html">Debug.Log</a>(obj == null); // true
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Instatiating a <a href="GameObject.html">GameObject</a> adds it to the Scene so its completely initialized (!destroyed). Instantiating a simple UnityEngine.Object has no such semantics, so the it stays in the 'destroyed' state which compares <code class="mono">true</code> to <code class="mono">null</code>.</p></div></div></div></div></body></html>

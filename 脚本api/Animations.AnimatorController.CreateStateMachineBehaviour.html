@@ -1,0 +1,28 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Animations.AnimatorController.CreateStateMachineBehaviour</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Animations.AnimatorController.html">AnimatorController</a>.CreateStateMachineBehaviour</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static int <span class="sig-kw">CreateStateMachineBehaviour</span>(<a href="MonoScript.html">MonoScript</a> <span class="sig-kw">script</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">script</td><td class="desc"></td><td class="desc1">MonoScript class to instantiate.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>int</strong>
+        Returns instance id of created object, returns 0 if something is not valid.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>This function will create a StateMachineBehaviour instance based on the class define in this script.</p></div><div class="subsection"><p>This function will validate that the monoscript is a valid statemachine behaviour, the class must be a sub class of StateMachineBehaviour and shouldn't be a generic.
+See Also: <a href="StateMachineBehaviour.html">StateMachineBehaviour</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEditor.Animations;
+using UnityEngine;<br /><br />public class AddSMB
+{
+    public void DoAddStateMachineBehaviour(UnityEditor.Animations.AnimatorState state, <a href="MonoScript.html">MonoScript</a> monoScript)
+    {
+        if (state == null)
+            return;<br /><br />        int instanceID = <a href="Animations.AnimatorController.CreateStateMachineBehaviour.html">AnimatorController.CreateStateMachineBehaviour</a>(monoScript);
+        if (instanceID == 0)
+        {
+            <a href="Debug.LogError.html">Debug.LogError</a>("Could not create state machine behaviour " + monoScript.name);
+            return;
+        }<br /><br />        state.AddStateMachineBehaviour(monoScript.GetClass());<br /><br />        var obj = <a href="EditorUtility.InstanceIDToObject.html">EditorUtility.InstanceIDToObject</a>(instanceID);
+        if (obj == null)
+            <a href="Debug.LogError.html">Debug.LogError</a>("No object could be found with instance id: " + instanceID);
+        else
+            <a href="AssetDatabase.AddObjectToAsset.html">AssetDatabase.AddObjectToAsset</a>(obj, state.ToString());
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

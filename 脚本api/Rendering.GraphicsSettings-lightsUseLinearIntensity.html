@@ -1,0 +1,16 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Rendering.GraphicsSettings.lightsUseLinearIntensity</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Rendering.GraphicsSettings.html">GraphicsSettings</a>.lightsUseLinearIntensity</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">lightsUseLinearIntensity</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>If this is true, Light intensity is multiplied against linear color values. If it is false, gamma color values are used.</p></div><div class="subsection"><p>
+          Light intensity is multiplied by the linear color value when lightsUseLinearIntensity
+          is enabled. This is physically correct but not the default for 3D projects created with
+          Unity 5.6 and newer.  By default <a href="Rendering.GraphicsSettings-lightsUseLinearIntensity.html">lightsUseLinearIntensity</a> is set to false.<br />
+<br />
+          2D projects will have <a href="Rendering.GraphicsSettings-lightsUseLinearIntensity.html">lightsUseLinearIntensity</a> set to disabled by default.
+          When disabled, the gamma color value is multiplied with the intensity.
+          If you want to use <a href="Rendering.GraphicsSettings-lightsUseColorTemperature.html">lightsUseColorTemperature</a>, <a href="Rendering.GraphicsSettings-lightsUseLinearIntensity.html">lightsUseLinearIntensity</a> has to be
+          enabled to ensure physically correct output.<br />
+<br />
+          If you enable <a href="Rendering.GraphicsSettings-lightsUseLinearIntensity.html">lightsUseLinearIntensity</a> on an existing project, all your Lights will
+          need to be tweaked to regain their original look.<br />
+<br />
+          See Also: <a href="Rendering.GraphicsSettings-lightsUseColorTemperature.html">GraphicsSettings.lightsUseColorTemperature</a>, <a href="Light-colorTemperature.html">Light.colorTemperature</a>.
+        </p></div></div></div></div></body></html>

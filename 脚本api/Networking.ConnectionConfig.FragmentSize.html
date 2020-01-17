@@ -1,0 +1,18 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Networking.ConnectionConfig.FragmentSize</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Method group is Obsolete</b><br /></div><h1 class="heading inherit"><a href="Networking.ConnectionConfig.html">ConnectionConfig</a>.FragmentSize</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public ushort <span class="sig-kw">FragmentSize</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Defines the fragment size for fragmented messages (for QOS: ReliableFragmented and UnreliableFragmented). Default value = 500.<br /><br />Under fragmented quality of service modes, the original message is split into fragments (up to 64) of up to FragmentSize bytes each. The fragment size depends on the frequency and size of reliable messages sent. Each reliable message potentially could be re-sent, so you need to choose a fragment size less than the remaining free space in a UDP packet after retransmitted reliable messages are added to the packet. For example, if Networking.ConnectionConfig.PacketSize is 1440 bytes, and a reliable message's average size is 200 bytes, it would be wise to set this parameter to 900 – 1000 bytes.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.Networking;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        ConnectionConfig myConfig = new ConnectionConfig();
+        myConfig.AddChannel(<a href="Networking.QosType.Unreliable.html">QosType.Unreliable</a>);
+        myConfig.AddChannel(<a href="Networking.QosType.UnreliableFragmented.html">QosType.UnreliableFragmented</a>);
+        myConfig.PacketSize = 1440;
+        myConfig.FragmentSize = 900;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

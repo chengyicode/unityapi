@@ -1,0 +1,161 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: SpringJoint</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">SpringJoint</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Inherits from:<a href="Joint.html" class="cl">Joint</a></p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.PhysicsModule.html" class="cl">UnityEngine.PhysicsModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-SpringJoint.html' title='Go to SpringJoint Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>The spring joint ties together 2 rigid bodies, spring forces will be automatically applied to keep the object at the given distance.</p></div><div class="subsection"><p>The Spring attempts to maintain the distance it has when it starts out.
+So if your joint's start at a rest position where the two rigidbodies are far apart, then the joint will attempt to maintain that distance.
+The minDistance and maxDistance properties add on top of this implicit distance.</p></div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SpringJoint-damper.html">damper</a></td><td class="desc"></td><td class="desc1">The damper force used to dampen the spring force.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SpringJoint-maxDistance.html">maxDistance</a></td><td class="desc"></td><td class="desc1">The maximum distance between the bodies relative to their initial distance.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SpringJoint-minDistance.html">minDistance</a></td><td class="desc"></td><td class="desc1">The minimum distance between the bodies relative to their initial distance.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SpringJoint-spring.html">spring</a></td><td class="desc"></td><td class="desc1">The spring force used to keep the two objects together.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SpringJoint-tolerance.html">tolerance</a></td><td class="desc"></td><td class="desc1">The maximum allowed error between the current spring length and the length defined by minDistance and maxDistance.</td></tr>
+    </table></div><div class="subsection"><h2>Inherited Members   继承成员</h2>
+      
+      <div class="subsection"><h2>Properties   属性</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Component-gameObject.html">gameObject</a></td><td class="desc"></td><td class="desc1">The game object this component is attached to. A component is always attached to a game object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Component-tag.html">tag</a></td><td class="desc"></td><td class="desc1">The tag of this game object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Component-transform.html">transform</a></td><td class="desc"></td><td class="desc1">The Transform attached to this GameObject.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Joint-anchor.html">anchor</a></td><td class="desc"></td><td class="desc1">The Position of the anchor around which the joints motion is constrained.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Joint-autoConfigureConnectedAnchor.html">autoConfigureConnectedAnchor</a></td><td class="desc"></td><td class="desc1">Should the connectedAnchor be calculated automatically?</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Joint-axis.html">axis</a></td><td class="desc"></td><td class="desc1">The Direction of the axis around which the body is constrained.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Joint-breakForce.html">breakForce</a></td><td class="desc"></td><td class="desc1">The force that needs to be applied for this joint to break.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Joint-breakTorque.html">breakTorque</a></td><td class="desc"></td><td class="desc1">The torque that needs to be applied for this joint to break. To be able to break, a joint must be _Locked_ or _Limited_ on the axis of rotation where the torque is being applied. This means that some joints cannot break, such as an unconstrained Configurable Joint.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Joint-connectedAnchor.html">connectedAnchor</a></td><td class="desc"></td><td class="desc1">Position of the anchor relative to the connected Rigidbody.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Joint-connectedBody.html">connectedBody</a></td><td class="desc"></td><td class="desc1">A reference to another rigidbody this joint connects to.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Joint-connectedMassScale.html">connectedMassScale</a></td><td class="desc"></td><td class="desc1">The scale to apply to the inverse mass and inertia tensor of the connected body prior to solving the constraints.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Joint-currentForce.html">currentForce</a></td><td class="desc"></td><td class="desc1">The force applied by the solver to satisfy all constraints.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Joint-currentTorque.html">currentTorque</a></td><td class="desc"></td><td class="desc1">The torque applied by the solver to satisfy all constraints.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Joint-enableCollision.html">enableCollision</a></td><td class="desc"></td><td class="desc1">Enable collision between bodies connected with the joint.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Joint-enablePreprocessing.html">enablePreprocessing</a></td><td class="desc"></td><td class="desc1">Toggle preprocessing for this joint.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Joint-massScale.html">massScale</a></td><td class="desc"></td><td class="desc1">The scale to apply to the inverse mass and inertia tensor of the body prior to solving the constraints.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Object-hideFlags.html">hideFlags</a></td><td class="desc"></td><td class="desc1">Should the object be hidden, saved with the Scene or modifiable by the user?</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Object-name.html">name</a></td><td class="desc"></td><td class="desc1">The name of the object.</td></tr>
+      </table></div>
+      
+      
+      
+      <div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Component.BroadcastMessage.html">BroadcastMessage</a></td><td class="desc"></td><td class="desc1">Calls the method named methodName on every MonoBehaviour in this game object or any of its children.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Component.CompareTag.html">CompareTag</a></td><td class="desc"></td><td class="desc1">Is this game object tagged with tag ?</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponent.html">GetComponent</a></td><td class="desc"></td><td class="desc1">Returns the component of Type type if the game object has one attached, null if it doesn't.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponentInChildren.html">GetComponentInChildren</a></td><td class="desc"></td><td class="desc1">Returns the component of Type type in the GameObject or any of its children using depth first search.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponentInParent.html">GetComponentInParent</a></td><td class="desc"></td><td class="desc1">Returns the component of Type type in the GameObject or any of its parents.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponents.html">GetComponents</a></td><td class="desc"></td><td class="desc1">Returns all components of Type type in the GameObject.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponentsInChildren.html">GetComponentsInChildren</a></td><td class="desc"></td><td class="desc1">Returns all components of Type type in the GameObject or any of its children.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponentsInParent.html">GetComponentsInParent</a></td><td class="desc"></td><td class="desc1">Returns all components of Type type in the GameObject or any of its parents.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Component.SendMessage.html">SendMessage</a></td><td class="desc"></td><td class="desc1">Calls the method named methodName on every MonoBehaviour in this game object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Component.SendMessageUpwards.html">SendMessageUpwards</a></td><td class="desc"></td><td class="desc1">Calls the method named methodName on every MonoBehaviour in this game object and on every ancestor of the behaviour.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Component.TryGetComponent.html">TryGetComponent</a></td><td class="desc"></td><td class="desc1">Gets the component of the specified type, if it exists.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Object.GetInstanceID.html">GetInstanceID</a></td><td class="desc"></td><td class="desc1">Returns the instance id of the object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Object.ToString.html">ToString</a></td><td class="desc"></td><td class="desc1">Returns the name of the object.</td></tr>
+      </table></div>
+      
+      <div class="subsection"><h2>Static Methods   静态方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Object.Destroy.html">Destroy</a></td><td class="desc"></td><td class="desc1">Removes a GameObject, component or asset.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Object.DestroyImmediate.html">DestroyImmediate</a></td><td class="desc"></td><td class="desc1">Destroys the object obj immediately. You are strongly recommended to use Destroy instead.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Object.DontDestroyOnLoad.html">DontDestroyOnLoad</a></td><td class="desc"></td><td class="desc1">Do not destroy the target Object when loading a new Scene.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectOfType.html">FindObjectOfType</a></td><td class="desc"></td><td class="desc1">Returns the first active loaded object of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectsOfType.html">FindObjectsOfType</a></td><td class="desc"></td><td class="desc1">Returns a list of all active loaded objects of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Object.Instantiate.html">Instantiate</a></td><td class="desc"></td><td class="desc1">Clones the object original and returns the clone.</td></tr>
+      </table></div>
+      <div class="subsection"><h2>Operators   运算符</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Object-operator_Object.html">bool</a></td><td class="desc"></td><td class="desc1">Does the object exist?</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Object-operator_ne.html">operator !=</a></td><td class="desc"></td><td class="desc1">Compares if two objects refer to a different object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Object-operator_eq.html">operator ==</a></td><td class="desc"></td><td class="desc1">Compares two object references to see if they refer to the same object.</td></tr>
+      </table></div>
+      <div class="subsection"><h2>Messages   消息</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Joint.OnJointBreak.html">OnJointBreak</a></td><td class="desc"></td><td class="desc1">Called when a joint attached to the same game object broke.</td></tr>
+      </table></div>
+      
+      
+    </div></div></div></div></body></html>

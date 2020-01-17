@@ -1,0 +1,20 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: RenderQueue</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">RenderQueue</h1><div class="clear"></div><p class="cl mb0 left mr10">enumeration</p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Determine in which order objects are renderered.</p></div><div class="subsection"><p>This way for example transparent objects are rendered after opaque objects, and so on.<br /><br />See Also: <a href="Material-renderQueue.html">Material.renderQueue</a>, <a href="Shader-renderQueue.html">Shader.renderQueue</a>, <a href="../Manual/SL-SubShaderTags.html">subshader tags</a>.</p></div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.RenderQueue.Background.html">Background</a></td><td class="desc"></td><td class="desc1">This render queue is rendered before any others.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.RenderQueue.Geometry.html">Geometry</a></td><td class="desc"></td><td class="desc1">Opaque geometry uses this queue.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.RenderQueue.AlphaTest.html">AlphaTest</a></td><td class="desc"></td><td class="desc1">Alpha tested geometry uses this queue.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.RenderQueue.GeometryLast.html">GeometryLast</a></td><td class="desc"></td><td class="desc1">Last render queue that is considered "opaque".</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.RenderQueue.Transparent.html">Transparent</a></td><td class="desc"></td><td class="desc1">This render queue is rendered after Geometry and AlphaTest, in back-to-front order.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.RenderQueue.Overlay.html">Overlay</a></td><td class="desc"></td><td class="desc1">This render queue is meant for overlay effects.</td></tr>
+    </table></div></div></div></div></body></html>

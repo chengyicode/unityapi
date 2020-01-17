@@ -1,0 +1,28 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: SettingsProvider.OnTitleBarGUI</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="SettingsProvider.html">SettingsProvider</a>.OnTitleBarGUI</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">OnTitleBarGUI</span>();
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Use this function to override drawing the title for the SettingsProvider using IMGUI. This allows you to add custom UI (such as a toolbar button) next to the title. <a href="AssetSettingsProvider.html">AssetSettingsProvider</a> uses this mecanism to display the "add to preset" and the "help" buttons.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;
+using UnityEngine.UIElements;
+using <a href="EditorStyles.html">EditorStyles</a> = UnityEditor.EditorStyles;<br /><br />class SimpleIMGUISettingsProvider : <a href="SettingsProvider.html">SettingsProvider</a>
+{
+    <a href="SerializedObject.html">SerializedObject</a> m_Settings;
+    const string k_MyCustomSettingsPath = "Assets/<a href="Editor.html">Editor</a>/MyCustomSettings.asset";
+    public SimpleIMGUISettingsProvider(string path, <a href="SettingsScope.html">SettingsScope</a> scope = <a href="SettingsScope.User.html">SettingsScope.User</a>)
+        : base(path, scope) {}<br /><br />    public override void OnGUI(string searchContext)
+    {
+        // Use IMGUI to display UI:
+        <a href="EditorGUILayout.PropertyField.html">EditorGUILayout.PropertyField</a>(m_Settings.FindProperty("m_Number"), new <a href="GUIContent.html">GUIContent</a>("My Number"));
+        <a href="EditorGUILayout.PropertyField.html">EditorGUILayout.PropertyField</a>(m_Settings.FindProperty("m_SomeString"), new <a href="GUIContent.html">GUIContent</a>("Some string"));
+    }<br /><br />    public override void OnTitleBarGUI()
+    {
+        // This button appears right after the Title of the currently selected <a href="SettingsProvider.html">SettingsProvider</a>:
+        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("<a href="Help.html">Help</a>!", <a href="EditorStyles-miniButton.html">EditorStyles.miniButton</a>))
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("You are on your own.");
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

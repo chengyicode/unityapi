@@ -1,0 +1,18 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: FileUtil.GetUniqueTempPathInProject</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="FileUtil.html">FileUtil</a>.GetUniqueTempPathInProject</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static string <span class="sig-kw">GetUniqueTempPathInProject</span>();
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Returns a unique path in the Temp folder within your current project.</p></div><div class="subsection"><p>The returned path is relative to the project folder.<br /><br />The returned path is of a form <code class="mono">Temp/UnityTempFile-</code><em>uniqueID</em>, where <code class="varname">uniqueID</code> is guaranteed to be
+unique over space and time.<br /><br />You can use it to create temporary files/folders and be sure that
+you are not overriding somebody else's files, plus you don't have to
+keep track of the unique IDs yourself.<br /><br /></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class GetUniqueTempPath : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    [<a href="MenuItem.html">MenuItem</a>("Example/Get Unique Temp <a href="Path.html">Path</a>")]
+    static void GetUniqueTempPathInProject()
+    {
+        <a href="Debug.Log.html">Debug.Log</a>(<a href="FileUtil.GetUniqueTempPathInProject.html">FileUtil.GetUniqueTempPathInProject</a>());
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

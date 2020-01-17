@@ -1,0 +1,43 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Handles.RadiusHandle</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Handles.html">Handles</a>.RadiusHandle</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static float <span class="sig-kw">RadiusHandle</span>(<a href="Quaternion.html">Quaternion</a> <span class="sig-kw">rotation</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">position</span>,
+float <span class="sig-kw">radius</span>,
+bool <span class="sig-kw">handlesOnly</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static float <span class="sig-kw">RadiusHandle</span>(<a href="Quaternion.html">Quaternion</a> <span class="sig-kw">rotation</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">position</span>,
+float <span class="sig-kw">radius</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">rotation</td><td class="desc"></td><td class="desc1">Orientation of the handle.</td></tr><tr><td class="name lbl">position</td><td class="desc"></td><td class="desc1">Center of the handle in 3D space.</td></tr><tr><td class="name lbl">radius</td><td class="desc"></td><td class="desc1">Radius to modify.</td></tr><tr><td class="name lbl">handlesOnly</td><td class="desc"></td><td class="desc1">Whether to omit the circular outline of the radius and only draw the point handles.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>float</strong>
+        The new value modified by the user's interaction with the handle. If the user has not moved the handle, it will return the same value as you passed into the function.<br /><br /><strong>Note:</strong> Use HandleUtility.GetHandleSize where you might want to have constant screen-sized handles.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Make a Scene view radius handle.</p></div><div class="subsection"><p>
+        <img src="../StaticFiles/ScriptRefImages/RadiusHandle.png" />
+        <br />
+<em>RadiusHandle on the Scene View.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Name this script "EffectRadiusEditor"
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />[<a href="CustomEditor.html">CustomEditor</a>(typeof(EffectRadius))]
+public class EffectRadiusEditor : <a href="Editor.html">Editor</a>
+{
+    public void OnSceneGUI()
+    {
+        EffectRadius t = (target as EffectRadius);<br /><br />        <a href="EditorGUI.BeginChangeCheck.html">EditorGUI.BeginChangeCheck</a>();
+        float areaOfEffect = <a href="Handles.RadiusHandle.html">Handles.RadiusHandle</a>(<a href="Quaternion-identity.html">Quaternion.identity</a>, t.transform.position, t.areaOfEffect);
+        if (<a href="EditorGUI.EndChangeCheck.html">EditorGUI.EndChangeCheck</a>())
+        {
+            <a href="Undo.RecordObject.html">Undo.RecordObject</a>(target, "Changed Area Of Effect");
+            t.areaOfEffect = areaOfEffect;
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>And the Script attached to this GameObject:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Name this script "EffectRadius"
+using UnityEngine;
+using System.Collections;<br /><br />public class EffectRadius : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public float areaOfEffect = 1;
+}
+</pre>
+      </div></div></div></div></body></html>

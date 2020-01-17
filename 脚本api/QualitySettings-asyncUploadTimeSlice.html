@@ -1,0 +1,15 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: QualitySettings.asyncUploadTimeSlice</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="QualitySettings.html">QualitySettings</a>.asyncUploadTimeSlice</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-QualitySettings.html' title='Go to QualitySettings Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static int <span class="sig-kw">asyncUploadTimeSlice</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Async texture upload provides timesliced async texture upload on the render thread with tight control over memory and timeslicing. There are no allocations except for the ones which driver has to do. To read data and upload texture data a ringbuffer whose size can be controlled is re-used.<br /><br />Use asyncUploadTimeSlice to set the time-slice in milliseconds for asynchronous texture uploads per
+frame. Minimum value is 1 and maximum is 33.</p></div><div class="subsection"><p>See Also: <a href="../Manual/AsyncTextureUpload.html">Asynchronous Texture Upload</a>, <a href="../Manual/class-QualitySettings.html">Quality Settings</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class StartupExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        // Set <a href="Time.html">Time</a> Slice to 2 ms
+        <a href="QualitySettings-asyncUploadTimeSlice.html">QualitySettings.asyncUploadTimeSlice</a> = 2;
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="../Manual/class-QualitySettings.html">Quality Settings</a>.</p></div></div></div></div></body></html>

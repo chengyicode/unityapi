@@ -1,0 +1,20 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Keyframe.outTangent</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Keyframe.html">Keyframe</a>.outTangent</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public float <span class="sig-kw">outTangent</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Sets the outgoing tangent for this key. The outgoing tangent affects the slope of the curve from this key to the next key.</p></div><div class="subsection"><p>The outgoing tangent matches the outgoing slope of the curve. A positive value for <a href="Keyframe-inTangent.html">inTangent</a> results in an upward tangent, while a negative value results in a downward tangent.<br /><br />See Also: <a href="Keyframe-inTangent.html">inTangent</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class KeyFrameTangentExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="AnimationCurve.html">AnimationCurve</a>  animCurve = null;<br /><br />    void Start()
+    {
+        <a href="Keyframe.html">Keyframe</a>[] ks = new <a href="Keyframe.html">Keyframe</a>[3];<br /><br />        ks[0] = new <a href="Keyframe.html">Keyframe</a>(0, 0);
+        ks[0].outTangent = 5f;    // +5 units on the y axis for 1 unit on the x axis.<br /><br />        ks[1] = new <a href="Keyframe.html">Keyframe</a>(4, 0);
+        ks[1].outTangent = 0f;    // straight<br /><br />        ks[2] = new <a href="Keyframe.html">Keyframe</a>(6, 0);
+        ks[2].outTangent = -5f;    // -5 units on the y axis for 1 unit on the x axis.<br /><br />        animCurve = new <a href="AnimationCurve.html">AnimationCurve</a>(ks);
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        if (animCurve != null)
+            transform.position = new <a href="Vector3.html">Vector3</a>(<a href="Time-time.html">Time.time</a>, animCurve.Evaluate(<a href="Time-time.html">Time.time</a>), 0);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

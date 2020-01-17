@@ -1,0 +1,25 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Input.touches</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Input.html">Input</a>.touches</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static Touch[] <span class="sig-kw">touches</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Returns list of objects representing status of all touches during last frame. (Read Only) (Allocates temporary variables).</p></div><div class="subsection"><p>Each entry represents a status of a finger touching the screen.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Prints number of fingers touching the screen
+    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        var fingerCount = 0;
+        foreach (<a href="Touch.html">Touch</a> touch in <a href="Input-touches.html">Input.touches</a>)
+        {
+            if (touch.phase != <a href="TouchPhase.Ended.html">TouchPhase.Ended</a> &amp;&amp; touch.phase != <a href="TouchPhase.Canceled.html">TouchPhase.Canceled</a>)
+            {
+                fingerCount++;
+            }
+        }
+        if (fingerCount &gt; 0)
+        {
+            print("User has " + fingerCount + " finger(s) touching the screen");
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Display.Activate</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Display.html">Display</a>.Activate</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">Activate</span>();
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Activate an external display. Eg. Secondary Monitors connected to the System.</p></div><div class="subsection"><p>The function Activate() will create a window of Screen width, Screen height and default Refresh Rates.
+This function is available on Windows, Linux and Mac platforms.
+The default primary Monitor is always indexed 0.
+Secondary Monitors range from 1 to 7.
+Ensure an external monitor is connected before Activating it.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        // Check the number of monitors connected.
+        if (Display.displays.Length &gt; 1)
+        {
+            // Activate the display 1 (second monitor connected to the system).
+            <a href="Display-displays.html">Display.displays</a>[1].Activate();
+        }
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">Activate</span>(int <span class="sig-kw">width</span>,
+int <span class="sig-kw">height</span>,
+int <span class="sig-kw">refreshRate</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">width</td><td class="desc"></td><td class="desc1">Desired Width of the Window (for Windows only. On Linux and Mac uses Screen Width).</td></tr><tr><td class="name lbl">height</td><td class="desc"></td><td class="desc1">Desired Height of the Window (for Windows only. On Linux and Mac uses Screen Height).</td></tr><tr><td class="name lbl">refreshRate</td><td class="desc"></td><td class="desc1">Desired Refresh Rate.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>This overloaded function available for Windows allows specifying desired Window Width, Height and Refresh Rate.</p></div><div class="subsection"><p>The default primary Monitor is always indexed 0.
+Secondary Monitors range from 1 to 7.
+Ensure an external monitor is connected before Activating it.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        // Check the number of monitors connected.
+        if (Display.displays.Length &gt; 1)
+        {
+            // Activate the display 1 (second monitor connected to the system).
+            <a href="Display-displays.html">Display.displays</a>[1].Activate(0, 0, 60);
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: QueryTriggerInteraction.Ignore</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="QueryTriggerInteraction.html">QueryTriggerInteraction</a>.Ignore</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Queries never report Trigger hits.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//Create two GameObjects (e.g. a Cube) and place them near each other. Attach this script to one of them.
+//Click on the <a href="GameObject.html">GameObject</a> with the script. Attach the other <a href="GameObject.html">GameObject</a> to the “My Game Object” field in the Inspector.
+//Make sure both have <a href="Collider.html">Collider</a> components
+//Choose your own “Max Distance” in the Inspector (e.g. 600).<br /><br />//This script casts a ray that ignores Trigger Colliders.
+//Press space to switch the second <a href="GameObject.html">GameObject</a> between a Trigger and non-Trigger <a href="GameObject.html">GameObject</a>. When the Trigger is off, the ray detects a collision. When it is on, no collisions occur.<br /><br />using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    //The maximum distance from your <a href="GameObject.html">GameObject</a>. Make sure to set this in the Inspector
+    public float m_MaxDistance;
+    public <a href="LayerMask.html">LayerMask</a> m_Mask = -1;<br /><br />    //Assign a <a href="GameObject.html">GameObject</a> in the Inspector that you want to test collisions with
+    public <a href="GameObject.html">GameObject</a> m_MyGameObject;
+    //This is the <a href="Collider.html">Collider</a> of the <a href="GameObject.html">GameObject</a> you assign in the Inspector
+    <a href="Collider.html">Collider</a> m_OtherGameObjectCollider;<br /><br />    void Start()
+    {
+        //Fetch the <a href="Collider.html">Collider</a> from the <a href="GameObject.html">GameObject</a> you assign in the Inspector
+        m_OtherGameObjectCollider = m_MyGameObject.GetComponent&lt;<a href="Collider.html">Collider</a>&gt;();
+    }<br /><br />    void <a href="Experimental.PlayerLoop.FixedUpdate.html">FixedUpdate</a>()
+    {
+        //Set the direction as forward
+        <a href="Vector3.html">Vector3</a> direction = transform.TransformDirection(<a href="Vector3-forward.html">Vector3.forward</a>);<br /><br />        //Use <a href="Physics.html">Physics</a> to calculate the raycast
+        //Uses your <a href="GameObject.html">GameObject</a>'s original position, the direction (above), the max distance from your <a href="GameObject.html">GameObject</a>, and the <a href="LayerMask.html">LayerMask</a> value to calculate raycast.
+        //Also tells it to ignore trigger colliders using <a href="QueryTriggerInteraction.html">QueryTriggerInteraction</a>
+        if (<a href="Physics.Raycast.html">Physics.Raycast</a>(transform.position, direction, m_MaxDistance, m_Mask.value, <a href="QueryTriggerInteraction.Ignore.html">QueryTriggerInteraction.Ignore</a>))
+            print("There is something in front of the object!");
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        //Press space to turn the other <a href="GameObject.html">GameObject</a>'s trigger status on and off
+        if (<a href="Input.GetKeyDown.html">Input.GetKeyDown</a>(<a href="KeyCode.Space.html">KeyCode.Space</a>))
+        {
+            //Test if the trigger collisions are ignored by turning the <a href="GameObject.html">GameObject</a>'s trigger collider on and off
+            m_OtherGameObjectCollider.isTrigger = !m_OtherGameObjectCollider.isTrigger;
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

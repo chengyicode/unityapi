@@ -1,0 +1,17 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ControllerColliderHit.rigidbody</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="ControllerColliderHit.html">ControllerColliderHit</a>.rigidbody</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Rigidbody.html">Rigidbody</a> <span class="sig-kw">rigidbody</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The rigidbody that was hit by the controller.</p></div><div class="subsection"><p>Null if we didn't touch a rigidbody but a static collider.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Activate the gravity of other object we touch
+    void OnControllerColliderHit(<a href="ControllerColliderHit.html">ControllerColliderHit</a> hit)
+    {
+        if (hit != null)
+        {
+            hit.rigidbody.useGravity = true;
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Camera.backgroundColor</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Camera.html">Camera</a>.backgroundColor</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Camera.html' title='Go to Camera Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Color.html">Color</a> <span class="sig-kw">backgroundColor</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The color with which the screen will be cleared.</p></div><div class="subsection"><p>Only used if <a href="Camera-clearFlags.html">clearFlags</a> are set to <a href="CameraClearFlags.SolidColor.html">CameraClearFlags.SolidColor</a> (or <a href="CameraClearFlags.Skybox.html">CameraClearFlags.Skybox</a> but the skybox is not set up).</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// ping-pong animate background color
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Color.html">Color</a> color1 = <a href="Color-red.html">Color.red</a>;
+    public <a href="Color.html">Color</a> color2 = <a href="Color-blue.html">Color.blue</a>;
+    public float duration = 3.0F;<br /><br />    public <a href="Camera.html">Camera</a> cam;<br /><br />    void Start()
+    {
+        cam = GetComponent&lt;<a href="Camera.html">Camera</a>&gt;();
+        cam.clearFlags = <a href="CameraClearFlags.SolidColor.html">CameraClearFlags.SolidColor</a>;
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        float t = <a href="Mathf.PingPong.html">Mathf.PingPong</a>(<a href="Time-time.html">Time.time</a>, duration) / duration;
+        cam.backgroundColor = <a href="Color.Lerp.html">Color.Lerp</a>(color1, color2, t);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="../Manual/class-Camera.html">camera component</a>, <a href="Camera-clearFlags.html">Camera.clearFlags</a></p></div></div></div></div></body></html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Networking.Match.NetworkMatch.ListMatches</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Method group is Obsolete</b><br /></div><h1 class="heading inherit"><a href="Networking.Match.NetworkMatch.html">NetworkMatch</a>.ListMatches</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public <a href="Coroutine.html">Coroutine</a> <span class="sig-kw">ListMatches</span>(int <span class="sig-kw">startPageNumber</span>,
+int <span class="sig-kw">resultPageSize</span>,
+string <span class="sig-kw">matchNameFilter</span>,
+bool <span class="sig-kw">filterOutPrivateMatchesFromResults</span>,
+int <span class="sig-kw">eloScoreTarget</span>,
+int <span class="sig-kw">requestDomain</span>,
+DataResponseDelegate&lt;List&lt;MatchInfoSnapshot&gt;&gt; <span class="sig-kw">callback</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">startPageNumber</td><td class="desc"></td><td class="desc1">The current page to list in the return results.</td></tr><tr><td class="name lbl">resultPageSize</td><td class="desc"></td><td class="desc1">The size of the page requested. This determines the maximum number of matches contained in the list of matches passed into the callback.</td></tr><tr><td class="name lbl">matchNameFilter</td><td class="desc"></td><td class="desc1">The text string name filter. This is a partial wildcard search against match names that are currently active, and can be thought of as matching equivalent to *&lt;matchNameFilter&gt;* where any result containing the entire string supplied here will be in the result set.</td></tr><tr><td class="name lbl">filterOutPrivateMatchesFromResults</td><td class="desc"></td><td class="desc1">Boolean that indicates if the response should contain matches that are private (meaning matches that are password protected).</td></tr><tr><td class="name lbl">eloScoreTarget</td><td class="desc"></td><td class="desc1">The Elo score target for the match list results to be grouped around. If used, this should be set to the Elo level of the client listing the matches so results will more closely match that player's skill level. If not used this can be set to 0 along with all other Elo refereces in funcitons like NetworkMatch.CreateMatch or NetworkMatch.JoinMatch.</td></tr><tr><td class="name lbl">requestDomain</td><td class="desc"></td><td class="desc1">The request domain for this request. Only requests in the same domain can interface with each other. For example if a NetworkMatch.CreateMatch is made with domain 1, only ListMatches that also specify domain 1 will find that match. Use this value to silo different (possibly incompatible) client versions.</td></tr><tr><td class="name lbl">callback</td><td class="desc"></td><td class="desc1">The callback invoked when this call completes on the MatchMaker.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>Coroutine</strong>
+        This function is asynchronous and will complete at some point in the future, when the coroutine has finished communicating with the service backend.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>The function to list ongoing matches in the MatchMaker.</p></div><div class="subsection"><p>The NetworkMatch.ListMatches function returns page-based results of the currently active matches that agree with the supplied parameter to this function.<br /><br />You should call this initially with a page number starting at zero, and a reasonable page size (for example, 10). Too large a page will slow down the time required to download the information related to these matches. The callback will be invoked with data containing up to the resultPageSize as the number of matches (for example, if startPageNumber is currently 3 and resultPageSize is 5, the data passed into the callback will be the matches that correspond to results 15-20 in the list of results). Then you can call this function repeatedly, incrementing the startPageNumber and keeping the resultPageSize and matchNameFilter fixed in order to keep the results semi stable (matches may be created or destroyed as you call into this and the results will reflect that).</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.Networking;
+using UnityEngine.Networking.Match;
+using System.Collections.Generic;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        NetworkManager.singleton.StartMatchMaker();
+        NetworkManager.singleton.matchMaker.ListMatches(0, 10, "", true, 0, 0, OnMatchList);
+    }<br /><br />    public void OnMatchList(bool success, string extendedInfo, List&lt;MatchInfoSnapshot&gt; matches)
+    {
+        // ...
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

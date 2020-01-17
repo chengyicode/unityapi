@@ -1,0 +1,28 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AI.NavMesh.AddNavMeshData</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="AI.NavMesh.html">NavMesh</a>.AddNavMeshData</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="AI.NavMeshDataInstance.html">AI.NavMeshDataInstance</a> <span class="sig-kw">AddNavMeshData</span>(<a href="AI.NavMeshData.html">AI.NavMeshData</a> <span class="sig-kw">navMeshData</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">navMeshData</td><td class="desc"></td><td class="desc1">Contains the data for the navmesh.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>NavMeshDataInstance</strong>
+        Representing the added navmesh.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Adds the specified NavMeshData to the game.</p></div><div class="subsection"><p>This makes the NavMesh data available for agents and NavMesh queries. Returns an instance for later removing the NavMesh data from the runtime.<br /><br />The instance returned will be valid unless the NavMesh data could not be added - e.g. due to running out of memory or navmesh data being loaded from a corrupted file.<br /><br />See Also: <a href="AI.NavMeshDataInstance.html">NavMeshDataInstance</a>, <a href="AI.NavMesh.RemoveNavMeshData.html">NavMesh.RemoveNavMeshData</a>.</p></div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="AI.NavMeshDataInstance.html">AI.NavMeshDataInstance</a> <span class="sig-kw">AddNavMeshData</span>(<a href="AI.NavMeshData.html">AI.NavMeshData</a> <span class="sig-kw">navMeshData</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">position</span>,
+<a href="Quaternion.html">Quaternion</a> <span class="sig-kw">rotation</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">navMeshData</td><td class="desc"></td><td class="desc1">Contains the data for the navmesh.</td></tr><tr><td class="name lbl">position</td><td class="desc"></td><td class="desc1">Translate the navmesh to this position.</td></tr><tr><td class="name lbl">rotation</td><td class="desc"></td><td class="desc1">Rotate the navmesh to this orientation.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>NavMeshDataInstance</strong>
+        Representing the added navmesh.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Adds the specified NavMeshData to the game.</p></div><div class="subsection"><p>This function is similar to <a href="AI.NavMesh.AddNavMeshData.html">AddNavMeshData</a> above, but the position and rotation specified is applied in addition to the position and rotation where the NavMesh data was baked.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.AI;<br /><br />class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="AI.NavMeshData.html">NavMeshData</a> data;
+    <a href="AI.NavMeshDataInstance.html">NavMeshDataInstance</a>[] instances = new <a href="AI.NavMeshDataInstance.html">NavMeshDataInstance</a>[2];<br /><br />    public void OnEnable()
+    {
+        // Add an instance of navmesh data
+        instances[0] = <a href="AI.NavMesh.AddNavMeshData.html">NavMesh.AddNavMeshData</a>(data);<br /><br />        // Add another instance of the same navmesh data - displaced and rotated
+        instances[1] = <a href="AI.NavMesh.AddNavMeshData.html">NavMesh.AddNavMeshData</a>(data, new <a href="Vector3.html">Vector3</a>(0, 5, 0), <a href="Quaternion.AngleAxis.html">Quaternion.AngleAxis</a>(90, <a href="Vector3-up.html">Vector3.up</a>));
+    }<br /><br />    public void OnDisable()
+    {
+        instances[0].Remove();
+        instances[1].Remove();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorWindow.OnProjectChange()</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorWindow.html">EditorWindow</a>.OnProjectChange()</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Handler for message that is sent whenever the state of the project changes.</p></div><div class="subsection"><p>Actions that trigger this message include creating, renaming, or reparenting assets,
+                as well as moving or renaming folders in the project. Note that the message is not sent
+                immediately in response to these actions, but rather during the next update of the editor application.<br /><br />Actions taken with assets that have <a href="HideFlags.HideInHierarchy.html">HideFlags.HideInHierarchy</a> set will not cause this message to be sent.<br /><br />
+                    The <a href="EditorWindow.OnProjectChange.html">OnProjectChange</a> message is used to report when the items in the Project
+                    window change.  Changes can include examples such as new GameObjects or Materials
+                    being added to the project.  Additionally, adding folders with no contents will
+                    work as expected.  As a final example <a href="EditorWindow.OnProjectChange.html">OnProjectChange</a> will be used to
+                    see any changes in the Project window.
+<br />
+See Also: <a href="EditorApplication-projectChanged.html">EditorApplication.projectChanged</a>.
+<br />
+                </p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// In this simple example MyClass adds an OnProjectChanged().  This is added
+// using the projectWindowChanged.
+// EditorApplication.projectWindowChanged can hold multiple calls including
+// multiple OnProjectChanged calls.<br /><br />using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;<br /><br />[InitializeOnLoad]
+class MyClass
+{
+    static MyClass()
+    {
+        EditorApplication.projectWindowChanged += OnProjectChanged;
+    }<br /><br />    static void OnProjectChanged()
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("OnProjectChanged");
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

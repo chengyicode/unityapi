@@ -1,0 +1,26 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Cubemap.SetPixels</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Cubemap.html">Cubemap</a>.SetPixels</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Cubemap.html' title='Go to Cubemap Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">SetPixels</span>(Color[] <span class="sig-kw">colors</span>,
+<a href="CubemapFace.html">CubemapFace</a> <span class="sig-kw">face</span>,
+int <span class="sig-kw">miplevel</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">colors</td><td class="desc"></td><td class="desc1">Pixel data for the Cubemap face.</td></tr><tr><td class="name lbl">face</td><td class="desc"></td><td class="desc1">The face to which the new data should be applied.</td></tr><tr><td class="name lbl">miplevel</td><td class="desc"></td><td class="desc1">The mipmap level for the face.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Sets pixel colors of a cubemap face.</p></div><div class="subsection"><p>This method takes a color array and changes the pixel colors of the whole
+cubemap face. Call <a href="Cubemap.Apply.html">Apply</a> to actually upload the changed
+pixels to the graphics card.<br /><br />The <code class="varname">colors</code> array is a flattened 2D array, where pixels are laid out right to left,
+top to bottom (i.e. row after row). Array size must be at least width by height of the mip level used.
+The default mip level is zero (the base texture) in which case the size is just the size of the texture.
+In general case, mip level size is <code class="mono">mipSize=max(1,width&gt;&gt;miplevel)</code>.<br /><br />This method works only on <code class="varname">RGBA32</code>, <code class="varname">ARGB32</code>, <code class="varname">RGB24</code> and <code class="varname">Alpha8</code> texture formats.
+For other formats <code class="varname">SetPixels</code> is ignored.<br /><br />See Also: <a href="Cubemap.GetPixels.html">GetPixels</a>, <a href="Cubemap.Apply.html">Apply</a>, <a href="Texture2D-mipmapCount.html">mipmapCount</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// copy a texture to the +X face of a cubemap<br /><br />using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Cubemap.html">Cubemap</a> c;
+    public <a href="Texture2D.html">Texture2D</a> t;
+    private <a href="Color.html">Color</a>[] CubeMapColors;<br /><br />    void Example()
+    {
+        CubeMapColors = t.GetPixels();
+        c.SetPixels(CubeMapColors, <a href="CubemapFace.PositiveX.html">CubemapFace.PositiveX</a>);
+        c.Apply();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

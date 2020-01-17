@@ -1,0 +1,72 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Font.RequestCharactersInTexture</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Font.html">Font</a>.RequestCharactersInTexture</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Font.html' title='Go to Font Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">RequestCharactersInTexture</span>(string <span class="sig-kw">characters</span>,
+int <span class="sig-kw">size</span> = 0,
+<a href="FontStyle.html">FontStyle</a> <span class="sig-kw">style</span> = FontStyle.Normal);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">characters</td><td class="desc"></td><td class="desc1">The characters which are needed to be in the font texture.</td></tr><tr><td class="name lbl">size</td><td class="desc"></td><td class="desc1">The size of the requested characters (the default value of zero will use the font's default size).</td></tr><tr><td class="name lbl">style</td><td class="desc"></td><td class="desc1">The style of the requested characters.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Request characters to be added to the font texture (dynamic fonts only).</p></div><div class="subsection"><p>Note: You should only ever need to use this when you want to implement your own text rendering.
+Call this function to request Unity to make sure all the characters in the string <code class="varname">characters</code> are available
+in the font's font texture (and it's <code class="varname">characterInfo</code> property). This is useful when you want to implement your
+own code to render dynamic fonts. You can supply a custom font size and style for the characters. If <code class="varname">size</code> is zero
+(the default), it will use the default size for that font.<br /><br />RequestCharactersInTexture may cause the font texture to be regenerated if it does not have space to add all the
+requested characters. If the font texture is regenerated it will only contain characters which have been used
+using Font.RequestCharactersInTexture, or using Unity's text rendering functions during the last frame. So
+it is advisable to always call RequestCharactersInTexture for any text on the screen you wish to render using
+custom font rendering functions, even if the characters are currently present in the texture, to make sure they
+don't get purged during texture rebuild.<br /><br />See Also: <a href="Font-textureRebuilt.html">textureRebuilt</a>, <a href="Font.GetCharacterInfo.html">GetCharacterInfo</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class CustomFontMeshGenerator : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="Font.html">Font</a> font;
+    string str = "Hello World";
+    <a href="Mesh.html">Mesh</a> mesh;<br /><br />    void OnFontTextureRebuilt(<a href="Font.html">Font</a> changedFont)
+    {
+        if (changedFont != font)
+            return;<br /><br />        RebuildMesh();
+    }<br /><br />    void RebuildMesh()
+    {
+        // Generate a mesh for the characters we want to print.
+        var vertices = new <a href="Vector3.html">Vector3</a>[str.Length * 4];
+        var triangles = new int[str.Length * 6];
+        var uv = new <a href="Vector2.html">Vector2</a>[str.Length * 4];
+        <a href="Vector3.html">Vector3</a> pos = <a href="Vector3-zero.html">Vector3.zero</a>;
+        for (int i = 0; i &lt; str.Length; i++)
+        {
+            // Get character rendering information from the font
+            <a href="CharacterInfo.html">CharacterInfo</a> ch;
+            font.GetCharacterInfo(str[i], out ch);<br /><br />            vertices[4 * i + 0] = pos + new <a href="Vector3.html">Vector3</a>(ch.minX, ch.maxY, 0);
+            vertices[4 * i + 1] = pos + new <a href="Vector3.html">Vector3</a>(ch.maxX, ch.maxY, 0);
+            vertices[4 * i + 2] = pos + new <a href="Vector3.html">Vector3</a>(ch.maxX, ch.minY, 0);
+            vertices[4 * i + 3] = pos + new <a href="Vector3.html">Vector3</a>(ch.minX, ch.minY, 0);<br /><br />            uv[4 * i + 0] = ch.uvTopLeft;
+            uv[4 * i + 1] = ch.uvTopRight;
+            uv[4 * i + 2] = ch.uvBottomRight;
+            uv[4 * i + 3] = ch.uvBottomLeft;<br /><br />            triangles[6 * i + 0] = 4 * i + 0;
+            triangles[6 * i + 1] = 4 * i + 1;
+            triangles[6 * i + 2] = 4 * i + 2;<br /><br />            triangles[6 * i + 3] = 4 * i + 0;
+            triangles[6 * i + 4] = 4 * i + 2;
+            triangles[6 * i + 5] = 4 * i + 3;<br /><br />            // Advance character position
+            pos += new <a href="Vector3.html">Vector3</a>(ch.advance, 0, 0);
+        }
+        mesh.vertices = vertices;
+        mesh.triangles = triangles;
+        mesh.uv = uv;
+    }<br /><br />    void Start()
+    {
+        font = <a href="Font.CreateDynamicFontFromOSFont.html">Font.CreateDynamicFontFromOSFont</a>("Helvetica", 16);
+        // Set the rebuild callback so that the mesh is regenerated on font changes.
+        <a href="Font-textureRebuilt.html">Font.textureRebuilt</a> += OnFontTextureRebuilt;<br /><br />        // <a href="PackageManager.Requests.Request.html">Request</a> characters.
+        font.RequestCharactersInTexture(str);<br /><br />        // Set up mesh.
+        mesh = new <a href="Mesh.html">Mesh</a>();
+        GetComponent&lt;<a href="MeshFilter.html">MeshFilter</a>&gt;().mesh = mesh;
+        GetComponent&lt;<a href="MeshRenderer.html">MeshRenderer</a>&gt;().material = font.material;<br /><br />        // Generate font mesh.
+        RebuildMesh();
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        // Keep requesting our characters each frame, so Unity will make sure that they stay in the font when regenerating the font texture.
+        font.RequestCharactersInTexture(str);
+    }<br /><br />    void OnDestroy()
+    {
+        <a href="Font-textureRebuilt.html">Font.textureRebuilt</a> -= OnFontTextureRebuilt;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AnimationState.clip</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="AnimationState.html">AnimationState</a>.clip</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="AnimationClip.html">AnimationClip</a> <span class="sig-kw">clip</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The clip that is being played by this animation state.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Animation.html">Animation</a> anim;<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        // Prints the frame rate of the animation clip to the console
+        print(anim["walk"].clip.frameRate);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

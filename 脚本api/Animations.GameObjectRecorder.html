@@ -1,0 +1,77 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: GameObjectRecorder</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">GameObjectRecorder</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEditor.Animations</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Inherits from:<a href="Object.html" class="cl">Object</a></p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEditor.html" class="cl">UnityEditor</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Records the changing properties of a <a href="GameObject.html">GameObject</a> as the Scene runs and saves the information into an <a href="AnimationClip.html">AnimationClip</a>.</p></div><div class="subsection"><p>This class binds <a href="GameObject.html">GameObject</a> properties, records their values as they change in the running Scene, and saves the result in an <a href="AnimationClip.html">AnimationClip</a>. The recorded GameObject is called <a href="Animations.GameObjectRecorder-root.html">root</a> in the class, and you can also bind the properties of any child of <a href="Animations.GameObjectRecorder-root.html">root</a>.<br /><br />See the following code example on how this class can be implemented and to set what gets recorded.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEditor.Animations;<br /><br />public class RecordTransformHierarchy : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="AnimationClip.html">AnimationClip</a> clip;<br /><br />    private <a href="Animations.GameObjectRecorder.html">GameObjectRecorder</a> m_Recorder;<br /><br />    void Start()
+    {
+        // Create recorder and record the script <a href="GameObject.html">GameObject</a>.
+        m_Recorder = new <a href="Animations.GameObjectRecorder.html">GameObjectRecorder</a>(gameObject);<br /><br />        // Bind all the Transforms on the <a href="GameObject.html">GameObject</a> and all its children.
+        m_Recorder.BindComponentsOfType&lt;<a href="Transform.html">Transform</a>&gt;(gameObject, true);
+    }<br /><br />    void LateUpdate()
+    {
+        if (clip == null)
+            return;<br /><br />        // Take a snapshot and record all the bindings values for this frame.
+        m_Recorder.TakeSnapshot(<a href="Time-deltaTime.html">Time.deltaTime</a>);
+    }<br /><br />    void OnDisable()
+    {
+        if (clip == null)
+            return;<br /><br />        if (m_Recorder.isRecording)
+        {
+            // Save the recorded session to the clip.
+            m_Recorder.SaveToClip(clip);
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Properties 属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.GameObjectRecorder-currentTime.html">currentTime</a></td><td class="desc"></td><td class="desc1">Returns the current time of the recording. (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.GameObjectRecorder-isRecording.html">isRecording</a></td><td class="desc"></td><td class="desc1">Returns true when the recorder is recording. (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.GameObjectRecorder-root.html">root</a></td><td class="desc"></td><td class="desc1">The GameObject root of the animated hierarchy. (Read Only)</td></tr>
+    </table></div><div class="subsection"><h2>Constructors</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.GameObjectRecorder-ctor.html">GameObjectRecorder</a></td><td class="desc"></td><td class="desc1">Create a new GameObjectRecorder.</td></tr>
+    </table></div><div class="subsection"><h2>Public Methods 公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.GameObjectRecorder.Bind.html">Bind</a></td><td class="desc"></td><td class="desc1">Binds a GameObject's property as defined by EditorCurveBinding.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.GameObjectRecorder.BindAll.html">BindAll</a></td><td class="desc"></td><td class="desc1">Adds bindings for all of target's properties, and also for all the target's children if recursive is true.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.GameObjectRecorder.BindComponent.html">BindComponent</a></td><td class="desc"></td><td class="desc1">Adds bindings for all the properties of component.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.GameObjectRecorder.BindComponentsOfType.html">BindComponentsOfType</a></td><td class="desc"></td><td class="desc1">Adds bindings for all the properties of the first component of type T found in target, and also for all the target's children if recursive is true.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.GameObjectRecorder.GetBindings.html">GetBindings</a></td><td class="desc"></td><td class="desc1">Returns an array of all the bindings added to the recorder.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.GameObjectRecorder.ResetRecording.html">ResetRecording</a></td><td class="desc"></td><td class="desc1">Reset the recording.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.GameObjectRecorder.SaveToClip.html">SaveToClip</a></td><td class="desc"></td><td class="desc1">Saves the recorded animation into clip.When no frames per second is given, the default is 60 FPS.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.GameObjectRecorder.TakeSnapshot.html">TakeSnapshot</a></td><td class="desc"></td><td class="desc1">Forwards the animation by dt seconds, then record the values of the added bindings.</td></tr>
+    </table></div><div class="subsection"><h2>Inherited Members 继承成员</h2>
+      
+      <div class="subsection"><h2>Properties 属性</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-hideFlags.html">hideFlags</a></td><td class="desc"></td><td class="desc1">Should the object be hidden, saved with the Scene or modifiable by the user?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-name.html">name</a></td><td class="desc"></td><td class="desc1">The name of the object.</td></tr>
+      </table></div>
+      
+      
+      
+      <div class="subsection"><h2>Public Methods 公共方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.GetInstanceID.html">GetInstanceID</a></td><td class="desc"></td><td class="desc1">Returns the instance id of the object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.ToString.html">ToString</a></td><td class="desc"></td><td class="desc1">Returns the name of the object.</td></tr>
+      </table></div>
+      
+      <div class="subsection"><h2>Static Methods 静态方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.Destroy.html">Destroy</a></td><td class="desc"></td><td class="desc1">Removes a GameObject, component or asset.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.DestroyImmediate.html">DestroyImmediate</a></td><td class="desc"></td><td class="desc1">Destroys the object obj immediately. You are strongly recommended to use Destroy instead.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.DontDestroyOnLoad.html">DontDestroyOnLoad</a></td><td class="desc"></td><td class="desc1">Do not destroy the target Object when loading a new Scene.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectOfType.html">FindObjectOfType</a></td><td class="desc"></td><td class="desc1">Returns the first active loaded object of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectsOfType.html">FindObjectsOfType</a></td><td class="desc"></td><td class="desc1">Returns a list of all active loaded objects of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.Instantiate.html">Instantiate</a></td><td class="desc"></td><td class="desc1">Clones the object original and returns the clone.</td></tr>
+      </table></div>
+      <div class="subsection"><h2>Operators   运算符</h2>
+<h2>Operators   运算符</h2>
+
+<h2>Operators   运算符</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_Object.html">bool</a></td><td class="desc"></td><td class="desc1">Does the object exist?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_ne.html">operator !=</a></td><td class="desc"></td><td class="desc1">Compares if two objects refer to a different object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_eq.html">operator ==</a></td><td class="desc"></td><td class="desc1">Compares two object references to see if they refer to the same object.</td></tr>
+      </table></div>
+      
+      
+      
+    </div></div></div></div></body></html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: GUI.FocusControl</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="GUI.html">GUI</a>.FocusControl</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">FocusControl</span>(string <span class="sig-kw">name</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">name</td><td class="desc"></td><td class="desc1">Name set using <a href="GUI.SetNextControlName.html">SetNextControlName</a>.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Move keyboard focus to a named control.</p></div><div class="subsection"><p>See Also: <a href="GUI.SetNextControlName.html">SetNextControlName</a>, <a href="GUI.GetNameOfFocusedControl.html">GetNameOfFocusedControl</a>.<br /><br />For focusing text in Editor GUI text fields, see <a href="EditorGUI.FocusTextInControl.html">EditorGUI.FocusTextInControl</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // When pressed the button, selects the "username" Textfield.
+    public string username = "username";
+    public string pwd = "a pwd";<br /><br />    void OnGUI()
+    {
+        // Set the internal name of the textfield
+        <a href="GUI.SetNextControlName.html">GUI.SetNextControlName</a>("MyTextField");<br /><br />        // Make the actual text field.
+        username = <a href="GUI.TextField.html">GUI.TextField</a>(new <a href="Rect.html">Rect</a>(10, 10, 100, 20), username);
+        pwd = <a href="GUI.TextField.html">GUI.TextField</a>(new <a href="Rect.html">Rect</a>(10, 40, 100, 20), pwd);<br /><br />        // If the user presses this button, keyboard focus will move.
+        if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(10, 70, 80, 20), "Move Focus"))
+            <a href="GUI.FocusControl.html">GUI.FocusControl</a>("MyTextField");
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Mesh.colors</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Mesh.html">Mesh</a>.colors</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Mesh.html' title='Go to Mesh Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public Color[] <span class="sig-kw">colors</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Vertex colors of the Mesh.</p></div><div class="subsection"><p>If no vertex colors are available, an empty array will be returned.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Sets the vertex color to be red at the y=0 and green at y=1.
+// (Note that most built-in Shaders don't display vertex colors. Use one that does, such as a <a href="ParticleSystem.Particle.html">Particle</a> <a href="Shader.html">Shader</a>, to see vertex colors)<br /><br />using UnityEngine;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        <a href="Mesh.html">Mesh</a> mesh = GetComponent&lt;<a href="MeshFilter.html">MeshFilter</a>&gt;().mesh;
+        <a href="Vector3.html">Vector3</a>[] vertices = mesh.vertices;<br /><br />        // create new colors array where the colors will be created.
+        <a href="Color.html">Color</a>[] colors = new <a href="Color.html">Color</a>[vertices.Length];<br /><br />        for (int i = 0; i &lt; vertices.Length; i++)
+            colors[i] = <a href="Color.Lerp.html">Color.Lerp</a>(<a href="Color-red.html">Color.red</a>, <a href="Color-green.html">Color.green</a>, vertices[i].y);<br /><br />        // assign the array of colors to the <a href="Mesh.html">Mesh</a>.
+        mesh.colors = colors;
+    }
+}
+</pre>
+      </div><div class="subsection"><p>For performance reasons, consider using <a href="Mesh-colors32.html">colors32</a> instead. This will avoid byte-to-float
+conversions in colors, and use less temporary memory.</p></div></div></div></div></body></html>

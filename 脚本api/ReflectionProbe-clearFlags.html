@@ -1,0 +1,16 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ReflectionProbe.clearFlags</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="ReflectionProbe.html">ReflectionProbe</a>.clearFlags</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-ReflectionProbe.html' title='Go to ReflectionProbe Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Rendering.ReflectionProbeClearFlags.html">Rendering.ReflectionProbeClearFlags</a> <span class="sig-kw">clearFlags</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>How the reflection probe clears the background.</p></div><div class="subsection"><p>Can be <a href="Rendering.ReflectionProbeClearFlags.Skybox.html">ReflectionProbeClearFlags.Skybox</a> or <a href="Rendering.ReflectionProbeClearFlags.SolidColor.html">ReflectionProbeClearFlags.SolidColor</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />
+public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        <a href="ReflectionProbe.html">ReflectionProbe</a> probe = GetComponent&lt;<a href="ReflectionProbe.html">ReflectionProbe</a>&gt;();<br /><br />        // Clear with background color (ignore any skyboxes)
+        probe.clearFlags = UnityEngine.Rendering.ReflectionProbeClearFlags.SolidColor;
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="Rendering.ReflectionProbeClearFlags.html">ReflectionProbeClearFlags</a>.</p></div></div></div></div></body></html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Selection.objects</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Selection.html">Selection</a>.objects</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static Object[] <span class="sig-kw">objects</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The actual unfiltered selection from the Scene.</p></div><div class="subsection"><p>All objects  will be returned, including assets in projects.  You can also assign objects to the selection.<br /><br />See Also: <a href="Selection-instanceIDs.html">Selection.instanceIDs</a>.<br /><br /><img src="../StaticFiles/ScriptRefImages/SelectAllOfTag.png" /><br />
+<em>Scriptable Wizard that lets you select GameObjects by their tag.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />class SelectAllOfTag : <a href="ScriptableWizard.html">ScriptableWizard</a>
+{
+    string tagName = "ExampleTag";<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Example/Select All of Tag...")]
+    static void SelectAllOfTagWizard()
+    {
+        <a href="ScriptableWizard.DisplayWizard.html">ScriptableWizard.DisplayWizard</a>(
+            "Select All of Tag...",
+            typeof(SelectAllOfTag),
+            "Make <a href="Selection.html">Selection</a>");
+    }<br /><br />    void OnWizardCreate()
+    {
+        <a href="GameObject.html">GameObject</a>[] gos = <a href="GameObject.FindGameObjectsWithTag.html">GameObject.FindGameObjectsWithTag</a>(tagName);
+        <a href="Selection-objects.html">Selection.objects</a> = gos;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

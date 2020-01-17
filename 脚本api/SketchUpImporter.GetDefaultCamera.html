@@ -1,0 +1,23 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: SketchUpImporter.GetDefaultCamera</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="SketchUpImporter.html">SketchUpImporter</a>.GetDefaultCamera</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-SketchUpImporter.html' title='Go to SketchUpImporter Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="SketchUpImportCamera.html">SketchUpImportCamera</a> <span class="sig-kw">GetDefaultCamera</span>();
+    </div></div></div><div class="subsection"><h2>Returns</h2><p><strong>SketchUpImportCamera</strong>
+        The default camera.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>The default camera or the camera of the active Scene which the SketchUp file was saved with.</p></div><div class="subsection"><p>The following is an example of extracting the default camera and logging if the camera is a perspective camera stored in <a href="SketchUpImportCamera.html">SketchUpImportCamera</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class SketchUpUtility
+{
+    public static void IsDefaultCameraPerspective(<a href="GameObject.html">GameObject</a> go)
+    {
+        string assetPath = <a href="AssetDatabase.GetAssetPath.html">AssetDatabase.GetAssetPath</a>(go); // get asset path
+        // get <a href="SketchUpImporter.html">SketchUpImporter</a>
+        <a href="SketchUpImporter.html">SketchUpImporter</a> importer = <a href="AssetImporter.GetAtPath.html">AssetImporter.GetAtPath</a>(assetPath) as <a href="SketchUpImporter.html">SketchUpImporter</a>;
+        if (importer == null)
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("This object is not imported by <a href="SketchUpImporter.html">SketchUpImporter</a>");
+            return;
+        }<br /><br />        <a href="SketchUpImportCamera.html">SketchUpImportCamera</a> camera = importer.GetDefaultCamera();  // get all the scenes<br /><br />        <a href="Debug.Log.html">Debug.Log</a>("The default camera is " + (camera.isPerspective ? "perspective" : "orthogonal"));
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

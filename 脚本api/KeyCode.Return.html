@@ -1,0 +1,23 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: KeyCode.Return</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="KeyCode.html">KeyCode</a>.Return</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Return key.</p></div><div class="subsection"><p>The key used to accept a line of text. osMac calls this <code class="varname">Return</code>.  A PC calls this <code class="varname">Enter</code>.  There is no <code class="varname">KeyCode.Enter</code>. On a PC use <a href="KeyCode.Return.html">Return</a>. Some laptops have no name on the <code class="varname">Return</code> or <code class="varname">Enter</code> key.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// <a href="KeyCode.Return.html">KeyCode.Return</a> example.
+//
+// Attach this to a <a href="GameObject.html">GameObject</a>.
+// This script tells when the Return key is pressed down and when it is released.<br /><br />using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        //Detect when the Return key is pressed down
+        if (<a href="Input.GetKeyDown.html">Input.GetKeyDown</a>(<a href="KeyCode.Return.html">KeyCode.Return</a>))
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("Return key was pressed.");
+        }<br /><br />        //Detect when the Return key has been released
+        if (<a href="Input.GetKeyUp.html">Input.GetKeyUp</a>(<a href="KeyCode.Return.html">KeyCode.Return</a>))
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("Return key was released.");
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

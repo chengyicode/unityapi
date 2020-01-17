@@ -1,0 +1,17 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: SceneManagement.SceneManager.UnloadScene</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Method group is Obsolete</b><br /></div><h1 class="heading inherit"><a href="SceneManagement.SceneManager.html">SceneManager</a>.UnloadScene</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public static bool <span class="sig-kw">UnloadScene</span>(int <span class="sig-kw">sceneBuildIndex</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public static bool <span class="sig-kw">UnloadScene</span>(string <span class="sig-kw">sceneName</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public static bool <span class="sig-kw">UnloadScene</span>(<a href="SceneManagement.Scene.html">SceneManagement.Scene</a> <span class="sig-kw">scene</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">sceneBuildIndex</td><td class="desc"></td><td class="desc1">Index of the Scene in the Build Settings to unload.</td></tr><tr><td class="name lbl">sceneName</td><td class="desc"></td><td class="desc1">Name or path of the Scene to unload.</td></tr><tr><td class="name lbl">scene</td><td class="desc"></td><td class="desc1">Scene to unload.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>bool</strong>
+        Returns true if the Scene is unloaded.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Destroys all GameObjects associated with the given Scene and removes the Scene from the SceneManager.</p></div><div class="subsection"><p>
+        <strong>Note:</strong> It is not recommended to use this function but instead use <a href="SceneManagement.SceneManager.UnloadSceneAsync.html">UnloadSceneAsync</a>.<br /><br /><strong>Warning</strong>: This cannot be called during various physics and visibility callbacks like OnTriggerEnter or OnBecameVisible. This limitation is the reason this function is not recommended to use.<br /><br />The given Scene name can either be the full Scene path, the path shown in the Build Settings window or just the Scene name. If only the Scene name is given this will load the first Scene in the list that matches. If you have multiple Scenes with same name but different paths, you should use the full Scene path.
+Examples of supported formats:<br />
+<code class="mono">"Scene1"</code><br />
+<code class="mono">"Scene2"</code><br />
+<code class="mono">"Scenes/Scene3"</code><br />
+<code class="mono">"Scenes/Others/Scene3"</code><br />
+<code class="mono">"Assets/scenes/others/scene3.unity"</code><br />
+<br />
+<strong>Note:</strong> sceneName is case insensitive.
+<br />
+<strong>Note:</strong> Assets are currently not unloaded, in order to free up asset memory call Resources.UnloadAllUnusedAssets.</p></div></div></div></div></body></html>

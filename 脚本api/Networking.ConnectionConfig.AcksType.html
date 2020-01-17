@@ -1,0 +1,17 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Networking.ConnectionConfig.AcksType</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Method group is Obsolete</b><br /></div><h1 class="heading inherit"><a href="Networking.ConnectionConfig.html">ConnectionConfig</a>.AcksType</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public <a href="Networking.ConnectionAcksType.html">Networking.ConnectionAcksType</a> <span class="sig-kw">AcksType</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Determines the size of the buffer used to store reliable messages that are waiting for acknowledgement. It can be set to Acks32, Acks64, Acks96, or Acks128. Depends of this setting buffer can hold 32, 64, 96, or 128 messages. Default value = Ack32.<br /><br />Messages sent on reliable quality of service channels are stored in a special buffer while they wait for acknowledgement from the peer. This buffer can be either 32, 64, 96 or 128 positions long. It is recommended to begin with this value set to Ack32, which defines a buffer up to 32 messages in size. If you receive NoResources errors often when you send reliable messages, change this value to the next possible size.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.Networking;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        ConnectionConfig myConfig = new ConnectionConfig();
+        myConfig.AddChannel(<a href="Networking.QosType.Unreliable.html">QosType.Unreliable</a>);
+        myConfig.AddChannel(<a href="Networking.QosType.UnreliableFragmented.html">QosType.UnreliableFragmented</a>);
+        myConfig.AcksType = <a href="Networking.ConnectionAcksType.Acks64.html">ConnectionAcksType.Acks64</a>;         //set buffer size to 64
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

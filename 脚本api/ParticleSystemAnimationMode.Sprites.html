@@ -1,0 +1,22 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ParticleSystemAnimationMode.Sprites</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="ParticleSystemAnimationMode.html">ParticleSystemAnimationMode</a>.Sprites</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Use a list of sprites to construct a sequence of animation frames.</p></div><div class="subsection"><p>Defines the sprites that are added to Texture Sheet Animation.<br /><br />See Also: <a href="ParticleSystemAnimationMode.Grid.html">ParticleSystemAnimationMode.Grid</a></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />// A particle sprite example.
+// The gameobject this script is attached to must have the
+// <a href="ParticleSystem.html">ParticleSystem</a> attached.  The TextureSheetAnimation mode
+// is set to Sprites.  This script adds a single texture to
+// the <a href="ParticleSystem.html">ParticleSystem</a>.<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Texture2D.html">Texture2D</a> tex;
+    private <a href="ParticleSystem.html">ParticleSystem</a> ps;
+    private <a href="Sprite.html">Sprite</a> sprite;<br /><br />    void Start()
+    {
+        ps = GetComponent&lt;<a href="ParticleSystem.html">ParticleSystem</a>&gt;();
+        sprite = <a href="Sprite.Create.html">Sprite.Create</a>(tex, new <a href="Rect.html">Rect</a>(0.0f, 0.0f, tex.width, tex.height), <a href="Vector2-zero.html">Vector2.zero</a>);<br /><br />        var textureSheetAnimation = ps.textureSheetAnimation;
+        textureSheetAnimation.enabled = true;
+        textureSheetAnimation.mode = <a href="ParticleSystemAnimationMode.Sprites.html">ParticleSystemAnimationMode.Sprites</a>;
+        textureSheetAnimation.AddSprite(sprite);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: BoxcastCommand</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">BoxcastCommand</h1><div class="clear"></div><p class="cl mb0 left mr10">struct in
+          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.PhysicsModule.html" class="cl">UnityEngine.PhysicsModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Use this struct to set up a box cast command to be performed asynchronously during a job.</p></div><div class="subsection"><p>When you use this struct to schedule a batch of box casts, the box casts will are performed asynchronously and in parallel. The results of each box cast is written to the results buffer. Since the results are written asynchronously, you cannot accesss the results buffer until the job is completed.<br /><br />The result for a command at index N in the command buffer is stored at index N in the results buffer.<br /><br />See Also: Physics.Boxcast.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using Unity.Collections;
+using Unity.Jobs;
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private void BoxcastExample()
+    {
+        // Perform a single boxcast using <a href="BoxcastCommand.html">BoxcastCommand</a> and wait for it to complete
+        // Set up the command and result buffers
+        var results = new NativeArray&lt;<a href="RaycastHit.html">RaycastHit</a>&gt;(1, <a href="Unity.Collections.Allocator.Temp.html">Allocator.Temp</a>);
+        var commands = new NativeArray&lt;<a href="BoxcastCommand.html">BoxcastCommand</a>&gt;(1, <a href="Unity.Collections.Allocator.Temp.html">Allocator.Temp</a>);<br /><br />        // Set the data of the first command
+        <a href="Vector3.html">Vector3</a> center = <a href="Vector3-zero.html">Vector3.zero</a>;
+        <a href="Vector2.html">Vector2</a> halfExtents = <a href="Vector3-one.html">Vector3.one</a> * 0.5f;
+        <a href="Quaternion.html">Quaternion</a> orientation = <a href="Quaternion-identity.html">Quaternion.identity</a>;
+        <a href="Vector3.html">Vector3</a> direction = <a href="Vector3-forward.html">Vector3.forward</a>;<br /><br />        commands[0] = new <a href="BoxcastCommand.html">BoxcastCommand</a>(center, halfExtents, orientation, direction);<br /><br />        // Schedule the batch of boxcasts
+        var handle = <a href="BoxcastCommand.ScheduleBatch.html">BoxcastCommand.ScheduleBatch</a>(commands, results, 1,  default(<a href="Unity.Jobs.JobHandle.html">JobHandle</a>));<br /><br />        // Wait for the batch processing job to complete
+        handle.Complete();<br /><br />        // Copy the result. If batchedHit.collider is null there was no hit
+        <a href="RaycastHit.html">RaycastHit</a> batchedHit = results[0];<br /><br />        // Dispose the buffers
+        results.Dispose();
+        commands.Dispose();
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="BoxcastCommand-center.html">center</a></td><td class="desc"></td><td class="desc1">Center of the box.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="BoxcastCommand-direction.html">direction</a></td><td class="desc"></td><td class="desc1">The direction in which to sweep the box.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="BoxcastCommand-distance.html">distance</a></td><td class="desc"></td><td class="desc1">The maximum distance of the sweep.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="BoxcastCommand-halfExtents.html">halfExtents</a></td><td class="desc"></td><td class="desc1">Half the size of the box in each dimension.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="BoxcastCommand-layerMask.html">layerMask</a></td><td class="desc"></td><td class="desc1">A LayerMask that is used to selectively ignore Colliders when casting a box.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="BoxcastCommand-orientation.html">orientation</a></td><td class="desc"></td><td class="desc1">Rotation of the box.</td></tr>
+    </table></div><div class="subsection"><h2>Constructors</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="BoxcastCommand-ctor.html">BoxcastCommand</a></td><td class="desc"></td><td class="desc1">Creates a BoxcastCommand.</td></tr>
+    </table></div><div class="subsection"><h2>Static Methods   静态方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="BoxcastCommand.ScheduleBatch.html">ScheduleBatch</a></td><td class="desc"></td><td class="desc1">Schedules a batch of boxcasts to be performed in a job.</td></tr>
+    </table></div></div></div></div></body></html>

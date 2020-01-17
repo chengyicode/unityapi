@@ -1,0 +1,34 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ParticleSystem.CollisionModule.maxCollisionShapes</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="ParticleSystem.CollisionModule.html">ParticleSystem.CollisionModule</a>.maxCollisionShapes</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-ParticleSystem.html' title='Go to ParticleSystem Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public int <span class="sig-kw">maxCollisionShapes</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The maximum number of collision shapes that will be considered for particle collisions. Excess shapes will be ignored. Terrains take priority.</p></div><div class="subsection"><p>See Also: <a href="ParticleSystem-collision.html">ParticleSystem.collision</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private <a href="ParticleSystem.html">ParticleSystem</a> ps;
+    public bool maxToggle;<br /><br />    void Start()
+    {
+        ps = GetComponent&lt;<a href="ParticleSystem.html">ParticleSystem</a>&gt;();<br /><br />        var main = ps.main;
+        main.startColor = <a href="Color-red.html">Color.red</a>;<br /><br />        var shape = ps.shape;
+        shape.shapeType = <a href="ParticleSystemShapeType.Sphere.html">ParticleSystemShapeType.Sphere</a>;<br /><br />        var collision = ps.collision;
+        collision.enabled = true;
+        collision.type = <a href="ParticleSystemCollisionType.World.html">ParticleSystemCollisionType.World</a>;
+        collision.mode = <a href="ParticleSystemCollisionMode.Collision3D.html">ParticleSystemCollisionMode.Collision3D</a>;
+        collision.bounce = 0.0f;<br /><br />        var collider1 = <a href="GameObject.CreatePrimitive.html">GameObject.CreatePrimitive</a>(<a href="PrimitiveType.Sphere.html">PrimitiveType.Sphere</a>);
+        collider1.transform.parent = ps.transform;
+        collider1.transform.localPosition = new <a href="Vector3.html">Vector3</a>(0.0f, 0.0f, 13.0f);
+        collider1.transform.localScale = new <a href="Vector3.html">Vector3</a>(20.0f, 20.0f, 20.0f);<br /><br />        var collider2 = <a href="GameObject.CreatePrimitive.html">GameObject.CreatePrimitive</a>(<a href="PrimitiveType.Sphere.html">PrimitiveType.Sphere</a>);
+        collider2.transform.parent = ps.transform;
+        collider2.transform.localPosition = new <a href="Vector3.html">Vector3</a>(0.0f, 0.0f, -13.0f);
+        collider2.transform.localScale = new <a href="Vector3.html">Vector3</a>(20.0f, 20.0f, 20.0f);
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        var collision = ps.collision;
+        collision.maxCollisionShapes = maxToggle ? 2 : 1;
+    }<br /><br />    void OnGUI()
+    {
+        maxToggle = <a href="GUI.Toggle.html">GUI.Toggle</a>(new <a href="Rect.html">Rect</a>(25, 40, 300, 30), maxToggle, "<a href="UIElements.Toggle.html">Toggle</a> Max <a href="Collision.html">Collision</a> Shapes (" + (maxToggle ? "2" : "1") + ")");
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Profiling.Profiler.EndThreadProfiling</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Profiling.Profiler.html">Profiler</a>.EndThreadProfiling</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">EndThreadProfiling</span>();
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Frees the internal resources used by the Profiler for the thread.</p></div><div class="subsection"><p>Profiler allocates memory to store information about the thread. To free that memory use <em>EndThreadProfiling</em>.
+Once called, Profiler stops collecting any data on the thread.<br /><br /><strong>Note:</strong>
+Calling this method on an internal Unity thread (such as main thread, render thread or job system threads) has no effect.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.Profiling;
+using System.Threading;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="Profiling.CustomSampler.html">CustomSampler</a> sampler;
+    void Start()
+    {
+        sampler = <a href="Profiling.CustomSampler.Create.html">CustomSampler.Create</a>("MyCustomSampler");
+        var thread = new Thread(MyThreadFunc) { IsBackground = true };
+        thread.Start();
+    }<br /><br />    void MyThreadFunc()
+    {
+        <a href="Profiling.Profiler.BeginThreadProfiling.html">Profiler.BeginThreadProfiling</a>("My threads", "My thread 1");
+        // Now samples will show up in the profiler timeline view
+        for (int i = 0; i &lt; 10; i++)
+        {
+            sampler.Begin();
+            // ...
+            sampler.End();
+        }<br /><br />        // Unregister the thread before exit
+        <a href="Profiling.Profiler.EndThreadProfiling.html">Profiler.EndThreadProfiling</a>();
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="Profiling.Profiler.BeginThreadProfiling.html">Profiler.BeginThreadProfiling</a>, <a href="Profiling.CustomSampler.html">CustomSampler</a>.</p></div></div></div></div></body></html>

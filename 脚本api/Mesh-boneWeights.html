@@ -1,0 +1,58 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Mesh.boneWeights</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Mesh.html">Mesh</a>.boneWeights</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Mesh.html' title='Go to Mesh Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public BoneWeight[] <span class="sig-kw">boneWeights</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The bone weights of each vertex.</p></div><div class="subsection"><p>The size of the array is either <a href="Mesh-vertexCount.html">vertexCount</a> or zero.<br /><br />Each vertex can be affected by up to 4 different bones. The bone weights should be in descending order (most significant first) and add up to 1.<br /><br />See Also: <a href="Mesh-allBoneWeights.html">allBoneWeights</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        gameObject.AddComponent&lt;<a href="Animation.html">Animation</a>&gt;();
+        gameObject.AddComponent&lt;<a href="SkinnedMeshRenderer.html">SkinnedMeshRenderer</a>&gt;();
+        <a href="SkinnedMeshRenderer.html">SkinnedMeshRenderer</a> rend = GetComponent&lt;<a href="SkinnedMeshRenderer.html">SkinnedMeshRenderer</a>&gt;();
+        <a href="Animation.html">Animation</a> anim = GetComponent&lt;<a href="Animation.html">Animation</a>&gt;();<br /><br />        // Build basic mesh
+        <a href="Mesh.html">Mesh</a> mesh = new <a href="Mesh.html">Mesh</a>();
+        mesh.vertices = new <a href="Vector3.html">Vector3</a>[] {new <a href="Vector3.html">Vector3</a>(-1, 0, 0), new <a href="Vector3.html">Vector3</a>(1, 0, 0), new <a href="Vector3.html">Vector3</a>(-1, 5, 0), new <a href="Vector3.html">Vector3</a>(1, 5, 0)};
+        mesh.uv = new <a href="Vector2.html">Vector2</a>[] {new <a href="Vector2.html">Vector2</a>(0, 0), new <a href="Vector2.html">Vector2</a>(1, 0), new <a href="Vector2.html">Vector2</a>(0, 1), new <a href="Vector2.html">Vector2</a>(1, 1)};
+        mesh.triangles = new int[] {0, 1, 2, 1, 3, 2};
+        mesh.RecalculateNormals();<br /><br />        // Assign mesh to mesh filter &amp; renderer
+        rend.material = new <a href="Material.html">Material</a>(<a href="Shader.Find.html">Shader.Find</a>("Diffuse"));<br /><br />        // Assign bone weights to mesh
+        // We use 2 bones. One for the lower vertices, one for the upper vertices.
+        <a href="BoneWeight.html">BoneWeight</a>[] weights = new <a href="BoneWeight.html">BoneWeight</a>[4];<br /><br />        weights[0].boneIndex0 = 0;
+        weights[0].weight0 = 1;<br /><br />        weights[1].boneIndex0 = 0;
+        weights[1].weight0 = 1;<br /><br />        weights[2].boneIndex0 = 1;
+        weights[2].weight0 = 1;<br /><br />        weights[3].boneIndex0 = 1;
+        weights[3].weight0 = 1;<br /><br />        // A BoneWeights array (weights) was just created and the boneIndex and weight assigned.
+        // The weights array will now be assigned to the boneWeights array in the <a href="Mesh.html">Mesh</a>.
+        mesh.boneWeights = weights;<br /><br />        // Create <a href="XR.Bone.html">Bone</a> Transforms and Bind poses
+        // One bone at the bottom and one at the top
+        <a href="Transform.html">Transform</a>[] bones = new <a href="Transform.html">Transform</a>[2];
+        <a href="Matrix4x4.html">Matrix4x4</a>[] bindPoses = new <a href="Matrix4x4.html">Matrix4x4</a>[2];<br /><br />        bones[0] = new <a href="GameObject.html">GameObject</a>("Lower").transform;
+        bones[0].parent = transform;
+        // Set the position relative to the parent
+        bones[0].localRotation = <a href="Quaternion-identity.html">Quaternion.identity</a>;
+        bones[0].localPosition = <a href="Vector3-zero.html">Vector3.zero</a>;<br /><br />        // The bind pose is bone's inverse transformation matrix
+        // In this case the matrix we also make this matrix relative to the root
+        // So that we can move the root game object around freely
+        bindPoses[0] = bones[0].worldToLocalMatrix * transform.localToWorldMatrix;<br /><br />        bones[1] = new <a href="GameObject.html">GameObject</a>("Upper").transform;
+        bones[1].parent = transform;
+        // Set the position relative to the parent
+        bones[1].localRotation = <a href="Quaternion-identity.html">Quaternion.identity</a>;
+        bones[1].localPosition = new <a href="Vector3.html">Vector3</a>(0, 5, 0);
+        // The bind pose is bone's inverse transformation matrix
+        // In this case the matrix we also make this matrix relative to the root
+        // So that we can move the root game object around freely
+        bindPoses[1] = bones[1].worldToLocalMatrix * transform.localToWorldMatrix;<br /><br />        // assign the bindPoses array to the bindposes array which is part of the mesh.
+        mesh.bindposes = bindPoses;<br /><br />        // Assign bones and bind poses
+        rend.bones = bones;
+        rend.sharedMesh = mesh;<br /><br />        // Assign a simple waving animation to the bottom bone
+        <a href="AnimationCurve.html">AnimationCurve</a> curve = new <a href="AnimationCurve.html">AnimationCurve</a>();
+        curve.keys = new <a href="Keyframe.html">Keyframe</a>[] {new <a href="Keyframe.html">Keyframe</a>(0, 0, 0, 0), new <a href="Keyframe.html">Keyframe</a>(1, 3, 0, 0), new <a href="Keyframe.html">Keyframe</a>(2, 0.0F, 0, 0)};<br /><br />        // Create the clip with the curve
+        <a href="AnimationClip.html">AnimationClip</a> clip = new <a href="AnimationClip.html">AnimationClip</a>();
+        clip.SetCurve("Lower", typeof(<a href="Transform.html">Transform</a>), "m_LocalPosition.z", curve);<br /><br />        // Add and play the clip
+        anim.AddClip(clip, "test");
+        anim.Play("test");
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

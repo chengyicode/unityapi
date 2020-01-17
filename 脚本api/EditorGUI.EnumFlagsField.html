@@ -1,0 +1,53 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorGUI.EnumFlagsField</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorGUI.html">EditorGUI</a>.EnumFlagsField</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static Enum <span class="sig-kw">EnumFlagsField</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+Enum <span class="sig-kw">enumValue</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static Enum <span class="sig-kw">EnumFlagsField</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+Enum <span class="sig-kw">enumValue</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static Enum <span class="sig-kw">EnumFlagsField</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+string <span class="sig-kw">label</span>,
+Enum <span class="sig-kw">enumValue</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static Enum <span class="sig-kw">EnumFlagsField</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+string <span class="sig-kw">label</span>,
+Enum <span class="sig-kw">enumValue</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static Enum <span class="sig-kw">EnumFlagsField</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+<a href="GUIContent.html">GUIContent</a> <span class="sig-kw">label</span>,
+Enum <span class="sig-kw">enumValue</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static Enum <span class="sig-kw">EnumFlagsField</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+<a href="GUIContent.html">GUIContent</a> <span class="sig-kw">label</span>,
+Enum <span class="sig-kw">enumValue</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static Enum <span class="sig-kw">EnumFlagsField</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+<a href="GUIContent.html">GUIContent</a> <span class="sig-kw">label</span>,
+Enum <span class="sig-kw">enumValue</span>,
+bool <span class="sig-kw">includeObsolete</span> = false,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span> = null);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">position</td><td class="desc"></td><td class="desc1">Rectangle on the screen to use for the enum flags field.</td></tr><tr><td class="name lbl">label</td><td class="desc"></td><td class="desc1">Optional label to display in front of the enum flags field.</td></tr><tr><td class="name lbl">enumValue</td><td class="desc"></td><td class="desc1">Enum flags value (Only supports enum values for enum types with int as the underlying type).</td></tr><tr><td class="name lbl">style</td><td class="desc"></td><td class="desc1">Optional <a href="GUIStyle.html">GUIStyle</a>.</td></tr><tr><td class="name lbl">includeObsolete</td><td class="desc"></td><td class="desc1">Set to true to include Enum values with ObsoleteAttribute. Set to false to exclude Enum values with ObsoleteAttribute.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>Enum</strong>
+        The enum flags value modified by the user. This is a selection BitMask where each bit represents an Enum value index. (Note this returned value is not itself an Enum).
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Displays a menu with an option for every value of the enum type when clicked. An option for the value <code class="mono">0</code> with name "Nothing" and an option for the value <code class="mono">~0</code> (that is, all bits set) with the name "Everything" are always displayed at the top of the menu. The names for the values <code class="mono">0</code> and <code class="mono">~0</code> can be overriden by defining these values in the enum type.</p></div><div class="subsection"><p>
+        <strong>Note:</strong> This method only supports enums whose underlying types are supported by Unity's serialization system (sbyte, short, int, byte, ushort, or uint). For enums backed by an unsigned type, the "Everything" option should have the value corresponding to all bits set (i.e. <code class="mono">~0</code> in an unchecked context or the <code class="mono">MaxValue</code> constant for the type).<br /><br /><img src="../StaticFiles/ScriptRefImages/EditorGUIEnumFlagsField.png" /><br />
+<em>Simple editor window that shows the enum flags field.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;<br /><br />class EnumFlagsFieldExample : <a href="EditorWindow.html">EditorWindow</a>
+{
+    enum ExampleFlagsEnum
+    {
+        None = 0, // Custom name for "Nothing" option
+        A = 1 &lt;&lt; 0,
+        B = 1 &lt;&lt; 1,
+        AB = A | B, // Combination of two flags
+        C = 1 &lt;&lt; 2,
+        All = ~0, // Custom name for "Everything" option
+    }<br /><br />    ExampleFlagsEnum m_Flags;<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Examples/EnumFlagsField Example")]
+    static void OpenWindow()
+    {
+        GetWindow&lt;EnumFlagsFieldExample&gt;().Show();
+    }<br /><br />    void OnGUI()
+    {
+        m_Flags = (ExampleFlagsEnum)<a href="EditorGUI.EnumFlagsField.html">EditorGUI.EnumFlagsField</a>(new <a href="Rect.html">Rect</a>(5, 5, 300, 20), m_Flags);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

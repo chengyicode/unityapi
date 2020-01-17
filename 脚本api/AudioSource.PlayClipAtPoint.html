@@ -1,0 +1,16 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AudioSource.PlayClipAtPoint</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="AudioSource.html">AudioSource</a>.PlayClipAtPoint</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-AudioSource.html' title='Go to AudioSource Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">PlayClipAtPoint</span>(<a href="AudioClip.html">AudioClip</a> <span class="sig-kw">clip</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">position</span>,
+float <span class="sig-kw">volume</span> = 1.0F);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">clip</td><td class="desc"></td><td class="desc1">Audio data to play.</td></tr><tr><td class="name lbl">position</td><td class="desc"></td><td class="desc1">Position in world space from which sound originates.</td></tr><tr><td class="name lbl">volume</td><td class="desc"></td><td class="desc1">Playback volume.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Plays an AudioClip at a given position in world space.</p></div><div class="subsection"><p>This function creates an audio source but automatically disposes of it once the clip has finished playing.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />[<a href="RequireComponent.html">RequireComponent</a>(typeof(<a href="AudioSource.html">AudioSource</a>))]
+public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="AudioClip.html">AudioClip</a> clip; //make sure you assign an actual clip here in the inspector<br /><br />    void Start()
+    {
+        <a href="AudioSource.PlayClipAtPoint.html">AudioSource.PlayClipAtPoint</a>(clip, new <a href="Vector3.html">Vector3</a>(5, 1, 2));
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: WaitForSecondsRealtime.WaitForSecondsRealtime</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">WaitForSecondsRealtime Constructor</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <span class="sig-kw">WaitForSecondsRealtime</span>(float <span class="sig-kw">time</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Creates a yield instruction to wait for a given number of seconds using unscaled time.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class WaitForSecondsExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        StartCoroutine(Example());
+    }<br /><br />    IEnumerator Example()
+    {
+        print(<a href="Time-time.html">Time.time</a>);
+        yield return new <a href="WaitForSecondsRealtime.html">WaitForSecondsRealtime</a>(5);
+        print(<a href="Time-time.html">Time.time</a>);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

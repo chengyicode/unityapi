@@ -1,0 +1,48 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ParticleSystem.TriggerSubEmitter</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="ParticleSystem.html">ParticleSystem</a>.TriggerSubEmitter</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-ParticleSystem.html' title='Go to ParticleSystem Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">TriggerSubEmitter</span>(int <span class="sig-kw">subEmitterIndex</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">subEmitterIndex</td><td class="desc"></td><td class="desc1">Index of the sub emitter to trigger.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Triggers the specified sub emitter on all particles of the Particle System.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />// Add a manual sub-emitter
+public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private <a href="ParticleSystem.html">ParticleSystem</a> ps;
+    private float m_Timer = 0.0f;
+    public float m_Interval = 2.0f;<br /><br />    void Start()
+    {
+        // A simple particle material with no texture.
+        <a href="Material.html">Material</a> particleMaterial = new <a href="Material.html">Material</a>(<a href="Shader.Find.html">Shader.Find</a>("Particles/Standard Unlit"));<br /><br />        // Create a green <a href="ParticleSystem.Particle.html">Particle</a> System.
+        var rootSystemGO = new <a href="GameObject.html">GameObject</a>("<a href="ParticleSystem.Particle.html">Particle</a> System");
+        rootSystemGO.transform.Rotate(-90, 0, 0); // Rotate so the system emits upwards.
+        ps = rootSystemGO.AddComponent&lt;<a href="ParticleSystem.html">ParticleSystem</a>&gt;();
+        rootSystemGO.GetComponent&lt;<a href="ParticleSystemRenderer.html">ParticleSystemRenderer</a>&gt;().material = particleMaterial;
+        var mainModule = ps.main;
+        mainModule.startColor = <a href="Color-green.html">Color.green</a>;
+        mainModule.startSize = 0.5f;<br /><br />        // Create our sub-emitter and setup bursts.
+        var subSystemGO = new <a href="GameObject.html">GameObject</a>("<a href="ParticleSystem.Particle.html">Particle</a> System");
+        var subParticleSystem = subSystemGO.AddComponent&lt;<a href="ParticleSystem.html">ParticleSystem</a>&gt;();
+        subSystemGO.GetComponent&lt;<a href="ParticleSystemRenderer.html">ParticleSystemRenderer</a>&gt;().material = particleMaterial;
+        var subMainModule = subParticleSystem.main;
+        subMainModule.startColor = <a href="Color-red.html">Color.red</a>;
+        subMainModule.startSize = 0.25f;
+        var emissionModule = subParticleSystem.emission;
+        emissionModule.SetBursts(new <a href="ParticleSystem.Burst.html">ParticleSystem.Burst</a>[] { new <a href="ParticleSystem.Burst.html">ParticleSystem.Burst</a>(0.0f, 4) }); // We will emit 10 particles when triggered.<br /><br />        // Set up the sub-emitter.
+        subSystemGO.transform.SetParent(rootSystemGO.transform);
+        var subEmittersModule = ps.subEmitters;
+        subEmittersModule.enabled = true;
+        subEmittersModule.AddSubEmitter(subParticleSystem, <a href="ParticleSystemSubEmitterType.Manual.html">ParticleSystemSubEmitterType.Manual</a>, <a href="ParticleSystemSubEmitterProperties.InheritNothing.html">ParticleSystemSubEmitterProperties.InheritNothing</a>);
+    }<br /><br />    private void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        m_Timer += <a href="Time-deltaTime.html">Time.deltaTime</a>;
+        while (m_Timer &gt;= m_Interval)
+        {
+            ps.TriggerSubEmitter(0);
+            m_Timer -= m_Interval;
+        }
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">TriggerSubEmitter</span>(int <span class="sig-kw">subEmitterIndex</span>,
+ref <a href="ParticleSystem.Particle.html">ParticleSystem.Particle</a> <span class="sig-kw">particle</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">TriggerSubEmitter</span>(int <span class="sig-kw">subEmitterIndex</span>,
+List&lt;Particle&gt; <span class="sig-kw">particles</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">subEmitterIndex</td><td class="desc"></td><td class="desc1">Index of the sub emitter to trigger.</td></tr><tr><td class="name lbl">particle</td><td class="desc"></td><td class="desc1">Triggers the sub emtter on a single particle.</td></tr><tr><td class="name lbl">particles</td><td class="desc"></td><td class="desc1">Triggers the sub emtter on a list of particles.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Triggers the specified sub emitter on the specified particle(s) of the Particle System.</p></div></div></div></div></body></html>

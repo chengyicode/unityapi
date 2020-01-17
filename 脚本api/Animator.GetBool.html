@@ -1,0 +1,44 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Animator.GetBool</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Animator.html">Animator</a>.GetBool</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Animator.html' title='Go to Animator Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public bool <span class="sig-kw">GetBool</span>(string <span class="sig-kw">name</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public bool <span class="sig-kw">GetBool</span>(int <span class="sig-kw">id</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">name</td><td class="desc"></td><td class="desc1">The parameter name.</td></tr><tr><td class="name lbl">id</td><td class="desc"></td><td class="desc1">The parameter ID.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>bool</strong>
+        The value of the parameter.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Returns the value of the given boolean parameter.</p></div><div class="subsection"><p>Return the current state of a bool parameter within the Animator Controller. Use the parameter’s name or ID to search for the appropriate one.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//Attach this script to a <a href="GameObject.html">GameObject</a> with an <a href="Animator.html">Animator</a> component attached.
+//For this example, create parameters in the <a href="Animator.html">Animator</a> and name them “Crouch” and “Jump”
+//Apply these parameters to your transitions between states<br /><br />//This script allows you to set a Boolean <a href="Animator.html">Animator</a> parameter on and set another Boolean parameter to off if it is currently playing. Press the space key to do this.<br /><br />using UnityEngine;<br /><br />public class AnimatorGetBool : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    //Fetch the <a href="Animator.html">Animator</a>
+    <a href="Animator.html">Animator</a> m_Animator;
+    // Use this to decide if the <a href="GameObject.html">GameObject</a> can jump or not
+    bool m_Jump;<br /><br />    void Start()
+    {
+        //This gets the <a href="Animator.html">Animator</a>, which should be attached to the <a href="GameObject.html">GameObject</a> you are intending to animate.
+        m_Animator = gameObject.GetComponent&lt;<a href="Animator.html">Animator</a>&gt;();
+        // The <a href="GameObject.html">GameObject</a> cannot jump
+        m_Jump = false;
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        //Press the space bar to enable the "Jump" parameter in the <a href="Animator.html">Animator</a> Controller
+        if (<a href="Input.GetKey.html">Input.GetKey</a>(<a href="KeyCode.Space.html">KeyCode.Space</a>))
+        {
+            //Set the "Jump" parameter in the <a href="Animator.html">Animator</a> Controller to true
+            m_Animator.SetBool("Jump", true);
+            //Check to see if the "Crouch" parameter is enabled
+            if (m_Animator.GetBool("Crouch"))
+            {
+                //If the "Crouch" parameter is enabled, disable it as the <a href="Animation.html">Animation</a> should no longer be crouching
+                m_Animator.SetBool("Crouch", false);
+            }
+        }
+        //Otherwise the "Jump" parameter should be false
+        else m_Animator.SetBool("Jump", false);<br /><br />        //Press the down arrow key to enable the "Crouch" parameter
+        if (<a href="Input.GetKey.html">Input.GetKey</a>(<a href="KeyCode.DownArrow.html">KeyCode.DownArrow</a>))
+            m_Animator.SetBool("Crouch", true);
+        else
+            m_Animator.SetBool("Crouch", false);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

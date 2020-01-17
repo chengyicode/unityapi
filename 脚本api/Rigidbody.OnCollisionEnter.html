@@ -1,0 +1,45 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Rigidbody.OnCollisionEnter(Collision)</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Rigidbody.html">Rigidbody</a>.OnCollisionEnter(Collision)</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Rigidbody.html' title='Go to Rigidbody Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>OnCollisionEnter is called when this collider/rigidbody has begun touching another rigidbody/collider.</p></div><div class="subsection"><p>In contrast to OnTriggerEnter, OnCollisionEnter is passed the <a href="Collision.html">Collision</a> class and not a Collider.
+The <a href="Collision.html">Collision</a> class contains information about contact points, impact velocity etc.
+If you don't use collisionInfo in the function, leave out the collisionInfo parameter as this avoids unneccessary calculations.
+Notes: Collision events are only sent if one of the colliders also has a non-kinematic rigidbody attached. Collision events will be sent to disabled MonoBehaviours, to allow enabling Behaviours in response to collisions.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="AudioSource.html">AudioSource</a> audioSource;<br /><br />    void Start()
+    {
+        audioSource = GetComponent&lt;<a href="AudioSource.html">AudioSource</a>&gt;();
+    }<br /><br />    void OnCollisionEnter(<a href="Collision.html">Collision</a> collision)
+    {
+        // <a href="Debug.html">Debug</a>-draw all contact points and normals
+        foreach (<a href="ContactPoint.html">ContactPoint</a> contact in collision.contacts)
+        {
+            <a href="Debug.DrawRay.html">Debug.DrawRay</a>(contact.point, contact.normal, <a href="Color-white.html">Color.white</a>);
+        }<br /><br />        // Play a sound if the colliding objects had a big impact.
+        if (collision.relativeVelocity.magnitude &gt; 2)
+            audioSource.Play();
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Another example:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// A grenade
+// instantiates a explosion Prefab when hitting a surface
+// then destroys itself
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Transform.html">Transform</a> explosionPrefab;
+    void OnCollisionEnter(<a href="Collision.html">Collision</a> collision)
+    {
+        <a href="ContactPoint.html">ContactPoint</a> contact = collision.contacts[0];<br /><br />        // Rotate the object so that the y-axis faces along the normal of the surface
+        <a href="Quaternion.html">Quaternion</a> rot = <a href="Quaternion.FromToRotation.html">Quaternion.FromToRotation</a>(<a href="Vector3-up.html">Vector3.up</a>, contact.normal);
+        <a href="Vector3.html">Vector3</a> pos = contact.point;
+        Instantiate(explosionPrefab, pos, rot);
+        Destroy(gameObject);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

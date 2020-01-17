@@ -1,0 +1,94 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorConnection</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">EditorConnection</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEditor.Networking.PlayerConnection</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Inherits from:<a href="ScriptableObject.html" class="cl">ScriptableObject</a></p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEditor.html" class="cl">UnityEditor</a></p><br /><p class="cl mb0 left">Implements interfaces:<a href="Networking.PlayerConnection.IEditorPlayerConnection.html" class="cl">IEditorPlayerConnection</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Handles the connection from the Editor to the Player.</p></div><div class="subsection"><p>Sets up events for connecting to and sending data to the Player.<br /><br />This is a singleton class and can be accessed using EditorConnection.instance.<br /><br />This can only be used in a class that inherits from MonoBehaviour, Object or ScriptableObject.<br /><br />Set the "Autoconnect Profiler" in the Build Settings or build the Player through code with the BuildPipeline using build options: <a href="BuildOptions.ConnectToHost.html">BuildOptions.ConnectToHost</a> and <a href="BuildOptions.Development.html">BuildOptions.Development</a> to initialize the connection.<br /><br />The Player ID is used to tell multiple connected Players apart. By default, data is sent to all Players. A connected Player's ID is not guaranteed to be the same the next time it connects.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System;
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;
+using System.Text;
+using UnityEditor.Networking.PlayerConnection;
+using UnityEngine.Networking.PlayerConnection;<br /><br />public class EditorConnectionExample : <a href="EditorWindow.html">EditorWindow</a>
+{
+    public static readonly Guid kMsgSendEditorToPlayer = new Guid("34d9b47f923142ff847c0d1f8b0554d9");
+    public static readonly Guid kMsgSendPlayerToEditor = new Guid("12871ffeaf0c489189579946d8e0840f");<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Test/EditorConnectionExample")]
+    static void Init()
+    {
+        EditorConnectionExample window = (EditorConnectionExample)<a href="EditorWindow.GetWindow.html">EditorWindow.GetWindow</a>(typeof(EditorConnectionExample));
+        window.Show();
+        window.titleContent = new <a href="GUIContent.html">GUIContent</a>("EditorConnectionExample");
+    }<br /><br />    void OnEnable()
+    {
+        EditorConnection.instance.Initialize();
+        EditorConnection.instance.Register(kMsgSendPlayerToEditor, OnMessageEvent);
+    }<br /><br />    void OnDisable()
+    {
+        EditorConnection.instance.Unregister(kMsgSendPlayerToEditor, OnMessageEvent);
+        EditorConnection.instance.DisconnectAll();
+    }<br /><br />    private void OnMessageEvent(<a href="Networking.PlayerConnection.MessageEventArgs.html">MessageEventArgs</a> args)
+    {
+        var text = Encoding.ASCII.GetString(args.data);
+        <a href="Debug.Log.html">Debug.Log</a>("<a href="VersionControl.Message.html">Message</a> from player: " + text);
+    }<br /><br />    void OnGUI()
+    {
+        var playerCount = EditorConnection.instance.ConnectedPlayers.Count;
+        StringBuilder builder = new StringBuilder();
+        builder.AppendLine(string.Format("{0} players connected.", playerCount));
+        int i = 0;
+        foreach (var p in EditorConnection.instance.ConnectedPlayers)
+        {
+            builder.AppendLine(string.Format("[{0}] - {1} {2}", i++, p.name, p.playerId));
+        }
+        <a href="EditorGUILayout.HelpBox.html">EditorGUILayout.HelpBox</a>(builder.ToString(), <a href="MessageType.Info.html">MessageType.Info</a>);<br /><br />        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Send message to player"))
+        {
+            EditorConnection.instance.Send(kMsgSendEditorToPlayer, Encoding.ASCII.GetBytes("Hello from <a href="Editor.html">Editor</a>"));
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Networking.PlayerConnection.EditorConnection.ConnectedPlayers.html">ConnectedPlayers</a></td><td class="desc"></td><td class="desc1">A list of the connected Players.</td></tr>
+    </table></div><div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Networking.PlayerConnection.EditorConnection.DisconnectAll.html">DisconnectAll</a></td><td class="desc"></td><td class="desc1">Disconnects all of the active connections between the Editor and the Players.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Networking.PlayerConnection.EditorConnection.Initialize.html">Initialize</a></td><td class="desc"></td><td class="desc1">Initializes the EditorConnection.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Networking.PlayerConnection.EditorConnection.Register.html">Register</a></td><td class="desc"></td><td class="desc1">Registers a callback on a certain message ID.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Networking.PlayerConnection.EditorConnection.RegisterConnection.html">RegisterConnection</a></td><td class="desc"></td><td class="desc1">Registers a callback, executed when a new Player connects to the Editor.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Networking.PlayerConnection.EditorConnection.RegisterDisconnection.html">RegisterDisconnection</a></td><td class="desc"></td><td class="desc1">Registers a callback on a Player when that Player disconnects.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Networking.PlayerConnection.EditorConnection.Send.html">Send</a></td><td class="desc"></td><td class="desc1">Sends data to the connected Players.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Networking.PlayerConnection.EditorConnection.Unregister.html">Unregister</a></td><td class="desc"></td><td class="desc1">Deregisters a registered callback.</td></tr>
+    </table></div><div class="subsection"><h2>Inherited Members   继承成员</h2>
+      
+      <div class="subsection"><h2>Properties   属性</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-hideFlags.html">hideFlags</a></td><td class="desc"></td><td class="desc1">Should the object be hidden, saved with the Scene or modifiable by the user?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-name.html">name</a></td><td class="desc"></td><td class="desc1">The name of the object.</td></tr>
+      </table></div>
+      
+      
+      
+      <div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.GetInstanceID.html">GetInstanceID</a></td><td class="desc"></td><td class="desc1">Returns the instance id of the object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.ToString.html">ToString</a></td><td class="desc"></td><td class="desc1">Returns the name of the object.</td></tr>
+      </table></div>
+      
+      <div class="subsection"><h2>Static Methods   静态方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.Destroy.html">Destroy</a></td><td class="desc"></td><td class="desc1">Removes a GameObject, component or asset.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.DestroyImmediate.html">DestroyImmediate</a></td><td class="desc"></td><td class="desc1">Destroys the object obj immediately. You are strongly recommended to use Destroy instead.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.DontDestroyOnLoad.html">DontDestroyOnLoad</a></td><td class="desc"></td><td class="desc1">Do not destroy the target Object when loading a new Scene.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectOfType.html">FindObjectOfType</a></td><td class="desc"></td><td class="desc1">Returns the first active loaded object of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectsOfType.html">FindObjectsOfType</a></td><td class="desc"></td><td class="desc1">Returns a list of all active loaded objects of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.Instantiate.html">Instantiate</a></td><td class="desc"></td><td class="desc1">Clones the object original and returns the clone.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="ScriptableObject.CreateInstance.html">CreateInstance</a></td><td class="desc"></td><td class="desc1">Creates an instance of a scriptable object.</td></tr>
+      </table></div>
+      <div class="subsection"><h2>Operators   运算符</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_Object.html">bool</a></td><td class="desc"></td><td class="desc1">Does the object exist?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_ne.html">operator !=</a></td><td class="desc"></td><td class="desc1">Compares if two objects refer to a different object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_eq.html">operator ==</a></td><td class="desc"></td><td class="desc1">Compares two object references to see if they refer to the same object.</td></tr>
+      </table></div>
+      <div class="subsection"><h2>Messages   消息</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="ScriptableObject.Awake.html">Awake</a></td><td class="desc"></td><td class="desc1">This function is called when the ScriptableObject script is started.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="ScriptableObject.OnDestroy.html">OnDestroy</a></td><td class="desc"></td><td class="desc1">This function is called when the scriptable object will be destroyed.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="ScriptableObject.OnDisable.html">OnDisable</a></td><td class="desc"></td><td class="desc1">This function is called when the scriptable object goes out of scope.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="ScriptableObject.OnEnable.html">OnEnable</a></td><td class="desc"></td><td class="desc1">This function is called when the object is loaded.</td></tr>
+      </table></div>
+      
+      
+    </div></div></div></div></body></html>

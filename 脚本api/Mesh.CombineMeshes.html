@@ -1,0 +1,31 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Mesh.CombineMeshes</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Mesh.html">Mesh</a>.CombineMeshes</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Mesh.html' title='Go to Mesh Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">CombineMeshes</span>(CombineInstance[] <span class="sig-kw">combine</span>,
+bool <span class="sig-kw">mergeSubMeshes</span> = true,
+bool <span class="sig-kw">useMatrices</span> = true,
+bool <span class="sig-kw">hasLightmapData</span> = false);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">combine</td><td class="desc"></td><td class="desc1">Descriptions of the Meshes to combine.</td></tr><tr><td class="name lbl">mergeSubMeshes</td><td class="desc"></td><td class="desc1">Defines whether Meshes should be combined into a single sub-mesh.</td></tr><tr><td class="name lbl">useMatrices</td><td class="desc"></td><td class="desc1">Defines whether the transforms supplied in the CombineInstance array should be used or ignored.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Combines several Meshes into this Mesh.</p></div><div class="subsection"><p>Combining Meshes is useful for performance optimization.<br /><br />If <code class="varname">mergeSubMeshes</code> is true, all the Meshes are combined together into a single sub-mesh. Otherwise, each Mesh is placed in a different sub-mesh. If all Meshes share the same Material, this property should be set to true.<br /><br />If <code class="varname">useMatrices</code> is true,  the transform matrices in <a href="CombineInstance.html">CombineInstance</a> structs are used. Otherwise, they are ignored.<br /><br />Set <code class="varname">hasLightmapData</code> to true to transform the input Mesh lightmap UV data by the lightmap scale offset data in <a href="CombineInstance.html">CombineInstance</a> structs. The Meshes must share the same lightmap texture.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />// Copy meshes from children into the parent's <a href="Mesh.html">Mesh</a>.
+// <a href="CombineInstance.html">CombineInstance</a> stores the list of meshes.  These are combined
+// and assigned to the attached <a href="Mesh.html">Mesh</a>.<br /><br />[<a href="RequireComponent.html">RequireComponent</a>(typeof(<a href="MeshFilter.html">MeshFilter</a>))]
+[<a href="RequireComponent.html">RequireComponent</a>(typeof(<a href="MeshRenderer.html">MeshRenderer</a>))]
+public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        <a href="MeshFilter.html">MeshFilter</a>[] meshFilters = GetComponentsInChildren&lt;<a href="MeshFilter.html">MeshFilter</a>&gt;();
+        <a href="CombineInstance.html">CombineInstance</a>[] combine = new <a href="CombineInstance.html">CombineInstance</a>[meshFilters.Length];<br /><br />        int i = 0;
+        while (i &lt; meshFilters.Length)
+        {
+            combine[i].mesh = meshFilters[i].sharedMesh;
+            combine[i].transform = meshFilters[i].transform.localToWorldMatrix;
+            meshFilters[i].gameObject.SetActive(false);<br /><br />            i++;
+        }
+        transform.GetComponent&lt;<a href="MeshFilter.html">MeshFilter</a>&gt;().mesh = new <a href="Mesh.html">Mesh</a>();
+        transform.GetComponent&lt;<a href="MeshFilter.html">MeshFilter</a>&gt;().mesh.CombineMeshes(combine);
+        transform.gameObject.SetActive(true);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

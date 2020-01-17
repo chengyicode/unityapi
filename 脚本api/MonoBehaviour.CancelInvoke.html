@@ -1,0 +1,49 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: MonoBehaviour.CancelInvoke</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="MonoBehaviour.html">MonoBehaviour</a>.CancelInvoke</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">CancelInvoke</span>();
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Cancels all Invoke calls on this MonoBehaviour.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections.Generic;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="GameObject.html">GameObject</a> projectile;<br /><br />    void Start()
+    {
+        // Starting in 2 seconds, a projectile will be launched every 0.3 seconds
+        InvokeRepeating("LaunchProjectile", 2, 0.3F);
+    }<br /><br />    void LaunchProjectile()
+    {
+        // Create a projectile <a href="GameObject.html">GameObject</a> and set its velocity to a random direction
+        <a href="GameObject.html">GameObject</a> instance = Instantiate(projectile);
+        <a href="Rigidbody.html">Rigidbody</a> rigidbody = instance.GetComponent&lt;<a href="Rigidbody.html">Rigidbody</a>&gt;();<br /><br />        rigidbody.velocity = <a href="Random-insideUnitSphere.html">Random.insideUnitSphere</a> * 5;
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        // Cancel all Invoke calls
+        if (<a href="Input.GetButton.html">Input.GetButton</a>("Fire1"))
+            CancelInvoke();
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">CancelInvoke</span>(string <span class="sig-kw">methodName</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Cancels all Invoke calls with name <code class="varname">methodName</code> on this behaviour.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections.Generic;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="GameObject.html">GameObject</a> projectile;<br /><br />    void Start()
+    {
+        // Starting in 2 seconds, a projectile will be launched every 0.3 seconds
+        InvokeRepeating("LaunchProjectile", 2, 0.3F);
+    }<br /><br />    void LaunchProjectile()
+    {
+        // Create a projectile <a href="GameObject.html">GameObject</a> and set its velocity to a random direction
+        <a href="GameObject.html">GameObject</a> instance = Instantiate(projectile);
+        <a href="Rigidbody.html">Rigidbody</a> rigidbody = instance.GetComponent&lt;<a href="Rigidbody.html">Rigidbody</a>&gt;();<br /><br />        rigidbody.velocity = <a href="Random-insideUnitSphere.html">Random.insideUnitSphere</a> * 5;
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        // Cancel only the LaunchProjectile invoke
+        if (<a href="Input.GetButton.html">Input.GetButton</a>("Fire1"))
+            CancelInvoke("LaunchProjectile");
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

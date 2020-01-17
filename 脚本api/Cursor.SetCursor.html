@@ -1,0 +1,22 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Cursor.SetCursor(Texture2D,CursorMode)</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Cursor.html">Cursor</a>.SetCursor(Texture2D,CursorMode)</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Sets the mouse cursor to the given texture.</p></div><div class="subsection"><p>Call this method with a <a href="Texture2D.html">Texture2D</a> to change the appearance of the hardware pointer (mouse cursor).<br /><br />The <code class="mono">cursorMode</code> parameter allows you to use hardware cursors on supported platforms, or force software rendering of the cursor.<br /><br />In the following example, the mouse cursor is changed to a given texture when OnMouseEnter is called, and reset to default when OnMouseExit is called.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Texture2D.html">Texture2D</a> cursorTexture;
+    public <a href="CursorMode.html">CursorMode</a> cursorMode = <a href="CursorMode.Auto.html">CursorMode.Auto</a>;
+    public <a href="Vector2.html">Vector2</a> hotSpot = <a href="Vector2-zero.html">Vector2.zero</a>;
+    void OnMouseEnter()
+    {
+        <a href="Cursor.SetCursor.html">Cursor.SetCursor</a>(cursorTexture, hotSpot, cursorMode);
+    }<br /><br />    void OnMouseExit()
+    {
+        <a href="Cursor.SetCursor.html">Cursor.SetCursor</a>(null, <a href="Vector2-zero.html">Vector2.zero</a>, cursorMode);
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">SetCursor</span>(<a href="Texture2D.html">Texture2D</a> <span class="sig-kw">texture</span>,
+<a href="Vector2.html">Vector2</a> <span class="sig-kw">hotspot</span>,
+<a href="CursorMode.html">CursorMode</a> <span class="sig-kw">cursorMode</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">texture</td><td class="desc"></td><td class="desc1">The texture to use for the cursor. To use a texture, you must first import it with `Read/Write`enabled. Alternatively, you can use the default cursor import setting. If you created your cursor texture from code, it must be in RGBA32 format, have alphaIsTransparency enabled, and have no mip chain. To use the default cursor, set the texture to `Null`.</td></tr><tr><td class="name lbl">hotspot</td><td class="desc"></td><td class="desc1">The offset from the top left of the texture to use as the target point (must be within the bounds of the cursor).</td></tr><tr><td class="name lbl">cursorMode</td><td class="desc"></td><td class="desc1">Allow this cursor to render as a hardware cursor on supported platforms, or force software cursor.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Specify a custom cursor that you wish to use as a cursor.</p></div><div class="subsection"><p>Call this method with a <a href="Texture2D.html">Texture2D</a> to change the appearance of the hardware pointer (mouse cursor).</p></div></div></div></div></body></html>

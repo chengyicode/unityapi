@@ -1,0 +1,39 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ParticleSystem.NoiseModule.strengthX</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="ParticleSystem.NoiseModule.html">ParticleSystem.NoiseModule</a>.strengthX</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-ParticleSystem.html' title='Go to ParticleSystem Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="ParticleSystem.MinMaxCurve.html">ParticleSystem.MinMaxCurve</a> <span class="sig-kw">strengthX</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Define the strength of the effect on the X axis, when using the <a href="ParticleSystem.NoiseModule-separateAxes.html">ParticleSystem.NoiseModule.separateAxes</a> option.</p></div><div class="subsection"><p>See Also: <a href="ParticleSystem.MinMaxCurve.html">MinMaxCurve</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private <a href="ParticleSystem.html">ParticleSystem</a> ps;
+    public float hSliderValueStrengthX = 1.0f;
+    public float hSliderValueStrengthY = 1.0f;
+    public float hSliderValueStrengthZ = 1.0f;<br /><br />    void Start()
+    {
+        ps = GetComponent&lt;<a href="ParticleSystem.html">ParticleSystem</a>&gt;();<br /><br />        var noise = ps.noise;
+        noise.enabled = true;
+        noise.separateAxes = true;<br /><br />        // Set color by speed, to demonstrate the effects of the Noise Module
+        var colorBySpeed = ps.colorBySpeed;
+        colorBySpeed.enabled = true;<br /><br />        <a href="Gradient.html">Gradient</a> gradient = new <a href="Gradient.html">Gradient</a>();
+        gradient.SetKeys(
+            new <a href="GradientColorKey.html">GradientColorKey</a>[] { new <a href="GradientColorKey.html">GradientColorKey</a>(<a href="Color-green.html">Color.green</a>, 0.0f), new <a href="GradientColorKey.html">GradientColorKey</a>(<a href="Color-red.html">Color.red</a>, 1.0f) },
+            new <a href="GradientAlphaKey.html">GradientAlphaKey</a>[] { new <a href="GradientAlphaKey.html">GradientAlphaKey</a>(1.0f, 0.0f), new <a href="GradientAlphaKey.html">GradientAlphaKey</a>(1.0f, 1.0f) }
+        );<br /><br />        colorBySpeed.color = new <a href="ParticleSystem.MinMaxGradient.html">ParticleSystem.MinMaxGradient</a>(gradient);
+        colorBySpeed.range = new <a href="Vector2.html">Vector2</a>(3.0f, 7.0f);
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        var noise = ps.noise;
+        noise.strengthX = hSliderValueStrengthX;
+        noise.strengthY = hSliderValueStrengthY;
+        noise.strengthZ = hSliderValueStrengthZ;
+    }<br /><br />    void OnGUI()
+    {
+        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, 40, 100, 30), "Strength X");
+        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, 80, 100, 30), "Strength Y");
+        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, 120, 100, 30), "Strength Z");<br /><br />        hSliderValueStrengthX = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(135, 45, 100, 30), hSliderValueStrengthX, 0.0f, 5.0f);
+        hSliderValueStrengthY = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(135, 85, 100, 30), hSliderValueStrengthY, 0.0f, 5.0f);
+        hSliderValueStrengthZ = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(135, 125, 100, 30), hSliderValueStrengthZ, 0.0f, 5.0f);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

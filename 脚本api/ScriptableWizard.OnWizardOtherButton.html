@@ -1,0 +1,41 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ScriptableWizard.OnWizardOtherButton()</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="ScriptableWizard.html">ScriptableWizard</a>.OnWizardOtherButton()</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Allows you to provide an action when the user clicks on the other button.</p></div><div class="subsection"><p>This is the place where you can implement all the stuff that will
+be done if the user clicks the secondary option when calling DisplayWizard.<br /><br />See Also: <a href="ScriptableWizard.DisplayWizard.html">ScriptableWizard.DisplayWizard</a><br /><br /><img src="../StaticFiles/ScriptRefImages/ScriptableWizardOnWizardOtherButton.png" /><br />
+<em>ScriptableWizard with an "Other" button, in this case named "Info".</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// <a href="Display.html">Display</a> a window showing the distance between two objects when clicking the Info button.<br /><br />using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class ScriptableWizardOnWizardOtherButton : <a href="ScriptableWizard.html">ScriptableWizard</a>
+{
+    public <a href="Transform.html">Transform</a> firstObject = null;
+    public <a href="Transform.html">Transform</a> secondObject = null;<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Example/Show OnWizardOtherButton Usage")]
+    static void CreateWindow()
+    {
+        <a href="ScriptableWizard.DisplayWizard.html">ScriptableWizard.DisplayWizard</a>("Click info to know the distance between the objects",
+            typeof(ScriptableWizardOnWizardOtherButton), "Finish!", "Info");
+    }<br /><br />    void OnWizardUpdate()
+    {
+        if (firstObject == null || firstObject == null)
+        {
+            isValid = false;
+            errorString = "Select the objects you want to measure";
+        }
+        else
+        {
+            isValid = true;
+            errorString = "";
+        }
+    }<br /><br />    // Called when you press the "Info" button.
+    void OnWizardOtherButton()
+    {
+        float distanceObjs = <a href="Vector3.Distance.html">Vector3.Distance</a>(firstObject.position, secondObject.position);
+        <a href="EditorUtility.DisplayDialog.html">EditorUtility.DisplayDialog</a>(
+            "The distance between the objects is: " + distanceObjs + " Units",
+            "",
+            "Ok");
+    }<br /><br />    // Called when you press the "Finish!" button.
+    void OnWizardCreate()
+    {
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

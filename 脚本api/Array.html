@@ -1,0 +1,42 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Array</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">Array</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Arrays allow you to store multiple objects in a single variable.</p></div><div class="subsection"><p>The Array class is only available in Javascript.<br /><br />Here is a basic example of what you can do with an array class:<br /><br />There are two types of arrays in Unity, builtin arrays and normal Javascript Arrays.
+Builtin arrays (native .NET arrays), are extremely fast and efficient but they can not be resized.<br /><br />They are statically typed which allows them to be edited in the inspector. Here is a basic example of how you can use builtin arrays:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// example c# script showing how
+// an array can be implemented.
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Exposes an float array in the inspector, which you can edit there.
+    public float[] values;
+    void Start()
+    {
+        foreach (float value in values)
+        {
+            print(value);
+        }<br /><br />        // Since we can't resize builtin arrays
+        // we have to recreate the array to resize it
+        values = new float[10];<br /><br />        // assign the second element
+        values[1] = 5.0F;
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Builtin arrays are useful in performance critical code (With Unity's javascript and builtin arrays you could easily process 2 million vertices using the <a href="Mesh.html">mesh interface</a> in one second.)<br /><br />Normal Javascript Arrays on the other hand can be resized, sorted and can do all other operations you would expect from an array class.
+Javascript Arrays do not show up in the inspector.
+<strong>Note:</strong> You can easily convert between Javascript Arrays and builtin arrays.<br /><br />Note that Array functions are upper case following Unity's naming convention.
+As a convenience for javascript users, Unity also accepts lower case functions for the array class.<br /><br /><strong>Note:</strong> Unity doesn't support serialization of a List of Lists, nor an Array of Arrays.</p></div><div class="subsection"><h2>Properties 属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Array-length.html">length</a></td><td class="desc"></td><td class="desc1">The length property that returns or sets the number of elements in the Array.</td></tr>
+    </table></div><div class="subsection"><h2>Constructors</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Array-ctor.html">Array</a></td><td class="desc"></td><td class="desc1">Creates an Array of a fixed size.</td></tr>
+    </table></div><div class="subsection"><h2>Public Methods 公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Array.Add.html">Add</a></td><td class="desc"></td><td class="desc1">Adds value to the end of the array.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Array.Clear.html">Clear</a></td><td class="desc"></td><td class="desc1">Empties the array. The length of the array will be zero.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Array.Concat.html">Concat</a></td><td class="desc"></td><td class="desc1">Concat joins two or more arrays.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Array.Join.html">Join</a></td><td class="desc"></td><td class="desc1">Joins the contents of an array into one string.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Array.Pop.html">Pop</a></td><td class="desc"></td><td class="desc1">Removes the last element of the array and returns it.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Array.Push.html">Push</a></td><td class="desc"></td><td class="desc1">Adds value to the end of the array.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Array.RemoveAt.html">RemoveAt</a></td><td class="desc"></td><td class="desc1">Removes the element at index from the array.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Array.Shift.html">Shift</a></td><td class="desc"></td><td class="desc1">Removes the first element of the array and returns it.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Array.Sort.html">Sort</a></td><td class="desc"></td><td class="desc1">Sorts all Array elements.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Array.Unshift.html">Unshift</a></td><td class="desc"></td><td class="desc1">Unshift adds one or more elements to the beginning of an array and returns the new length of the array.</td></tr>
+    </table></div></div></div></div></body></html>

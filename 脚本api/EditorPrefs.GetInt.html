@@ -1,0 +1,35 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorPrefs.GetInt</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorPrefs.html">EditorPrefs</a>.GetInt</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static int <span class="sig-kw">GetInt</span>(string <span class="sig-kw">key</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static int <span class="sig-kw">GetInt</span>(string <span class="sig-kw">key</span>,
+int <span class="sig-kw">defaultValue</span> = 0);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">key</td><td class="desc"></td><td class="desc1">Name of key to read integer from.</td></tr><tr><td class="name lbl">defaultValue</td><td class="desc"></td><td class="desc1">Integer value to return if the key is not in the storage.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>int</strong>
+        The value stored in the preference file.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Returns the value corresponding to <code class="varname">key</code> in the preference file if it exists.</p></div><div class="subsection"><p>If the value doesn't already exist in the preference file the function will return <code class="varname">defaultValue</code>.<br /><br />See Also: <a href="EditorPrefs.SetInt.html">SetInt</a>.
+        </p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// A small editor window that allows an integer value to be
+// read and written to the <a href="EditorPrefs.html">EditorPrefs</a> online storage.
+//
+// SetIntExample is the name of the int to read/write.<br /><br />using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class ExampleClass : <a href="EditorWindow.html">EditorWindow</a>
+{
+    int intValue = 42;<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Examples/Prefs.GetInt Example")]
+    static void Init()
+    {
+        ExampleClass window = (ExampleClass)<a href="EditorWindow.GetWindow.html">EditorWindow.GetWindow</a>(typeof(ExampleClass));
+        window.Show();
+    }<br /><br />    void OnGUI()
+    {
+        int temp;
+        temp = <a href="EditorPrefs.GetInt.html">EditorPrefs.GetInt</a>("SetIntExample", -1);
+        <a href="EditorGUILayout.LabelField.html">EditorGUILayout.LabelField</a>("Current stored value: " + temp.ToString());
+        intValue = <a href="EditorGUILayout.IntField.html">EditorGUILayout.IntField</a>("Value to write to Prefs: ", intValue);
+        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Save value: " + intValue.ToString()))
+        {
+            <a href="EditorPrefs.SetInt.html">EditorPrefs.SetInt</a>("SetIntExample", intValue);
+            <a href="Debug.Log.html">Debug.Log</a>("SetInt: " + intValue);
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: GUILayout.VerticalSlider</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="GUILayout.html">GUILayout</a>.VerticalSlider</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static float <span class="sig-kw">VerticalSlider</span>(float <span class="sig-kw">value</span>,
+float <span class="sig-kw">leftValue</span>,
+float <span class="sig-kw">rightValue</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static float <span class="sig-kw">VerticalSlider</span>(float <span class="sig-kw">value</span>,
+float <span class="sig-kw">leftValue</span>,
+float <span class="sig-kw">rightValue</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">slider</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">thumb</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">value</td><td class="desc"></td><td class="desc1">The value the slider shows. This determines the position of the draggable thumb.</td></tr><tr><td class="name lbl">topValue</td><td class="desc"></td><td class="desc1">The value at the top end of the slider.</td></tr><tr><td class="name lbl">bottomValue</td><td class="desc"></td><td class="desc1">The value at the bottom end of the slider.</td></tr><tr><td class="name lbl">slider</td><td class="desc"></td><td class="desc1">The <a href="GUIStyle.html">GUIStyle</a> to use for displaying the dragging area. If left out, the <code class="varname">horizontalSlider</code> style from the current <a href="GUISkin.html">GUISkin</a> is used.</td></tr><tr><td class="name lbl">thumb</td><td class="desc"></td><td class="desc1">The <a href="GUIStyle.html">GUIStyle</a> to use for displaying draggable thumb. If left out, the <code class="varname">horizontalSliderThumb</code> style from the current <a href="GUISkin.html">GUISkin</a> is used.</td></tr><tr><td class="name lbl">options</td><td class="desc"></td><td class="desc1">An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the <code class="varname">style</code>.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>float</strong>
+        The value that has been set by the user.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>A vertical slider the user can drag to change a value between a min and a max.</p></div><div class="subsection"><p>
+        <img src="../StaticFiles/ScriptRefImages/GUILayoutVerticalSlider.png" />
+        <br />
+<em>Vertical slider in the Game View.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Draws a vertical slider control that goes from  10 (top) to 0 (bottom)
+    float vSliderValue = 0.0f;<br /><br />    void OnGUI()
+    {
+        vSliderValue = <a href="GUILayout.VerticalSlider.html">GUILayout.VerticalSlider</a>(vSliderValue, 10.0f, 0.0f);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

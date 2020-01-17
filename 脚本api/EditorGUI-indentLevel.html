@@ -1,0 +1,41 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorGUI.indentLevel</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorGUI.html">EditorGUI</a>.indentLevel</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static int <span class="sig-kw">indentLevel</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The indent level of the field labels.</p></div><div class="subsection"><p>
+        <a href="EditorGUILayout.LabelField.html">EditorGUILayout.LabelField</a> will display the string given as an argument.  This string can be displayed at a horizontal position, and the position changed by <a href="EditorGUI-indentLevel.html">indentLevel</a>.  As <a href="EditorGUI-indentLevel.html">indentLevel</a> increases the labels will move right.  Decreasing <a href="EditorGUI-indentLevel.html">indentLevel</a> will move labels to the left.<br />
+                <img src="../StaticFiles/ScriptRefImages/EditorGUIIndent.png" /><br />
+<em>Shows info of the selected object.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class EditorGUIIndent : <a href="EditorWindow.html">EditorWindow</a>
+{
+    [<a href="MenuItem.html">MenuItem</a>("Examples/indentLevel demo")]
+    static void Init()
+    {
+        <a href="EditorWindow.html">EditorWindow</a> window = GetWindow(typeof(EditorGUIIndent));
+        window.position = new <a href="Rect.html">Rect</a>(100, 100, 300, 150);
+        window.Show();
+    }<br /><br />    void OnGUI()
+    {
+        <a href="Transform.html">Transform</a> obj = <a href="Selection-activeTransform.html">Selection.activeTransform</a>;
+        <a href="EditorGUILayout.LabelField.html">EditorGUILayout.LabelField</a>("Name:", obj ? obj.name : "Select an Object");<br /><br />        if (obj)
+        {
+            // Indent further the area of position and rotation
+            <a href="EditorGUI-indentLevel.html">EditorGUI.indentLevel</a>++;
+            <a href="EditorGUILayout.LabelField.html">EditorGUILayout.LabelField</a>("<a href="UIElements.Position.html">Position</a>:", obj.position.ToString());
+            <a href="EditorGUILayout.LabelField.html">EditorGUILayout.LabelField</a>("Rotation:", obj.rotation.eulerAngles.ToString());<br /><br />            // Indent further again the area of rotation values
+            <a href="EditorGUI-indentLevel.html">EditorGUI.indentLevel</a>++;
+            <a href="EditorGUILayout.LabelField.html">EditorGUILayout.LabelField</a>("X:", obj.rotation.x.ToString());
+            <a href="EditorGUILayout.LabelField.html">EditorGUILayout.LabelField</a>("Y:", obj.rotation.y.ToString());
+            <a href="EditorGUILayout.LabelField.html">EditorGUILayout.LabelField</a>("Z:", obj.rotation.z.ToString());
+            <a href="EditorGUILayout.LabelField.html">EditorGUILayout.LabelField</a>("W:", obj.rotation.w.ToString());<br /><br />            // End of inner area
+            <a href="EditorGUI-indentLevel.html">EditorGUI.indentLevel</a>--;
+            <a href="EditorGUILayout.LabelField.html">EditorGUILayout.LabelField</a>("Scale:", obj.localScale.ToString());<br /><br />            // End of area
+            <a href="EditorGUI-indentLevel.html">EditorGUI.indentLevel</a>--;
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>To maximize future compatibility, do not make assumptions about what a specific indent level means,
+but instead just increase or decrease by one around blocks of controls that need to be more indented, as in the example above.</p></div></div></div></div></body></html>

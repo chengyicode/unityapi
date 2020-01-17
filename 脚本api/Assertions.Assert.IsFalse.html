@@ -1,0 +1,18 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Assertions.Assert.IsFalse</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Assertions.Assert.html">Assert</a>.IsFalse</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">IsFalse</span>(bool <span class="sig-kw">condition</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">IsFalse</span>(bool <span class="sig-kw">condition</span>,
+string <span class="sig-kw">message</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">condition</td><td class="desc"></td><td class="desc1">
+          <code class="varname">true</code> or <code class="varname">false</code>.</td></tr><tr><td class="name lbl">message</td><td class="desc"></td><td class="desc1">The string used to describe the result of the <code class="varname">Assert</code>.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Return <code class="varname">true</code> when the condition is false.  Otherwise return <code class="varname">false</code>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.Assertions;<br /><br />public class AssertionExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="GameObject.html">GameObject</a> go;<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        // Make sure the Game Object is never in active state
+        <a href="Assertions.Assert.IsFalse.html">Assert.IsFalse</a>(go.activeSelf);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

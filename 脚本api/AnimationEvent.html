@@ -1,0 +1,70 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AnimationEvent</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">AnimationEvent</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.AnimationModule.html" class="cl">UnityEngine.AnimationModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>AnimationEvent lets you call a script function similar to SendMessage as part of playing back an animation.</p></div><div class="subsection"><p>Animation events support functions that take zero or one parameter.
+The parameter can be a float, an int, a string, an object reference, or an AnimationEvent.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// <a href="Animation.html">Animation</a> <a href="Event.html">Event</a> example
+// Small example that can be called on each specified frame.
+// The code is executed once per animation loop.<br /><br />using UnityEngine;
+using System.Collections;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public void PrintEvent()
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("PrintEvent");
+    }
+}
+</pre>
+      </div><div class="subsection"><p>A more detailed example below shows a more complex
+      way of creating an animation.  In this script example the <code class="mono">Animator</code>
+      component is accessed and a <code class="mono">Clip</code> from it obtained.  (This clip was
+      set up in the Animation window.)  The clip lasts for 2 seconds.  An
+      <code class="mono">AnimationEvent</code> is created, and has parameters set.  The parameters include
+      the function <code class="mono">PrintEvent()</code> which will handle the event. The event is then
+      added to the clip.  This all happens in <code class="mono">Start()</code>.  Once the game has launched
+      the event is called after 1.3s and then repeats every 2s.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Add an <a href="Animation.html">Animation</a> <a href="Event.html">Event</a> to a <a href="GameObject.html">GameObject</a> that has an <a href="Animator.html">Animator</a>
+using UnityEngine;
+using System.Collections;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public void Start()
+    {
+        // existing components on the <a href="GameObject.html">GameObject</a>
+        <a href="AnimationClip.html">AnimationClip</a> clip;
+        <a href="Animator.html">Animator</a> anim;<br /><br />        // new event created
+        <a href="AnimationEvent.html">AnimationEvent</a> evt;
+        evt = new <a href="AnimationEvent.html">AnimationEvent</a>();<br /><br />        // put some parameters on the <a href="AnimationEvent.html">AnimationEvent</a>
+        //  - call the function called PrintEvent()
+        //  - the animation on this object lasts 2 seconds
+        //    and the new animation created here is
+        //    set up to happen 1.3s into the animation
+        evt.intParameter = 12345;
+        evt.time = 1.3f;
+        evt.functionName = "PrintEvent";<br /><br />        // get the animation clip and add the <a href="AnimationEvent.html">AnimationEvent</a>
+        anim = GetComponent&lt;<a href="Animator.html">Animator</a>&gt;();
+        clip = anim.runtimeAnimatorController.animationClips[0];
+        clip.AddEvent(evt);
+    }<br /><br />    // the function to be called as an event
+    public void PrintEvent(int i)
+    {
+        print("PrintEvent: " + i + " called at: " + <a href="Time-time.html">Time.time</a>);
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Properties 属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="AnimationEvent-animationState.html">animationState</a></td><td class="desc"></td><td class="desc1">The animation state that fired this event (Read Only).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AnimationEvent-animatorClipInfo.html">animatorClipInfo</a></td><td class="desc"></td><td class="desc1">The animator clip info related to this event (Read Only).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AnimationEvent-animatorStateInfo.html">animatorStateInfo</a></td><td class="desc"></td><td class="desc1">The animator state info related to this event (Read Only).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AnimationEvent-floatParameter.html">floatParameter</a></td><td class="desc"></td><td class="desc1">Float parameter that is stored in the event and will be sent to the function.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AnimationEvent-functionName.html">functionName</a></td><td class="desc"></td><td class="desc1">The name of the function that will be called.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AnimationEvent-intParameter.html">intParameter</a></td><td class="desc"></td><td class="desc1">Int parameter that is stored in the event and will be sent to the function.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AnimationEvent-isFiredByAnimator.html">isFiredByAnimator</a></td><td class="desc"></td><td class="desc1">Returns true if this Animation event has been fired by an Animator component.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AnimationEvent-isFiredByLegacy.html">isFiredByLegacy</a></td><td class="desc"></td><td class="desc1">Returns true if this Animation event has been fired by an Animation component.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AnimationEvent-messageOptions.html">messageOptions</a></td><td class="desc"></td><td class="desc1">Function call options.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AnimationEvent-objectReferenceParameter.html">objectReferenceParameter</a></td><td class="desc"></td><td class="desc1">Object reference parameter that is stored in the event and will be sent to the function.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AnimationEvent-stringParameter.html">stringParameter</a></td><td class="desc"></td><td class="desc1">String parameter that is stored in the event and will be sent to the function.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AnimationEvent-time.html">time</a></td><td class="desc"></td><td class="desc1">The time at which the event will be fired off.</td></tr>
+    </table></div><div class="subsection"><h2>Constructors</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="AnimationEvent-ctor.html">AnimationEvent</a></td><td class="desc"></td><td class="desc1">Creates a new animation event.</td></tr>
+    </table></div></div></div></div></body></html>

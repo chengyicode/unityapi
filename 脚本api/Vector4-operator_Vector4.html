@@ -1,0 +1,17 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Vector4.Vector3</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Vector4.html">Vector4</a>.Vector3</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Converts a Vector4 to a <a href="Vector3.html">Vector3</a>.</p></div><div class="subsection"><p>Vector4s can be implicitly converted to <a href="Vector3.html">Vector3</a> (w is discarded).</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        // <a href="Shader.html">Shader</a> vectors are always Vector4s.
+        // But the value here is converted to a <a href="Vector3.html">Vector3</a>.
+        <a href="Vector3.html">Vector3</a> value = <a href="Vector3-one.html">Vector3.one</a>;
+        <a href="Renderer.html">Renderer</a> renderer = GetComponent&lt;<a href="Renderer.html">Renderer</a>&gt;();
+        renderer.material.SetVector("_SomeVariable", value);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

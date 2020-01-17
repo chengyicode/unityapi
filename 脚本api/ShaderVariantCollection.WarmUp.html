@@ -1,0 +1,8 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ShaderVariantCollection.WarmUp</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="ShaderVariantCollection.html">ShaderVariantCollection</a>.WarmUp</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">WarmUp</span>();
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Fully load shaders in ShaderVariantCollection.</p></div><div class="subsection"><p>Often graphics drivers do not actually prepare shaders until they are first needed.
+However when some object is first rendered with a previously unused shader, there
+can be a hiccup because the driver is compiling/optimizing the shader. This can be quite
+noticeable, especially on mobile platforms.<br /><br />Calling this function will perform dummy one-invisible-triangle rendering
+for the shaders and their variants in this ShaderVariantCollection. You can setup to do that
+automatically during game load time (in Graphics Settings), or manually call this function at
+appropriate times (e.g. when loading a new level).<br /><br />Calling WarmUp on a ShaderVariantCollection that is already warmed up will do nothing.</p></div></div></div></div></body></html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Input.acceleration</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Input.html">Input</a>.acceleration</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Vector3.html">Vector3</a> <span class="sig-kw">acceleration</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Last measured linear acceleration of a device in three-dimensional space. (Read Only)</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Move object using accelerometer
+    float speed = 10.0f;<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        <a href="Vector3.html">Vector3</a> dir = <a href="Vector3-zero.html">Vector3.zero</a>;<br /><br />        // we assume that device is held parallel to the ground
+        // and Home button is in the right hand<br /><br />        // remap device acceleration axis to game coordinates:
+        //  1) XY plane of the device is mapped onto XZ plane
+        //  2) rotated 90 degrees around Y axis
+        dir.x = -Input.acceleration.y;
+        dir.z = Input.acceleration.x;<br /><br />        // clamp acceleration vector to unit sphere
+        if (dir.sqrMagnitude &gt; 1)
+            dir.Normalize();<br /><br />        // Make it move 10 meters per second instead of 10 meters per frame...
+        dir *= <a href="Time-deltaTime.html">Time.deltaTime</a>;<br /><br />        // Move object
+        transform.Translate(dir * speed);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

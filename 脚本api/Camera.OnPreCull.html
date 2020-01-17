@@ -1,0 +1,30 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Camera.OnPreCull()</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Camera.html">Camera</a>.OnPreCull()</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Camera.html' title='Go to Camera Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>OnPreCull is called before a camera culls the Scene.</p></div><div class="subsection"><p>Culling determines which objects are visible to the camera. OnPreCull is called just before
+this process. This message is sent to all scripts attached to the camera.<br /><br />If you want to change camera's viewing parameters (e.g. <a href="Camera-fieldOfView.html">fieldOfView</a> or just transform),
+this is the place to do it. Visibility of Scene objects will be determined based on camera's
+parameters after <code class="varname">OnPreCull</code>.<br /><br />See Also: <a href="Camera-onPreCull.html">onPreCull</a> delegate.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Attach this to a camera.
+// Inverts the view of the camera so everything rendered by it is flipped<br /><br />using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="Camera.html">Camera</a> cam;<br /><br />    void Start()
+    {
+        cam = GetComponent&lt;<a href="Camera.html">Camera</a>&gt;();
+    }<br /><br />    void OnPreCull()
+    {
+        cam.ResetWorldToCameraMatrix();
+        cam.ResetProjectionMatrix();
+        cam.projectionMatrix = cam.projectionMatrix * <a href="Matrix4x4.Scale.html">Matrix4x4.Scale</a>(new <a href="Vector3.html">Vector3</a>(1, -1, 1));
+    }<br /><br />    // Set it to true so we can watch the flipped Objects
+    void OnPreRender()
+    {
+        <a href="GL-invertCulling.html">GL.invertCulling</a> = true;
+    }<br /><br />    // Set it to false again because we dont want to affect all other cammeras.
+    void OnPostRender()
+    {
+        <a href="GL-invertCulling.html">GL.invertCulling</a> = false;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

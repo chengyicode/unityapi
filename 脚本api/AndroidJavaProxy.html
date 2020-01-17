@@ -1,0 +1,39 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AndroidJavaProxy</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">AndroidJavaProxy</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.AndroidJNIModule.html" class="cl">UnityEngine.AndroidJNIModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>This class can be used to implement any java interface. Any java vm method invocation matching the interface on the proxy object will automatically be passed to the c# implementation.</p></div><div class="subsection"><p>
+        <strong>Note</strong>: this API can be used from custom thread, but requires that thread to be attached to JVM first, see <a href="AndroidJNI.AttachCurrentThread.html">AndroidJNI.AttachCurrentThread</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Opens an android date picker dialog and grabs the result using a callback.
+using UnityEngine;
+using System;<br /><br />class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private static DateTime selectedDate = DateTime.Now;<br /><br />    class DateCallback : <a href="AndroidJavaProxy.html">AndroidJavaProxy</a>
+    {
+        public DateCallback() : base("android.app.DatePickerDialog$OnDateSetListener") {}
+        void onDateSet(<a href="AndroidJavaObject.html">AndroidJavaObject</a> view, int year, int monthOfYear, int dayOfMonth)
+        {
+            selectedDate = new DateTime(year, monthOfYear + 1, dayOfMonth);
+        }
+    }<br /><br />    void OnGUI()
+    {
+        if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(15, 15, 450, 75), string.Format("{0:yyyy-MM-dd}", selectedDate)))
+        {
+            <a href="AndroidJavaClass.html">AndroidJavaClass</a> activity = new <a href="AndroidJavaClass.html">AndroidJavaClass</a>("com.unity3d.player.UnityPlayer").GetStatic&lt;<a href="AndroidJavaClass.html">AndroidJavaClass</a>&gt;("currentActivity");
+            activity.Call("runOnUiThread", new <a href="AndroidJavaRunnable.html">AndroidJavaRunnable</a>(() =&gt;
+            {
+                new <a href="AndroidJavaObject.html">AndroidJavaObject</a>("android.app.DatePickerDialog", activity, new DateCallback(), selectedDate.Year, selectedDate.Month - 1, selectedDate.Day).Call("show");
+            }));
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Properties 属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="AndroidJavaProxy-javaInterface.html">javaInterface</a></td><td class="desc"></td><td class="desc1">Java interface implemented by the proxy.</td></tr>
+    </table></div><div class="subsection"><h2>Constructors</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="AndroidJavaProxy-ctor.html">AndroidJavaProxy</a></td><td class="desc"></td><td class="desc1"></td></tr>
+    </table></div><div class="subsection"><h2>Public Methods 公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="AndroidJavaProxy-equals.html">equals</a></td><td class="desc"></td><td class="desc1">The equivalent of the java.lang.Object equals() method.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AndroidJavaProxy-hashCode.html">hashCode</a></td><td class="desc"></td><td class="desc1">The equivalent of the java.lang.Object hashCode() method.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AndroidJavaProxy.Invoke.html">Invoke</a></td><td class="desc"></td><td class="desc1">Called by the java vm whenever a method is invoked on the java proxy interface. You can override this to run special code on method invokation, or you can leave the implementation as is, and leave the default behavior which is to look for c# methods matching the signature of the java method.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AndroidJavaProxy-toString.html">toString</a></td><td class="desc"></td><td class="desc1">The equivalent of the java.lang.Object toString() method.</td></tr>
+    </table></div></div></div></div></body></html>

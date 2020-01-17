@@ -1,0 +1,34 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Profiling.Profiler.BeginThreadProfiling</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Profiling.Profiler.html">Profiler</a>.BeginThreadProfiling</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">BeginThreadProfiling</span>(string <span class="sig-kw">threadGroupName</span>,
+string <span class="sig-kw">threadName</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">threadGroupName</td><td class="desc"></td><td class="desc1">The name of the thread group to which the thread belongs.</td></tr><tr><td class="name lbl">threadName</td><td class="desc"></td><td class="desc1">The name of the thread.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Enables profiling on the thread from which you call this method.</p></div><div class="subsection"><p>Makes the thread show up with its registered name in the Profiler Timeline View, showing the duration of each sample on the thread.
+Samples which cross frame boundaries are sliced and might contribute time to multiple frames.<br /><br /><strong>Note:</strong>
+Calling this method on an internal Unity thread (such as main thread, render thread or job system threads) has no effect.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.Profiling;
+using System.Threading;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="Profiling.CustomSampler.html">CustomSampler</a> sampler;
+    void Start()
+    {
+        sampler = <a href="Profiling.CustomSampler.Create.html">CustomSampler.Create</a>("MyCustomSampler");
+        var thread = new Thread(MyThreadFunc) { IsBackground = true };
+        thread.Start();
+    }<br /><br />    void MyThreadFunc()
+    {
+        <a href="Profiling.Profiler.BeginThreadProfiling.html">Profiler.BeginThreadProfiling</a>("My threads", "My thread 1");
+        // Now samples will show up in the profiler timeline view
+        for (int i = 0; i &lt; 10; i++)
+        {
+            sampler.Begin();
+            // ...
+            sampler.End();
+        }<br /><br />        // Unregister the thread before exit
+        <a href="Profiling.Profiler.EndThreadProfiling.html">Profiler.EndThreadProfiling</a>();
+    }
+}
+</pre>
+      </div><div class="subsection"><p>
+        <strong>Note:</strong>
+<a href="Profiling.Profiler.EndThreadProfiling.html">Profiler.EndThreadProfiling</a> should always be called before thread destruction to free internal resources.<br /><br />See Also: <a href="Profiling.Profiler.EndThreadProfiling.html">Profiler.EndThreadProfiling</a>, <a href="Profiling.CustomSampler.html">CustomSampler</a>.</p></div></div></div></div></body></html>

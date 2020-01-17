@@ -1,0 +1,22 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Experimental.Rendering.ScriptableBakedReflectionSystemSettings.system</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Experimental</b>: this API is experimental and might be changed or removed in the future.</div><h1 class="heading inherit"><a href="Experimental.Rendering.ScriptableBakedReflectionSystemSettings.html">ScriptableBakedReflectionSystemSettings</a>.system</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Experimental.Rendering.IScriptableBakedReflectionSystem.html">Experimental.Rendering.IScriptableBakedReflectionSystem</a> <span class="sig-kw">system</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The currently active ScriptableBakedReflectionSystem, see <a href="Experimental.Rendering.IScriptableBakedReflectionSystem.html">IScriptableBakedReflectionSystem</a>.</p></div><div class="subsection"><p>Set this property in a class with <a href="InitializeOnLoadAttribute.html">InitializeOnLoadAttribute</a> or a method with <a href="InitializeOnLoadMethodAttribute.html">InitializeOnLoadMethodAttribute</a> with your own implementation.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEditor.Experimental.Rendering;<br /><br />// Empty <a href="Experimental.Rendering.ScriptableBakedReflectionSystem.html">ScriptableBakedReflectionSystem</a> for the exemple
+class CustomScriptableBakedReflectionSystem : <a href="Experimental.Rendering.ScriptableBakedReflectionSystem.html">ScriptableBakedReflectionSystem</a>
+{
+    public CustomScriptableBakedReflectionSystem()
+        : base(1)
+    {
+    }
+}<br /><br />class CustomScriptableBakedReflectionSystemIntegration
+{
+    [InitializeOnLoadMethod]
+    static void Initialize()
+    {
+        <a href="Experimental.Rendering.ScriptableBakedReflectionSystemSettings-system.html">ScriptableBakedReflectionSystemSettings.system</a> = new CustomScriptableBakedReflectionSystem();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

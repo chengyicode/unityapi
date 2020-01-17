@@ -1,0 +1,70 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ForceMode2D</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">ForceMode2D</h1><div class="clear"></div><p class="cl mb0 left mr10">enumeration</p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Option for how to apply a force using <a href="Rigidbody2D.AddForce.html">Rigidbody2D.AddForce</a>.</p></div><div class="subsection"><p>Use this to apply a certain type of force to a 2D RigidBody. There are two types of forces to apply: Force mode and Impulse Mode. For a 3D Rigidbody see <a href="ForceMode.html">ForceMode</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//This script adds force to a <a href="Rigidbody.html">Rigidbody</a>. The kind of force is determined by which buttons you click.<br /><br />//Create a <a href="Sprite.html">Sprite</a> and attach a <a href="Rigidbody2D.html">Rigidbody2D</a> component to it
+//Attach this script to the <a href="Sprite.html">Sprite</a><br /><br />using UnityEngine;
+using UnityEngine.EventSystems;<br /><br />public class AddingForce : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    //Use to switch between Force Modes
+    enum ModeSwitching { Start, Impulse, Force };
+    ModeSwitching m_ModeSwitching;<br /><br />    //Use this to change the different kinds of force
+    <a href="ForceMode2D.html">ForceMode2D</a> m_ForceMode;
+    //Start position of the RigidBody, use to reset
+    <a href="Vector2.html">Vector2</a> m_StartPosition;<br /><br />    //Use to apply force to RigidBody
+    <a href="Vector2.html">Vector2</a> m_NewForce;<br /><br />    //Use to manipulate the RigidBody of a <a href="GameObject.html">GameObject</a>
+    <a href="Rigidbody2D.html">Rigidbody2D</a> m_Rigidbody;<br /><br />    void Start()
+    {
+        //Fetch the RigidBody component attached to the <a href="GameObject.html">GameObject</a>
+        m_Rigidbody = GetComponent&lt;<a href="Rigidbody2D.html">Rigidbody2D</a>&gt;();
+        //Start at first mode (nothing happening yet)
+        m_ModeSwitching = ModeSwitching.Start;<br /><br />        //Initialising the force to use on the RigidBody in various ways
+        m_NewForce = new <a href="Vector2.html">Vector2</a>(-5.0f, 1.0f);<br /><br />        //This is the RigidBody's starting position
+        m_StartPosition = m_Rigidbody.transform.position;
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        //Switching modes depending on button presses
+        switch (m_ModeSwitching)
+        {
+            //This is the starting mode which resets the <a href="GameObject.html">GameObject</a>
+            case ModeSwitching.Start:<br /><br />                //Reset to starting position of RigidBody
+                m_Rigidbody.transform.position = m_StartPosition;
+                //Reset the velocity of the RigidBody
+                m_Rigidbody.velocity = new <a href="Vector2.html">Vector2</a>(0f, 0f);
+                break;<br /><br />            //This is the Force <a href="Scripting.GarbageCollector.Mode.html">Mode</a>
+            case ModeSwitching.Force:
+                //Make the <a href="GameObject.html">GameObject</a> travel upwards
+                m_NewForce = new <a href="Vector2.html">Vector2</a>(0, 1.0f);
+                //Use Force mode as force on the RigidBody
+                m_Rigidbody.AddForce(m_NewForce, <a href="ForceMode2D.Force.html">ForceMode2D.Force</a>);
+                break;<br /><br />            //This is the Impulse <a href="Scripting.GarbageCollector.Mode.html">Mode</a>
+            case ModeSwitching.Impulse:
+                //Make the <a href="GameObject.html">GameObject</a> travel upwards
+                m_NewForce = new <a href="Vector2.html">Vector2</a>(0f, 1.0f);
+                //Use Impulse mode as a force on the RigidBody
+                m_Rigidbody.AddForce(m_NewForce, <a href="ForceMode2D.Impulse.html">ForceMode2D.Impulse</a>);
+                break;
+        }
+    }<br /><br />    //These are the Buttons for telling what Force to apply as well as resetting
+    void OnGUI()
+    {
+        //If reset button pressed
+        if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(100, 0, 150, 30), "Reset"))
+        {
+            //<a href="PlayerSettings.Switch.html">Switch</a> to start/reset case<br /><br />            m_ModeSwitching = ModeSwitching.Start;
+        }<br /><br />        //Impulse button pressed
+        if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(100, 60, 150, 30), "Apply Impulse"))
+        {
+            //<a href="PlayerSettings.Switch.html">Switch</a> to Impulse mode (apply impulse forces to <a href="GameObject.html">GameObject</a>)<br /><br />            m_ModeSwitching = ModeSwitching.Impulse;
+        }<br /><br />        //Force <a href="UIElements.Button.html">Button</a> Pressed
+        if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(100, 90, 150, 30), "Apply Force"))
+        {
+            //<a href="PlayerSettings.Switch.html">Switch</a> to Force mode (apply force to <a href="GameObject.html">GameObject</a>)
+            m_ModeSwitching = ModeSwitching.Force;
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="ForceMode2D.Force.html">Force</a></td><td class="desc"></td><td class="desc1">Add a force to the Rigidbody2D, using its mass.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ForceMode2D.Impulse.html">Impulse</a></td><td class="desc"></td><td class="desc1">Add an instant force impulse to the rigidbody2D, using its mass.</td></tr>
+    </table></div></div></div></div></body></html>

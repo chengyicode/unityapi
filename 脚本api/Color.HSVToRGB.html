@@ -1,0 +1,43 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Color.HSVToRGB</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Color.html">Color</a>.HSVToRGB</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Color.html">Color</a> <span class="sig-kw">HSVToRGB</span>(float <span class="sig-kw">H</span>,
+float <span class="sig-kw">S</span>,
+float <span class="sig-kw">V</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Color.html">Color</a> <span class="sig-kw">HSVToRGB</span>(float <span class="sig-kw">H</span>,
+float <span class="sig-kw">S</span>,
+float <span class="sig-kw">V</span>,
+bool <span class="sig-kw">hdr</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">H</td><td class="desc"></td><td class="desc1">Hue [0..1].</td></tr><tr><td class="name lbl">S</td><td class="desc"></td><td class="desc1">Saturation [0..1].</td></tr><tr><td class="name lbl">V</td><td class="desc"></td><td class="desc1">Brightness value [0..1].</td></tr><tr><td class="name lbl">hdr</td><td class="desc"></td><td class="desc1">Output HDR colours. If true, the returned colour will not be clamped to [0..1].</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>Color</strong>
+        An opaque colour with HSV matching the input.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Creates an RGB colour from HSV input.</p></div><div class="subsection"><p>Creates an RGB color from the hue, saturation and value of the input.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//Create three Sliders ( <strong>Create</strong>&gt;<strong>UI</strong>&gt;<strong>Slider</strong>)
+//These are for manipulating the hue, saturation and value levels of the <a href="Color.html">Color</a>.<br /><br />//Attach this script to a <a href="GameObject.html">GameObject</a>. Make sure it has a <a href="Renderer.html">Renderer</a> component.
+//Click on the <a href="GameObject.html">GameObject</a> and attach each of the Sliders and Texts to the fields in the Inspector.<br /><br />using UnityEngine;
+using UnityEngine.UI;<br /><br />public class ColorHSVtoRGBExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    float m_Hue;
+    float m_Saturation;
+    float m_Value;
+    //These are the Sliders that control the values. Remember to attach them in the Inspector window.
+    public <a href="UIElements.Slider.html">Slider</a> m_SliderHue, m_SliderSaturation, m_SliderValue;<br /><br />    //Make sure your <a href="GameObject.html">GameObject</a> has a <a href="Renderer.html">Renderer</a> component in the Inspector window
+    <a href="Renderer.html">Renderer</a> m_Renderer;<br /><br />    void Start()
+    {
+        //Fetch the <a href="Renderer.html">Renderer</a> component from the <a href="GameObject.html">GameObject</a> with this script attached
+        m_Renderer = GetComponent&lt;<a href="Renderer.html">Renderer</a>&gt;();<br /><br />        //Set the maximum and minimum values for the Sliders
+        m_SliderHue.maxValue = 1;
+        m_SliderSaturation.maxValue = 1;
+        m_SliderValue.maxValue = 1;<br /><br />        m_SliderHue.minValue = 0;
+        m_SliderSaturation.minValue = 0;
+        m_SliderValue.minValue = 0;
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        //These are the Sliders that determine the amount of the hue, saturation and value in the <a href="Color.html">Color</a>
+        m_Hue = m_SliderHue.value;
+        m_Saturation = m_SliderSaturation.value;
+        m_Value = m_SliderValue.value;<br /><br />        //Create an RGB color from the HSV values from the Sliders
+        //Change the <a href="Color.html">Color</a> of your <a href="GameObject.html">GameObject</a> to the new <a href="Color.html">Color</a>
+        m_Renderer.material.color = <a href="Color.HSVToRGB.html">Color.HSVToRGB</a>(m_Hue, m_Saturation, m_Value);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

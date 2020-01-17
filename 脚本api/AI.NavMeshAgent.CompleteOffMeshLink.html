@@ -1,0 +1,58 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AI.NavMeshAgent.CompleteOffMeshLink</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="AI.NavMeshAgent.html">NavMeshAgent</a>.CompleteOffMeshLink</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">CompleteOffMeshLink</span>();
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Completes the movement on the current OffMeshLink.</p></div><div class="subsection"><p>The agent will move to the closest valid navmesh position on the other end of the current OffMeshLink.<br /><br />CompleteOffMeshLink has no effect unless the agent is on an OffMeshLink (See Also: <a href="AI.NavMeshAgent-isOnOffMeshLink.html">isOnOffMeshLink</a>).<br /><br />When <a href="AI.NavMeshAgent-autoTraverseOffMeshLink.html">autoTraverseOffMeshLink</a> is disabled an agent will pause at an off-mesh link until this function is called.
+It is useful for implementing custom movement across OffMeshLinks.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.AI;
+using System.Collections;<br /><br />public enum OffMeshLinkMoveMethod
+{
+    Teleport,
+    NormalSpeed,
+    Parabola
+}<br /><br />[<a href="RequireComponent.html">RequireComponent</a>(typeof(<a href="AI.NavMeshAgent.html">NavMeshAgent</a>))]
+public class AgentLinkMover : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public OffMeshLinkMoveMethod method = OffMeshLinkMoveMethod.Parabola;
+    IEnumerator Start()
+    {
+        <a href="AI.NavMeshAgent.html">NavMeshAgent</a> agent = GetComponent&lt;<a href="AI.NavMeshAgent.html">NavMeshAgent</a>&gt;();
+        agent.autoTraverseOffMeshLink = false;
+        while (true)
+        {
+            if (agent.isOnOffMeshLink)
+            {
+                if (method == OffMeshLinkMoveMethod.NormalSpeed)
+                    yield return StartCoroutine(NormalSpeed(agent));
+                else if (method == OffMeshLinkMoveMethod.Parabola)
+                    yield return StartCoroutine(Parabola(agent, 2.0f, 0.5f));
+                agent.CompleteOffMeshLink();
+            }
+            yield return null;
+        }
+    }<br /><br />    IEnumerator NormalSpeed(<a href="AI.NavMeshAgent.html">NavMeshAgent</a> agent)
+    {
+        <a href="AI.OffMeshLinkData.html">OffMeshLinkData</a> data = agent.currentOffMeshLinkData;
+        <a href="Vector3.html">Vector3</a> endPos = data.endPos + <a href="Vector3-up.html">Vector3.up</a> * agent.baseOffset;
+        while (agent.transform.position != endPos)
+        {
+            agent.transform.position = <a href="Vector3.MoveTowards.html">Vector3.MoveTowards</a>(agent.transform.position, endPos, agent.speed * <a href="Time-deltaTime.html">Time.deltaTime</a>);
+            yield return null;
+        }
+    }<br /><br />    IEnumerator Parabola(<a href="AI.NavMeshAgent.html">NavMeshAgent</a> agent, float height, float duration)
+    {
+        <a href="AI.OffMeshLinkData.html">OffMeshLinkData</a> data = agent.currentOffMeshLinkData;
+        <a href="Vector3.html">Vector3</a> startPos = agent.transform.position;
+        <a href="Vector3.html">Vector3</a> endPos = data.endPos + <a href="Vector3-up.html">Vector3.up</a> * agent.baseOffset;
+        float normalizedTime = 0.0f;
+        while (normalizedTime &lt; 1.0f)
+        {
+            float yOffset = height * 4.0f * (normalizedTime - normalizedTime * normalizedTime);
+            agent.transform.position = <a href="Vector3.Lerp.html">Vector3.Lerp</a>(startPos, endPos, normalizedTime) + yOffset * <a href="Vector3-up.html">Vector3.up</a>;
+            normalizedTime += <a href="Time-deltaTime.html">Time.deltaTime</a> / duration;
+            yield return null;
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

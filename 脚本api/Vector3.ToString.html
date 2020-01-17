@@ -1,0 +1,24 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Vector3.ToString</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Vector3.html">Vector3</a>.ToString</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public string <span class="sig-kw">ToString</span>();
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public string <span class="sig-kw">ToString</span>(string <span class="sig-kw">format</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Returns a nicely formatted string for this vector.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        // let Unity show these as (1.0, 2.0, 3.0)
+        <a href="Vector3.html">Vector3</a> vector = new <a href="Vector3.html">Vector3</a>(1, 2, 3);
+        <a href="Debug.Log.html">Debug.Log</a>(vector.ToString());<br /><br />        // unity sadly decides (1.2, 5.7, 9.0)
+        vector = new <a href="Vector3.html">Vector3</a>(1.234f, 5.678f, 9.012f);
+        <a href="Debug.Log.html">Debug.Log</a>(vector.ToString());<br /><br />        // but we can show this using format - 3 numbers after the decimal point
+        // (1.234, 5.678, 9.012)
+        <a href="Debug.Log.html">Debug.Log</a>(vector.ToString("F3"));<br /><br />        // now let's create some longer numbers
+        vector = new <a href="Vector3.html">Vector3</a>(1.0f / 3.0f, -<a href="Mathf.PI.html">Mathf.PI</a>, <a href="Mathf.Exp.html">Mathf.Exp</a>(-2.0f));<br /><br />        // we get (0.333333, -3.141593, 0.135335)
+        <a href="Debug.Log.html">Debug.Log</a>("fractional part is 6: " + vector.ToString("F6"));<br /><br />        // note how F8 cannot display these numbers as we want
+        // (0.33333330, -3.14159300, 0.13533530)
+        <a href="Debug.Log.html">Debug.Log</a>("fractional part is 8: " + vector.ToString("F8"));
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

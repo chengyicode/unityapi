@@ -1,0 +1,50 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Graphics.Blit</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Graphics.html">Graphics</a>.Blit</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">Blit</span>(<a href="Texture.html">Texture</a> <span class="sig-kw">source</span>,
+<a href="RenderTexture.html">RenderTexture</a> <span class="sig-kw">dest</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">Blit</span>(<a href="Texture.html">Texture</a> <span class="sig-kw">source</span>,
+<a href="RenderTexture.html">RenderTexture</a> <span class="sig-kw">dest</span>,
+<a href="Material.html">Material</a> <span class="sig-kw">mat</span>,
+int <span class="sig-kw">pass</span> = -1);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">Blit</span>(<a href="Texture.html">Texture</a> <span class="sig-kw">source</span>,
+<a href="Material.html">Material</a> <span class="sig-kw">mat</span>,
+int <span class="sig-kw">pass</span> = -1);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">Blit</span>(<a href="Texture.html">Texture</a> <span class="sig-kw">source</span>,
+<a href="RenderTexture.html">RenderTexture</a> <span class="sig-kw">dest</span>,
+<a href="Vector2.html">Vector2</a> <span class="sig-kw">scale</span>,
+<a href="Vector2.html">Vector2</a> <span class="sig-kw">offset</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">Blit</span>(<a href="Texture.html">Texture</a> <span class="sig-kw">source</span>,
+<a href="RenderTexture.html">RenderTexture</a> <span class="sig-kw">dest</span>,
+int <span class="sig-kw">sourceDepthSlice</span>,
+int <span class="sig-kw">destDepthSlice</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">Blit</span>(<a href="Texture.html">Texture</a> <span class="sig-kw">source</span>,
+<a href="Material.html">Material</a> <span class="sig-kw">mat</span>,
+int <span class="sig-kw">pass</span>,
+int <span class="sig-kw">destDepthSlice</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">Blit</span>(<a href="Texture.html">Texture</a> <span class="sig-kw">source</span>,
+<a href="RenderTexture.html">RenderTexture</a> <span class="sig-kw">dest</span>,
+<a href="Vector2.html">Vector2</a> <span class="sig-kw">scale</span>,
+<a href="Vector2.html">Vector2</a> <span class="sig-kw">offset</span>,
+int <span class="sig-kw">sourceDepthSlice</span>,
+int <span class="sig-kw">destDepthSlice</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">source</td><td class="desc"></td><td class="desc1">Source texture.</td></tr><tr><td class="name lbl">dest</td><td class="desc"></td><td class="desc1">The destination <a href="RenderTexture.html">RenderTexture</a>. Set this to <code class="varname">null</code> to blit directly to screen. See description for more information.</td></tr><tr><td class="name lbl">mat</td><td class="desc"></td><td class="desc1">Material to use. Material's shader could do some post-processing effect, for example.</td></tr><tr><td class="name lbl">pass</td><td class="desc"></td><td class="desc1">If -1 (default), draws all passes in the material. Otherwise, draws given pass only.</td></tr><tr><td class="name lbl">offset</td><td class="desc"></td><td class="desc1">Offset applied to the source texture coordinate.</td></tr><tr><td class="name lbl">scale</td><td class="desc"></td><td class="desc1">Scale applied to the source texture coordinate.</td></tr><tr><td class="name lbl">sourceDepthSlice</td><td class="desc"></td><td class="desc1">The texture array source slice to perform the blit from.</td></tr><tr><td class="name lbl">destDepthSlice</td><td class="desc"></td><td class="desc1">The texture array destination slice to perform the blit to.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Copies source texture into destination render texture with a shader.</p></div><div class="subsection"><p>This is mostly used for implementing <a href="../Manual/PostProcessingOverview.html">post-processing effects</a>.<br /><br />Blit sets <code class="varname">dest</code> as the render target, sets <code class="varname">source</code> <code class="mono">_MainTex</code> property on the
+material, and draws a full-screen quad.<br /><br />If <code class="varname">dest</code> is <code class="varname">null</code>, the screen backbuffer is used as the blit destination, except if the main camera is currently set to render to a RenderTexture (that is <a href="Camera-main.html">Camera.main</a> has a non-null <code class="varname">targetTexture</code> property). In that case the blit uses the render target of the main camera as destination. In order to ensure that the blit is actually done to the screen backbuffer, make sure to set /Camera.main.targetTexture/ to <code class="varname">null</code> before calling Blit.<br /><br />Note that if you want to use depth or stencil buffer that is part of the <code class="varname">source</code> (Render)texture,
+you'll have to do equivalent of Blit functionality manually - i.e. <a href="Graphics.SetRenderTarget.html">Graphics.SetRenderTarget</a>
+with destination color buffer and source depth buffer, setup orthographic projection (<a href="GL.LoadOrtho.html">GL.LoadOrtho</a>),
+setup material pass (<a href="Material.SetPass.html">Material.SetPass</a>) and draw a quad (<a href="GL.Begin.html">GL.Begin</a>).<br /><br />Note that in Linear color space, it is important to have the correct sRGB&lt;-&gt;Linear color conversion
+state set. Depending on what was rendered previously, the current state might not be the one you expect.
+You should consider setting <a href="GL-sRGBWrite.html">GL.sRGBWrite</a> as you need it before doing Blit or any other
+manual rendering.<br /><br />Note that a call to Blit with <code class="varname">source</code> and <code class="varname">dest</code> set to the same RenderTexture may result in undefined behaviour. A better approach is to either use <a href="../Manual/CustomRenderTextures.html">Custom Render Textures</a> with double buffering, or use two RenderTextures and alternate between them to implement double buffering manually.<br /><br />See Also: <a href="Graphics.BlitMultiTap.html">Graphics.BlitMultiTap</a>, <a href="../Manual/PostProcessingOverview.html">Post-processing effects</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{ // Copies aTexture to rTex and displays it in all cameras.<br /><br />    <a href="Texture.html">Texture</a> aTexture;
+    <a href="RenderTexture.html">RenderTexture</a> rTex;<br /><br />    void Start()
+    {
+        if (!aTexture || !rTex)
+        {
+            <a href="Debug.LogError.html">Debug.LogError</a>("A texture or a render texture are missing, assign them.");
+        }
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        <a href="Graphics.Blit.html">Graphics.Blit</a>(aTexture, rTex);
+    }
+}</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorApplication.isUpdating</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorApplication.html">EditorApplication</a>.isUpdating</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">isUpdating</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>True if the Editor is currently refreshing the AssetDatabase.</p></div><div class="subsection"><p>During AssetDatabase refreshing time, the editor checks to see if any files have changed,
+        whether they need to be reimported, and reimports them. The isUpdating property will return
+        true or false depending on whether the AssetDatabase is being loaded or not. (Read Only)</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class NewSceneWhileNotUpdating
+{
+    // Simple editor Script that lets you create a new
+    // <a href="SceneManagement.Scene.html">Scene</a> if editor is not updating.<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Example/New <a href="SceneManagement.Scene.html">Scene</a> while not updating")]
+    static void EditorPlaying()
+    {
+        if (!<a href="EditorApplication-isUpdating.html">EditorApplication.isUpdating</a>)
+        {
+            EditorApplication.NewScene();
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

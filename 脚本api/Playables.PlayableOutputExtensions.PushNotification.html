@@ -1,0 +1,23 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Playables.PlayableOutputExtensions.PushNotification</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Playables.PlayableOutputExtensions.html">PlayableOutputExtensions</a>.PushNotification</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">PushNotification</span>(U <span class="sig-kw">output</span>,
+<a href="Playables.Playable.html">Playables.Playable</a> <span class="sig-kw">origin</span>,
+<a href="Playables.INotification.html">Playables.INotification</a> <span class="sig-kw">notification</span>,
+object <span class="sig-kw">context</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">output</td><td class="desc"></td><td class="desc1">The output sending the notification.</td></tr><tr><td class="name lbl">origin</td><td class="desc"></td><td class="desc1">The originating playable of the notification.</td></tr><tr><td class="name lbl">notification</td><td class="desc"></td><td class="desc1">The notification to be sent.</td></tr><tr><td class="name lbl">context</td><td class="desc"></td><td class="desc1">Extra information about the state when the notification was fired.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Queues a notification to be sent through the Playable system.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.Playables;
+class ExamplePlayableBehaviour : <a href="Playables.PlayableBehaviour.html">PlayableBehaviour</a>
+{
+    private static readonly <a href="Playables.Notification.html">Notification</a> s_BlendNotification = new <a href="Playables.Notification.html">Notification</a>("BlendComplete");
+    private float m_lastWeight = 0;<br /><br />    public override void PrepareFrame(<a href="Playables.Playable.html">Playable</a> playable, <a href="Playables.FrameData.html">FrameData</a> info)
+    {
+        if (m_lastWeight &lt; 1 &amp;&amp; info.effectiveWeight == 1)
+        {
+            info.output.PushNotification(playable, s_BlendNotification, m_lastWeight);
+        }
+        m_lastWeight = info.effectiveWeight;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

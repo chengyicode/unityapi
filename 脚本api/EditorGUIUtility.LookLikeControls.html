@@ -1,0 +1,32 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorGUIUtility.LookLikeControls</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorGUIUtility.html">EditorGUIUtility</a>.LookLikeControls</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public static void <span class="sig-kw">LookLikeControls</span>(float <span class="sig-kw">_labelWidth</span>,
+float <span class="sig-kw">_fieldWidth</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span></div><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">labelWidth</td><td class="desc"></td><td class="desc1">Width to use for prefixed labels.</td></tr><tr><td class="name lbl">fieldWidth</td><td class="desc"></td><td class="desc1">Width of text entries.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Make all <a href="EditorGUI.html">EditorGUI</a> look like regular controls.</p></div><div class="subsection"><p>This will make the default styles used by <a href="EditorGUI.html">EditorGUI</a> look like controls (e.g. <a href="EditorGUI.Popup.html">EditorGUI.Popup</a> becomes a full popup menu).<br /><br /><img src="../StaticFiles/ScriptRefImages/EditorGUIUtilityLookLikeControls.png" /><br />
+<em>Editor window with "LookLikeControls" look.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />
+// Simple editor window that shows the difference between
+// Look like controls and look like inspector<br /><br />class LookLikeControlsInspector : <a href="EditorWindow.html">EditorWindow</a>
+{
+    int integer1 = 0;
+    float float1 = 5.5f;<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Examples/Look Like Controls - Inspector")]
+    static void Init()
+    {
+        var window = GetWindow&lt;LookLikeControlsInspector&gt;();
+        window.Show();
+    }<br /><br />    void OnGUI()
+    {
+        EditorGUIUtility.LookLikeInspector();
+        <a href="EditorGUILayout.TextField.html">EditorGUILayout.TextField</a>("Text Field:", "Hello There");
+        <a href="EditorGUILayout.IntField.html">EditorGUILayout.IntField</a>("Int Field:", integer1);
+        <a href="EditorGUILayout.FloatField.html">EditorGUILayout.FloatField</a>("Float Field:", float1);
+        <a href="EditorGUILayout.Space.html">EditorGUILayout.Space</a>();
+        <a href="EditorGUIUtility.LookLikeControls.html">EditorGUIUtility.LookLikeControls</a>();
+        <a href="EditorGUILayout.TextField.html">EditorGUILayout.TextField</a>("Text Field", "Hello There");
+        <a href="EditorGUILayout.IntField.html">EditorGUILayout.IntField</a>("Int Field:", integer1);
+        <a href="EditorGUILayout.FloatField.html">EditorGUILayout.FloatField</a>("Float Field:", float1);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

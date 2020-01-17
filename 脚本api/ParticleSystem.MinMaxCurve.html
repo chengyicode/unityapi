@@ -1,0 +1,117 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: MinMaxCurve</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">MinMaxCurve</h1><div class="clear"></div><p class="cl mb0 left mr10">struct in
+          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.ParticleSystemModule.html" class="cl">UnityEngine.ParticleSystemModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-ParticleSystem.html' title='Go to ParticleSystem Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Script interface for a Min-Max Curve.</p></div><div class="subsection"><p>MinMaxCurve describes functions taking a value between a minimum and maximum limit and returning a value based on <a href="ParticleSystem.MinMaxCurve-mode.html">ParticleSystem.MinMaxCurve.mode</a>. Depending on the mode, the value returned may be randomized.
+For modes requiring curves, the value returned is dependent on one or two curves designed in the ParticleSystem Inspector, that can be evaluated to a single value between -n and n, where n is a constant also set in the Inspector. See <a href="ParticleSystemCurveMode.html">ParticleSystemCurveMode</a> for more information.<br /><br />See Also: <a href="ParticleSystem.html">ParticleSystem</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />// This example shows setting a constant rate value.
+public class ConstantRateExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="ParticleSystem.html">ParticleSystem</a> myParticleSystem;
+    <a href="ParticleSystem.EmissionModule.html">ParticleSystem.EmissionModule</a> emissionModule;<br /><br />    void Start()
+    {
+        // Get the system and the emission module.
+        myParticleSystem = GetComponent&lt;<a href="ParticleSystem.html">ParticleSystem</a>&gt;();
+        emissionModule = myParticleSystem.emission;<br /><br />        GetValue();
+        SetValue();
+    }<br /><br />    void GetValue()
+    {
+        print("The constant value is " + emissionModule.rate.constant);
+    }<br /><br />    void SetValue()
+    {
+        emissionModule.rate = 10.0f;
+    }
+}
+</pre>
+      </div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />// This example shows using 2 constants to drive the rate.
+public class TwoConstantsRateExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="ParticleSystem.html">ParticleSystem</a> myParticleSystem;
+    <a href="ParticleSystem.EmissionModule.html">ParticleSystem.EmissionModule</a> emissionModule;<br /><br />    void Start()
+    {
+        // Get the system and the emission module.
+        myParticleSystem = GetComponent&lt;<a href="ParticleSystem.html">ParticleSystem</a>&gt;();
+        emissionModule = myParticleSystem.emission;<br /><br />        GetValue();
+        SetValue();
+    }<br /><br />    void GetValue()
+    {
+        print(string.Format("The constant values are: min {0} max {1}.", emissionModule.rate.constantMin, emissionModule.rate.constantMax));
+    }<br /><br />    void SetValue()
+    {
+        emissionModule.rate = new <a href="ParticleSystem.MinMaxCurve.html">ParticleSystem.MinMaxCurve</a>(0.0f, 10.0f);
+    }
+}
+</pre>
+      </div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />// This example shows using a curve to drive the rate.
+public class CurveRateExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="ParticleSystem.html">ParticleSystem</a> myParticleSystem;
+    <a href="ParticleSystem.EmissionModule.html">ParticleSystem.EmissionModule</a> emissionModule;<br /><br />    // We can "scale" the curve with this value. It gets multiplied by the curve.
+    public float scalar = 1.0f;<br /><br />    <a href="AnimationCurve.html">AnimationCurve</a> ourCurve;<br /><br />    void Start()
+    {
+        // Get the system and the emission module.
+        myParticleSystem = GetComponent&lt;<a href="ParticleSystem.html">ParticleSystem</a>&gt;();
+        emissionModule = myParticleSystem.emission;<br /><br />        // A simple linear curve.
+        ourCurve = new <a href="AnimationCurve.html">AnimationCurve</a>();
+        ourCurve.AddKey(0.0f, 0.0f);
+        ourCurve.AddKey(1.0f, 1.0f);<br /><br />        // Apply the curve.
+        emissionModule.rate = new <a href="ParticleSystem.MinMaxCurve.html">ParticleSystem.MinMaxCurve</a>(scalar, ourCurve);<br /><br />        // In 5 seconds we will modify the curve.
+        Invoke("ModifyCurve", 5.0f);
+    }<br /><br />    void ModifyCurve()
+    {
+        // Add a key to the current curve.
+        ourCurve.AddKey(0.5f, 0.0f);<br /><br />        // Apply the changed curve.
+        emissionModule.rate = new <a href="ParticleSystem.MinMaxCurve.html">ParticleSystem.MinMaxCurve</a>(scalar, ourCurve);
+    }
+}
+</pre>
+      </div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />// This example shows using 2 curves to drive the rate.
+public class TwoCurveRateExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="ParticleSystem.html">ParticleSystem</a> myParticleSystem;
+    <a href="ParticleSystem.EmissionModule.html">ParticleSystem.EmissionModule</a> emissionModule;<br /><br />    <a href="AnimationCurve.html">AnimationCurve</a> ourCurveMin;
+    <a href="AnimationCurve.html">AnimationCurve</a> ourCurveMax;<br /><br />    // We can "scale" the curves with this value. It gets multiplied by the curves.
+    public float scalar = 1.0f;<br /><br />    void Start()
+    {
+        // Get the system and the emission module.
+        myParticleSystem = GetComponent&lt;<a href="ParticleSystem.html">ParticleSystem</a>&gt;();
+        emissionModule = myParticleSystem.emission;<br /><br />        // A horizontal straight line at value 1.
+        ourCurveMin = new <a href="AnimationCurve.html">AnimationCurve</a>();
+        ourCurveMin.AddKey(0.0f, 1.0f);
+        ourCurveMin.AddKey(1.0f, 1.0f);<br /><br />        // A horizontal straight line at value 0.5.
+        ourCurveMax = new <a href="AnimationCurve.html">AnimationCurve</a>();
+        ourCurveMax.AddKey(0.0f, 0.5f);
+        ourCurveMax.AddKey(1.0f, 0.5f);<br /><br />        // Apply the curves.
+        emissionModule.rate = new <a href="ParticleSystem.MinMaxCurve.html">ParticleSystem.MinMaxCurve</a>(scalar, ourCurveMin, ourCurveMax);<br /><br />        // In 5 seconds we will modify the curve.
+        Invoke("ModifyCurve", 5.0f);
+    }<br /><br />    void ModifyCurve()
+    {
+        // Create a "pinch" point.
+        ourCurveMin.AddKey(0.5f, 0.7f);
+        ourCurveMax.AddKey(0.5f, 0.6f);<br /><br />        // Apply the changed curve.
+        emissionModule.rate = new <a href="ParticleSystem.MinMaxCurve.html">ParticleSystem.MinMaxCurve</a>(scalar, ourCurveMin, ourCurveMax);
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="ParticleSystem.MinMaxCurve-constant.html">constant</a></td><td class="desc"></td><td class="desc1">Set the constant value.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ParticleSystem.MinMaxCurve-constantMax.html">constantMax</a></td><td class="desc"></td><td class="desc1">Set a constant for the upper bound.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ParticleSystem.MinMaxCurve-constantMin.html">constantMin</a></td><td class="desc"></td><td class="desc1">Set a constant for the lower bound.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ParticleSystem.MinMaxCurve-curve.html">curve</a></td><td class="desc"></td><td class="desc1">Set the curve.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ParticleSystem.MinMaxCurve-curveMax.html">curveMax</a></td><td class="desc"></td><td class="desc1">Set a curve for the upper bound.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ParticleSystem.MinMaxCurve-curveMin.html">curveMin</a></td><td class="desc"></td><td class="desc1">Set a curve for the lower bound.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ParticleSystem.MinMaxCurve-curveMultiplier.html">curveMultiplier</a></td><td class="desc"></td><td class="desc1">Set a multiplier to be applied to the curves.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ParticleSystem.MinMaxCurve-mode.html">mode</a></td><td class="desc"></td><td class="desc1">Set the mode that the min-max curve will use to evaluate values.</td></tr>
+    </table></div><div class="subsection"><h2>Constructors</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="ParticleSystem.MinMaxCurve-ctor.html">ParticleSystem.MinMaxCurve</a></td><td class="desc"></td><td class="desc1">A single constant value for the entire curve.</td></tr>
+    </table></div><div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="ParticleSystem.MinMaxCurve.Evaluate.html">Evaluate</a></td><td class="desc"></td><td class="desc1">Manually query the curve to calculate values based on what mode it is in.</td></tr>
+    </table></div></div></div></div></body></html>

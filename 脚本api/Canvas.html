@@ -1,0 +1,109 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Canvas</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">Canvas</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Inherits from:<a href="Behaviour.html" class="cl">Behaviour</a></p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.UIModule.html" class="cl">UnityEngine.UIModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Canvas.html' title='Go to Canvas Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Element that can be used for screen rendering.</p></div><div class="subsection"><p>Elements on a canvas are rendered AFTER Scene rendering, either from an attached camera or using overlay mode.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.Collections;
+using System.Collections.Generic;
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;
+using UnityEngine.UI;<br /><br />// Create a <a href="Canvas.html">Canvas</a> that holds a Text <a href="GameObject.html">GameObject</a>.<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        <a href="GameObject.html">GameObject</a> myGO;
+        <a href="GameObject.html">GameObject</a> myText;
+        <a href="Canvas.html">Canvas</a> myCanvas;
+        Text text;
+        <a href="RectTransform.html">RectTransform</a> rectTransform;<br /><br />        // <a href="Canvas.html">Canvas</a>
+        myGO = new <a href="GameObject.html">GameObject</a>();
+        myGO.name = "TestCanvas";
+        myGO.AddComponent&lt;<a href="Canvas.html">Canvas</a>&gt;();<br /><br />        myCanvas = myGO.GetComponent&lt;<a href="Canvas.html">Canvas</a>&gt;();
+        myCanvas.renderMode = <a href="RenderMode.ScreenSpaceOverlay.html">RenderMode.ScreenSpaceOverlay</a>;
+        myGO.AddComponent&lt;CanvasScaler&gt;();
+        myGO.AddComponent&lt;GraphicRaycaster&gt;();<br /><br />        // Text
+        myText = new <a href="GameObject.html">GameObject</a>();
+        myText.transform.parent = myGO.transform;
+        myText.name = "wibble";<br /><br />        text = myText.AddComponent&lt;Text&gt;();
+        text.font = (<a href="Font.html">Font</a>)<a href="Resources.Load.html">Resources.Load</a>("MyFont");
+        text.text = "wobble";
+        text.fontSize = 100;<br /><br />        // Text position
+        rectTransform = text.GetComponent&lt;<a href="RectTransform.html">RectTransform</a>&gt;();
+        rectTransform.localPosition = new <a href="Vector3.html">Vector3</a>(0, 0, 0);
+        rectTransform.sizeDelta = new <a href="Vector2.html">Vector2</a>(400, 200);
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Canvas-additionalShaderChannels.html">additionalShaderChannels</a></td><td class="desc"></td><td class="desc1">Get or set the mask of additional shader channels to be used when creating the Canvas mesh.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Canvas-cachedSortingLayerValue.html">cachedSortingLayerValue</a></td><td class="desc"></td><td class="desc1">Cached calculated value based upon SortingLayerID.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Canvas-isRootCanvas.html">isRootCanvas</a></td><td class="desc"></td><td class="desc1">Is this the root Canvas?</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Canvas-normalizedSortingGridSize.html">normalizedSortingGridSize</a></td><td class="desc"></td><td class="desc1">The normalized grid size that the canvas will split the renderable area into.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Canvas-overridePixelPerfect.html">overridePixelPerfect</a></td><td class="desc"></td><td class="desc1">Allows for nested canvases to override pixelPerfect settings inherited from parent canvases.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Canvas-overrideSorting.html">overrideSorting</a></td><td class="desc"></td><td class="desc1">Override the sorting of canvas.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Canvas-pixelPerfect.html">pixelPerfect</a></td><td class="desc"></td><td class="desc1">Force elements in the canvas to be aligned with pixels. Only applies with renderMode is Screen Space.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Canvas-pixelRect.html">pixelRect</a></td><td class="desc"></td><td class="desc1">Get the render rect for the Canvas.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Canvas-planeDistance.html">planeDistance</a></td><td class="desc"></td><td class="desc1">How far away from the camera is the Canvas generated.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Canvas-referencePixelsPerUnit.html">referencePixelsPerUnit</a></td><td class="desc"></td><td class="desc1">The number of pixels per unit that is considered the default.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Canvas-renderMode.html">renderMode</a></td><td class="desc"></td><td class="desc1">Is the Canvas in World or Overlay mode?</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Canvas-renderOrder.html">renderOrder</a></td><td class="desc"></td><td class="desc1">The render order in which the canvas is being emitted to the Scene. (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Canvas-rootCanvas.html">rootCanvas</a></td><td class="desc"></td><td class="desc1">Returns the Canvas closest to root, by checking through each parent and returning the last canvas found. If no other canvas is found then the canvas will return itself.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Canvas-scaleFactor.html">scaleFactor</a></td><td class="desc"></td><td class="desc1">Used to scale the entire canvas, while still making it fit the screen. Only applies with renderMode is Screen Space.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Canvas-sortingLayerID.html">sortingLayerID</a></td><td class="desc"></td><td class="desc1">Unique ID of the Canvas' sorting layer.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Canvas-sortingLayerName.html">sortingLayerName</a></td><td class="desc"></td><td class="desc1">Name of the Canvas' sorting layer.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Canvas-sortingOrder.html">sortingOrder</a></td><td class="desc"></td><td class="desc1">Canvas' order within a sorting layer.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Canvas-targetDisplay.html">targetDisplay</a></td><td class="desc"></td><td class="desc1">For Overlay mode, display index on which the UI canvas will appear.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Canvas-worldCamera.html">worldCamera</a></td><td class="desc"></td><td class="desc1">
+          Camera used for sizing the Canvas when in Screen Space - Camera. Also used as the Camera that events will be sent through for a World Space [[Canvas].</td></tr>
+    </table></div><div class="subsection"><h2>Static Methods   静态方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Canvas.ForceUpdateCanvases.html">ForceUpdateCanvases</a></td><td class="desc"></td><td class="desc1">Force all canvases to update their content.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Canvas.GetDefaultCanvasMaterial.html">GetDefaultCanvasMaterial</a></td><td class="desc"></td><td class="desc1">Returns the default material that can be used for rendering normal elements on the Canvas.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Canvas.GetETC1SupportedCanvasMaterial.html">GetETC1SupportedCanvasMaterial</a></td><td class="desc"></td><td class="desc1">Gets or generates the ETC1 Material.</td></tr>
+    </table></div><div class="subsection"><h2>Events</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Canvas-willRenderCanvases.html">willRenderCanvases</a></td><td class="desc"></td><td class="desc1">Event that is called just before Canvas rendering happens.</td></tr>
+    </table></div><div class="subsection"><h2>Inherited Members   继承成员</h2>
+      
+      <div class="subsection"><h2>Properties   属性</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Behaviour-enabled.html">enabled</a></td><td class="desc"></td><td class="desc1">Enabled Behaviours are Updated, disabled Behaviours are not.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Behaviour-isActiveAndEnabled.html">isActiveAndEnabled</a></td><td class="desc"></td><td class="desc1">Has the Behaviour had active and enabled called?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component-gameObject.html">gameObject</a></td><td class="desc"></td><td class="desc1">The game object this component is attached to. A component is always attached to a game object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component-tag.html">tag</a></td><td class="desc"></td><td class="desc1">The tag of this game object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component-transform.html">transform</a></td><td class="desc"></td><td class="desc1">The Transform attached to this GameObject.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-hideFlags.html">hideFlags</a></td><td class="desc"></td><td class="desc1">Should the object be hidden, saved with the Scene or modifiable by the user?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-name.html">name</a></td><td class="desc"></td><td class="desc1">The name of the object.</td></tr>
+      </table></div>
+      
+      
+      
+      <div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.BroadcastMessage.html">BroadcastMessage</a></td><td class="desc"></td><td class="desc1">Calls the method named methodName on every MonoBehaviour in this game object or any of its children.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.CompareTag.html">CompareTag</a></td><td class="desc"></td><td class="desc1">Is this game object tagged with tag ?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponent.html">GetComponent</a></td><td class="desc"></td><td class="desc1">Returns the component of Type type if the game object has one attached, null if it doesn't.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponentInChildren.html">GetComponentInChildren</a></td><td class="desc"></td><td class="desc1">Returns the component of Type type in the GameObject or any of its children using depth first search.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponentInParent.html">GetComponentInParent</a></td><td class="desc"></td><td class="desc1">Returns the component of Type type in the GameObject or any of its parents.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponents.html">GetComponents</a></td><td class="desc"></td><td class="desc1">Returns all components of Type type in the GameObject.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponentsInChildren.html">GetComponentsInChildren</a></td><td class="desc"></td><td class="desc1">Returns all components of Type type in the GameObject or any of its children.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponentsInParent.html">GetComponentsInParent</a></td><td class="desc"></td><td class="desc1">Returns all components of Type type in the GameObject or any of its parents.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.SendMessage.html">SendMessage</a></td><td class="desc"></td><td class="desc1">Calls the method named methodName on every MonoBehaviour in this game object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.SendMessageUpwards.html">SendMessageUpwards</a></td><td class="desc"></td><td class="desc1">Calls the method named methodName on every MonoBehaviour in this game object and on every ancestor of the behaviour.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.TryGetComponent.html">TryGetComponent</a></td><td class="desc"></td><td class="desc1">Gets the component of the specified type, if it exists.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.GetInstanceID.html">GetInstanceID</a></td><td class="desc"></td><td class="desc1">Returns the instance id of the object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.ToString.html">ToString</a></td><td class="desc"></td><td class="desc1">Returns the name of the object.</td></tr>
+      </table></div>
+      
+      <div class="subsection"><h2>Static Methods   静态方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.Destroy.html">Destroy</a></td><td class="desc"></td><td class="desc1">Removes a GameObject, component or asset.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.DestroyImmediate.html">DestroyImmediate</a></td><td class="desc"></td><td class="desc1">Destroys the object obj immediately. You are strongly recommended to use Destroy instead.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.DontDestroyOnLoad.html">DontDestroyOnLoad</a></td><td class="desc"></td><td class="desc1">Do not destroy the target Object when loading a new Scene.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectOfType.html">FindObjectOfType</a></td><td class="desc"></td><td class="desc1">Returns the first active loaded object of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectsOfType.html">FindObjectsOfType</a></td><td class="desc"></td><td class="desc1">Returns a list of all active loaded objects of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.Instantiate.html">Instantiate</a></td><td class="desc"></td><td class="desc1">Clones the object original and returns the clone.</td></tr>
+      </table></div>
+      <div class="subsection"><h2>Operators   运算符</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_Object.html">bool</a></td><td class="desc"></td><td class="desc1">Does the object exist?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_ne.html">operator !=</a></td><td class="desc"></td><td class="desc1">Compares if two objects refer to a different object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_eq.html">operator ==</a></td><td class="desc"></td><td class="desc1">Compares two object references to see if they refer to the same object.</td></tr>
+      </table></div>
+      
+      
+      
+    </div></div></div></div></body></html>

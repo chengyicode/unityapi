@@ -1,0 +1,39 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Transform.InverseTransformPoint</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Transform.html">Transform</a>.InverseTransformPoint</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Transform.html' title='Go to Transform Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Vector3.html">Vector3</a> <span class="sig-kw">InverseTransformPoint</span>(<a href="Vector3.html">Vector3</a> <span class="sig-kw">position</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Transforms <code class="varname">position</code> from world space to local space.</p></div><div class="subsection"><p>This function is essentially the opposite of <a href="Transform.TransformPoint.html">Transform.TransformPoint</a>, which is used to convert from local to world space.<br /><br />        Note that the returned position is affected by scale. Use <a href="Transform.InverseTransformDirection.html">Transform.InverseTransformDirection</a> if you are dealing with direction vectors rather than positions.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Calculate the transform's position relative to the camera.
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Transform.html">Transform</a> cam;
+    public <a href="Vector3.html">Vector3</a> cameraRelative;<br /><br />    void Start()
+    {
+        cam = Camera.main.transform;
+        <a href="Vector3.html">Vector3</a> cameraRelative = cam.InverseTransformPoint(transform.position);<br /><br />        if (cameraRelative.z &gt; 0)
+            print("The object is in front of the camera");
+        else
+            print("The object is behind the camera");
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Vector3.html">Vector3</a> <span class="sig-kw">InverseTransformPoint</span>(float <span class="sig-kw">x</span>,
+float <span class="sig-kw">y</span>,
+float <span class="sig-kw">z</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Transforms the position <code class="varname">x</code>, <code class="varname">y</code>, <code class="varname">z</code> from world space to local space. The opposite of Transform.TransformPoint.</p></div><div class="subsection"><p>Note that the returned position is affected by scale. Use <a href="Transform.InverseTransformDirection.html">Transform.InverseTransformDirection</a> if you are dealing with directions.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Calculate the world origin relative to this transform.
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        <a href="Vector3.html">Vector3</a> relativePoint = transform.InverseTransformPoint(0, 0, 0);<br /><br />        if (relativePoint.z &gt; 0)
+            print("The world origin is in front of this object");
+        else
+            print("The world origin is behind of this object");
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

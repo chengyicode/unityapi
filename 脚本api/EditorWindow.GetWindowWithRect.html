@@ -1,0 +1,30 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorWindow.GetWindowWithRect</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorWindow.html">EditorWindow</a>.GetWindowWithRect</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="EditorWindow.html">EditorWindow</a> <span class="sig-kw">GetWindowWithRect</span>(Type <span class="sig-kw">t</span>,
+<a href="Rect.html">Rect</a> <span class="sig-kw">rect</span>,
+bool <span class="sig-kw">utility</span> = false,
+string <span class="sig-kw">title</span> = null);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">t</td><td class="desc"></td><td class="desc1">The type of the window. Must derive from EditorWindow.</td></tr><tr><td class="name lbl">rect</td><td class="desc"></td><td class="desc1">The position on the screen where a newly created window will show.</td></tr><tr><td class="name lbl">utility</td><td class="desc"></td><td class="desc1">Set this to true, to create a floating utility window, false to create a normal window.</td></tr><tr><td class="name lbl">title</td><td class="desc"></td><td class="desc1">If GetWindow creates a new window, it will get this title. If this value is null, use the class name as title.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Returns the first EditorWindow of type <code class="varname">t</code> which is currently on the screen.</p></div><div class="subsection"><p>If there is none, creates and shows new window at the position <code class="varname">rect</code> and returns the instance of it.<br /><br /><img src="../StaticFiles/ScriptRefImages/GetWindowRectEx.png" /><br />
+<em>Create an empty 100x150px window at the upper left corner of the screen.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />// Create a dockable empty window at the top left corner of the screen
+// with 100px width and 150px height<br /><br />public class EditorWindowTest : <a href="EditorWindow.html">EditorWindow</a>
+{
+    [<a href="MenuItem.html">MenuItem</a>("Example/<a href="Display.html">Display</a> simple sized Window")]
+    static void Initialize()
+    {
+        EditorWindowTest window = (EditorWindowTest)<a href="EditorWindow.GetWindowWithRect.html">EditorWindow.GetWindowWithRect</a>(typeof(EditorWindowTest), new <a href="Rect.html">Rect</a>(0, 0, 100, 150));
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static T <span class="sig-kw">GetWindowWithRect</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">rect</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static T <span class="sig-kw">GetWindowWithRect</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">rect</span>,
+bool <span class="sig-kw">utility</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static T <span class="sig-kw">GetWindowWithRect</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">rect</span>,
+bool <span class="sig-kw">utility</span>,
+string <span class="sig-kw">title</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static T <span class="sig-kw">GetWindowWithRect</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">rect</span>,
+bool <span class="sig-kw">utility</span>,
+string <span class="sig-kw">title</span>,
+bool <span class="sig-kw">focus</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">t</td><td class="desc"></td><td class="desc1">The type of the window. Must derive from EditorWindow.</td></tr><tr><td class="name lbl">rect</td><td class="desc"></td><td class="desc1">The position on the screen where a newly created window will show.</td></tr><tr><td class="name lbl">utility</td><td class="desc"></td><td class="desc1">Set this to true, to create a floating utility window, false to create a normal window.</td></tr><tr><td class="name lbl">title</td><td class="desc"></td><td class="desc1">If GetWindow creates a new window, it will get this title. If this value is null, use the class name as title.</td></tr><tr><td class="name lbl">focus</td><td class="desc"></td><td class="desc1">Whether to give the window focus, if it already exists. (If GetWindow creates a new window, it will always get focus).</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Returns the first EditorWindow of type <code class="varname">t</code> which is currently on the screen.</p></div><div class="subsection"><p>If there is none, creates and shows new window at the position <code class="varname">rect</code> and returns the instance of it.</p></div></div></div></div></body></html>

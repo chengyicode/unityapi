@@ -1,0 +1,87 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorGUI.DrawPreviewTexture</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorGUI.html">EditorGUI</a>.DrawPreviewTexture</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">DrawPreviewTexture</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+<a href="Texture.html">Texture</a> <span class="sig-kw">image</span>,
+<a href="Material.html">Material</a> <span class="sig-kw">mat</span> = null,
+<a href="ScaleMode.html">ScaleMode</a> <span class="sig-kw">scaleMode</span> = ScaleMode.StretchToFill,
+float <span class="sig-kw">imageAspect</span> = 0,
+float <span class="sig-kw">mipLevel</span> = -1,
+<a href="Rendering.ColorWriteMask.html">Rendering.ColorWriteMask</a> <span class="sig-kw">colorWriteMask</span> = ColorWriteMask.All);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">position</td><td class="desc"></td><td class="desc1">Rectangle on the screen to draw the texture within.</td></tr><tr><td class="name lbl">image</td><td class="desc"></td><td class="desc1">
+          <a href="Texture.html">Texture</a> to display.</td></tr><tr><td class="name lbl">mat</td><td class="desc"></td><td class="desc1">Material to be used when drawing the texture.</td></tr><tr><td class="name lbl">scaleMode</td><td class="desc"></td><td class="desc1">How to scale the image when the aspect ratio of it doesn't fit the aspect ratio to be drawn within.</td></tr><tr><td class="name lbl">imageAspect</td><td class="desc"></td><td class="desc1">Aspect ratio to use for the source image. If 0 (the default), the aspect ratio from the image is used.</td></tr><tr><td class="name lbl">mipLevel</td><td class="desc"></td><td class="desc1">The mip-level to sample. If negative, the texture is sampled normally.
+Sets material _Mip property.</td></tr><tr><td class="name lbl">colorWriteMask</td><td class="desc"></td><td class="desc1">Specifies which color components of image will get written.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Draws the texture within a rectangle.</p></div><div class="subsection"><p>If mat is null (the default), an appropriate material will be chosen for a RGBM or doubleLDR lightmap or a normal map
+and the fallback blit material will be chosen otherwise.<br /><br /><img src="../StaticFiles/ScriptRefImages/EditorGUIDrawPreviewTexture.png" /><br />
+<em>Preview Texture in an Editor Window.</em><br /><br />                </p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Load a texture, display the texture, display its alpha channel and
+// show a preview of the inverted texture
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;<br /><br />class EditorGUITextures : <a href="EditorWindow.html">EditorWindow</a>
+{
+    <a href="Texture2D.html">Texture2D</a> texture;
+    <a href="Texture2D.html">Texture2D</a> invertedTexture;
+    bool showInverted = false;<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Examples/<a href="Texture.html">Texture</a> Previewer")]
+    static void Init()
+    {
+        var window = GetWindow&lt;EditorGUITextures&gt;("<a href="Texture.html">Texture</a> Previewer");
+        window.position = new <a href="Rect.html">Rect</a>(0, 0, 400, 200);
+        window.Show();
+    }<br /><br />    void OnGUI()
+    {
+        texture = (<a href="Texture2D.html">Texture2D</a>)<a href="EditorGUI.ObjectField.html">EditorGUI.ObjectField</a>(new <a href="Rect.html">Rect</a>(3, 3, 200, 20),
+            "Add a <a href="Texture.html">Texture</a>:",
+            texture,
+            typeof(<a href="Texture2D.html">Texture2D</a>));
+        if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(208, 3, position.width - 210, 20), "Process Inverted"))
+        {
+            if (invertedTexture)
+                DestroyImmediate(invertedTexture);
+            //Copy the new texture
+            invertedTexture = new <a href="Texture2D.html">Texture2D</a>(texture.width,
+                texture.height,
+                texture.format,
+                (texture.mipmapCount != 0));
+            for (int m = 0; m &lt; texture.mipmapCount; m++)
+                invertedTexture.SetPixels(texture.GetPixels(m), m);
+            InvertColors();
+            showInverted = true;
+        }
+        if (texture)
+        {
+            <a href="EditorGUI.PrefixLabel.html">EditorGUI.PrefixLabel</a>(new <a href="Rect.html">Rect</a>(25, 45, 100, 15), 0, new <a href="GUIContent.html">GUIContent</a>("Preview:"));
+            <a href="EditorGUI.DrawPreviewTexture.html">EditorGUI.DrawPreviewTexture</a>(new <a href="Rect.html">Rect</a>(25, 60, 100, 100), texture);
+            <a href="EditorGUI.PrefixLabel.html">EditorGUI.PrefixLabel</a>(new <a href="Rect.html">Rect</a>(150, 45, 100, 15), 0, new <a href="GUIContent.html">GUIContent</a>("Alpha:"));
+            <a href="EditorGUI.DrawTextureAlpha.html">EditorGUI.DrawTextureAlpha</a>(new <a href="Rect.html">Rect</a>(150, 60, 100, 100), texture);
+            <a href="EditorGUI.PrefixLabel.html">EditorGUI.PrefixLabel</a>(new <a href="Rect.html">Rect</a>(275, 45, 100, 15), 0, new <a href="GUIContent.html">GUIContent</a>("Inverted:"));
+            if (showInverted)
+                <a href="EditorGUI.DrawPreviewTexture.html">EditorGUI.DrawPreviewTexture</a>(new <a href="Rect.html">Rect</a>(275, 60, 100, 100), invertedTexture);
+            if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(3, position.height - 25, position.width - 6, 20), "Clear texture"))
+            {
+                texture = <a href="EditorGUIUtility-whiteTexture.html">EditorGUIUtility.whiteTexture</a>;
+                showInverted = false;
+            }
+        }
+        else
+        {
+            <a href="EditorGUI.PrefixLabel.html">EditorGUI.PrefixLabel</a>(
+                new <a href="Rect.html">Rect</a>(3, position.height - 25, position.width - 6, 20),
+                0,
+                new <a href="GUIContent.html">GUIContent</a>("No texture found"));
+        }
+    }<br /><br />    void InvertColors()
+    {
+        for (int m = 0; m &lt; invertedTexture.mipmapCount; m++)
+        {
+            <a href="Color.html">Color</a>[] c = invertedTexture.GetPixels(m);
+            for (int i = 0; i &lt; c.Length; i++)
+            {
+                c[i].r = 1 - c[i].r;
+                c[i].g = 1 - c[i].g;
+                c[i].b = 1 - c[i].b;
+            }
+            invertedTexture.SetPixels(c, m);
+        }
+        invertedTexture.Apply();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorWindow.Show</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorWindow.html">EditorWindow</a>.Show</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">Show</span>();
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">Show</span>(bool <span class="sig-kw">immediateDisplay</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">immediateDisplay</td><td class="desc"></td><td class="desc1">Immediately display <a href="EditorWindow.Show.html">Show</a>.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Show the EditorWindow window.</p></div><div class="subsection"><p>
+        <a href="EditorWindow.Show.html">EditorWindow.Show</a> displays any window that has been created.
+                    In the script example below the window is created with no addition functionality.
+                    Many of the script examples in <a href="EditorWindow.html">EditorWindow</a> are more complex.
+                </p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Create an empty editor window and show it<br /><br />using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;
+using System.Collections;<br /><br />public class Example : <a href="EditorWindow.html">EditorWindow</a>
+{
+    [<a href="MenuItem.html">MenuItem</a>("Example/Window position usage")]
+    static void InitWindow()
+    {
+        Example window = (Example)GetWindow(typeof(Example));
+        window.Show();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

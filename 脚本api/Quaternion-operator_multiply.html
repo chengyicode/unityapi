@@ -1,0 +1,44 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Quaternion.operator *</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Quaternion.html">Quaternion</a>.operator *</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Quaternion.html">Quaternion</a> <span class="sig-kw">operator *</span>(<a href="Quaternion.html">Quaternion</a> <span class="sig-kw">lhs</span>,
+<a href="Quaternion.html">Quaternion</a> <span class="sig-kw">rhs</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">lhs</td><td class="desc"></td><td class="desc1">Left-hand side quaternion.</td></tr><tr><td class="name lbl">rhs</td><td class="desc"></td><td class="desc1">Right-hand side quaternion.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Combines rotations <code class="varname">lhs</code> and <code class="varname">rhs</code>.</p></div><div class="subsection"><p>Rotating by the product <code class="varname">lhs</code> * <code class="varname">rhs</code> is the same as applying the two rotations in sequence: <code class="varname">lhs</code> first and then <code class="varname">rhs</code>, relative to the reference frame resulting from <code class="varname">lhs</code> rotation. Note that this means rotations are not commutative, so <em>lhs * rhs</em> does not give the same rotation as <em>rhs * lhs</em>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class Example2 : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    float rotateSpeed = 90;<br /><br />    // Applies a rotation of 90 degrees per second around the Y axis
+    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        float angle = rotateSpeed * <a href="Time-deltaTime.html">Time.deltaTime</a>;
+        transform.rotation *= <a href="Quaternion.AngleAxis.html">Quaternion.AngleAxis</a>(angle, <a href="Vector3-up.html">Vector3.up</a>);
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Vector3.html">Vector3</a> <span class="sig-kw">operator *</span>(<a href="Quaternion.html">Quaternion</a> <span class="sig-kw">rotation</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">point</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Rotates the point <code class="varname">point</code> with <code class="varname">rotation</code>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class Example2 : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private void Start()
+    {
+        //Creates an array of three points forming a triangle
+        <a href="Vector3.html">Vector3</a>[] points = new <a href="Vector3.html">Vector3</a>[]
+        {
+            new <a href="Vector3.html">Vector3</a>(-1, -1, 0),
+            new <a href="Vector3.html">Vector3</a>(1, -1, 0),
+            new <a href="Vector3.html">Vector3</a>(0, 1, 0)
+        };<br /><br />        //Creates a <a href="Quaternion.html">Quaternion</a> rotation of 5 degrees around the Z axis
+        <a href="Quaternion.html">Quaternion</a> rotation = <a href="Quaternion.AngleAxis.html">Quaternion.AngleAxis</a>(5, <a href="Vector3-forward.html">Vector3.forward</a>);<br /><br />        //Loop through the array of Vector3s and apply the rotation
+        for (int n = 0; n &lt; points.Length; n++)
+        {
+            <a href="Vector3.html">Vector3</a> rotatedPoint = rotation * points[n];
+            //Output the new rotation values
+            <a href="Debug.Log.html">Debug.Log</a>("Point " + n + " rotated: " + rotatedPoint);
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

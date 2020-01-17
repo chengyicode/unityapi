@@ -1,0 +1,28 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Analytics.Analytics.Transaction</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Analytics.Analytics.html">Analytics</a>.Transaction</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Analytics.AnalyticsResult.html">Analytics.AnalyticsResult</a> <span class="sig-kw">Transaction</span>(string <span class="sig-kw">productId</span>,
+Decimal <span class="sig-kw">amount</span>,
+string <span class="sig-kw">currency</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Analytics.AnalyticsResult.html">Analytics.AnalyticsResult</a> <span class="sig-kw">Transaction</span>(string <span class="sig-kw">productId</span>,
+Decimal <span class="sig-kw">amount</span>,
+string <span class="sig-kw">currency</span>,
+string <span class="sig-kw">receiptPurchaseData</span>,
+string <span class="sig-kw">signature</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Analytics.AnalyticsResult.html">Analytics.AnalyticsResult</a> <span class="sig-kw">Transaction</span>(string <span class="sig-kw">productId</span>,
+Decimal <span class="sig-kw">amount</span>,
+string <span class="sig-kw">currency</span>,
+string <span class="sig-kw">receiptPurchaseData</span>,
+string <span class="sig-kw">signature</span>,
+bool <span class="sig-kw">usingIAPService</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">productId</td><td class="desc"></td><td class="desc1">The id of the purchased item.</td></tr><tr><td class="name lbl">amount</td><td class="desc"></td><td class="desc1">The price of the item.</td></tr><tr><td class="name lbl">currency</td><td class="desc"></td><td class="desc1">Abbreviation of the currency used for the transaction. For example “USD” (United States Dollars). See http://en.wikipedia.org/wiki/ISO_4217 for a standardized list of currency abbreviations.</td></tr><tr><td class="name lbl">receiptPurchaseData</td><td class="desc"></td><td class="desc1">Receipt data (iOS) / receipt ID (android) / for in-app purchases to verify purchases with Apple iTunes / Google Play. Use null in the absence of receipts.</td></tr><tr><td class="name lbl">signature</td><td class="desc"></td><td class="desc1">Android receipt signature. If using native Android use the INAPP_DATA_SIGNATURE string containing the signature of the purchase data that was signed with the private key of the developer. The data signature uses the RSASSA-PKCS1-v1_5 scheme. Pass in null in absence of a signature.</td></tr><tr><td class="name lbl">usingIAPService</td><td class="desc"></td><td class="desc1">Set to true when using UnityIAP.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Tracking Monetization (optional).</p></div><div class="subsection"><p>Unity Analytics provides a flexible method for tracking monetization events through in-app purchases. This method should be called every time a player triggers a monetization event.<br /><br />The Transaction method requires a price parameter, a currency and an optional Apple iTunes / Google Play receipt string.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System;
+using UnityEngine;
+using UnityEngine.Analytics;<br /><br />public class GamePurchaseMonoBehaviour : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public void OnPurchase()
+    {
+        <a href="Analytics.Analytics.Transaction.html">Analytics.Transaction</a>("12345abcde", 0.99m, "USD", null, null);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

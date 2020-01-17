@@ -1,0 +1,40 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Application.streamingAssetsPath</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Application.html">Application</a>.streamingAssetsPath</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static string <span class="sig-kw">streamingAssetsPath</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The path to the StreamingAssets folder (Read Only).</p></div><div class="subsection"><p>Use the <code class="mono">StreamingAssets</code> folder to store Assets. At run time, <a href="Application-streamingAssetsPath.html">Application.streamingAssetsPath</a> provides the path to the folder. Add the Asset name to <a href="Application-streamingAssetsPath.html">Application.streamingAssetsPath</a>. The built application can load the Asset at this address.<br /><br />It is not possible to access the <code class="mono">StreamingAssets</code> folder on WebGL and Android platforms. No file access is available on WebGL. Android uses a compressed <code class="mono">.apk</code> file. These platforms return a URL. Use the <a href="Networking.UnityWebRequest.html">UnityWebRequest</a> class to access the Assets.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.IO;
+using UnityEngine.Video;<br /><br />// <a href="Application.html">Application</a>-streamingAssetsPath example.
+//
+// Play a video and let the user stop/start it.
+// The video location is StreamingAssets. The video is
+// played on the camera background.<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private UnityEngine.Video.VideoPlayer videoPlayer;
+    private string status;<br /><br />    void Start()
+    {
+        <a href="GameObject.html">GameObject</a> cam = <a href="GameObject.Find.html">GameObject.Find</a>("Main <a href="Camera.html">Camera</a>");
+        videoPlayer = cam.AddComponent&lt;UnityEngine.Video.VideoPlayer&gt;();<br /><br />        // Obtain the location of the video clip.
+        videoPlayer.url = <a href="Path.Combine.html">Path.Combine</a>(<a href="Application-streamingAssetsPath.html">Application.streamingAssetsPath</a>, "SampleVideo_1280x720_5mb.mp4");<br /><br />        // Restart from beginning when done.
+        videoPlayer.isLooping = true;<br /><br />        // Do not show the video until the user needs it.
+        videoPlayer.Pause();<br /><br />        status = "Press to play";
+    }<br /><br />    void OnGUI()
+    {
+        <a href="GUIStyle.html">GUIStyle</a> buttonWidth = new <a href="GUIStyle.html">GUIStyle</a>(GUI.skin.GetStyle("button"));
+        buttonWidth.fontSize = 18 * (<a href="Screen-width.html">Screen.width</a> / 800);<br /><br />        if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(<a href="Screen-width.html">Screen.width</a> / 16, <a href="Screen-height.html">Screen.height</a> / 16, <a href="Screen-width.html">Screen.width</a> / 3, <a href="Screen-height.html">Screen.height</a> / 8), status, buttonWidth))
+        {
+            if (videoPlayer.isPlaying)
+            {
+                videoPlayer.Pause();
+                status = "Press to play";
+            }
+            else
+            {
+                videoPlayer.Play();
+                status = "Press to pause";
+            }
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

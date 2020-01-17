@@ -1,0 +1,25 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: PhysicsScene.Simulate</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="PhysicsScene.html">PhysicsScene</a>.Simulate</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">Simulate</span>(float <span class="sig-kw">step</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">step</td><td class="desc"></td><td class="desc1">The time to advance physics by.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>void</strong>
+        Whether the simulation was run or not.  Running the simulation during physics callbacks will always fail.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Simulate physics associated with this <a href="PhysicsScene.html">PhysicsScene</a>.</p></div><div class="subsection"><p>Calling this method causes the physics to be simulated over the specified <code class="varname">step</code> time.  Only the physics associated with this <a href="PhysicsScene.html">PhysicsScene</a> will be simulated.  If this <a href="PhysicsScene.html">PhysicsScene</a> is not the default physics Scene (see <a href="Physics-defaultPhysicsScene.html">Physics.defaultPhysicsScene</a>) then it is associated with a specific <a href="SceneManagement.Scene.html">Scene</a> and as such, only components added to that <a href="SceneManagement.Scene.html">Scene</a> are affected when running the simulation.<br /><br />If you pass framerate-dependent step values (such as <a href="Time-deltaTime.html">Time.deltaTime</a>) to the physics engine, your simulation will be less deterministic because of the unpredictable fluctuations in framerate that can arise. To achieve more deterministic physics results, you should pass a fixed step value to <a href="PhysicsScene.Simulate.html">PhysicsScene.Simulate</a> every time you call it.<br /><br />You can call <a href="PhysicsScene.Simulate.html">PhysicsScene.Simulate</a> in the Editor outside of play mode however caution is advised as this will cause the simulation to move GameObject that have a <a href="Rigidbody.html">Rigidbody</a> component attached.  When simulating in the Editor outside of play mode, a full simulation occurs for all physics components including <a href="Rigidbody.html">Rigidbody</a>, <a href="Collider.html">Collider</a> and <a href="Joint.html">Joint</a> including the generation of contacts however contacts are not reported via the standard script callbacks.  This is a safety measure to prevent allowing callbacks to delete objects in the Scene which would not be an undoable operation.
+Here is an example of a basic simulation that implements what's being done in the automatic simulation mode.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class BasicSimulation : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="PhysicsScene.html">PhysicsScene</a> physicsScene;
+    private float timer;<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        if (!physicsScene.IsValid())
+            return; // do nothing if the physics <a href="SceneManagement.Scene.html">Scene</a> is not valid.<br /><br />        timer += <a href="Time-deltaTime.html">Time.deltaTime</a>;<br /><br />        // Catch up with the game time.
+        // Advance the physics simulation in portions of <a href="Time-fixedDeltaTime.html">Time.fixedDeltaTime</a>
+        // Note that generally, we don't want to pass variable delta to Simulate as that leads to unstable results.
+        while (timer &gt;= <a href="Time-fixedDeltaTime.html">Time.fixedDeltaTime</a>)
+        {
+            timer -= <a href="Time-fixedDeltaTime.html">Time.fixedDeltaTime</a>;
+            physicsScene.Simulate(<a href="Time-fixedDeltaTime.html">Time.fixedDeltaTime</a>);
+        }<br /><br />        // Here you can access the transforms state right after the simulation, if needed...
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: HumanBone</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">HumanBone</h1><div class="clear"></div><p class="cl mb0 left mr10">struct in
+          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.AnimationModule.html" class="cl">UnityEngine.AnimationModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>The mapping between a bone in the model and the conceptual bone in the Mecanim human anatomy.</p></div><div class="subsection"><p>The names of the Mecanim human bone and the bone in the model are stored along with the limiting muscle values that constrain the bone's rotation during animation.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections.Generic;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        Dictionary&lt;string, string&gt; boneName = new System.Collections.Generic.Dictionary&lt;string, string&gt;();
+        boneName["Chest"] = "Bip001 Spine2";
+        boneName["Head"] = "Bip001 Head";
+        boneName["Hips"] = "Bip001 Pelvis";
+        boneName["LeftFoot"] = "Bip001 L Foot";
+        boneName["LeftHand"] = "Bip001 L <a href="XR.Hand.html">Hand</a>";
+        boneName["LeftLowerArm"] = "Bip001 L Forearm";
+        boneName["LeftLowerLeg"] = "Bip001 L Calf";
+        boneName["LeftShoulder"] = "Bip001 L Clavicle";
+        boneName["LeftUpperArm"] = "Bip001 L UpperArm";
+        boneName["LeftUpperLeg"] = "Bip001 L Thigh";
+        boneName["RightFoot"] = "Bip001 R Foot";
+        boneName["RightHand"] = "Bip001 R <a href="XR.Hand.html">Hand</a>";
+        boneName["RightLowerArm"] = "Bip001 R Forearm";
+        boneName["RightLowerLeg"] = "Bip001 R Calf";
+        boneName["RightShoulder"] = "Bip001 R Clavicle";
+        boneName["RightUpperArm"] = "Bip001 R UpperArm";
+        boneName["RightUpperLeg"] = "Bip001 R Thigh";
+        boneName["Spine"] = "Bip001 Spine1";
+        string[] humanName = <a href="HumanTrait.BoneName.html">HumanTrait.BoneName</a>;
+        <a href="HumanBone.html">HumanBone</a>[] humanBones = new <a href="HumanBone.html">HumanBone</a>[boneName.Count];
+        int j = 0;
+        int i = 0;
+        while (i &lt; humanName.Length)
+        {
+            if (boneName.ContainsKey(humanName[i]))
+            {
+                <a href="HumanBone.html">HumanBone</a> humanBone = new <a href="HumanBone.html">HumanBone</a>();
+                humanBone.humanName = humanName[i];
+                humanBone.boneName = boneName[humanName[i]];
+                humanBone.limit.useDefaultValues = true;
+                humanBones[j++] = humanBone;
+            }
+            i++;
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="HumanDescription.html">HumanDescription</a>, <a href="AvatarBuilder.html">AvatarBuilder</a>.</p></div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="HumanBone-boneName.html">boneName</a></td><td class="desc"></td><td class="desc1">The name of the bone to which the Mecanim human bone is mapped.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="HumanBone-humanName.html">humanName</a></td><td class="desc"></td><td class="desc1">The name of the Mecanim human bone to which the bone from the model is mapped.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="HumanBone-limit.html">limit</a></td><td class="desc"></td><td class="desc1">The rotation limits that define the muscle for this bone.</td></tr>
+    </table></div></div></div></div></body></html>

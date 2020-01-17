@@ -1,0 +1,21 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Cubemap.format</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Cubemap.html">Cubemap</a>.format</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Cubemap.html' title='Go to Cubemap Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="TextureFormat.html">TextureFormat</a> <span class="sig-kw">format</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The format of the pixel data in the texture (Read Only).</p></div><div class="subsection"><p>Use this to determine the format of the texture.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Print the format of a given cubemap.
+    public <a href="Cubemap.html">Cubemap</a> cubeMap;<br /><br />    void Start()
+    {
+        if (cubeMap != null)
+        {
+            <a href="Debug.Log.html">Debug.Log</a>(cubeMap.format);
+        }
+        else
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("No cubemap was assigned, please assing one on the inspector.");
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

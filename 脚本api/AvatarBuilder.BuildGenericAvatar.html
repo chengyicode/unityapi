@@ -1,0 +1,22 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AvatarBuilder.BuildGenericAvatar</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="AvatarBuilder.html">AvatarBuilder</a>.BuildGenericAvatar</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Avatar.html">Avatar</a> <span class="sig-kw">BuildGenericAvatar</span>(<a href="GameObject.html">GameObject</a> <span class="sig-kw">go</span>,
+string <span class="sig-kw">rootMotionTransformName</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">go</td><td class="desc"></td><td class="desc1">Root object of your transform hierarchy.</td></tr><tr><td class="name lbl">rootMotionTransformName</td><td class="desc"></td><td class="desc1">Transform name of the root motion transform. If empty no root motion is defined and you must take care of avatar movement yourself.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Create a new generic avatar.</p></div><div class="subsection"><p>All transforms under the root game object will be part of this generic avatar.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        <a href="GameObject.html">GameObject</a> activeGameObject = <a href="Selection-activeGameObject.html">Selection.activeGameObject</a>;<br /><br />        if (activeGameObject != null &amp;&amp;
+            activeGameObject.GetComponent&lt;<a href="Animator.html">Animator</a>&gt;() != null)
+        {
+            <a href="Avatar.html">Avatar</a> avatar = <a href="AvatarBuilder.BuildGenericAvatar.html">AvatarBuilder.BuildGenericAvatar</a>(activeGameObject, "");
+            avatar.name = "InsertYourName";
+            <a href="Debug.Log.html">Debug.Log</a>(avatar.isHuman ? "is human" : "is generic");<br /><br />            <a href="Animator.html">Animator</a> animator = activeGameObject.GetComponent&lt;<a href="Animator.html">Animator</a>&gt;() as <a href="Animator.html">Animator</a>;
+            animator.avatar = avatar;
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

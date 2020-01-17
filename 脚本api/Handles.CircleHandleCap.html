@@ -1,0 +1,52 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Handles.CircleHandleCap</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Handles.html">Handles</a>.CircleHandleCap</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">CircleHandleCap</span>(int <span class="sig-kw">controlID</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">position</span>,
+<a href="Quaternion.html">Quaternion</a> <span class="sig-kw">rotation</span>,
+float <span class="sig-kw">size</span>,
+<a href="EventType.html">EventType</a> <span class="sig-kw">eventType</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">controlID</td><td class="desc"></td><td class="desc1">The control ID for the handle.</td></tr><tr><td class="name lbl">position</td><td class="desc"></td><td class="desc1">The position of the handle in the space of <a href="Handles-matrix.html">Handles.matrix</a>.</td></tr><tr><td class="name lbl">rotation</td><td class="desc"></td><td class="desc1">The rotation of the handle in the space of <a href="Handles-matrix.html">Handles.matrix</a>.</td></tr><tr><td class="name lbl">size</td><td class="desc"></td><td class="desc1">The size of the handle in the space of <a href="Handles-matrix.html">Handles.matrix</a>. Use <a href="HandleUtility.GetHandleSize.html">HandleUtility.GetHandleSize</a> if you want a constant screen-space size.</td></tr><tr><td class="name lbl">eventType</td><td class="desc"></td><td class="desc1">Event type for the handle to act upon. By design it handles <a href="EventType.Layout.html">EventType.Layout</a> and <a href="EventType.Repaint.html">EventType.Repaint</a> events.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Draw a circle handle. Pass this into handle functions.</p></div><div class="subsection"><p>On <a href="EventType.Layout.html">EventType.Layout</a> event, calculates handle distance to mouse and calls <a href="HandleUtility.AddControl.html">HandleUtility.AddControl</a> accordingly.<br /><br />On <a href="EventType.Repaint.html">EventType.Repaint</a> event, draws the handle shape.<br /><br /><img src="../StaticFiles/ScriptRefImages/CircleCap.png" />
+<em>Circle Handle Cap in the Scene View.</em><br /><br />Add the following script to your Assets folder as CircleExample.cs and add the CircleExample component to an object in a Scene.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class CircleExample : <a href="MonoBehaviour.html">MonoBehaviour</a> {}
+</pre>
+      </div><div class="subsection"><p>Add the following script to Assets/Editor as CircleExampleEditor.cs and select the object with the CircleExample component.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;<br /><br />[<a href="CustomEditor.html">CustomEditor</a>(typeof(CircleExample))]
+public class CircleExampleEditor : <a href="Editor.html">Editor</a>
+{
+    float size = 1f;<br /><br />    protected virtual void OnSceneGUI()
+    {
+        if (Event.current.type == <a href="EventType.Repaint.html">EventType.Repaint</a>)
+        {
+            <a href="Transform.html">Transform</a> transform = ((CircleExample)target).transform;
+            <a href="Handles-color.html">Handles.color</a> = <a href="Handles-xAxisColor.html">Handles.xAxisColor</a>;
+            <a href="Handles.CircleHandleCap.html">Handles.CircleHandleCap</a>(
+                0,
+                transform.position + new <a href="Vector3.html">Vector3</a>(3f, 0f, 0f),
+                transform.rotation * <a href="Quaternion.LookRotation.html">Quaternion.LookRotation</a>(<a href="Vector3-right.html">Vector3.right</a>),
+                size,
+                <a href="EventType.Repaint.html">EventType.Repaint</a>
+            );
+            <a href="Handles-color.html">Handles.color</a> = <a href="Handles-yAxisColor.html">Handles.yAxisColor</a>;
+            <a href="Handles.CircleHandleCap.html">Handles.CircleHandleCap</a>(
+                0,
+                transform.position + new <a href="Vector3.html">Vector3</a>(0f, 3f, 0f),
+                transform.rotation * <a href="Quaternion.LookRotation.html">Quaternion.LookRotation</a>(<a href="Vector3-up.html">Vector3.up</a>),
+                size,
+                <a href="EventType.Repaint.html">EventType.Repaint</a>
+            );
+            <a href="Handles-color.html">Handles.color</a> = <a href="Handles-zAxisColor.html">Handles.zAxisColor</a>;
+            <a href="Handles.CircleHandleCap.html">Handles.CircleHandleCap</a>(
+                0,
+                transform.position + new <a href="Vector3.html">Vector3</a>(0f, 0f, 3f),
+                transform.rotation * <a href="Quaternion.LookRotation.html">Quaternion.LookRotation</a>(<a href="Vector3-forward.html">Vector3.forward</a>),
+                size,
+                <a href="EventType.Repaint.html">EventType.Repaint</a>
+            );
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

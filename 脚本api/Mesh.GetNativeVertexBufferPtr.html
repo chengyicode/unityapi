@@ -1,0 +1,24 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Mesh.GetNativeVertexBufferPtr</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Mesh.html">Mesh</a>.GetNativeVertexBufferPtr</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Mesh.html' title='Go to Mesh Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public IntPtr <span class="sig-kw">GetNativeVertexBufferPtr</span>(int <span class="sig-kw">index</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">bufferIndex</td><td class="desc"></td><td class="desc1">Which vertex buffer to get (some Meshes might have more than one). See <a href="Mesh-vertexBufferCount.html">vertexBufferCount</a>.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>IntPtr</strong>
+        Pointer to the underlying graphics API vertex buffer.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Retrieves a native (underlying graphics API) pointer to the vertex buffer.</p></div><div class="subsection"><p>Use this function to retrieve a pointer/handle corresponding to the mesh vertex buffer,
+as it is represented in the native graphics API. This can be used to enable
+Mesh manipulation from <a href="../Manual/NativePluginInterface.html">native code plugins</a>.<br /><br />Most Meshes contain only one vertex buffer, but some (such as skinned Meshes on some platforms)
+might contain more than one. Use <a href="Mesh-vertexBufferCount.html">vertexBufferCount</a> to query the vertex buffer count.<br /><br />The data layout of the vertex buffer generally depends on a number of factors, especially for
+Meshes that are compressed (see <strong>Player Settings</strong> &gt; <strong>Mesh Compression Settings</strong>) and marked as non-readable.
+For a simple case, generally the layout is as follows:<br /><br /><code class="mono">float3 position</code> (12 bytes) <br />
+<code class="mono">float3 normal</code> (12 bytes) <br />
+<code class="mono">byte4 color32</code> (4 bytes) or <code class="mono">float4 color</code> (16 bytes) <br />
+<code class="mono">float2|float3|float4 uv</code> (8, 12 or 16 bytes) <br />
+<code class="mono">float2|float3|float4 uv2</code> (8, 12 or 16 bytes) <br />
+<code class="mono">float2|float3|float4 uv3</code> (8, 12 or 16 bytes) <br />
+<code class="mono">float2|float3|float4 uv4</code> (8, 12 or 16 bytes) <br />
+<code class="mono">float4 tangent</code> (16 bytes)<br /><br />All vertex components are optional, for example a Mesh might contain only position + normal + one 2D texture coordinate.
+In that case, the vertex data size in the buffer would be 12+12+8=32 bytes.<br /><br />The type of data returned depends on the underlying graphics API:<br />
+- IDirect3DIndexBuffer9 on D3D9<br />
+- ID3D11Buffer on D3D11<br />
+- ID3D12Resource on D3D12<br />
+- buffer "name" (as GLuint) on OpenGL/ES<br />
+- id&lt;MTLBuffer&gt; on Metal<br /><br /><br />For most use cases (i.e. writing Mesh data from native code), you need to mark the mesh as "dynamic"
+(see <a href="Mesh.MarkDynamic.html">MarkDynamic</a>) before getting the native buffer pointer. Generally this switches the buffers to be CPU-writable.<br /><br />Note that calling this function when using multi-threaded rendering will synchronize with the rendering
+thread (a slow operation), so best practice is to set up necessary buffer pointers only at initialization time.<br /><br />See Also: <a href="../Manual/NativePluginInterface.html">Native code plugins</a>, <a href="Mesh.GetNativeIndexBufferPtr.html">GetNativeIndexBufferPtr</a>, <a href="Mesh-vertexBufferCount.html">vertexBufferCount</a>, <a href="Mesh-vertexCount.html">vertexCount</a>.</p></div></div></div></div></body></html>

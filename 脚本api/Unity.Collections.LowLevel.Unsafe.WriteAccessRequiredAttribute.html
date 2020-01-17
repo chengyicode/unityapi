@@ -1,0 +1,25 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: WriteAccessRequiredAttribute</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">WriteAccessRequiredAttribute</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          Unity.Collections.LowLevel.Unsafe</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.CoreModule.html" class="cl">UnityEngine.CoreModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Used in conjunction with the <a href="Unity.Collections.ReadOnlyAttribute.html">ReadOnlyAttribute</a>, WriteAccessRequiredAttribute lets you specify which struct method and property require write access to be invoked.</p></div><div class="subsection"><p>When adding the ReadOnly attribute on a native container, you are indicating that only operations that read data can be performed on this container. When this is the case, methods and properties on the container that modify the array cannot be used. The WriteAccessRequired attribute indicates which methods and properties cannot be used on a container annotated with ReadOnly.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using Unity.Collections.LowLevel.Unsafe;
+using Unity.Collections;
+using UnityEngine;<br /><br />[NativeContainer]
+public struct MyList&lt;T&gt; where T : struct
+{
+    public int <a href="UIElements.Length.html">Length</a> { get; private set; }<br /><br />    [WriteAccessRequired]
+    public void Grow(int capacity)
+    {
+        // ...
+    }
+}<br /><br />public class MyMonoBehaviour : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    [ReadOnly]
+    MyList&lt;int&gt; readOnlyList;<br /><br />    MyList&lt;int&gt; writableList = new MyList&lt;int&gt;();<br /><br />    public void OnUpdate()
+    {
+        writableList.Grow(10); // Ok
+        readOnlyList.Grow(10); // Illegal
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

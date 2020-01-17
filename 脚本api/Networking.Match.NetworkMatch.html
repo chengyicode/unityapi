@@ -1,0 +1,189 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: NetworkMatch</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Method group is Obsolete</b><br /></div><h1 class="heading inherit">NetworkMatch</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine.Networking.Match</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Inherits from:<a href="MonoBehaviour.html" class="cl">MonoBehaviour</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>A component for communicating with the Unity Multiplayer Matchmaking service.</p></div><div class="subsection"><p>This class aggregates all the supported JSON calls into functions that are
+        callable for games that wish to interact with the MatchMaker service.<br /><br />        The example code below shows how to use NetworkMatch API.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.Networking;
+using UnityEngine.Networking.Match;
+using System.Collections.Generic;<br /><br />public class SimpleMatchMaker : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        NetworkManager.singleton.StartMatchMaker();
+    }<br /><br />    //call this method to request a match to be created on the server
+    public void CreateInternetMatch(string matchName)
+    {
+        NetworkManager.singleton.matchMaker.CreateMatch(matchName, 4, true, "", "", "", 0, 0, OnInternetMatchCreate);
+    }<br /><br />    //this method is called when your request for creating a match is returned
+    private void OnInternetMatchCreate(bool success, string extendedInfo, MatchInfo matchInfo)
+    {
+        if (success)
+        {
+            //<a href="Debug.Log.html">Debug.Log</a>("Create match succeeded");<br /><br />            MatchInfo hostInfo = matchInfo;
+            NetworkServer.Listen(hostInfo, 9000);<br /><br />            NetworkManager.singleton.StartHost(hostInfo);
+        }
+        else
+        {
+            <a href="Debug.LogError.html">Debug.LogError</a>("Create match failed");
+        }
+    }<br /><br />    //call this method to find a match through the matchmaker
+    public void FindInternetMatch(string matchName)
+    {
+        NetworkManager.singleton.matchMaker.ListMatches(0, 10, matchName, true, 0, 0, OnInternetMatchList);
+    }<br /><br />    //this method is called when a list of matches is returned
+    private void OnInternetMatchList(bool success, string extendedInfo, List&lt;MatchInfoSnapshot&gt; matches)
+    {
+        if (success)
+        {
+            if (matches.Count != 0)
+            {
+                //<a href="Debug.Log.html">Debug.Log</a>("A list of matches was returned");<br /><br />                //join the last server (just in case there are two...)
+                NetworkManager.singleton.matchMaker.JoinMatch(matches[matches.Count - 1].networkId, "", "", "", 0, 0, OnJoinInternetMatch);
+            }
+            else
+            {
+                <a href="Debug.Log.html">Debug.Log</a>("No matches in requested room!");
+            }
+        }
+        else
+        {
+            <a href="Debug.LogError.html">Debug.LogError</a>("Couldn't connect to match maker");
+        }
+    }<br /><br />    //this method is called when your request to join a match is returned
+    private void OnJoinInternetMatch(bool success, string extendedInfo, MatchInfo matchInfo)
+    {
+        if (success)
+        {
+            //<a href="Debug.Log.html">Debug.Log</a>("Able to join a match");<br /><br />            MatchInfo hostInfo = matchInfo;
+            NetworkManager.singleton.StartClient(hostInfo);
+        }
+        else
+        {
+            <a href="Debug.LogError.html">Debug.LogError</a>("Join match failed");
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Inherited Members   继承成员</h2>
+      
+      <div class="subsection"><h2>Properties   属性</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Behaviour-enabled.html">enabled</a></td><td class="desc"></td><td class="desc1">Enabled Behaviours are Updated, disabled Behaviours are not.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Behaviour-isActiveAndEnabled.html">isActiveAndEnabled</a></td><td class="desc"></td><td class="desc1">Has the Behaviour had active and enabled called?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component-gameObject.html">gameObject</a></td><td class="desc"></td><td class="desc1">The game object this component is attached to. A component is always attached to a game object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component-tag.html">tag</a></td><td class="desc"></td><td class="desc1">The tag of this game object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component-transform.html">transform</a></td><td class="desc"></td><td class="desc1">The Transform attached to this GameObject.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour-runInEditMode.html">runInEditMode</a></td><td class="desc"></td><td class="desc1">Allow a specific instance of a MonoBehaviour to run in edit mode (only available in the editor).</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour-useGUILayout.html">useGUILayout</a></td><td class="desc"></td><td class="desc1">Disabling this lets you skip the GUI layout phase.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-hideFlags.html">hideFlags</a></td><td class="desc"></td><td class="desc1">Should the object be hidden, saved with the Scene or modifiable by the user?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-name.html">name</a></td><td class="desc"></td><td class="desc1">The name of the object.</td></tr>
+      </table></div>
+      
+      
+      
+      <div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.BroadcastMessage.html">BroadcastMessage</a></td><td class="desc"></td><td class="desc1">Calls the method named methodName on every MonoBehaviour in this game object or any of its children.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.CompareTag.html">CompareTag</a></td><td class="desc"></td><td class="desc1">Is this game object tagged with tag ?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponent.html">GetComponent</a></td><td class="desc"></td><td class="desc1">Returns the component of Type type if the game object has one attached, null if it doesn't.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponentInChildren.html">GetComponentInChildren</a></td><td class="desc"></td><td class="desc1">Returns the component of Type type in the GameObject or any of its children using depth first search.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponentInParent.html">GetComponentInParent</a></td><td class="desc"></td><td class="desc1">Returns the component of Type type in the GameObject or any of its parents.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponents.html">GetComponents</a></td><td class="desc"></td><td class="desc1">Returns all components of Type type in the GameObject.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponentsInChildren.html">GetComponentsInChildren</a></td><td class="desc"></td><td class="desc1">Returns all components of Type type in the GameObject or any of its children.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponentsInParent.html">GetComponentsInParent</a></td><td class="desc"></td><td class="desc1">Returns all components of Type type in the GameObject or any of its parents.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.SendMessage.html">SendMessage</a></td><td class="desc"></td><td class="desc1">Calls the method named methodName on every MonoBehaviour in this game object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.SendMessageUpwards.html">SendMessageUpwards</a></td><td class="desc"></td><td class="desc1">Calls the method named methodName on every MonoBehaviour in this game object and on every ancestor of the behaviour.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.TryGetComponent.html">TryGetComponent</a></td><td class="desc"></td><td class="desc1">Gets the component of the specified type, if it exists.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.CancelInvoke.html">CancelInvoke</a></td><td class="desc"></td><td class="desc1">Cancels all Invoke calls on this MonoBehaviour.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.Invoke.html">Invoke</a></td><td class="desc"></td><td class="desc1">Invokes the method methodName in time seconds.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.InvokeRepeating.html">InvokeRepeating</a></td><td class="desc"></td><td class="desc1">Invokes the method methodName in time seconds, then repeatedly every repeatRate seconds.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.IsInvoking.html">IsInvoking</a></td><td class="desc"></td><td class="desc1">Is any invoke on methodName pending?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.StartCoroutine.html">StartCoroutine</a></td><td class="desc"></td><td class="desc1">Starts a Coroutine.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.StopAllCoroutines.html">StopAllCoroutines</a></td><td class="desc"></td><td class="desc1">Stops all coroutines running on this behaviour.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.StopCoroutine.html">StopCoroutine</a></td><td class="desc"></td><td class="desc1">Stops the first coroutine named methodName, or the coroutine stored in routine running on this behaviour.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.GetInstanceID.html">GetInstanceID</a></td><td class="desc"></td><td class="desc1">Returns the instance id of the object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.ToString.html">ToString</a></td><td class="desc"></td><td class="desc1">Returns the name of the object.</td></tr>
+      </table></div>
+      
+      <div class="subsection"><h2>Static Methods   静态方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour-print.html">print</a></td><td class="desc"></td><td class="desc1">Logs message to the Unity Console (identical to Debug.Log).</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.Destroy.html">Destroy</a></td><td class="desc"></td><td class="desc1">Removes a GameObject, component or asset.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.DestroyImmediate.html">DestroyImmediate</a></td><td class="desc"></td><td class="desc1">Destroys the object obj immediately. You are strongly recommended to use Destroy instead.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.DontDestroyOnLoad.html">DontDestroyOnLoad</a></td><td class="desc"></td><td class="desc1">Do not destroy the target Object when loading a new Scene.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectOfType.html">FindObjectOfType</a></td><td class="desc"></td><td class="desc1">Returns the first active loaded object of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectsOfType.html">FindObjectsOfType</a></td><td class="desc"></td><td class="desc1">Returns a list of all active loaded objects of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.Instantiate.html">Instantiate</a></td><td class="desc"></td><td class="desc1">Clones the object original and returns the clone.</td></tr>
+      </table></div>
+      <div class="subsection"><h2>Operators   运算符</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_Object.html">bool</a></td><td class="desc"></td><td class="desc1">Does the object exist?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_ne.html">operator !=</a></td><td class="desc"></td><td class="desc1">Compares if two objects refer to a different object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_eq.html">operator ==</a></td><td class="desc"></td><td class="desc1">Compares two object references to see if they refer to the same object.</td></tr>
+      </table></div>
+      <div class="subsection"><h2>Messages   消息</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.Awake.html">Awake</a></td><td class="desc"></td><td class="desc1">Awake is called when the script instance is being loaded.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.FixedUpdate.html">FixedUpdate</a></td><td class="desc"></td><td class="desc1">Frame-rate independent MonoBehaviour.FixedUpdate message for physics calculations.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.LateUpdate.html">LateUpdate</a></td><td class="desc"></td><td class="desc1">LateUpdate is called every frame, if the Behaviour is enabled.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.OnAnimatorIK.html">OnAnimatorIK</a></td><td class="desc"></td><td class="desc1">Callback for setting up animation IK (inverse kinematics).</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.OnAnimatorMove.html">OnAnimatorMove</a></td><td class="desc"></td><td class="desc1">Callback for processing animation movements for modifying root motion.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.OnApplicationFocus.html">OnApplicationFocus</a></td><td class="desc"></td><td class="desc1">Sent to all GameObjects when the player gets or loses focus.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.OnApplicationPause.html">OnApplicationPause</a></td><td class="desc"></td><td class="desc1">Sent to all GameObjects when the application pauses.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.OnApplicationQuit.html">OnApplicationQuit</a></td><td class="desc"></td><td class="desc1">Sent to all game objects before the application quits.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.OnAudioFilterRead.html">OnAudioFilterRead</a></td><td class="desc"></td><td class="desc1">If OnAudioFilterRead is implemented, Unity will insert a custom filter into the audio DSP chain.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.OnBecameInvisible.html">OnBecameInvisible</a></td><td class="desc"></td><td class="desc1">OnBecameInvisible is called when the renderer is no longer visible by any camera.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.OnBecameVisible.html">OnBecameVisible</a></td><td class="desc"></td><td class="desc1">OnBecameVisible is called when the renderer became visible by any camera.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.OnCollisionEnter.html">OnCollisionEnter</a></td><td class="desc"></td><td class="desc1">OnCollisionEnter is called when this collider/rigidbody has begun touching another rigidbody/collider.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.OnCollisionEnter2D.html">OnCollisionEnter2D</a></td><td class="desc"></td><td class="desc1">Sent when an incoming collider makes contact with this object's collider (2D physics only).</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.OnCollisionExit.html">OnCollisionExit</a></td><td class="desc"></td><td class="desc1">OnCollisionExit is called when this collider/rigidbody has stopped touching another rigidbody/collider.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.OnCollisionExit2D.html">OnCollisionExit2D</a></td><td class="desc"></td><td class="desc1">Sent when a collider on another object stops touching this object's collider (2D physics only).</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.OnCollisionStay.html">OnCollisionStay</a></td><td class="desc"></td><td class="desc1">:ref::OnCollisionStay is called once per frame for every collider/rigidbody that is touching rigidbody/collider.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.OnCollisionStay2D.html">OnCollisionStay2D</a></td><td class="desc"></td><td class="desc1">Sent each frame where a collider on another object is touching this object's collider (2D physics only).</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.OnConnectedToServer.html">OnConnectedToServer</a></td><td class="desc"></td><td class="desc1">Called on the client when you have successfully connected to a server.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.OnControllerColliderHit.html">OnControllerColliderHit</a></td><td class="desc"></td><td class="desc1">OnControllerColliderHit is called when the controller hits a collider while performing a Move.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.OnDestroy.html">OnDestroy</a></td><td class="desc"></td><td class="desc1">Destroying the attached Behaviour will result in the game or Scene receiving OnDestroy.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.OnDisable.html">OnDisable</a></td><td class="desc"></td><td class="desc1">This function is called when the behaviour becomes disabled.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.OnDisconnectedFromServer.html">OnDisconnectedFromServer</a></td><td class="desc"></td><td class="desc1">Called on the client when the connection was lost or you disconnected from the server.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.OnDrawGizmos.html">OnDrawGizmos</a></td><td class="desc"></td><td class="desc1">Implement OnDrawGizmos if you want to draw gizmos that are also pickable and always drawn.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.OnDrawGizmosSelected.html">OnDrawGizmosSelected</a></td><td class="desc"></td><td class="desc1">Implement OnDrawGizmosSelected to draw a gizmo if the object is selected.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.OnEnable.html">OnEnable</a></td><td class="desc"></td><td class="desc1">This function is called when the object becomes enabled and active.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.OnFailedToConnect.html">OnFailedToConnect</a></td><td class="desc"></td><td class="desc1">Called on the client when a connection attempt fails for some reason.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.OnFailedToConnectToMasterServer.html">OnFailedToConnectToMasterServer</a></td><td class="desc"></td><td class="desc1">Called on clients or servers when there is a problem connecting to the MasterServer.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.OnGUI.html">OnGUI</a></td><td class="desc"></td><td class="desc1">OnGUI is called for rendering and handling GUI events.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.OnJointBreak.html">OnJointBreak</a></td><td class="desc"></td><td class="desc1">Called when a joint attached to the same game object broke.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.OnJointBreak2D.html">OnJointBreak2D</a></td><td class="desc"></td><td class="desc1">Called when a Joint2D attached to the same game object breaks.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.OnMasterServerEvent.html">OnMasterServerEvent</a></td><td class="desc"></td><td class="desc1">Called on clients or servers when reporting events from the MasterServer.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.OnMouseDown.html">OnMouseDown</a></td><td class="desc"></td><td class="desc1">OnMouseDown is called when the user has pressed the mouse button while over the GUIElement or Collider.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.OnMouseDrag.html">OnMouseDrag</a></td><td class="desc"></td><td class="desc1">OnMouseDrag is called when the user has clicked on a GUIElement or Collider and is still holding down the mouse.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.OnMouseEnter.html">OnMouseEnter</a></td><td class="desc"></td><td class="desc1">Called when the mouse enters the GUIElement or Collider.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.OnMouseExit.html">OnMouseExit</a></td><td class="desc"></td><td class="desc1">Called when the mouse is not any longer over the GUIElement or Collider.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.OnMouseOver.html">OnMouseOver</a></td><td class="desc"></td><td class="desc1">Called every frame while the mouse is over the GUIElement or Collider.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.OnMouseUp.html">OnMouseUp</a></td><td class="desc"></td><td class="desc1">OnMouseUp is called when the user has released the mouse button.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.OnMouseUpAsButton.html">OnMouseUpAsButton</a></td><td class="desc"></td><td class="desc1">OnMouseUpAsButton is only called when the mouse is released over the same GUIElement or Collider as it was pressed.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.OnNetworkInstantiate.html">OnNetworkInstantiate</a></td><td class="desc"></td><td class="desc1">Called on objects which have been network instantiated with Network.Instantiate.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.OnParticleCollision.html">OnParticleCollision</a></td><td class="desc"></td><td class="desc1">OnParticleCollision is called when a particle hits a Collider.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.OnParticleSystemStopped.html">OnParticleSystemStopped</a></td><td class="desc"></td><td class="desc1">OnParticleSystemStopped is called when all particles in the system have died, and no new particles will be born. New particles cease to be created either after Stop is called, or when the duration property of a non-looping system has been exceeded.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.OnParticleTrigger.html">OnParticleTrigger</a></td><td class="desc"></td><td class="desc1">OnParticleTrigger is called when any particles in a Particle System meet the conditions in the trigger module.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.OnPlayerConnected.html">OnPlayerConnected</a></td><td class="desc"></td><td class="desc1">Called on the server whenever a new player has successfully connected.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.OnPlayerDisconnected.html">OnPlayerDisconnected</a></td><td class="desc"></td><td class="desc1">Called on the server whenever a player disconnected from the server.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.OnPostRender.html">OnPostRender</a></td><td class="desc"></td><td class="desc1">OnPostRender is called after a camera finished rendering the Scene.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.OnPreCull.html">OnPreCull</a></td><td class="desc"></td><td class="desc1">OnPreCull is called before a camera culls the Scene.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.OnPreRender.html">OnPreRender</a></td><td class="desc"></td><td class="desc1">OnPreRender is called before a camera starts rendering the Scene.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.OnRenderImage.html">OnRenderImage</a></td><td class="desc"></td><td class="desc1">OnRenderImage is called after all rendering is complete to render image.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.OnRenderObject.html">OnRenderObject</a></td><td class="desc"></td><td class="desc1">OnRenderObject is called after camera has rendered the Scene.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.OnSerializeNetworkView.html">OnSerializeNetworkView</a></td><td class="desc"></td><td class="desc1">Used to customize synchronization of variables in a script watched by a network view.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.OnServerInitialized.html">OnServerInitialized</a></td><td class="desc"></td><td class="desc1">Called on the server whenever a Network.InitializeServer was invoked and has completed.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.OnTransformChildrenChanged.html">OnTransformChildrenChanged</a></td><td class="desc"></td><td class="desc1">This function is called when the list of children of the transform of the GameObject has changed.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.OnTransformParentChanged.html">OnTransformParentChanged</a></td><td class="desc"></td><td class="desc1">This function is called when the parent property of the transform of the GameObject has changed.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.OnTriggerEnter.html">OnTriggerEnter</a></td><td class="desc"></td><td class="desc1">OnTriggerEnter is called when the GameObject collides with another GameObject.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.OnTriggerEnter2D.html">OnTriggerEnter2D</a></td><td class="desc"></td><td class="desc1">Sent when another object enters a trigger collider attached to this object (2D physics only).</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.OnTriggerExit.html">OnTriggerExit</a></td><td class="desc"></td><td class="desc1">OnTriggerExit is called when the Collider other has stopped touching the trigger.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.OnTriggerExit2D.html">OnTriggerExit2D</a></td><td class="desc"></td><td class="desc1">Sent when another object leaves a trigger collider attached to this object (2D physics only).</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.OnTriggerStay.html">OnTriggerStay</a></td><td class="desc"></td><td class="desc1">OnTriggerStay is called once per physics update for every Collider other that is touching the trigger.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.OnTriggerStay2D.html">OnTriggerStay2D</a></td><td class="desc"></td><td class="desc1">Sent each frame where another object is within a trigger collider attached to this object (2D physics only).</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.OnValidate.html">OnValidate</a></td><td class="desc"></td><td class="desc1">This function is called when the script is loaded or a value is changed in the Inspector (Called in the editor only).</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.OnWillRenderObject.html">OnWillRenderObject</a></td><td class="desc"></td><td class="desc1">OnWillRenderObject is called for each camera if the object is visible and not a UI element.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.Reset.html">Reset</a></td><td class="desc"></td><td class="desc1">Reset to default values.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.Start.html">Start</a></td><td class="desc"></td><td class="desc1">Start is called on the frame when a script is enabled just before any of the Update methods are called the first time.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="MonoBehaviour.Update.html">Update</a></td><td class="desc"></td><td class="desc1">Update is called every frame, if the MonoBehaviour is enabled.</td></tr>
+      </table></div>
+      
+      
+    </div></div></div></div></body></html>

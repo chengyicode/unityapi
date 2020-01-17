@@ -1,0 +1,24 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Color.r</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Color.html">Color</a>.r</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public float <span class="sig-kw">r</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Red component of the color.</p></div><div class="subsection"><p>The value ranges from 0 to 1.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//Attach this script to a <a href="GameObject.html">GameObject</a> with a <a href="Renderer.html">Renderer</a> attached to it
+//Use the sliders in Play <a href="Scripting.GarbageCollector.Mode.html">Mode</a> to change the <a href="Color.html">Color</a> of the <a href="GameObject.html">GameObject</a>'s <a href="Material.html">Material</a><br /><br />using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="Renderer.html">Renderer</a> m_Renderer;
+    //Set the <a href="Color.html">Color</a> to white to start off
+    public <a href="Color.html">Color</a> color = <a href="Color-white.html">Color.white</a>;<br /><br />    void Start()
+    {
+        //Fetch the <a href="Renderer.html">Renderer</a> of the <a href="GameObject.html">GameObject</a>
+        m_Renderer = GetComponent&lt;<a href="Renderer.html">Renderer</a>&gt;();
+    }<br /><br />    private void OnGUI()
+    {
+        //Sliders for the red, green and blue components of the <a href="Color.html">Color</a>
+        color.r = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(0, 00, 100, 30), color.r, 0, 1);
+        color.g = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(0, 40, 100, 30), color.g, 0, 1);
+        color.b = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(0, 80, 100, 30), color.b, 0, 1);<br /><br />        //Set the <a href="Color.html">Color</a> of the <a href="GameObject.html">GameObject</a>'s <a href="Material.html">Material</a> to the new <a href="Color.html">Color</a>
+        m_Renderer.material.color = color;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

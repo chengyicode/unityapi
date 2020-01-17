@@ -1,0 +1,23 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Transform.SetParent</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Transform.html">Transform</a>.SetParent</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Transform.html' title='Go to Transform Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">SetParent</span>(<a href="Transform.html">Transform</a> <span class="sig-kw">p</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">SetParent</span>(<a href="Transform.html">Transform</a> <span class="sig-kw">parent</span>,
+bool <span class="sig-kw">worldPositionStays</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">parent</td><td class="desc"></td><td class="desc1">The parent Transform to use.</td></tr><tr><td class="name lbl">worldPositionStays</td><td class="desc"></td><td class="desc1">If true, the parent-relative position, scale and rotation are modified such that the object keeps the same world space position, rotation and scale as before.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Set the parent of the transform.</p></div><div class="subsection"><p>This method is the same as the <a href="Transform-parent.html">parent</a> property except that it also lets the <a href="Transform.html">Transform</a> keep its local orientation rather than its global orientation.
+This means for example, if the GameObject was previously next to its parent, setting <code class="varname">worldPositionStays</code> to false will move the GameObject to be positioned next to its new parent in the same way.<br /><br />The default value of <code class="mono">worldPositionStays</code> argument is true.<br /><br />The image below shows a child GameObject in its original position:<br /><br /><img src="../StaticFiles/ScriptRefImages/TransformSetParentOriginal.png" /><br /><br />Here’s how it looks after calling <code class="varname">SetParent</code> with <code class="varname">worldPositionStays</code> set to true:<br /><br /><img src="../StaticFiles/ScriptRefImages/TransformSetParentWorldTrue.png" /><br /><br />Here’s how it looks after calling <code class="varname">SetParent</code> with <code class="varname">worldPositionStays</code> set to false:<br /><br /><img src="../StaticFiles/ScriptRefImages/TransformSetParentWorldFalse.png" /><br /><br />Notice how the Child Sphere is in the same position but now relative to the New Parent Cube.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="GameObject.html">GameObject</a> child;<br /><br />    public <a href="Transform.html">Transform</a> parent;<br /><br />    //Invoked when a button is clicked.
+    public void Example(<a href="Transform.html">Transform</a> newParent)
+    {
+        // Sets "newParent" as the new parent of the child <a href="GameObject.html">GameObject</a>.
+        child.transform.SetParent(newParent);<br /><br />        // Same as above, except worldPositionStays set to false
+        // makes the child keep its local orientation rather than
+        // its global orientation.
+        child.transform.SetParent(newParent, false);<br /><br />        // Setting the parent to ‘null’ unparents the <a href="GameObject.html">GameObject</a>
+        // and turns child into a top-level object in the hierarchy
+        child.transform.SetParent(null);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

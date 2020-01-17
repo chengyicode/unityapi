@@ -1,0 +1,42 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Rigidbody.velocity</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Rigidbody.html">Rigidbody</a>.velocity</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Rigidbody.html' title='Go to Rigidbody Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Vector3.html">Vector3</a> <span class="sig-kw">velocity</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The velocity vector of the rigidbody. It represents the rate of change of Rigidbody position.</p></div><div class="subsection"><p>In most cases you should not modify the velocity directly, as this can result in unrealistic behaviour - use AddForce instead
+Do not set the velocity of an object every physics step, this will lead to unrealistic physics simulation.
+A typical usage is where you would change the velocity is when jumping in a first person shooter, because you want an immediate change in velocity.<br /><br /><strong>Note:</strong> The <a href="Rigidbody-velocity.html">velocity</a> is a world-space property.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />// The velocity along the y axis is 10 units per second.  If the <a href="GameObject.html">GameObject</a> starts at (0,0,0) then
+// it will reach (0,100,0) units after 10 seconds.<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Rigidbody.html">Rigidbody</a> rb;<br /><br />    private float time = 0.0f;
+    private bool isMoving = false;
+    private bool isJumpPressed = false;<br /><br />
+    void Start()
+    {
+        rb = GetComponent&lt;<a href="Rigidbody.html">Rigidbody</a>&gt;();
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        isJumpPressed = <a href="Input.GetButtonDown.html">Input.GetButtonDown</a>("Jump");
+    }<br /><br />    void <a href="Experimental.PlayerLoop.FixedUpdate.html">FixedUpdate</a>()
+    {
+        if (isJumpPressed)
+        {
+            // the cube is going to move upwards in 10 units per second
+            rb.velocity = new <a href="Vector3.html">Vector3</a>(0, 10, 0);
+            isMoving = true;
+            <a href="Debug.Log.html">Debug.Log</a>("jump");
+        }<br /><br />        if (isMoving)
+        {
+            // when the cube has moved for 10 seconds, report its position
+            time = time + <a href="Time-fixedDeltaTime.html">Time.fixedDeltaTime</a>;
+            if (time &gt; 10.0f)
+            {
+                <a href="Debug.Log.html">Debug.Log</a>(gameObject.transform.position.y + " : " + time);
+                time = 0.0f;
+            }
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>
+        <strong>Note:</strong> A velocity in Unity is units per second.  The units are often thought of as metres but could be millimetres or light years.  Unity velocity also has the speed in X, Y, and Z defining the direction.</p></div></div></div></div></body></html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: GUI.enabled</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="GUI.html">GUI</a>.enabled</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">enabled</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Is the GUI enabled?</p></div><div class="subsection"><p>Set this value to false to disable all GUI interaction. All controls will be draw semi-transparently, and will not respond to user input.<br /><br /><img src="../StaticFiles/ScriptRefImages/GUIEnabled.png" /><br />
+<em>Enabled / Disabled GUI controls.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // The value tracking whether or not the extended options can be toggled.
+    public bool allOptions = true;<br /><br />    // The 2 extended options.
+    public bool extended1 = true;
+    public bool extended2 = true;<br /><br />    void OnGUI()
+    {
+        // Make a toggle control that allows the user to edit some extended options.
+        allOptions = <a href="GUI.Toggle.html">GUI.Toggle</a>(new <a href="Rect.html">Rect</a>(0, 0, 150, 20), allOptions, "Edit All Options");<br /><br />        // Assign the value of it to the <a href="GUI-enabled.html">GUI.enabled</a> - if the checkbox above
+        // is disabled, so will these <a href="GUI.html">GUI</a> elements be
+        <a href="GUI-enabled.html">GUI.enabled</a> = allOptions;<br /><br />        // These two controls will only be enabled if the button above is on.
+        extended1 = <a href="GUI.Toggle.html">GUI.Toggle</a>(new <a href="Rect.html">Rect</a>(20, 20, 130, 20), extended1, "Extended Option 1");
+        extended2 = <a href="GUI.Toggle.html">GUI.Toggle</a>(new <a href="Rect.html">Rect</a>(20, 40, 130, 20), extended2, "Extended Option 2");<br /><br />        // We're done with the conditional block, so make <a href="GUI.html">GUI</a> code be enabled again.
+        <a href="GUI-enabled.html">GUI.enabled</a> = true;<br /><br />        // Make an Ok button
+        if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(0, 60, 150, 20), "Ok"))
+        {
+            print("user clicked ok");
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

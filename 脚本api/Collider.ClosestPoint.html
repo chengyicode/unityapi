@@ -1,0 +1,31 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Collider.ClosestPoint</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Collider.html">Collider</a>.ClosestPoint</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Vector3.html">Vector3</a> <span class="sig-kw">ClosestPoint</span>(<a href="Vector3.html">Vector3</a> <span class="sig-kw">position</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">position</td><td class="desc"></td><td class="desc1">Location you want to find the closest point to.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>Vector3</strong>
+        The point on the collider that is closest to the specified location.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Returns a point on the collider that is closest to a given location.</p></div><div class="subsection"><p>This method computes the point on the collider that is closest to a 3d location in the world.  In the example below <code class="varname">closestPoint</code> is the point on the collider and <code class="varname">location</code> is the point in 3d space.  If <code class="varname">location</code> is in the collider the <code class="varname">closestPoint</code> will be inside.<br /><br /><strong>Note:</strong> The difference from <a href="Collider.ClosestPointOnBounds.html">ClosestPointOnBounds</a> is that the returned point is actually on the collider instead of on the bounds of the collider.  (<a href="Collider-bounds.html">bounds</a> is a box that surrounds the collider.)</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />// Note that closestPoint is based on the surface of the collider
+// and location represents a point in 3d space.
+// The gizmos work in the editor.
+//
+// Create an origin-based cube and give it a scale of (1, 0.5, 3).
+// Change the <a href="BoxCollider.html">BoxCollider</a> size to (0.8, 1.2, 0.8).  This means that
+// collisions will happen when a <a href="GameObject.html">GameObject</a> gets close to the <a href="BoxCollider.html">BoxCollider</a>.
+// The ShowClosestPoint.cs script shows spheres that display the location
+// and closestPoint.  Try changing the <a href="BoxCollider.html">BoxCollider</a> size and the location
+// values.<br /><br />// Attach this to a <a href="GameObject.html">GameObject</a> that has a <a href="Collider.html">Collider</a> component attached
+public class ShowClosestPoint : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Vector3.html">Vector3</a> location;<br /><br />    public void OnDrawGizmos()
+    {
+        var collider = GetComponent&lt;<a href="Collider.html">Collider</a>&gt;();<br /><br />        if (!collider)
+        {
+            return; // nothing to do without a collider
+        }<br /><br />        <a href="Vector3.html">Vector3</a> closestPoint = collider.ClosestPoint(location);<br /><br />        <a href="Gizmos.DrawSphere.html">Gizmos.DrawSphere</a>(location, 0.1f);
+        <a href="Gizmos.DrawWireSphere.html">Gizmos.DrawWireSphere</a>(closestPoint, 0.1f);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>
+<strong>Note:</strong> Same as <a href="Physics.ClosestPoint.html">Physics.ClosestPoint</a> but doesn't allow passing a custom position and rotation. Instead, it uses the position of the collider.
+                    </p></div></div></div></div></body></html>

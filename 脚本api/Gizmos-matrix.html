@@ -1,0 +1,28 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Gizmos.matrix</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Gizmos.html">Gizmos</a>.matrix</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Matrix4x4.html">Matrix4x4</a> <span class="sig-kw">matrix</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Sets the <a href="Matrix4x4.html">Matrix4x4</a> that the Unity Editor uses to draw <a href="Gizmos.html">Gizmos</a>.</p></div><div class="subsection"><p>The <a href="Gizmos-matrix.html">Gizmos.matrix</a> stores the position, rotation and scale of the <a href="Gizmos.html">Gizmos</a>. By default, <a href="Gizmos.html">Gizmos</a> always uses world coordinates. The default <a href="Gizmos-matrix.html">Gizmos.matrix</a> transforms the world coordinates using a default identity matrix. <a href="Transform-localToWorldMatrix.html">Transform.localToWorldMatrix</a> changes local coordinate space to world space.<br /><br /><a href="GameObject.html">GameObject</a>s often use local coordinates. <a href="Gizmos-matrix.html">Gizmos.matrix</a> changes these local coordinates into world coordinates to allow <a href="Gizmos.html">Gizmos</a> to use them.  For example, a rotating object uses local coordinates.  A transfer into world coordinates happens using <a href="Gizmos-matrix.html">Gizmos.matrix</a>. To visualise the  object, use <a href="Gizmos.DrawCube.html">Gizmos.DrawCube</a>. See below.<br /><br />To use the example to draw a red, semi-transparent, cube gizmo:<br />
+1. Place this example script on a Cylinder at the origin.<br />
+2. Select the Cylinder in the Hierarchy and then click the <code class="varname">Play</code> button.<br />
+3. Next, click the <code class="varname">Scene</code> button. The gizmo should appear.<br />
+The cylinder will rotate in <code class="varname">Play</code> mode and be seen rotating in <code class="varname">Scene</code> view.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;<br /><br />// <a href="Gizmos-matrix.html">Gizmos.matrix</a> example<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Allow the speed of rotation to be changed.
+    public float rotationSpeed = 50.0f;<br /><br />    void OnDrawGizmosSelected()
+    {
+        <a href="Gizmos-color.html">Gizmos.color</a> = new <a href="Color.html">Color</a>(0.75f, 0.0f, 0.0f, 0.75f);<br /><br />        // Convert the local coordinate values into world
+        // coordinates for the matrix transformation.
+        <a href="Gizmos-matrix.html">Gizmos.matrix</a> = transform.localToWorldMatrix;
+        <a href="Gizmos.DrawCube.html">Gizmos.DrawCube</a>(<a href="Vector3-zero.html">Vector3.zero</a>, <a href="Vector3-one.html">Vector3.one</a>);
+    }<br /><br />    // Rotate the cylinder.
+    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        float zRot = rotationSpeed * <a href="Time-deltaTime.html">Time.deltaTime</a>;
+        transform.Rotate(0.0f, 0.0f, zRot);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

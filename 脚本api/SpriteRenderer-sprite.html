@@ -1,0 +1,32 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: SpriteRenderer.sprite</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="SpriteRenderer.html">SpriteRenderer</a>.sprite</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-SpriteRenderer.html' title='Go to SpriteRenderer Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Sprite.html">Sprite</a> <span class="sig-kw">sprite</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The Sprite to render.</p></div><div class="subsection"><p>
+          The <a href="SpriteRenderer.html">SpriteRenderer</a> component will render the assigned Sprite.sprite
+          sprite.  The rendered sprite can be changed by specifying a different
+          sprite in the <a href="SpriteRenderer-sprite.html">sprite</a> variable.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Example that loads sprites from a texture in the <a href="Resources.html">Resources</a> folder
+// and allows them to be chosen by the selection button.<br /><br />using UnityEngine;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private string spriteNames = "part_explosion";
+    private <a href="Rect.html">Rect</a> buttonPos;
+    private int spriteVersion = 0;
+    private <a href="SpriteRenderer.html">SpriteRenderer</a> spriteR;
+    private <a href="Sprite.html">Sprite</a>[] sprites;<br /><br />    void Start()
+    {
+        buttonPos = new <a href="Rect.html">Rect</a>(10.0f, 10.0f, 150.0f, 50.0f);
+        spriteR = gameObject.GetComponent&lt;<a href="SpriteRenderer.html">SpriteRenderer</a>&gt;();
+        sprites = <a href="Resources.LoadAll.html">Resources.LoadAll</a>&lt;<a href="Sprite.html">Sprite</a>&gt;(spriteNames);
+    }<br /><br />    void OnGUI()
+    {
+        if (<a href="GUI.Button.html">GUI.Button</a>(buttonPos, "Choose next sprite"))
+        {
+            spriteVersion += 1;
+            if (spriteVersion &gt; 3)
+                spriteVersion = 0;
+            spriteR.sprite = sprites[spriteVersion];
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

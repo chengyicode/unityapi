@@ -1,0 +1,98 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: IMGUI.Controls.TreeView.useScrollView</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="IMGUI.Controls.TreeView.html">TreeView</a>.useScrollView</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>protected bool <span class="sig-kw">useScrollView</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>When drawing the TreeView contents, will it be enclosed within a ScrollView?</p></div><div class="subsection"><p>When enabled, the contents of the TreeView is culled so that anything outside of the ScrollView is not drawn. If the TreeView is contained within an external ScrollView, such as the Inspector window, then disabling this allows the TreeView to use the external ScrollView to perform its culling.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class ExampleBehaviourScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // This is our example list.
+    public string[] exampleList;
+}
+</pre>
+      </div><div class="subsection"><p>To use the following script, add it to the Editor directory.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.Collections.Generic;
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEditor.IMGUI.Controls;
+using UnityEngine;<br /><br />// Simple <a href="IMGUI.Controls.TreeView.html">TreeView</a> that draws a single list property.
+class NewBehaviourScriptEditorTreeView : <a href="IMGUI.Controls.TreeView.html">TreeView</a>
+{
+    <a href="SerializedProperty.html">SerializedProperty</a> m_Property;<br /><br />    public NewBehaviourScriptEditorTreeView(<a href="SerializedProperty.html">SerializedProperty</a> property) :
+        base(new <a href="IMGUI.Controls.TreeViewState.html">TreeViewState</a>())
+    {
+        m_Property = property;
+        showBorder = true;
+        showAlternatingRowBackgrounds = true;
+        useScrollView = false; // We are using the Inspector <a href="UIElements.ScrollView.html">ScrollView</a><br /><br />        MultiColumnHeaderState.Column[] columns = new MultiColumnHeaderState.Column[2];
+        for (int i = 0; i &lt; columns.Length; ++i)
+        {
+            columns[i] = new MultiColumnHeaderState.Column();
+            columns[i].minWidth = 50;
+            columns[i].width = 100;
+            columns[i].headerTextAlignment = <a href="TextAlignment.Center.html">TextAlignment.Center</a>;
+            columns[i].canSort = false;
+        }
+        columns[0].headerContent = new <a href="GUIContent.html">GUIContent</a>("Index");
+        columns[1].headerContent = new <a href="GUIContent.html">GUIContent</a>("Value");
+        var multiColState = new <a href="IMGUI.Controls.MultiColumnHeaderState.html">MultiColumnHeaderState</a>(columns);
+        multiColumnHeader = new <a href="IMGUI.Controls.MultiColumnHeader.html">MultiColumnHeader</a>(multiColState);
+        multiColumnHeader.ResizeToFit();
+        Reload();
+    }<br /><br />    protected override <a href="IMGUI.Controls.TreeViewItem.html">TreeViewItem</a> BuildRoot()
+    {
+        int arraySize = m_Property.arraySize;<br /><br />        var root = new <a href="IMGUI.Controls.TreeViewItem.html">TreeViewItem</a> { id = -1, depth = -1, displayName = "Root" };
+        var allItems = new List&lt;<a href="IMGUI.Controls.TreeViewItem.html">TreeViewItem</a>&gt;(arraySize);
+        for (int i = 0; i &lt; arraySize; ++i)
+        {
+            var item = new <a href="IMGUI.Controls.TreeViewItem.html">TreeViewItem</a>(i, 0, i.ToString());
+            allItems.Add(item);
+        }<br /><br />        SetupParentsAndChildrenFromDepths(root, allItems);
+        return root;
+    }<br /><br />    protected override void RowGUI(<a href="IMGUI.Controls.TreeView.RowGUIArgs.html">RowGUIArgs</a> args)
+    {
+        var prop = m_Property.GetArrayElementAtIndex(args.item.id);
+        for (int i = 0; i &lt; args.GetNumVisibleColumns(); ++i)
+        {
+            int col = args.GetColumn(i);
+            var rect = args.GetCellRect(i);<br /><br />            if (col == 0)
+            {
+                <a href="GUI.Label.html">GUI.Label</a>(rect, args.row.ToString());
+            }
+            else
+            {
+                <a href="EditorGUI.PropertyField.html">EditorGUI.PropertyField</a>(rect, prop, <a href="GUIContent-none.html">GUIContent.none</a>);
+            }
+        }
+    }
+}<br /><br />// Shows how we can use a <a href="IMGUI.Controls.TreeView.html">TreeView</a> to draw a large list of items.
+[<a href="CustomEditor.html">CustomEditor</a>(typeof(ExampleBehaviourScript))]
+[<a href="CanEditMultipleObjects.html">CanEditMultipleObjects</a>]
+public class NewBehaviourScriptEditor : <a href="Editor.html">Editor</a>
+{
+    NewBehaviourScriptEditorTreeView m_TreeView;
+    <a href="SerializedProperty.html">SerializedProperty</a> m_Size;<br /><br />    void OnEnable()
+    {
+        var listProperty = serializedObject.FindProperty("exampleList");
+        m_Size = serializedObject.FindProperty("exampleList.Array.size");
+        m_TreeView = new NewBehaviourScriptEditorTreeView(listProperty);
+        <a href="Undo-undoRedoPerformed.html">Undo.undoRedoPerformed</a> += m_TreeView.Reload;
+    }<br /><br />    void OnDisable()
+    {
+        if (m_TreeView != null)
+            <a href="Undo-undoRedoPerformed.html">Undo.undoRedoPerformed</a> -= m_TreeView.Reload;
+    }<br /><br />    public override void OnInspectorGUI()
+    {
+        serializedObject.Update();
+        <a href="EditorGUI.BeginChangeCheck.html">EditorGUI.BeginChangeCheck</a>();
+        int newSize = <a href="EditorGUILayout.IntField.html">EditorGUILayout.IntField</a>("Size", m_Size.intValue);
+        if (<a href="EditorGUI.EndChangeCheck.html">EditorGUI.EndChangeCheck</a>())
+        {
+            m_Size.intValue = newSize;
+            m_TreeView.Reload();
+        }<br /><br />        var rect = <a href="EditorGUILayout.GetControlRect.html">EditorGUILayout.GetControlRect</a>(false, m_TreeView.totalHeight);
+        m_TreeView.OnGUI(rect);
+        serializedObject.ApplyModifiedProperties();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

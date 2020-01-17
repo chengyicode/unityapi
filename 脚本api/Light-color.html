@@ -1,0 +1,39 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Light.color</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Light.html">Light</a>.color</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Light.html' title='Go to Light Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Color.html">Color</a> <span class="sig-kw">color</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The color of the light.</p></div><div class="subsection"><p>To modify the light intensity you change light's color luminance.
+Lights always add illumination, so a light with a black color is the same
+as no light at all.
+See Also: <a href="../Manual/class-Light.html">Light component</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="Light.html">Light</a> lt;<br /><br />    void Start()
+    {
+        lt = GetComponent&lt;<a href="Light.html">Light</a>&gt;();
+    }<br /><br />    // Darken the light completely over a period of 2 seconds.
+    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        lt.color -= (<a href="Color-white.html">Color.white</a> / 2.0f) * <a href="Time-deltaTime.html">Time.deltaTime</a>;
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Another example:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Interpolate light color between two colors back and forth
+    float duration = 1.0f;
+    <a href="Color.html">Color</a> color0 = <a href="Color-red.html">Color.red</a>;
+    <a href="Color.html">Color</a> color1 = <a href="Color-blue.html">Color.blue</a>;<br /><br />    <a href="Light.html">Light</a> lt;<br /><br />    void Start()
+    {
+        lt = GetComponent&lt;<a href="Light.html">Light</a>&gt;();
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        // set light color
+        float t = <a href="Mathf.PingPong.html">Mathf.PingPong</a>(<a href="Time-time.html">Time.time</a>, duration) / duration;
+        lt.color = <a href="Color.Lerp.html">Color.Lerp</a>(color0, color1, t);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

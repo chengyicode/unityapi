@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link href="./css/stylesheet.css" rel="stylesheet" type="text/css">
+		<title></title>
+	</head>
+	<body>
+
+		<div class="content">
+			<div class="section">
+				<div class="mb20 clear" id="">
+					<h1 class="heading inherit">TileBase 瓦片基类</h1>
+
+					<div class="clear"></div>
+					<p class="cl mb0 left mr10">class in
+						UnityEngine.Tilemaps</p>
+					<p class="cl mb0 left mr10">/</p>
+					<p class="cl mb0 left">Inherits from:<a href="ScriptableObject.html" class="cl">ScriptableObject</a></p>
+					<p class="cl mb0 left mr10">/</p>
+					<p class="cl mb0 left">Implemented in:<a href="UnityEngine.TilemapModule.html" class="cl">UnityEngine.TilemapModule</a></p>
+
+					<div class="clear"></div>
+
+					<div class="clear"></div>
+					<p class="cl mb0 left mr10">
+						UnityEngine.Tilemaps中的类</p>
+					<p class="cl mb0 left mr10">/</p>
+					<p class="cl mb0 left">继承自：<a href="ScriptableObject.html" class="cl">ScriptableObject</a></p>
+					<p class="cl mb0 left mr10">/</p>
+					<p class="cl mb0 left">实现于：<a href="UnityEngine.TilemapModule.html" class="cl">UnityEngine.TilemapModule</a></p>
+
+					<div class="clear"></div>
+
+
+					<div class="suggest hide" style="display: none;"><a class="blue-btn sbtn">Suggest a change</a>
+						<div class="suggest-wrap rel hide">
+							<div class="loading hide">
+								<div></div>
+								<div></div>
+								<div></div>
+							</div>
+							<div class="suggest-success hide">
+								<h2>Success!</h2>
+								<p>Thank you for helping us improve the quality of Unity Documentation. Although we cannot accept all
+									submissions, we do read each suggested change from our users and will make updates where applicable.</p><a
+								 class="gray-btn sbtn close">Close</a>
+							</div>
+							<div class="suggest-failed hide">
+								<h2>Submission failed</h2>
+								<p>For some reason your suggested change could not be submitted. Please &lt;a&gt;try again&lt;/a&gt; in a few
+									minutes. And thank you for taking the time to help us improve the quality of Unity Documentation.</p><a class="gray-btn sbtn close">Close</a>
+							</div>
+							<div class="suggest-form clear"><label for="suggest_name">Your name</label><input id="suggest_name" type="text"><label
+								 for="suggest_email">Your email</label><input id="suggest_email" type="email"><label for="suggest_body" class="clear">Suggestion<span
+									 class="r">*</span></label><textarea id="suggest_body" class="req"></textarea><button id="suggest_submit"
+								 class="blue-btn mr10">Submit suggestion</button>
+								<p class="mb0"><a class="cancel left lh42 cn">Cancel</a></p>
+							</div>
+						</div>
+					</div><a href="" class="switch-link gray-btn sbtn left hide"></a>
+					<div class="clear"></div>
+				</div>
+				<div class="subsection">
+					<div class="signature">
+						<div class="signature-CS sig-block"><span style="color:red;"></span></div>
+					</div>
+				</div>
+				<div class="subsection">
+					<h2>Description 描述</h2>
+					<p>Base class for a tile in the <a href="Tilemaps.Tilemap.html">Tilemap</a>.</p>
+				</div>
+				<div class="subsection">
+					<p>Inherit from this to implement your custom tile to be placed in a <a href="Tilemaps.Tilemap.html">Tilemap</a>
+						component.</p>
+				</div>
+				<p><a href="Tilemaps.Tilemap.html">Tilemap中</a>瓦片的基类。</p>
+				<div class="subsection">
+					<p>从此继承以实现要放置在<a href="Tilemaps.Tilemap.html">Tilemap</a>组件中的自定义瓦片。</p>
+				</div>
+				<div class="subsection">
+					<h2>Public Methods 公共方法</h2>
+					<table class="list">
+						<tbody>
+							<tr>
+								<td class="descn">获取瓦片动画数据</td>
+								<td class="lbl"><a href="Tilemaps.TileBase.GetTileAnimationData.html">GetTileAnimationData</a></td>
+								<td class="desc">从脚本化的图块检索所有图块动画数据。</td>
+								<td class="desc1">Retrieves any tile animation data from the scripted tile.</td>
+							</tr>
+							<tr>
+								<td class="descn">获取瓦片数据</td>
+								<td class="lbl"><a href="Tilemaps.TileBase.GetTileData.html">GetTileData</a></td>
+								<td class="desc">从脚本化磁贴中检索所有磁贴渲染数据。</td>
+								<td class="desc1">Retrieves any tile rendering data from the scripted tile.</td>
+							</tr>
+							<tr>
+								<td class="descn">刷新瓦片</td>
+								<td class="lbl"><a href="Tilemaps.TileBase.RefreshTile.html">RefreshTile</a></td>
+								<td class="desc">刷新图块时将调用此方法。</td>
+								<td class="desc1">This method is called when the tile is refreshed.</td>
+							</tr>
+							<tr>
+								<td class="descn">启动</td>
+								<td class="lbl"><a href="Tilemaps.TileBase.StartUp.html">StartUp</a></td>
+								<td class="desc">在正在运行的场景的第一帧上调用启动。</td>
+								<td class="desc1">StartUp is called on the first frame of the running Scene.</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="subsection">
+					<h2>Inherited Members 继承成员</h2>
+
+					<div class="subsection">
+						<h2>Properties 属性</h2>
+						<table class="list">
+							<tbody>
+								<tr>
+									<td class="descn">隐藏标志</td>
+									<td class="lbl"><a href="Object-hideFlags.html">hideFlags</a></td>
+									<td class="desc">该对象是否应该隐藏，随场景保存或可由用户修改？</td>
+									<td class="desc1">Should the object be hidden, saved with the Scene or modifiable by the user?</td>
+								</tr>
+								<tr>
+									<td class="descn">名字</td>
+									<td class="lbl"><a href="Object-name.html">name</a></td>
+									<td class="desc">	对象的名称。</td>
+									<td class="desc1">The name of the object.</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+
+
+					<div class="subsection">
+						<h2>Public Methods 公共方法</h2>
+						<table class="list">
+							<tbody>
+								<tr>
+									<td class="descn">获取实例ID</td>
+									<td class="lbl"><a href="Object.GetInstanceID.html">GetInstanceID</a></td>
+									<td class="desc">	返回对象的实例ID。</td>
+									<td class="desc1">Returns the instance id of the object.</td>
+								</tr>
+								<tr>
+									<td class="descn">返回字符串</td>
+									<td class="lbl"><a href="Object.ToString.html">ToString</a></td>
+									<td class="desc">	返回对象的名称。</td>
+									<td class="desc1">Returns the name of the object.</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+					<div class="subsection">
+						<h2>Static Methods 静态方法</h2>
+						<table class="list">
+							<tbody>
+								<tr>
+									<td class="descn">销毁</td>
+									<td class="lbl"><a href="Object.Destroy.html">Destroy</a></td>
+									<td class="desc">	移除GameObject，组件或资源</td>
+									<td class="desc1">Removes a GameObject, component or asset.</td>
+								</tr>
+								<tr>
+									<td class="descn">立即销毁</td>
+									<td class="lbl"><a href="Object.DestroyImmediate.html">DestroyImmediate</a></td>
+									<td class="desc">立即销毁对象obj。强烈建议您改用销毁。</td>
+									<td class="desc1">Destroys the object obj immediately. You are strongly recommended to use Destroy instead.</td>
+								</tr>
+								<tr>
+									<td class="descn">不要在加载时销毁</td>
+									<td class="lbl"><a href="Object.DontDestroyOnLoad.html">DontDestroyOnLoad</a></td>
+									<td class="desc">	加载新场景时，请勿破坏目标对象。</td>
+									<td class="desc1">Do not destroy the target Object when loading a new Scene.</td>
+								</tr>
+								<tr>
+									<td class="descn">查找对象类型</td>
+									<td class="lbl"><a href="Object.FindObjectOfType.html">FindObjectOfType</a></td>
+									<td class="desc">	返回第一个Type类型的活动加载对象。</td>
+									<td class="desc1">Returns the first active loaded object of Type type.</td>
+								</tr>
+								<tr>
+									<td class="descn">查找对象类型</td>
+									<td class="lbl"><a href="Object.FindObjectsOfType.html">FindObjectsOfType</a></td>
+									<td class="desc">返回所有类型为Type的活动加载对象的列表。</td>
+									<td class="desc1">Returns a list of all active loaded objects of Type type.</td>
+								</tr>
+								<tr>
+									<td class="descn">实例化</td>
+									<td class="lbl"><a href="Object.Instantiate.html">Instantiate</a></td>
+									<td class="desc">	克隆对象原始对象并返回克隆。</td>
+									<td class="desc1">Clones the object original and returns the clone.</td>
+								</tr>
+								<tr>
+									<td class="descn">创建实例</td>
+									<td class="lbl"><a href="ScriptableObject.CreateInstance.html">CreateInstance</a></td>
+									<td class="desc">	创建可编写脚本的对象的实例。</td>
+									<td class="desc1">Creates an instance of a scriptable object.</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="subsection">
+						<h2>Operators 运算符</h2>
+						<table class="list">
+							<tbody>
+								<tr>
+									<td class="descn">布尔</td>
+									<td class="lbl"><a href="Object-operator_Object.html">bool</a></td>
+									<td class="desc">	该对象是否存在？</td>
+									<td class="desc1">Does the object exist?</td>
+								</tr>
+								<tr>
+									<td class="descn">运算符</td>
+									<td class="lbl"><a href="Object-operator_ne.html">operator !=</a></td>
+									<td class="desc">	比较两个对象是否引用了另一个对象。</td>
+									<td class="desc1">Compares if two objects refer to a different object.</td>
+								</tr>
+								<tr>
+									<td class="descn">运算符</td>
+									<td class="lbl"><a href="Object-operator_eq.html">operator ==</a></td>
+									<td class="desc">	比较两个对象引用以查看它们是否引用相同的对象。</td>
+									<td class="desc1">Compares two object references to see if they refer to the same object.</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="subsection">
+						<h2>Messages 消息</h2>
+						<table class="list">
+							<tbody>
+								<tr>
+									<td class="descn">唤醒时</td>
+									<td class="lbl"><a href="ScriptableObject.Awake.html">Awake</a></td>
+									<td class="desc">	启动可编写脚本的对脚本时将调用此函数。</td>
+									<td class="desc1">This function is called when the ScriptableObject script is started.</td>
+								</tr>
+								<tr>
+									<td class="descn">销毁时</td>
+									<td class="lbl"><a href="ScriptableObject.OnDestroy.html">OnDestroy</a></td>
+									<td class="desc">	当可编写脚本的对象将被销毁时，将调用此函数。</td>
+									<td class="desc1">This function is called when the scriptable object will be destroyed.</td>
+								</tr>
+								<tr>
+									<td class="descn">禁用时</td>
+									<td class="lbl"><a href="ScriptableObject.OnDisable.html">OnDisable</a></td>
+									<td class="desc">	当可编写脚本的对象超出范围时，将调用此函数。</td>
+									<td class="desc1">This function is called when the scriptable object goes out of scope.</td>
+								</tr>
+								<tr>
+									<td class="descn">启用时</td>
+									<td class="lbl"><a href="ScriptableObject.OnEnable.html">OnEnable</a></td>
+									<td class="desc">	加载对象时调用此函数。</td>
+									<td class="desc1">This function is called when the object is loaded.</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+	</body>
+</html>

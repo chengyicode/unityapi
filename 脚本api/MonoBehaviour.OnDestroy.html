@@ -1,0 +1,75 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: MonoBehaviour.OnDestroy()</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="MonoBehaviour.html">MonoBehaviour</a>.OnDestroy()</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Destroying the attached Behaviour will result in the game or Scene receiving <a href="MonoBehaviour.OnDestroy.html">OnDestroy</a>.</p></div><div class="subsection"><p>
+                    <a href="MonoBehaviour.OnDestroy.html">OnDestroy</a> occurs when a Scene or game ends.
+                    Stopping the Play mode when running from inside the Editor will end the application.  As this end happens
+                    an <a href="MonoBehaviour.OnDestroy.html">OnDestroy</a> will be executed.  Also, if a Scene is closed and a
+                    new Scene is loaded the <a href="MonoBehaviour.OnDestroy.html">OnDestroy</a> call will be made.<br />
+                    When built as a standalone application <a href="MonoBehaviour.OnDestroy.html">OnDestroy</a> calls are made
+                    when Scenes end.  A Scene ending typically means a new Scene is loaded.<br /><br /><strong>Note:</strong> <a href="MonoBehaviour.OnDestroy.html">OnDestroy</a> will only be called on game objects that have previously been active.<br />
+<br /><br /><br />In the following scripts the behaviour of <a href="MonoBehaviour.OnDestroy.html">OnDestroy</a> is shown.  When running inside
+<code class="varname">ExampleClass1</code> a button is available.  Using this button calls <a href="MonoBehaviour.OnDestroy.html">OnDestroy</a> and then
+switches to <code class="varname">ExampleClass2</code>.  Once <code class="varname">ExampleClass2</code> is active <a href="MonoBehaviour.OnDestroy.html">OnDestroy</a> will be used
+when the application is closed.  If <code class="varname">ExampleClass1</code> quits by closing the application it
+will call <a href="MonoBehaviour.OnDestroy.html">OnDestroy</a>.  (In the build and run of the application the console displays
+the text output to the Player Log.)
+                </p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;<br /><br />public class ExampleClass1 : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private float timePass = 0.0f;
+    private int updateCount = 0;<br /><br />    void Start()
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("Start1");
+    }<br /><br />    // code that generates a message every second
+    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        timePass += <a href="Time-deltaTime.html">Time.deltaTime</a>;<br /><br />        if (timePass &gt; 1.0f)
+        {
+            timePass = 0.0f;
+            <a href="Debug.Log.html">Debug.Log</a>("Update1: " + updateCount);
+            updateCount = updateCount + 1;
+        }
+    }<br /><br />    void OnGUI()
+    {
+        if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(10, 10, 250, 60), "Change to scene2"))
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("Exit1");
+            <a href="SceneManagement.SceneManager.LoadScene.html">SceneManager.LoadScene</a>(1);
+        }
+    }<br /><br />    // generate a message before the Start() function
+    void OnEnable()
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("OnEnable1");
+    }<br /><br />    // generate a message when the game shuts down or switches to another <a href="SceneManagement.Scene.html">Scene</a>
+    // or switched to ExampleClass2
+    void OnDestroy()
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("OnDestroy1");
+    }
+}
+</pre>
+      </div><div class="subsection"><p>
+                    ExampleClass2:
+                </p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.UI;<br /><br />public class ExampleClass2 : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("Start2");
+    }<br /><br />    void OnEnable()
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("OnEnable2");
+    }<br /><br />    // generate a message when the game shuts down
+    void OnDestroy()
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("OnDestroy2");
+    }
+}
+</pre>
+      </div><div class="subsection"><p>
+        <a href="MonoBehaviour.OnDestroy.html">OnDestroy</a> cannot be a co-routine.</p></div></div></div></div></body></html>

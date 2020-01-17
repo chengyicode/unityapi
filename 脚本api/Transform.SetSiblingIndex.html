@@ -1,0 +1,50 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Transform.SetSiblingIndex</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Transform.html">Transform</a>.SetSiblingIndex</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Transform.html' title='Go to Transform Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">SetSiblingIndex</span>(int <span class="sig-kw">index</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">index</td><td class="desc"></td><td class="desc1">Index to set.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Sets the sibling index.</p></div><div class="subsection"><p>Use this to change the sibling index of the GameObject. If a GameObject shares a parent with other GameObjects and are on the same level (i.e. they share the same direct parent), these GameObjects are known as siblings. The sibling index shows where each GameObject sits in this sibling hierarchy.<br /><br />Use SetSiblingIndex to change the GameObject’s place in this hierarchy. When the sibling index of a GameObject is changed, its order in the Hierarchy window will also change. This is useful if you are intentionally ordering the children of a GameObject such as when using Layout Group components.<br /><br />Layout Groups will also visually reorder the group by their index. To read more about Layout Groups see <a href="../Manual/comp-UIAutoLayout.html">AutoLayout</a>.
+To return the sibling index of a GameObject, see <a href="Transform.GetSiblingIndex.html">Transform.GetSiblingIndex</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//This script demonstrates how to return (GetSiblingIndex) and change (SetSiblingIndex) the sibling index of a <a href="GameObject.html">GameObject</a>.
+//Attach this script to the <a href="GameObject.html">GameObject</a> you would like to change the sibling index of.
+//To see this in action, make this <a href="GameObject.html">GameObject</a> the child of another <a href="GameObject.html">GameObject</a>, and create siblings for it.<br /><br />using UnityEngine;<br /><br />public class TransformGetSiblingIndex : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    //Use this to change the hierarchy of the <a href="GameObject.html">GameObject</a> siblings
+    int m_IndexNumber;<br /><br />    void Start()
+    {
+        //Initialise the Sibling Index to 0
+        m_IndexNumber = 0;
+        //Set the Sibling Index
+        transform.SetSiblingIndex(m_IndexNumber);
+        //Output the Sibling Index to the console
+        <a href="Debug.Log.html">Debug.Log</a>("Sibling Index : " + transform.GetSiblingIndex());
+    }<br /><br />    void OnGUI()
+    {
+        //Press this <a href="UIElements.Button.html">Button</a> to increase the sibling index number of the <a href="GameObject.html">GameObject</a>
+        if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(0, 0, 200, 40), "Add Index Number"))
+        {
+            //Make sure the index number doesn't exceed the Sibling Index by more than 1
+            if (m_IndexNumber &lt;= transform.GetSiblingIndex())
+            {
+                //Increase the Index Number
+                m_IndexNumber++;
+            }
+        }<br /><br />        //Press this <a href="UIElements.Button.html">Button</a> to decrease the sibling index number of the <a href="GameObject.html">GameObject</a>
+        if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(0, 40, 200, 40), "Minus Index Number"))
+        {
+            //Make sure the index number doesn't go below 0
+            if (m_IndexNumber &gt;= 1)
+            {
+                //Decrease the index number
+                m_IndexNumber--;
+            }
+        }
+        //Detect if any of the Buttons are being pressed
+        if (<a href="GUI-changed.html">GUI.changed</a>)
+        {
+            //<a href="Experimental.PlayerLoop.Update.html">Update</a> the Sibling Index of the <a href="GameObject.html">GameObject</a>
+            transform.SetSiblingIndex(m_IndexNumber);
+            <a href="Debug.Log.html">Debug.Log</a>("Sibling Index : " + transform.GetSiblingIndex());
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

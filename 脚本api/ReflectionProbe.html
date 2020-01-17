@@ -1,0 +1,101 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ReflectionProbe</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">ReflectionProbe</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Inherits from:<a href="Behaviour.html" class="cl">Behaviour</a></p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.CoreModule.html" class="cl">UnityEngine.CoreModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-ReflectionProbe.html' title='Go to ReflectionProbe Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>The reflection probe is used to capture the surroundings into a texture which is passed to the shaders and used for reflections.</p></div><div class="subsection"><p>The properties are an exact match for the values shown in the Inspector.<br /><br />This class is a script interface for a <a href="../Manual/class-ReflectionProbe.html">reflection probe</a> component.<br /><br />
+Reflection probes are usually just created in the Editor, but sometimes you might want to create a reflection probe from a script:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        // Make a game object
+        <a href="GameObject.html">GameObject</a> probeGameObject = new <a href="GameObject.html">GameObject</a>("The Reflection Probe");<br /><br />        // Add the reflection probe component
+        <a href="ReflectionProbe.html">ReflectionProbe</a> probeComponent = probeGameObject.AddComponent&lt;<a href="ReflectionProbe.html">ReflectionProbe</a>&gt;() as <a href="ReflectionProbe.html">ReflectionProbe</a>;<br /><br />        // Set texture resolution
+        probeComponent.resolution = 256;<br /><br />        // Reflection will be used for objects in 10 units around the position of the probe
+        probeComponent.size = new <a href="Vector3.html">Vector3</a>(10, 10, 10);<br /><br />        // Set the position (or any transform property)
+        probeGameObject.transform.position = new <a href="Vector3.html">Vector3</a>(0, 5, 0);
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Static Properties</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="ReflectionProbe-defaultTexture.html">defaultTexture</a></td><td class="desc"></td><td class="desc1">Texture which is used outside of all reflection probes (Read Only).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ReflectionProbe-defaultTextureHDRDecodeValues.html">defaultTextureHDRDecodeValues</a></td><td class="desc"></td><td class="desc1">HDR decode values of the default reflection probe texture.</td></tr>
+    </table></div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="ReflectionProbe-backgroundColor.html">backgroundColor</a></td><td class="desc"></td><td class="desc1">The color with which the texture of reflection probe will be cleared.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ReflectionProbe-bakedTexture.html">bakedTexture</a></td><td class="desc"></td><td class="desc1">Reference to the baked texture of the reflection probe's surrounding.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ReflectionProbe-blendDistance.html">blendDistance</a></td><td class="desc"></td><td class="desc1">Distance around probe used for blending (used in deferred probes).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ReflectionProbe-bounds.html">bounds</a></td><td class="desc"></td><td class="desc1">The bounding volume of the reflection probe (Read Only).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ReflectionProbe-boxProjection.html">boxProjection</a></td><td class="desc"></td><td class="desc1">Should this reflection probe use box projection?</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ReflectionProbe-center.html">center</a></td><td class="desc"></td><td class="desc1">The center of the box area in which reflections will be applied to the objects. Measured in the probes's local space.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ReflectionProbe-clearFlags.html">clearFlags</a></td><td class="desc"></td><td class="desc1">How the reflection probe clears the background.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ReflectionProbe-cullingMask.html">cullingMask</a></td><td class="desc"></td><td class="desc1">This is used to render parts of the reflecion probe's surrounding selectively.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ReflectionProbe-customBakedTexture.html">customBakedTexture</a></td><td class="desc"></td><td class="desc1">Reference to the baked texture of the reflection probe's surrounding. Use this to assign custom reflection texture.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ReflectionProbe-farClipPlane.html">farClipPlane</a></td><td class="desc"></td><td class="desc1">The far clipping plane distance when rendering the probe.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ReflectionProbe-hdr.html">hdr</a></td><td class="desc"></td><td class="desc1">Should this reflection probe use HDR rendering?</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ReflectionProbe-importance.html">importance</a></td><td class="desc"></td><td class="desc1">Reflection probe importance.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ReflectionProbe-intensity.html">intensity</a></td><td class="desc"></td><td class="desc1">The intensity modifier that is applied to the texture of reflection probe in the shader.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ReflectionProbe-mode.html">mode</a></td><td class="desc"></td><td class="desc1">Should reflection probe texture be generated in the Editor (ReflectionProbeMode.Baked) or should probe use custom specified texure (ReflectionProbeMode.Custom)?</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ReflectionProbe-nearClipPlane.html">nearClipPlane</a></td><td class="desc"></td><td class="desc1">The near clipping plane distance when rendering the probe.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ReflectionProbe-realtimeTexture.html">realtimeTexture</a></td><td class="desc"></td><td class="desc1">Reference to the realtime texture of the reflection probe's surroundings. Use this to assign a RenderTexture to use for realtime reflection.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ReflectionProbe-refreshMode.html">refreshMode</a></td><td class="desc"></td><td class="desc1">Sets the way the probe will refresh.See Also: ReflectionProbeRefreshMode.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ReflectionProbe-resolution.html">resolution</a></td><td class="desc"></td><td class="desc1">Resolution of the underlying reflection texture in pixels.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ReflectionProbe-shadowDistance.html">shadowDistance</a></td><td class="desc"></td><td class="desc1">Shadow drawing distance when rendering the probe.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ReflectionProbe-size.html">size</a></td><td class="desc"></td><td class="desc1">The size of the box area in which reflections will be applied to the objects. Measured in the probes's local space.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ReflectionProbe-texture.html">texture</a></td><td class="desc"></td><td class="desc1">Texture which is passed to the shader of the objects in the vicinity of the reflection probe (Read Only).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ReflectionProbe-textureHDRDecodeValues.html">textureHDRDecodeValues</a></td><td class="desc"></td><td class="desc1">HDR decode values of the reflection probe texture.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ReflectionProbe-timeSlicingMode.html">timeSlicingMode</a></td><td class="desc"></td><td class="desc1">Sets this probe time-slicing modeSee Also: ReflectionProbeTimeSlicingMode.</td></tr>
+    </table></div><div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="ReflectionProbe.IsFinishedRendering.html">IsFinishedRendering</a></td><td class="desc"></td><td class="desc1">Checks if a probe has finished a time-sliced render.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ReflectionProbe.RenderProbe.html">RenderProbe</a></td><td class="desc"></td><td class="desc1">Refreshes the probe's cubemap.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ReflectionProbe.Reset.html">Reset</a></td><td class="desc"></td><td class="desc1">Revert all ReflectionProbe parameters to default.</td></tr>
+    </table></div><div class="subsection"><h2>Static Methods   静态方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="ReflectionProbe.BlendCubemap.html">BlendCubemap</a></td><td class="desc"></td><td class="desc1">Utility method to blend 2 cubemaps into a target render texture.</td></tr>
+    </table></div><div class="subsection"><h2>Events</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="ReflectionProbe-defaultReflectionSet.html">defaultReflectionSet</a></td><td class="desc"></td><td class="desc1">Adds a delegate to get notifications when the default specular Cubemap is changed.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ReflectionProbe-reflectionProbeChanged.html">reflectionProbeChanged</a></td><td class="desc"></td><td class="desc1">Adds a delegate to get notifications when a Reflection Probe is added to a Scene or removed from a Scene.</td></tr>
+    </table></div><div class="subsection"><h2>Inherited Members   继承成员</h2>
+      
+      <div class="subsection"><h2>Properties   属性</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Behaviour-enabled.html">enabled</a></td><td class="desc"></td><td class="desc1">Enabled Behaviours are Updated, disabled Behaviours are not.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Behaviour-isActiveAndEnabled.html">isActiveAndEnabled</a></td><td class="desc"></td><td class="desc1">Has the Behaviour had active and enabled called?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component-gameObject.html">gameObject</a></td><td class="desc"></td><td class="desc1">The game object this component is attached to. A component is always attached to a game object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component-tag.html">tag</a></td><td class="desc"></td><td class="desc1">The tag of this game object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component-transform.html">transform</a></td><td class="desc"></td><td class="desc1">The Transform attached to this GameObject.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-hideFlags.html">hideFlags</a></td><td class="desc"></td><td class="desc1">Should the object be hidden, saved with the Scene or modifiable by the user?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-name.html">name</a></td><td class="desc"></td><td class="desc1">The name of the object.</td></tr>
+      </table></div>
+      
+      
+      
+      <div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.BroadcastMessage.html">BroadcastMessage</a></td><td class="desc"></td><td class="desc1">Calls the method named methodName on every MonoBehaviour in this game object or any of its children.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.CompareTag.html">CompareTag</a></td><td class="desc"></td><td class="desc1">Is this game object tagged with tag ?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponent.html">GetComponent</a></td><td class="desc"></td><td class="desc1">Returns the component of Type type if the game object has one attached, null if it doesn't.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponentInChildren.html">GetComponentInChildren</a></td><td class="desc"></td><td class="desc1">Returns the component of Type type in the GameObject or any of its children using depth first search.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponentInParent.html">GetComponentInParent</a></td><td class="desc"></td><td class="desc1">Returns the component of Type type in the GameObject or any of its parents.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponents.html">GetComponents</a></td><td class="desc"></td><td class="desc1">Returns all components of Type type in the GameObject.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponentsInChildren.html">GetComponentsInChildren</a></td><td class="desc"></td><td class="desc1">Returns all components of Type type in the GameObject or any of its children.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponentsInParent.html">GetComponentsInParent</a></td><td class="desc"></td><td class="desc1">Returns all components of Type type in the GameObject or any of its parents.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.SendMessage.html">SendMessage</a></td><td class="desc"></td><td class="desc1">Calls the method named methodName on every MonoBehaviour in this game object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.SendMessageUpwards.html">SendMessageUpwards</a></td><td class="desc"></td><td class="desc1">Calls the method named methodName on every MonoBehaviour in this game object and on every ancestor of the behaviour.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.TryGetComponent.html">TryGetComponent</a></td><td class="desc"></td><td class="desc1">Gets the component of the specified type, if it exists.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.GetInstanceID.html">GetInstanceID</a></td><td class="desc"></td><td class="desc1">Returns the instance id of the object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.ToString.html">ToString</a></td><td class="desc"></td><td class="desc1">Returns the name of the object.</td></tr>
+      </table></div>
+      
+      <div class="subsection"><h2>Static Methods   静态方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.Destroy.html">Destroy</a></td><td class="desc"></td><td class="desc1">Removes a GameObject, component or asset.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.DestroyImmediate.html">DestroyImmediate</a></td><td class="desc"></td><td class="desc1">Destroys the object obj immediately. You are strongly recommended to use Destroy instead.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.DontDestroyOnLoad.html">DontDestroyOnLoad</a></td><td class="desc"></td><td class="desc1">Do not destroy the target Object when loading a new Scene.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectOfType.html">FindObjectOfType</a></td><td class="desc"></td><td class="desc1">Returns the first active loaded object of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectsOfType.html">FindObjectsOfType</a></td><td class="desc"></td><td class="desc1">Returns a list of all active loaded objects of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.Instantiate.html">Instantiate</a></td><td class="desc"></td><td class="desc1">Clones the object original and returns the clone.</td></tr>
+      </table></div>
+      <div class="subsection"><h2>Operators   运算符</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_Object.html">bool</a></td><td class="desc"></td><td class="desc1">Does the object exist?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_ne.html">operator !=</a></td><td class="desc"></td><td class="desc1">Compares if two objects refer to a different object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_eq.html">operator ==</a></td><td class="desc"></td><td class="desc1">Compares two object references to see if they refer to the same object.</td></tr>
+      </table></div>
+      
+      
+      
+    </div></div></div></div></body></html>

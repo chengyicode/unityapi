@@ -1,0 +1,39 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Animator.SetInteger</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Animator.html">Animator</a>.SetInteger</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Animator.html' title='Go to Animator Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">SetInteger</span>(string <span class="sig-kw">name</span>,
+int <span class="sig-kw">value</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">SetInteger</span>(int <span class="sig-kw">id</span>,
+int <span class="sig-kw">value</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">name</td><td class="desc"></td><td class="desc1">The parameter name.</td></tr><tr><td class="name lbl">id</td><td class="desc"></td><td class="desc1">The parameter ID.</td></tr><tr><td class="name lbl">value</td><td class="desc"></td><td class="desc1">The new parameter value.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Sets the value of the given integer parameter.</p></div><div class="subsection"><p>Use this as a way to trigger transitions between Animator states. One way of using Integers instead of Floats or Booleans is to use it for something that has multiple states, for example directions (turn left, turn right etc.). Each direction could correspond to a number instead of having multiple Booleans that have to be reset each time.<br /><br />See documentation on <a href="../Manual/Animator.html">Animation</a> for more information on setting up Animators.<br /><br />Note: You can identify the parameter by name or by ID number, but the name or ID number must be the same as the parameter you want to change in the Animator.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//This script sends messages to an <a href="Animator.html">Animator</a> component to tell it to make transitions based on an integer named “<a href="VersionControl.Asset.States.html">States</a>”. You change and send this integer to the <a href="Animator.html">Animator</a> by pressing the space and arrow keys.<br /><br />//In order for this script to work, you have to set up your <a href="Animator.html">Animator</a> Controller so the script can interact with it.
+//Create a new <a href="Animator.html">Animator</a> Controller if you do not already have one you want to use. To do this, click on the <a href="GameObject.html">GameObject</a> you want to animate and go to its Inspector window. Click the <strong>Add Component</strong> button and go to <strong>Miscellaneous</strong>&gt;<strong>Animator</strong>).
+//Double click the <a href="Animator.html">Animator</a> to see the <a href="Animator.html">Animator</a> Controller window.  Open the <strong>Parameters</strong> tab and click the plus icon to add a new parameter. Choose Int from the dropdown. Name the new Integer (for this script, call it “<a href="VersionControl.Asset.States.html">States</a>”).
+//Create a few animation states (right click the grid and choose <strong>Create State</strong>&gt;<strong>Empty</strong>) and choose an <a href="Animation.html">Animation</a> for each in the <strong>Motion</strong> field.
+//Next create transitions between each of the states (right click the state, choose <strong>Make Transition</strong> and click on the state you want it to transition to).
+//Finally, click on one of the arrows to bring up its Inspector. Click the + icon under the Conditions section and choose the parameter you made (“<a href="VersionControl.Asset.States.html">States</a>”). Change <strong>Greater</strong> to <strong>Equals</strong> and choose a number that you want to represent this state. Do the same with any other states.
+//You may want to set up transitions back to the first animation state so that when the button is let go, it will return to the first state. You may also want to uncheck the <strong>Has Exit Time</strong> box for each transition. Otherwise transitions will wait for an animation to finish before proceeding.<br /><br />using UnityEngine;<br /><br />public class AnimatorSetIntExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="Animator.html">Animator</a> m_Animator;<br /><br />    void Start()
+    {
+        //Fetch the <a href="Animator.html">Animator</a> from the <a href="GameObject.html">GameObject</a> you attached the script to
+        m_Animator = GetComponent&lt;<a href="Animator.html">Animator</a>&gt;();
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        //Check if the horizontal buttons (A,D, left and right arrow keys) are being pressed
+        if (<a href="Input.GetAxis.html">Input.GetAxis</a>("Horizontal") &gt; 0 || <a href="Input.GetAxis.html">Input.GetAxis</a>("Horizontal") &lt; 0)
+            //Set the integer named "<a href="VersionControl.Asset.States.html">States</a>" in your <a href="Animator.html">Animator</a> to 1. If the <a href="Animator.html">Animator</a> is set up properly, this should trigger an animation.
+            m_Animator.SetInteger("<a href="VersionControl.Asset.States.html">States</a>", 1);
+        //Press the down arrow key to start another animation transition
+        else if (<a href="Input.GetKey.html">Input.GetKey</a>(<a href="KeyCode.DownArrow.html">KeyCode.DownArrow</a>))
+            //Set the "<a href="VersionControl.Asset.States.html">States</a>" integer to 2. This triggers the animation that should start when "<a href="VersionControl.Asset.States.html">States</a>" is equal to 2
+            m_Animator.SetInteger("<a href="VersionControl.Asset.States.html">States</a>", 2);
+        //Press the space key to set the "<a href="VersionControl.Asset.States.html">States</a> integer to 3
+        else if (<a href="Input.GetKey.html">Input.GetKey</a>(<a href="KeyCode.Space.html">KeyCode.Space</a>))
+            m_Animator.SetInteger("<a href="VersionControl.Asset.States.html">States</a>", 3);
+        else
+            //If all the other keys are let go, set the "<a href="VersionControl.Asset.States.html">States</a>" integer to 0.
+            m_Animator.SetInteger("<a href="VersionControl.Asset.States.html">States</a>", 0);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

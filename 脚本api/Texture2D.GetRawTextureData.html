@@ -1,0 +1,50 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Texture2D.GetRawTextureData</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Texture2D.html">Texture2D</a>.GetRawTextureData</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public NativeArray&lt;T&gt; <span class="sig-kw">GetRawTextureData</span>();
+    </div></div></div><div class="subsection"><h2>Returns</h2><p><strong>NativeArray&lt;T&gt;</strong>
+        Raw texture data view.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Get raw data from a texture for reading or writing.</p></div><div class="subsection"><p>This function returns a direct "view" into the texture pixel data as a <code class="mono">Unity.Collections.NativeArray</code>.<br /><br />The data will be whole texture according to its width, height, data <a href="Texture2D-format.html">format</a> and <a href="Texture2D-mipmapCount.html">mipmapCount</a>. Mipmaps are laid out in memory starting from largest, with smaller mip level data immediately following. For example, a 16x8 texture of <a href="TextureFormat.RGBA32.html">RGBA32</a> format with no mipmaps will result in a 512-byte array (16x8x4), or a 128-element array if <a href="Color32.html">Color32</a> is used as a type.<br /><br />You can read from and write to the returned array. If you write to it, you must call the <a href="Texture2D.Apply.html">Apply</a> method to upload the texture to the GPU.<br /><br />GetRawTextureData does not allocate memory; the returned <code class="mono">NativeArray</code> directly points to the texture system memory data buffer.<br /><br />Note: The returned array can become invalid (i.e. it no longer points to valid memory) if modifications or uploads happen to the texture after you call this method. Therefore the recommended way to use this method is to get the data, and use or modify it immediately. You should not store the returned array for later use.<br /><br />See Also: <a href="Texture2D.Apply.html">Apply</a>, <a href="Texture2D.SetPixels.html">SetPixels</a>, <a href="Texture2D.SetPixels32.html">SetPixels32</a>, <a href="Texture2D.LoadRawTextureData.html">LoadRawTextureData</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        var texture = new <a href="Texture2D.html">Texture2D</a>(128, 128, <a href="TextureFormat.RGBA32.html">TextureFormat.RGBA32</a>, false);
+        GetComponent&lt;<a href="Renderer.html">Renderer</a>&gt;().material.mainTexture = texture;<br /><br />        // RGBA32 texture format data layout exactly matches <a href="Color32.html">Color32</a> struct
+        var data = texture.GetRawTextureData&lt;<a href="Color32.html">Color32</a>&gt;();<br /><br />        // fill texture data with a simple pattern
+        <a href="Color32.html">Color32</a> orange = new <a href="Color32.html">Color32</a>(255, 165, 0, 255);
+        <a href="Color32.html">Color32</a> teal = new <a href="Color32.html">Color32</a>(0, 128, 128, 255);
+        int index = 0;
+        for (int y = 0; y &lt; texture.height; y++)
+        {
+            for (int x = 0; x &lt; texture.width; x++)
+            {
+                data[index++] = ((x &amp; y) == 0 ? orange : teal);
+            }
+        }
+        // upload to the GPU
+        texture.Apply();
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public byte[] <span class="sig-kw">GetRawTextureData</span>();
+    </div></div></div><div class="subsection"><h2>Returns</h2><p><strong>byte[]</strong>
+        Raw texture data as a byte array.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Get raw data from a texture.</p></div><div class="subsection"><p>This function returns the raw texture data as a byte array, which you can then use with <a href="Texture2D.LoadRawTextureData.html">Texture2D.LoadRawTextureData</a>. This allows you to serialize and load textures of any format (including compressed ones), and to load them back into a texture later.<br /><br />Note that this function returns Unity's system memory copy of the texture data, so for it to work the texture must have the <a href="TextureImporter-isReadable.html">read/write enabled</a> flag set in the <a href="../Manual/Textures.html">texture import settings</a>.<br /><br />Also note that the system memory copy might not match what is in the GPU texture data at the moment. For example,
+after calling <a href="Texture2D.SetPixels.html">SetPixels</a> the system memory copy is already modified, but the GPU copy will only match after calling
+<a href="Texture2D.Apply.html">Apply</a>(). Some cases of <a href="Graphics.CopyTexture.html">Graphics.CopyTexture</a> might be copying only the GPU texture side (e.g. copying from a
+RenderTexture into a Texture2D), and this will not be reflected in GetRawTextureData contents.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />class CopyTexture : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // the source texture.
+    <a href="Texture2D.html">Texture2D</a> tex;<br /><br />    void Start()
+    {
+        // Create a copy of the texture by reading and applying the raw texture data.
+        <a href="Texture2D.html">Texture2D</a> texCopy = new <a href="Texture2D.html">Texture2D</a>(tex.width, tex.height, tex.format, tex.mipmapCount &gt; 1);
+        texCopy.LoadRawTextureData(tex.GetRawTextureData());
+        texCopy.Apply();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

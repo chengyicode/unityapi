@@ -1,0 +1,28 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorApplication.isPlaying</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorApplication.html">EditorApplication</a>.isPlaying</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">isPlaying</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Is editor currently in play mode?</p></div><div class="subsection"><p>Setting <a href="EditorApplication-isPlaying.html">isPlaying</a> delays the result until after all script code has completed for this frame.<br /><br />See Also: <a href="EditorApplication-isPaused.html">isPaused</a>, <a href="EditorApplication-isPlayingOrWillChangePlaymode.html">isPlayingOrWillChangePlaymode</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />// Simple example where <a href="EditorApplication-isPlaying.html">EditorApplication.isPlaying</a> is watched to
+// report whether game is played or not.<br /><br />public class EditorPlaying : <a href="EditorWindow.html">EditorWindow</a>
+{
+    [<a href="MenuItem.html">MenuItem</a>("Examples/<a href="EditorApplication-isPlaying.html">EditorApplication.isPlaying</a> demo")]
+    static void Init()
+    {
+        <a href="EditorWindow.html">EditorWindow</a> window = GetWindow(typeof(EditorPlaying));
+        window.position = new <a href="Rect.html">Rect</a>(100, 100, 150, 50);
+        window.Show();
+    }<br /><br />    void OnGUI()
+    {
+        if (<a href="EditorApplication-isPlaying.html">EditorApplication.isPlaying</a>)
+        {
+            <a href="EditorGUILayout.LabelField.html">EditorGUILayout.LabelField</a>("Playing");
+        }
+        else
+        {
+            <a href="EditorGUILayout.LabelField.html">EditorGUILayout.LabelField</a>("Not playing");
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

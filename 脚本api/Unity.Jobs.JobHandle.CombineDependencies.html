@@ -1,0 +1,22 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Unity.Jobs.JobHandle.CombineDependencies</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Unity.Jobs.JobHandle.html">JobHandle</a>.CombineDependencies</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Unity.Jobs.JobHandle.html">Unity.Jobs.JobHandle</a> <span class="sig-kw">CombineDependencies</span>(<a href="Unity.Jobs.JobHandle.html">Unity.Jobs.JobHandle</a> <span class="sig-kw">job0</span>,
+<a href="Unity.Jobs.JobHandle.html">Unity.Jobs.JobHandle</a> <span class="sig-kw">job1</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Unity.Jobs.JobHandle.html">Unity.Jobs.JobHandle</a> <span class="sig-kw">CombineDependencies</span>(<a href="Unity.Jobs.JobHandle.html">Unity.Jobs.JobHandle</a> <span class="sig-kw">job0</span>,
+<a href="Unity.Jobs.JobHandle.html">Unity.Jobs.JobHandle</a> <span class="sig-kw">job1</span>,
+<a href="Unity.Jobs.JobHandle.html">Unity.Jobs.JobHandle</a> <span class="sig-kw">job2</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Unity.Jobs.JobHandle.html">Unity.Jobs.JobHandle</a> <span class="sig-kw">CombineDependencies</span>(NativeArray&lt;JobHandle&gt; <span class="sig-kw">jobs</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Unity.Jobs.JobHandle.html">Unity.Jobs.JobHandle</a> <span class="sig-kw">CombineDependencies</span>(NativeSlice&lt;JobHandle&gt; <span class="sig-kw">jobs</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Combines multiple dependencies into a single one.</p></div><div class="subsection"><p>All job schedule functions for example <a href="Unity.Jobs.IJob.html">IJob</a> or <a href="Unity.Jobs.IJobParallelFor.html">IJobParallelFor</a> take a single dependency, sometimes it is necessary to express dependencies against multiple running jobs at the same time. So you can use this function to combine a set of dependencies into a single dependency that can be passed to a job.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Schedule 3 jobs, job a and be can run in parallel to each other,
+// job c will only run once both jobA and jobB has completed<br /><br />// Schedule job a
+var jobA = new MyJob(...);
+var jobAHandle = jobA.Schedule();<br /><br />// Schedule job b
+var jobB = new MyJob(...);
+var jobBHandle = jobB.Schedule();<br /><br />// For Job c, combine dependencies of job a and b
+// Then use that for scheduling the next job
+var jobC = new DependentJob(...);
+var dependency = <a href="Unity.Jobs.JobHandle.CombineDependencies.html">JobHandle.CombineDependencies</a>(jobAHandle, jobBHandle);
+jobC.Schedule(dependency);
+</pre>
+      </div></div></div></div></body></html>

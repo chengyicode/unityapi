@@ -1,0 +1,25 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: SettingsProvider.label</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="SettingsProvider.html">SettingsProvider</a>.label</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public string <span class="sig-kw">label</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Gets or sets the display name of the SettingsProvider as it appears in the Settings window. If not set, the Settings window uses last token of <a href="SettingsProvider-settingsPath.html">SettingsProvider.settingsPath</a> instead.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;
+using UnityEngine.UIElements;<br /><br />class SettingsProviderExamples
+{
+    void CreateVariousSettingsProviders()
+    {
+        // New Project setting that appears in its own root section (MyOwnSection) and not grouped under all the core settings.
+        var p = new <a href="SettingsProvider.html">SettingsProvider</a>("MyOwnSection/MySettings", <a href="SettingsScope.Project.html">SettingsScope.Project</a>);
+        // here p.label == "MySettings"<br /><br />        // First parameter is a unique id used to place the <a href="CameraEditor.Settings.html">Settings</a> in the tree view.
+        // If a label is specified, this becomes the display name of the <a href="SettingsProvider.html">SettingsProvider</a>.
+        var p2 = new <a href="SettingsProvider.html">SettingsProvider</a>("MyOwnSection/MySettingsOfDoom", <a href="SettingsScope.Project.html">SettingsScope.Project</a>)
+        {
+            label = "A more proper <a href="CameraEditor.Settings.html">Settings</a> Name"
+        };<br /><br />        // Second parameter is the Scope of the <a href="SettingsProvider.html">SettingsProvider</a>. It determines whether this <a href="SettingsProvider.html">SettingsProvider</a> appears in the
+        // <a href="CameraEditor.Settings.html">Settings</a> window (used for Project settings specified with <a href="SettingsScope.Project.html">SettingsScope.Project</a>)
+        // or if it appears in the Preferences window (when specified with <a href="SettingsScope.User.html">SettingsScope.User</a>)
+        var p3 = new <a href="SettingsProvider.html">SettingsProvider</a>("Preferences/Multi touch", <a href="SettingsScope.User.html">SettingsScope.User</a>);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

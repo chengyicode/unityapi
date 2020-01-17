@@ -1,0 +1,38 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: GameCenterPlatform</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">GameCenterPlatform</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine.SocialPlatforms.GameCenter</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.GameCenterModule.html" class="cl">UnityEngine.GameCenterModule</a></p><br /><p class="cl mb0 left">Implements interfaces:<a href="SocialPlatforms.ISocialPlatform.html" class="cl">ISocialPlatform</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>iOS GameCenter implementation for network services.</p></div><div class="subsection"><p>An application bundle ID must be registered on iTunes Connect
+before it can access GameCenter. This ID must be properly set in
+the iOS player properties in Unity. When debugging you can use the GameCenter
+sandbox (a text displaying this is shown when logging on). You
+must log on in the application to get into sandbox mode, logging
+on in the GameCenter application will always use the production version.<br /><br />When using the GameCenterPlatform class in C# you need to include the
+UnityEngine.SocialPlatforms.GameCenter namespace.<br /><br />Some things to be aware of when using the generic API:<br /><br /><strong>Authenticate()</strong> <br />
+If the user is not logged in, a standard GameKit UI is shown
+where they can log on or create a new user. It is recommended
+this is done as early as possible.<br /><br /><strong>Achievement descriptions and Leaderboards</strong> <br />
+The achivements descriptions and leaderboard configurations can be configured in the
+iTunes Connect portal. Achievements get unique identifiers and the
+leaderboards use category names as identifiers.<br /><br /><strong>GameCenter Sandbox</strong> <br />
+Development applications use the GameCenter Sandbox. This is a seperate GameCenter
+than the live one, nothing is shared between them. It is recommended that you
+create a seperate user for testing with the GameCenter Sandbox, you should not use
+your real Apple ID for this. You can only log on to the sandbox through a development
+application, make sure you are not logged into GameCenter using the GameCenter app before
+testing begins. You should see <em>*** Sandbox ***</em> in the login dialog, if you don't see this
+then you are logging on to the real one. Sometimes it happens that the OS forgets that the
+application is using the sandbox and you will be logged on to the real one. If the application
+has not been submitted to Apple already then this will probably result in an error. To fix this
+all that needs to be done is to delete the app and redeploy with Xcode. To make another Apple
+ID a friend of a sandbox user it needs to be a sandbox user as well.<br /><br />If you start getting errors when accessing GameCenter stating that the
+application is not recognized you'll need to delete the application completely and re-deploy.
+Make sure you are not logged on when starting the newly installed application again.</p></div><div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SocialPlatforms.GameCenter.GameCenterPlatform.ShowLeaderboardUI.html">ShowLeaderboardUI</a></td><td class="desc"></td><td class="desc1">Show the leaderboard UI with a specific leaderboard shown initially with a specific time scope selected.</td></tr>
+    </table></div><div class="subsection"><h2>Static Methods   静态方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SocialPlatforms.GameCenter.GameCenterPlatform.ResetAllAchievements.html">ResetAllAchievements</a></td><td class="desc"></td><td class="desc1">Reset all the achievements for the local user.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SocialPlatforms.GameCenter.GameCenterPlatform.ShowDefaultAchievementCompletionBanner.html">ShowDefaultAchievementCompletionBanner</a></td><td class="desc"></td><td class="desc1">Show the default iOS banner when achievements are completed.</td></tr>
+    </table></div></div></div></div></body></html>

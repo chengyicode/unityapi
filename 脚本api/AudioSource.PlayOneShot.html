@@ -1,0 +1,20 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AudioSource.PlayOneShot</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="AudioSource.html">AudioSource</a>.PlayOneShot</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-AudioSource.html' title='Go to AudioSource Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">PlayOneShot</span>(<a href="AudioClip.html">AudioClip</a> <span class="sig-kw">clip</span>,
+float <span class="sig-kw">volumeScale</span> = 1.0F);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">clip</td><td class="desc"></td><td class="desc1">The clip being played.</td></tr><tr><td class="name lbl">volumeScale</td><td class="desc"></td><td class="desc1">The scale of the volume (0-1).</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Plays an <a href="AudioClip.html">AudioClip</a>, and scales the <a href="AudioSource.html">AudioSource</a> volume by volumeScale.</p></div><div class="subsection"><p>For more information on how this method differs from <a href="AudioSource.Play.html">AudioSource.Play</a>, see <a href="AudioSource.html">AudioSource</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />[<a href="RequireComponent.html">RequireComponent</a>(typeof(<a href="AudioSource.html">AudioSource</a>))]
+public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="AudioClip.html">AudioClip</a> impact;
+    <a href="AudioSource.html">AudioSource</a> audioSource;<br /><br />    void Start()
+    {
+        audioSource = GetComponent&lt;<a href="AudioSource.html">AudioSource</a>&gt;();
+    }<br /><br />    void OnCollisionEnter()
+    {
+        audioSource.PlayOneShot(impact, 0.7F);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="AudioSource.Play.html">AudioSource.Play</a>.</p></div></div></div></div></body></html>

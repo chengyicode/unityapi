@@ -1,0 +1,25 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ParticleSystemRenderer.sortMode</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="ParticleSystemRenderer.html">ParticleSystemRenderer</a>.sortMode</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="ParticleSystemSortMode.html">ParticleSystemSortMode</a> <span class="sig-kw">sortMode</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Sort particles within a system.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a> {<br /><br />    private <a href="ParticleSystem.html">ParticleSystem</a> ps;
+    private <a href="ParticleSystemRenderer.html">ParticleSystemRenderer</a> psr;
+    public <a href="ParticleSystemSortMode.html">ParticleSystemSortMode</a> sortMode;<br /><br />    void Start() {<br /><br />        ps = GetComponent&lt;<a href="ParticleSystem.html">ParticleSystem</a>&gt;();
+        psr = GetComponent&lt;<a href="ParticleSystemRenderer.html">ParticleSystemRenderer</a>&gt;();<br /><br />        // set a slow start speed and high emission rate, to cause more overlap, to show sorting
+        var main = ps.main;
+        main.startSpeedMultiplier = 0.2f;
+        var emission = ps.emission;
+        emission.rateOverTimeMultiplier = 100.0f;<br /><br />        // set color over life, so we can see the sorting more easily
+        var colorOverLifetime = ps.colorOverLifetime;
+        colorOverLifetime.enabled = true;<br /><br />        <a href="Gradient.html">Gradient</a> gradient = new <a href="Gradient.html">Gradient</a>();
+        gradient.SetKeys(
+            new <a href="GradientColorKey.html">GradientColorKey</a>[] { new <a href="GradientColorKey.html">GradientColorKey</a>(<a href="Color-green.html">Color.green</a>, 0.0f), new <a href="GradientColorKey.html">GradientColorKey</a>(<a href="Color-red.html">Color.red</a>, 1.0f) },
+            new <a href="GradientAlphaKey.html">GradientAlphaKey</a>[] { new <a href="GradientAlphaKey.html">GradientAlphaKey</a>(1.0f, 0.0f), new <a href="GradientAlphaKey.html">GradientAlphaKey</a>(1.0f, 1.0f) }
+            );<br /><br />        colorOverLifetime.color = new <a href="ParticleSystem.MinMaxGradient.html">ParticleSystem.MinMaxGradient</a>(gradient);
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>() {<br /><br />        psr.sortMode = sortMode;
+    }<br /><br />    void OnGUI() {<br /><br />        sortMode = (<a href="ParticleSystemSortMode.html">ParticleSystemSortMode</a>)<a href="GUI.SelectionGrid.html">GUI.SelectionGrid</a>(new <a href="Rect.html">Rect</a>(25, 25, 900, 30), (int)sortMode, new <a href="GUIContent.html">GUIContent</a>[] { new <a href="GUIContent.html">GUIContent</a>("None"), new <a href="GUIContent.html">GUIContent</a>("Distance"), new <a href="GUIContent.html">GUIContent</a>("OldestInFront"), new <a href="GUIContent.html">GUIContent</a>("YoungestInFront") }, 4);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

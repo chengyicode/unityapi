@@ -1,0 +1,39 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorBuildSettings.TryGetConfigObject</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorBuildSettings.html">EditorBuildSettings</a>.TryGetConfigObject</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">TryGetConfigObject</span>(string <span class="sig-kw">name</span>,
+out T <span class="sig-kw">result</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">name</td><td class="desc"></td><td class="desc1">The name in string format of the config object reference to be fetched.</td></tr><tr><td class="name lbl">result</td><td class="desc"></td><td class="desc1">The config object reference where the returned object will be stored. This must be an object of type Object.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>bool</strong>
+        Returns true if the config object reference was found and the type matched the result parameter.  Returns false if the entry is not found, the config object reference is <code class="mono">null</code>, or if the type requested does not match the type stored.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Retrieve a config object reference by name.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;
+using System.IO;<br /><br />public class MyConfigData : <a href="ScriptableObject.html">ScriptableObject</a>
+{
+    public static MyConfigData GetDefault()
+    {
+        //name of config data object
+        string stringName = "com.myproject.myconfigdata";
+        //path to Config Object and asset name
+        string stringPath = "Assets/myconfigdata.asset";
+        //used to hold config data
+        MyConfigData data = null;<br /><br />        //if a config data object exists with the same name, return its config data
+        if (<a href="EditorBuildSettings.TryGetConfigObject.html">EditorBuildSettings.TryGetConfigObject</a>&lt;MyConfigData&gt;(stringName, out data))
+            return data;<br /><br />        //If the asset file already exists, store existing config data
+        if (<a href="Windows.File.Exists.html">File.Exists</a>(stringPath))
+            data = <a href="AssetDatabase.LoadAssetAtPath.html">AssetDatabase.LoadAssetAtPath</a>&lt;MyConfigData&gt;(stringPath);
+        //if no previous config data exists
+        if (data == null)
+        {
+            //show save file dialog and return user selected path name
+            stringPath = <a href="EditorUtility.SaveFilePanelInProject.html">EditorUtility.SaveFilePanelInProject</a>("New Config <a href="Windows.File.html">File</a>", "myconfigdata", "asset", "Select Config <a href="Windows.File.html">File</a> <a href="VersionControl.Asset.html">Asset</a>", "Assets");
+            //initialise config data object
+            data = <a href="ScriptableObject.CreateInstance.html">ScriptableObject.CreateInstance</a>&lt;MyConfigData&gt;();
+            //create new asset from data at specified path
+            //asset MUST be saved with the <a href="AssetDatabase.html">AssetDatabase</a> before adding to <a href="EditorBuildSettings.html">EditorBuildSettings</a>
+            <a href="AssetDatabase.CreateAsset.html">AssetDatabase.CreateAsset</a>(data, stringPath);
+        }<br /><br />        //add the new or loaded config object to <a href="EditorBuildSettings.html">EditorBuildSettings</a>
+        <a href="EditorBuildSettings.AddConfigObject.html">EditorBuildSettings.AddConfigObject</a>(stringName, data, false);<br /><br />        return data;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

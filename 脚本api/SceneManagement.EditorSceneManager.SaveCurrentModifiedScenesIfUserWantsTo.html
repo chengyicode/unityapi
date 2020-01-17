@@ -1,0 +1,27 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: SceneManagement.EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="SceneManagement.EditorSceneManager.html">EditorSceneManager</a>.SaveCurrentModifiedScenesIfUserWantsTo</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">SaveCurrentModifiedScenesIfUserWantsTo</span>();
+    </div></div></div><div class="subsection"><h2>Returns</h2><p><strong>bool</strong>
+        This returns true if you chose to save the Scene or Scenes, and returns false if you pressed Cancel.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Asks you if you want to save the modified Scene or Scenes.</p></div><div class="subsection"><p>The hierarchy window shows all open Scenes.  They can be saved or unsaved.  The <a href="SceneManagement.EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo.html">SaveCurrentModifiedScenesIfUserWantsTo</a>() presents a window showing the unsaved modified Scenes.  <code class="varname">Save</code> will write the changed Scenes; <code class="varname">Cancel</code> will do nothing and leave the Scenes unchanged.  The <code class="varname">Save</code> button returns <code class="varname">true</code>. The <code class="varname">Cancel</code> button returns <code class="varname">false</code>.<br /><br /><a href="SceneManagement.EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo.html">SaveCurrentModifiedScenesIfUserWantsTo</a>() is run from the editor.  The creation of an editor menu item is required.  The following example shows this menu item.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Add an editor menu item that enables Scenes to be saved or not,
+// This example adds the editor extension into an Examples menu.<br /><br />using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEditor.SceneManagement;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    [<a href="MenuItem.html">MenuItem</a>("Examples/Save current <a href="SceneManagement.Scene.html">Scene</a>(s) if required")]
+    static void MaybeSaveScenes()
+    {
+        if (<a href="SceneManagement.EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo.html">EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo</a>())
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("Save <a href="SceneManagement.Scene.html">Scene</a>(s)");
+        }
+        else
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("Don't save <a href="SceneManagement.Scene.html">Scene</a>(s)");
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>
+        <strong>Note:</strong> Currently a window with three buttons is shown.  <code class="varname">Save</code> and /Don't Save/ both cause the Scene(s) to be written.  <code class="varname">Cancel</code> leaves the Scene(s) untouched.</p></div></div></div></div></body></html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Physics.Raycast</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Physics.html">Physics</a>.Raycast</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">Raycast</span>(<a href="Vector3.html">Vector3</a> <span class="sig-kw">origin</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">direction</span>,
+float <span class="sig-kw">maxDistance</span> = Mathf.Infinity,
+int <span class="sig-kw">layerMask</span> = DefaultRaycastLayers,
+<a href="QueryTriggerInteraction.html">QueryTriggerInteraction</a> <span class="sig-kw">queryTriggerInteraction</span> = QueryTriggerInteraction.UseGlobal);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">origin</td><td class="desc"></td><td class="desc1">The starting point of the ray in world coordinates.</td></tr><tr><td class="name lbl">direction</td><td class="desc"></td><td class="desc1">The direction of the ray.</td></tr><tr><td class="name lbl">maxDistance</td><td class="desc"></td><td class="desc1">The max distance the ray should check for collisions.</td></tr><tr><td class="name lbl">layerMask</td><td class="desc"></td><td class="desc1">A <a href="../Manual/Layers.html">Layer mask</a> that is used to selectively ignore Colliders when casting a ray.</td></tr><tr><td class="name lbl">queryTriggerInteraction</td><td class="desc"></td><td class="desc1">Specifies whether this query should hit Triggers.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>bool</strong>
+        True if the ray intersects with a Collider, otherwise false.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Casts a ray, from point <code class="varname">origin</code>, in direction <code class="varname">direction</code>, of length <code class="varname">maxDistance</code>, against all colliders in the Scene.</p></div><div class="subsection"><p>You may optionally provide a <a href="LayerMask.html">LayerMask</a>, to filter out any Colliders you aren't interested in generating collisions with.<br /><br />Specifying <code class="varname">queryTriggerInteraction</code> allows you to control whether or not Trigger colliders generate a hit, or whether to use the global <a href="Physics-queriesHitTriggers.html">Physics.queriesHitTriggers</a> setting.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />// C# example.<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        // Bit shift the index of the layer (8) to get a bit mask
+        int layerMask = 1 &lt;&lt; 8;<br /><br />        // This would cast rays only against colliders in layer 8.
+        // But instead we want to collide against everything except layer 8. The ~ operator does this, it inverts a bitmask.
+        layerMask = ~layerMask;<br /><br />        <a href="RaycastHit.html">RaycastHit</a> hit;
+        // Does the ray intersect any objects excluding the player layer
+        if (<a href="Physics.Raycast.html">Physics.Raycast</a>(transform.position, transform.TransformDirection(<a href="Vector3-forward.html">Vector3.forward</a>), out hit, <a href="Mathf.Infinity.html">Mathf.Infinity</a>, layerMask))
+        {
+            <a href="Debug.DrawRay.html">Debug.DrawRay</a>(transform.position, transform.TransformDirection(<a href="Vector3-forward.html">Vector3.forward</a>) * hit.distance, <a href="Color-yellow.html">Color.yellow</a>);
+            <a href="Debug.Log.html">Debug.Log</a>("Did Hit");
+        }
+        else
+        {
+            <a href="Debug.DrawRay.html">Debug.DrawRay</a>(transform.position, transform.TransformDirection(<a href="Vector3-forward.html">Vector3.forward</a>) * 1000, <a href="Color-white.html">Color.white</a>);
+            <a href="Debug.Log.html">Debug.Log</a>("Did not Hit");
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>This example creates a simple Raycast, projecting forwards from the position of the object's current position, extending for 10 units.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void <a href="Experimental.PlayerLoop.FixedUpdate.html">FixedUpdate</a>()
+    {
+        <a href="Vector3.html">Vector3</a> fwd = transform.TransformDirection(<a href="Vector3-forward.html">Vector3.forward</a>);<br /><br />        if (<a href="Physics.Raycast.html">Physics.Raycast</a>(transform.position, fwd, 10))
+            print("There is something in front of the object!");
+    }
+}
+</pre>
+      </div><div class="subsection"><p>
+        <strong>Note:</strong> Raycasts will not detect Colliders for which the Raycast origin is inside the Collider.</p></div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">Raycast</span>(<a href="Vector3.html">Vector3</a> <span class="sig-kw">origin</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">direction</span>,
+out <a href="RaycastHit.html">RaycastHit</a> <span class="sig-kw">hitInfo</span>,
+float <span class="sig-kw">maxDistance</span>,
+int <span class="sig-kw">layerMask</span>,
+<a href="QueryTriggerInteraction.html">QueryTriggerInteraction</a> <span class="sig-kw">queryTriggerInteraction</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">origin</td><td class="desc"></td><td class="desc1">The starting point of the ray in world coordinates.</td></tr><tr><td class="name lbl">direction</td><td class="desc"></td><td class="desc1">The direction of the ray.</td></tr><tr><td class="name lbl">hitInfo</td><td class="desc"></td><td class="desc1">If true is returned, <code class="varname">hitInfo</code> will contain more information about where the collider was hit. (See Also: <a href="RaycastHit.html">RaycastHit</a>).</td></tr><tr><td class="name lbl">maxDistance</td><td class="desc"></td><td class="desc1">The max distance the ray should check for collisions.</td></tr><tr><td class="name lbl">layerMask</td><td class="desc"></td><td class="desc1">A <a href="../Manual/Layers.html">Layer mask</a> that is used to selectively ignore colliders when casting a ray.</td></tr><tr><td class="name lbl">queryTriggerInteraction</td><td class="desc"></td><td class="desc1">Specifies whether this query should hit Triggers.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>bool</strong>
+        True when the ray intersects any collider, otherwise false.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Casts a ray against all colliders in the Scene and returns detailed information on what was hit.</p></div><div class="subsection"><p>This example reports the distance between the current object and the reported Collider:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class RaycastExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void <a href="Experimental.PlayerLoop.FixedUpdate.html">FixedUpdate</a>()
+    {
+        <a href="RaycastHit.html">RaycastHit</a> hit;<br /><br />        if (<a href="Physics.Raycast.html">Physics.Raycast</a>(transform.position, -<a href="Vector3-up.html">Vector3.up</a>, out hit))
+            print("Found an object - distance: " + hit.distance);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>This example re-introduces the <code class="varname">maxDistance</code> parameter to limit how far ahead to cast the Ray:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class RaycastExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void <a href="Experimental.PlayerLoop.FixedUpdate.html">FixedUpdate</a>()
+    {
+        <a href="RaycastHit.html">RaycastHit</a> hit;<br /><br />        if (<a href="Physics.Raycast.html">Physics.Raycast</a>(transform.position, -<a href="Vector3-up.html">Vector3.up</a>, out hit, 100.0f))
+            print("Found an object - distance: " + hit.distance);
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">Raycast</span>(<a href="Ray.html">Ray</a> <span class="sig-kw">ray</span>,
+float <span class="sig-kw">maxDistance</span> = Mathf.Infinity,
+int <span class="sig-kw">layerMask</span> = DefaultRaycastLayers,
+<a href="QueryTriggerInteraction.html">QueryTriggerInteraction</a> <span class="sig-kw">queryTriggerInteraction</span> = QueryTriggerInteraction.UseGlobal);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">ray</td><td class="desc"></td><td class="desc1">The starting point and direction of the ray.</td></tr><tr><td class="name lbl">maxDistance</td><td class="desc"></td><td class="desc1">The max distance the ray should check for collisions.</td></tr><tr><td class="name lbl">layerMask</td><td class="desc"></td><td class="desc1">A <a href="../Manual/Layers.html">Layer mask</a> that is used to selectively ignore colliders when casting a ray.</td></tr><tr><td class="name lbl">queryTriggerInteraction</td><td class="desc"></td><td class="desc1">Specifies whether this query should hit Triggers.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>bool</strong>
+        True when the ray intersects any collider, otherwise false.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Same as above using <code class="varname">ray.origin</code> and <code class="varname">ray.direction</code> instead of <code class="varname">origin</code> and <code class="varname">direction</code>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        <a href="Ray.html">Ray</a> ray = Camera.main.ScreenPointToRay(<a href="Input-mousePosition.html">Input.mousePosition</a>);
+        if (<a href="Physics.Raycast.html">Physics.Raycast</a>(ray, 100))
+            print("Hit something!");
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">Raycast</span>(<a href="Ray.html">Ray</a> <span class="sig-kw">ray</span>,
+out <a href="RaycastHit.html">RaycastHit</a> <span class="sig-kw">hitInfo</span>,
+float <span class="sig-kw">maxDistance</span> = Mathf.Infinity,
+int <span class="sig-kw">layerMask</span> = DefaultRaycastLayers,
+<a href="QueryTriggerInteraction.html">QueryTriggerInteraction</a> <span class="sig-kw">queryTriggerInteraction</span> = QueryTriggerInteraction.UseGlobal);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">ray</td><td class="desc"></td><td class="desc1">The starting point and direction of the ray.</td></tr><tr><td class="name lbl">hitInfo</td><td class="desc"></td><td class="desc1">If true is returned, <code class="varname">hitInfo</code> will contain more information about where the collider was hit. (See Also: <a href="RaycastHit.html">RaycastHit</a>).</td></tr><tr><td class="name lbl">maxDistance</td><td class="desc"></td><td class="desc1">The max distance the ray should check for collisions.</td></tr><tr><td class="name lbl">layerMask</td><td class="desc"></td><td class="desc1">A <a href="../Manual/Layers.html">Layer mask</a> that is used to selectively ignore colliders when casting a ray.</td></tr><tr><td class="name lbl">queryTriggerInteraction</td><td class="desc"></td><td class="desc1">Specifies whether this query should hit Triggers.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>bool</strong>
+        True when the ray intersects any collider, otherwise false.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Same as above using <code class="varname">ray.origin</code> and <code class="varname">ray.direction</code> instead of <code class="varname">origin</code> and <code class="varname">direction</code>.</p></div><div class="subsection"><p>This example draws a line along the length of the Ray whenever a collision is detected:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        <a href="Ray.html">Ray</a> ray = Camera.main.ScreenPointToRay(<a href="Input-mousePosition.html">Input.mousePosition</a>);
+        <a href="RaycastHit.html">RaycastHit</a> hit;<br /><br />        if (<a href="Physics.Raycast.html">Physics.Raycast</a>(ray, out hit, 100))
+            <a href="Debug.DrawLine.html">Debug.DrawLine</a>(ray.origin, hit.point);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

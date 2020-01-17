@@ -1,0 +1,17 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Application.Unload</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Application.html">Application</a>.Unload</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">Unload</span>();
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Unloads the Unity runtime.</p></div><div class="subsection"><p>Unload the Unity runtime. Similar to quitting but the application process does not exit. This is useful when using Unity as a component in another application. For example, if you use Unity to display some special content but do not want to keep the Unity engine resident in memory when it is not needed.<br /><br /><strong>Note:</strong> Only supported on Android and Windows Store.<br /><br /><strong>Note:</strong> This function does not return.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />// Unload Unity when the user hits escape. Exit is not applied to the application.<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        if (<a href="Input.GetKey.html">Input.GetKey</a>("escape"))
+        {
+            <a href="Application.Unload.html">Application.Unload</a>();
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

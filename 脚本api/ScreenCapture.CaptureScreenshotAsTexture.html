@@ -1,0 +1,23 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ScreenCapture.CaptureScreenshotAsTexture</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="ScreenCapture.html">ScreenCapture</a>.CaptureScreenshotAsTexture</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Texture2D.html">Texture2D</a> <span class="sig-kw">CaptureScreenshotAsTexture</span>(int <span class="sig-kw">superSize</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Texture2D.html">Texture2D</a> <span class="sig-kw">CaptureScreenshotAsTexture</span>(<a href="ScreenCapture.StereoScreenCaptureMode.html">ScreenCapture.StereoScreenCaptureMode</a> <span class="sig-kw">stereoCaptureMode</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">superSize</td><td class="desc"></td><td class="desc1">Factor by which to increase resolution.</td></tr><tr><td class="name lbl">stereoCaptureMode</td><td class="desc"></td><td class="desc1">Specifies the eye texture to capture when stereo rendering is enabled.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Captures a screenshot of the game view into a Texture2D object.</p></div><div class="subsection"><p>When <code class="varname">superSize</code> parameter is larger than 1, a larger resolution screenshot will be
+produced. For example, passing 4 will make the screenshot be 4x4 larger than it normally
+would. This is useful to produce screenshots for printing.<br /><br />To get a reliable output from this method you must make sure it is called once the frame rendering has ended, and not during the rendering process. A simple way of ensuring this is to call it from a coroutine that yields on WaitForEndOfFrame. If you call this method during the rendering process you will get unpredictable and undefined results.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ScreenShotter : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    IEnumerator RecordFrame()
+    {
+        yield return new <a href="WaitForEndOfFrame.html">WaitForEndOfFrame</a>();
+        var texture = <a href="ScreenCapture.CaptureScreenshotAsTexture.html">ScreenCapture.CaptureScreenshotAsTexture</a>();
+        // do something with texture<br /><br />        // cleanup
+        <a href="Object.Destroy.html">Object.Destroy</a>(texture);
+    }<br /><br />    public void LateUpdate()
+    {
+        StartCoroutine(RecordFrame());
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

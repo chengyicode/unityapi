@@ -1,0 +1,28 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Mesh.isReadable</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Mesh.html">Mesh</a>.isReadable</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Mesh.html' title='Go to Mesh Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public bool <span class="sig-kw">isReadable</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Returns true if the Mesh is read/write enabled, or false if it is not.</p></div><div class="subsection"><p>When a Mesh is read/write enabled, Unity uploads the Mesh data to GPU-addressable memory, but also keeps it in CPU-addressable memory. When a Mesh is not read/write enabled, Unity uploads the Mesh data to GPU-addressable memory, and then removes it from CPU-addressable memory.<br /><br />You can set this value using the Read/Write Enabled checkbox when importing a model to Unity. To set the value to false at run time, set the <code class="mono">markNoLongerReadable</code> argument of <a href="Mesh.UploadMeshData.html">Mesh.UploadMeshData</a>.<br /><br />In most cases, you should disable this option to save runtime memory usage. You should only enable it under the following circumstances:<br /><br />- When you read from or write to the Mesh data in your code.<br />
+- When you pass the Mesh to <code class="mono">StaticBatchingUtility.Combine()</code> to combine the Mesh at run time.<br />
+-When you pass the mesh to <a href="CanvasRenderer.SetMesh.html">CanvasRenderer.SetMesh</a>.<br />
+- When you use the Mesh to bake a NavMesh using the NavMesh building components at run time.<br />
+- When the Mesh is convex, you use the Mesh with a Mesh Collider, and the Mesh Collider's Transform has negative scaling (for example, (–1, 1, 1)).<br />
+- When you use the Mesh with a Mesh Collider, and the Mesh Collider's transform is skewed or sheared (for example, when a rotated Transform has a scaled parent Transform).<br />
+- When you use the Mesh with a Mesh Collider, and the Mesh Collider's Cooking Options flags are set to any value other than the default.<br />
+-When using a Mesh with a Particle System's Shape module or Renderer module when using not using GPU instancing.
+Note that the Particle System will automatically change Meshes to readable when assigned through the inspector
+<br /><br /><br />
+Notes:
+When Unity creates a Mesh from script, this value is initially set to true.
+Meshes not marked readable will throw an error on accessing any data arrays from script at runtime.
+Access is always allowed in the Unity Editor outside of the game and rendering loop, regardless of this setting.<br /><br />See Also: <a href="StaticBatchingUtility.Combine.html">StaticBatchingUtility.Combine</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        <a href="Mesh.html">Mesh</a> mesh = GetComponent&lt;<a href="MeshFilter.html">MeshFilter</a>&gt;().sharedMesh;
+        print(mesh.isReadable);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

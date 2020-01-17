@@ -1,0 +1,26 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: RenderTexture.active</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="RenderTexture.html">RenderTexture</a>.active</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-RenderTexture.html' title='Go to RenderTexture Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="RenderTexture.html">RenderTexture</a> <span class="sig-kw">active</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Currently active render texture.</p></div><div class="subsection"><p>All rendering goes into the active RenderTexture.
+If the active RenderTexture is <code class="varname">null</code> everything is rendered in the main window.<br /><br />Setting <a href="RenderTexture-active.html">RenderTexture.active</a> is the same as calling <a href="Graphics.SetRenderTarget.html">Graphics.SetRenderTarget</a>. Typically
+you change or query the active render texture when implementing custom graphics effects;
+if all you need is to make a Camera render into a texture then use <a href="Camera-targetTexture.html">Camera.targetTexture</a>
+instead.<br /><br />When a RenderTexture becomes active its hardware rendering context is automatically created if
+it hasn't been created already.<br /><br />See Also: <a href="Graphics.SetRenderTarget.html">Graphics.SetRenderTarget</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />// Get the contents of a <a href="RenderTexture.html">RenderTexture</a> into a <a href="Texture2D.html">Texture2D</a>
+public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    static public <a href="Texture2D.html">Texture2D</a> GetRTPixels(<a href="RenderTexture.html">RenderTexture</a> rt)
+    {
+        // Remember currently active render texture
+        <a href="RenderTexture.html">RenderTexture</a> currentActiveRT = <a href="RenderTexture-active.html">RenderTexture.active</a>;<br /><br />        // Set the supplied <a href="RenderTexture.html">RenderTexture</a> as the active one
+        <a href="RenderTexture-active.html">RenderTexture.active</a> = rt;<br /><br />        // Create a new <a href="Texture2D.html">Texture2D</a> and read the <a href="RenderTexture.html">RenderTexture</a> image into it
+        <a href="Texture2D.html">Texture2D</a> tex = new <a href="Texture2D.html">Texture2D</a>(rt.width, rt.height);
+        tex.ReadPixels(new <a href="Rect.html">Rect</a>(0, 0, tex.width, tex.height), 0, 0);<br /><br />        // Restorie previously active render texture
+        <a href="RenderTexture-active.html">RenderTexture.active</a> = currentActiveRT;
+        return tex;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

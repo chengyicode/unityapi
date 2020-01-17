@@ -1,0 +1,15 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Quaternion.AngleAxis</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Quaternion.html">Quaternion</a>.AngleAxis</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Quaternion.html">Quaternion</a> <span class="sig-kw">AngleAxis</span>(float <span class="sig-kw">angle</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">axis</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Creates a rotation which rotates <code class="varname">angle</code> degrees around <code class="varname">axis</code>.</p></div><div class="subsection"><p>For more information see <a href="../Manual/QuaternionAndEulerRotationsInUnity.html">Rotation and Orientation in Unity</a>. The magnitude of the axis parameter is not applied.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        // Sets the transform's current rotation to a new rotation that rotates 30 degrees around the y-axis(<a href="Vector3-up.html">Vector3.up</a>)
+        transform.rotation = <a href="Quaternion.AngleAxis.html">Quaternion.AngleAxis</a>(30, <a href="Vector3-up.html">Vector3.up</a>);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

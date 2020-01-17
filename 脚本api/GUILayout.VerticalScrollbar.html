@@ -1,0 +1,41 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: GUILayout.VerticalScrollbar</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="GUILayout.html">GUILayout</a>.VerticalScrollbar</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static float <span class="sig-kw">VerticalScrollbar</span>(float <span class="sig-kw">value</span>,
+float <span class="sig-kw">size</span>,
+float <span class="sig-kw">topValue</span>,
+float <span class="sig-kw">bottomValue</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static float <span class="sig-kw">VerticalScrollbar</span>(float <span class="sig-kw">value</span>,
+float <span class="sig-kw">size</span>,
+float <span class="sig-kw">topValue</span>,
+float <span class="sig-kw">bottomValue</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">value</td><td class="desc"></td><td class="desc1">The position between min and max.</td></tr><tr><td class="name lbl">size</td><td class="desc"></td><td class="desc1">How much can we see?</td></tr><tr><td class="name lbl">topValue</td><td class="desc"></td><td class="desc1">The value at the top end of the scrollbar.</td></tr><tr><td class="name lbl">bottomValue</td><td class="desc"></td><td class="desc1">The value at the bottom end of the scrollbar.</td></tr><tr><td class="name lbl">style</td><td class="desc"></td><td class="desc1">The style to use for the scrollbar background. If left out, the <code class="varname">horizontalScrollbar</code> style from the current <a href="GUISkin.html">GUISkin</a> is used.</td></tr><tr><td class="name lbl">options</td><td class="desc"></td><td class="desc1">An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the <code class="varname">style</code>.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>float</strong>
+        The modified value. This can be changed by the user by dragging the scrollbar, or clicking the arrows at the end.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Make a vertical scrollbar.</p></div><div class="subsection"><p>A scrollbar control returns a float value that represents the position of the draggable "thumb" withtin the bar. You can use the value to adjust another GUI element to reflect the scroll position. However, most scrollable views can be handled more easily using a <em>scroll view</em> control.<br /><br /><img src="../StaticFiles/ScriptRefImages/GUILayoutVerticalScrollBar.png" /><br />
+<em>Vertical Scrollbar in the Game View.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    float vSbarValue;<br /><br />    void OnGUI()
+    {
+        vSbarValue = <a href="GUILayout.VerticalScrollbar.html">GUILayout.VerticalScrollbar</a>(vSbarValue, 1.0f, 10.0f, 0.0f);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>The styles of the scroll buttons at the end of the bar can be located in the current skin by adding "upbutton" and "downbutton" to the style name.  The name of the scrollbar thumb (the thing you drag) is found by appending "thumb" to the style name.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    float scrollPos = 0.5f;<br /><br />    // This will use the following style names to determine the size / placement of the buttons
+    // MyVerticalScrollbarupbutton    - Name of style used for the up button.
+    // MyVerticalScrollbardownbutton - Name of style used for the down button.
+    // MyVerticalScrollbarthumb         - Name of style used for the draggable thumb.
+    void OnGUI()
+    {
+        scrollPos = <a href="GUILayout.HorizontalScrollbar.html">GUILayout.HorizontalScrollbar</a>(scrollPos, 1, 0, 100, "MyVerticalScrollbar");
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="GUILayout.BeginScrollView.html">BeginScrollView</a>, <a href="GUILayout.HorizontalScrollbar.html">HorizontalScrollbar</a>.</p></div></div></div></div></body></html>

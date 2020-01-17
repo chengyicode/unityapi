@@ -1,0 +1,17 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Screen.resolutions</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Screen.html">Screen</a>.resolutions</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static Resolution[] <span class="sig-kw">resolutions</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>All full-screen resolutions supported by the monitor (Read Only).</p></div><div class="subsection"><p>The returned resolutions are sorted by width with lower resolutions coming first. The <a href="Screen-resolutions.html">Screen.resolutions</a> always contain <a href="Resolution-refreshRate.html">Resolution.refreshRate</a> at 60fps.  Setting <a href="QualitySettings-vSyncCount.html">QualitySettings.vSyncCount</a> to zero will allow the Game to run as fast as possible.  Normally one is used.<br /><br /><strong>Note:</strong> The array will always be empty on Android devices since the resolution is variable (within reason) and so there is no restricted set of resolutions to choose from.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        <a href="Resolution.html">Resolution</a>[] resolutions = <a href="Screen-resolutions.html">Screen.resolutions</a>;<br /><br />        // Print the resolutions
+        foreach (var res in resolutions)
+        {
+            <a href="Debug.Log.html">Debug.Log</a>(res.width + "x" + res.height + " : " + res.refreshRate);
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="Resolution.html">Resolution</a> structure, <a href="Screen.SetResolution.html">SetResolution</a>.</p></div></div></div></div></body></html>

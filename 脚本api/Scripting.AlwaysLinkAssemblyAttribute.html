@@ -1,0 +1,17 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AlwaysLinkAssemblyAttribute</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">AlwaysLinkAssemblyAttribute</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine.Scripting</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.CoreModule.html" class="cl">UnityEngine.CoreModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Ensure an assembly is always processed during managed code stripping.</p></div><div class="subsection"><p>
+Use the [assembly: UnityEngine.Scripting.AlwaysLinkAssembly] attribute to force UnityLinker to process the assembly regardless of whether or not the assembly is referenced by another assembly that is included in the build.<br /><br />Use this attribute on package or precompiled assemblies that contain one or more methods with the <code class="mono">[RuntimeInitializeOnLoadMethod]</code> attribute, but which may not contain types used directly or indirectly in any scenes built for the project.<br /><br />Note that this attribute only instructs UnityLinker to process the assembly. If no code elements match the root marking rules for the assembly, UnityLinker still removes the assembly from the build.<br /><br />The <code class="mono">[AlwaysLinkAssembly]</code> attribute can only be defined on the assembly. Declare the attribute in any C# file compiled into the assembly, outside the namespace declaration.<br /><br />See Also: <a href="../Manual/ManagedCodeStripping.html">Managed Code Stripping</a>
+</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.Scripting;<br /><br />[assembly: AlwaysLinkAssembly]<br /><br />namespace Example
+{
+    public class Foo
+    {
+        [RuntimeInitializeOnLoadMethod]
+        public void Initialize() {}
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

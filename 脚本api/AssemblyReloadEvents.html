@@ -1,0 +1,34 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AssemblyReloadEvents</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">AssemblyReloadEvents</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEditor</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEditor.html" class="cl">UnityEditor</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>This class has event dispatchers for assembly reload events.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;<br /><br />public class MyWindow : <a href="EditorWindow.html">EditorWindow</a>
+{
+    [<a href="MenuItem.html">MenuItem</a>("Test/Show My Window")]
+    static void Init()
+    {
+        GetWindow&lt;MyWindow&gt;();
+    }<br /><br />    void OnEnable()
+    {
+        <a href="AssemblyReloadEvents-beforeAssemblyReload.html">AssemblyReloadEvents.beforeAssemblyReload</a> += OnBeforeAssemblyReload;
+        <a href="AssemblyReloadEvents-afterAssemblyReload.html">AssemblyReloadEvents.afterAssemblyReload</a> += OnAfterAssemblyReload;
+    }<br /><br />    void OnDisable()
+    {
+        <a href="AssemblyReloadEvents-beforeAssemblyReload.html">AssemblyReloadEvents.beforeAssemblyReload</a> -= OnBeforeAssemblyReload;
+        <a href="AssemblyReloadEvents-afterAssemblyReload.html">AssemblyReloadEvents.afterAssemblyReload</a> -= OnAfterAssemblyReload;
+    }<br /><br />    public void OnBeforeAssemblyReload()
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("Before <a href="Compilation.Assembly.html">Assembly</a> Reload");
+    }<br /><br />    public void OnAfterAssemblyReload()
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("After <a href="Compilation.Assembly.html">Assembly</a> Reload");
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Events</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="AssemblyReloadEvents-afterAssemblyReload.html">afterAssemblyReload</a></td><td class="desc"></td><td class="desc1">This event is dispatched just after Unity have reloaded all assemblies.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AssemblyReloadEvents-beforeAssemblyReload.html">beforeAssemblyReload</a></td><td class="desc"></td><td class="desc1">This event is dispatched just before Unity reloads all assemblies.</td></tr>
+    </table></div><div class="subsection"><h2>Delegates</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="AssemblyReloadEvents.AssemblyReloadCallback.html">AssemblyReloadCallback</a></td><td class="desc"></td><td class="desc1">Delegate used for assembly reload events.</td></tr>
+    </table></div></div></div></div></body></html>

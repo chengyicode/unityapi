@@ -1,0 +1,25 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: MovieTexture.isReadyToPlay</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Method group is Obsolete</b><br /></div><h1 class="heading inherit"><a href="MovieTexture.html">MovieTexture</a>.isReadyToPlay</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-MovieTexture.html' title='Go to MovieTexture Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public bool <span class="sig-kw">isReadyToPlay</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>MovieTexture has been deprecated. Refer to the new movie playback solution <a href="Video.VideoPlayer.html">VideoPlayer</a>.</p></div><div class="subsection"><p>If the movie is downloading from a web site, this returns if enough data has been downloaded so playback should be able to start without interruptions.
+For movies not associated with a web stream, this value always returns true.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.Networking;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Plays a movie over a texture from a stream<br /><br />    <a href="Networking.UnityWebRequest.html">UnityWebRequest</a> wwwData;
+    string url = "";
+    GUITexture gt;<br /><br />    void Start()
+    {
+        wwwData = UnityWebRequestMultimedia.GetMovieTexture(url);
+        gt = GetComponent&lt;GUITexture&gt;();
+        gt.texture = DownloadHandlerMovieTexture.GetContent(wwwData);
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        MovieTexture m = gt.texture as MovieTexture;<br /><br />        if (!m.isPlaying &amp;&amp; m.isReadyToPlay)
+        {
+            m.Play();
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

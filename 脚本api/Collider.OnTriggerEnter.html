@@ -1,0 +1,74 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Collider.OnTriggerEnter(Collider)</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Collider.html">Collider</a>.OnTriggerEnter(Collider)</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">other</td><td class="desc"></td><td class="desc1">The other Collider involved in this collision.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>
+        <a href="Collider.OnTriggerEnter.html">OnTriggerEnter</a> is called when the <a href="Collider.html">Collider</a> <code class="varname">other</code> enters the trigger.</p></div><div class="subsection"><p>This message is sent to the trigger Collider and the Rigidbody (if any) that the trigger Collider belongs
+to, and to the Rigidbody (or the Collider if there is no Rigidbody) that touches the trigger.<br /><br /><strong>Notes:</strong> Trigger events are only sent if one of the Colliders also has a Rigidbody attached. Trigger events will be sent to disabled MonoBehaviours, to allow enabling Behaviours in response to collisions.
+<a href="Collider.OnTriggerEnter.html">OnTriggerEnter</a> occurs on the <code class="varname">FixedUpdate</code> after a collision. The Colliders involved are not guaranteed to be at the point of initial contact.<br /><br /><strong>Note:</strong> <a href="Collider.OnTriggerEnter.html">OnTriggerEnter</a> is not technically part of <a href="Collision.html">Collision</a>.  It is a MonoBehaviour function.<br /><br />The following CS example shows how a trigger can interact with a sphere GameObject.  This GameObject is created in <code class="varname">Awake</code>.  <a href="Collider.OnTriggerEnter.html">OnTriggerEnter</a>, <a href="Collider.OnTriggerStay.html">OnTriggerStay</a> and <a href="Collider.OnTriggerExit.html">OnTriggerExit</a> are called when this cube interacts with the sphere.  <code class="varname">Update</code> moves the cube forward/back and left/right.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public bool enter = true;
+    public bool stay = true;
+    public bool exit = true;
+    public float moveSpeed;<br /><br />    void Awake()
+    {
+        // move and reduce the size of the cube
+        transform.position = new <a href="Vector3.html">Vector3</a>(0, 0.25f, 0.75f);
+        transform.localScale = new <a href="Vector3.html">Vector3</a>(0.1f, 0.1f, 0.1f);<br /><br />        // add isTrigger
+        var boxCollider = gameObject.AddComponent&lt;<a href="BoxCollider.html">BoxCollider</a>&gt;();
+        boxCollider.isTrigger = true;<br /><br />        moveSpeed = 1.0f;<br /><br />        // create a sphere for this cube to interact with
+        <a href="GameObject.html">GameObject</a> sphere = <a href="GameObject.CreatePrimitive.html">GameObject.CreatePrimitive</a>(<a href="PrimitiveType.Sphere.html">PrimitiveType.Sphere</a>);
+        sphere.gameObject.transform.position = new <a href="Vector3.html">Vector3</a>(0, 0, 0);
+        sphere.gameObject.AddComponent&lt;<a href="Rigidbody.html">Rigidbody</a>&gt;();
+        sphere.gameObject.GetComponent&lt;<a href="Rigidbody.html">Rigidbody</a>&gt;().isKinematic = true;
+        sphere.gameObject.GetComponent&lt;<a href="Rigidbody.html">Rigidbody</a>&gt;().useGravity = false;
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        transform.Translate(<a href="Vector3-forward.html">Vector3.forward</a> * <a href="Time-deltaTime.html">Time.deltaTime</a> * <a href="Input.GetAxis.html">Input.GetAxis</a>("Vertical") * moveSpeed);
+        transform.Translate(<a href="Vector3-right.html">Vector3.right</a> * <a href="Time-deltaTime.html">Time.deltaTime</a> * <a href="Input.GetAxis.html">Input.GetAxis</a>("Horizontal") * moveSpeed);
+    }<br /><br />    private void OnTriggerEnter(<a href="Collider.html">Collider</a> other)
+    {
+        if (enter)
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("entered");
+        }
+    }<br /><br />    // stayCount allows the OnTriggerStay to be displayed less often
+    // than it actually occurs.
+    private float stayCount = 0.0f;
+    private void OnTriggerStay(<a href="Collider.html">Collider</a> other)
+    {
+        if (stay)
+        {
+            if (stayCount &gt; 0.25f)
+            {
+                <a href="Debug.Log.html">Debug.Log</a>("staying");
+                stayCount = stayCount - 0.25f;
+            }
+            else
+            {
+                stayCount = stayCount + <a href="Time-deltaTime.html">Time.deltaTime</a>;
+            }
+        }
+    }<br /><br />    private void OnTriggerExit(<a href="Collider.html">Collider</a> other)
+    {
+        if (exit)
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("exit");
+        }
+    }
+}
+</pre>
+      </div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Destroy everything that enters the trigger
+    void OnTriggerEnter(<a href="Collider.html">Collider</a> other)
+    {
+        Destroy(other.gameObject);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

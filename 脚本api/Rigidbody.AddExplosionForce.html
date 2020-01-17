@@ -1,0 +1,27 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Rigidbody.AddExplosionForce</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Rigidbody.html">Rigidbody</a>.AddExplosionForce</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Rigidbody.html' title='Go to Rigidbody Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">AddExplosionForce</span>(float <span class="sig-kw">explosionForce</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">explosionPosition</span>,
+float <span class="sig-kw">explosionRadius</span>,
+float <span class="sig-kw">upwardsModifier</span> = 0.0f,
+<a href="ForceMode.html">ForceMode</a> <span class="sig-kw">mode</span> = ForceMode.Force));
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">explosionForce</td><td class="desc"></td><td class="desc1">The force of the explosion (which may be modified by distance).</td></tr><tr><td class="name lbl">explosionPosition</td><td class="desc"></td><td class="desc1">The centre of the sphere within which the explosion has its effect.</td></tr><tr><td class="name lbl">explosionRadius</td><td class="desc"></td><td class="desc1">The radius of the sphere within which the explosion has its effect.</td></tr><tr><td class="name lbl">upwardsModifier</td><td class="desc"></td><td class="desc1">Adjustment to the apparent position of the explosion to make it seem to lift objects.</td></tr><tr><td class="name lbl">mode</td><td class="desc"></td><td class="desc1">The method used to apply the force to its targets.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Applies a force to a rigidbody that simulates explosion effects.</p></div><div class="subsection"><p>The explosion is modelled as a sphere with a certain centre position and radius in world space; normally, anything outside the sphere is not affected by the explosion and the force decreases in proportion to distance from the centre. However, if a value of zero is passed for the radius then the full force will be applied regardless of how far the centre is from the rigidbody.<br /><br />This function applies a force to the object at the point on the surface of the rigidbody that is closest to <code class="varname">explosionPosition</code>. The force acts along the direction from <code class="varname">explosionPosition</code> to the surface point on the rigidbody. If <code class="varname">explosionPosition</code> is inside the rigidbody, or the rigidbody has no active colliders, then the center of mass is used instead of the closest point on the surface.<br /><br />The magnitude of the force is dependent on the distance between <code class="varname">explosionPosition</code> and the point where the force was applied at. As the distance between <code class="varname">explosionPosition</code> and the force point increases, the actual applied force decreases.<br /><br />The vertical direction of the force can be modified using <code class="varname">upwardsModifier</code>. If this parameter is greater than zero, the force is going to be applied at the point on the surface of the rigidbody that is closest to <code class="varname">explosionPosition</code> shifted negative <code class="varname">upwardsModifier</code> along Y. Using this parameter, you can make the explosion appear to throw objects up into the air, which can give a more dramatic effect rather than a simple outward force.
+Force can be applied only to an active rigidbody. If a GameObject is inactive, AddExplosionForce has no effect.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />// Applies an explosion force to all nearby rigidbodies
+public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public float radius = 5.0F;
+    public float power = 10.0F;<br /><br />    void Start()
+    {
+        <a href="Vector3.html">Vector3</a> explosionPos = transform.position;
+        <a href="Collider.html">Collider</a>[] colliders = <a href="Physics.OverlapSphere.html">Physics.OverlapSphere</a>(explosionPos, radius);
+        foreach (<a href="Collider.html">Collider</a> hit in colliders)
+        {
+            <a href="Rigidbody.html">Rigidbody</a> rb = hit.GetComponent&lt;<a href="Rigidbody.html">Rigidbody</a>&gt;();<br /><br />            if (rb != null)
+                rb.AddExplosionForce(power, explosionPos, radius, 3.0F);
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

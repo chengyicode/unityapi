@@ -1,0 +1,19 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Random.value</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Random.html">Random</a>.value</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static float <span class="sig-kw">value</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Returns a random number between 0.0 [inclusive] and 1.0 [inclusive] (Read Only).</p></div><div class="subsection"><p>Both 0.0 and 1.0 may be returned by this property. This behaviour is different to that of many other random number generators which return a value less than but never exactly equal to 1.0.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        <a href="Color.html">Color</a> randomColor = RandomColor();
+    }<br /><br />    // Generate a random color value.
+    <a href="Color.html">Color</a> RandomColor()
+    {
+        // A different random value is used for each color component (if
+        // the same is used for R, G and B, a shade of grey is produced).
+        return new <a href="Color.html">Color</a>(<a href="Random-value.html">Random.value</a>, <a href="Random-value.html">Random.value</a>, <a href="Random-value.html">Random.value</a>);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

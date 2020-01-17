@@ -1,0 +1,47 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Social</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">Social</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.GameCenterModule.html" class="cl">UnityEngine.GameCenterModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Generic access to the Social API.</p></div><div class="subsection"><p>
+        <a href="Social.Active.html">Social.Active</a> can be used to target a specific social platform implementation, but by default GameCenter is used on iOS. All other
+platforms default to the Local implementation which can be used for testing.
+See <a href="../Manual/net-SocialAPI.html">Social API Reference Manual</a> for an overview.<br /><br />The <a href="Social.html">Social</a> class should always be used as an entry point. It contains
+helper functions for accessing the current active implementation and always
+uses the interfaces of the other Social API classes. This way it is easier
+to use versions of the interfaces which have been extended beyond the generic API by the implementation.<br /><br />There are various classes accociated with the Social API and all of these reside
+in the UnityEngine.SocialPlatforms namespace. You need to import/use this namespace in order to use these classes.<br /><br /><br /> See Also: <a href="SocialPlatforms.GameCenter.GameCenterPlatform.html">GameCenterPlatform</a>.</p></div><div class="subsection"><h2>Static Properties</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Social.Active.html">Active</a></td><td class="desc"></td><td class="desc1">This is the currently active social platform. </td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Social-localUser.html">localUser</a></td><td class="desc"></td><td class="desc1">The local user (potentially not logged in).</td></tr>
+    </table></div><div class="subsection"><h2>Static Methods   静态方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Social.CreateAchievement.html">CreateAchievement</a></td><td class="desc"></td><td class="desc1">Create an IAchievement instance.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Social.CreateLeaderboard.html">CreateLeaderboard</a></td><td class="desc"></td><td class="desc1">Create an ILeaderboard instance.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Social.LoadAchievementDescriptions.html">LoadAchievementDescriptions</a></td><td class="desc"></td><td class="desc1">Loads the achievement descriptions accociated with this application.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Social.LoadAchievements.html">LoadAchievements</a></td><td class="desc"></td><td class="desc1">Load the achievements the logged in user has already achieved or reported progress on.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Social.LoadScores.html">LoadScores</a></td><td class="desc"></td><td class="desc1">Load a default set of scores from the given leaderboard.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Social.LoadUsers.html">LoadUsers</a></td><td class="desc"></td><td class="desc1">Load the user profiles accociated with the given array of user IDs.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Social.ReportProgress.html">ReportProgress</a></td><td class="desc"></td><td class="desc1">Reports the progress of an achievement.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Social.ReportScore.html">ReportScore</a></td><td class="desc"></td><td class="desc1">Report a score to a specific leaderboard.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Social.ShowAchievementsUI.html">ShowAchievementsUI</a></td><td class="desc"></td><td class="desc1">Show a default/system view of the games achievements.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Social.ShowLeaderboardUI.html">ShowLeaderboardUI</a></td><td class="desc"></td><td class="desc1">Show a default/system view of the games leaderboards.</td></tr>
+    </table></div></div></div></div></body></html>

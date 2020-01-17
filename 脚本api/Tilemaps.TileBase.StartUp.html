@@ -1,0 +1,29 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Tilemaps.TileBase.StartUp</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Tilemaps.TileBase.html">TileBase</a>.StartUp</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public bool <span class="sig-kw">StartUp</span>(<a href="Vector3Int.html">Vector3Int</a> <span class="sig-kw">position</span>,
+<a href="Tilemaps.ITilemap.html">Tilemaps.ITilemap</a> <span class="sig-kw">tilemap</span>,
+<a href="GameObject.html">GameObject</a> <span class="sig-kw">go</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">position</td><td class="desc"></td><td class="desc1">Position of the Tile on the <a href="Tilemaps.Tilemap.html">Tilemap</a>.</td></tr><tr><td class="name lbl">tilemap</td><td class="desc"></td><td class="desc1">The <a href="Tilemaps.Tilemap.html">Tilemap</a> the tile is present on.</td></tr><tr><td class="name lbl">go</td><td class="desc"></td><td class="desc1">The <a href="GameObject.html">GameObject</a> instantiated for the Tile.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>bool</strong>
+        Whether the call was successful.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>StartUp is called on the first frame of the running Scene.</p></div><div class="subsection"><p>Use this to set values for the instantiated <a href="GameObject.html">GameObject</a> or run any logic at the beginning of the Scene.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.Tilemaps;<br /><br />// <a href="Tilemaps.Tile.html">Tile</a> that instantiates a <a href="GameObject.html">GameObject</a> on Start and assigns a random rotation to the instanced <a href="GameObject.html">GameObject</a>
+[CreateAssetMenu]
+public class RandomRotationStartupTile : <a href="Tilemaps.TileBase.html">TileBase</a>
+{
+    public <a href="Sprite.html">Sprite</a> m_Sprite;
+    public <a href="GameObject.html">GameObject</a> m_Prefab;<br /><br />    public override void GetTileData(<a href="Vector3Int.html">Vector3Int</a> location, <a href="Tilemaps.ITilemap.html">ITilemap</a> tilemap, ref <a href="Tilemaps.TileData.html">TileData</a> tileData)
+    {
+        tileData.sprite = m_Sprite;
+        tileData.gameObject = m_Prefab;
+    }<br /><br />    public override bool StartUp(<a href="Vector3Int.html">Vector3Int</a> location, <a href="Tilemaps.ITilemap.html">ITilemap</a> tilemap, <a href="GameObject.html">GameObject</a> go)
+    {
+        if (go != null)
+        {
+            go.transform.rotation = <a href="Random-rotation.html">Random.rotation</a>;
+        }
+        return true;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

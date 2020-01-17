@@ -1,0 +1,50 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: LightmapParameters</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">LightmapParameters</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEditor</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Inherits from:<a href="Object.html" class="cl">Object</a></p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEditor.html" class="cl">UnityEditor</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-LightmapParameters.html' title='Go to LightmapParameters Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>A collection of parameters that impact lightmap and realtime GI computations.</p></div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="LightmapParameters-antiAliasingSamples.html">antiAliasingSamples</a></td><td class="desc"></td><td class="desc1">The maximum number of times to supersample a texel to reduce aliasing.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="LightmapParameters.AOAntiAliasingSamples.html">AOAntiAliasingSamples</a></td><td class="desc"></td><td class="desc1">The maximum number of times to supersample a texel to reduce aliasing in AO.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="LightmapParameters.AOQuality.html">AOQuality</a></td><td class="desc"></td><td class="desc1">The number of rays to cast for computing ambient occlusion.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="LightmapParameters-backFaceTolerance.html">backFaceTolerance</a></td><td class="desc"></td><td class="desc1">The percentage of rays shot from a ray origin that must hit front faces to be considered usable.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="LightmapParameters-bakedLightmapTag.html">bakedLightmapTag</a></td><td class="desc"></td><td class="desc1">BakedLightmapTag is an integer that affects the assignment to baked lightmaps. Objects with different values for bakedLightmapTag are guaranteed to not be assigned to the same lightmap even if the other baking parameters are the same.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="LightmapParameters-blurRadius.html">blurRadius</a></td><td class="desc"></td><td class="desc1">The radius (in texels) of the post-processing filter that blurs baked direct lighting.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="LightmapParameters-clusterResolution.html">clusterResolution</a></td><td class="desc"></td><td class="desc1">Controls the resolution at which Enlighten stores and can transfer input light.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="LightmapParameters-directLightQuality.html">directLightQuality</a></td><td class="desc"></td><td class="desc1">The number of rays used for lights with an area. Allows for accurate soft shadowing.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="LightmapParameters-irradianceBudget.html">irradianceBudget</a></td><td class="desc"></td><td class="desc1">The amount of data used for realtime GI texels. Specifies how detailed view of the Scene a texel has. Small values mean more averaged out lighting.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="LightmapParameters-irradianceQuality.html">irradianceQuality</a></td><td class="desc"></td><td class="desc1">The number of rays to cast for computing irradiance form factors.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="LightmapParameters-isTransparent.html">isTransparent</a></td><td class="desc"></td><td class="desc1">If enabled, the object appears transparent during GlobalIllumination lighting calculations.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="LightmapParameters-limitLightmapCount.html">limitLightmapCount</a></td><td class="desc"></td><td class="desc1">If enabled, objects sharing the same lightmap parameters will be packed into LightmapParameters.maxLightmapCount lightmaps.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="LightmapParameters-maxLightmapCount.html">maxLightmapCount</a></td><td class="desc"></td><td class="desc1">The maximum number of lightmaps that will be created for objects sharing the same lightmap parameters. This property is ignored if LightmapParameters.limitLightmapCount is false.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="LightmapParameters-modellingTolerance.html">modellingTolerance</a></td><td class="desc"></td><td class="desc1">Maximum size of gaps that can be ignored for GI (multiplier on pixel size).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="LightmapParameters-resolution.html">resolution</a></td><td class="desc"></td><td class="desc1">The texel resolution per meter used for realtime lightmaps. This value is multiplied by LightmapEditorSettings.resolution.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="LightmapParameters-stitchEdges.html">stitchEdges</a></td><td class="desc"></td><td class="desc1">Whether pairs of edges should be stitched together.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="LightmapParameters-systemTag.html">systemTag</a></td><td class="desc"></td><td class="desc1">System tag is an integer identifier. It lets you force an object into a different Enlighten system even though all the other parameters are the same.</td></tr>
+    </table></div><div class="subsection"><h2>Inherited Members   继承成员</h2>
+      
+      <div class="subsection"><h2>Properties   属性</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-hideFlags.html">hideFlags</a></td><td class="desc"></td><td class="desc1">Should the object be hidden, saved with the Scene or modifiable by the user?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-name.html">name</a></td><td class="desc"></td><td class="desc1">The name of the object.</td></tr>
+      </table></div>
+      
+      
+      
+      <div class="subsection"><h2>Public Methods</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.GetInstanceID.html">GetInstanceID</a></td><td class="desc"></td><td class="desc1">Returns the instance id of the object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.ToString.html">ToString</a></td><td class="desc"></td><td class="desc1">Returns the name of the object.</td></tr>
+      </table></div>
+      
+      <div class="subsection"><h2>Static Methods   静态方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.Destroy.html">Destroy</a></td><td class="desc"></td><td class="desc1">Removes a GameObject, component or asset.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.DestroyImmediate.html">DestroyImmediate</a></td><td class="desc"></td><td class="desc1">Destroys the object obj immediately. You are strongly recommended to use Destroy instead.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.DontDestroyOnLoad.html">DontDestroyOnLoad</a></td><td class="desc"></td><td class="desc1">Do not destroy the target Object when loading a new Scene.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectOfType.html">FindObjectOfType</a></td><td class="desc"></td><td class="desc1">Returns the first active loaded object of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectsOfType.html">FindObjectsOfType</a></td><td class="desc"></td><td class="desc1">Returns a list of all active loaded objects of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.Instantiate.html">Instantiate</a></td><td class="desc"></td><td class="desc1">Clones the object original and returns the clone.</td></tr>
+      </table></div>
+      <div class="subsection"><h2>Operators   运算符</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_Object.html">bool</a></td><td class="desc"></td><td class="desc1">Does the object exist?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_ne.html">operator !=</a></td><td class="desc"></td><td class="desc1">Compares if two objects refer to a different object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_eq.html">operator ==</a></td><td class="desc"></td><td class="desc1">Compares two object references to see if they refer to the same object.</td></tr>
+      </table></div>
+      
+      
+      
+    </div></div></div></div></body></html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Experimental.Animations.AnimationScriptPlayable.Create</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Experimental</b>: this API is experimental and might be changed or removed in the future.</div><h1 class="heading inherit"><a href="Experimental.Animations.AnimationScriptPlayable.html">AnimationScriptPlayable</a>.Create</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Experimental.Animations.AnimationScriptPlayable.html">Experimental.Animations.AnimationScriptPlayable</a> <span class="sig-kw">Create</span>(<a href="Playables.PlayableGraph.html">Playables.PlayableGraph</a> <span class="sig-kw">graph</span>,
+T <span class="sig-kw">jobData</span>,
+int <span class="sig-kw">inputCount</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">graph</td><td class="desc"></td><td class="desc1">The PlayableGraph object that will own the AnimationScriptPlayable.</td></tr><tr><td class="name lbl">job</td><td class="desc"></td><td class="desc1">The <a href="Experimental.Animations.IAnimationJob.html">IAnimationJob</a> to execute when processing the playable.</td></tr><tr><td class="name lbl">inputCount</td><td class="desc"></td><td class="desc1">The number of inputs on the playable.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>AnimationScriptPlayable</strong>
+        A new <a href="Experimental.Animations.AnimationScriptPlayable.html">AnimationScriptPlayable</a> linked to the <a href="Playables.PlayableGraph.html">PlayableGraph</a>.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Creates an <a href="Experimental.Animations.AnimationScriptPlayable.html">AnimationScriptPlayable</a> in the <a href="Playables.PlayableGraph.html">PlayableGraph</a>.</p></div><div class="subsection"><p>This playable contains a job implementing an <a href="Experimental.Animations.IAnimationJob.html">IAnimationJob</a>. This interface defines two methods that will be called while processing the <a href="Playables.PlayableGraph.html">PlayableGraph</a>.<br /><br />Here is an example of how to create an <a href="Experimental.Animations.AnimationScriptPlayable.html">AnimationScriptPlayable</a> with a simple <a href="Experimental.Animations.IAnimationJob.html">IAnimationJob</a>:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.Playables;
+using UnityEngine.Animations;<br /><br />using UnityEngine.Experimental.Animations;<br /><br />public struct AnimationJob : <a href="Experimental.Animations.IAnimationJob.html">IAnimationJob</a>
+{
+    public int userData;<br /><br />    public void ProcessRootMotion(<a href="Experimental.Animations.AnimationStream.html">AnimationStream</a> stream)
+    {
+        // This method is called during the root motion process pass.
+    }<br /><br />    public void ProcessAnimation(<a href="Experimental.Animations.AnimationStream.html">AnimationStream</a> stream)
+    {
+        // This method is called during the animation process pass.
+        <a href="Debug.Log.html">Debug.Log</a>(string.Format("Value of the userData: {0}", userData));
+    }
+}<br /><br />[<a href="RequireComponent.html">RequireComponent</a>(typeof(<a href="Animator.html">Animator</a>))]
+public class AnimationScriptExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="Playables.PlayableGraph.html">PlayableGraph</a> m_Graph;
+    <a href="Experimental.Animations.AnimationScriptPlayable.html">AnimationScriptPlayable</a> m_AnimationScriptPlayable;<br /><br />    void OnEnable()
+    {
+        m_Graph = <a href="Playables.PlayableGraph.Create.html">PlayableGraph.Create</a>("AnimationScriptExample");
+        var output = <a href="Animations.AnimationPlayableOutput.Create.html">AnimationPlayableOutput.Create</a>(m_Graph, "ouput", GetComponent&lt;<a href="Animator.html">Animator</a>&gt;());<br /><br />        var animationJob = new AnimationJob();
+        m_AnimationScriptPlayable = <a href="Experimental.Animations.AnimationScriptPlayable.Create.html">AnimationScriptPlayable.Create</a>(m_Graph, animationJob);<br /><br />        output.SetSourcePlayable(m_AnimationScriptPlayable);
+        m_Graph.Play();
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        var animationJob = m_AnimationScriptPlayable.GetJobData&lt;AnimationJob&gt;();
+        ++animationJob.userData;
+        m_AnimationScriptPlayable.SetJobData(animationJob);
+    }<br /><br />    void OnDisable()
+    {
+        m_Graph.Destroy();
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="Experimental.Animations.IAnimationJob.html">IAnimationJob</a>, <a href="Experimental.Animations.AnimatorJobExtensions.html">AnimatorJobExtensions</a>.</p></div></div></div></div></body></html>

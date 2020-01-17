@@ -1,0 +1,31 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Camera.ScreenToWorldPoint</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Camera.html">Camera</a>.ScreenToWorldPoint</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Camera.html' title='Go to Camera Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Vector3.html">Vector3</a> <span class="sig-kw">ScreenToWorldPoint</span>(<a href="Vector3.html">Vector3</a> <span class="sig-kw">position</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Vector3.html">Vector3</a> <span class="sig-kw">ScreenToWorldPoint</span>(<a href="Vector3.html">Vector3</a> <span class="sig-kw">position</span>,
+<a href="Camera.MonoOrStereoscopicEye.html">Camera.MonoOrStereoscopicEye</a> <span class="sig-kw">eye</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">position</td><td class="desc"></td><td class="desc1">A screen space position (often mouse x, y), plus a z position for depth (for example, a camera clipping plane).</td></tr><tr><td class="name lbl">eye</td><td class="desc"></td><td class="desc1">By default, <a href="Camera.MonoOrStereoscopicEye.Mono.html">Camera.MonoOrStereoscopicEye.Mono</a>. Can be set to <a href="Camera.MonoOrStereoscopicEye.Left.html">Camera.MonoOrStereoscopicEye.Left</a> or <a href="Camera.MonoOrStereoscopicEye.Right.html">Camera.MonoOrStereoscopicEye.Right</a> for use in stereoscopic rendering (e.g., for VR).</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>Vector3</strong>
+        The worldspace point created by converting the screen space point at the provided distance z from the camera plane.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Transforms a point from screen space into world space, where world space is defined as the coordinate system at the very top of your game's hierarchy.</p></div><div class="subsection"><p>World space coordinates can still be calculated even when provided as an off-screen coordinate, for example for instantiating an off-screen object near a specific corner of the screen.<br /><br />Screenspace is defined in pixels. The bottom-left of the screen is (0,0); the right-top
+is (<a href="Camera-pixelWidth.html">pixelWidth</a>,<a href="Camera-pixelHeight.html">pixelHeight</a>). The z position is in world units from the camera.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Convert the 2D position of the mouse into a
+// 3D position.  <a href="Display.html">Display</a> these on the game window.<br /><br />using UnityEngine;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private <a href="Camera.html">Camera</a> cam;<br /><br />    void Start()
+    {
+        cam = <a href="Camera-main.html">Camera.main</a>;
+    }<br /><br />    void OnGUI()
+    {
+        <a href="Vector3.html">Vector3</a> point = new <a href="Vector3.html">Vector3</a>();
+        <a href="Event.html">Event</a>   currentEvent = <a href="Event-current.html">Event.current</a>;
+        <a href="Vector2.html">Vector2</a> mousePos = new <a href="Vector2.html">Vector2</a>();<br /><br />        // Get the mouse position from <a href="Event.html">Event</a>.
+        // Note that the y position from <a href="Event.html">Event</a> is inverted.
+        mousePos.x = currentEvent.mousePosition.x;
+        mousePos.y = cam.pixelHeight - currentEvent.mousePosition.y;<br /><br />        point = cam.ScreenToWorldPoint(new <a href="Vector3.html">Vector3</a>(mousePos.x, mousePos.y, cam.nearClipPlane));<br /><br />        <a href="GUILayout.BeginArea.html">GUILayout.BeginArea</a>(new <a href="Rect.html">Rect</a>(20, 20, 250, 120));
+        <a href="GUILayout.Label.html">GUILayout.Label</a>("<a href="Screen.html">Screen</a> pixels: " + cam.pixelWidth + ":" + cam.pixelHeight);
+        <a href="GUILayout.Label.html">GUILayout.Label</a>("Mouse position: " + mousePos);
+        <a href="GUILayout.Label.html">GUILayout.Label</a>("World position: " + point.ToString("F3"));
+        <a href="GUILayout.EndArea.html">GUILayout.EndArea</a>();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AssetDatabase.GetAssetPath</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="AssetDatabase.html">AssetDatabase</a>.GetAssetPath</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static string <span class="sig-kw">GetAssetPath</span>(int <span class="sig-kw">instanceID</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static string <span class="sig-kw">GetAssetPath</span>(<a href="Object.html">Object</a> <span class="sig-kw">assetObject</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">instanceID</td><td class="desc"></td><td class="desc1">The instance ID of the asset.</td></tr><tr><td class="name lbl">assetObject</td><td class="desc"></td><td class="desc1">A reference to the asset.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>string</strong>
+        The asset path name, or null, or an empty string if the asset does not exist.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Returns the path name relative to the project folder where the asset is stored.</p></div><div class="subsection"><p>All paths are relative to the project folder, for example: "Assets/MyTextures/hello.png".</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class CreateMaterialExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    [<a href="MenuItem.html">MenuItem</a>("<a href="GameObject.html">GameObject</a>/Create <a href="Material.html">Material</a>")]
+    static void CreateMaterial()
+    {
+        // Create a simple material asset<br /><br />        <a href="Material.html">Material</a> material = new <a href="Material.html">Material</a>(<a href="Shader.Find.html">Shader.Find</a>("Specular"));
+        <a href="AssetDatabase.CreateAsset.html">AssetDatabase.CreateAsset</a>(material, "Assets/MyMaterial.mat");<br /><br />        // Print the path of the created asset
+        <a href="Debug.Log.html">Debug.Log</a>(<a href="AssetDatabase.GetAssetPath.html">AssetDatabase.GetAssetPath</a>(material));
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

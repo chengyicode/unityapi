@@ -1,0 +1,14 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ParticleSystem.noise</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="ParticleSystem.html">ParticleSystem</a>.noise</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-ParticleSystem.html' title='Go to ParticleSystem Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="ParticleSystem.NoiseModule.html">ParticleSystem.NoiseModule</a> <span class="sig-kw">noise</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Script interface for the Particle System Noise module.</p></div><div class="subsection"><p>The Noise Module allows you to apply turbulence to the movement of your particles. Use the low quality settings to create computationally efficient Noise, or simulate smoother, richer Noise with the higher quality settings. You can also choose to define the behavior of the Noise individually for each axis.<br /><br />Particle System modules do not need to be reassigned back to the system; they are interfaces and not independent objects.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a> {
+    void Start() {
+        <a href="ParticleSystem.html">ParticleSystem</a> ps = GetComponent&lt;<a href="ParticleSystem.html">ParticleSystem</a>&gt;();
+        var no = ps.noise;
+        no.enabled = true;
+        no.strength = 1.0f;
+        no.quality = <a href="ParticleSystemNoiseQuality.High.html">ParticleSystemNoiseQuality.High</a>;
+    }
+}</pre>
+      </div></div></div></div></body></html>

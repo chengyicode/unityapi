@@ -1,0 +1,21 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Rigidbody.constraints</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Rigidbody.html">Rigidbody</a>.constraints</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Rigidbody.html' title='Go to Rigidbody Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="RigidbodyConstraints.html">RigidbodyConstraints</a> <span class="sig-kw">constraints</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Controls which degrees of freedom are allowed for the simulation of this Rigidbody.</p></div><div class="subsection"><p>By default this is set to <a href="RigidbodyConstraints.None.html">RigidbodyConstraints.None</a>, allowing rotation and movement along all axes.
+In some cases, you may want to constrain a <a href="Rigidbody.html">Rigidbody</a> to only move or rotate along some axes, for
+example when developing 2D games. You can use the bitwise OR operator to combine multiple
+constraints.<br /><br />Note that position constraints are applied in World space, and rotation constraints are applied in Local space.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//Attach this script to a <a href="GameObject.html">GameObject</a>.
+//Attach a <a href="Rigidbody.html">Rigidbody</a> to the <a href="GameObject.html">GameObject</a> by clicking the <a href="GameObject.html">GameObject</a> in the <a href="UIElements.VisualElement.Hierarchy.html">Hierarchy</a> and
+//clicking the <strong>Add Component</strong> button. Search for <a href="Rigidbody.html">Rigidbody</a> in the field and select
+//it when shown.<br /><br />using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="Rigidbody.html">Rigidbody</a> m_Rigidbody;<br /><br />    void Start()
+    {
+        m_Rigidbody = GetComponent&lt;<a href="Rigidbody.html">Rigidbody</a>&gt;();
+        //This locks the RigidBody so that it does not move or rotate in the Z axis.
+        m_Rigidbody.constraints = <a href="RigidbodyConstraints.FreezePositionZ.html">RigidbodyConstraints.FreezePositionZ</a> | <a href="RigidbodyConstraints.FreezeRotationZ.html">RigidbodyConstraints.FreezeRotationZ</a>;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

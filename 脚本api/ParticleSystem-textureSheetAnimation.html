@@ -1,0 +1,15 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ParticleSystem.textureSheetAnimation</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="ParticleSystem.html">ParticleSystem</a>.textureSheetAnimation</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-ParticleSystem.html' title='Go to ParticleSystem Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="ParticleSystem.TextureSheetAnimationModule.html">ParticleSystem.TextureSheetAnimationModule</a> <span class="sig-kw">textureSheetAnimation</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Script interface for the Particle System Texture Sheet Animation module.</p></div><div class="subsection"><p>This module allows you to add animations to your particle textures. This is achieved by authoring flipbook textures, which look like this:<br /><br /><img src="../StaticFiles/ScriptRefImages/ParticleFlipbook.png" /><br /><br />Each numbered region represents a frame of the animation, and must be distributed evenly across the texture.
+Select a variable below to see script examples. You may want to use this texture on your Particle System with each example, to see how the module works.<br /><br />Particle System modules do not need to be reassigned back to the system; they are interfaces and not independent objects.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a> {
+    void Start() {
+        <a href="ParticleSystem.html">ParticleSystem</a> ps = GetComponent&lt;<a href="ParticleSystem.html">ParticleSystem</a>&gt;();
+        var ts = ps.textureSheetAnimation;
+            ts.enabled = true;
+        ts.numTilesX = 2;
+        ts.useRandomRow = true;
+    }
+}</pre>
+      </div></div></div></div></body></html>

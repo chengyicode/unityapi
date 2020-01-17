@@ -1,0 +1,31 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: RectTransform.anchoredPosition</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="RectTransform.html">RectTransform</a>.anchoredPosition</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-RectTransform.html' title='Go to RectTransform Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Vector2.html">Vector2</a> <span class="sig-kw">anchoredPosition</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The position of the pivot of this RectTransform relative to the anchor reference point.</p></div><div class="subsection"><p>The Anchored Position is the position of the pivot of the RectTransform taking into consideration the anchor reference point.
+The anchor reference point is the position of the anchors. If the anchors are not together, Unity estimates the four anchor positions using the pivot placement as a reference.<br /><br /><strong>Note</strong>: The Inspector changes which properties are exposed based on which anchor preset is in use. For more information see <a href="../Manual/class-RectTransform.html">Rect Transform</a> and <a href="../Manual/UIBasicLayout.html">Basic Layout</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="RectTransform.html">RectTransform</a> m_RectTransform;
+    float m_XAxis, m_YAxis;<br /><br />    void Start()
+    {
+        //Fetch the <a href="RectTransform.html">RectTransform</a> from the <a href="GameObject.html">GameObject</a>
+        m_RectTransform = GetComponent&lt;<a href="RectTransform.html">RectTransform</a>&gt;();
+        //Initiate the x and y positions
+        m_XAxis = 0.5f;
+        m_YAxis = 0.5f;
+    }<br /><br />    void OnGUI()
+    {
+        //The Labels show what the Sliders represent
+        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(0, 20, 150, 80), "Anchor <a href="UIElements.Position.html">Position</a> X : ");
+        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(300, 20, 150, 80), "Anchor <a href="UIElements.Position.html">Position</a> Y : ");<br /><br />        //Create a horizontal <a href="UIElements.Slider.html">Slider</a> that controls the x and y Positions of the anchors
+        m_XAxis = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(150, 20, 100, 80), m_XAxis, -50.0f, 50.0f);
+        m_YAxis = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(450, 20, 100, 80), m_YAxis, -50.0f, 50.0f);<br /><br />        //Detect a change in the <a href="GUI.html">GUI</a> <a href="UIElements.Slider.html">Slider</a>
+        if (<a href="GUI-changed.html">GUI.changed</a>)
+        {
+            //Change the <a href="RectTransform.html">RectTransform</a>'s anchored positions depending on the <a href="UIElements.Slider.html">Slider</a> values
+            m_RectTransform.anchoredPosition = new <a href="Vector2.html">Vector2</a>(m_XAxis, m_YAxis);
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

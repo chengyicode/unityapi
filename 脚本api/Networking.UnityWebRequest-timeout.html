@@ -1,0 +1,30 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Networking.UnityWebRequest.timeout</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Networking.UnityWebRequest.html">UnityWebRequest</a>.timeout</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public int <span class="sig-kw">timeout</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Sets UnityWebRequest to attempt to abort after the number of seconds in <code class="varname">timeout</code> have passed.</p></div><div class="subsection"><p>When a timeout occurs <a href="Networking.UnityWebRequest-error.html">error</a> returns "Request timeout" . No timeout is applied when <code class="varname">timeout</code> is set to <code class="varname">0</code> and this property defaults to <code class="mono">0</code>. <br />
+<strong>Note:</strong> The set timeout may apply to each URL redirect on Android which can result in a longer response.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;
+using UnityEngine.Networking;<br /><br />// Ask the website to deliver an image that is very large.
+// Set the download to take more than 1 second.  This causes
+// the "request timeout" error message.<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        StartCoroutine(GetText());
+    }<br /><br />    IEnumerator GetText()
+    {
+        <a href="Networking.UnityWebRequest.html">UnityWebRequest</a> www = <a href="Networking.UnityWebRequest.Get.html">UnityWebRequest.Get</a>("http://my-website.com/verylargeimage.jpg");<br /><br />        // wait up to one second to download the image
+        www.timeout = 1;
+        yield return www.SendWebRequest();<br /><br />        if (www.isNetworkError || www.isHttpError)
+        {
+            <a href="Debug.Log.html">Debug.Log</a>(www.error);
+        }
+        else
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("image arrived");
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

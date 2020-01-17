@@ -1,0 +1,28 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ProfilerMarker</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">ProfilerMarker</h1><div class="clear"></div><p class="cl mb0 left mr10">struct in
+          Unity.Profiling</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.CoreModule.html" class="cl">UnityEngine.CoreModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Performance marker used for profiling arbitrary code blocks.</p></div><div class="subsection"><p>Use <em>ProfilerMarker</em> to mark up script code blocks for the Profiler.<br />
+The information produced by markers is displayed in the <a href="../Manual/ProfilerCPU.html">CPU Profiler</a> and can be also captured with <a href="Profiling.Recorder.html">Recorder</a>. During development (in Editor and Development Players) this can help to get performance overview of different parts of game code and identify performance issues.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using Unity.Profiling;<br /><br />public class MySystemClass
+{
+    static <a href="Unity.Profiling.ProfilerMarker.html">ProfilerMarker</a> s_PreparePerfMarker = new <a href="Unity.Profiling.ProfilerMarker.html">ProfilerMarker</a>("MySystem.Prepare");
+    static <a href="Unity.Profiling.ProfilerMarker.html">ProfilerMarker</a> s_SimulatePerfMarker = new <a href="Unity.Profiling.ProfilerMarker.html">ProfilerMarker</a>("MySystem.Simulate");<br /><br />    public void UpdateLogic()
+    {
+        s_PreparePerfMarker.Begin();
+        // ...
+        s_PreparePerfMarker.End();<br /><br />        using (s_SimulatePerfMarker.Auto())
+        {
+            // ...
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>
+        <em>ProfilerMarker</em> represents a named profiler handle and is the most efficient way of profiling your code. It can be used in jobified code.<br />
+Methods <a href="Unity.Profiling.ProfilerMarker.Begin.html">Begin</a> and <a href="Unity.Profiling.ProfilerMarker.End.html">End</a> are marked with ConditionalAttribute. They are conditionally compiled away and thus have zero overhead in non-Developmenet (Release) builds.<br /><br />When Profiler collects instrumentation data, <em>ProfilerMarker</em> helps to reduce overhead and the amount of transferred data. <a href="Profiling.Profiler.BeginSample.html">Profiler.BeginSample</a> transfers full string to the data stream while <a href="Unity.Profiling.ProfilerMarker.Begin.html">ProfilerMarker.Begin</a> and <a href="Profiling.CustomSampler.Begin.html">CustomSampler.Begin</a> only integer identifier of the marker.<br /><br />Also <a href="Unity.Profiling.ProfilerMarker.End.html">ProfilerMarker.End</a> provides a context information to the <a href="Profiling.Recorder.html">Recorder</a> making it possible to track timings of a marked code in Players.<br /><br />See Also: <a href="Profiling.Recorder.html">Recorder</a>.</p></div><div class="subsection"><h2>Constructors</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Unity.Profiling.ProfilerMarker-ctor.html">ProfilerMarker</a></td><td class="desc"></td><td class="desc1">Constructs a new performance marker for code instrumentation.</td></tr>
+    </table></div><div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Unity.Profiling.ProfilerMarker.Auto.html">Auto</a></td><td class="desc"></td><td class="desc1">Creates a helper struct for the scoped using blocks.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Unity.Profiling.ProfilerMarker.Begin.html">Begin</a></td><td class="desc"></td><td class="desc1">Begin profiling a piece of code marked with a custom name defined by this instance of ProfilerMarker.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Unity.Profiling.ProfilerMarker.End.html">End</a></td><td class="desc"></td><td class="desc1">End profiling a piece of code marked with a custom name defined by this instance of ProfilerMarker.</td></tr>
+    </table></div></div></div></div></body></html>

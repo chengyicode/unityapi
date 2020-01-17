@@ -1,0 +1,35 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorWindow.mouseOverWindow</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorWindow.html">EditorWindow</a>.mouseOverWindow</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="EditorWindow.html">EditorWindow</a> <span class="sig-kw">mouseOverWindow</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The EditorWindow currently under the mouse cursor. (Read Only)</p></div><div class="subsection"><p>
+        <code class="varname">mouseOverWindow</code> can be null if there is no window under the cursor.<br /><br />See Also: <a href="EditorWindow-focusedWindow.html">focusedWindow</a>.<br /><br /><img src="../StaticFiles/ScriptRefImages/UnityEditorMouseOverWindow.png" /><br />
+<em>Move the mouse over other Unity windows to automatically focus them.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// mouseOverWindow example
+//
+// The window appears in front of the editor.  When you move
+// the cursor over a Unity object the type of it will be
+// shown in this new window.<br /><br />using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class MouseOverWindowExample : <a href="EditorWindow.html">EditorWindow</a>
+{
+    string mouseOver = "Nothing...";<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Examples/mouseOver")]
+    static void Init()
+    {
+        GetWindow&lt;MouseOverWindowExample&gt;("mouseOver");
+    }<br /><br />    void OnGUI()
+    {
+        <a href="GUILayout.Label.html">GUILayout.Label</a>("Mouse over:\n" + mouseOver);
+        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Close"))
+        {
+            this.Close();
+        }<br /><br />        mouseOver = <a href="EditorWindow-mouseOverWindow.html">EditorWindow.mouseOverWindow</a> ?
+            EditorWindow.mouseOverWindow.ToString() : "Nothing...";
+    }<br /><br />    void OnInspectorUpdate()
+    {
+        if (<a href="EditorWindow-mouseOverWindow.html">EditorWindow.mouseOverWindow</a>)
+        {
+            EditorWindow.mouseOverWindow.Focus();
+        }<br /><br />        this.Repaint();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

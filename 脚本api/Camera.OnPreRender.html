@@ -1,0 +1,21 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Camera.OnPreRender()</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Camera.html">Camera</a>.OnPreRender()</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Camera.html' title='Go to Camera Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>OnPreRender is called before a camera starts rendering the Scene.</p></div><div class="subsection"><p>This message is sent to all scripts attached to the camera.<br /><br />Note that if you change camera's viewing parameters (e.g. <a href="Camera-fieldOfView.html">fieldOfView</a>) here,
+they will only take effect the next frame. Do that in <a href="Camera.OnPreCull.html">OnPreCull</a> instead.<br /><br />Also note that when OnPreRender is called, the camera's render target is not set up yet, and the depth texture(s)
+are not rendered yet either. If you want to do something later on (when the render target is already set),
+try using a <a href="Rendering.CommandBuffer.html">CommandBuffer</a>.<br /><br />See Also: <a href="Camera-onPreRender.html">onPreRender</a> delegate.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // This script lets you enable/disable fog per camera.
+    // by enabling or disabling the script in the title of the inspector
+    // you can turn fog on or off per camera.<br /><br />    bool revertFogState = false;<br /><br />    void OnPreRender()
+    {
+        revertFogState = <a href="RenderSettings-fog.html">RenderSettings.fog</a>;
+        <a href="RenderSettings-fog.html">RenderSettings.fog</a> = enabled;
+    }<br /><br />    void OnPostRender()
+    {
+        <a href="RenderSettings-fog.html">RenderSettings.fog</a> = revertFogState;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: GUILayout.EndScrollView</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="GUILayout.html">GUILayout</a>.EndScrollView</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">EndScrollView</span>();
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>End a scroll view begun with a call to BeginScrollView.</p></div><div class="subsection"><p>See Also: <a href="GUILayout.BeginScrollView.html">GUILayout.BeginScrollView</a><br /><br /><img src="../StaticFiles/ScriptRefImages/GUILayoutScrollView.png" /><br />
+<em>Scroll View in the Game View..</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // The variable to control where the scrollview 'looks' into its child elements.
+    <a href="Vector2.html">Vector2</a> scrollPosition;<br /><br />    // The string to display inside the scrollview. 2 buttons below add &amp; clear this string.
+    string longString = "This is a long-ish string";<br /><br />    void OnGUI()
+    {
+        // Begin a scroll view. All rects are calculated automatically -
+        // it will use up any available screen space and make sure contents flow correctly.
+        // This is kept small with the last two parameters to force scrollbars to appear.
+        scrollPosition = <a href="GUILayout.BeginScrollView.html">GUILayout.BeginScrollView</a>(
+            scrollPosition, <a href="GUILayout.Width.html">GUILayout.Width</a>(100), <a href="GUILayout.Height.html">GUILayout.Height</a>(100));<br /><br />        // We just add a single label to go inside the scroll view. Note how the
+        // scrollbars will work correctly with wordwrap.
+        <a href="GUILayout.Label.html">GUILayout.Label</a>(longString);<br /><br />        // Add a button to clear the string. This is inside the scroll area, so it
+        // will be scrolled as well. Note how the button becomes narrower to make room
+        // for the vertical scrollbar
+        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Clear"))
+            longString = "";<br /><br />        // End the scrollview we began above.
+        <a href="GUILayout.EndScrollView.html">GUILayout.EndScrollView</a>();<br /><br />        // Now we add a button outside the scrollview - this will be shown below
+        // the scrolling area.
+        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Add More Text"))
+            longString += "\nHere is another line";
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Mathf.Sin</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Mathf.html">Mathf</a>.Sin</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static float <span class="sig-kw">Sin</span>(float <span class="sig-kw">f</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">f</td><td class="desc"></td><td class="desc1">The input angle, in radians.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>float</strong>
+        The return value between -1 and +1.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Returns the sine of angle <code class="varname">f</code>.</p></div><div class="subsection"><p>
+        <strong>Note:</strong> If using very large numbers with this function, there is an acceptable range for input angle values for this method, beyond which the calculation will fail. On windows, the acceptable range is approximately between -9223372036854775295 to 9223372036854775295. This range may differ on other platforms. For values outside of the acceptable range, the Sin method returns the input value, rather than throwing an exception.<br /><br />See Also: <a href="Mathf.Cos.html">Cos</a>, <a href="Mathf.Tan.html">Tan</a>
+                </p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class PolyDrawExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public int numberOfSides;
+    public float polygonRadius;
+    public <a href="Vector2.html">Vector2</a> polygonCenter;<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        DebugDrawPolygon(polygonCenter, polygonRadius, numberOfSides);
+    }<br /><br />    // Draw a polygon in the XY plane with a specfied position, number of sides
+    // and radius.
+    void DebugDrawPolygon(<a href="Vector2.html">Vector2</a> center, float radius, int numSides)
+    {
+        // The corner that is used to start the polygon (parallel to the X axis).
+        <a href="Vector2.html">Vector2</a> startCorner = new <a href="Vector2.html">Vector2</a>(radius, 0) + center;<br /><br />        // The "previous" corner point, initialised to the starting corner.
+        <a href="Vector2.html">Vector2</a> previousCorner = startCorner;<br /><br />        // For each corner after the starting corner...
+        for (int i = 1; i &lt; numSides; i++)
+        {
+            // Calculate the angle of the corner in radians.
+            float cornerAngle = 2f * <a href="Mathf.PI.html">Mathf.PI</a> / (float)numSides * i;<br /><br />            // Get the X and Y coordinates of the corner point.
+            <a href="Vector2.html">Vector2</a> currentCorner = new <a href="Vector2.html">Vector2</a>(<a href="Mathf.Cos.html">Mathf.Cos</a>(cornerAngle) * radius, <a href="Mathf.Sin.html">Mathf.Sin</a>(cornerAngle) * radius) + center;<br /><br />            // Draw a side of the polygon by connecting the current corner to the previous one.
+            <a href="Debug.DrawLine.html">Debug.DrawLine</a>(currentCorner, previousCorner);<br /><br />            // Having used the current corner, it now becomes the previous corner.
+            previousCorner = currentCorner;
+        }<br /><br />        // Draw the final side by connecting the last corner to the starting corner.
+        <a href="Debug.DrawLine.html">Debug.DrawLine</a>(startCorner, previousCorner);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

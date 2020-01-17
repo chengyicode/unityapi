@@ -1,0 +1,94 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: JointAngularLimitHandle</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">JointAngularLimitHandle</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEditor.IMGUI.Controls</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEditor.html" class="cl">UnityEditor</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>A class for a compound handle to edit multiaxial angular motion limits in the Scene view.</p></div><div class="subsection"><p>
+        <img src="../StaticFiles/ScriptRefImages/JointAngularLimitHandle.png" />
+<em>JointAngularLimitHandle in the Scene View.</em><br /><br />The shapes rendered by the <a href="IMGUI.Controls.JointAngularLimitHandle.DrawHandle.html">DrawHandle</a> method assume that angular limits are applied first along the x-axis, then the y-axis, and finally the z-axis.<br /><br />The following component defines angular limits for a <a href="CharacterJoint.html">CharacterJoint</a> to be added at run time.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class JointExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public float xMin { get { return m_XMin; } set { m_XMin = value; } }
+    [<a href="SerializeField.html">SerializeField</a>]
+    float m_XMin = -45f;<br /><br />    public float xMax { get { return m_XMax; } set { m_XMax = value; } }
+    [<a href="SerializeField.html">SerializeField</a>]
+    float m_XMax = 45f;<br /><br />    public float yMax { get { return m_YMax; } set { m_YMax = value; } }
+    [<a href="SerializeField.html">SerializeField</a>]
+    float m_YMax = 45f;<br /><br />    public float zMax { get { return m_ZMax; } set { m_ZMax = value; } }
+    [<a href="SerializeField.html">SerializeField</a>]
+    float m_ZMax = 45f;<br /><br />    protected virtual void Start()
+    {
+        var joint = gameObject.AddComponent&lt;<a href="CharacterJoint.html">CharacterJoint</a>&gt;();<br /><br />        var limit = joint.lowTwistLimit;
+        limit.limit = m_XMin;
+        joint.lowTwistLimit = limit;<br /><br />        limit = joint.highTwistLimit;
+        limit.limit = m_XMax;
+        joint.highTwistLimit = limit;<br /><br />        limit = joint.swing1Limit;
+        limit.limit = m_YMax;
+        joint.swing1Limit = limit;<br /><br />        limit = joint.swing2Limit;
+        limit.limit = m_ZMax;
+        joint.swing2Limit = limit;
+    }
+}
+</pre>
+      </div><div class="subsection"><p>The following Custom Editor example allows you to edit the serialized angular limits in the Scene view.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEditor.IMGUI.Controls;
+using UnityEngine;<br /><br />[<a href="CustomEditor.html">CustomEditor</a>(typeof(JointExample)), <a href="CanEditMultipleObjects.html">CanEditMultipleObjects</a>]
+public class JointExampleEditor : <a href="Editor.html">Editor</a>
+{
+    <a href="IMGUI.Controls.JointAngularLimitHandle.html">JointAngularLimitHandle</a> m_Handle = new <a href="IMGUI.Controls.JointAngularLimitHandle.html">JointAngularLimitHandle</a>();<br /><br />    // the OnSceneGUI callback uses the <a href="SceneManagement.Scene.html">Scene</a> view camera for drawing handles by default
+    protected virtual void OnSceneGUI()
+    {
+        var jointExample = (JointExample)target;<br /><br />        // copy the target object's data to the handle
+        m_Handle.xMin = jointExample.xMin;
+        m_Handle.xMax = jointExample.xMax;<br /><br />        // <a href="CharacterJoint.html">CharacterJoint</a> and <a href="ConfigurableJoint.html">ConfigurableJoint</a> implement y- and z-axes symmetrically
+        m_Handle.yMin = -jointExample.yMax;
+        m_Handle.yMax = jointExample.yMax;<br /><br />        m_Handle.zMin = -jointExample.zMax;
+        m_Handle.zMax = jointExample.zMax;<br /><br />        // set the handle matrix to match the object's position/rotation with a uniform scale
+        <a href="Matrix4x4.html">Matrix4x4</a> handleMatrix = <a href="Matrix4x4.TRS.html">Matrix4x4.TRS</a>(
+            jointExample.transform.position,
+            jointExample.transform.rotation,
+            <a href="Vector3-one.html">Vector3.one</a>
+        );<br /><br />        <a href="EditorGUI.BeginChangeCheck.html">EditorGUI.BeginChangeCheck</a>();<br /><br />        using (new <a href="Handles.DrawingScope.html">Handles.DrawingScope</a>(handleMatrix))
+        {
+            // maintain a constant screen-space size for the handle's radius based on the origin of the handle matrix
+            m_Handle.radius = <a href="HandleUtility.GetHandleSize.html">HandleUtility.GetHandleSize</a>(<a href="Vector3-zero.html">Vector3.zero</a>);<br /><br />            // draw the handle
+            <a href="EditorGUI.BeginChangeCheck.html">EditorGUI.BeginChangeCheck</a>();
+            m_Handle.DrawHandle();
+            if (<a href="EditorGUI.EndChangeCheck.html">EditorGUI.EndChangeCheck</a>())
+            {
+                // record the target object before setting new values so changes can be undone/redone
+                <a href="Undo.RecordObject.html">Undo.RecordObject</a>(jointExample, "Change <a href="Joint.html">Joint</a> Example Properties");<br /><br />                // copy the handle's updated data back to the target object
+                jointExample.xMin = m_Handle.xMin;
+                jointExample.xMax = m_Handle.xMax;<br /><br />                jointExample.yMax = m_Handle.yMax == jointExample.yMax ? -m_Handle.yMin : m_Handle.yMax;<br /><br />                jointExample.zMax = m_Handle.zMax == jointExample.zMax ? -m_Handle.zMin : m_Handle.zMax;
+            }
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="IMGUI.Controls.JointAngularLimitHandle-angleHandleDrawFunction.html">angleHandleDrawFunction</a></td><td class="desc"></td><td class="desc1">The CapFunction to use when displaying the angle control handle.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="IMGUI.Controls.JointAngularLimitHandle-angleHandleSizeFunction.html">angleHandleSizeFunction</a></td><td class="desc"></td><td class="desc1">The SizeFunction to specify how large the angle control handle should be.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="IMGUI.Controls.JointAngularLimitHandle-fillAlpha.html">fillAlpha</a></td><td class="desc"></td><td class="desc1">Returns or specifies the opacity to use when rendering fill shapes for the range of motion for each axis. Defaults to 0.1.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="IMGUI.Controls.JointAngularLimitHandle-radius.html">radius</a></td><td class="desc"></td><td class="desc1">Returns or specifies the radius of the arc for the handle. Defaults to 1.0.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="IMGUI.Controls.JointAngularLimitHandle-wireframeAlpha.html">wireframeAlpha</a></td><td class="desc"></td><td class="desc1">Returns or specifies the opacity to use for the curved lines along the outside of the arcs of motion. Defaults to 1.0.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="IMGUI.Controls.JointAngularLimitHandle-xHandleColor.html">xHandleColor</a></td><td class="desc"></td><td class="desc1">Returns or specifies the color to use for the handle limiting motion around the x-axis. Defaults to Handles.xAxisColor.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="IMGUI.Controls.JointAngularLimitHandle-xMax.html">xMax</a></td><td class="desc"></td><td class="desc1">Returns or specifies the maximum angular motion about the x-axis.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="IMGUI.Controls.JointAngularLimitHandle-xMin.html">xMin</a></td><td class="desc"></td><td class="desc1">Returns or specifies the minimum angular motion about the x-axis.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="IMGUI.Controls.JointAngularLimitHandle-xMotion.html">xMotion</a></td><td class="desc"></td><td class="desc1">Returns or specifies how angular motion is limited about the x-axis. Defaults to ConfigurableJointMotion.Limited.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="IMGUI.Controls.JointAngularLimitHandle-xRange.html">xRange</a></td><td class="desc"></td><td class="desc1">Returns or specifies the range of valid values for angular motion about the x-axis. Defaults to [-180.0, 180.0].</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="IMGUI.Controls.JointAngularLimitHandle-yHandleColor.html">yHandleColor</a></td><td class="desc"></td><td class="desc1">Returns or specifies the color to use for the handle limiting motion around the y-axis. Defaults to Handles.yAxisColor.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="IMGUI.Controls.JointAngularLimitHandle-yMax.html">yMax</a></td><td class="desc"></td><td class="desc1">Returns or specifies the maximum angular motion about the y-axis.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="IMGUI.Controls.JointAngularLimitHandle-yMin.html">yMin</a></td><td class="desc"></td><td class="desc1">Returns or specifies the minimum angular motion about the y-axis.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="IMGUI.Controls.JointAngularLimitHandle-yMotion.html">yMotion</a></td><td class="desc"></td><td class="desc1">Returns or specifies how angular motion is limited about the y-axis. Defaults to ConfigurableJointMotion.Limited.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="IMGUI.Controls.JointAngularLimitHandle-yRange.html">yRange</a></td><td class="desc"></td><td class="desc1">Returns or specifies the range of valid values for angular motion about the y-axis. Defaults to [-180.0, 180.0].</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="IMGUI.Controls.JointAngularLimitHandle-zHandleColor.html">zHandleColor</a></td><td class="desc"></td><td class="desc1">Returns or specifies the color to use for the handle limiting motion around the z-axis. Defaults to Handles.zAxisColor.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="IMGUI.Controls.JointAngularLimitHandle-zMax.html">zMax</a></td><td class="desc"></td><td class="desc1">Returns or specifies the maximum angular motion about the z-axis.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="IMGUI.Controls.JointAngularLimitHandle-zMin.html">zMin</a></td><td class="desc"></td><td class="desc1">Returns or specifies the minimum angular motion about the z-axis.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="IMGUI.Controls.JointAngularLimitHandle-zMotion.html">zMotion</a></td><td class="desc"></td><td class="desc1">Returns or specifies how angular motion is limited about the z-axis. Defaults to ConfigurableJointMotion.Limited.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="IMGUI.Controls.JointAngularLimitHandle-zRange.html">zRange</a></td><td class="desc"></td><td class="desc1">Returns or specifies the range of valid values for angular motion about the z-axis. Defaults to [-180.0, 180.0].</td></tr>
+    </table></div><div class="subsection"><h2>Constructors</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="IMGUI.Controls.JointAngularLimitHandle-ctor.html">JointAngularLimitHandle</a></td><td class="desc"></td><td class="desc1">Creates a new instance of the JointAngularLimitHandle class.</td></tr>
+    </table></div><div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="IMGUI.Controls.JointAngularLimitHandle.DrawHandle.html">DrawHandle</a></td><td class="desc"></td><td class="desc1">A function to display this instance in the current handle camera using its current configuration.</td></tr>
+    </table></div></div></div></div></body></html>

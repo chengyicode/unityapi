@@ -1,0 +1,41 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: MaterialEditor.RangeProperty</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="MaterialEditor.html">MaterialEditor</a>.RangeProperty</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public float <span class="sig-kw">RangeProperty</span>(<a href="MaterialProperty.html">MaterialProperty</a> <span class="sig-kw">prop</span>,
+string <span class="sig-kw">label</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public float <span class="sig-kw">RangeProperty</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+<a href="MaterialProperty.html">MaterialProperty</a> <span class="sig-kw">prop</span>,
+string <span class="sig-kw">label</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">label</td><td class="desc"></td><td class="desc1">Label for the property.</td></tr><tr><td class="name lbl">prop</td><td class="desc"></td><td class="desc1">The property to edit.</td></tr><tr><td class="name lbl">position</td><td class="desc"></td><td class="desc1">Position and size of the range slider control.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Draw a range slider for a range shader property.</p></div><div class="subsection"><p>To create a custom material editor, first you need to create the custom editor class and save it in the Assets/Editor folder, then reference the class name in your shader. For example:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS"> <a href="CustomEditor.html">CustomEditor</a> "MaterialRangePropertyExample"
+</pre>
+      </div><div class="subsection"><p>Here is an example showing a Range slider, affecting the shader's Glossiness property:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class MaterialRangePropertyExample : <a href="MaterialEditor.html">MaterialEditor</a>
+{
+    public override void OnInspectorGUI( )
+    {
+        serializedObject.Update( );
+        <a href="SerializedProperty.html">SerializedProperty</a> matShader = serializedObject.FindProperty( "m_Shader" );<br /><br />        if( !isVisible )
+            return;<br /><br />        <a href="Material.html">Material</a> mat = target as <a href="Material.html">Material</a>;
+        <a href="MaterialProperty.html">MaterialProperty</a> Glossiness = GetMaterialProperty( new Object[] { mat }, "_Glossiness" );<br /><br />        if( Glossiness == null )
+            return;<br /><br />        <a href="EditorGUI.BeginChangeCheck.html">EditorGUI.BeginChangeCheck</a>( );<br /><br />        RangeProperty( Glossiness, "Glossiness" );<br /><br />        if( <a href="EditorGUI.EndChangeCheck.html">EditorGUI.EndChangeCheck</a>( ) )
+            PropertiesChanged( );
+    }
+}</pre>
+      </div><div class="subsection"><p>Here is a similar example, using the Rect parameter to position and size the slider control within the custom material editor pane:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class MaterialRangePropertyWithRectExample : <a href="MaterialEditor.html">MaterialEditor</a>
+{
+    public override void OnInspectorGUI( )
+    {
+        serializedObject.Update( );
+        <a href="SerializedProperty.html">SerializedProperty</a> matShader = serializedObject.FindProperty( "m_Shader" );<br /><br />        if( !isVisible )
+            return;<br /><br />        <a href="Material.html">Material</a> mat = target as <a href="Material.html">Material</a>;
+        <a href="MaterialProperty.html">MaterialProperty</a> Glossiness = GetMaterialProperty( new Object[] { mat }, "_Glossiness" );<br /><br />        if( Glossiness == null )
+            return;<br /><br />        <a href="EditorGUI.BeginChangeCheck.html">EditorGUI.BeginChangeCheck</a>( );<br /><br />        RangeProperty( new <a href="Rect.html">Rect</a>( 20, 60, 300, 20 ), Glossiness, "Glossiness" );<br /><br />        if( <a href="EditorGUI.EndChangeCheck.html">EditorGUI.EndChangeCheck</a>( ) )
+            PropertiesChanged( );
+    }
+}</pre>
+      </div><div class="subsection"><p>This is what the example editor pane looks like:<br /><br /><img src="../StaticFiles/ScriptRefImages/MaterialEditorRangeProperty.png" /><br />
+<em>Example material editor in Inspector.</em></p></div></div></div></div></body></html>

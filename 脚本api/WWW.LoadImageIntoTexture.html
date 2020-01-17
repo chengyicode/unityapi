@@ -1,0 +1,34 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: WWW.LoadImageIntoTexture</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Method group is Obsolete</b><br /></div><h1 class="heading inherit"><a href="WWW.html">WWW</a>.LoadImageIntoTexture</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public void <span class="sig-kw">LoadImageIntoTexture</span>(<a href="Texture2D.html">Texture2D</a> <span class="sig-kw">texture</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">tex</td><td class="desc"></td><td class="desc1">An existing texture object to be overwritten with the image data.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Replaces the contents of an existing <a href="Texture2D.html">Texture2D</a> with an image from the downloaded data.</p></div><div class="subsection"><p>The data must be an image in JPG or PNG format. If the data is not a valid
+image, the generated texture will be a small image of a question mark.
+It is recommended to use power-of-two size for each dimension of the image;
+arbitrary sizes will also work but can load slightly slower and take up
+a bit more memory.<br /><br />For PNG files, gamma correction is applied to the texture if PNG file contains
+gamma information. Display gamma for correction is assumed to be 2.0. If file
+does not contain gamma information, no color correction will be performed.<br /><br />This function replaces texture contents with downloaded image data, so texture
+size and format might change. JPG files are loaded into <a href="TextureFormat.RGB24.html">RGB24</a> format,
+PNG files are loaded into <a href="TextureFormat.ARGB32.html">ARGB32</a> format. If texture format before
+calling LoadImage is <a href="TextureFormat.DXT1.html">DXT1</a> or <a href="TextureFormat.DXT5.html">DXT5</a>,
+then the loaded image will be DXT-compressed (into DXT1 for JPG images and DXT5 for PNG images).<br /><br />If the data has not finished downloading the texture will be left untouched.
+Use isDone or <code class="varname">yield</code> to see if the data is available.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Add this script to a <a href="GameObject.html">GameObject</a>. The Start() function fetches an
+// image from the documentation site.  It is then applied as the
+// texture on the <a href="GameObject.html">GameObject</a>.<br /><br />using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public string url = "https://docs.unity3d.com/uploads/Main/ShadowIntro.png";<br /><br />    IEnumerator Start()
+    {
+        <a href="Texture2D.html">Texture2D</a> tex;
+        tex = new <a href="Texture2D.html">Texture2D</a>(4, 4, <a href="TextureFormat.DXT1.html">TextureFormat.DXT1</a>, false);
+        using (WWW www = new WWW(url))
+        {
+            yield return www;
+            www.LoadImageIntoTexture(tex);
+            GetComponent&lt;<a href="Renderer.html">Renderer</a>&gt;().material.mainTexture = tex;
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

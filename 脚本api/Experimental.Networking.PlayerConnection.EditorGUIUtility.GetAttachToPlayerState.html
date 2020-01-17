@@ -1,0 +1,60 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Experimental.Networking.PlayerConnection.EditorGUIUtility.GetAttachToPlayerState</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Experimental</b>: this API is experimental and might be changed or removed in the future.</div><h1 class="heading inherit"><a href="Experimental.Networking.PlayerConnection.EditorGUIUtility.html">EditorGUIUtility</a>.GetAttachToPlayerState</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Experimental.Networking.PlayerConnection.IConnectionState.html">Experimental.Networking.PlayerConnection.IConnectionState</a> <span class="sig-kw">GetAttachToPlayerState</span>(<a href="EditorWindow.html">EditorWindow</a> <span class="sig-kw">parentWindow</span>,
+Action&lt;string&gt; <span class="sig-kw">connectedCallback</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">parentWindow</td><td class="desc"></td><td class="desc1">The <a href="EditorWindow.html">EditorWindow</a> that will use the connection.</td></tr><tr><td class="name lbl">connectedCallback</td><td class="desc"></td><td class="desc1">A callback that is fired whenever a user-initiated connection-attempt succeeds.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>IConnectionState</strong>
+        The not serialized state of the connection to a Player, to be used in <a href="Experimental.Networking.PlayerConnection.EditorGUI.AttachToPlayerDropdown.html">EditorGUI.AttachToPlayerDropdown</a> or <a href="Experimental.Networking.PlayerConnection.EditorGUILayout.AttachToPlayerDropdown.html">EditorGUILayout.AttachToPlayerDropdown</a>. It knows what target is currently connected and what targets are available.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>This method generates a state tracking object for establishing and displaying an Editor to Player Connection.</p></div><div class="subsection"><p>This state and the corresponding GUI Methods (<a href="Experimental.Networking.PlayerConnection.EditorGUI.AttachToPlayerDropdown.html">EditorGUI.AttachToPlayerDropdown</a> and <a href="Experimental.Networking.PlayerConnection.EditorGUILayout.AttachToPlayerDropdown.html">EditorGUILayout.AttachToPlayerDropdown</a>) are supposed to be used from within an <a href="EditorWindow.html">EditorWindow</a>. The supplied Editor Window is used to:
+1. Display an overlay while connecting
+2. Repaint the window after a connection has been established
+3. Receive callback calls through connectedCallback when other windows using the same connection type establish a connection
+Technically, it might be possible to supply parentWindow as null and use it outside of <a href="EditorWindow.html">EditorWindow</a>, but that is neither recommended nor a use-case we plan to support.<br /><br />Also keep in mind that the received state is not serialized and needs to be disposed. The recommended use pattern is to get the state in the <a href="EditorWindow.html">EditorWindow</a>'s OnEnable and to dispose of it in OnDisable.<br /><br />The connectedCallback will not be fired if, for example, the connection was made by automatically establishing a profiler connection to a Player or falling back on to the connection to the Editor. Instead, it only responds to a user actively choosing a target, and waits until that connection has been established. If the connection type is one that is shared across Editor windows, it will also be fired when the user chooses it in a different <a href="EditorWindow.html">EditorWindow</a>.<br /><br />The returned state knows what target is currently connected and what targets are available.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.Profiling;
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine.Experimental.Networking.PlayerConnection;
+using PlayerConnectionGUILayout = UnityEditor.Experimental.Networking.PlayerConnection.EditorGUILayout;
+using PlayerConnectionGUIUtility = UnityEditor.Experimental.Networking.PlayerConnection.EditorGUIUtility;<br /><br />public class MyWindow : <a href="EditorWindow.html">EditorWindow</a>
+{
+    // The state can survive for the life time of the <a href="EditorWindow.html">EditorWindow</a> so it's best to store it here and just renew/dispose of it in OnEnable and OnDisable, rather than fetching repeatedly it in OnGUI.
+    <a href="Experimental.Networking.PlayerConnection.IConnectionState.html">IConnectionState</a> attachProfilerState;<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Window/My Window")]
+    static void Init()
+    {
+        MyWindow window = (MyWindow)GetWindow(typeof(MyWindow));
+        window.Show();
+    }<br /><br />    private void OnEnable()
+    {
+        // The state of the connection is not getting serialized and needs to be disposed
+        // Therefore, it's recommended to fetch it in OnEnable and call dispose on it in OnDisable
+        attachProfilerState = PlayerConnectionGUIUtility.GetAttachToPlayerState(this, OnConnected);
+    }<br /><br />    private void OnConnected(string player)
+    {
+        <a href="Debug.Log.html">Debug.Log</a>(string.Format("MyWindow connected to {0}", player));
+    }<br /><br />    private void OnGUI()
+    {
+        // Draw a toolbar across the top of the window and draw the drop-down in the toolbar drop-down style too
+        <a href="EditorGUILayout.BeginHorizontal.html">EditorGUILayout.BeginHorizontal</a>(<a href="EditorStyles-toolbar.html">EditorStyles.toolbar</a>);
+        PlayerConnectionGUILayout.AttachToPlayerDropdown(attachProfilerState, <a href="EditorStyles-toolbarDropDown.html">EditorStyles.toolbarDropDown</a>);<br /><br />        switch (attachProfilerState.connectedToTarget)
+        {
+            case <a href="Experimental.Networking.PlayerConnection.ConnectionTarget.None.html">ConnectionTarget.None</a>:
+                //This case can never happen within the <a href="Editor.html">Editor</a>, since the <a href="Editor.html">Editor</a> will always fall back onto a connection to itself.
+                break;
+            case <a href="Experimental.Networking.PlayerConnection.ConnectionTarget.Player.html">ConnectionTarget.Player</a>:
+                <a href="Profiling.Profiler-enabled.html">Profiler.enabled</a> = <a href="GUILayout.Toggle.html">GUILayout.Toggle</a>(<a href="Profiling.Profiler-enabled.html">Profiler.enabled</a>, string.Format("Profile the attached Player ({0})", attachProfilerState.connectionName), <a href="EditorStyles-toolbarButton.html">EditorStyles.toolbarButton</a>);
+                break;
+            case <a href="Experimental.Networking.PlayerConnection.ConnectionTarget.Editor.html">ConnectionTarget.Editor</a>:
+                // The name of the <a href="Editor.html">Editor</a> or the <a href="PlayMode.html">PlayMode</a> Player would be "<a href="Editor.html">Editor</a>" so adding the connectionName here would not add anything.
+                <a href="Profiling.Profiler-enabled.html">Profiler.enabled</a> = <a href="GUILayout.Toggle.html">GUILayout.Toggle</a>(<a href="Profiling.Profiler-enabled.html">Profiler.enabled</a>, "Profile the Player in the <a href="Editor.html">Editor</a>", <a href="EditorStyles-toolbarButton.html">EditorStyles.toolbarButton</a>);
+                break;
+            default:
+                break;
+        }
+        <a href="EditorGUILayout.EndHorizontal.html">EditorGUILayout.EndHorizontal</a>();
+    }<br /><br />    private void OnDisable()
+    {
+        // Remember to always dispose the state!
+        attachProfilerState.Dispose();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

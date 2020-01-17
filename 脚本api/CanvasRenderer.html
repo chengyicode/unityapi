@@ -1,0 +1,80 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: CanvasRenderer</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">CanvasRenderer</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Inherits from:<a href="Component.html" class="cl">Component</a></p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.UIModule.html" class="cl">UnityEngine.UIModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-CanvasRenderer.html' title='Go to CanvasRenderer Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>A component that will render to the screen after all normal rendering has completed when attached to a <a href="Canvas.html">Canvas</a>. Designed for GUI application.</p></div><div class="subsection"><p>See Also:<a href="Canvas.html">Canvas</a>.</p></div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="CanvasRenderer-absoluteDepth.html">absoluteDepth</a></td><td class="desc"></td><td class="desc1">Depth of the renderer relative to the root canvas.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="CanvasRenderer-cull.html">cull</a></td><td class="desc"></td><td class="desc1">Indicates whether geometry emitted by this renderer is ignored.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="CanvasRenderer-cullTransparentMesh.html">cullTransparentMesh</a></td><td class="desc"></td><td class="desc1">Indicates whether geometry emitted by this renderer can be ignored when the vertex color alpha is close to zero for every vertex of the mesh.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="CanvasRenderer-hasMoved.html">hasMoved</a></td><td class="desc"></td><td class="desc1">True if any change has occured that would invalidate the positions of generated geometry.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="CanvasRenderer-hasPopInstruction.html">hasPopInstruction</a></td><td class="desc"></td><td class="desc1">Enable 'render stack' pop draw call.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="CanvasRenderer-hasRectClipping.html">hasRectClipping</a></td><td class="desc"></td><td class="desc1">True if rect clipping has been enabled on this renderer.
+See Also: CanvasRenderer.EnableRectClipping, CanvasRenderer.DisableRectClipping.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="CanvasRenderer-materialCount.html">materialCount</a></td><td class="desc"></td><td class="desc1">The number of materials usable by this renderer.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="CanvasRenderer-popMaterialCount.html">popMaterialCount</a></td><td class="desc"></td><td class="desc1">The number of materials usable by this renderer. Used internally for masking.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="CanvasRenderer-relativeDepth.html">relativeDepth</a></td><td class="desc"></td><td class="desc1">Depth of the renderer realative to the parent canvas.</td></tr>
+    </table></div><div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="CanvasRenderer.Clear.html">Clear</a></td><td class="desc"></td><td class="desc1">Remove all cached vertices.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="CanvasRenderer.DisableRectClipping.html">DisableRectClipping</a></td><td class="desc"></td><td class="desc1">Disables rectangle clipping for this CanvasRenderer.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="CanvasRenderer.EnableRectClipping.html">EnableRectClipping</a></td><td class="desc"></td><td class="desc1">Enables rect clipping on the CanvasRendered. Geometry outside of the specified rect will be clipped (not rendered).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="CanvasRenderer.GetAlpha.html">GetAlpha</a></td><td class="desc"></td><td class="desc1">Get the current alpha of the renderer.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="CanvasRenderer.GetColor.html">GetColor</a></td><td class="desc"></td><td class="desc1">Get the current color of the renderer.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="CanvasRenderer.GetInheritedAlpha.html">GetInheritedAlpha</a></td><td class="desc"></td><td class="desc1">Get the final inherited alpha calculated by including all the parent alphas from included parent CanvasGroups.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="CanvasRenderer.GetMaterial.html">GetMaterial</a></td><td class="desc"></td><td class="desc1">Gets the current Material assigned to the CanvasRenderer.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="CanvasRenderer.GetPopMaterial.html">GetPopMaterial</a></td><td class="desc"></td><td class="desc1">Gets the current Material assigned to the CanvasRenderer. Used internally for masking.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="CanvasRenderer.SetAlpha.html">SetAlpha</a></td><td class="desc"></td><td class="desc1">Set the alpha of the renderer. Will be multiplied with the UIVertex alpha and the Canvas alpha.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="CanvasRenderer.SetAlphaTexture.html">SetAlphaTexture</a></td><td class="desc"></td><td class="desc1">The Alpha Texture that will be passed to the Shader under the _AlphaTex property.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="CanvasRenderer.SetColor.html">SetColor</a></td><td class="desc"></td><td class="desc1">Set the color of the renderer. Will be multiplied with the UIVertex color and the Canvas color.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="CanvasRenderer.SetMaterial.html">SetMaterial</a></td><td class="desc"></td><td class="desc1">Set the material for the canvas renderer. If a texture is specified then it will be used as the 'MainTex' instead of the material's 'MainTex'.
+See Also: CanvasRenderer.SetMaterialCount, CanvasRenderer.SetTexture.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="CanvasRenderer.SetMesh.html">SetMesh</a></td><td class="desc"></td><td class="desc1">Sets the Mesh used by this renderer. Note the Mesh must be read/write enabled.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="CanvasRenderer.SetPopMaterial.html">SetPopMaterial</a></td><td class="desc"></td><td class="desc1">Set the material for the canvas renderer. Used internally for masking.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="CanvasRenderer.SetTexture.html">SetTexture</a></td><td class="desc"></td><td class="desc1">Sets the texture used by this renderer's material.</td></tr>
+    </table></div><div class="subsection"><h2>Static Methods   静态方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="CanvasRenderer.AddUIVertexStream.html">AddUIVertexStream</a></td><td class="desc"></td><td class="desc1">Take the Vertex steam and split it corrisponding arrays (positions, colors, uv0s, uv1s, normals and tangents).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="CanvasRenderer.CreateUIVertexStream.html">CreateUIVertexStream</a></td><td class="desc"></td><td class="desc1">Convert a set of vertex components into a stream of UIVertex.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="CanvasRenderer.SplitUIVertexStreams.html">SplitUIVertexStreams</a></td><td class="desc"></td><td class="desc1">Given a list of UIVertex, split the stream into it's component types.</td></tr>
+    </table></div><div class="subsection"><h2>Events</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="CanvasRenderer-onRequestRebuild.html">onRequestRebuild</a></td><td class="desc"></td><td class="desc1">(Editor Only) Event that gets fired whenever the data in the CanvasRenderer gets invalidated and needs to be rebuilt.</td></tr>
+    </table></div><div class="subsection"><h2>Inherited Members   继承成员</h2>
+      
+      <div class="subsection"><h2>Properties   属性</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Component-gameObject.html">gameObject</a></td><td class="desc"></td><td class="desc1">The game object this component is attached to. A component is always attached to a game object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component-tag.html">tag</a></td><td class="desc"></td><td class="desc1">The tag of this game object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component-transform.html">transform</a></td><td class="desc"></td><td class="desc1">The Transform attached to this GameObject.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-hideFlags.html">hideFlags</a></td><td class="desc"></td><td class="desc1">Should the object be hidden, saved with the Scene or modifiable by the user?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-name.html">name</a></td><td class="desc"></td><td class="desc1">The name of the object.</td></tr>
+      </table></div>
+      
+      
+      
+      <div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.BroadcastMessage.html">BroadcastMessage</a></td><td class="desc"></td><td class="desc1">Calls the method named methodName on every MonoBehaviour in this game object or any of its children.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.CompareTag.html">CompareTag</a></td><td class="desc"></td><td class="desc1">Is this game object tagged with tag ?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponent.html">GetComponent</a></td><td class="desc"></td><td class="desc1">Returns the component of Type type if the game object has one attached, null if it doesn't.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponentInChildren.html">GetComponentInChildren</a></td><td class="desc"></td><td class="desc1">Returns the component of Type type in the GameObject or any of its children using depth first search.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponentInParent.html">GetComponentInParent</a></td><td class="desc"></td><td class="desc1">Returns the component of Type type in the GameObject or any of its parents.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponents.html">GetComponents</a></td><td class="desc"></td><td class="desc1">Returns all components of Type type in the GameObject.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponentsInChildren.html">GetComponentsInChildren</a></td><td class="desc"></td><td class="desc1">Returns all components of Type type in the GameObject or any of its children.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponentsInParent.html">GetComponentsInParent</a></td><td class="desc"></td><td class="desc1">Returns all components of Type type in the GameObject or any of its parents.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.SendMessage.html">SendMessage</a></td><td class="desc"></td><td class="desc1">Calls the method named methodName on every MonoBehaviour in this game object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.SendMessageUpwards.html">SendMessageUpwards</a></td><td class="desc"></td><td class="desc1">Calls the method named methodName on every MonoBehaviour in this game object and on every ancestor of the behaviour.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.TryGetComponent.html">TryGetComponent</a></td><td class="desc"></td><td class="desc1">Gets the component of the specified type, if it exists.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.GetInstanceID.html">GetInstanceID</a></td><td class="desc"></td><td class="desc1">Returns the instance id of the object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.ToString.html">ToString</a></td><td class="desc"></td><td class="desc1">Returns the name of the object.</td></tr>
+      </table></div>
+      
+      <div class="subsection"><h2>Static Methods   静态方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.Destroy.html">Destroy</a></td><td class="desc"></td><td class="desc1">Removes a GameObject, component or asset.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.DestroyImmediate.html">DestroyImmediate</a></td><td class="desc"></td><td class="desc1">Destroys the object obj immediately. You are strongly recommended to use Destroy instead.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.DontDestroyOnLoad.html">DontDestroyOnLoad</a></td><td class="desc"></td><td class="desc1">Do not destroy the target Object when loading a new Scene.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectOfType.html">FindObjectOfType</a></td><td class="desc"></td><td class="desc1">Returns the first active loaded object of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectsOfType.html">FindObjectsOfType</a></td><td class="desc"></td><td class="desc1">Returns a list of all active loaded objects of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.Instantiate.html">Instantiate</a></td><td class="desc"></td><td class="desc1">Clones the object original and returns the clone.</td></tr>
+      </table></div>
+      <div class="subsection"><h2>Operators   运算符</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_Object.html">bool</a></td><td class="desc"></td><td class="desc1">Does the object exist?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_ne.html">operator !=</a></td><td class="desc"></td><td class="desc1">Compares if two objects refer to a different object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_eq.html">operator ==</a></td><td class="desc"></td><td class="desc1">Compares two object references to see if they refer to the same object.</td></tr>
+      </table></div>
+      
+      
+      
+    </div></div></div></div></body></html>

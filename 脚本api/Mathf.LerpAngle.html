@@ -1,0 +1,17 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Mathf.LerpAngle</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Mathf.html">Mathf</a>.LerpAngle</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static float <span class="sig-kw">LerpAngle</span>(float <span class="sig-kw">a</span>,
+float <span class="sig-kw">b</span>,
+float <span class="sig-kw">t</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Same as <a href="Mathf.Lerp.html">Lerp</a> but makes sure the values interpolate correctly when they wrap around 360 degrees.</p></div><div class="subsection"><p>The parameter <code class="varname">t</code> is clamped to the range [0, 1]. Variables <code class="varname">a</code> and <code class="varname">b</code> are assumed to be in degrees.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    float minAngle = 0.0f;
+    float maxAngle = 90.0f;<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        float angle = <a href="Mathf.LerpAngle.html">Mathf.LerpAngle</a>(minAngle, maxAngle, <a href="Time-time.html">Time.time</a>);
+        transform.eulerAngles = new <a href="Vector3.html">Vector3</a>(0, angle, 0);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="Mathf.Lerp.html">Lerp</a>.</p></div></div></div></div></body></html>

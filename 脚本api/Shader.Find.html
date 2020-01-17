@@ -1,0 +1,21 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Shader.Find</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Shader.html">Shader</a>.Find</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Shader.html' title='Go to Shader Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Shader.html">Shader</a> <span class="sig-kw">Find</span>(string <span class="sig-kw">name</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Finds a shader with the given <code class="varname">name</code>.</p></div><div class="subsection"><p>Shader.Find can be used to switch to another shader without having to keep a reference to the shader.
+<code class="varname">name</code> is the name you can see in the shader popup of any material, for example "Standard", "Unlit/Texture", "Legacy Shaders/Diffuse" etc.<br /><br />Note that a shader might be not included into the player build if nothing references it! In that case, Shader.Find will work only
+in the editor, and will result in pink "missing shader" materials in the player build. Because of that, it is advisable
+to use shader references instead of finding them by name. To make sure a shader is included into the game build, do either of:
+1) reference it from some of the materials used in your Scene, 2) add it under "Always Included Shaders" list in ProjectSettings/Graphics or 3) put shader or something that references it (e.g. a Material) into a "Resources" folder.<br /><br />See Also: <a href="Material.html">Material</a> class.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Create a material from code
+    void Start()
+    {
+        // Create a material with transparent diffuse shader
+        <a href="Material.html">Material</a> material = new <a href="Material.html">Material</a>(<a href="Shader.Find.html">Shader.Find</a>("Transparent/Diffuse"));
+        material.color = <a href="Color-green.html">Color.green</a>;<br /><br />        // assign the material to the renderer
+        GetComponent&lt;<a href="Renderer.html">Renderer</a>&gt;().material = material;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

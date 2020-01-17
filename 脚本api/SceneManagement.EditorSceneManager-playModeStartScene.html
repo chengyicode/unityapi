@@ -1,0 +1,30 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: SceneManagement.EditorSceneManager.playModeStartScene</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="SceneManagement.EditorSceneManager.html">EditorSceneManager</a>.playModeStartScene</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="SceneAsset.html">SceneAsset</a> <span class="sig-kw">playModeStartScene</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Loads this SceneAsset when you start Play Mode.</p></div><div class="subsection"><p>If this property is set to a SceneAsset, Unity will load this SceneAsset instead of the Scenes currently open in the Editor when you start Play Mode.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEditor.SceneManagement;
+using UnityEngine;<br /><br />public class TestWindow : <a href="EditorWindow.html">EditorWindow</a>
+{
+    void OnGUI()
+    {
+        // Use the Object Picker to select the start <a href="SceneAsset.html">SceneAsset</a>
+        <a href="SceneManagement.EditorSceneManager-playModeStartScene.html">EditorSceneManager.playModeStartScene</a> = (<a href="SceneAsset.html">SceneAsset</a>)<a href="EditorGUILayout.ObjectField.html">EditorGUILayout.ObjectField</a>(new <a href="GUIContent.html">GUIContent</a>("Start <a href="SceneManagement.Scene.html">Scene</a>"), <a href="SceneManagement.EditorSceneManager-playModeStartScene.html">EditorSceneManager.playModeStartScene</a>, typeof(<a href="SceneAsset.html">SceneAsset</a>), false);<br /><br />        // Or set the start <a href="SceneManagement.Scene.html">Scene</a> from code
+        var scenePath = "Assets/Scene3.unity";
+        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Set start <a href="SceneManagement.Scene.html">Scene</a>: " + scenePath))
+            SetPlayModeStartScene(scenePath);
+    }<br /><br />    void SetPlayModeStartScene(string scenePath)
+    {
+        <a href="SceneAsset.html">SceneAsset</a> myWantedStartScene = <a href="AssetDatabase.LoadAssetAtPath.html">AssetDatabase.LoadAssetAtPath</a>&lt;<a href="SceneAsset.html">SceneAsset</a>&gt;(scenePath);
+        if (myWantedStartScene != null)
+            <a href="SceneManagement.EditorSceneManager-playModeStartScene.html">EditorSceneManager.playModeStartScene</a> = myWantedStartScene;
+        else
+            <a href="Debug.Log.html">Debug.Log</a>("Could not find <a href="SceneManagement.Scene.html">Scene</a> " + scenePath);
+    }<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Test/Open")]
+    static void Open()
+    {
+        GetWindow&lt;TestWindow&gt;();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

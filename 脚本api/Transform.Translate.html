@@ -1,0 +1,75 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Transform.Translate</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Transform.html">Transform</a>.Translate</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Transform.html' title='Go to Transform Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">Translate</span>(<a href="Vector3.html">Vector3</a> <span class="sig-kw">translation</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">Translate</span>(<a href="Vector3.html">Vector3</a> <span class="sig-kw">translation</span>,
+<a href="Space.html">Space</a> <span class="sig-kw">relativeTo</span> = Space.Self);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Moves the transform in the direction and distance of <code class="varname">translation</code>.</p></div><div class="subsection"><p>If <code class="varname">relativeTo</code> is left out or set to <a href="Space.Self.html">Space.Self</a> the movement is applied relative to the transform's local axes. (the x, y and z axes shown when selecting the object inside the Scene View.)
+If <code class="varname">relativeTo</code> is <a href="Space.World.html">Space.World</a> the movement is applied relative to the world coordinate system.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        // Move the object forward along its z axis 1 unit/second.
+        transform.Translate(<a href="Vector3-forward.html">Vector3.forward</a> * <a href="Time-deltaTime.html">Time.deltaTime</a>);<br /><br />        // Move the object upward in world space 1 unit/second.
+        transform.Translate(<a href="Vector3-up.html">Vector3.up</a> * <a href="Time-deltaTime.html">Time.deltaTime</a>, <a href="Space.World.html">Space.World</a>);
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">Translate</span>(float <span class="sig-kw">x</span>,
+float <span class="sig-kw">y</span>,
+float <span class="sig-kw">z</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">Translate</span>(float <span class="sig-kw">x</span>,
+float <span class="sig-kw">y</span>,
+float <span class="sig-kw">z</span>,
+<a href="Space.html">Space</a> <span class="sig-kw">relativeTo</span> = Space.Self);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Moves the transform by <code class="varname">x</code> along the x axis, <code class="varname">y</code> along the y axis, and <code class="varname">z</code> along the z axis.</p></div><div class="subsection"><p>If <code class="varname">relativeTo</code> is left out or set to <a href="Space.Self.html">Space.Self</a> the movement is applied relative to the transform's local axes. (the x, y and z axes shown when selecting the object inside the Scene View.)
+If <code class="varname">relativeTo</code> is <a href="Space.World.html">Space.World</a> the movement is applied relative to the world coordinate system.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        // Move the object forward along its z axis 1 unit/second.
+        transform.Translate(0, 0, <a href="Time-deltaTime.html">Time.deltaTime</a>);<br /><br />        // Move the object upward in world space 1 unit/second.
+        transform.Translate(0, <a href="Time-deltaTime.html">Time.deltaTime</a>, 0, <a href="Space.World.html">Space.World</a>);
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">Translate</span>(<a href="Vector3.html">Vector3</a> <span class="sig-kw">translation</span>,
+<a href="Transform.html">Transform</a> <span class="sig-kw">relativeTo</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Moves the transform in the direction and distance of <code class="varname">translation</code>.</p></div><div class="subsection"><p>The movement is applied relative to <code class="varname">relativeTo</code>'s local coordinate system.
+If <code class="varname">relativeTo</code> is null, the movement is applied relative to the world coordinate system.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        // Move the object to the right relative to the camera 1 unit/second.
+        transform.Translate(<a href="Vector3-right.html">Vector3.right</a> * <a href="Time-deltaTime.html">Time.deltaTime</a>, Camera.main.transform);
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">Translate</span>(float <span class="sig-kw">x</span>,
+float <span class="sig-kw">y</span>,
+float <span class="sig-kw">z</span>,
+<a href="Transform.html">Transform</a> <span class="sig-kw">relativeTo</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Moves the transform by <code class="varname">x</code> along the x axis, <code class="varname">y</code> along the y axis, and <code class="varname">z</code> along the z axis.</p></div><div class="subsection"><p>The movement is applied relative to <code class="varname">relativeTo</code>'s local coordinate system.
+If <code class="varname">relativeTo</code> is null, the movement is applied relative to the world coordinate system.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        // Move the object to the right relative to the camera 1 unit/second.
+        transform.Translate(<a href="Time-deltaTime.html">Time.deltaTime</a>, 0, 0, Camera.main.transform);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

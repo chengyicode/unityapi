@@ -1,0 +1,71 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorGUI.ObjectField</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorGUI.html">EditorGUI</a>.ObjectField</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public static Object <span class="sig-kw">ObjectField</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+<a href="Object.html">Object</a> <span class="sig-kw">obj</span>,
+Type <span class="sig-kw">objType</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public static Object <span class="sig-kw">ObjectField</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+string <span class="sig-kw">label</span>,
+<a href="Object.html">Object</a> <span class="sig-kw">obj</span>,
+Type <span class="sig-kw">objType</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public static Object <span class="sig-kw">ObjectField</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+<a href="GUIContent.html">GUIContent</a> <span class="sig-kw">label</span>,
+<a href="Object.html">Object</a> <span class="sig-kw">obj</span>,
+Type <span class="sig-kw">objType</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static Object <span class="sig-kw">ObjectField</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+<a href="Object.html">Object</a> <span class="sig-kw">obj</span>,
+Type <span class="sig-kw">objType</span>,
+bool <span class="sig-kw">allowSceneObjects</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static Object <span class="sig-kw">ObjectField</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+string <span class="sig-kw">label</span>,
+<a href="Object.html">Object</a> <span class="sig-kw">obj</span>,
+Type <span class="sig-kw">objType</span>,
+bool <span class="sig-kw">allowSceneObjects</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static Object <span class="sig-kw">ObjectField</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+<a href="GUIContent.html">GUIContent</a> <span class="sig-kw">label</span>,
+<a href="Object.html">Object</a> <span class="sig-kw">obj</span>,
+Type <span class="sig-kw">objType</span>,
+bool <span class="sig-kw">allowSceneObjects</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">position</td><td class="desc"></td><td class="desc1">Rectangle on the screen to use for the field.</td></tr><tr><td class="name lbl">label</td><td class="desc"></td><td class="desc1">Optional label in front of the field.</td></tr><tr><td class="name lbl">obj</td><td class="desc"></td><td class="desc1">The object the field shows.</td></tr><tr><td class="name lbl">objType</td><td class="desc"></td><td class="desc1">The type of the objects that can be assigned.</td></tr><tr><td class="name lbl">allowSceneObjects</td><td class="desc"></td><td class="desc1">Allow assigning Scene objects. See Description for more info.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>Object</strong>
+        The object that has been set by the user.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Makes an object field. You can assign objects either by drag and drop objects or by selecting an object using the Object Picker.</p></div><div class="subsection"><p>Ensure that the <strong>allowSceneObjects</strong> parameter is false if the object reference is stored as part of an asset, since assets can't store references to objects in a Scene.<br />
+If the ObjectField is part of a custom Editor for a script component, use EditorUtility.IsPersistent() to check if the component is on an asset or a Scene object. <br />
+See example in <a href="Editor.html">Editor</a> class.<br /><br /><img src="../StaticFiles/ScriptRefImages/EditorGUIObjectField.png" /><br />
+<em>Object field in an Editor Window.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;
+using System.Collections;<br /><br />//Select the dependencies of the found <a href="GameObject.html">GameObject</a>
+public class EditorGUIObjectField : <a href="EditorWindow.html">EditorWindow</a>
+{
+    public <a href="GameObject.html">GameObject</a> obj = null;
+    [<a href="MenuItem.html">MenuItem</a>("Examples/Select Dependencies")]
+    static void Init()
+    {
+        UnityEditor.EditorWindow window = GetWindow(typeof(EditorGUIObjectField));
+        window.position = new <a href="Rect.html">Rect</a>(0, 0, 250, 80);
+        window.Show();
+    }<br /><br />    void OnInspectorUpdate()
+    {
+        Repaint();
+    }<br /><br />    void OnGUI()
+    {
+        obj = (<a href="GameObject.html">GameObject</a>)<a href="EditorGUI.ObjectField.html">EditorGUI.ObjectField</a>(new <a href="Rect.html">Rect</a>(3, 3, position.width - 6, 20), "Find Dependency", obj, typeof(<a href="GameObject.html">GameObject</a>));
+        if (obj)
+            if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(3, 25, position.width - 6, 20), "Check Dependencies"))
+                <a href="Selection-objects.html">Selection.objects</a> = <a href="EditorUtility.CollectDependencies.html">EditorUtility.CollectDependencies</a>(new <a href="GameObject.html">GameObject</a>[] {obj});<br /><br />            else
+                <a href="EditorGUI.LabelField.html">EditorGUI.LabelField</a>(new <a href="Rect.html">Rect</a>(3, 25, position.width - 6, 20), "Missing:", "Select an object first");
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">ObjectField</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+<a href="SerializedProperty.html">SerializedProperty</a> <span class="sig-kw">property</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">ObjectField</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+<a href="SerializedProperty.html">SerializedProperty</a> <span class="sig-kw">property</span>,
+<a href="GUIContent.html">GUIContent</a> <span class="sig-kw">label</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">ObjectField</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+<a href="SerializedProperty.html">SerializedProperty</a> <span class="sig-kw">property</span>,
+Type <span class="sig-kw">objType</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">ObjectField</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+<a href="SerializedProperty.html">SerializedProperty</a> <span class="sig-kw">property</span>,
+Type <span class="sig-kw">objType</span>,
+<a href="GUIContent.html">GUIContent</a> <span class="sig-kw">label</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">position</td><td class="desc"></td><td class="desc1">Rectangle on the screen to use for the field.</td></tr><tr><td class="name lbl">property</td><td class="desc"></td><td class="desc1">The object reference property the field shows.</td></tr><tr><td class="name lbl">objType</td><td class="desc"></td><td class="desc1">The type of the objects that can be assigned.</td></tr><tr><td class="name lbl">label</td><td class="desc"></td><td class="desc1">Optional label to display in front of the field. Pass <a href="GUIContent-none.html">GUIContent.none</a> to hide the label.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Makes an object field. You can assign objects either by drag and drop objects or by selecting an object using the Object Picker.</p></div></div></div></div></body></html>

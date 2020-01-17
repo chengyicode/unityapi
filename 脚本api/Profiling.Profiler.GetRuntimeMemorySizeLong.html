@@ -1,0 +1,21 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Profiling.Profiler.GetRuntimeMemorySizeLong</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Profiling.Profiler.html">Profiler</a>.GetRuntimeMemorySizeLong</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static long <span class="sig-kw">GetRuntimeMemorySizeLong</span>(<a href="Object.html">Object</a> <span class="sig-kw">o</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">o</td><td class="desc"></td><td class="desc1">The target Unity object.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>long</strong>
+        The amount of native-memory used by a Unity object. This returns 0 if the Profiler is not available.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Gathers the native-memory used by a Unity object.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;
+using UnityEngine.Profiling;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        Object[] textures = <a href="Resources.FindObjectsOfTypeAll.html">Resources.FindObjectsOfTypeAll</a>(typeof(<a href="Texture.html">Texture</a>));
+        foreach (<a href="Texture.html">Texture</a> t in textures)
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("<a href="Texture.html">Texture</a> object " + t.name + " using: " + <a href="Profiling.Profiler.GetRuntimeMemorySizeLong.html">Profiler.GetRuntimeMemorySizeLong</a>((<a href="Texture.html">Texture</a>)t) + "Bytes");
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AnimatorStateMachine</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">AnimatorStateMachine</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEditor.Animations</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Inherits from:<a href="Object.html" class="cl">Object</a></p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEditor.html" class="cl">UnityEditor</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>A graph controlling the interaction of states. Each state references a motion.</p></div><div class="subsection"><h2>Properties 属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorStateMachine-anyStatePosition.html">anyStatePosition</a></td><td class="desc"></td><td class="desc1">The position of the AnyState node.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorStateMachine-anyStateTransitions.html">anyStateTransitions</a></td><td class="desc"></td><td class="desc1">The list of AnyState transitions.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorStateMachine-behaviours.html">behaviours</a></td><td class="desc"></td><td class="desc1">The Behaviour list assigned to this state machine.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorStateMachine-defaultState.html">defaultState</a></td><td class="desc"></td><td class="desc1">The state that the state machine will be in when it starts.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorStateMachine-entryPosition.html">entryPosition</a></td><td class="desc"></td><td class="desc1">The position of the entry node.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorStateMachine-entryTransitions.html">entryTransitions</a></td><td class="desc"></td><td class="desc1">The list of entry transitions in the state machine.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorStateMachine-exitPosition.html">exitPosition</a></td><td class="desc"></td><td class="desc1">The position of the exit node.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorStateMachine-parentStateMachinePosition.html">parentStateMachinePosition</a></td><td class="desc"></td><td class="desc1">The position of the parent state machine node. Only valid when in a hierachic state machine.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorStateMachine-stateMachines.html">stateMachines</a></td><td class="desc"></td><td class="desc1">The list of sub state machines.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorStateMachine-states.html">states</a></td><td class="desc"></td><td class="desc1">The list of states.</td></tr>
+    </table></div><div class="subsection"><h2>Public Methods 公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorStateMachine.AddAnyStateTransition.html">AddAnyStateTransition</a></td><td class="desc"></td><td class="desc1">Utility function to add an AnyState transition to the specified state or statemachine.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorStateMachine.AddEntryTransition.html">AddEntryTransition</a></td><td class="desc"></td><td class="desc1">Utility function to add an incoming transition to the exit of it's parent state machine.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorStateMachine.AddState.html">AddState</a></td><td class="desc"></td><td class="desc1">Utility function to add a state to the state machine.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorStateMachine.AddStateMachine.html">AddStateMachine</a></td><td class="desc"></td><td class="desc1">Utility function to add a state machine to the state machine.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorStateMachine.AddStateMachineBehaviour.html">AddStateMachineBehaviour</a></td><td class="desc"></td><td class="desc1">Adds a state machine behaviour class of type stateMachineBehaviourType to the AnimatorStateMachine. C# Users can use a generic version.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorStateMachine.AddStateMachineExitTransition.html">AddStateMachineExitTransition</a></td><td class="desc"></td><td class="desc1">Utility function to add an outgoing transition from the source state machine to the exit of it's parent state machine.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorStateMachine.AddStateMachineTransition.html">AddStateMachineTransition</a></td><td class="desc"></td><td class="desc1">Utility function to add an outgoing transition from the source state machine to the destination.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorStateMachine.GetStateMachineTransitions.html">GetStateMachineTransitions</a></td><td class="desc"></td><td class="desc1">Gets the list of all outgoing state machine transitions from given state machine.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorStateMachine.MakeUniqueStateMachineName.html">MakeUniqueStateMachineName</a></td><td class="desc"></td><td class="desc1">Makes a unique state machine name in the context of the parent state machine.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorStateMachine.MakeUniqueStateName.html">MakeUniqueStateName</a></td><td class="desc"></td><td class="desc1">Makes a unique state name in the context of the parent state machine.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorStateMachine.RemoveAnyStateTransition.html">RemoveAnyStateTransition</a></td><td class="desc"></td><td class="desc1">Utility function to remove an AnyState transition from the state machine.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorStateMachine.RemoveEntryTransition.html">RemoveEntryTransition</a></td><td class="desc"></td><td class="desc1">Utility function to remove an entry transition from the state machine.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorStateMachine.RemoveState.html">RemoveState</a></td><td class="desc"></td><td class="desc1">Utility function to remove a state from the state machine.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorStateMachine.RemoveStateMachine.html">RemoveStateMachine</a></td><td class="desc"></td><td class="desc1">Utility function to remove a state machine from its parent state machine.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorStateMachine.RemoveStateMachineTransition.html">RemoveStateMachineTransition</a></td><td class="desc"></td><td class="desc1">Utility function to remove an outgoing transition from source state machine.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorStateMachine.SetStateMachineTransitions.html">SetStateMachineTransitions</a></td><td class="desc"></td><td class="desc1">Sets the list of all outgoing state machine transitions from given state machine.</td></tr>
+    </table></div><div class="subsection"><h2>Inherited Members 继承成员</h2>
+      
+      <div class="subsection"><h2>Properties 属性</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-hideFlags.html">hideFlags</a></td><td class="desc"></td><td class="desc1">Should the object be hidden, saved with the Scene or modifiable by the user?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-name.html">name</a></td><td class="desc"></td><td class="desc1">The name of the object.</td></tr>
+      </table></div>
+      
+      
+      
+      <div class="subsection"><h2>Public Methods 公共方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.GetInstanceID.html">GetInstanceID</a></td><td class="desc"></td><td class="desc1">Returns the instance id of the object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.ToString.html">ToString</a></td><td class="desc"></td><td class="desc1">Returns the name of the object.</td></tr>
+      </table></div>
+      
+      <div class="subsection"><h2>Static Methods 静态方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.Destroy.html">Destroy</a></td><td class="desc"></td><td class="desc1">Removes a GameObject, component or asset.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.DestroyImmediate.html">DestroyImmediate</a></td><td class="desc"></td><td class="desc1">Destroys the object obj immediately. You are strongly recommended to use Destroy instead.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.DontDestroyOnLoad.html">DontDestroyOnLoad</a></td><td class="desc"></td><td class="desc1">Do not destroy the target Object when loading a new Scene.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectOfType.html">FindObjectOfType</a></td><td class="desc"></td><td class="desc1">Returns the first active loaded object of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectsOfType.html">FindObjectsOfType</a></td><td class="desc"></td><td class="desc1">Returns a list of all active loaded objects of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.Instantiate.html">Instantiate</a></td><td class="desc"></td><td class="desc1">Clones the object original and returns the clone.</td></tr>
+      </table></div>
+      <div class="subsection"><h2>Operators   运算符</h2>
+<h2>Operators   运算符</h2>
+
+<h2>Operators   运算符</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_Object.html">bool</a></td><td class="desc"></td><td class="desc1">Does the object exist?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_ne.html">operator !=</a></td><td class="desc"></td><td class="desc1">Compares if two objects refer to a different object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_eq.html">operator ==</a></td><td class="desc"></td><td class="desc1">Compares two object references to see if they refer to the same object.</td></tr>
+      </table></div>
+      
+      
+      
+    </div></div></div></div></body></html>

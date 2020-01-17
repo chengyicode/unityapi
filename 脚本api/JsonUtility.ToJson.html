@@ -1,0 +1,24 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: JsonUtility.ToJson</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="JsonUtility.html">JsonUtility</a>.ToJson</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static string <span class="sig-kw">ToJson</span>(object <span class="sig-kw">obj</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static string <span class="sig-kw">ToJson</span>(object <span class="sig-kw">obj</span>,
+bool <span class="sig-kw">prettyPrint</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">obj</td><td class="desc"></td><td class="desc1">The object to convert to JSON form.</td></tr><tr><td class="name lbl">prettyPrint</td><td class="desc"></td><td class="desc1">If true, format the output for readability. If false, format the output for minimum size. Default is false.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>string</strong>
+        The object's data in JSON format.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Generate a JSON representation of the public fields of an object.</p></div><div class="subsection"><p>Internally, this method uses the Unity serializer; therefore the object you pass in must be supported by the serializer: it must be a MonoBehaviour, ScriptableObject, or plain class/struct with the Serializable attribute applied. The types of fields that you want to be included must be supported by the serializer; unsupported fields will be ignored, as will private fields, static fields, and fields with the NonSerialized attribute applied.<br /><br />Any plain class or structure is supported, as well as classes derived from MonoBehaviour or ScriptableObject. Other engine types are not supported. (In the Editor only, you can use <a href="EditorJsonUtility.ToJson.html">EditorJsonUtility.ToJson</a> to serialize other engine types to JSON).<br /><br />Note that while it is possible to pass primitive types to this method, the results may not be what you expect; instead of serializing them directly, the method will attempt to serialize their public instance fields, producing an empty object as a result. Similarly, passing an array to this method will not produce a JSON array containing each element, but an object containing the public fields of the array object itself (of which there are none). To serialize the actual content of an array or primitive type, it is necessary to wrap it in a class or struct.<br /><br />This method can be called from background threads. You should not alter the object that you pass to this function while it is still executing.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class PlayerState : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public string playerName;
+    public int lives;
+    public float health;<br /><br />    public string SaveToString()
+    {
+        return <a href="JsonUtility.ToJson.html">JsonUtility.ToJson</a>(this);
+    }<br /><br />    // Given:
+    // playerName = "Dr Charles"
+    // lives = 3
+    // health = 0.8f
+    // SaveToString returns:
+    // {"playerName":"Dr Charles","lives":3,"health":0.8}
+}
+</pre>
+      </div></div></div></div></body></html>

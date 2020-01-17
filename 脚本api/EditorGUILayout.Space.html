@@ -1,0 +1,50 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorGUILayout.Space</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorGUILayout.html">EditorGUILayout</a>.Space</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">Space</span>();
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Make a small space between the previous control and the following.</p></div><div class="subsection"><p>
+        <img src="../StaticFiles/ScriptRefImages/InspectorTitlebarUsageSpace.png" />
+        <br />
+<em>Custom inspector that shows the X,Y,Z,W quaternion components of a transform.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Create a custom transform inspector that shows the X,Y,Z,W quaternion components
+// instead of the rotation angles.<br /><br />using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;<br /><br />public class EditorGUILayoutSpaceField : <a href="EditorWindow.html">EditorWindow</a>
+{
+    bool fold = true;
+    <a href="Vector4.html">Vector4</a> rotationComponents;
+    <a href="Transform.html">Transform</a> selectedTransform;<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Examples/<a href="Space.html">Space</a> between controls")]
+    static void Init()
+    {
+        <a href="EditorWindow.html">EditorWindow</a> window = GetWindow(typeof(EditorGUILayoutSpaceField));
+        window.Show();
+    }<br /><br />    void OnGUI()
+    {
+        if (<a href="Selection-activeGameObject.html">Selection.activeGameObject</a>)
+        {
+            selectedTransform = Selection.activeGameObject.transform;
+            fold = <a href="EditorGUILayout.InspectorTitlebar.html">EditorGUILayout.InspectorTitlebar</a>(fold, selectedTransform);
+            if (fold)
+            {
+                selectedTransform.position =
+                    <a href="EditorGUILayout.Vector3Field.html">EditorGUILayout.Vector3Field</a>("<a href="UIElements.Position.html">Position</a>", selectedTransform.position);
+                <a href="EditorGUILayout.Space.html">EditorGUILayout.Space</a>();<br /><br />                rotationComponents =
+                    <a href="EditorGUILayout.Vector4Field.html">EditorGUILayout.Vector4Field</a>("Detailed Rotation",
+                        QuaternionToVector4(selectedTransform.localRotation));<br /><br />                <a href="EditorGUILayout.Space.html">EditorGUILayout.Space</a>();
+                selectedTransform.localScale =
+                    <a href="EditorGUILayout.Vector3Field.html">EditorGUILayout.Vector3Field</a>("Scale", selectedTransform.localScale);
+            }
+            selectedTransform.localRotation = ConvertToQuaternion(rotationComponents);
+            <a href="EditorGUILayout.Space.html">EditorGUILayout.Space</a>();
+        }
+    }<br /><br />    <a href="Quaternion.html">Quaternion</a> ConvertToQuaternion(<a href="Vector4.html">Vector4</a> v4)
+    {
+        return new <a href="Quaternion.html">Quaternion</a>(v4.x, v4.y, v4.z, v4.w);
+    }<br /><br />    <a href="Vector4.html">Vector4</a> QuaternionToVector4(<a href="Quaternion.html">Quaternion</a> q)
+    {
+        return new <a href="Vector4.html">Vector4</a>(q.x, q.y, q.z, q.w);
+    }<br /><br />    void OnInspectorUpdate()
+    {
+        this.Repaint();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

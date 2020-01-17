@@ -1,0 +1,14 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: GL.IssuePluginEvent</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="GL.html">GL</a>.IssuePluginEvent</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public static void <span class="sig-kw">IssuePluginEvent</span>(int <span class="sig-kw">eventID</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">IssuePluginEvent</span>(IntPtr <span class="sig-kw">callback</span>,
+int <span class="sig-kw">eventID</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">eventID</td><td class="desc"></td><td class="desc1">User defined id to send to the callback.</td></tr><tr><td class="name lbl">callback</td><td class="desc"></td><td class="desc1">Native code callback to queue for Unity's renderer to invoke.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Send a user-defined event to a native code plugin.</p></div><div class="subsection"><p>Rendering in Unity can be multithreaded if the platform and number
+of available CPUs will allow for it. When multithreaded rendering is
+used, the rendering API commands happen on a thread which is
+completely separate from the one that runs the scripts. Consequently,
+it is not possible for your plugin to start rendering immediately,
+since it might interfere with what the render thread is doing at the time.<br /><br />In order to do any rendering from the plugin, you should call
+GL.IssuePluginEvent from your script, which will cause your native
+plugin to be called from the render thread. For example, if you
+call GL.IssuePluginEvent from the camera's OnPostRender function, you'll
+get a plugin callback immediately after the camera has finished rendering.<br /><br />Callback must be a native function of "void UNITY_INTERFACE_API UnityRenderingEvent(int eventId)" signature.<br /><br />See <a href="../Manual/NativePluginInterface.html">Native Plugin Interface</a> for more details
+and an example.<br /><br />See Also: <a href="SystemInfo-graphicsMultiThreaded.html">SystemInfo.graphicsMultiThreaded</a>.</p></div></div></div></div></body></html>

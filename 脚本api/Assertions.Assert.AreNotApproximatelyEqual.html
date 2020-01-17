@@ -1,0 +1,28 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Assertions.Assert.AreNotApproximatelyEqual</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Assertions.Assert.html">Assert</a>.AreNotApproximatelyEqual</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">AreNotApproximatelyEqual</span>(float <span class="sig-kw">expected</span>,
+float <span class="sig-kw">actual</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">AreNotApproximatelyEqual</span>(float <span class="sig-kw">expected</span>,
+float <span class="sig-kw">actual</span>,
+string <span class="sig-kw">message</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">AreNotApproximatelyEqual</span>(float <span class="sig-kw">expected</span>,
+float <span class="sig-kw">actual</span>,
+float <span class="sig-kw">tolerance</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">AreNotApproximatelyEqual</span>(float <span class="sig-kw">expected</span>,
+float <span class="sig-kw">actual</span>,
+float <span class="sig-kw">tolerance</span>,
+string <span class="sig-kw">message</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">tolerance</td><td class="desc"></td><td class="desc1">Tolerance of approximation.</td></tr><tr><td class="name lbl">expected</td><td class="desc"></td><td class="desc1">The assumed <a href="Assertions.Assert.html">Assert</a> value.</td></tr><tr><td class="name lbl">actual</td><td class="desc"></td><td class="desc1">The exact <a href="Assertions.Assert.html">Assert</a> value.</td></tr><tr><td class="name lbl">message</td><td class="desc"></td><td class="desc1">The string used to describe the <a href="Assertions.Assert.html">Assert</a>.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Asserts that the values are approximately not equal.</p></div><div class="subsection"><p>An absolute error check is used for approximate equality check (|a-b| &lt; tolerance). Default tolerance is 0.00001f.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.Assertions;<br /><br />public class AssertionExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="Rigidbody.html">Rigidbody</a> rb;<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        // Make sure the rigidbody never stops.
+        // AreNotApproximatelyEqual should be used for comparing floating point variables.
+        // Unless specified, default error tolerance will be used.
+        <a href="Assertions.Assert.AreNotApproximatelyEqual.html">Assert.AreNotApproximatelyEqual</a>(0.0f, rb.velocity.magnitude);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

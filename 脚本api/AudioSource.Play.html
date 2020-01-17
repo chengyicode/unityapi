@@ -1,0 +1,29 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AudioSource.Play</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="AudioSource.html">AudioSource</a>.Play</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-AudioSource.html' title='Go to AudioSource Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">Play</span>(ulong <span class="sig-kw">delay</span> = 0);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">delay</td><td class="desc"></td><td class="desc1">Deprecated. Delay in number of samples, assuming a 44100Hz sample rate (meaning that Play(44100) will delay the playing by exactly 1 sec).</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Plays the <a href="AudioSource-clip.html">clip</a>.</p></div><div class="subsection"><p>The delay parameter is deprecated, please use the newer PlayDelayed function instead which specifies the delay in seconds.<br /><br />                    If <a href="AudioSource-clip.html">AudioSource.clip</a> is set to the same clip that is playing then
+                    the clip will sound like it is re-started.  <a href="AudioSource.html">AudioSource</a> will assume
+                    any <a href="AudioSource.Play.html">Play</a> call will have a new audio clip to play.<br /><br /><strong>Note:</strong> The <a href="AudioSource.PlayScheduled.html">AudioSource.PlayScheduled</a> API will give you more accurate control over when the audio clip is played.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />// The Audio Source component has an <a href="AudioClip.html">AudioClip</a> option.  The audio
+// played in this example comes from <a href="AudioClip.html">AudioClip</a> and is called audioData.<br /><br />[<a href="RequireComponent.html">RequireComponent</a>(typeof(<a href="AudioSource.html">AudioSource</a>))]
+public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="AudioSource.html">AudioSource</a> audioData;<br /><br />    void Start()
+    {
+        audioData = GetComponent&lt;<a href="AudioSource.html">AudioSource</a>&gt;();
+        audioData.Play(0);
+        <a href="Debug.Log.html">Debug.Log</a>("started");
+    }<br /><br />    void OnGUI()
+    {
+        if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(10, 70, 150, 30), "Pause"))
+        {
+            audioData.Pause();
+            <a href="Debug.Log.html">Debug.Log</a>("Pause: " + audioData.time);
+        }<br /><br />        if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(10, 170, 150, 30), "Continue"))
+        {
+            audioData.UnPause();
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="AudioSource.Stop.html">Stop</a>, <a href="AudioSource.Pause.html">Pause</a>, <a href="AudioSource-clip.html">clip</a> and <a href="AudioSource.PlayScheduled.html">PlayScheduled</a> functions.</p></div></div></div></div></body></html>

@@ -1,0 +1,244 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: TerrainData</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">TerrainData</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Inherits from:<a href="Object.html" class="cl">Object</a></p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.TerrainModule.html" class="cl">UnityEngine.TerrainModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>The TerrainData class stores heightmaps, detail mesh positions, tree instances, and terrain texture alpha maps.</p></div><div class="subsection"><p>The <a href="Terrain.html">Terrain</a> component links to the terrain data and renders it.</p></div><div class="subsection"><h2>Static Properties</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="TerrainData.AlphamapTextureName.html">AlphamapTextureName</a></td><td class="desc"></td><td class="desc1">The name for the Terrain alpha map textures.</td></tr>
+    </table></div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="TerrainData-alphamapHeight.html">alphamapHeight</a></td><td class="desc"></td><td class="desc1">Height of the alpha map.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="TerrainData-alphamapLayers.html">alphamapLayers</a></td><td class="desc"></td><td class="desc1">Number of alpha map layers.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="TerrainData-alphamapResolution.html">alphamapResolution</a></td><td class="desc"></td><td class="desc1">Resolution of the alpha map.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="TerrainData-alphamapTextureCount.html">alphamapTextureCount</a></td><td class="desc"></td><td class="desc1">Returns the number of alphamap textures.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="TerrainData-alphamapTextures.html">alphamapTextures</a></td><td class="desc"></td><td class="desc1">Alpha map textures used by the Terrain. Used by Terrain Inspector for undo.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="TerrainData-alphamapWidth.html">alphamapWidth</a></td><td class="desc"></td><td class="desc1">Width of the alpha map.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="TerrainData-baseMapResolution.html">baseMapResolution</a></td><td class="desc"></td><td class="desc1">Resolution of the base map used for rendering far patches on the terrain.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="TerrainData-bounds.html">bounds</a></td><td class="desc"></td><td class="desc1">The local bounding box of the TerrainData object.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="TerrainData-detailHeight.html">detailHeight</a></td><td class="desc"></td><td class="desc1">Detail height of the TerrainData.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="TerrainData-detailPatchCount.html">detailPatchCount</a></td><td class="desc"></td><td class="desc1">The number of patches along a terrain tile edge. This is squared to make a grid of patches.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="TerrainData-detailPrototypes.html">detailPrototypes</a></td><td class="desc"></td><td class="desc1">Contains the detail texture/meshes that the terrain has.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="TerrainData-detailResolution.html">detailResolution</a></td><td class="desc"></td><td class="desc1">Detail Resolution of the TerrainData.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="TerrainData-detailResolutionPerPatch.html">detailResolutionPerPatch</a></td><td class="desc"></td><td class="desc1">Detail Resolution of each patch. A larger value will decrease the number of batches used by detail objects.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="TerrainData-detailWidth.html">detailWidth</a></td><td class="desc"></td><td class="desc1">Detail width of the TerrainData.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="TerrainData-heightmapHeight.html">heightmapHeight</a></td><td class="desc"></td><td class="desc1">Height of the terrain in samples (Read Only).</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="TerrainData-heightmapResolution.html">heightmapResolution</a></td><td class="desc"></td><td class="desc1">Resolution of the heightmap.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="TerrainData-heightmapScale.html">heightmapScale</a></td><td class="desc"></td><td class="desc1">The size of each heightmap sample.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="TerrainData-heightmapTexture.html">heightmapTexture</a></td><td class="desc"></td><td class="desc1">Returns the heightmap texture.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="TerrainData-heightmapWidth.html">heightmapWidth</a></td><td class="desc"></td><td class="desc1">Width of the terrain in samples (Read Only).</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="TerrainData-size.html">size</a></td><td class="desc"></td><td class="desc1">The total size in world units of the terrain.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="TerrainData-terrainLayers.html">terrainLayers</a></td><td class="desc"></td><td class="desc1">Retrieves the terrain layers used by the current terrain.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="TerrainData-thickness.html">thickness</a></td><td class="desc"></td><td class="desc1">The thickness of the terrain used for collision detection.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="TerrainData-treeInstanceCount.html">treeInstanceCount</a></td><td class="desc"></td><td class="desc1">Returns the number of tree instances.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="TerrainData-treeInstances.html">treeInstances</a></td><td class="desc"></td><td class="desc1">Contains the current trees placed in the terrain.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="TerrainData-treePrototypes.html">treePrototypes</a></td><td class="desc"></td><td class="desc1">The list of tree prototypes this are the ones available in the inspector.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="TerrainData-wavingGrassAmount.html">wavingGrassAmount</a></td><td class="desc"></td><td class="desc1">Amount of waving grass in the terrain.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="TerrainData-wavingGrassSpeed.html">wavingGrassSpeed</a></td><td class="desc"></td><td class="desc1">Speed of the waving grass.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="TerrainData-wavingGrassStrength.html">wavingGrassStrength</a></td><td class="desc"></td><td class="desc1">Strength of the waving grass in the terrain.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="TerrainData-wavingGrassTint.html">wavingGrassTint</a></td><td class="desc"></td><td class="desc1">Color of the waving grass that the terrain has.</td></tr>
+    </table></div><div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="TerrainData.CopyActiveRenderTextureToHeightmap.html">CopyActiveRenderTextureToHeightmap</a></td><td class="desc"></td><td class="desc1">Copies the specified part of the active RenderTexture to the Terrain heightmap texture.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="TerrainData.CopyActiveRenderTextureToTexture.html">CopyActiveRenderTextureToTexture</a></td><td class="desc"></td><td class="desc1">Copies the specified part of the active RenderTexture to the Terrain texture.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="TerrainData.DirtyHeightmapRegion.html">DirtyHeightmapRegion</a></td><td class="desc"></td><td class="desc1">Marks the specified part of the heightmap as dirty.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="TerrainData.DirtyTextureRegion.html">DirtyTextureRegion</a></td><td class="desc"></td><td class="desc1">Marks the specified part of the Terrain texture as dirty.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="TerrainData.GetAlphamaps.html">GetAlphamaps</a></td><td class="desc"></td><td class="desc1">Returns the alpha map at a position x, y given a width and height.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="TerrainData.GetAlphamapTexture.html">GetAlphamapTexture</a></td><td class="desc"></td><td class="desc1">Returns the alphamap texture at the specified index.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="TerrainData.GetDetailLayer.html">GetDetailLayer</a></td><td class="desc"></td><td class="desc1">Returns a 2D array of the detail object density in the specific location.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="TerrainData.GetHeight.html">GetHeight</a></td><td class="desc"></td><td class="desc1">Gets the height at a certain point x,y.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="TerrainData.GetHeights.html">GetHeights</a></td><td class="desc"></td><td class="desc1">Get an array of heightmap samples.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="TerrainData.GetInterpolatedHeight.html">GetInterpolatedHeight</a></td><td class="desc"></td><td class="desc1">Gets an interpolated height at a point x,y. The x and y coordinates are clamped to [0, 1].</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="TerrainData.GetInterpolatedHeights.html">GetInterpolatedHeights</a></td><td class="desc"></td><td class="desc1">Gets an array of terrain height values using the normalized x,y coordinates.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="TerrainData.GetInterpolatedNormal.html">GetInterpolatedNormal</a></td><td class="desc"></td><td class="desc1">Get an interpolated normal at a given location.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="TerrainData.GetMaximumHeightError.html">GetMaximumHeightError</a></td><td class="desc"></td><td class="desc1">Returns an array of tesselation maximum height error values per renderable terrain patch.  The returned array can be modified and passed to OverrideMaximumHeightError.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="TerrainData.GetPatchMinMaxHeights.html">GetPatchMinMaxHeights</a></td><td class="desc"></td><td class="desc1">Returns an array of min max height values for all the renderable patches in a terrain.  The returned array can be modified and then passed to OverrideMinMaxPatchHeights.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="TerrainData.GetSteepness.html">GetSteepness</a></td><td class="desc"></td><td class="desc1">Gets the gradient of the terrain at point (x,y).</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="TerrainData.GetSupportedLayers.html">GetSupportedLayers</a></td><td class="desc"></td><td class="desc1">Returns an array of all supported detail layer indices in the area.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="TerrainData.GetTreeInstance.html">GetTreeInstance</a></td><td class="desc"></td><td class="desc1">Get the tree instance at the specified index. It is used as a faster version of treeInstances[index] as this function doesn't create the entire tree instances array.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="TerrainData.OverrideMaximumHeightError.html">OverrideMaximumHeightError</a></td><td class="desc"></td><td class="desc1">Override the maximum tessellation height error with user provided values.  Note that the overriden values get reset when the terrain resolution is changed and stays unchanged when the terrain heightmap is painted or changed via script.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="TerrainData.OverrideMinMaxPatchHeights.html">OverrideMinMaxPatchHeights</a></td><td class="desc"></td><td class="desc1">Override the minimum and maximum patch heights for every renderable terrain patch.  Note that the overriden values get reset when the terrain resolution is changed and stays unchanged when the terrain heightmap is painted or changed via script.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="TerrainData.RefreshPrototypes.html">RefreshPrototypes</a></td><td class="desc"></td><td class="desc1">Reloads all the values of the available prototypes (ie, detail mesh assets) in the TerrainData Object.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="TerrainData.SetAlphamaps.html">SetAlphamaps</a></td><td class="desc"></td><td class="desc1">Assign all splat values in the given map area.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="TerrainData.SetBaseMapDirty.html">SetBaseMapDirty</a></td><td class="desc"></td><td class="desc1">Marks the terrain data as dirty to trigger an update of the terrain basemap texture.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="TerrainData.SetDetailLayer.html">SetDetailLayer</a></td><td class="desc"></td><td class="desc1">Sets the detail layer density map.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="TerrainData.SetDetailResolution.html">SetDetailResolution</a></td><td class="desc"></td><td class="desc1">Set the resolution of the detail map.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="TerrainData.SetHeights.html">SetHeights</a></td><td class="desc"></td><td class="desc1">Set an array of heightmap samples.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="TerrainData.SetHeightsDelayLOD.html">SetHeightsDelayLOD</a></td><td class="desc"></td><td class="desc1">Set an array of heightmap samples.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="TerrainData.SetTerrainLayersRegisterUndo.html">SetTerrainLayersRegisterUndo</a></td><td class="desc"></td><td class="desc1">This function sets the terrainLayers property, and in addition, registers the action to the Editor's undo stack.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="TerrainData.SetTreeInstance.html">SetTreeInstance</a></td><td class="desc"></td><td class="desc1">Set the tree instance with new parameters at the specified index. However, TreeInstance.prototypeIndex and TreeInstance.position can not be changed otherwise an ArgumentException will be thrown.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="TerrainData.SetTreeInstances.html">SetTreeInstances</a></td><td class="desc"></td><td class="desc1">Sets the Tree Instance array, and optionally snaps Trees onto the surface of the Terrain heightmap.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="TerrainData.SyncHeightmap.html">SyncHeightmap</a></td><td class="desc"></td><td class="desc1">Performs synchronization queued by previous calls to CopyActiveRenderTextureToHeightmap and DirtyHeightmapRegion, which makes the height data and LOD data used for tessellation up to date.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="TerrainData.SyncTexture.html">SyncTexture</a></td><td class="desc"></td><td class="desc1">Performs synchronization queued by previous calls to CopyActiveRenderTextureToAlphamap and DirtyAlphamapRegion, which makes CPU data of the alpha map textures up to date.</td></tr>
+    </table></div><div class="subsection"><h2>Inherited Members   继承成员</h2>
+      
+      <div class="subsection"><h2>Properties   属性</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Object-hideFlags.html">hideFlags</a></td><td class="desc"></td><td class="desc1">Should the object be hidden, saved with the Scene or modifiable by the user?</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Object-name.html">name</a></td><td class="desc"></td><td class="desc1">The name of the object.</td></tr>
+      </table></div>
+      
+      
+      
+      <div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Object.GetInstanceID.html">GetInstanceID</a></td><td class="desc"></td><td class="desc1">Returns the instance id of the object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Object.ToString.html">ToString</a></td><td class="desc"></td><td class="desc1">Returns the name of the object.</td></tr>
+      </table></div>
+      
+      <div class="subsection"><h2>Static Methods   静态方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Object.Destroy.html">Destroy</a></td><td class="desc"></td><td class="desc1">Removes a GameObject, component or asset.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Object.DestroyImmediate.html">DestroyImmediate</a></td><td class="desc"></td><td class="desc1">Destroys the object obj immediately. You are strongly recommended to use Destroy instead.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Object.DontDestroyOnLoad.html">DontDestroyOnLoad</a></td><td class="desc"></td><td class="desc1">Do not destroy the target Object when loading a new Scene.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectOfType.html">FindObjectOfType</a></td><td class="desc"></td><td class="desc1">Returns the first active loaded object of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectsOfType.html">FindObjectsOfType</a></td><td class="desc"></td><td class="desc1">Returns a list of all active loaded objects of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Object.Instantiate.html">Instantiate</a></td><td class="desc"></td><td class="desc1">Clones the object original and returns the clone.</td></tr>
+      </table></div>
+      <div class="subsection"><h2>Operators   运算符</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Object-operator_Object.html">bool</a></td><td class="desc"></td><td class="desc1">Does the object exist?</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Object-operator_ne.html">operator !=</a></td><td class="desc"></td><td class="desc1">Compares if two objects refer to a different object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Object-operator_eq.html">operator ==</a></td><td class="desc"></td><td class="desc1">Compares two object references to see if they refer to the same object.</td></tr>
+      </table></div>
+      
+      
+      
+    </div></div></div></div></body></html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: HorizontalScope</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">HorizontalScope</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.IMGUIModule.html" class="cl">UnityEngine.IMGUIModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Disposable helper class for managing <a href="GUILayout.BeginHorizontal.html">BeginHorizontal</a> / <a href="GUILayout.EndHorizontal.html">EndHorizontal</a>.</p></div><div class="subsection"><p>All controls rendered inside this element will be placed horizontally next to each other.  The <code class="varname">using</code> statement means <a href="GUILayout.BeginHorizontal.html">BeginHorizontal</a> and <a href="GUILayout.EndHorizontal.html">EndHorizontal</a> are not needed.<br /><br /><img src="../StaticFiles/ScriptRefImages/GUILayoutHorizontal.png" /><br />
+<em>Horizontal Layout.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void OnGUI()
+    {
+        // Starts a horizontal group
+        using (var horizontalScope = new <a href="GUILayout.HorizontalScope.html">GUILayout.HorizontalScope</a>("box"))
+        {
+            <a href="GUILayout.Button.html">GUILayout.Button</a>("I'm the first button");
+            <a href="GUILayout.Button.html">GUILayout.Button</a>("I'm to the right");
+        }
+        // Now the group is ended.
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Constructors</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="GUILayout.HorizontalScope-ctor.html">GUILayout.HorizontalScope</a></td><td class="desc"></td><td class="desc1">Create a new HorizontalScope and begin the corresponding horizontal group.</td></tr>
+    </table></div></div></div></div></body></html>

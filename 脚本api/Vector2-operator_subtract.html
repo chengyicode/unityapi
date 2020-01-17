@@ -1,0 +1,28 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Vector2.operator -</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Vector2.html">Vector2</a>.operator -</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Vector2.html">Vector2</a> <span class="sig-kw">operator -</span>(<a href="Vector2.html">Vector2</a> <span class="sig-kw">a</span>,
+<a href="Vector2.html">Vector2</a> <span class="sig-kw">b</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Subtracts one vector from another.</p></div><div class="subsection"><p>Subtracts each component of <code class="varname">b</code> from <code class="varname">a</code>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        // prints (-2.0,0.0)
+        print(new <a href="Vector2.html">Vector2</a>(1, 2) - new <a href="Vector2.html">Vector2</a>(3, 2));
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Vector2.html">Vector2</a> <span class="sig-kw">operator -</span>(<a href="Vector2.html">Vector2</a> <span class="sig-kw">a</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Negates a vector.</p></div><div class="subsection"><p>Each component in the result is negated.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        // prints (-1.0,-2.0)
+        print(-new <a href="Vector2.html">Vector2</a>(1, 2));
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

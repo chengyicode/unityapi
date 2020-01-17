@@ -1,0 +1,32 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Texture2D.Apply</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Texture2D.html">Texture2D</a>.Apply</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">Apply</span>(bool <span class="sig-kw">updateMipmaps</span> = true,
+bool <span class="sig-kw">makeNoLongerReadable</span> = false);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">updateMipmaps</td><td class="desc"></td><td class="desc1">When set to true, mipmap levels are recalculated.</td></tr><tr><td class="name lbl">makeNoLongerReadable</td><td class="desc"></td><td class="desc1">When set to true, system memory copy of a texture is released.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Actually apply all previous <a href="Texture2D.SetPixel.html">SetPixel</a> and <a href="Texture2D.SetPixels.html">SetPixels</a> changes.</p></div><div class="subsection"><p>If <code class="varname">updateMipmaps</code> is <code class="varname">true</code>, the mipmap levels are recalculated as well, using
+the base level as a source. Usually you want to use <code class="varname">true</code> in all cases except when
+you've modified the mip levels yourself using <a href="Texture2D.SetPixels.html">SetPixels</a>.
+By default <code class="varname">updateMipmaps</code> is set to <code class="varname">true</code>.<br /><br />If <code class="varname">makeNoLongerReadable</code> is <code class="varname">true</code>, texture will be marked as no longer readable
+and memory will be freed after uploading to GPU.
+By default <code class="varname">makeNoLongerReadable</code> is set to <code class="varname">false</code>.<br /><br />Apply is a potentially expensive operation, so you'll want to change as many pixels
+as possible between <code class="varname">Apply</code> calls.<br /><br />Alternatively, if you don't need to access the pixels on the CPU, you could use <a href="Graphics.CopyTexture.html">Graphics.CopyTexture</a>
+for fast GPU-side texture data copies. Note that calling <code class="varname">Apply</code> may undo the results of previous calls to <a href="Graphics.CopyTexture.html">Graphics.CopyTexture</a>.<br /><br />The texture has to have <strong>Is Readable</strong> flag set in the import settings.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Create a new texture and assign it to the renderer's material
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        <a href="Texture2D.html">Texture2D</a> texture = new <a href="Texture2D.html">Texture2D</a>(128, 128);
+        GetComponent&lt;<a href="Renderer.html">Renderer</a>&gt;().material.mainTexture = texture;<br /><br />        for (int y = 0; y &lt; texture.height; y++)
+        {
+            for (int x = 0; x &lt; texture.width; x++)
+            {
+                <a href="Color.html">Color</a> color = ((x &amp; y) != 0 ? <a href="Color-white.html">Color.white</a> : <a href="Color-gray.html">Color.gray</a>);
+                texture.SetPixel(x, y, color);
+            }
+        }
+        texture.Apply();
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="Texture2D.SetPixel.html">SetPixel</a>, <a href="Texture2D.SetPixels.html">SetPixels</a> functions, <a href="Graphics.CopyTexture.html">Graphics.CopyTexture</a>.</p></div></div></div></div></body></html>

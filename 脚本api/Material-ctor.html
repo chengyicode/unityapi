@@ -1,0 +1,32 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Material.Material</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">Material Constructor</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Material.html' title='Go to Material Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <span class="sig-kw">Material</span>(<a href="Shader.html">Shader</a> <span class="sig-kw">shader</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public <span class="sig-kw">Material</span>(<a href="Material.html">Material</a> <span class="sig-kw">source</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">shader</td><td class="desc"></td><td class="desc1">Create a material with a given <a href="Shader.html">Shader</a>.</td></tr><tr><td class="name lbl">source</td><td class="desc"></td><td class="desc1">Create a material by copying all properties from another material.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Create a temporary Material.</p></div><div class="subsection"><p>If you have a script which implements a custom special effect, you implement all the graphic setup
+using shaders &amp; materials. Use this function to create a custom shader &amp; material inside your script.
+After creating the material, use <a href="Material.SetColor.html">SetColor</a>, <a href="Material.SetTexture.html">SetTexture</a>, <a href="Material.SetFloat.html">SetFloat</a>,
+<a href="Material.SetVector.html">SetVector</a>, <a href="Material.SetMatrix.html">SetMatrix</a> to populate the shader property values.<br /><br />See Also: <a href="../Manual/Materials.html">Materials</a>, <a href="../Manual/Shaders.html">Shaders</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Creates a material from shader and texture references.
+    <a href="Shader.html">Shader</a> shader;
+    <a href="Texture.html">Texture</a> texture;
+    <a href="Color.html">Color</a> color;<br /><br />    void Start()
+    {
+        <a href="Renderer.html">Renderer</a> rend = GetComponent&lt;<a href="Renderer.html">Renderer</a>&gt; ();<br /><br />        rend.material = new <a href="Material.html">Material</a>(shader);
+        rend.material.mainTexture = texture;
+        rend.material.color = color;
+    }
+}</pre>
+      </div><div class="subsection">
+        
+        <pre class="codeExampleCS">using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Creates a cube and assigns a material with a builtin Specular shader.
+    void Start()
+    {
+        <a href="GameObject.html">GameObject</a> cube = <a href="GameObject.CreatePrimitive.html">GameObject.CreatePrimitive</a>(<a href="PrimitiveType.Cube.html">PrimitiveType.Cube</a>);
+        <a href="Renderer.html">Renderer</a> rend = cube.GetComponent&lt;<a href="Renderer.html">Renderer</a>&gt; ();
+        rend.material = new <a href="Material.html">Material</a>(<a href="Shader.Find.html">Shader.Find</a>("Specular"));
+    }
+}</pre>
+      </div></div></div></div></body></html>

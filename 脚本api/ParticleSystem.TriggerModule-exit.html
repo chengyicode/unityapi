@@ -1,0 +1,79 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ParticleSystem.TriggerModule.exit</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="ParticleSystem.TriggerModule.html">ParticleSystem.TriggerModule</a>.exit</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-ParticleSystem.html' title='Go to ParticleSystem Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="ParticleSystemOverlapAction.html">ParticleSystemOverlapAction</a> <span class="sig-kw">exit</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Choose what action to perform when particles leave the trigger volume.</p></div><div class="subsection"><p>See Also: <a href="MonoBehaviour.OnParticleTrigger.html">MonoBehaviour.OnParticleTrigger</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;
+using System.Collections.Generic;
+using UnityEngine.EventSystems;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private <a href="ParticleSystem.html">ParticleSystem</a> ps;
+    public bool enter;
+    public bool exit;
+    public bool inside;
+    public bool outside;<br /><br />    void Start()
+    {
+        ps = GetComponent&lt;<a href="ParticleSystem.html">ParticleSystem</a>&gt;();<br /><br />        var sphere = <a href="GameObject.CreatePrimitive.html">GameObject.CreatePrimitive</a>(<a href="PrimitiveType.Sphere.html">PrimitiveType.Sphere</a>);
+        sphere.transform.parent = ps.transform;
+        sphere.transform.localPosition = new <a href="Vector3.html">Vector3</a>(0.0f, 0.0f, 3.0f);
+        sphere.transform.localScale = new <a href="Vector3.html">Vector3</a>(3.0f, 3.0f, 3.0f);
+        sphere.GetComponent&lt;<a href="MeshRenderer.html">MeshRenderer</a>&gt;().material = AssetDatabase.GetBuiltinExtraResource&lt;<a href="Material.html">Material</a>&gt;("Default-Particle.mat");<br /><br />        var shape = ps.shape;
+        shape.enabled = false;<br /><br />        var trigger = ps.trigger;
+        trigger.enabled = true;
+        trigger.SetCollider(0, sphere.GetComponent&lt;<a href="Collider.html">Collider</a>&gt;());
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        var trigger = ps.trigger;
+        trigger.enter = enter ? <a href="ParticleSystemOverlapAction.Callback.html">ParticleSystemOverlapAction.Callback</a> : <a href="ParticleSystemOverlapAction.Ignore.html">ParticleSystemOverlapAction.Ignore</a>;
+        trigger.exit = exit ? <a href="ParticleSystemOverlapAction.Callback.html">ParticleSystemOverlapAction.Callback</a> : <a href="ParticleSystemOverlapAction.Ignore.html">ParticleSystemOverlapAction.Ignore</a>;
+        trigger.inside = inside ? <a href="ParticleSystemOverlapAction.Callback.html">ParticleSystemOverlapAction.Callback</a> : <a href="ParticleSystemOverlapAction.Ignore.html">ParticleSystemOverlapAction.Ignore</a>;
+        trigger.outside = outside ? <a href="ParticleSystemOverlapAction.Callback.html">ParticleSystemOverlapAction.Callback</a> : <a href="ParticleSystemOverlapAction.Ignore.html">ParticleSystemOverlapAction.Ignore</a>;
+    }<br /><br />    void OnGUI()
+    {
+        enter = <a href="GUI.Toggle.html">GUI.Toggle</a>(new <a href="Rect.html">Rect</a>(25, 40, 200, 30), enter, "Enter Callback");
+        exit = <a href="GUI.Toggle.html">GUI.Toggle</a>(new <a href="Rect.html">Rect</a>(25, 80, 200, 30), exit, "Exit Callback");
+        inside = <a href="GUI.Toggle.html">GUI.Toggle</a>(new <a href="Rect.html">Rect</a>(25, 120, 200, 30), inside, "Inside Callback");
+        outside = <a href="GUI.Toggle.html">GUI.Toggle</a>(new <a href="Rect.html">Rect</a>(25, 160, 200, 30), outside, "Outside Callback");
+    }<br /><br />    void OnParticleTrigger()
+    {
+        if (enter)
+        {
+            List&lt;<a href="ParticleSystem.Particle.html">ParticleSystem.Particle</a>&gt; enterList = new List&lt;<a href="ParticleSystem.Particle.html">ParticleSystem.Particle</a>&gt;();
+            int numEnter = ps.GetTriggerParticles(<a href="ParticleSystemTriggerEventType.Enter.html">ParticleSystemTriggerEventType.Enter</a>, enterList);<br /><br />            for (int i = 0; i &lt; numEnter; i++)
+            {
+                <a href="ParticleSystem.Particle.html">ParticleSystem.Particle</a> p = enterList[i];
+                p.startColor = new <a href="Color32.html">Color32</a>(255, 0, 0, 255);
+                enterList[i] = p;
+            }<br /><br />            ps.SetTriggerParticles(<a href="ParticleSystemTriggerEventType.Enter.html">ParticleSystemTriggerEventType.Enter</a>, enterList);
+        }<br /><br />        if (exit)
+        {
+            List&lt;<a href="ParticleSystem.Particle.html">ParticleSystem.Particle</a>&gt; exitList = new List&lt;<a href="ParticleSystem.Particle.html">ParticleSystem.Particle</a>&gt;();
+            int numExit = ps.GetTriggerParticles(<a href="ParticleSystemTriggerEventType.Exit.html">ParticleSystemTriggerEventType.Exit</a>, exitList);<br /><br />            for (int i = 0; i &lt; numExit; i++)
+            {
+                <a href="ParticleSystem.Particle.html">ParticleSystem.Particle</a> p = exitList[i];
+                p.startColor = new <a href="Color32.html">Color32</a>(0, 255, 0, 255);
+                exitList[i] = p;
+            }<br /><br />            ps.SetTriggerParticles(<a href="ParticleSystemTriggerEventType.Exit.html">ParticleSystemTriggerEventType.Exit</a>, exitList);
+        }<br /><br />        if (inside)
+        {
+            List&lt;<a href="ParticleSystem.Particle.html">ParticleSystem.Particle</a>&gt; insideList = new List&lt;<a href="ParticleSystem.Particle.html">ParticleSystem.Particle</a>&gt;();
+            int numInside = ps.GetTriggerParticles(<a href="ParticleSystemTriggerEventType.Inside.html">ParticleSystemTriggerEventType.Inside</a>, insideList);<br /><br />            for (int i = 0; i &lt; numInside; i++)
+            {
+                <a href="ParticleSystem.Particle.html">ParticleSystem.Particle</a> p = insideList[i];
+                p.startColor = new <a href="Color32.html">Color32</a>(0, 0, 255, 255);
+                insideList[i] = p;
+            }<br /><br />            ps.SetTriggerParticles(<a href="ParticleSystemTriggerEventType.Inside.html">ParticleSystemTriggerEventType.Inside</a>, insideList);
+        }<br /><br />        if (outside)
+        {
+            List&lt;<a href="ParticleSystem.Particle.html">ParticleSystem.Particle</a>&gt; outsideList = new List&lt;<a href="ParticleSystem.Particle.html">ParticleSystem.Particle</a>&gt;();
+            int numOutside = ps.GetTriggerParticles(<a href="ParticleSystemTriggerEventType.Outside.html">ParticleSystemTriggerEventType.Outside</a>, outsideList);<br /><br />            for (int i = 0; i &lt; numOutside; i++)
+            {
+                <a href="ParticleSystem.Particle.html">ParticleSystem.Particle</a> p = outsideList[i];
+                p.startColor = new <a href="Color32.html">Color32</a>(0, 255, 255, 255);
+                outsideList[i] = p;
+            }<br /><br />            ps.SetTriggerParticles(<a href="ParticleSystemTriggerEventType.Outside.html">ParticleSystemTriggerEventType.Outside</a>, outsideList);
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

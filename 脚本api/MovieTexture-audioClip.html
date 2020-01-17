@@ -1,0 +1,41 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: MovieTexture.audioClip</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Method group is Obsolete</b><br /></div><h1 class="heading inherit"><a href="MovieTexture.html">MovieTexture</a>.audioClip</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-MovieTexture.html' title='Go to MovieTexture Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public <a href="AudioClip.html">AudioClip</a> <span class="sig-kw">audioClip</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>MovieTexture has been deprecated. Refer to the new movie playback solution <a href="Video.VideoPlayer.html">VideoPlayer</a>.</p></div><div class="subsection"><p>Returns the <a href="AudioClip.html">AudioClip</a> belonging to the MovieTexture.
+Note that this is a special <a href="AudioClip.html">AudioClip</a> which will always play its audio synchronized to the movie.
+If you attach a Movie's audioClip to a source in the editor, it will start playing automatically when the movie is playing,
+Otherwise you'll have to start it manually when you start the movie.
+The clip can only be attached to one single <a href="AudioSource.html">AudioSource</a>.<br /><br />See Also: Play, DownloadHandlerMovieTexture.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.Networking;
+using System.Collections;<br /><br />[<a href="RequireComponent.html">RequireComponent</a>(typeof(GUITexture))]
+[<a href="RequireComponent.html">RequireComponent</a>(typeof(<a href="AudioSource.html">AudioSource</a>))]
+public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public string url = "http://www.unity3d.com/Movie/sample.ogg";
+    IEnumerator Start()
+    {
+        var uwr = UnityWebRequestMultimedia.GetMovieTexture(url);
+        MovieTexture movieTexture = DownloadHandlerMovieTexture.GetContent(uwr);
+        while (!movieTexture.isReadyToPlay)
+        {
+            yield return null;
+        }
+        GUITexture gt = GetComponent&lt;GUITexture&gt;();
+        gt.texture = movieTexture;
+        transform.localScale = new <a href="Vector3.html">Vector3</a>(0, 0, 0);
+        transform.position = new <a href="Vector3.html">Vector3</a>(0.5F, 0.5F, 0);
+        <a href="Rect.html">Rect</a> inset = gt.pixelInset;
+        inset.xMin = -movieTexture.width / 2;
+        inset.xMax = movieTexture.width / 2;
+        inset.yMin = -movieTexture.height / 2;
+        inset.yMax = movieTexture.height / 2;
+        gt.pixelInset = inset;
+        <a href="AudioSource.html">AudioSource</a> aud = GetComponent&lt;<a href="AudioSource.html">AudioSource</a>&gt;();
+        aud.clip = movieTexture.audioClip;
+        movieTexture.Play();
+        aud.Play();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

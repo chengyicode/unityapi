@@ -1,0 +1,40 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorWindow.Repaint</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorWindow.html">EditorWindow</a>.Repaint</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">Repaint</span>();
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Make the window repaint.</p></div><div class="subsection"><p>
+        <img src="../StaticFiles/ScriptRefImages/RandomizeInSelection.png" />
+        <br />
+<em>Randomize the rotation of the Selected Objects.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Simple script that randomizes the rotation of the Selected GameObjects
+// and lets you see which objects are currently selected<br /><br />using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class RandomizeInSelection : <a href="EditorWindow.html">EditorWindow</a>
+{
+    string selected = "";
+    public float rotationAmount = 0.33f;<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Example/Randomize Children In <a href="Selection.html">Selection</a>")]
+    static void Init()
+    {
+        RandomizeInSelection window =
+            <a href="EditorWindow.GetWindow.html">EditorWindow.GetWindow</a>&lt;RandomizeInSelection&gt;(true, "Select Randomized Selected Objects");
+        window.ShowUtility();
+    }<br /><br />    void OnInspectorUpdate()
+    {
+        Repaint();
+    }<br /><br />    void OnGUI()
+    {
+        foreach (var transform in <a href="Selection-transforms.html">Selection.transforms</a>)
+            selected += transform.name + " ";<br /><br />        <a href="EditorGUILayout.LabelField.html">EditorGUILayout.LabelField</a>("Selected Object:", selected);<br /><br />        selected = "";
+        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Randomize!"))
+            RandomizeSelected();<br /><br />        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Close"))
+            this.Close();
+    }<br /><br />    void RandomizeSelected()
+    {
+        foreach (var transform in <a href="Selection-transforms.html">Selection.transforms</a>)
+        {
+            var rotation = <a href="Random-rotation.html">Random.rotation</a>;
+            transform.localRotation =
+                <a href="Quaternion.Slerp.html">Quaternion.Slerp</a>(transform.localRotation, rotation, rotationAmount);
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

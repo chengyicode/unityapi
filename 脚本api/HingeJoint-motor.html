@@ -1,0 +1,23 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: HingeJoint.motor</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="HingeJoint.html">HingeJoint</a>.motor</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-HingeJoint.html' title='Go to HingeJoint Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="JointMotor.html">JointMotor</a> <span class="sig-kw">motor</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The motor will apply a force up to a maximum force to achieve the target velocity in degrees per second.</p></div><div class="subsection"><p>The motor tries to reach <a href="JointMotor-targetVelocity.html">JointMotor.targetVelocity</a> angular velocity in degrees per second.
+The motor will only be able to reach <code class="mono">targetVelocity</code>, if <a href="JointMotor-force.html">JointMotor.force</a> is sufficiently large.
+If the joint is spinning faster than <code class="mono">targetVelocity</code> the motor will break.
+A negative <code class="mono">targetVelocity</code> will make the motor spin in the opposite direction.<br /><br />The <code class="mono">force</code> is the maximum torque the motor can exert. If it is zero the motor is disabled.<br /><br />The motor will brake when it is spinning faster than <code class="mono">targetVelocity</code> only, if <a href="JointMotor-freeSpin.html">JointMotor.freeSpin</a> is false.
+If <code class="mono">freeSpin</code> is true the motor will not brake.<br /><br />See Also: <a href="HingeJoint-useMotor.html">useMotor</a>, <a href="JointMotor.html">JointMotor</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        var hinge = GetComponent&lt;<a href="HingeJoint.html">HingeJoint</a>&gt;();<br /><br />        // Make the hinge motor rotate with 90 degrees per second and a strong force.
+        var motor = hinge.motor;
+        motor.force = 100;
+        motor.targetVelocity = 90;
+        motor.freeSpin = false;
+        hinge.motor = motor;
+        hinge.useMotor = true;
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Modifying the motor does <strong>not</strong> automatically enable the motor.<br /><br />Enabling the motor <strong>overrides</strong> the <a href="HingeJoint-spring.html">spring</a>, given the spring was enabled. If the motor is again disabled the spring will be restored.</p></div></div></div></div></body></html>

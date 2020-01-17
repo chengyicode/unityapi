@@ -1,0 +1,46 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Texture.updateCount</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Texture.html">Texture</a>.updateCount</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public uint <span class="sig-kw">updateCount</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>This counter is incremented when the texture is updated.</p></div><div class="subsection"><p>Note: If you perform an update from the GPU side, you should increment the counter yourself. (For instance, when blitting into a <a href="RenderTexture.html">RenderTexture</a>). (see <a href="Texture.IncrementUpdateCount.html">IncrementUpdateCount</a>).</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections.Generic;<br /><br />public class MyTextureCache
+{
+    struct TextureCacheMeta
+    {
+        internal int index;
+        internal uint updateCount;
+    }<br /><br />    Dictionary&lt;<a href="Texture.html">Texture</a>, TextureCacheMeta&gt; m_TextureMetas = new Dictionary&lt;<a href="Texture.html">Texture</a>, TextureCacheMeta&gt;();
+    <a href="RenderTexture.html">RenderTexture</a> m_Cache;<br /><br />    public <a href="Texture.html">Texture</a> cache { get { return m_Cache; } }<br /><br />    public int CacheTexture(<a href="Texture.html">Texture</a> texture)
+    {
+        var index = -1;
+        TextureCacheMeta meta;
+        if (m_TextureMetas.TryGetValue(texture, out meta))
+        {
+            if (meta.updateCount != texture.updateCount)
+            {
+                // <a href="Texture.html">Texture</a> has changed since last caching
+                // So blit again into the cache texture
+                BlitTextureAt(meta.index, texture);
+                meta.updateCount = texture.updateCount;
+                m_TextureMetas[texture] = meta;
+            }
+        }
+        else
+        {
+            index = GetNextIndex();
+            if (index &lt; 0)
+            {
+                <a href="Debug.LogError.html">Debug.LogError</a>("Invalid index");
+                return -1;
+            }<br /><br />            m_TextureMetas[texture] = new TextureCacheMeta
+            {
+                index = index,
+                updateCount = texture.updateCount
+            };
+        }
+        return index;
+    }<br /><br />    void BlitTextureAt(int index, <a href="Texture.html">Texture</a> texture) { /* copy pixels in cache */ }
+    int GetNextIndex() { return -1; /* Get next index to use in the cache */ }
+}
+</pre>
+      </div></div></div></div></body></html>

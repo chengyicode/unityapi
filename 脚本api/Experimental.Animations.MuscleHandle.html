@@ -1,0 +1,39 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: MuscleHandle</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Experimental</b>: this API is experimental and might be changed or removed in the future.</div><h1 class="heading inherit">MuscleHandle</h1><div class="clear"></div><p class="cl mb0 left mr10">struct in
+          UnityEngine.Experimental.Animations</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.AnimationModule.html" class="cl">UnityEngine.AnimationModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Handle for a muscle in the <a href="Experimental.Animations.AnimationHumanStream.html">AnimationHumanStream</a>.</p></div><div class="subsection"><p>MuscleHandle can only be used on <a href="Experimental.Animations.AnimationHumanStream.html">AnimationHumanStream</a>, otherwise an <code class="mono">InvalidOperationException</code> is thrown.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.Animations;
+using UnityEngine.Playables;
+using UnityEngine.Experimental.Animations;<br /><br />public struct MuscleHandleExampleJob : <a href="Experimental.Animations.IAnimationJob.html">IAnimationJob</a>
+{
+    public <a href="Experimental.Animations.MuscleHandle.html">MuscleHandle</a> muscleHandle;<br /><br />    public void ProcessRootMotion(<a href="Experimental.Animations.AnimationStream.html">AnimationStream</a> stream) {}
+    public void ProcessAnimation(<a href="Experimental.Animations.AnimationStream.html">AnimationStream</a> stream)
+    {
+        <a href="Experimental.Animations.AnimationHumanStream.html">AnimationHumanStream</a> humanStream = stream.AsHuman();<br /><br />        // Get a muscle value.
+        float muscleValue = humanStream.GetMuscle(muscleHandle);<br /><br />        // Set a muscle value.
+        humanStream.SetMuscle(muscleHandle, muscleValue);
+    }
+}<br /><br />[<a href="RequireComponent.html">RequireComponent</a>(typeof(<a href="Animator.html">Animator</a>))]
+public class MuscleHandleExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        var graph = <a href="Playables.PlayableGraph.Create.html">PlayableGraph.Create</a>();
+        var output = <a href="Animations.AnimationPlayableOutput.Create.html">AnimationPlayableOutput.Create</a>(graph, "output", GetComponent&lt;<a href="Animator.html">Animator</a>&gt;());<br /><br />        var job = new MuscleHandleExampleJob();
+        job.muscleHandle = new <a href="Experimental.Animations.MuscleHandle.html">MuscleHandle</a>(<a href="HumanPartDof.LeftArm.html">HumanPartDof.LeftArm</a>, <a href="ArmDof.HandDownUp.html">ArmDof.HandDownUp</a>);<br /><br />        var scriptPlayable = <a href="Experimental.Animations.AnimationScriptPlayable.Create.html">AnimationScriptPlayable.Create</a>(graph, job);
+        output.SetSourcePlayable(scriptPlayable);<br /><br />        graph.Evaluate(1.0f);<br /><br />        graph.Destroy();
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Static Properties</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.Animations.MuscleHandle-muscleHandleCount.html">muscleHandleCount</a></td><td class="desc"></td><td class="desc1">The total number of DoF parts in a humanoid. (Read Only)</td></tr>
+    </table></div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.Animations.MuscleHandle-dof.html">dof</a></td><td class="desc"></td><td class="desc1">The muscle human sub-part. (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.Animations.MuscleHandle-humanPartDof.html">humanPartDof</a></td><td class="desc"></td><td class="desc1">The muscle human part. (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.Animations.MuscleHandle-name.html">name</a></td><td class="desc"></td><td class="desc1">The name of the muscle. (Read Only)</td></tr>
+    </table></div><div class="subsection"><h2>Constructors</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.Animations.MuscleHandle-ctor.html">MuscleHandle</a></td><td class="desc"></td><td class="desc1">The different constructors that creates the muscle handle.</td></tr>
+    </table></div><div class="subsection"><h2>Static Methods   静态方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.Animations.MuscleHandle.GetMuscleHandles.html">GetMuscleHandles</a></td><td class="desc"></td><td class="desc1">Fills the array with all the possible muscle handles on a humanoid.</td></tr>
+    </table></div></div></div></div></body></html>

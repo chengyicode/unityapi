@@ -1,0 +1,28 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: GUILayer.HitTest</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Method group is Obsolete</b><br /></div><h1 class="heading inherit"><a href="GUILayer.html">GUILayer</a>.HitTest</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-GUILayer.html' title='Go to GUILayer Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public <a href="GUIElement.html">GUIElement</a> <span class="sig-kw">HitTest</span>(<a href="Vector3.html">Vector3</a> <span class="sig-kw">screenPosition</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Get the GUI element at a specific screen position.</p></div><div class="subsection"><p>Returns the <a href="GUIElement.html">GUIElement</a> at a specific point on screen. If <code class="varname">screenPosition</code> is inside some <a href="GUIElement.html">GUIElement</a>,
+that element is returned. Returns <code class="varname">null</code> if the position is not inside any GUI element.
+GUI elements that belong to Ignore Raycast layer will be ignored, as if they would not exist.<br /><br /><code class="varname">screenPosition</code> is measured in screen coordinates, like the values returned by <a href="Input-mousePosition.html">Input.mousePosition</a> property.<br /><br /><strong>Note:</strong> GUILayer.HitTest only finds old-school GUI components
+(made up of the classes GUIElement, GUITexture, GUIText, GUILayer),
+and will not work with the "new" one (referred to as "UnityGUI" and
+made up of all the other GUIAnything classes, and the OnGUI() call).<br />
+So if you're using UnityGUI, HitTest won't find anything.<br /><br />See Also: <a href="GUIElement.HitTest.html">GUIElement.HitTest</a>, <a href="Input-mousePosition.html">Input.mousePosition</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Tests if the mouse is touching a <a href="GUIElement.html">GUIElement</a>.
+    // Add a GUITexture and put the mouse over it and
+    // it will print the GUITexture name.
+    GUILayer test;<br /><br />    void Start()
+    {
+        test = Camera.main.GetComponent&lt;GUILayer&gt;();
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        if (test.HitTest(<a href="Input-mousePosition.html">Input.mousePosition</a>) != null)
+        {
+            <a href="Debug.Log.html">Debug.Log</a>(test.HitTest(<a href="Input-mousePosition.html">Input.mousePosition</a>).name);
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

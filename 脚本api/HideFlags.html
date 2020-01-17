@@ -1,0 +1,32 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: HideFlags</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">HideFlags</h1><div class="clear"></div><p class="cl mb0 left mr10">enumeration</p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Bit mask that controls object destruction, saving and visibility in inspectors.</p></div><div class="subsection"><p>See Also: <a href="HideFlags.HideAndDontSave.html">HideFlags.HideAndDontSave</a>, SA.Object.hideFlags.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Creates a material that is explicitly created &amp; destroyed by the component.
+    // <a href="Resources.UnloadUnusedAssets.html">Resources.UnloadUnusedAssets</a> will not unload it, and it will not be editable by the inspector.
+    private <a href="Material.html">Material</a> ownedMaterial;
+    void OnEnable()
+    {
+        ownedMaterial = new <a href="Material.html">Material</a>(<a href="Shader.Find.html">Shader.Find</a>("Diffuse"));
+        ownedMaterial.hideFlags = <a href="HideFlags.HideAndDontSave.html">HideFlags.HideAndDontSave</a>;
+        GetComponent&lt;<a href="Renderer.html">Renderer</a>&gt;().sharedMaterial = ownedMaterial;
+    }<br /><br />    // Objects created as hide and don't save must be explicitly destroyed by the owner of the object.
+    void OnDisable()
+    {
+        DestroyImmediate(ownedMaterial);
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="HideFlags.None.html">None</a></td><td class="desc"></td><td class="desc1">A normal, visible object. This is the default.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="HideFlags.HideInHierarchy.html">HideInHierarchy</a></td><td class="desc"></td><td class="desc1">The object will not appear in the hierarchy.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="HideFlags.HideInInspector.html">HideInInspector</a></td><td class="desc"></td><td class="desc1">It is not possible to view it in the inspector.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="HideFlags.DontSaveInEditor.html">DontSaveInEditor</a></td><td class="desc"></td><td class="desc1">The object will not be saved to the Scene in the editor.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="HideFlags.NotEditable.html">NotEditable</a></td><td class="desc"></td><td class="desc1">The object is not be editable in the inspector.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="HideFlags.DontSaveInBuild.html">DontSaveInBuild</a></td><td class="desc"></td><td class="desc1">The object will not be saved when building a player.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="HideFlags.DontUnloadUnusedAsset.html">DontUnloadUnusedAsset</a></td><td class="desc"></td><td class="desc1">The object will not be unloaded by Resources.UnloadUnusedAssets.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="HideFlags.DontSave.html">DontSave</a></td><td class="desc"></td><td class="desc1">The object will not be saved to the Scene. It will not be destroyed when a new Scene is loaded. It is a shortcut for HideFlags.DontSaveInBuild | HideFlags.DontSaveInEditor | HideFlags.DontUnloadUnusedAsset.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="HideFlags.HideAndDontSave.html">HideAndDontSave</a></td><td class="desc"></td><td class="desc1">The GameObject is not shown in the Hierarchy, not saved to to Scenes, and not unloaded by Resources.UnloadUnusedAssets.</td></tr>
+    </table></div></div></div></div></body></html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AssetPostprocessor.OnPostprocessTexture(Texture2D)</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="AssetPostprocessor.html">AssetPostprocessor</a>.OnPostprocessTexture(Texture2D)</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Add this function to a subclass to get a notification when a texture has completed importing just before.</p></div><div class="subsection"><p>
+                    The texture is optionally compressed and saved to disk.<br /><br />                    At this point it is too late to choose compression format, it is still possible to compress the texture
+                    using texture.Compress but this is not advised and the compression format will not be displayed in the
+                    editor. Use OnPreprocessTexture if you wish to change compression format based on filename or other
+                    attributes of the texture.<br /><br />                    Note that you should avoid modifying the TextureImporter settings in this manner as it would have no effect on the texture that is currently being imported but would apply the next time the texture is imported. This behavior is nondeterministic and therefore undesirable.
+                </p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;
+using System.Collections;<br /><br />// Postprocesses all textures that are placed in a folder
+// "invert color" to have their colors inverted.
+public class InvertColor : <a href="AssetPostprocessor.html">AssetPostprocessor</a>
+{
+    void OnPostprocessTexture(<a href="Texture2D.html">Texture2D</a> texture)
+    {
+        // Only post process textures if they are in a folder
+        // "invert color" or a sub folder of it.
+        string lowerCaseAssetPath = assetPath.ToLower();
+        if (lowerCaseAssetPath.IndexOf("/invert color/") == -1)
+            return;<br /><br />        for (int m = 0; m &lt; texture.mipmapCount; m++)
+        {
+            <a href="Color.html">Color</a>[] c = texture.GetPixels(m);<br /><br />            for (int i = 0; i &lt; c.Length; i++)
+            {
+                c[i].r = 1 - c[i].r;
+                c[i].g = 1 - c[i].g;
+                c[i].b = 1 - c[i].b;
+            }
+            texture.SetPixels(c, m);
+        }
+        // Instead of setting pixels for each mip map levels, you can also
+        // modify only the pixels in the highest mip level. And then simply use
+        // texture.Apply(true); to generate lower mip levels.
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

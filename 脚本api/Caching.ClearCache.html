@@ -1,0 +1,25 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Caching.ClearCache</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Caching.html">Caching</a>.ClearCache</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">ClearCache</span>();
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">ClearCache</span>(int <span class="sig-kw">expiration</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">expiration</td><td class="desc"></td><td class="desc1">The number of seconds that AssetBundles may remain unused in the cache.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>bool</strong>
+        True when cache clearing succeeded, false if cache was in use.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Removes all AssetBundle content that has been cached by the current application.</p></div><div class="subsection"><p>This method is not available to WebPlayer applications that use the shared cache.<br /><br />See Also: <a href="../Manual/UnityWebRequest-DownloadingAssetBundle.html">Downloading Asset Bundles</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.IO;
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void ClearCacheExample()
+    {
+        <a href="Windows.Directory.CreateDirectory.html">Directory.CreateDirectory</a>("Cache1");
+        <a href="Windows.Directory.CreateDirectory.html">Directory.CreateDirectory</a>("Cache2");
+        <a href="Windows.Directory.CreateDirectory.html">Directory.CreateDirectory</a>("Cache3");<br /><br />        <a href="Caching.AddCache.html">Caching.AddCache</a>("Cache1"); //Placed in cache list at position 1
+        <a href="Caching.AddCache.html">Caching.AddCache</a>("Cache2"); //Placed in cache list at position 2
+        <a href="Caching.AddCache.html">Caching.AddCache</a>("Cache3"); //Placed in cache list at position 3<br /><br />        //Clears all of the caches
+        bool success = <a href="Caching.ClearCache.html">Caching.ClearCache</a>();<br /><br />        if (!success)
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("Unable to clear cache");
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Web player is not supported from 5.4.0 and beyond.</p></div></div></div></div></body></html>

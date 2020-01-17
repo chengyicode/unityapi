@@ -1,0 +1,49 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: IJob</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">IJob</h1><div class="clear"></div><p class="cl mb0 left mr10">interface in
+          Unity.Jobs</p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>IJob allows you to schedule a single job that runs in parallel to other jobs and the main thread.</p></div><div class="subsection"><p>When a job is scheduled, the job's Execute method will be invoked on a worker thread. The returned JobHandle can be used to ensure that the job has completed. Or it can be passed to other jobs as a dependency, thus ensuring the jobs are executed one after another on the worker threads.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using Unity.Collections;
+using Unity.Jobs;<br /><br />class ApplyVelocitySample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    struct VelocityJob : <a href="Unity.Jobs.IJob.html">IJob</a>
+    {
+        // Jobs declare all data that will be accessed in the job
+        // By declaring it as read only, multiple jobs are allowed to access the data in parallel
+        [ReadOnly]
+        public NativeArray&lt;<a href="Vector3.html">Vector3</a>&gt; velocity;<br /><br />        // By default containers are assumed to be read &amp; write
+        public NativeArray&lt;<a href="Vector3.html">Vector3</a>&gt; position;<br /><br />        // Delta time must be copied to the job since jobs generally don't have concept of a frame.
+        // The main thread waits for the job on the same frame or the next frame, but the job should
+        // perform work in a deterministic and independent way when running on worker threads.
+        public float deltaTime;<br /><br />        // The code actually running on the job
+        public void Execute()
+        {
+            // Move the positions based on delta time and velocity
+            for (var i = 0; i &lt; position.Length; i++)
+                position[i] = position[i] + velocity[i] * deltaTime;
+        }
+    }<br /><br />    public void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        var position = new NativeArray&lt;<a href="Vector3.html">Vector3</a>&gt;(500, <a href="Unity.Collections.Allocator.Persistent.html">Allocator.Persistent</a>);<br /><br />        var velocity = new NativeArray&lt;<a href="Vector3.html">Vector3</a>&gt;(500, <a href="Unity.Collections.Allocator.Persistent.html">Allocator.Persistent</a>);
+        for (var i = 0; i &lt; velocity.Length; i++)
+            velocity[i] = new <a href="Vector3.html">Vector3</a>(0, 10, 0);<br /><br />
+        // Initialize the job data
+        var job = new VelocityJob()
+        {
+            deltaTime = <a href="Time-deltaTime.html">Time.deltaTime</a>,
+            position = position,
+            velocity = velocity
+        };<br /><br />        // Schedule the job, returns the <a href="Unity.Jobs.JobHandle.html">JobHandle</a> which can be waited upon later on
+        <a href="Unity.Jobs.JobHandle.html">JobHandle</a> jobHandle = job.Schedule();<br /><br />        // Ensure the job has completed
+        // It is not recommended to Complete a job immediately,
+        // since that gives you no actual parallelism.
+        // You optimally want to schedule a job early in a frame and then wait for it later in the frame.
+        jobHandle.Complete();<br /><br />        <a href="Debug.Log.html">Debug.Log</a>(job.position[0]);<br /><br />        // Native arrays must be disposed manually
+        position.Dispose();
+        velocity.Dispose();
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Unity.Jobs.IJob.Execute.html">Execute</a></td><td class="desc"></td><td class="desc1">Implement this method to perform work on a worker thread.</td></tr>
+    </table></div></div></div></div></body></html>

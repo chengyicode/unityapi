@@ -1,0 +1,46 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AdvancedDropdown</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">AdvancedDropdown</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEditor.IMGUI.Controls</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEditor.html" class="cl">UnityEditor</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Inherit from this class to implement your own drop-down control.</p></div><div class="subsection"><p></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;
+using UnityEditor.IMGUI.Controls;<br /><br />class WeekdaysDropdown : <a href="IMGUI.Controls.AdvancedDropdown.html">AdvancedDropdown</a>
+{
+    public WeekdaysDropdown(<a href="IMGUI.Controls.AdvancedDropdownState.html">AdvancedDropdownState</a> state) : base(state)
+    {
+    }<br /><br />    protected override <a href="IMGUI.Controls.AdvancedDropdownItem.html">AdvancedDropdownItem</a> BuildRoot()
+    {
+        var root = new <a href="IMGUI.Controls.AdvancedDropdownItem.html">AdvancedDropdownItem</a>("Weekdays");<br /><br />        var firstHalf = new <a href="IMGUI.Controls.AdvancedDropdownItem.html">AdvancedDropdownItem</a>("First half");
+        var secondHalf = new <a href="IMGUI.Controls.AdvancedDropdownItem.html">AdvancedDropdownItem</a>("Second half");
+        var weekend = new <a href="IMGUI.Controls.AdvancedDropdownItem.html">AdvancedDropdownItem</a>("Weekend");<br /><br />        firstHalf.AddChild(new <a href="IMGUI.Controls.AdvancedDropdownItem.html">AdvancedDropdownItem</a>("Monday"));
+        firstHalf.AddChild(new <a href="IMGUI.Controls.AdvancedDropdownItem.html">AdvancedDropdownItem</a>("Tuesday"));
+        secondHalf.AddChild(new <a href="IMGUI.Controls.AdvancedDropdownItem.html">AdvancedDropdownItem</a>("Wednesday"));
+        secondHalf.AddChild(new <a href="IMGUI.Controls.AdvancedDropdownItem.html">AdvancedDropdownItem</a>("Thursday"));
+        weekend.AddChild(new <a href="IMGUI.Controls.AdvancedDropdownItem.html">AdvancedDropdownItem</a>("Friday"));
+        weekend.AddChild(new <a href="IMGUI.Controls.AdvancedDropdownItem.html">AdvancedDropdownItem</a>("Saturday"));
+        weekend.AddChild(new <a href="IMGUI.Controls.AdvancedDropdownItem.html">AdvancedDropdownItem</a>("Sunday"));<br /><br />        root.AddChild(firstHalf);
+        root.AddChild(secondHalf);
+        root.AddChild(weekend);<br /><br />        return root;
+    }
+}<br /><br />public class AdvancedDropdownTestWindow : <a href="EditorWindow.html">EditorWindow</a>
+{
+    void OnGUI()
+    {
+        var rect = <a href="GUILayoutUtility.GetRect.html">GUILayoutUtility.GetRect</a>(new <a href="GUIContent.html">GUIContent</a>("Show"), <a href="EditorStyles-toolbarButton.html">EditorStyles.toolbarButton</a>);
+        if (<a href="GUI.Button.html">GUI.Button</a>(rect, new <a href="GUIContent.html">GUIContent</a>("Show"), <a href="EditorStyles-toolbarButton.html">EditorStyles.toolbarButton</a>))
+        {
+            var dropdown = new WeekdaysDropdown(new <a href="IMGUI.Controls.AdvancedDropdownState.html">AdvancedDropdownState</a>());
+            dropdown.Show(rect);
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p></p></div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="IMGUI.Controls.AdvancedDropdown-minimumSize.html">minimumSize</a></td><td class="desc"></td><td class="desc1">Minimum size of the drop-down window. By default, the drop-down will try to match the width of the given rect or the rendered content.</td></tr>
+    </table></div><div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="IMGUI.Controls.AdvancedDropdown.Show.html">Show</a></td><td class="desc"></td><td class="desc1">Call this method to show the drop-down at the given position.</td></tr>
+    </table></div><div class="subsection"><h2>Protected Methods</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="IMGUI.Controls.AdvancedDropdown.BuildRoot.html">BuildRoot</a></td><td class="desc"></td><td class="desc1">Implement this method to generate the content of the drop-down.
+This method is called when the drop-down is being shown.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="IMGUI.Controls.AdvancedDropdown.ItemSelected.html">ItemSelected</a></td><td class="desc"></td><td class="desc1">Override this method to get notified when an item is selected.</td></tr>
+    </table></div></div></div></div></body></html>

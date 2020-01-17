@@ -1,0 +1,32 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Bounds.center</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Bounds.html">Bounds</a>.center</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Vector3.html">Vector3</a> <span class="sig-kw">center</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The center of the bounding box.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class ColliderBounds : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="Collider.html">Collider</a> m_Collider;
+    <a href="Vector3.html">Vector3</a> m_Center;
+    <a href="Vector3.html">Vector3</a> m_Size, m_Min, m_Max;<br /><br />    void Start()
+    {
+        //Fetch the <a href="Collider.html">Collider</a> from the <a href="GameObject.html">GameObject</a>
+        m_Collider = GetComponent&lt;<a href="Collider.html">Collider</a>&gt;();
+        //Fetch the center of the <a href="Collider.html">Collider</a> volume
+        m_Center = m_Collider.bounds.center;
+        //Fetch the size of the <a href="Collider.html">Collider</a> volume
+        m_Size = m_Collider.bounds.size;
+        //Fetch the minimum and maximum bounds of the <a href="Collider.html">Collider</a> volume
+        m_Min = m_Collider.bounds.min;
+        m_Max = m_Collider.bounds.max;
+        //Output this data into the console
+        OutputData();
+    }<br /><br />    void OutputData()
+    {
+        //Output to the console the center and size of the <a href="Collider.html">Collider</a> volume
+        <a href="Debug.Log.html">Debug.Log</a>("<a href="Collider.html">Collider</a> Center : " + m_Center);
+        <a href="Debug.Log.html">Debug.Log</a>("<a href="Collider.html">Collider</a> Size : " + m_Size);
+        <a href="Debug.Log.html">Debug.Log</a>("<a href="Collider.html">Collider</a> bound Minimum : " + m_Min);
+        <a href="Debug.Log.html">Debug.Log</a>("<a href="Collider.html">Collider</a> bound Maximum : " + m_Max);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

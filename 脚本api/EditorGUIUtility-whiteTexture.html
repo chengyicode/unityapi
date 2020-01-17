@@ -1,0 +1,79 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorGUIUtility.whiteTexture</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorGUIUtility.html">EditorGUIUtility</a>.whiteTexture</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Texture2D.html">Texture2D</a> <span class="sig-kw">whiteTexture</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Get a white texture.</p></div><div class="subsection"><p>
+        <img src="../StaticFiles/ScriptRefImages/EditorGUIUtilityWhiteTexture.png" />
+        <br />
+<em>White texture in an Editor Window.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class EditorGUITextures : <a href="EditorWindow.html">EditorWindow</a>
+{
+    <a href="Texture2D.html">Texture2D</a> texture = null;
+    static <a href="Texture2D.html">Texture2D</a> invertedTexture;
+    bool showInverted = false;<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Examples/<a href="Texture.html">Texture</a> Previewer")]
+    static void Init()
+    {
+        EditorGUITextures window =
+            <a href="EditorWindow.GetWindowWithRect.html">EditorWindow.GetWindowWithRect</a>&lt;EditorGUITextures&gt;(new <a href="Rect.html">Rect</a>(0, 0, 410, 250));
+        window.Show();
+    }<br /><br />    void OnGUI()
+    {
+        texture = (<a href="Texture2D.html">Texture2D</a>)<a href="EditorGUI.ObjectField.html">EditorGUI.ObjectField</a>(new <a href="Rect.html">Rect</a>(3, 3, 200, 50),
+            "Add a <a href="Texture.html">Texture</a>:",
+            texture,
+            typeof(<a href="Texture.html">Texture</a>));<br /><br />
+        if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(250, 3, 100, 20), "Process Inverted"))
+        {
+            if (invertedTexture)
+                DestroyImmediate(invertedTexture);<br /><br />            //Copy the new texture
+            invertedTexture = new <a href="Texture2D.html">Texture2D</a>(texture.width,
+                texture.height,
+                texture.format,
+                (texture.mipmapCount != 0));<br /><br />            for (int m = 0; m &lt; texture.mipmapCount; m++)
+                invertedTexture.SetPixels(texture.GetPixels(m), m);<br /><br />            InvertColors();
+            showInverted = true;
+        }<br /><br />        if (texture)
+        {
+            <a href="EditorGUI.LabelField.html">EditorGUI.LabelField</a>(new <a href="Rect.html">Rect</a>(25, 200, 100, 25), new <a href="GUIContent.html">GUIContent</a>("Preview:"));
+            <a href="EditorGUI.DrawPreviewTexture.html">EditorGUI.DrawPreviewTexture</a>(new <a href="Rect.html">Rect</a>(25, 70, 100, 100), texture);
+            <a href="EditorGUI.LabelField.html">EditorGUI.LabelField</a>(new <a href="Rect.html">Rect</a>(150, 200, 100, 25), new <a href="GUIContent.html">GUIContent</a>("Alpha:"));
+            <a href="EditorGUI.DrawTextureAlpha.html">EditorGUI.DrawTextureAlpha</a>(new <a href="Rect.html">Rect</a>(150, 70, 100, 100), texture);
+            <a href="EditorGUI.LabelField.html">EditorGUI.LabelField</a>(new <a href="Rect.html">Rect</a>(275, 200, 100, 25), new <a href="GUIContent.html">GUIContent</a>("Inverted:"));<br /><br />            if (showInverted)
+            {
+                <a href="EditorGUI.DrawPreviewTexture.html">EditorGUI.DrawPreviewTexture</a>(new <a href="Rect.html">Rect</a>(275, 70, 100, 100), invertedTexture);
+            }<br /><br />            if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(3, position.height - 25, position.width - 6, 20), "Clear texture"))
+            {
+                texture = <a href="EditorGUIUtility-whiteTexture.html">EditorGUIUtility.whiteTexture</a>;
+                showInverted = false;
+            }
+        }
+        else
+        {
+            <a href="EditorGUI.PrefixLabel.html">EditorGUI.PrefixLabel</a>(
+                new <a href="Rect.html">Rect</a>(3, position.height - 25, position.width - 6, 20),
+                0,
+                new <a href="GUIContent.html">GUIContent</a>("No texture found"));
+        }
+    }<br /><br />    static void InvertColors()
+    {
+        for (int m = 0; m &lt; invertedTexture.mipmapCount; m++)
+        {
+            <a href="Color.html">Color</a>[] c = invertedTexture.GetPixels(m);
+            for (int i = 0; i &lt; c.Length; i++)
+            {
+                c[i].r = 1 - c[i].r;
+                c[i].g = 1 - c[i].g;
+                c[i].b = 1 - c[i].b;
+            }
+            invertedTexture.SetPixels(c, m);
+        }
+        invertedTexture.Apply();
+    }<br /><br />    void OnInspectorUpdate()
+    {
+        this.Repaint();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

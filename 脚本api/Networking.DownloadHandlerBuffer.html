@@ -1,0 +1,33 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: DownloadHandlerBuffer</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">DownloadHandlerBuffer</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine.Networking</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Inherits from:<a href="Networking.DownloadHandler.html" class="cl">Networking.DownloadHandler</a></p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.UnityWebRequestModule.html" class="cl">UnityEngine.UnityWebRequestModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>A general-purpose <a href="Networking.DownloadHandler.html">DownloadHandler</a> implementation which stores received data in a native byte buffer.</p></div><div class="subsection"><p>This is a general-purpose <a href="Networking.DownloadHandler.html">DownloadHandler</a> subclass. It stores received data in native memory. It will preallocated a data buffer based on any received <code class="mono">Content-Length</code> header, but will expand its buffer should the actual download size exceed the value of <code class="mono">Content-Length</code> header (or if a <code class="mono">Content-Length</code> header is not received).<br /><br /><em>Note:</em> When accessing <a href="Networking.DownloadHandler-data.html">DownloadHandler.data</a> or <a href="Networking.DownloadHandler-text.html">DownloadHandler.text</a> on this subclass, a new byte array or string will be allocated each time the property is accessed.</p></div><div class="subsection"><h2>Constructors</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Networking.DownloadHandlerBuffer-ctor.html">DownloadHandlerBuffer</a></td><td class="desc"></td><td class="desc1">Default constructor.</td></tr>
+    </table></div><div class="subsection"><h2>Protected Methods</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Networking.DownloadHandlerBuffer.GetData.html">GetData</a></td><td class="desc"></td><td class="desc1">Returns a copy of the contents of the native-memory data buffer as a byte array.</td></tr>
+    </table></div><div class="subsection"><h2>Static Methods   静态方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Networking.DownloadHandlerBuffer.GetContent.html">GetContent</a></td><td class="desc"></td><td class="desc1">Returns a copy of the native-memory buffer interpreted as a UTF8 string.</td></tr>
+    </table></div><div class="subsection"><h2>Inherited Members   继承成员</h2>
+      
+      <div class="subsection"><h2>Properties   属性</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Networking.DownloadHandler-data.html">data</a></td><td class="desc"></td><td class="desc1">Returns the raw bytes downloaded from the remote server, or null. (Read Only)</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Networking.DownloadHandler-isDone.html">isDone</a></td><td class="desc"></td><td class="desc1">Returns true if this DownloadHandler has been informed by its parent UnityWebRequest that all data has been received, and this DownloadHandler has completed any necessary post-download processing. (Read Only)</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Networking.DownloadHandler-text.html">text</a></td><td class="desc"></td><td class="desc1">Convenience property. Returns the bytes from data interpreted as a UTF8 string. (Read Only)</td></tr>
+      </table></div>
+      
+      
+      
+      <div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Networking.DownloadHandler.Dispose.html">Dispose</a></td><td class="desc"></td><td class="desc1">Signals that this DownloadHandler is no longer being used, and should clean up any resources it is using.</td></tr>
+      </table></div>
+      <div class="subsection"><h2>Protected Methods</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Networking.DownloadHandler.CompleteContent.html">CompleteContent</a></td><td class="desc"></td><td class="desc1">Callback, invoked when all data has been received from the remote server.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Networking.DownloadHandler.GetProgress.html">GetProgress</a></td><td class="desc"></td><td class="desc1">Callback, invoked when UnityWebRequest.downloadProgress is accessed.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Networking.DownloadHandler.GetText.html">GetText</a></td><td class="desc"></td><td class="desc1">Callback, invoked when the text property is accessed.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Networking.DownloadHandler.ReceiveContentLengthHeader.html">ReceiveContentLengthHeader</a></td><td class="desc"></td><td class="desc1">Callback, invoked with a Content-Length header is received.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Networking.DownloadHandler.ReceiveData.html">ReceiveData</a></td><td class="desc"></td><td class="desc1">Callback, invoked as data is received from the remote server.</td></tr>
+      </table></div>
+      
+      
+      
+      
+      
+    </div></div></div></div></body></html>

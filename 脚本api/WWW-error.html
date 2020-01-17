@@ -1,0 +1,22 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: WWW.error</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Method group is Obsolete</b><br /></div><h1 class="heading inherit"><a href="WWW.html">WWW</a>.error</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public string <span class="sig-kw">error</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Returns an error message if there was an error during the download (Read Only).</p></div><div class="subsection"><p>If there was no error, <code class="varname">error</code> will return <code class="varname">null</code> or an empty string (this is because some platforms don't allow nulls for string values). We recommend that you use String.IsNullOrEmpty to check for the presence of an error so that both cases are covered.<br /><br />If the object has not finished downloading the data, it will block until the download has finished.
+Use isDone or <code class="varname">yield</code> to see if the data is available.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Make a request with an invalid url
+    public string url = "invalid_url";
+    IEnumerator Start()
+    {
+        using (WWW www = new WWW(url))
+        {
+            yield return www;
+            if (!string.IsNullOrEmpty(www.error))
+                <a href="Debug.Log.html">Debug.Log</a>(www.error);
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>In the example the URL is not valid so the error message will be "Couldn't resolve host".</p></div></div></div></div></body></html>

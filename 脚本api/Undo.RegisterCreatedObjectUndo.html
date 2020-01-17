@@ -1,0 +1,21 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Undo.RegisterCreatedObjectUndo</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Undo.html">Undo</a>.RegisterCreatedObjectUndo</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">RegisterCreatedObjectUndo</span>(<a href="Object.html">Object</a> <span class="sig-kw">objectToUndo</span>,
+string <span class="sig-kw">name</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">objectToUndo</td><td class="desc"></td><td class="desc1">The object that was created.</td></tr><tr><td class="name lbl">name</td><td class="desc"></td><td class="desc1">The name of the action to undo. Think "Undo ...." in the main menu.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Register an undo operations for a newly created object.</p></div><div class="subsection"><p>When the undo is performed the object will be destroyed. All newly created objects that are part of undoable state should be registered with this function.<br /><br /><strong>Note:</strong> Object destruction works the same way as it does for <a href="Object.Destroy.html">Object.Destroy</a> (except for the delay).  This means that GameObjects will be destroyed along with all their child GameObjects.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Creates a new game object as an operation that can be undone<br /><br />using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;<br /><br />class CreateGameObjectMenu
+{
+    [<a href="MenuItem.html">MenuItem</a>("Example/Create <a href="GameObject.html">GameObject</a>")]
+    static void CreateGameObject()
+    {
+        // Create <a href="GameObject.html">GameObject</a> hierarchy.
+        <a href="GameObject.html">GameObject</a> go = new <a href="GameObject.html">GameObject</a>("my <a href="GameObject.html">GameObject</a>");
+        <a href="GameObject.html">GameObject</a> child = new <a href="GameObject.html">GameObject</a>();
+        go.transform.position = new <a href="Vector3.html">Vector3</a>(5, 5, 5);
+        child.transform.parent = go.transform;<br /><br />        // Register root object for undo.
+        <a href="Undo.RegisterCreatedObjectUndo.html">Undo.RegisterCreatedObjectUndo</a>(go, "Create object");
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

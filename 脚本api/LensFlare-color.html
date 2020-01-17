@@ -1,0 +1,15 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: LensFlare.color</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="LensFlare.html">LensFlare</a>.color</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-LensFlare.html' title='Go to LensFlare Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Color.html">Color</a> <span class="sig-kw">color</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The color of the flare.</p></div><div class="subsection"><p>This controls the color of some flare elements (the ones that have <em>use light color</em> enabled).<br /><br />See Also: <a href="../Manual/class-LensFlare.html">Lens flare component</a>, <a href="../Manual/class-Flare.html">flare assets</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Increments the strenght of the Lensflare lf when the <a href="Transform.html">Transform</a> tr
+    // gets closer to the Lens flare<br /><br />    public <a href="LensFlare.html">LensFlare</a> lf;
+    public <a href="Transform.html">Transform</a> tr;<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        lf.brightness = 1 / <a href="Vector3.Distance.html">Vector3.Distance</a>(lf.transform.position, tr.position);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

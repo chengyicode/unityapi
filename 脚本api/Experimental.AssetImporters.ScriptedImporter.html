@@ -1,0 +1,72 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ScriptedImporter</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Experimental</b>: this API is experimental and might be changed or removed in the future.</div><h1 class="heading inherit">ScriptedImporter</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEditor.Experimental.AssetImporters</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Inherits from:<a href="AssetImporter.html" class="cl">AssetImporter</a></p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEditor.html" class="cl">UnityEditor</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Abstract base class for custom Asset importers.</p></div><div class="subsection"><p>Scripted importers are scripts that are associated with specific file extensions. They are invoked by Unity's Asset pipeline to convert the contents of associated files into Assets.<br /><br />Use the <a href="Experimental.AssetImporters.ScriptedImporterAttribute.html">ScriptedImporterAttribute</a> class to register custom importers with the Asset pipeline.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEditor.Experimental.AssetImporters;
+using System.IO;<br /><br />[<a href="Experimental.AssetImporters.ScriptedImporter.html">ScriptedImporter</a>(1, "cube")]
+public class CubeImporter : <a href="Experimental.AssetImporters.ScriptedImporter.html">ScriptedImporter</a>
+{
+    public float m_Scale = 1;<br /><br />    public override void OnImportAsset(<a href="Experimental.AssetImporters.AssetImportContext.html">AssetImportContext</a> ctx)
+    {
+        var cube = <a href="GameObject.CreatePrimitive.html">GameObject.CreatePrimitive</a>(<a href="PrimitiveType.Cube.html">PrimitiveType.Cube</a>);
+        var position = <a href="JsonUtility.FromJson.html">JsonUtility.FromJson</a>&lt;<a href="Vector3.html">Vector3</a>&gt;(File.ReadAllText(ctx.assetPath));<br /><br />        cube.transform.position = position;
+        cube.transform.localScale = new <a href="Vector3.html">Vector3</a>(m_Scale, m_Scale, m_Scale);<br /><br />        // 'cube' is a a <a href="GameObject.html">GameObject</a> and will be automatically converted into a Prefab
+        // (Only the 'Main <a href="VersionControl.Asset.html">Asset</a>' is elligible to become a Prefab.)
+        ctx.AddObjectToAsset("main obj", cube);
+        ctx.SetMainObject(cube);<br /><br />        var material = new <a href="Material.html">Material</a>(<a href="Shader.Find.html">Shader.Find</a>("Standard"));
+        material.color = <a href="Color-red.html">Color.red</a>;<br /><br />        // Assets must be assigned a unique identifier string consistent across imports
+        ctx.AddObjectToAsset("my <a href="Material.html">Material</a>", material);<br /><br />        // Assets that are not passed into the context as import outputs must be destroyed
+        var tempMesh = new <a href="Mesh.html">Mesh</a>();
+        DestroyImmediate(tempMesh);
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.AssetImporters.ScriptedImporter.OnImportAsset.html">OnImportAsset</a></td><td class="desc"></td><td class="desc1">This method must by overriden by the derived class and is called by the Asset pipeline to import files.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.AssetImporters.ScriptedImporter.SupportsRemappedAssetType.html">SupportsRemappedAssetType</a></td><td class="desc"></td><td class="desc1">Override this method if your ScriptedImporter supports remapping specific asset types.</td></tr>
+    </table></div><div class="subsection"><h2>Messages   消息</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.AssetImporters.ScriptedImporter.OnValidate.html">OnValidate</a></td><td class="desc"></td><td class="desc1">This function is called when the importer is loaded or a value is changed in the Inspector.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.AssetImporters.ScriptedImporter.Reset.html">Reset</a></td><td class="desc"></td><td class="desc1">Reset to default values.</td></tr>
+    </table></div><div class="subsection"><h2>Inherited Members   继承成员</h2>
+      
+      <div class="subsection"><h2>Properties   属性</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="AssetImporter-assetBundleName.html">assetBundleName</a></td><td class="desc"></td><td class="desc1">Get or set the AssetBundle name.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="AssetImporter-assetBundleVariant.html">assetBundleVariant</a></td><td class="desc"></td><td class="desc1">Get or set the AssetBundle variant.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="AssetImporter-assetPath.html">assetPath</a></td><td class="desc"></td><td class="desc1">The path name of the asset for this importer. (Read Only)</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="AssetImporter-importSettingsMissing.html">importSettingsMissing</a></td><td class="desc"></td><td class="desc1">The value is true when no meta file is provided with the imported asset.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="AssetImporter-userData.html">userData</a></td><td class="desc"></td><td class="desc1">Get or set any user data.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-hideFlags.html">hideFlags</a></td><td class="desc"></td><td class="desc1">Should the object be hidden, saved with the Scene or modifiable by the user?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-name.html">name</a></td><td class="desc"></td><td class="desc1">The name of the object.</td></tr>
+      </table></div>
+      
+      
+      
+      <div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="AssetImporter.AddRemap.html">AddRemap</a></td><td class="desc"></td><td class="desc1">Map a sub-asset from an imported asset (such as an FBX file) to an external Asset of the same type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="AssetImporter.GetExternalObjectMap.html">GetExternalObjectMap</a></td><td class="desc"></td><td class="desc1">Gets a copy of the external object map used by the AssetImporter.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="AssetImporter.RemoveRemap.html">RemoveRemap</a></td><td class="desc"></td><td class="desc1">Removes an item from the map of external objects.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="AssetImporter.SaveAndReimport.html">SaveAndReimport</a></td><td class="desc"></td><td class="desc1">Save asset importer settings if asset importer is dirty.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="AssetImporter.SetAssetBundleNameAndVariant.html">SetAssetBundleNameAndVariant</a></td><td class="desc"></td><td class="desc1">Set the AssetBundle name and variant.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.GetInstanceID.html">GetInstanceID</a></td><td class="desc"></td><td class="desc1">Returns the instance id of the object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.ToString.html">ToString</a></td><td class="desc"></td><td class="desc1">Returns the name of the object.</td></tr>
+      </table></div>
+      
+      <div class="subsection"><h2>Static Methods   静态方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="AssetImporter.GetAtPath.html">GetAtPath</a></td><td class="desc"></td><td class="desc1">Retrieves the asset importer for the asset at path.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.Destroy.html">Destroy</a></td><td class="desc"></td><td class="desc1">Removes a GameObject, component or asset.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.DestroyImmediate.html">DestroyImmediate</a></td><td class="desc"></td><td class="desc1">Destroys the object obj immediately. You are strongly recommended to use Destroy instead.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.DontDestroyOnLoad.html">DontDestroyOnLoad</a></td><td class="desc"></td><td class="desc1">Do not destroy the target Object when loading a new Scene.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectOfType.html">FindObjectOfType</a></td><td class="desc"></td><td class="desc1">Returns the first active loaded object of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectsOfType.html">FindObjectsOfType</a></td><td class="desc"></td><td class="desc1">Returns a list of all active loaded objects of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.Instantiate.html">Instantiate</a></td><td class="desc"></td><td class="desc1">Clones the object original and returns the clone.</td></tr>
+      </table></div>
+      <div class="subsection"><h2>Operators   运算符</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_Object.html">bool</a></td><td class="desc"></td><td class="desc1">Does the object exist?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_ne.html">operator !=</a></td><td class="desc"></td><td class="desc1">Compares if two objects refer to a different object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_eq.html">operator ==</a></td><td class="desc"></td><td class="desc1">Compares two object references to see if they refer to the same object.</td></tr>
+      </table></div>
+      
+      
+      
+    </div></div></div></div></body></html>

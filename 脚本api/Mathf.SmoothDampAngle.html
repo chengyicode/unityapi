@@ -1,0 +1,31 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Mathf.SmoothDampAngle</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Mathf.html">Mathf</a>.SmoothDampAngle</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static float <span class="sig-kw">SmoothDampAngle</span>(float <span class="sig-kw">current</span>,
+float <span class="sig-kw">target</span>,
+ref float <span class="sig-kw">currentVelocity</span>,
+float <span class="sig-kw">smoothTime</span>,
+float <span class="sig-kw">maxSpeed</span> = Mathf.Infinity,
+float <span class="sig-kw">deltaTime</span> = Time.deltaTime);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">current</td><td class="desc"></td><td class="desc1">The current position.</td></tr><tr><td class="name lbl">target</td><td class="desc"></td><td class="desc1">The position we are trying to reach.</td></tr><tr><td class="name lbl">currentVelocity</td><td class="desc"></td><td class="desc1">The current velocity, this value is modified by the function every time you call it.</td></tr><tr><td class="name lbl">smoothTime</td><td class="desc"></td><td class="desc1">Approximately the time it will take to reach the target. A smaller value will reach the target faster.</td></tr><tr><td class="name lbl">maxSpeed</td><td class="desc"></td><td class="desc1">Optionally allows you to clamp the maximum speed.</td></tr><tr><td class="name lbl">deltaTime</td><td class="desc"></td><td class="desc1">The time since the last call to this function. By default Time.deltaTime.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Gradually changes an angle given in degrees towards a desired goal angle over time.</p></div><div class="subsection"><p>The value is smoothed by some spring-damper like function. The function can be used to smooth any kind of value, positions, colors, scalars.
+The most common use is for smoothing a follow camera.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    //A simple smooth follow camera,
+    // that follows the targets forward direction<br /><br />    <a href="Transform.html">Transform</a> target;
+    float smooth = 0.3f;
+    float distance = 5.0f;
+    float yVelocity = 0.0f;<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        // Damp angle from current y-angle towards target y-angle
+        float yAngle = <a href="Mathf.SmoothDampAngle.html">Mathf.SmoothDampAngle</a>(transform.eulerAngles.y, target.eulerAngles.y, ref yVelocity, smooth);
+        // <a href="UIElements.Position.html">Position</a> at the target
+        <a href="Vector3.html">Vector3</a> position = target.position;
+        // Then offset by distance behind the new angle
+        position += <a href="Quaternion.Euler.html">Quaternion.Euler</a>(0, yAngle, 0) * new <a href="Vector3.html">Vector3</a>(0, 0, -distance);
+        // Apply the position
+        transform.position = position;<br /><br />        // Look at the target
+        transform.LookAt(target);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: SceneManagement.EditorSceneManager.loadedSceneCount</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="SceneManagement.EditorSceneManager.html">EditorSceneManager</a>.loadedSceneCount</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static int <span class="sig-kw">loadedSceneCount</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The number of loaded Scenes.</p></div><div class="subsection"><p>Returns the current number of loaded Scenes in the Editor.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEditor.SceneManagement;<br /><br />public class Example
+{
+    // adds a custom menu item which displays the number of open Scenes in a Dialogue <a href="UIElements.Box.html">Box</a>
+    [<a href="MenuItem.html">MenuItem</a>("SceneExample/Number Of Scenes")]
+    public static void NumberOfScenes()
+    {
+        <a href="EditorUtility.DisplayDialog.html">EditorUtility.DisplayDialog</a>("Number of loaded Scenes:", EditorSceneManager.loadedSceneCount.ToString(), "Ok");
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

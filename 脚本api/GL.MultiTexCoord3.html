@@ -1,0 +1,82 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: GL.MultiTexCoord3</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="GL.html">GL</a>.MultiTexCoord3</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">MultiTexCoord3</span>(int <span class="sig-kw">unit</span>,
+float <span class="sig-kw">x</span>,
+float <span class="sig-kw">y</span>,
+float <span class="sig-kw">z</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Sets current texture coordinate (x,y,z) to the actual texture <code class="varname">unit</code>.</p></div><div class="subsection"><p>In OpenGL this matches <code class="mono">glMultiTexCoord</code> for the given texture unit
+if multi-texturing is available. On other graphics APIs the same
+functionality is emulated.<br /><br />The Z component is used only when:<br />
+<strong>1.</strong> You access a cubemap (which you access with a vector coordinate, hence x,y &amp; z).<br />
+<strong>2.</strong> You do "projective texturing", where the X &amp; Y coordinates are divided by Z to get the final coordinate. This would be mostly useful for water reflections and similar things.<br /><br />This function can only be called between <a href="GL.Begin.html">GL.Begin</a> and <a href="GL.End.html">GL.End</a> functions.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Changes between two textures assigned to a material
+    // When pressed space
+    <a href="Material.html">Material</a> mat;
+    bool flagTex = true;<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        if (<a href="Input.GetKeyDown.html">Input.GetKeyDown</a>(<a href="KeyCode.Space.html">KeyCode.Space</a>))
+        {
+            if (flagTex)
+            {
+                flagTex = false;
+            }
+            else
+            {
+                flagTex = true;
+            }
+        }
+    }<br /><br />    void OnPostRender()
+    {
+        if (!mat)
+        {
+            <a href="Debug.LogError.html">Debug.LogError</a>("Please Assign a material on the inspector");
+            return;
+        }
+        <a href="GL.PushMatrix.html">GL.PushMatrix</a>();
+        mat.SetPass(1);
+        <a href="GL.LoadOrtho.html">GL.LoadOrtho</a>();
+        <a href="GL.Begin.html">GL.Begin</a>(<a href="GL.QUADS.html">GL.QUADS</a>);
+        if (flagTex)
+        {
+            <a href="GL.MultiTexCoord3.html">GL.MultiTexCoord3</a>(0, 0, 0, 0); // main texture
+        }
+        else
+        {
+            <a href="GL.MultiTexCoord3.html">GL.MultiTexCoord3</a>(1, 0, 0, 0); // second texture
+        }
+        <a href="GL.Vertex3.html">GL.Vertex3</a>(0.25f, 0.25f, 0);
+        if (flagTex)
+        {
+            <a href="GL.MultiTexCoord3.html">GL.MultiTexCoord3</a>(0, 0, 1, 0);
+        }
+        else
+        {
+            <a href="GL.MultiTexCoord3.html">GL.MultiTexCoord3</a>(1, 0, 1, 0);
+        }
+        <a href="GL.Vertex3.html">GL.Vertex3</a>(0.25f, 0.75f, 0);
+        if (flagTex)
+        {
+            <a href="GL.MultiTexCoord3.html">GL.MultiTexCoord3</a>(0, 1, 1, 0);
+        }
+        else
+        {
+            <a href="GL.MultiTexCoord3.html">GL.MultiTexCoord3</a>(1, 1, 1, 0);
+        }
+        <a href="GL.Vertex3.html">GL.Vertex3</a>(0.75f, 0.75f, 0);
+        if (flagTex)
+        {
+            <a href="GL.MultiTexCoord3.html">GL.MultiTexCoord3</a>(0, 1, 0, 0);
+        }
+        else
+        {
+            <a href="GL.MultiTexCoord3.html">GL.MultiTexCoord3</a>(1, 1, 0, 0);
+        }
+        <a href="GL.Vertex3.html">GL.Vertex3</a>(0.75f, 0.25f, 0);
+        <a href="GL.End.html">GL.End</a>();
+        <a href="GL.PopMatrix.html">GL.PopMatrix</a>();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ScriptableWizard.OnWizardUpdate()</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="ScriptableWizard.html">ScriptableWizard</a>.OnWizardUpdate()</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>This is called when the wizard is opened or whenever the user changes something in the wizard.</p></div><div class="subsection"><p>This allows you to set the <a href="ScriptableWizard-helpString.html">helpString</a>, <a href="ScriptableWizard-errorString.html">errorString</a> and enable/disable the Create button via <a href="ScriptableWizard-isValid.html">isValid</a>.
+Also it lets you change labels (for timers i.e.) or buttons when the wizard is being shown<br /><br />See Also: <a href="ScriptableWizard.DisplayWizard.html">ScriptableWizard.DisplayWizard</a><br /><br /><img src="../StaticFiles/ScriptRefImages/CloneObjects.png" /><br />
+<em>ScriptableWizard window for cloning a Game Object.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Simple Wizard that clones an object several times.<br /><br />using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;
+using System.Collections;<br /><br />public class CloneObjects : <a href="ScriptableWizard.html">ScriptableWizard</a>
+{
+    public <a href="GameObject.html">GameObject</a> objectToCopy = null;
+    public int numberOfCopies = 2;
+    [<a href="MenuItem.html">MenuItem</a>("Example/Clone objects")]
+    static void CreateWindow()
+    {
+        // Creates the wizard for display
+        <a href="ScriptableWizard.DisplayWizard.html">ScriptableWizard.DisplayWizard</a>("Clone an object.", typeof(CloneObjects), "Clone!");
+    }<br /><br />    void OnWizardUpdate()
+    {
+        helpString = "Clones an object a number of times and move the cloned objects to the origin";
+        if (!objectToCopy)
+        {
+            errorString = "Please assign an object";
+            isValid = false;
+        }
+        else
+        {
+            errorString = "";
+            isValid = true;
+        }
+    }<br /><br />    void OnWizardCreate()
+    {
+        for (int i = 0; i &lt; numberOfCopies; i++)
+            Instantiate(objectToCopy, <a href="Vector3-zero.html">Vector3.zero</a>, <a href="Quaternion-identity.html">Quaternion.identity</a>);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

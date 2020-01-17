@@ -1,0 +1,24 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Screen.sleepTimeout</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Screen.html">Screen</a>.sleepTimeout</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static int <span class="sig-kw">sleepTimeout</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>A power saving setting, allowing the screen to dim some time after the last active user interaction.</p></div><div class="subsection"><p>Most useful for handheld devices,
+allowing OS to preserve battery life in most efficient ways. Does
+nothing on non-handheld devices.<br /><br />sleepTimeout is measured in seconds. The default value varies from
+platform to platform, generally being non-zero.<br /><br />On mobile devices it would be useful to set sleepTimeout to
+<a href="SleepTimeout.NeverSleep.html">SleepTimeout.NeverSleep</a> for games using accelerometer as the main
+source of input. However, such games should allow screen dimming while
+in menu or paused. Currently you will only be able to set this property
+to one of the values predefined in <a href="SleepTimeout.html">SleepTimeout</a> class. A get
+will return either one of the predefined values, or the actual number
+of seconds until screen gets dimmed, as specified in system preferences
+of the device.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        // Disable screen dimming
+        <a href="Screen-sleepTimeout.html">Screen.sleepTimeout</a> = <a href="SleepTimeout.NeverSleep.html">SleepTimeout.NeverSleep</a>;
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="SleepTimeout.html">SleepTimeout</a>.</p></div></div></div></div></body></html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Networking.GlobalConfig.NetworkEventAvailable</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Method group is Obsolete</b><br /></div><h1 class="heading inherit"><a href="Networking.GlobalConfig.html">GlobalConfig</a>.NetworkEventAvailable</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public Action&lt;int&gt; <span class="sig-kw">NetworkEventAvailable</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Defines the callback delegate which you can use to get a notification when the host (defined by hostID) has a network event. The callback is called for all event types except <a href="Networking.NetworkEventType.Nothing.html">NetworkEventType.Nothing</a>.<br /><br />See Also: <a href="Networking.NetworkEventType.html">NetworkEventType</a></p></div><div class="subsection"><p>This callback will be called from the IO thread. If you execute a long operation from this callback it will affect your IO operation performance, therefore you should return from these operations as soon as possible.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System;
+using UnityEngine;
+using UnityEngine.Networking;<br /><br />public class Test : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    static int receiveCallbackOld = 0;
+    static int receiveCallbackNew = 0;
+    static int recHostId = -1;<br /><br />    //...
+    public static void ReceiveCallback(int hostId)
+    {
+        ++receiveCallbackNew;   //Notify main thread that ReceiveFromHost(hostId, ...) should be called, because there is incoming event waiting to read
+        recHostId = hostId;
+    }<br /><br />    void Start()
+    {
+        GlobalConfig config = new GlobalConfig();
+        config.NetworkEventAvailable = ReceiveCallback;<br /><br />        //....
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        int recConnectionId = 0;
+        int recChannelId = -1;
+        var recArray = new byte[1400];
+        int recSize = 0;
+        byte error;
+        if (receiveCallbackNew != receiveCallbackOld)
+        {
+            receiveCallbackNew = receiveCallbackOld;
+            var networkEvent = NetworkTransport.ReceiveFromHost(recHostId, out recConnectionId, out recChannelId, recArray, (ushort)recArray.Length, out recSize, out error);
+            <a href="Debug.Assert.html">Debug.Assert</a>(networkEvent != <a href="Networking.NetworkEventType.Nothing.html">NetworkEventType.Nothing</a>);
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

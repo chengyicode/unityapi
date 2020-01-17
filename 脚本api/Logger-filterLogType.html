@@ -1,0 +1,19 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Logger.filterLogType</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Logger.html">Logger</a>.filterLogType</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="LogType.html">LogType</a> <span class="sig-kw">filterLogType</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>To selective enable debug log message.</p></div><div class="subsection"><p>By settings filterLogType to<br /><br />    <a href="LogType.Log.html">LogType.Log</a>  (default setting) will display all log messages.<br /><br />    <a href="LogType.Warning.html">LogType.Warning</a> will display Warning, Assert, Error and Exception log messages.<br /><br />    <a href="LogType.Assert.html">LogType.Assert</a> will display Assert, Error and Exception log messages.<br /><br />    <a href="LogType.Error.html">LogType.Error</a> will display Error and Exception log messages.<br /><br />    <a href="LogType.Exception.html">LogType.Exception</a> will display Exception log messages.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class MyGameClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private static <a href="ILogger.html">ILogger</a> logger = <a href="Debug-unityLogger.html">Debug.unityLogger</a>;
+    private static string kTAG = "MyGameTag";<br /><br />    void Start()
+    {
+        if (<a href="Debug-isDebugBuild.html">Debug.isDebugBuild</a>)
+            logger.filterLogType = <a href="LogType.Log.html">LogType.Log</a>;
+        else
+            logger.filterLogType = <a href="LogType.Warning.html">LogType.Warning</a>;<br /><br />        logger.Log(kTAG, "This log will be displayed only in debug build");
+        logger.LogError(kTAG, "This log will be displayed in debug and release build");
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

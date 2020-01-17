@@ -1,0 +1,21 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Transform.rotation</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Transform.html">Transform</a>.rotation</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Transform.html' title='Go to Transform Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Quaternion.html">Quaternion</a> <span class="sig-kw">rotation</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>A <a href="Quaternion.html">Quaternion</a> that stores the rotation of the Transform in world space.</p></div><div class="subsection"><p>
+        <a href="Transform-rotation.html">Transform.rotation</a> stores a <a href="Quaternion.html">Quaternion</a>. You can use <a href="Transform-rotation.html">rotation</a> to rotate a GameObject or provide the current rotation.  Do not attempt to edit/modify <a href="Transform-rotation.html">rotation</a>. <a href="Transform-rotation.html">Transform.rotation</a> is less than 180 degrees.<br /><br /><a href="Transform-rotation.html">Transform.rotation</a> has no gimbal lock.<br /><br />To rotate a <a href="Transform.html">Transform</a>, use <a href="Transform.Rotate.html">Transform.Rotate</a>, which uses Euler Angles.<br /><br />If you want to match values you see in the Inspector, use the <a href="Quaternion-eulerAngles.html">Quaternion.eulerAngles</a> property on the returned <a href="Quaternion.html">Quaternion</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />// <a href="Transform-rotation.html">Transform.rotation</a> example.<br /><br />// Rotate a <a href="GameObject.html">GameObject</a> using a <a href="Quaternion.html">Quaternion</a>.
+// Tilt the cube using the arrow keys. When the arrow keys are released
+// the cube will be rotated back to the center using Slerp.<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    float smooth = 5.0f;
+    float tiltAngle = 60.0f;<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        // Smoothly tilts a transform towards a target rotation.
+        float tiltAroundZ = <a href="Input.GetAxis.html">Input.GetAxis</a>("Horizontal") * tiltAngle;
+        float tiltAroundX = <a href="Input.GetAxis.html">Input.GetAxis</a>("Vertical") * tiltAngle;<br /><br />        // Rotate the cube by converting the angles into a quaternion.
+        <a href="Quaternion.html">Quaternion</a> target = <a href="Quaternion.Euler.html">Quaternion.Euler</a>(tiltAroundX, 0, tiltAroundZ);<br /><br />        // Dampen towards the target rotation
+        transform.rotation = <a href="Quaternion.Slerp.html">Quaternion.Slerp</a>(transform.rotation, target,  <a href="Time-deltaTime.html">Time.deltaTime</a> * smooth);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>In the above example, the <a href="Transform-rotation.html">rotation</a> is described by a quaternion.  For more advice, see <a href="../Manual/QuaternionAndEulerRotationsInUnity.html">Rotation and Orientation in Unity</a>.</p></div></div></div></div></body></html>

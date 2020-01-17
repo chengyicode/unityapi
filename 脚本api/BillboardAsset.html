@@ -1,0 +1,56 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: BillboardAsset</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">BillboardAsset</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Inherits from:<a href="Object.html" class="cl">Object</a></p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.CoreModule.html" class="cl">UnityEngine.CoreModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-BillboardAsset.html' title='Go to BillboardAsset Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>BillboardAsset describes how a billboard is rendered.</p></div><div class="subsection"><p>Billboards are a level-of-detail (LOD) method of drawing complicated 3D objects in a simpler manner if they are further away. Because the object is further away, there is often less requirement to draw the object at full detail due to its size on-screen and low likelihood of being a focal point in the Camera view. Instead, the object can be pre-rendered to a texture, and this texture used on a very simple Camera-facing Mesh of flat geometry (often simply a quadrilateral) known as a billboard. At great distances an object does not significantly change its orientation relative to the camera, so a billboard looks much like the object it represents from frame to frame, without having to be redrawn from the model. The BillboardAsset class allows the creation of billboards that are rendered from several directions, allowing a BillboardAsset to efficiently represent an object at low level of detail from any approximately-horizontal viewpoint.<br /><br />A BillboardAsset is usually created by importing SpeedTree assets. You can also create your own once you know how the billboard is described.<br /><br />SpeedTree billboard geometry is usually more complex than a plain quadrilateral. By using more vertices to cut out the empty part of the billboard image, rendering performance can potentially be improved due to the graphics system not having to draw as many redundant transparent pixels. You have access to the geometry data via BillboardAsset.vertices and BillboardAsset.indices.<br /><br />All vertices are considered in UV-space (see Fig. 1 below), because the geometry is due to be textured by the billboard images. UV vertices are easily expanded to 3D-space vertices by knowing the billboard's width, height, bottom, and what direction the billboard is currently facing. Assuming we have a billboard located at (0,0,0) looking at negative Z axis, the 3D-space coordinates are calculated as:<br /><br /><em>X</em> = (<em>u</em> - 0.5) * <em>width</em><br />
+<em>Y</em> = <em>v</em> * <em>height</em> + <em>bottom</em><br />
+<em>Z</em> = 0<br /><br /><img src="../StaticFiles/ScriptRefImages/Billboard_Geometry.png" />
+Figure 1: How UV vertices are expanded to 3D vertices<br /><br />In order to display something similar to the real 3D mesh being billboarded, SpeedTree billboards select an appropriate image from several pre-rendered images according to the current view direction. The images in Figure 2 below are created by capturing the rendered image of the 3D tree at different view angles, evenly distributed around the Y-axis. The first image always starts at positive X axis direction (or 0° if you imagine a unit circle from above).<br /><br /><img src="../StaticFiles/ScriptRefImages/Billboard_Images.png" />
+Figure 2: How the eight billboard images are baked<br /><br />All images should be atlased together in one single texture. Each image is represented as a <a href="Vector4.html">Vector4</a> of {<em>left u</em>, <em>top v</em>, <em>width in u</em>, <em>height in v</em>} in the atlas. You have access to all the images via BillboardAsset.imageTexCoords. SpeedTree Modeler always exports a normal texture alongside the diffuse texture for even better approximation of the lighting, and it shares the same atlas layout with the diffuse texutre.<br /><br />Once the BillboardAsset is constructed, use <a href="BillboardRenderer.html">BillboardRenderer</a> to render it.</p></div><div class="subsection"><h2>Properties 属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="BillboardAsset-bottom.html">bottom</a></td><td class="desc"></td><td class="desc1">Height of the billboard that is below ground.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="BillboardAsset-height.html">height</a></td><td class="desc"></td><td class="desc1">Height of the billboard.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="BillboardAsset-imageCount.html">imageCount</a></td><td class="desc"></td><td class="desc1">Number of pre-rendered images that can be switched when the billboard is viewed from different angles.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="BillboardAsset-indexCount.html">indexCount</a></td><td class="desc"></td><td class="desc1">Number of indices in the billboard mesh.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="BillboardAsset-material.html">material</a></td><td class="desc"></td><td class="desc1">The material used for rendering.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="BillboardAsset-vertexCount.html">vertexCount</a></td><td class="desc"></td><td class="desc1">Number of vertices in the billboard mesh.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="BillboardAsset-width.html">width</a></td><td class="desc"></td><td class="desc1">Width of the billboard.</td></tr>
+    </table></div><div class="subsection"><h2>Constructors</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="BillboardAsset-ctor.html">BillboardAsset</a></td><td class="desc"></td><td class="desc1">Constructs a new BillboardAsset.</td></tr>
+    </table></div><div class="subsection"><h2>Public Methods 公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="BillboardAsset.GetImageTexCoords.html">GetImageTexCoords</a></td><td class="desc"></td><td class="desc1">Get the array of billboard image texture coordinate data.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="BillboardAsset.GetIndices.html">GetIndices</a></td><td class="desc"></td><td class="desc1">Get the indices of the billboard mesh.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="BillboardAsset.GetVertices.html">GetVertices</a></td><td class="desc"></td><td class="desc1">Get the vertices of the billboard mesh.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="BillboardAsset.SetImageTexCoords.html">SetImageTexCoords</a></td><td class="desc"></td><td class="desc1">Set the array of billboard image texture coordinate data.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="BillboardAsset.SetIndices.html">SetIndices</a></td><td class="desc"></td><td class="desc1">Set the indices of the billboard mesh.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="BillboardAsset.SetVertices.html">SetVertices</a></td><td class="desc"></td><td class="desc1">Set the vertices of the billboard mesh.</td></tr>
+    </table></div><div class="subsection"><h2>Inherited Members 继承成员</h2>
+      
+      <div class="subsection"><h2>Properties 属性</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-hideFlags.html">hideFlags</a></td><td class="desc"></td><td class="desc1">Should the object be hidden, saved with the Scene or modifiable by the user?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-name.html">name</a></td><td class="desc"></td><td class="desc1">The name of the object.</td></tr>
+      </table></div>
+      
+      
+      
+      <div class="subsection"><h2>Public Methods 公共方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.GetInstanceID.html">GetInstanceID</a></td><td class="desc"></td><td class="desc1">Returns the instance id of the object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.ToString.html">ToString</a></td><td class="desc"></td><td class="desc1">Returns the name of the object.</td></tr>
+      </table></div>
+      
+      <div class="subsection"><h2>Static Methods 静态方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.Destroy.html">Destroy</a></td><td class="desc"></td><td class="desc1">Removes a GameObject, component or asset.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.DestroyImmediate.html">DestroyImmediate</a></td><td class="desc"></td><td class="desc1">Destroys the object obj immediately. You are strongly recommended to use Destroy instead.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.DontDestroyOnLoad.html">DontDestroyOnLoad</a></td><td class="desc"></td><td class="desc1">Do not destroy the target Object when loading a new Scene.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectOfType.html">FindObjectOfType</a></td><td class="desc"></td><td class="desc1">Returns the first active loaded object of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectsOfType.html">FindObjectsOfType</a></td><td class="desc"></td><td class="desc1">Returns a list of all active loaded objects of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.Instantiate.html">Instantiate</a></td><td class="desc"></td><td class="desc1">Clones the object original and returns the clone.</td></tr>
+      </table></div>
+      <div class="subsection"><h2>Operators   运算符</h2>
+<h2>Operators   运算符</h2>
+
+<h2>Operators   运算符</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_Object.html">bool</a></td><td class="desc"></td><td class="desc1">Does the object exist?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_ne.html">operator !=</a></td><td class="desc"></td><td class="desc1">Compares if two objects refer to a different object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_eq.html">operator ==</a></td><td class="desc"></td><td class="desc1">Compares two object references to see if they refer to the same object.</td></tr>
+      </table></div>
+      
+      
+      
+    </div></div></div></div></body></html>

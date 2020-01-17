@@ -1,0 +1,32 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AnalyticsSessionInfo</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">AnalyticsSessionInfo</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine.Analytics</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.UnityAnalyticsModule.html" class="cl">UnityEngine.UnityAnalyticsModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Provides access to the Analytics session information for the current game instance.</p></div><div class="subsection"><p>This class contains static methods for looking up Analytics session information. Note that cumulative statistics are reset if the player re-installs the game.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Analytics;
+using System;<br /><br />public class NewBehaviourScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("Start   " + <a href="Analytics.AnalyticsSessionInfo-userId.html">AnalyticsSessionInfo.userId</a> + " " + <a href="Analytics.AnalyticsSessionInfo-sessionState.html">AnalyticsSessionInfo.sessionState</a> + " " + <a href="Analytics.AnalyticsSessionInfo-sessionId.html">AnalyticsSessionInfo.sessionId</a> + " " + <a href="Analytics.AnalyticsSessionInfo-sessionElapsedTime.html">AnalyticsSessionInfo.sessionElapsedTime</a>);
+        <a href="Analytics.AnalyticsSessionInfo-sessionStateChanged.html">AnalyticsSessionInfo.sessionStateChanged</a> += OnSessionStateChanged;
+    }<br /><br />    void OnSessionStateChanged(<a href="Analytics.AnalyticsSessionState.html">AnalyticsSessionState</a> sessionState, long sessionId, long sessionElapsedTime, bool sessionChanged)
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("Call    " + <a href="Analytics.AnalyticsSessionInfo-userId.html">AnalyticsSessionInfo.userId</a>  + " " + sessionState + " " + sessionId + " " + sessionElapsedTime + " " + sessionChanged);
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Static Properties</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Analytics.AnalyticsSessionInfo-sessionCount.html">sessionCount</a></td><td class="desc"></td><td class="desc1">The number of sessions played since the app was installed.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Analytics.AnalyticsSessionInfo-sessionElapsedTime.html">sessionElapsedTime</a></td><td class="desc"></td><td class="desc1">The time elapsed, in milliseconds, since the beginning of the current game session.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Analytics.AnalyticsSessionInfo-sessionFirstRun.html">sessionFirstRun</a></td><td class="desc"></td><td class="desc1">Reports whether the current session is the first session since the player installed the game or application.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Analytics.AnalyticsSessionInfo-sessionId.html">sessionId</a></td><td class="desc"></td><td class="desc1">A random, unique GUID identifying the current game or app session.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Analytics.AnalyticsSessionInfo-sessionState.html">sessionState</a></td><td class="desc"></td><td class="desc1">The current state of the session.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Analytics.AnalyticsSessionInfo-userId.html">userId</a></td><td class="desc"></td><td class="desc1">A random GUID uniquely identifying sessions played on the same instance of your game or app.</td></tr>
+    </table></div><div class="subsection"><h2>Events</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Analytics.AnalyticsSessionInfo-sessionStateChanged.html">sessionStateChanged</a></td><td class="desc"></td><td class="desc1">Dispatched when the Analytics session state changes.</td></tr>
+    </table></div><div class="subsection"><h2>Delegates</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Analytics.AnalyticsSessionInfo.SessionStateChanged.html">SessionStateChanged</a></td><td class="desc"></td><td class="desc1">Dispatched when the Analytics session state changes.</td></tr>
+    </table></div></div></div></div></body></html>

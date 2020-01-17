@@ -1,0 +1,15 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Ray2D.Ray2D</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">Ray2D Constructor</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <span class="sig-kw">Ray2D</span>(<a href="Vector2.html">Vector2</a> <span class="sig-kw">origin</span>,
+<a href="Vector2.html">Vector2</a> <span class="sig-kw">direction</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">Vector2</td><td class="desc"></td><td class="desc1">Origin.</td></tr><tr><td class="name lbl">Vector2</td><td class="desc"></td><td class="desc1">Direction.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Creates a 2D ray starting at <a href="Ray2D-origin.html">origin</a> along <a href="Ray2D-direction.html">direction</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        // Create a ray from the transform position along the transform's z-axis
+        <a href="Ray2D.html">Ray2D</a> ray = new <a href="Ray2D.html">Ray2D</a>(transform.position, transform.forward);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

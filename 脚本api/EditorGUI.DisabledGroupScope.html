@@ -1,0 +1,25 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: DisabledGroupScope</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">DisabledGroupScope</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEditor</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEditor.html" class="cl">UnityEditor</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Create a group of controls that can be disabled.</p></div><div class="subsection"><p>If disabled is true, the controls inside the group will be disabled.
+If false, the enabled/disabled state will not be changed.<br /><br />The group cannot be used to enable controls that would otherwise be disabled to begin with.
+The groups can be nested and the controls within a child group will be disabled
+both if that child group is itself disabled or if a parent group is.<br /><br />Note: For memory efficiency, the use of struct <a href="EditorGUI.DisabledScope.html">DisabledScope</a> is preferred over class EditorGUI.DisabledGroupScope.  Please refer to the <a href="EditorGUI.DisabledScope.html">DisabledScope</a> documentation for more information.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    bool canJump = false;
+    float jumpHeight = 0f;<br /><br />    void Example()
+    {
+        canJump = <a href="EditorGUILayout.Toggle.html">EditorGUILayout.Toggle</a>("Can Jump", canJump);<br /><br />        // Disable the jumping height control if canJump is false:
+        <a href="EditorGUI.BeginDisabledGroup.html">EditorGUI.BeginDisabledGroup</a>(canJump == false);
+        jumpHeight = <a href="EditorGUILayout.FloatField.html">EditorGUILayout.FloatField</a>("Jump Height", jumpHeight);
+        <a href="EditorGUI.EndDisabledGroup.html">EditorGUI.EndDisabledGroup</a>();
+    }
+}
+</pre>
+      </div><div class="subsection"><p>The group cannot be used to enable controls that would otherwise be disabled to begin with.
+The groups can be nested and the controls within a child group will be disabled
+both if that child group is itself disabled or if a parent group is.</p></div><div class="subsection"><h2>Constructors</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="EditorGUI.DisabledGroupScope-ctor.html">EditorGUI.DisabledGroupScope</a></td><td class="desc"></td><td class="desc1">Create a new DisabledGroupScope and begin the corresponding group.</td></tr>
+    </table></div></div></div></div></body></html>

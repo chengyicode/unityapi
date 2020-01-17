@@ -1,0 +1,14 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Terrain.collectDetailPatches</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Terrain.html">Terrain</a>.collectDetailPatches</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public bool <span class="sig-kw">collectDetailPatches</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Collect detail patches from memory.</p></div><div class="subsection"><p>By default the property value is true, meaning the detail patches in the Terrain will be removed from memory when not visible. If the property is set to false, the patches are kept in memory until the Terrain object is destroyed or the collectDetailPatches property is set to true. By setting the property to false all the detail patches for a given density will be initialized and kept in memory. Changing the density will recreate the patches.<br /><br />Note that detail patches can use a large amount of memory, therefore this property when set to false can increase the memory usage of your application significantly.<br /><br />The value is not serialized with Terrain component.<br /><br />See Also: <a href="Terrain-detailObjectDensity.html">detailObjectDensity</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        Terrain.activeTerrain.collectDetailPatches = false;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

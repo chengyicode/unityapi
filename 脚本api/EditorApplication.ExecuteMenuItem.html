@@ -1,0 +1,19 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorApplication.ExecuteMenuItem</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorApplication.html">EditorApplication</a>.ExecuteMenuItem</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">ExecuteMenuItem</span>(string <span class="sig-kw">menuItemPath</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Invokes the menu item in the specified path.</p></div><div class="subsection"><p>This function also works with Editor Scripts.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Simple script that lets you create a new
+// <a href="SceneManagement.Scene.html">Scene</a>, create a cube and an empty game object in the <a href="SceneManagement.Scene.html">Scene</a>
+// Save the <a href="SceneManagement.Scene.html">Scene</a> and close the editor<br /><br />using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEditor.SceneManagement;<br /><br />public class ExampleClass
+{
+    [<a href="MenuItem.html">MenuItem</a>("Examples/Execute menu items")]
+    static void EditorPlaying()
+    {
+        var newScene = <a href="SceneManagement.EditorSceneManager.NewScene.html">EditorSceneManager.NewScene</a>(<a href="SceneManagement.NewSceneSetup.EmptyScene.html">NewSceneSetup.EmptyScene</a>, <a href="SceneManagement.NewSceneMode.Single.html">NewSceneMode.Single</a>);<br /><br />        <a href="EditorApplication.ExecuteMenuItem.html">EditorApplication.ExecuteMenuItem</a>("<a href="GameObject.html">GameObject</a>/3D Object/Cube");
+        <a href="EditorApplication.ExecuteMenuItem.html">EditorApplication.ExecuteMenuItem</a>("<a href="GameObject.html">GameObject</a>/Create Empty");<br /><br />        <a href="SceneManagement.EditorSceneManager.SaveScene.html">EditorSceneManager.SaveScene</a>(newScene, "Assets/MyNewScene.unity");
+        <a href="EditorApplication.Exit.html">EditorApplication.Exit</a>(0);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

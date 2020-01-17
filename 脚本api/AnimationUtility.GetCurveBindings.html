@@ -1,0 +1,27 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AnimationUtility.GetCurveBindings</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="AnimationUtility.html">AnimationUtility</a>.GetCurveBindings</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static EditorCurveBinding[] <span class="sig-kw">GetCurveBindings</span>(<a href="AnimationClip.html">AnimationClip</a> <span class="sig-kw">clip</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Returns all the float curve bindings currently stored in the clip.</p></div><div class="subsection"><p>Answers the question: "Which float properties are animated by the clip?".<br /><br />Unity has two types of animation: Float and object reference. Float curve is a classic curve that animates float property over time. Object reference "curve" is a construct that animates object reference property over time.<br /><br />This method returns only the float curve bindings. See <a href="AnimationUtility.GetObjectReferenceCurveBindings.html">AnimationUtility.GetObjectReferenceCurveBindings</a> for object reference curves.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;<br /><br />// <a href="Editor.html">Editor</a> window for listing all float curves in an animation clip
+public class ClipInfo : <a href="EditorWindow.html">EditorWindow</a>
+{
+    private <a href="AnimationClip.html">AnimationClip</a> clip;<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Window/Clip Info")]
+    static void Init()
+    {
+        GetWindow(typeof(ClipInfo));
+    }<br /><br />    public void OnGUI()
+    {
+        clip = <a href="EditorGUILayout.ObjectField.html">EditorGUILayout.ObjectField</a>("Clip", clip, typeof(<a href="AnimationClip.html">AnimationClip</a>), false) as <a href="AnimationClip.html">AnimationClip</a>;<br /><br />        <a href="EditorGUILayout.LabelField.html">EditorGUILayout.LabelField</a>("Curves:");
+        if (clip != null)
+        {
+            foreach (var binding in <a href="AnimationUtility.GetCurveBindings.html">AnimationUtility.GetCurveBindings</a>(clip))
+            {
+                <a href="AnimationCurve.html">AnimationCurve</a> curve = <a href="AnimationUtility.GetEditorCurve.html">AnimationUtility.GetEditorCurve</a>(clip, binding);
+                <a href="EditorGUILayout.LabelField.html">EditorGUILayout.LabelField</a>(binding.path + "/" + binding.propertyName + ", Keys: " + curve.keys.Length);
+            }
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

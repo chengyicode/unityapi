@@ -1,0 +1,63 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: BuildPipeline.BuildAssetBundles</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="BuildPipeline.html">BuildPipeline</a>.BuildAssetBundles</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="AssetBundleManifest.html">AssetBundleManifest</a> <span class="sig-kw">BuildAssetBundles</span>(string <span class="sig-kw">outputPath</span>,
+<a href="BuildAssetBundleOptions.html">BuildAssetBundleOptions</a> <span class="sig-kw">assetBundleOptions</span>,
+<a href="BuildTarget.html">BuildTarget</a> <span class="sig-kw">targetPlatform</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">outputPath</td><td class="desc"></td><td class="desc1">Output path for the AssetBundles.</td></tr><tr><td class="name lbl">assetBundleOptions</td><td class="desc"></td><td class="desc1">AssetBundle building options.</td></tr><tr><td class="name lbl">targetPlatform</td><td class="desc"></td><td class="desc1">Chosen target build platform.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>AssetBundleManifest</strong>
+        The manifest listing all AssetBundles included in this build.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Build all AssetBundles specified in the editor.</p></div><div class="subsection"><p>Use this function to build your asset bundles, after you have marked your
+        assets for inclusion in named AssetBundles. (See the Manual page about
+        <a href="../Manual/AssetBundles-Building.html">building AssetBundles</a> for further details). This function
+        builds the bundles you have specified in the editor and will return the manifest that
+        includes all of the included assets. if the build
+        was successful and false otherwise. Additionally, error messages are shown in the
+        console to explain most common build failures such as incorrect target folder paths.<br /><br />The <code class="varname">outputPath</code> is a path to a folder somewhere within the project folder where the built
+bundles will be saved (eg, "Assets/MyBundleFolder"). The folder will not be created automatically
+and the function will simply fail if it doesn't already exist.<br /><br />The optional <code class="varname">assetBundleOptions</code> argument modify the way the bundle is built while the <code class="varname">targetPlatform/</code>
+selects which deployment target (Windows Standalone, Android, iOS, etc) the bundle will be used
+with. Note that bundles built for standalone platforms are not compatible with those built
+for mobiles and so you may need to produce different versions of a given bundle. See the BuildTarget section of the
+<a href="../Manual/AssetBundles-Building.html">Building AssetBundles</a> page in the Manual for more information about creating AssetBundles for different platforms.<br /><br />The return value is of type <a href="AssetBundleManifest.html">AssetBundleManifest</a>.  This contains a list of all the assets
+included in the AssetBundle. Null is returned if any problems occur.
+</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Create an <a href="AssetBundle.html">AssetBundle</a> for Windows.
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class BuildAssetBundlesExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    [<a href="MenuItem.html">MenuItem</a>("Example/Build <a href="VersionControl.Asset.html">Asset</a> Bundles")]
+    static void BuildABs()
+    {
+        // Put the bundles in a folder called "ABs" within the Assets folder.
+        <a href="BuildPipeline.BuildAssetBundles.html">BuildPipeline.BuildAssetBundles</a>("Assets/ABs", <a href="BuildAssetBundleOptions.None.html">BuildAssetBundleOptions.None</a>, <a href="BuildTarget.StandaloneWindows.html">BuildTarget.StandaloneWindows</a>);
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="AssetBundleManifest.html">AssetBundleManifest</a> <span class="sig-kw">BuildAssetBundles</span>(string <span class="sig-kw">outputPath</span>,
+AssetBundleBuild[] <span class="sig-kw">builds</span>,
+<a href="BuildAssetBundleOptions.html">BuildAssetBundleOptions</a> <span class="sig-kw">assetBundleOptions</span>,
+<a href="BuildTarget.html">BuildTarget</a> <span class="sig-kw">targetPlatform</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">outputPath</td><td class="desc"></td><td class="desc1">Output path for the AssetBundles.</td></tr><tr><td class="name lbl">builds</td><td class="desc"></td><td class="desc1">AssetBundle building map.</td></tr><tr><td class="name lbl">assetBundleOptions</td><td class="desc"></td><td class="desc1">AssetBundle building options.</td></tr><tr><td class="name lbl">targetPlatform</td><td class="desc"></td><td class="desc1">Target build platform.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>AssetBundleManifest</strong>
+        The manifest listing all AssetBundles included in this build.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Build AssetBundles from a building map.</p></div><div class="subsection"><p>This variant of the function lets you specify the names and contents
+        of the bundles using a "build map" rather than with the details set in the editor.
+        The map is simply an array of <a href="AssetBundleBuild.html">AssetBundleBuild</a> objects, each of which contains
+        a bundle name and a list of the names of asset files to be added to the named bundle.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class BuildAssetBundlesBuildMapExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    [<a href="MenuItem.html">MenuItem</a>("Example/Build <a href="VersionControl.Asset.html">Asset</a> Bundles Using BuildMap")]
+    static void BuildMapABs()
+    {
+        // Create the array of bundle build details.
+        <a href="AssetBundleBuild.html">AssetBundleBuild</a>[] buildMap = new <a href="AssetBundleBuild.html">AssetBundleBuild</a>[2];<br /><br />        buildMap[0].assetBundleName = "enemybundle";<br /><br />        string[] enemyAssets = new string[2];
+        enemyAssets[0] = "Assets/Textures/char_enemy_alienShip.jpg";
+        enemyAssets[1] = "Assets/Textures/char_enemy_alienShip-damaged.jpg";<br /><br />        buildMap[0].assetNames = enemyAssets;
+        buildMap[1].assetBundleName = "herobundle";<br /><br />        string[] heroAssets = new string[1];
+        heroAssets[0] = "char_hero_beanMan";
+        buildMap[1].assetNames = heroAssets;<br /><br />        <a href="BuildPipeline.BuildAssetBundles.html">BuildPipeline.BuildAssetBundles</a>("Assets/ABs", buildMap, <a href="BuildAssetBundleOptions.None.html">BuildAssetBundleOptions.None</a>, <a href="BuildTarget.StandaloneWindows.html">BuildTarget.StandaloneWindows</a>);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

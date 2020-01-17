@@ -1,0 +1,81 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: WaitForSeconds.WaitForSeconds</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">WaitForSeconds Constructor</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <span class="sig-kw">WaitForSeconds</span>(float <span class="sig-kw">seconds</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">seconds</td><td class="desc"></td><td class="desc1">Delay execution by the amount of time in seconds.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Suspends the coroutine execution for the given amount of seconds using scaled time.</p></div><div class="subsection"><p>
+Create a <code class="mono">yield</code> instruction. Wait for <code class="varname">seconds</code> multiplied by <a href="Time-scaledTime.html">Time.scaledTime</a>. If <code class="varname">seconds</code> is
+set to <code class="mono">2.0f</code> and <a href="Time-scaledTime.html">Time.scaledTime</a> is set to <code class="mono">0.5f</code>, the wait is <code class="mono">4.0f</code> (<code class="mono">2.0f</code> divided by <code class="mono">0.5f</code> seconds).
+The example <a href="WaitForSeconds.html">WaitForSeconds</a> has a value of <code class="mono">1.0f</code>. The second button changes <a href="Time-scaledTime.html">Time.scaledTime</a>
+to <code class="mono">4.0f</code>. The cubes now move faster.
+</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;<br /><br />// <a href="WaitForSeconds.html">WaitForSeconds</a> example.
+//
+// Create three cubes. Press the "Move cubes normally" button to animate them.
+// Press the "Move cubes quickly" button to animate them faster.
+// Have <a href="WaitForSeconds.html">WaitForSeconds</a> wait for different amounts of time. The cubes
+// move upward or downward one at a time.<br /><br />public class ScriptExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private <a href="GameObject.html">GameObject</a>[] gameObjects;
+    private int numberOfGameObjects = 3;
+    private bool exampleInUse = false;
+    private int width, height;
+    private float xPos, yPos;
+    private float xSize, ySize;
+    private int fontSize;<br /><br />    void Awake()
+    {
+        gameObjects = new <a href="GameObject.html">GameObject</a>[numberOfGameObjects];<br /><br />        for (int i = 0; i &lt; numberOfGameObjects; i++)
+        {
+            // Create a cube, place in the world, and set the name.
+            gameObjects[i] = <a href="GameObject.CreatePrimitive.html">GameObject.CreatePrimitive</a>(<a href="PrimitiveType.Cube.html">PrimitiveType.Cube</a>);
+            gameObjects[i].transform.position = new <a href="Vector3.html">Vector3</a>(-1.5f + i * 1.5f, 0.5f, 0.0f);
+            gameObjects[i].name = i.ToString();
+        }<br /><br />        // The size and position of the buttons.
+        width = <a href="Screen-width.html">Screen.width</a>;
+        height = <a href="Screen-height.html">Screen.height</a>;
+        xPos = width - width / 2.5f;
+        yPos = height - height / 5;
+        xSize = 250 * width / 800;
+        ySize = 40 * height / 600;
+        fontSize = 24 * width / 800;<br /><br />        // Place the camera in a good location and looking towards the cubes.
+        Camera.main.transform.position = new <a href="Vector3.html">Vector3</a>(2.6f, 2.0f, 2.5f);
+        Camera.main.transform.localEulerAngles = new <a href="Vector3.html">Vector3</a>(25.0f, -135.0f, 0.0f);
+    }<br /><br />    // Move selected cube up or down.
+    void ChangeSize(int gameObject, float x)
+    {
+        if (gameObjects[gameObject].transform.position.y &gt; 0.95f)
+        {
+            gameObjects[gameObject].transform.position = new <a href="Vector3.html">Vector3</a>(x, 0.5f, 0.0f);
+        }
+        else
+        {
+            gameObjects[gameObject].transform.position = new <a href="Vector3.html">Vector3</a>(x, 1.0f, 0.0f);
+        }
+    }<br /><br />    IEnumerator Example()
+    {
+        // Start control of the three cubes.
+        exampleInUse = true;<br /><br />        // Move the first cube up or down.
+        yield return new <a href="WaitForSeconds.html">WaitForSeconds</a>(0.5f);
+        ChangeSize(0, -1.5f);<br /><br />        // Move the second cube up or down.
+        yield return new <a href="WaitForSeconds.html">WaitForSeconds</a>(1.5f);
+        ChangeSize(1, 0.0f);<br /><br />        // Move the third cube up or down.
+        yield return new <a href="WaitForSeconds.html">WaitForSeconds</a>(0.75f);
+        ChangeSize(2, 1.5f);<br /><br />        // Pause for a second.
+        yield return new <a href="WaitForSeconds.html">WaitForSeconds</a>(1.0f);<br /><br />        exampleInUse = false;
+    }<br /><br />    void OnGUI()
+    {
+        <a href="GUI-enabled.html">GUI.enabled</a> = !exampleInUse;
+        GUI.skin.button.fontSize = 24 * width / 800;<br /><br />        if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(xPos, yPos, xSize, ySize), "Move cubes normally"))
+        {
+            <a href="Time-timeScale.html">Time.timeScale</a> = 1.0f;
+            StartCoroutine(Example());
+        }<br /><br />        // Set the speed of the cubes to be more fast than normal.
+        if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(xPos, yPos + ySize * 1.1f, xSize, ySize), "Move cubes quickly"))
+        {
+            <a href="Time-timeScale.html">Time.timeScale</a> = 4.0f;
+            StartCoroutine(Example());
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

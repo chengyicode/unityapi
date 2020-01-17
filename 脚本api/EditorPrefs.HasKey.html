@@ -1,0 +1,34 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorPrefs.HasKey</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorPrefs.html">EditorPrefs</a>.HasKey</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">HasKey</span>(string <span class="sig-kw">key</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">key</td><td class="desc"></td><td class="desc1">Name of key to check for.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>bool</strong>
+        The existence or not of the key.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Returns true if <code class="varname">key</code> exists in the preferences file.</p></div><div class="subsection"><p>The preferences file is examined to identify whether the specified key
+        exists.  True or false is returned.  In the following example a key and value can be
+        written into the preference file, or deleted.  The existence of the key is checked with the
+        <a href="EditorPrefs.HasKey.html">HasKey</a> function and a message displayed.<br /><br />        <img src="../StaticFiles/ScriptRefImages/EditorPrefsHasKey.png" /><br />
+<em>Use save, delete, and HasKey preference check.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Small example where the XyZ key can be saved or deleted from the Preferences file.
+// The existence of the key is checked using the HasKey() function.<br /><br />using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class HasKeyExample : <a href="EditorWindow.html">EditorWindow</a>
+{
+    private string keyName = "XyZ";<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Examples/HasKey Example")]
+    static void Init()
+    {
+        HasKeyExample window = (HasKeyExample)<a href="EditorWindow.GetWindowWithRect.html">EditorWindow.GetWindowWithRect</a>(
+            typeof(HasKeyExample), new <a href="Rect.html">Rect</a>(0, 0, 250, 80));
+        window.Show();
+    }<br /><br />    void OnGUI()
+    {
+        <a href="EditorGUILayout.BeginHorizontal.html">EditorGUILayout.BeginHorizontal</a>();<br /><br />        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Save '" + keyName + "' as Key"))
+            <a href="EditorPrefs.SetString.html">EditorPrefs.SetString</a>(keyName, "abc123");<br /><br />        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Delete Key '" + keyName + "'"))
+            <a href="EditorPrefs.DeleteKey.html">EditorPrefs.DeleteKey</a>(keyName);<br /><br />        <a href="EditorGUILayout.EndHorizontal.html">EditorGUILayout.EndHorizontal</a>();<br /><br />        <a href="GUILayout.Label.html">GUILayout.Label</a>(keyName + " key exists: " + <a href="EditorPrefs.HasKey.html">EditorPrefs.HasKey</a>(keyName));<br /><br />        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Close"))
+            this.Close();
+    }<br /><br />    // delete the key each time the demo starts
+    void OnFocus()
+    {
+        <a href="EditorPrefs.DeleteKey.html">EditorPrefs.DeleteKey</a>(keyName);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

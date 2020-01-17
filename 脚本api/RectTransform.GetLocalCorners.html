@@ -1,0 +1,32 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: RectTransform.GetLocalCorners</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="RectTransform.html">RectTransform</a>.GetLocalCorners</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-RectTransform.html' title='Go to RectTransform Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">GetLocalCorners</span>(Vector3[] <span class="sig-kw">fourCornersArray</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">fourCornersArray</td><td class="desc"></td><td class="desc1">The array that corners are filled into.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Get the corners of the calculated rectangle in the local space of its Transform.</p></div><div class="subsection"><p>
+                    Each corner provides its local space value.  The returned array of
+                    4 vertices is clockwise.  It starts bottom left and rotates to top left,
+                    then top right, and finally bottom right.  Note that bottom left, for
+                    example, is an (x, y, z) vector with x being left and y being bottom.<br /><br /><strong>Note</strong>: If the <a href="RectTransform.html">RectTransform</a> is rotated in Z then the dimensions of the <a href="RectTransform.GetWorldCorners.html">GetWorldCorners</a>
+will not be changed.<br /><br />See Also: <a href="RectTransform.GetWorldCorners.html">GetWorldCorners</a>.
+                </p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />// GetLocalCorners():
+//   Rotate the local corners and display
+//   the corner values.<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="RectTransform.html">RectTransform</a> rt;<br /><br />    void Start()
+    {
+        rt = GetComponent&lt;<a href="RectTransform.html">RectTransform</a>&gt;();
+        DisplayLocalCorners();
+    }<br /><br />    void DisplayLocalCorners()
+    {
+        <a href="Vector3.html">Vector3</a>[] v = new <a href="Vector3.html">Vector3</a>[4];<br /><br />        rt.rotation = <a href="Quaternion.AngleAxis.html">Quaternion.AngleAxis</a>(45, <a href="Vector3-forward.html">Vector3.forward</a>);
+        rt.GetLocalCorners(v);<br /><br />        <a href="Debug.Log.html">Debug.Log</a>("Local Corners");
+        for (var i = 0; i &lt; 4; i++)
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("Local Corner " + i + " : " + v[i]);
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>
+See Also: <a href="RectTransform.GetWorldCorners.html">GetWorldCorners</a>.
+                </p></div></div></div></div></body></html>

@@ -1,0 +1,274 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: RenderTexture</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">RenderTexture</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Inherits from:<a href="Texture.html" class="cl">Texture</a></p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.CoreModule.html" class="cl">UnityEngine.CoreModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-RenderTexture.html' title='Go to RenderTexture Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Render textures are textures that can be rendered to.</p></div><div class="subsection"><p>They can be used to implement image based rendering effects, dynamic shadows,
+projectors, reflections or surveillance cameras.<br /><br />One typical usage of render textures is setting them as the "target texture" property
+of a Camera (<a href="Camera-targetTexture.html">Camera.targetTexture</a>), this will make a camera render into a texture
+instead of rendering to the screen.<br /><br />Keep in mind that render texture contents can become "lost" on certain events, like loading a new level, system going to a screensaver mode, in and out of fullscreen and so on.
+When that happens, your existing render textures will become "not yet created" again,
+you can check for that with <a href="RenderTexture.IsCreated.html">IsCreated</a> function.<br /><br />As with other "native engine object" types, it is important to pay attention to the lifetime of
+any render textures and release them when you are finished using them with the <a href="RenderTexture.Release.html">Release</a> function,
+as they will not be garbage collected like normal managed types.<br /><br />See Also: <a href="Camera-targetTexture.html">Camera.targetTexture</a>.</p></div><div class="subsection"><h2>Static Properties</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="RenderTexture-active.html">active</a></td><td class="desc"></td><td class="desc1">Currently active render texture.</td></tr>
+    </table></div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="RenderTexture-antiAliasing.html">antiAliasing</a></td><td class="desc"></td><td class="desc1">The antialiasing level for the RenderTexture.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="RenderTexture-autoGenerateMips.html">autoGenerateMips</a></td><td class="desc"></td><td class="desc1">Mipmap levels are generated automatically when this flag is set.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="RenderTexture-bindTextureMS.html">bindTextureMS</a></td><td class="desc"></td><td class="desc1">If true and antiAliasing is greater than 1, the render texture will not be resolved by default.  Use this if the render texture needs to be bound as a multisampled texture in a shader.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="RenderTexture-colorBuffer.html">colorBuffer</a></td><td class="desc"></td><td class="desc1">Color buffer of the render texture (Read Only).</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="RenderTexture-depth.html">depth</a></td><td class="desc"></td><td class="desc1">The precision of the render texture's depth buffer in bits (0, 16, 24/32 are supported).</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="RenderTexture-depthBuffer.html">depthBuffer</a></td><td class="desc"></td><td class="desc1">Depth/stencil buffer of the render texture (Read Only).</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="RenderTexture-descriptor.html">descriptor</a></td><td class="desc"></td><td class="desc1">This struct contains all the information required to create a RenderTexture. It can be copied, cached, and reused to easily create RenderTextures that all share the same properties.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="RenderTexture-dimension.html">dimension</a></td><td class="desc"></td><td class="desc1">Dimensionality (type) of the render texture.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="RenderTexture-enableRandomWrite.html">enableRandomWrite</a></td><td class="desc"></td><td class="desc1">Enable random access write into this render texture on Shader Model 5.0 level shaders.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="RenderTexture-graphicsFormat.html">graphicsFormat</a></td><td class="desc"></td><td class="desc1">The color format of the render texture.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="RenderTexture-height.html">height</a></td><td class="desc"></td><td class="desc1">The height of the render texture in pixels.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="RenderTexture-memorylessMode.html">memorylessMode</a></td><td class="desc"></td><td class="desc1">The render texture memoryless mode property.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="RenderTexture-sRGB.html">sRGB</a></td><td class="desc"></td><td class="desc1">Does this render texture use sRGB read/write conversions? (Read Only).</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="RenderTexture-useDynamicScale.html">useDynamicScale</a></td><td class="desc"></td><td class="desc1">Is the render texture marked to be scaled by the Dynamic Resolution system.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="RenderTexture-useMipMap.html">useMipMap</a></td><td class="desc"></td><td class="desc1">Render texture has mipmaps when this flag is set.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="RenderTexture-volumeDepth.html">volumeDepth</a></td><td class="desc"></td><td class="desc1">Volume extent of a 3D render texture or number of slices of array texture.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="RenderTexture-vrUsage.html">vrUsage</a></td><td class="desc"></td><td class="desc1">If this RenderTexture is a VR eye texture used in stereoscopic rendering, this property decides what special rendering occurs, if any.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="RenderTexture-width.html">width</a></td><td class="desc"></td><td class="desc1">The width of the render texture in pixels.</td></tr>
+    </table></div><div class="subsection"><h2>Constructors</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="RenderTexture-ctor.html">RenderTexture</a></td><td class="desc"></td><td class="desc1">Creates a new RenderTexture object.</td></tr>
+    </table></div><div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="RenderTexture.ConvertToEquirect.html">ConvertToEquirect</a></td><td class="desc"></td><td class="desc1">Converts the render texture to equirectangular format (both stereoscopic or monoscopic equirect).
+The left eye will occupy the top half and the right eye will occupy the bottom. The monoscopic version will occupy the whole texture.
+Texture dimension must be of type TextureDimension.Cube.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="RenderTexture.Create.html">Create</a></td><td class="desc"></td><td class="desc1">Actually creates the RenderTexture.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="RenderTexture.DiscardContents.html">DiscardContents</a></td><td class="desc"></td><td class="desc1">Hint the GPU driver that the contents of the RenderTexture will not be used.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="RenderTexture.GenerateMips.html">GenerateMips</a></td><td class="desc"></td><td class="desc1">Generate mipmap levels of a render texture.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="RenderTexture.GetNativeDepthBufferPtr.html">GetNativeDepthBufferPtr</a></td><td class="desc"></td><td class="desc1">Retrieve a native (underlying graphics API) pointer to the depth buffer resource.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="RenderTexture.IsCreated.html">IsCreated</a></td><td class="desc"></td><td class="desc1">Is the render texture actually created?</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="RenderTexture.MarkRestoreExpected.html">MarkRestoreExpected</a></td><td class="desc"></td><td class="desc1">Indicate that there's a RenderTexture restore operation expected.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="RenderTexture.Release.html">Release</a></td><td class="desc"></td><td class="desc1">Releases the RenderTexture.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="RenderTexture.ResolveAntiAliasedSurface.html">ResolveAntiAliasedSurface</a></td><td class="desc"></td><td class="desc1">Force an antialiased render texture to be resolved.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="RenderTexture.SetGlobalShaderProperty.html">SetGlobalShaderProperty</a></td><td class="desc"></td><td class="desc1">Assigns this RenderTexture as a global shader property named propertyName.</td></tr>
+    </table></div><div class="subsection"><h2>Static Methods   静态方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="RenderTexture.GetTemporary.html">GetTemporary</a></td><td class="desc"></td><td class="desc1">Allocate a temporary render texture.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="RenderTexture.ReleaseTemporary.html">ReleaseTemporary</a></td><td class="desc"></td><td class="desc1">Release a temporary texture allocated with GetTemporary.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="RenderTexture.SupportsStencil.html">SupportsStencil</a></td><td class="desc"></td><td class="desc1">Does a RenderTexture have stencil buffer?</td></tr>
+    </table></div><div class="subsection"><h2>Inherited Members   继承成员</h2>
+      <div class="subsection"><h2>Static Properties</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Texture-allowThreadedTextureCreation.html">allowThreadedTextureCreation</a></td><td class="desc"></td><td class="desc1">Allow texture creation to occur on any thread (rather than the dedicated render thread).</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Texture-currentTextureMemory.html">currentTextureMemory</a></td><td class="desc"></td><td class="desc1">The amount of memory currently being used by textures.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Texture-desiredTextureMemory.html">desiredTextureMemory</a></td><td class="desc"></td><td class="desc1">This amount of texture memory would be used before the texture streaming budget is applied.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Texture.GenerateAllMips.html">GenerateAllMips</a></td><td class="desc"></td><td class="desc1">Can be used with texture constructors that take a mip count to indicate that all mips should be generated.  The value of this field is -1.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Texture-nonStreamingTextureCount.html">nonStreamingTextureCount</a></td><td class="desc"></td><td class="desc1">Number of non-streaming textures.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Texture-nonStreamingTextureMemory.html">nonStreamingTextureMemory</a></td><td class="desc"></td><td class="desc1">Total amount of memory being used by non-streaming textures.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Texture-streamingMipmapUploadCount.html">streamingMipmapUploadCount</a></td><td class="desc"></td><td class="desc1">How many times has a texture been uploaded due to texture mipmap streaming.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Texture-streamingRendererCount.html">streamingRendererCount</a></td><td class="desc"></td><td class="desc1">Number of renderers registered with the texture streaming system.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Texture-streamingTextureCount.html">streamingTextureCount</a></td><td class="desc"></td><td class="desc1">Number of streaming textures.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Texture-streamingTextureDiscardUnusedMips.html">streamingTextureDiscardUnusedMips</a></td><td class="desc"></td><td class="desc1">Force the streaming texture system to discard all unused mipmaps immediately, rather than caching them until the texture memory budget is exceeded.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Texture-streamingTextureForceLoadAll.html">streamingTextureForceLoadAll</a></td><td class="desc"></td><td class="desc1">Force streaming textures to load all mipmap levels.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Texture-streamingTextureLoadingCount.html">streamingTextureLoadingCount</a></td><td class="desc"></td><td class="desc1">Number of streaming textures with mipmaps currently loading.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Texture-streamingTexturePendingLoadCount.html">streamingTexturePendingLoadCount</a></td><td class="desc"></td><td class="desc1">Number of streaming textures with outstanding mipmaps to be loaded.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Texture-targetTextureMemory.html">targetTextureMemory</a></td><td class="desc"></td><td class="desc1">The amount of memory used by textures after the mipmap streaming and budget are applied and loading is complete.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Texture-totalTextureMemory.html">totalTextureMemory</a></td><td class="desc"></td><td class="desc1">The total amount of memory that would be used by all textures at mipmap level 0.</td></tr>
+      </table></div>
+      <div class="subsection"><h2>Properties   属性</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Object-hideFlags.html">hideFlags</a></td><td class="desc"></td><td class="desc1">Should the object be hidden, saved with the Scene or modifiable by the user?</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Object-name.html">name</a></td><td class="desc"></td><td class="desc1">The name of the object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Texture-anisoLevel.html">anisoLevel</a></td><td class="desc"></td><td class="desc1">Anisotropic filtering level of the texture.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Texture-dimension.html">dimension</a></td><td class="desc"></td><td class="desc1">Dimensionality (type) of the texture (Read Only).</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Texture-filterMode.html">filterMode</a></td><td class="desc"></td><td class="desc1">Filtering mode of the texture.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Texture-graphicsFormat.html">graphicsFormat</a></td><td class="desc"></td><td class="desc1">Returns the GraphicsFormat format or color format of a texture object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Texture-height.html">height</a></td><td class="desc"></td><td class="desc1">Height of the texture in pixels. (Read Only)</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Texture-imageContentsHash.html">imageContentsHash</a></td><td class="desc"></td><td class="desc1">The hash value of the Texture.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Texture-isReadable.html">isReadable</a></td><td class="desc"></td><td class="desc1">Returns true if the Read/Write Enabled checkbox was checked when the texture was imported; otherwise returns false. For a dynamic Texture created from script, always returns true. For additional information, see TextureImporter.isReadable.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Texture-mipMapBias.html">mipMapBias</a></td><td class="desc"></td><td class="desc1">Mip map bias of the texture.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Texture-mipmapCount.html">mipmapCount</a></td><td class="desc"></td><td class="desc1">How many mipmap levels are in this texture (Read Only).</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Texture-updateCount.html">updateCount</a></td><td class="desc"></td><td class="desc1">This counter is incremented when the texture is updated.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Texture-width.html">width</a></td><td class="desc"></td><td class="desc1">Width of the texture in pixels. (Read Only)</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Texture-wrapMode.html">wrapMode</a></td><td class="desc"></td><td class="desc1">Texture coordinate wrapping mode.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Texture-wrapModeU.html">wrapModeU</a></td><td class="desc"></td><td class="desc1">Texture U coordinate wrapping mode.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Texture-wrapModeV.html">wrapModeV</a></td><td class="desc"></td><td class="desc1">Texture V coordinate wrapping mode.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Texture-wrapModeW.html">wrapModeW</a></td><td class="desc"></td><td class="desc1">Texture W coordinate wrapping mode for Texture3D.</td></tr>
+      </table></div>
+      
+      
+      
+      <div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Object.GetInstanceID.html">GetInstanceID</a></td><td class="desc"></td><td class="desc1">Returns the instance id of the object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Object.ToString.html">ToString</a></td><td class="desc"></td><td class="desc1">Returns the name of the object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Texture.GetNativeTexturePtr.html">GetNativeTexturePtr</a></td><td class="desc"></td><td class="desc1">Retrieve a native (underlying graphics API) pointer to the texture resource.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Texture.IncrementUpdateCount.html">IncrementUpdateCount</a></td><td class="desc"></td><td class="desc1">Increment the update counter.</td></tr>
+      </table></div>
+      
+      <div class="subsection"><h2>Static Methods   静态方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Object.Destroy.html">Destroy</a></td><td class="desc"></td><td class="desc1">Removes a GameObject, component or asset.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Object.DestroyImmediate.html">DestroyImmediate</a></td><td class="desc"></td><td class="desc1">Destroys the object obj immediately. You are strongly recommended to use Destroy instead.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Object.DontDestroyOnLoad.html">DontDestroyOnLoad</a></td><td class="desc"></td><td class="desc1">Do not destroy the target Object when loading a new Scene.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectOfType.html">FindObjectOfType</a></td><td class="desc"></td><td class="desc1">Returns the first active loaded object of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectsOfType.html">FindObjectsOfType</a></td><td class="desc"></td><td class="desc1">Returns a list of all active loaded objects of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Object.Instantiate.html">Instantiate</a></td><td class="desc"></td><td class="desc1">Clones the object original and returns the clone.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Texture.SetGlobalAnisotropicFilteringLimits.html">SetGlobalAnisotropicFilteringLimits</a></td><td class="desc"></td><td class="desc1">Sets Anisotropic limits.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Texture.SetStreamingTextureMaterialDebugProperties.html">SetStreamingTextureMaterialDebugProperties</a></td><td class="desc"></td><td class="desc1">Uploads additional debug information to materials using textures set to stream mip maps.</td></tr>
+      </table></div>
+      <div class="subsection"><h2>Operators   运算符</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Object-operator_Object.html">bool</a></td><td class="desc"></td><td class="desc1">Does the object exist?</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Object-operator_ne.html">operator !=</a></td><td class="desc"></td><td class="desc1">Compares if two objects refer to a different object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Object-operator_eq.html">operator ==</a></td><td class="desc"></td><td class="desc1">Compares two object references to see if they refer to the same object.</td></tr>
+      </table></div>
+      
+      
+      
+    </div></div></div></div></body></html>

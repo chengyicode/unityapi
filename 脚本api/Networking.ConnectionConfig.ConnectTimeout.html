@@ -1,0 +1,60 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Networking.ConnectionConfig.ConnectTimeout</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Method group is Obsolete</b><br /></div><h1 class="heading inherit"><a href="Networking.ConnectionConfig.html">ConnectionConfig</a>.ConnectTimeout</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public uint <span class="sig-kw">ConnectTimeout</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Timeout in ms which library will wait before it will send another connection request.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.Networking;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    int m_MyHostId;
+    int m_PeerId;<br /><br />    void Init()
+    {
+        ConnectionConfig myConfig = new ConnectionConfig();
+        myConfig.AddChannel(<a href="Networking.QosType.Unreliable.html">QosType.Unreliable</a>);
+        myConfig.AddChannel(<a href="Networking.QosType.UnreliableFragmented.html">QosType.UnreliableFragmented</a>);
+        myConfig.ConnectTimeout = 1000;
+        myConfig.MaxConnectionAttempt = 5;<br /><br />        HostTopology myTopology = new HostTopology(myConfig, 10);         //up to 10 connection allowed
+        m_MyHostId = NetworkTransport.AddHost(myTopology, 9999);
+    }<br /><br />    public void Connect()
+    {
+        byte error = (byte)<a href="Networking.NetworkError.Ok.html">NetworkError.Ok</a>;
+        m_PeerId = NetworkTransport.Connect(m_MyHostId, "127.0.0.1", 9999, 0, out error);
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        byte error = (byte)<a href="Networking.NetworkError.Ok.html">NetworkError.Ok</a>;
+        if ((<a href="Networking.NetworkError.html">NetworkError</a>)error != <a href="Networking.NetworkError.Ok.html">NetworkError.Ok</a>)
+        {
+            <a href="Debug.LogError.html">Debug.LogError</a>("Network error is occurred: " + (<a href="Networking.NetworkError.html">NetworkError</a>)error);
+        }
+        else
+        {
+            int recHostId;
+            int connectionId;
+            int channelId;
+            byte[] recBuffer = new byte[1024];
+            int bufferSize = 1024;
+            int dataSize;
+            bool done = false;
+            while (!done)
+            {
+                <a href="Networking.NetworkEventType.html">NetworkEventType</a> recData = NetworkTransport.Receive(out recHostId, out connectionId, out channelId, recBuffer, bufferSize, out dataSize, out error);
+                switch (recData)
+                {
+                    case <a href="Networking.NetworkEventType.Nothing.html">NetworkEventType.Nothing</a>:                 //1
+                        break;
+                    case <a href="Networking.NetworkEventType.ConnectEvent.html">NetworkEventType.ConnectEvent</a>:            //2
+                        <a href="Debug.Assert.html">Debug.Assert</a>(connectionId == m_PeerId, "success");
+                        done = false;
+                        break;
+                    case <a href="Networking.NetworkEventType.DataEvent.html">NetworkEventType.DataEvent</a>:               //3
+                        break;
+                    case <a href="Networking.NetworkEventType.DisconnectEvent.html">NetworkEventType.DisconnectEvent</a>:         //4
+                        <a href="Debug.Assert.html">Debug.Assert</a>(connectionId == m_PeerId, "fail");
+                        done = false;
+                        break;
+                }
+            }
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

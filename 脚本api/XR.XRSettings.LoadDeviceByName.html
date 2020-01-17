@@ -1,0 +1,26 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: XR.XRSettings.LoadDeviceByName</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="XR.XRSettings.html">XRSettings</a>.LoadDeviceByName</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">LoadDeviceByName</span>(string <span class="sig-kw">deviceName</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">LoadDeviceByName</span>(string[] <span class="sig-kw">prioritizedDeviceNameList</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">deviceName</td><td class="desc"></td><td class="desc1">Name of the device from <a href="XR.XRSettings-supportedDevices.html">XRSettings.supportedDevices</a>.</td></tr><tr><td class="name lbl">prioritizedDeviceNameList</td><td class="desc"></td><td class="desc1">Prioritized list of device names from <a href="XR.XRSettings-supportedDevices.html">XRSettings.supportedDevices</a>.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Loads the requested device at the beginning of the next frame.</p></div><div class="subsection"><p>A list of supported devices which can be passed into this method can be obtained from <a href="XR.XRSettings-supportedDevices.html">XRSettings.supportedDevices</a>.<br /><br />In order to check for success, check <a href="XR.XRSettings-loadedDeviceName.html">XRSettings.loadedDeviceName</a> on the next frame.<br /><br />This function will try to initialize only the device(s) passed in, it will not fall back to other devices in the <a href="XR.XRSettings-supportedDevices.html">XRSettings.supportedDevices</a> list.  You can pass a list of values to fall back to other devices on failure.  If no device could be initialized, it will fall back to <a href="XR.XRSettings-loadedDeviceName.html">XRSettings.loadedDeviceName</a> as an empty string and set <a href="XR.XRSettings-enabled.html">XRSettings.enabled</a> to false.<br /><br />You can disable XR by loading an empty string deviceName.<br /><br />After loading a device, you may want to enable it with <a href="XR.XRSettings-enabled.html">XRSettings.enabled</a>.<br /><br /><strong>Note:</strong> Some VR Devices do not support reloading when already active. You should make sure to check the currently loaded device and only load the new device if it is different.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Run in split-screen mode
+using System;
+using System.Collections;
+using UnityEngine;
+using UnityEngine.XR;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        StartCoroutine(LoadDevice("Split"));
+    }<br /><br />    IEnumerator LoadDevice(string newDevice)
+    {
+        if (String.Compare(<a href="XR.XRSettings-loadedDeviceName.html">XRSettings.loadedDeviceName</a>, newDevice, true) != 0)
+        {
+            <a href="XR.XRSettings.LoadDeviceByName.html">XRSettings.LoadDeviceByName</a>(newDevice);
+            yield return null;
+            <a href="XR.XRSettings-enabled.html">XRSettings.enabled</a> = true;
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Collision2D.contacts</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Collision2D.html">Collision2D</a>.contacts</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public ContactPoint2D[] <span class="sig-kw">contacts</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The specific points of contact with the incoming Collider2D. You should avoid using this as it produces memory garbage. Use <a href="Collision2D.GetContact.html">GetContact</a> or <a href="Collision2D.GetContacts.html">GetContacts</a> instead.</p></div><div class="subsection"><p>See Also: <a href="Collider2D.html">Collider2D</a> class.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="GameObject.html">GameObject</a> explosion;<br /><br />    void OnCollisionEnter2D(<a href="Collision2D.html">Collision2D</a> coll)
+    {
+        // If a missile hits this object
+        if (coll.transform.tag == "Missile")
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("HIT!");<br /><br />            // Spawn an explosion at each point of contact
+            foreach (<a href="ContactPoint2D.html">ContactPoint2D</a> missileHit in coll.contacts)
+            {
+                <a href="Vector2.html">Vector2</a> hitPoint = missileHit.point;
+                Instantiate(explosion, new <a href="Vector3.html">Vector3</a>(hitPoint.x, hitPoint.y, 0), <a href="Quaternion-identity.html">Quaternion.identity</a>);
+            }
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

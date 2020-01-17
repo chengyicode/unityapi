@@ -1,0 +1,27 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Editor.HasPreviewGUI</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Editor.html">Editor</a>.HasPreviewGUI</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public bool <span class="sig-kw">HasPreviewGUI</span>();
+    </div></div></div><div class="subsection"><h2>Returns</h2><p><strong>bool</strong>
+        True if this component can be Previewed in its current state.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Override this method in subclasses if you implement <a href="Editor.OnPreviewGUI.html">OnPreviewGUI</a>.</p></div><div class="subsection"><p>You can also use it to disable or enable preview depending on the target asset.
+The default implementation simply returns false, so if you override <a href="Editor.OnPreviewGUI.html">OnPreviewGUI</a> you have to override this method as well.<br /><br /><strong>Note:</strong> Inspector previews are limited to the primary editor of persistent objects (assets), e.g., GameObjectInspector, MaterialEditor, TextureInspector.
+This means that it is currently not possible for a component to have its own inspector preview.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class GameObjectEditorWindow: <a href="EditorWindow.html">EditorWindow</a>
+{
+    <a href="GameObject.html">GameObject</a> gameObject;
+    <a href="Editor.html">Editor</a> gameObjectEditor;<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Window/<a href="GameObject.html">GameObject</a> <a href="Editor.html">Editor</a>")]
+    static void ShowWindow()
+    {
+        GetWindow&lt;GameObjectEditorWindow&gt;("<a href="GameObject.html">GameObject</a> <a href="Editor.html">Editor</a>");
+    }<br /><br />    void OnGUI()
+    {
+        gameObject = (<a href="GameObject.html">GameObject</a>) <a href="EditorGUILayout.ObjectField.html">EditorGUILayout.ObjectField</a>(gameObject, typeof(<a href="GameObject.html">GameObject</a>), true);<br /><br />        if (gameObject != null)
+        {
+            if (gameObjectEditor == null)
+                gameObjectEditor = <a href="Editor.CreateEditor.html">Editor.CreateEditor</a>(gameObject);<br /><br />            gameObjectEditor.OnPreviewGUI(<a href="GUILayoutUtility.GetRect.html">GUILayoutUtility.GetRect</a>(500, 500), <a href="EditorStyles-whiteLabel.html">EditorStyles.whiteLabel</a>);
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

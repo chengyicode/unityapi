@@ -1,0 +1,43 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Color</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">Color</h1><div class="clear"></div><p class="cl mb0 left mr10">struct in
+          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.CoreModule.html" class="cl">UnityEngine.CoreModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Representation of RGBA colors.</p></div><div class="subsection"><p>This structure is used throughout Unity to pass colors around.
+Each color component is a floating point value with a range from 0 to 1.<br /><br />Components (<a href="Color-r.html">r</a>,<a href="Color-g.html">g</a>,<a href="Color-b.html">b</a>) define a color in RGB color space. Alpha component (<a href="Color-a.html">a</a>)
+defines transparency - alpha of one is completely opaque, alpha of zero is completely
+transparent.</p></div><div class="subsection"><h2>Static Properties</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Color-black.html">black</a></td><td class="desc"></td><td class="desc1">Solid black. RGBA is (0, 0, 0, 1).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Color-blue.html">blue</a></td><td class="desc"></td><td class="desc1">Solid blue. RGBA is (0, 0, 1, 1).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Color-clear.html">clear</a></td><td class="desc"></td><td class="desc1">Completely transparent. RGBA is (0, 0, 0, 0).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Color-cyan.html">cyan</a></td><td class="desc"></td><td class="desc1">Cyan. RGBA is (0, 1, 1, 1).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Color-gray.html">gray</a></td><td class="desc"></td><td class="desc1">Gray. RGBA is (0.5, 0.5, 0.5, 1).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Color-green.html">green</a></td><td class="desc"></td><td class="desc1">Solid green. RGBA is (0, 1, 0, 1).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Color-grey.html">grey</a></td><td class="desc"></td><td class="desc1">English spelling for gray. RGBA is the same (0.5, 0.5, 0.5, 1).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Color-magenta.html">magenta</a></td><td class="desc"></td><td class="desc1">Magenta. RGBA is (1, 0, 1, 1).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Color-red.html">red</a></td><td class="desc"></td><td class="desc1">Solid red. RGBA is (1, 0, 0, 1).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Color-white.html">white</a></td><td class="desc"></td><td class="desc1">Solid white. RGBA is (1, 1, 1, 1).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Color-yellow.html">yellow</a></td><td class="desc"></td><td class="desc1">Yellow. RGBA is (1, 0.92, 0.016, 1), but the color is nice to look at!</td></tr>
+    </table></div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Color-a.html">a</a></td><td class="desc"></td><td class="desc1">Alpha component of the color (0 is transparent, 1 is opaque).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Color-b.html">b</a></td><td class="desc"></td><td class="desc1">Blue component of the color.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Color-g.html">g</a></td><td class="desc"></td><td class="desc1">Green component of the color.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Color-gamma.html">gamma</a></td><td class="desc"></td><td class="desc1">A version of the color that has had the gamma curve applied.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Color-grayscale.html">grayscale</a></td><td class="desc"></td><td class="desc1">The grayscale value of the color. (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Color-linear.html">linear</a></td><td class="desc"></td><td class="desc1">A linear value of an sRGB color.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Color-maxColorComponent.html">maxColorComponent</a></td><td class="desc"></td><td class="desc1">Returns the maximum color component value: Max(r,g,b).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Color-r.html">r</a></td><td class="desc"></td><td class="desc1">Red component of the color.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Color.Index_operator.html">this[int]</a></td><td class="desc"></td><td class="desc1">Access the r, g, b,a components using [0], [1], [2], [3] respectively.</td></tr>
+    </table></div><div class="subsection"><h2>Constructors</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Color-ctor.html">Color</a></td><td class="desc"></td><td class="desc1">Constructs a new Color with given r,g,b,a components.</td></tr>
+    </table></div><div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Color.ToString.html">ToString</a></td><td class="desc"></td><td class="desc1">Returns a nicely formatted string of this color.</td></tr>
+    </table></div><div class="subsection"><h2>Static Methods   静态方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Color.HSVToRGB.html">HSVToRGB</a></td><td class="desc"></td><td class="desc1">Creates an RGB colour from HSV input.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Color.Lerp.html">Lerp</a></td><td class="desc"></td><td class="desc1">Linearly interpolates between colors a and b by t.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Color.LerpUnclamped.html">LerpUnclamped</a></td><td class="desc"></td><td class="desc1">Linearly interpolates between colors a and b by t.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Color.RGBToHSV.html">RGBToHSV</a></td><td class="desc"></td><td class="desc1">Calculates the hue, saturation and value of an RGB input color.</td></tr>
+    </table></div><div class="subsection"><h2>Operators   运算符</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Color-operator_Vector4.html">Color</a></td><td class="desc"></td><td class="desc1">Colors can be implicitly converted to and from Vector4.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Color-operator_subtract.html">operator -</a></td><td class="desc"></td><td class="desc1">Subtracts color b from color a. Each component is subtracted separately.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Color-operator_multiply.html">operator *</a></td><td class="desc"></td><td class="desc1">Multiplies two colors together. Each component is multiplied separately.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Color-operator_divide.html">operator /</a></td><td class="desc"></td><td class="desc1">Divides color a by the float b. Each color component is scaled separately.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Color-operator_add.html">operator +</a></td><td class="desc"></td><td class="desc1">Adds two colors together. Each component is added separately.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Color-operator_Color.html">Vector4</a></td><td class="desc"></td><td class="desc1">Colors can be implicitly converted to and from Vector4.</td></tr>
+    </table></div></div></div></div></body></html>

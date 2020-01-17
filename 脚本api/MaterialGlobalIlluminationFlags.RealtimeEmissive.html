@@ -1,0 +1,15 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: MaterialGlobalIlluminationFlags.RealtimeEmissive</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="MaterialGlobalIlluminationFlags.html">MaterialGlobalIlluminationFlags</a>.RealtimeEmissive</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>The emissive lighting will affect realtime Global Illumination. It emits lighting into realtime lightmaps and realtime lightprobes.</p></div><div class="subsection"><p>The flags are mutually exclusive so if you are using RealtimeEmissive lighting, you must remove the EmissiveIsBlack flag from the material as shown in the example below.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="Material.html">Material</a> material;<br /><br />    void Start()
+    {
+        // Remove the EmissiveIsBlack flag from material:
+        <a href="MaterialGlobalIlluminationFlags.html">MaterialGlobalIlluminationFlags</a> flags = material.globalIlluminationFlags;
+        flags &amp;= ~<a href="MaterialGlobalIlluminationFlags.EmissiveIsBlack.html">MaterialGlobalIlluminationFlags.EmissiveIsBlack</a>;
+        material.globalIlluminationFlags = flags;
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: Material.globalIlluminationFlags.EmissiveIsBlack.</p></div></div></div></div></body></html>

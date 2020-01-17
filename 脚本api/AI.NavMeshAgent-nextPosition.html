@@ -1,0 +1,40 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AI.NavMeshAgent.nextPosition</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="AI.NavMeshAgent.html">NavMeshAgent</a>.nextPosition</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Vector3.html">Vector3</a> <span class="sig-kw">nextPosition</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Gets or sets the simulation position of the navmesh agent.</p></div><div class="subsection"><p>The position vector is in world space coordinates and units.<br /><br />The nextPosition is coupled to <a href="Transform-position.html">Transform.position</a>. In the default case the navmesh agent's Transform position will match the internal simulation position at the time the script Update function is called. This coupling can be turned on and off by setting <a href="AI.NavMeshAgent-updatePosition.html">updatePosition</a>.<br /><br />When <a href="AI.NavMeshAgent-updatePosition.html">updatePosition</a> is true, the <a href="Transform-position.html">Transform.position</a> reflects the simulated position, when false the position of the transform and the navmesh agent is not synchronized, and you'll see a difference between the two in general. When <a href="AI.NavMeshAgent-updatePosition.html">updatePosition</a> is turned back on, the <a href="Transform-position.html">Transform.position</a> will be immediately move to match nextPosition.<br /><br />By setting nextPosition you can directly control where the internal agent position should be. The agent will be moved towards the position, but is constrained by the navmesh connectivity and boundaries. As such it will be useful only if the positions are continuously updated and assessed.
+See Also: <a href="AI.NavMeshAgent.Warp.html">Warp</a> for teleporting a navmesh agent.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.AI;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        // <a href="Experimental.PlayerLoop.Update.html">Update</a> the transform position explicitly in the OnAnimatorMove callback
+        GetComponent&lt;<a href="AI.NavMeshAgent.html">NavMeshAgent</a>&gt;().updatePosition = false;
+    }<br /><br />    void OnAnimatorMove()
+    {
+        transform.position = GetComponent&lt;<a href="AI.NavMeshAgent.html">NavMeshAgent</a>&gt;().nextPosition;
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Additionally it can be useful to control the agent position directly - especially if the
+GO transform is controlled by something else - e.g. animator, physics, scripted or input.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.AI;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public bool agentIsControlledByOther;
+    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        var agent = GetComponent&lt;<a href="AI.NavMeshAgent.html">NavMeshAgent</a>&gt;();
+        agent.updatePosition = !agentIsControlledByOther;
+        if (agentIsControlledByOther)
+        {
+            GetComponent&lt;<a href="AI.NavMeshAgent.html">NavMeshAgent</a>&gt;().nextPosition = transform.position;
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="AI.NavMeshAgent.Move.html">Move</a> for moving the agent with a relative position.</p></div></div></div></div></body></html>

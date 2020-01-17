@@ -1,0 +1,17 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Matrix4x4.MultiplyPoint</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Matrix4x4.html">Matrix4x4</a>.MultiplyPoint</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Vector3.html">Vector3</a> <span class="sig-kw">MultiplyPoint</span>(<a href="Vector3.html">Vector3</a> <span class="sig-kw">point</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Transforms a position by this matrix (generic).</p></div><div class="subsection"><p>Returns a position <code class="varname">v</code> transformed by the current fully arbitrary matrix.
+If the matrix is a regular 3D transformation matrix, it is much faster to
+use <a href="Matrix4x4.MultiplyPoint3x4.html">MultiplyPoint3x4</a> instead. <code class="varname">MultiplyPoint</code> is slower, but can handle
+projective transformations as well.<br /><br />See Also: <a href="Matrix4x4.MultiplyPoint3x4.html">MultiplyPoint3x4</a>, <a href="Matrix4x4.MultiplyVector.html">MultiplyVector</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class ScriptExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+  void Start()
+  {
+    // Find our current location in the camera's projection space.
+    <a href="Vector3.html">Vector3</a> pt = Camera.main.projectionMatrix.MultiplyPoint(transform.position);
+  }
+}
+</pre>
+      </div></div></div></div></body></html>

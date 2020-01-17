@@ -1,0 +1,26 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: SocialPlatforms.GameCenter.GameCenterPlatform.ShowDefaultAchievementCompletionBanner</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="SocialPlatforms.GameCenter.GameCenterPlatform.html">GameCenterPlatform</a>.ShowDefaultAchievementCompletionBanner</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">ShowDefaultAchievementCompletionBanner</span>(bool <span class="sig-kw">value</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Show the default iOS banner when achievements are completed.</p></div><div class="subsection"><p>This only works on iOS 5.0+ and does nothing on older versions.
+Code example:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.SocialPlatforms.GameCenter;<br /><br />public class DoAchievement : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        <a href="SocialPlatforms.GameCenter.GameCenterPlatform.ShowDefaultAchievementCompletionBanner.html">GameCenterPlatform.ShowDefaultAchievementCompletionBanner</a>(true);
+        Social.localUser.Authenticate(success =&gt; {
+            if (success)
+                ReportAchievement();
+            else
+                <a href="Debug.Log.html">Debug.Log</a>("Failed to authenticate");
+        });
+    }<br /><br />    void ReportAchievement()
+    {
+        <a href="Social.ReportProgress.html">Social.ReportProgress</a>("Achievement01", 100, (result) =&gt; {
+            <a href="Debug.Log.html">Debug.Log</a>(result ? "Reported achievement" : "Failed to report achievement");
+        });
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

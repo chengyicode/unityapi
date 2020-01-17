@@ -1,0 +1,48 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Tilemaps.TileBase.RefreshTile</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Tilemaps.TileBase.html">TileBase</a>.RefreshTile</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">RefreshTile</span>(<a href="Vector3Int.html">Vector3Int</a> <span class="sig-kw">position</span>,
+<a href="Tilemaps.ITilemap.html">Tilemaps.ITilemap</a> <span class="sig-kw">tilemap</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">position</td><td class="desc"></td><td class="desc1">Position of the Tile on the <a href="Tilemaps.Tilemap.html">Tilemap</a>.</td></tr><tr><td class="name lbl">tilemap</td><td class="desc"></td><td class="desc1">The <a href="Tilemaps.Tilemap.html">Tilemap</a> the tile is present on.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>This method is called when the tile is refreshed.</p></div><div class="subsection"><p>Implement this and call <a href="Tilemaps.Tilemap.RefreshTile.html">Tilemap.RefreshTile</a> on all affected <a href="../Manual/Tilemap-ScriptableTiles-TileBase.html">tiles</a> on the <a href="Tilemaps.Tilemap.html">Tilemap</a> including the tile at the given position to refresh them. This is also useful if the placement of a tile affects the properties of neighboring tiles.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.Tilemaps;<br /><br />// <a href="Tilemaps.Tile.html">Tile</a> that displays a <a href="Sprite.html">Sprite</a> when it is alone and a different <a href="Sprite.html">Sprite</a> when it is orthogonally adjacent to the same NeighourTile
+[CreateAssetMenu]
+public class NeighbourTile : <a href="Tilemaps.TileBase.html">TileBase</a>
+{
+    public <a href="Sprite.html">Sprite</a> spriteA;
+    public <a href="Sprite.html">Sprite</a> spriteB;<br /><br />    public override void RefreshTile(<a href="Vector3Int.html">Vector3Int</a> position, <a href="Tilemaps.ITilemap.html">ITilemap</a> tilemap)
+    {
+        for (int yd = -1; yd &lt;= 1; yd++)
+        {
+            <a href="Vector3Int.html">Vector3Int</a> location = new <a href="Vector3Int.html">Vector3Int</a>(position.x, position.y + yd, position.z);
+            if (IsNeighbour(location, tilemap))
+                tilemap.RefreshTile(location);
+        }
+        for (int xd = -1; xd &lt;= 1; xd++)
+        {
+            <a href="Vector3Int.html">Vector3Int</a> location = new <a href="Vector3Int.html">Vector3Int</a>(position.x + xd, position.y, position.z);
+            if (IsNeighbour(location, tilemap))
+                tilemap.RefreshTile(location);
+        }
+    }<br /><br />    public override void GetTileData(<a href="Vector3Int.html">Vector3Int</a> position, <a href="Tilemaps.ITilemap.html">ITilemap</a> tilemap, ref <a href="Tilemaps.TileData.html">TileData</a> tileData)
+    {
+        tileData.sprite = spriteA;
+        for (int yd = -1; yd &lt;= 1; yd += 2)
+        {
+            <a href="Vector3Int.html">Vector3Int</a> location = new <a href="Vector3Int.html">Vector3Int</a>(position.x, position.y + yd, position.z);
+            if (IsNeighbour(location, tilemap))
+                tileData.sprite = spriteB;
+        }
+        for (int xd = -1; xd &lt;= 1; xd += 2)
+        {
+            <a href="Vector3Int.html">Vector3Int</a> location = new <a href="Vector3Int.html">Vector3Int</a>(position.x + xd, position.y, position.z);
+            if (IsNeighbour(location, tilemap))
+                tileData.sprite = spriteB;
+        }
+    }<br /><br />    private bool IsNeighbour(<a href="Vector3Int.html">Vector3Int</a> position, <a href="Tilemaps.ITilemap.html">ITilemap</a> tilemap)
+    {
+        <a href="Tilemaps.TileBase.html">TileBase</a> tile = tilemap.GetTile(position);
+        return (tile != null &amp;&amp; tile == this);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

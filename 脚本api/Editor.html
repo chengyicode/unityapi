@@ -1,0 +1,240 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Editor</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">Editor</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEditor</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Inherits from:<a href="ScriptableObject.html" class="cl">ScriptableObject</a></p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEditor.html" class="cl">UnityEditor</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Derive from this base class to create a custom inspector or editor for your custom object.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">using UnityEngine;
+using System.Collections;<br /><br />// This is not an editor script.
+public class MyPlayer : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public int armor = 75;
+    public int damage = 25;
+    public <a href="GameObject.html">GameObject</a> gun;<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        // <a href="Experimental.PlayerLoop.Update.html">Update</a> logic here...
+    }
+}
+</pre>
+      </div><div class="subsection"><p>For example, use a custom editor to change the appearance of the script in the Inspector.<br /><br />You can attach the Editor to a custom component by using the <a href="CustomEditor.html">CustomEditor</a> attribute.<br /><br />There are multiple ways to design custom Editors.
+If you want the Editor to support multi-object editing, you can use the <a href="CanEditMultipleObjects.html">CanEditMultipleObjects</a> attribute.
+Instead of modifying script variables directly, it's advantageous to use the <a href="SerializedObject.html">SerializedObject</a> and <a href="SerializedProperty.html">SerializedProperty</a>
+system to edit them, since this automatically handles multi-object editing, undo, and Prefab overrides.  If this approach is used a user can select multiple assets in the hierarchy window and change the values for all of them at once.<br /><br />You can either use UIElements to build your custom UI or you can use IMGUI. To create a custom inspector using UIElements, you have to override the <a href="Editor.CreateInspectorGUI.html">Editor.CreateInspectorGUI</a> on the <a href="Editor.html">Editor</a> class. To create a custom inspector using IMGUI, you have to override the <a href="Editor.OnInspectorGUI.html">Editor.OnInspectorGUI</a> on the <a href="Editor.html">Editor</a> class. If you use UIElements and have <a href="Editor.CreateInspectorGUI.html">Editor.CreateInspectorGUI</a> overwritten, any existing IMGUI implementation using <a href="Editor.OnInspectorGUI.html">Editor.OnInspectorGUI</a> on the same Editor will be ignored.<br /><br />Here's an example of a custom inspector:<br /><br /><img src="../StaticFiles/ScriptRefImages/CustomEditorUIElements.png" /><br />
+<em>Custom editor in the Inspector.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEditor.UIElements;
+using UnityEngine;
+using UnityEngine.UIElements;
+[<a href="CustomEditor.html">CustomEditor</a>(typeof(MyPlayer))]
+public class MyPlayerEditor : <a href="Editor.html">Editor</a>
+{
+    const string resourceFilename = "custom-editor-uie";
+    public override <a href="UIElements.VisualElement.html">VisualElement</a> CreateInspectorGUI()
+    {
+        <a href="UIElements.VisualElement.html">VisualElement</a> customInspector = new <a href="UIElements.VisualElement.html">VisualElement</a>();
+        var visualTree = <a href="Resources.Load.html">Resources.Load</a>(resourceFilename) as <a href="UIElements.VisualTreeAsset.html">VisualTreeAsset</a>;
+        visualTree.CloneTree(customInspector);
+        customInspector.styleSheets.Add(<a href="Resources.Load.html">Resources.Load</a>($"{resourceFilename}-style") as <a href="UIElements.StyleSheet.html">StyleSheet</a>);
+        return customInspector;
+    }
+}</pre>
+      </div><div class="subsection"><p>The following example defines the layout of a custom inspector in uxml. The definition loads as a resource and the <a href="UIElements.VisualTreeAsset.CloneTree.html">VisualTreeAsset.CloneTree</a> method puts the hierarchy in a <a href="UIElements.VisualElement.html">VisualElement</a> object.<br /><br />The InspectorWindow will instantiate an <a href="UIElements.InspectorElement.html">InspectorElement</a> containing the custom inspector. The <a href="UIElements.InspectorElement.html">InspectorElement</a> will call Bind on the custom inspector binding it to the MyPlayer object.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">&lt;UXML xmlns="UnityEngine.UIElements" xmlns:e="UnityEditor.UIElements"&gt;
+    &lt;<a href="UIElements.VisualElement.html">VisualElement</a> class="player-property"&gt;
+        &lt;<a href="UIElements.VisualElement.html">VisualElement</a> class="slider-row"&gt;
+            &lt;<a href="UIElements.Label.html">Label</a> class="player-property-label" text="Damage"/&gt;
+            &lt;<a href="UIElements.VisualElement.html">VisualElement</a> class="input-container"&gt;
+                &lt;<a href="UIElements.SliderInt.html">SliderInt</a> class="player-slider" name="damage-slider" high-value="100" direction="Horizontal" binding-path="damage"/&gt;
+                &lt;e:<a href="UIElements.IntegerField.html">IntegerField</a> class="player-int-field" binding-path="damage"/&gt;
+            &lt;/<a href="UIElements.VisualElement.html">VisualElement</a>&gt;
+        &lt;/<a href="UIElements.VisualElement.html">VisualElement</a>&gt;
+        &lt;e:<a href="UIElements.ProgressBar.html">ProgressBar</a> class="player-property-progress-bar" name="damage-progress" binding-path="damage" title="Damage"/&gt;
+    &lt;/<a href="UIElements.VisualElement.html">VisualElement</a>&gt;<br /><br />    &lt;<a href="UIElements.VisualElement.html">VisualElement</a> class="player-property"&gt;
+        &lt;<a href="UIElements.VisualElement.html">VisualElement</a> class="slider-row"&gt;
+            &lt;<a href="UIElements.Label.html">Label</a> class="player-property-label" text="Armor"/&gt;
+            &lt;<a href="UIElements.VisualElement.html">VisualElement</a> class="input-container"&gt;
+                &lt;<a href="UIElements.SliderInt.html">SliderInt</a> class="player-slider" name="armor-slider" high-value="100" direction="Horizontal" binding-path="armor"/&gt;
+                &lt;e:<a href="UIElements.IntegerField.html">IntegerField</a> class="player-int-field" binding-path="armor"/&gt;
+            &lt;/<a href="UIElements.VisualElement.html">VisualElement</a>&gt;
+        &lt;/<a href="UIElements.VisualElement.html">VisualElement</a>&gt;
+        &lt;e:<a href="UIElements.ProgressBar.html">ProgressBar</a> class="player-property-progress-bar" name="armor-progress" binding-path="armor" title="Armor"/&gt;
+    &lt;/<a href="UIElements.VisualElement.html">VisualElement</a>&gt;<br /><br />    &lt;e:<a href="UIElements.PropertyField.html">PropertyField</a> class="gun-field" binding-path="gun" label="Gun Object"/&gt;
+&lt;/UXML&gt;</pre>
+      </div><div class="subsection"><p>UIElements automatically updates the UI when data changes and vice-versa. To bind data and automatically update data and UI, set values for the "binding-path" attributes.<br /><br />Styling of the inspector is done in uss.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">.slider-row {
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 4px;
+}
+.input-container {
+    flex-direction: row;
+    flex-grow: .6;
+    margin-right: 4px;
+}
+.player-property {
+    margin-bottom: 4px;
+}
+.player-property-label {
+    flex:1;
+    margin-left: 16;
+}
+.player-slider {
+    flex:3;
+    margin-right: 4px;
+}
+.player-property-progress-bar {
+    margin-left: 16px;
+    margin-right: 4px;
+}
+.player-int-field {
+    min-width: 48px;
+}
+.gun-field {
+    justify-content: space-between;
+    margin-left: 16px;
+    margin-right: 4px;
+    margin-top: 6px;
+    flex-grow: .6;
+}</pre>
+      </div><div class="subsection"><p>Here's an example of a custom inspector using IMGUI and multi-selection:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;
+using System.Collections;<br /><br />// Custom <a href="Editor.html">Editor</a> using SerializedProperties.
+// Automatic handling of multi-object editing, undo, and Prefab overrides.
+[<a href="CustomEditor.html">CustomEditor</a>(typeof(MyPlayer))]
+[<a href="CanEditMultipleObjects.html">CanEditMultipleObjects</a>]
+public class MyPlayerEditor : <a href="Editor.html">Editor</a>
+{
+    <a href="SerializedProperty.html">SerializedProperty</a> damageProp;
+    <a href="SerializedProperty.html">SerializedProperty</a> armorProp;
+    <a href="SerializedProperty.html">SerializedProperty</a> gunProp;<br /><br />    void OnEnable()
+    {
+        // Setup the SerializedProperties.
+        damageProp = serializedObject.FindProperty ("damage");
+        armorProp = serializedObject.FindProperty ("armor");
+        gunProp = serializedObject.FindProperty ("gun");
+    }<br /><br />    public override void OnInspectorGUI()
+    {
+        // <a href="Experimental.PlayerLoop.Update.html">Update</a> the serializedProperty - always do this in the beginning of OnInspectorGUI.
+        serializedObject.Update ();<br /><br />        // Show the custom <a href="GUI.html">GUI</a> controls.
+        <a href="EditorGUILayout.IntSlider.html">EditorGUILayout.IntSlider</a> (damageProp, 0, 100, new <a href="GUIContent.html">GUIContent</a> ("Damage"));<br /><br />        // Only show the damage progress bar if all the objects have the same damage value:
+        if (!damageProp.hasMultipleDifferentValues)
+            <a href="UIElements.ProgressBar.html">ProgressBar</a> (damageProp.intValue / 100.0f, "Damage");<br /><br />        <a href="EditorGUILayout.IntSlider.html">EditorGUILayout.IntSlider</a> (armorProp, 0, 100, new <a href="GUIContent.html">GUIContent</a> ("Armor"));<br /><br />        // Only show the armor progress bar if all the objects have the same armor value:
+        if (!armorProp.hasMultipleDifferentValues)
+            <a href="UIElements.ProgressBar.html">ProgressBar</a> (armorProp.intValue / 100.0f, "Armor");<br /><br />        <a href="EditorGUILayout.PropertyField.html">EditorGUILayout.PropertyField</a> (gunProp, new <a href="GUIContent.html">GUIContent</a> ("Gun Object"));<br /><br />        // Apply changes to the serializedProperty - always do this in the end of OnInspectorGUI.
+        serializedObject.ApplyModifiedProperties ();
+    }<br /><br />    // Custom <a href="GUILayout.html">GUILayout</a> progress bar.
+    void <a href="UIElements.ProgressBar.html">ProgressBar</a> (float value, string label)
+    {
+        // Get a rect for the progress bar using the same margins as a textfield:
+        <a href="Rect.html">Rect</a> rect = <a href="GUILayoutUtility.GetRect.html">GUILayoutUtility.GetRect</a> (18, 18, "<a href="UIElements.TextField.html">TextField</a>");
+        <a href="EditorGUI.ProgressBar.html">EditorGUI.ProgressBar</a> (rect, value, label);
+        <a href="EditorGUILayout.Space.html">EditorGUILayout.Space</a> ();
+    }
+}
+</pre>
+      </div><div class="subsection"><p>If automatic handling of multi-object editing, undo,
+and Prefab overrides is not needed, the script variables can be
+modified directly by the editor without using the <a href="SerializedObject.html">SerializedObject</a>
+and <a href="SerializedProperty.html">SerializedProperty</a> system, as in the IMGUI example below.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;
+using System.Collections;<br /><br />// Example script with properties.
+public class MyPlayerAlternative : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public int damage;
+    public int armor;
+    public <a href="GameObject.html">GameObject</a> gun;<br /><br />    // ...other code...
+}<br /><br />// Custom <a href="Editor.html">Editor</a> the "old" way by modifying the script variables directly.
+// No handling of multi-object editing, undo, and Prefab overrides!
+[<a href="CustomEditor.html">CustomEditor</a> (typeof(MyPlayerAlternative))]
+public class MyPlayerEditorAlternative : <a href="Editor.html">Editor</a>
+{<br /><br />    public override void OnInspectorGUI()
+    {
+        MyPlayerAlternative mp = (MyPlayerAlternative)target;<br /><br />        mp.damage = <a href="EditorGUILayout.IntSlider.html">EditorGUILayout.IntSlider</a> ("Damage", mp.damage, 0, 100);
+        <a href="UIElements.ProgressBar.html">ProgressBar</a> (mp.damage / 100.0f, "Damage");<br /><br />        mp.armor = <a href="EditorGUILayout.IntSlider.html">EditorGUILayout.IntSlider</a> ("Armor", mp.armor, 0, 100);
+        <a href="UIElements.ProgressBar.html">ProgressBar</a> (mp.armor / 100.0f, "Armor");<br /><br />        bool allowSceneObjects = !<a href="EditorUtility.IsPersistent.html">EditorUtility.IsPersistent</a> (target);
+        mp.gun = (<a href="GameObject.html">GameObject</a>)<a href="EditorGUILayout.ObjectField.html">EditorGUILayout.ObjectField</a> ("Gun Object", mp.gun, typeof(<a href="GameObject.html">GameObject</a>), allowSceneObjects);
+    }<br /><br />    // Custom <a href="GUILayout.html">GUILayout</a> progress bar.
+    void <a href="UIElements.ProgressBar.html">ProgressBar</a> (float value, string label)
+    {
+        // Get a rect for the progress bar using the same margins as a textfield:
+        <a href="Rect.html">Rect</a> rect = <a href="GUILayoutUtility.GetRect.html">GUILayoutUtility.GetRect</a> (18, 18, "<a href="UIElements.TextField.html">TextField</a>");
+        <a href="EditorGUI.ProgressBar.html">EditorGUI.ProgressBar</a> (rect, value, label);
+        <a href="EditorGUILayout.Space.html">EditorGUILayout.Space</a> ();
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Editor-serializedObject.html">serializedObject</a></td><td class="desc"></td><td class="desc1">A SerializedObject representing the object or objects being inspected.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Editor-target.html">target</a></td><td class="desc"></td><td class="desc1">The object being inspected.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Editor-targets.html">targets</a></td><td class="desc"></td><td class="desc1">An array of all the object being inspected.</td></tr>
+    </table></div><div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Editor.CreateInspectorGUI.html">CreateInspectorGUI</a></td><td class="desc"></td><td class="desc1">Implement this method to make a custom UIElements inspector.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Editor.DrawDefaultInspector.html">DrawDefaultInspector</a></td><td class="desc"></td><td class="desc1">Draws the built-in inspector.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Editor.DrawHeader.html">DrawHeader</a></td><td class="desc"></td><td class="desc1">Call this function to draw the header of the editor.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Editor.DrawPreview.html">DrawPreview</a></td><td class="desc"></td><td class="desc1">The first entry point for Preview Drawing.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Editor.GetInfoString.html">GetInfoString</a></td><td class="desc"></td><td class="desc1">Implement this method to show asset information on top of the asset preview.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Editor.GetPreviewTitle.html">GetPreviewTitle</a></td><td class="desc"></td><td class="desc1">Override this method if you want to change the label of the Preview area.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Editor.HasPreviewGUI.html">HasPreviewGUI</a></td><td class="desc"></td><td class="desc1">Override this method in subclasses if you implement OnPreviewGUI.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Editor.OnInspectorGUI.html">OnInspectorGUI</a></td><td class="desc"></td><td class="desc1">Implement this function to make a custom inspector.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Editor.OnInteractivePreviewGUI.html">OnInteractivePreviewGUI</a></td><td class="desc"></td><td class="desc1">Implement to create your own interactive custom preview. Interactive custom previews are used in the preview area of the inspector and the object selector.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Editor.OnPreviewGUI.html">OnPreviewGUI</a></td><td class="desc"></td><td class="desc1">Implement to create your own custom preview for the preview area of the inspector, the headers of the primary editor, and the object selector.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Editor.OnPreviewSettings.html">OnPreviewSettings</a></td><td class="desc"></td><td class="desc1">Override this method if you want to show custom controls in the preview header.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Editor.RenderStaticPreview.html">RenderStaticPreview</a></td><td class="desc"></td><td class="desc1">Override this method if you want to render a static preview.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Editor.Repaint.html">Repaint</a></td><td class="desc"></td><td class="desc1">Redraw any inspectors that shows this editor.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Editor.RequiresConstantRepaint.html">RequiresConstantRepaint</a></td><td class="desc"></td><td class="desc1">Checks if this editor requires constant repaints in its current state.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Editor.UseDefaultMargins.html">UseDefaultMargins</a></td><td class="desc"></td><td class="desc1">Override this method in subclasses to return false if you don't want default margins.</td></tr>
+    </table></div><div class="subsection"><h2>Protected Methods</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Editor.ShouldHideOpenButton.html">ShouldHideOpenButton</a></td><td class="desc"></td><td class="desc1">Returns the visibility setting of the "open" button in the Inspector.</td></tr>
+    </table></div><div class="subsection"><h2>Static Methods   静态方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Editor.CreateCachedEditor.html">CreateCachedEditor</a></td><td class="desc"></td><td class="desc1">On return previousEditor is an editor for targetObject or targetObjects. The function either returns if the editor is already tracking the objects, or destroys the previous editor and creates a new one.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Editor.CreateCachedEditorWithContext.html">CreateCachedEditorWithContext</a></td><td class="desc"></td><td class="desc1">Creates a cached editor using a context object.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Editor.CreateEditor.html">CreateEditor</a></td><td class="desc"></td><td class="desc1">Make a custom editor for targetObject or targetObjects.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Editor.CreateEditorWithContext.html">CreateEditorWithContext</a></td><td class="desc"></td><td class="desc1">Make a custom editor for targetObject or targetObjects with a context object.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Editor.DrawFoldoutInspector.html">DrawFoldoutInspector</a></td><td class="desc"></td><td class="desc1">Draws the inspector GUI with a foldout header for target.</td></tr>
+    </table></div><div class="subsection"><h2>Messages   消息</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Editor.OnSceneGUI.html">OnSceneGUI</a></td><td class="desc"></td><td class="desc1">Enables the Editor to handle an event in the Scene view.</td></tr>
+    </table></div><div class="subsection"><h2>Events</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Editor-finishedDefaultHeaderGUI.html">finishedDefaultHeaderGUI</a></td><td class="desc"></td><td class="desc1">An event raised while drawing the header of the Inspector window, after the default header items have been drawn.</td></tr>
+    </table></div><div class="subsection"><h2>Inherited Members   继承成员</h2>
+      
+      <div class="subsection"><h2>Properties   属性</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-hideFlags.html">hideFlags</a></td><td class="desc"></td><td class="desc1">Should the object be hidden, saved with the Scene or modifiable by the user?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-name.html">name</a></td><td class="desc"></td><td class="desc1">The name of the object.</td></tr>
+      </table></div>
+      
+      
+      
+      <div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.GetInstanceID.html">GetInstanceID</a></td><td class="desc"></td><td class="desc1">Returns the instance id of the object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.ToString.html">ToString</a></td><td class="desc"></td><td class="desc1">Returns the name of the object.</td></tr>
+      </table></div>
+      
+      <div class="subsection"><h2>Static Methods   静态方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.Destroy.html">Destroy</a></td><td class="desc"></td><td class="desc1">Removes a GameObject, component or asset.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.DestroyImmediate.html">DestroyImmediate</a></td><td class="desc"></td><td class="desc1">Destroys the object obj immediately. You are strongly recommended to use Destroy instead.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.DontDestroyOnLoad.html">DontDestroyOnLoad</a></td><td class="desc"></td><td class="desc1">Do not destroy the target Object when loading a new Scene.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectOfType.html">FindObjectOfType</a></td><td class="desc"></td><td class="desc1">Returns the first active loaded object of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectsOfType.html">FindObjectsOfType</a></td><td class="desc"></td><td class="desc1">Returns a list of all active loaded objects of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.Instantiate.html">Instantiate</a></td><td class="desc"></td><td class="desc1">Clones the object original and returns the clone.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="ScriptableObject.CreateInstance.html">CreateInstance</a></td><td class="desc"></td><td class="desc1">Creates an instance of a scriptable object.</td></tr>
+      </table></div>
+      <div class="subsection"><h2>Operators   运算符</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_Object.html">bool</a></td><td class="desc"></td><td class="desc1">Does the object exist?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_ne.html">operator !=</a></td><td class="desc"></td><td class="desc1">Compares if two objects refer to a different object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_eq.html">operator ==</a></td><td class="desc"></td><td class="desc1">Compares two object references to see if they refer to the same object.</td></tr>
+      </table></div>
+      <div class="subsection"><h2>Messages   消息</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="ScriptableObject.Awake.html">Awake</a></td><td class="desc"></td><td class="desc1">This function is called when the ScriptableObject script is started.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="ScriptableObject.OnDestroy.html">OnDestroy</a></td><td class="desc"></td><td class="desc1">This function is called when the scriptable object will be destroyed.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="ScriptableObject.OnDisable.html">OnDisable</a></td><td class="desc"></td><td class="desc1">This function is called when the scriptable object goes out of scope.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="ScriptableObject.OnEnable.html">OnEnable</a></td><td class="desc"></td><td class="desc1">This function is called when the object is loaded.</td></tr>
+      </table></div>
+      
+      
+    </div></div></div></div></body></html>

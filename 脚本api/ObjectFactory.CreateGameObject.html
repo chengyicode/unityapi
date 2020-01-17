@@ -1,0 +1,22 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ObjectFactory.CreateGameObject</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="ObjectFactory.html">ObjectFactory</a>.CreateGameObject</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="GameObject.html">GameObject</a> <span class="sig-kw">CreateGameObject</span>(string <span class="sig-kw">name</span>,
+params Type[] <span class="sig-kw">types</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="GameObject.html">GameObject</a> <span class="sig-kw">CreateGameObject</span>(<a href="SceneManagement.Scene.html">SceneManagement.Scene</a> <span class="sig-kw">scene</span>,
+<a href="HideFlags.html">HideFlags</a> <span class="sig-kw">hideFlags</span>,
+string <span class="sig-kw">name</span>,
+params Type[] <span class="sig-kw">types</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">name</td><td class="desc"></td><td class="desc1">Name of the GameObject.</td></tr><tr><td class="name lbl">types</td><td class="desc"></td><td class="desc1">The optional types to add to the GameObject when created.</td></tr><tr><td class="name lbl">scene</td><td class="desc"></td><td class="desc1">Scene where the GameObject should be created.</td></tr><tr><td class="name lbl">hideFlags</td><td class="desc"></td><td class="desc1">HideFlags to assign to the GameObject.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>GameObject</strong>
+        Returns the GameObject that was created.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Creates a new GameObject.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class CreateComponentExample
+{
+    [<a href="MenuItem.html">MenuItem</a>("ObjectFactoryExample/Create <a href="Camera.html">Camera</a> <a href="GameObject.html">GameObject</a>")]
+    public void CreateCameraEditor()
+    {
+        <a href="Selection-activeGameObject.html">Selection.activeGameObject</a> = <a href="ObjectFactory.CreateGameObject.html">ObjectFactory.CreateGameObject</a>("<a href="Camera.html">Camera</a>", typeof(<a href="Camera.html">Camera</a>));
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Vector2.Vector2</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">Vector2 Constructor</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <span class="sig-kw">Vector2</span>(float <span class="sig-kw">x</span>,
+float <span class="sig-kw">y</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Constructs a new vector with given x, y components.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//This script moves a <a href="GameObject.html">GameObject</a> to a new x position using a <a href="Vector2.html">Vector2</a>.
+//Attach this script to a <a href="GameObject.html">GameObject</a>
+//Set your x position in the Inspector<br /><br />using UnityEngine;<br /><br />public class Examples : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="Vector2.html">Vector2</a> m_NewPosition;
+    //This is the new X position. Set it in the Inspector.
+    public float m_XPosition;<br /><br />    // Use this for initialization
+    void Start()
+    {
+        //Initialise the vector
+        m_NewPosition = new <a href="Vector2.html">Vector2</a>(0.0f, 0.0f);
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        //Press the space key to change the x component of the vector
+        if (<a href="Input.GetKeyDown.html">Input.GetKeyDown</a>(<a href="KeyCode.Space.html">KeyCode.Space</a>))
+        {
+            m_NewPosition.x = m_XPosition;
+        }
+        //Change the position depending on the vector
+        transform.position = m_NewPosition;
+    }
+}
+</pre>
+      </div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//This script shows how a <a href="GameObject.html">GameObject</a> can be moved to new positions using vectors.<br /><br />//Attach this script to a <a href="GameObject.html">GameObject</a>. Click on the <a href="GameObject.html">GameObject</a> and the Inspector window appears. Change the “Second Vector” in the Inspector
+//Attach a <a href="GameObject.html">GameObject</a> in the MyTransform field
+//Also create 3 UI Buttons (<strong>Create</strong>&gt;<strong>UI</strong>&gt;<strong>Button</strong>) and go to each of their Inspectors to change their OnClick method (click the <strong>+</strong> button)
+//Put your <a href="GameObject.html">GameObject</a> in each field. Use the <strong>No function</strong> dropdown to assign one <a href="UIElements.Button.html">Button</a> with the  ZeroButton method, one with PositiveButton method and the other with the GameObjectButton method.<br /><br />
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    //Use these to set the <a href="GameObject.html">GameObject</a>'s position
+    <a href="Vector2.html">Vector2</a> m_MyFirstVector;
+    //Set this Vector in the Inspector (the position you would like the <a href="GameObject.html">GameObject</a> to move to)
+    public <a href="Vector2.html">Vector2</a> m_MySecondVector;
+    <a href="Vector2.html">Vector2</a> m_MyThirdVector;<br /><br />    //You must assign to this <a href="Transform.html">Transform</a> in the Inspector (could be another <a href="GameObject.html">GameObject</a>)
+    public <a href="Transform.html">Transform</a> m_MyTransform;<br /><br />    void Start()
+    {
+        //Set the first vector to be at (0, 0, 0)
+        m_MyFirstVector = <a href="Vector2-zero.html">Vector2.zero</a>;
+        //Set the third vector to the <a href="GameObject.html">GameObject</a> you set in the Inspector's position
+        m_MyThirdVector = m_MyTransform.position;
+    }<br /><br />    public void ZeroButton()
+    {
+        //Press this <a href="UIElements.Button.html">Button</a> to move your <a href="GameObject.html">GameObject</a> to the first vector position (0, 0)
+        //Use this to move your <a href="GameObject.html">GameObject</a> to the origin (be wary of parent GameObjects)
+        transform.position = m_MyFirstVector;
+    }<br /><br />    //Press this <a href="UIElements.Button.html">Button</a> to move your <a href="GameObject.html">GameObject</a> to the second vector position (100, 200)
+    public void PositionButton()
+    {
+        //Use this to move your <a href="GameObject.html">GameObject</a> to a specified position
+        transform.position = m_MySecondVector;
+    }<br /><br />    //Press this <a href="UIElements.Button.html">Button</a> to move your <a href="GameObject.html">GameObject</a> to the third vector position (The m_MyTransform's position)
+    public void GameObjectButton()
+    {
+        //Use this to move your <a href="GameObject.html">GameObject</a> to another <a href="GameObject.html">GameObject</a>'s position
+        transform.position = m_MyThirdVector;
+    }
+}
+</pre>
+      </div><div class="subsection"><p>A script that converts degrees into radians.  The radians are used to rotate around the origin.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;<br /><br />public class ExampleScene : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        float degrees = 45.0f;
+        float radians = degrees * <a href="Mathf.Deg2Rad.html">Mathf.Deg2Rad</a>;<br /><br />        <a href="Vector2.html">Vector2</a> vec2 = new <a href="Vector2.html">Vector2</a>(<a href="Mathf.Cos.html">Mathf.Cos</a>(radians), <a href="Mathf.Sin.html">Mathf.Sin</a>(radians));
+        <a href="Debug.Log.html">Debug.Log</a>(vec2);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

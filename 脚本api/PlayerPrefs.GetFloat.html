@@ -1,0 +1,25 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: PlayerPrefs.GetFloat</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="PlayerPrefs.html">PlayerPrefs</a>.GetFloat</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static float <span class="sig-kw">GetFloat</span>(string <span class="sig-kw">key</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static float <span class="sig-kw">GetFloat</span>(string <span class="sig-kw">key</span>,
+float <span class="sig-kw">defaultValue</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Returns the value corresponding to <code class="varname">key</code> in the preference file if it exists.</p></div><div class="subsection"><p>If it doesn't exist, it will return <code class="varname">defaultValue</code>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//Use this script to fetch the <a href="PlayerPrefs.html">PlayerPrefs</a> settings and show them as text on the screen.<br /><br />using UnityEngine;
+using UnityEngine.UI;<br /><br />public class PlayerPrefsDeleteAllExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    float m_Health;<br /><br />    void Start()
+    {
+        //Fetch the PlayerPref settings
+        SetText();
+    }<br /><br />    void SetText()
+    {
+        //Fetch the health from the <a href="PlayerPrefs.html">PlayerPrefs</a> (set these Playerprefs elsewhere). If no float of this name exists, the default is 0
+        m_Health = <a href="PlayerPrefs.GetFloat.html">PlayerPrefs.GetFloat</a>("Health", 0);
+    }<br /><br />    void OnGUI()
+    {
+        //Fetch the <a href="PlayerPrefs.html">PlayerPrefs</a> settings and output them to the screen using Labels
+        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(50, 90, 200, 30), "Health : " + m_Health);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

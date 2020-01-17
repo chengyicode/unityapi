@@ -1,0 +1,31 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: LoadSceneMode</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">LoadSceneMode</h1><div class="clear"></div><p class="cl mb0 left mr10">enumeration</p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Used when loading a Scene in a player.</p></div><div class="subsection"><p>Use LoadSceneMode to choose what type of Scene loads when using <a href="SceneManagement.SceneManager.LoadScene.html">SceneManager.LoadScene</a>. The available modes are Single and Additive.<br /><br />Single mode loads a standard Unity Scene which then appears on its own in the Hierarchy window. Additive loads a Scene which appears in the Hierarchy window while another is active.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.SceneManagement;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void OnGUI()
+    {
+        //This displays a <a href="UIElements.Button.html">Button</a> on the screen at position (20,30), width 150 and height 50. The button’s text reads the last parameter. Press this for the <a href="SceneManagement.SceneManager.html">SceneManager</a> to load the <a href="SceneManagement.Scene.html">Scene</a>.
+        if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(20, 30, 150, 30), "Other <a href="SceneManagement.Scene.html">Scene</a> Single"))
+        {
+            //The <a href="SceneManagement.SceneManager.html">SceneManager</a> loads your new <a href="SceneManagement.Scene.html">Scene</a> as a single <a href="SceneManagement.Scene.html">Scene</a> (not overlapping). This is Single mode.
+            <a href="SceneManagement.SceneManager.LoadScene.html">SceneManager.LoadScene</a>("YourScene", <a href="SceneManagement.LoadSceneMode.Single.html">LoadSceneMode.Single</a>);
+        }<br /><br />        //Whereas pressing this <a href="UIElements.Button.html">Button</a> loads the Additive <a href="SceneManagement.Scene.html">Scene</a>.
+        if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(20, 60, 150, 30), "Other <a href="SceneManagement.Scene.html">Scene</a> Additive"))
+        {
+            //<a href="SceneManagement.SceneManager.html">SceneManager</a> loads your new <a href="SceneManagement.Scene.html">Scene</a> as an extra <a href="SceneManagement.Scene.html">Scene</a> (overlapping the other). This is Additive mode.
+            <a href="SceneManagement.SceneManager.LoadScene.html">SceneManager.LoadScene</a>("YourScene", <a href="SceneManagement.LoadSceneMode.Additive.html">LoadSceneMode.Additive</a>);
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SceneManagement.LoadSceneMode.Single.html">Single</a></td><td class="desc"></td><td class="desc1">Closes all current loaded Scenes
+                and loads a Scene.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SceneManagement.LoadSceneMode.Additive.html">Additive</a></td><td class="desc"></td><td class="desc1">Adds the Scene to the current loaded Scenes.</td></tr>
+    </table></div></div></div></div></body></html>

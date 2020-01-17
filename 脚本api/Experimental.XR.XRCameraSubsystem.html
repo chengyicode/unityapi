@@ -1,0 +1,39 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: XRCameraSubsystem</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Experimental</b>: this API is experimental and might be changed or removed in the future.</div><h1 class="heading inherit">XRCameraSubsystem</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine.Experimental.XR</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Inherits from:<a href="IntegratedSubsystem.html" class="cl">IntegratedSubsystem</a></p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.XRModule.html" class="cl">UnityEngine.XRModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Provides access to a device's camera.</p></div><div class="subsection"><p>
+                The XRCameraSubsystem links a Unity <a href="Camera.html">Camera</a> to a device camera for video overlay (pass-thru rendering).
+                It also allows developers to query for environmental light estimation, when available.
+            </p></div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.XR.XRCameraSubsystem.Camera.html">Camera</a></td><td class="desc"></td><td class="desc1">Set current Camera component within the app to be used by this XRCameraInstance.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.XR.XRCameraSubsystem.LastUpdatedFrame.html">LastUpdatedFrame</a></td><td class="desc"></td><td class="desc1">The frame during which the camera subsystem was last successfully updated.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.XR.XRCameraSubsystem.LightEstimationRequested.html">LightEstimationRequested</a></td><td class="desc"></td><td class="desc1">True if the XRCameraSubsystem should try to provide light estimation.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.XR.XRCameraSubsystem.Material.html">Material</a></td><td class="desc"></td><td class="desc1">Set current Material to be used while rendering to the render target.</td></tr>
+    </table></div><div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.XR.XRCameraSubsystem.GetTextures.html">GetTextures</a></td><td class="desc"></td><td class="desc1">Fills the provided texturesOut with the texture(s) associated with the XRCameraSubsystem.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.XR.XRCameraSubsystem.TryGetAverageBrightness.html">TryGetAverageBrightness</a></td><td class="desc"></td><td class="desc1">Provides brightness for the whole image as an average of all pixels' brightness.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.XR.XRCameraSubsystem.TryGetAverageColorTemperature.html">TryGetAverageColorTemperature</a></td><td class="desc"></td><td class="desc1">Provides color temperature for the whole image as an average of all pixels' color temperature.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.XR.XRCameraSubsystem.TryGetDisplayMatrix.html">TryGetDisplayMatrix</a></td><td class="desc"></td><td class="desc1">Provides display matrix defining how texture is being rendered on the screen.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.XR.XRCameraSubsystem.TryGetProjectionMatrix.html">TryGetProjectionMatrix</a></td><td class="desc"></td><td class="desc1">Provides projection matrix used by camera subsystem.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.XR.XRCameraSubsystem.TryGetShaderName.html">TryGetShaderName</a></td><td class="desc"></td><td class="desc1">Provides shader name used by Camera subsystem to render texture.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.XR.XRCameraSubsystem.TryGetTimestamp.html">TryGetTimestamp</a></td><td class="desc"></td><td class="desc1">Provides timestamp.</td></tr>
+    </table></div><div class="subsection"><h2>Events</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.XR.XRCameraSubsystem.FrameReceived.html">FrameReceived</a></td><td class="desc"></td><td class="desc1">Event raised when a new camera frame is received.</td></tr>
+    </table></div><div class="subsection"><h2>Inherited Members   继承成员</h2>
+      
+      <div class="subsection"><h2>Properties   属性</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="IntegratedSubsystem-running.html">running</a></td><td class="desc"></td><td class="desc1">Whether or not the subsystem is running.</td></tr>
+      </table></div>
+      
+      
+      
+      <div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="IntegratedSubsystem.Destroy.html">Destroy</a></td><td class="desc"></td><td class="desc1">Destroys this instance of a subsystem.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="IntegratedSubsystem.Start.html">Start</a></td><td class="desc"></td><td class="desc1">Starts an instance of a subsystem.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="IntegratedSubsystem.Stop.html">Stop</a></td><td class="desc"></td><td class="desc1">Stops an instance of a subsystem.</td></tr>
+      </table></div>
+      
+      
+      
+      
+      
+      
+    </div></div></div></div></body></html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Input.GetAxis</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Input.html">Input</a>.GetAxis</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static float <span class="sig-kw">GetAxis</span>(string <span class="sig-kw">axisName</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Returns the value of the virtual axis identified by <code class="varname">axisName</code>.</p></div><div class="subsection"><p>The value will be in the range -1...1 for keyboard and joystick input.
+If the axis is setup to be delta mouse movement, the mouse delta is multiplied by the axis
+sensitivity and the range is not -1...1.<br /><br />This is frame-rate independent; you do not need to be concerned about varying frame-rates when using this value.<br /><br />To set up your input or view the options for <code class="varname">axisName</code>, go to <strong>Edit</strong> &gt; <strong>Project Settings</strong> &gt; <strong>Input</strong>. This brings up the Input Manager. Expand <strong>Axis</strong> to see the list of your current inputs. You can use one of these as the <code class="varname">axisName</code>. To rename the input or change the positive button etc., expand one of the options, and change the name in the <strong>Name</strong> field or <strong>Positive Button</strong> field. Also, change the <strong>Type</strong> to <strong>Joystick Axis</strong>. To add a new input, add 1 to the number in the <strong>Size</strong> field.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />// A very simplistic car driving on the x-z plane.<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public float speed = 10.0f;
+    public float rotationSpeed = 100.0f;<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        // Get the horizontal and vertical axis.
+        // By default they are mapped to the arrow keys.
+        // The value is in the range -1 to 1
+        float translation = <a href="Input.GetAxis.html">Input.GetAxis</a>("Vertical") * speed;
+        float rotation = <a href="Input.GetAxis.html">Input.GetAxis</a>("Horizontal") * rotationSpeed;<br /><br />        // Make it move 10 meters per second instead of 10 meters per frame...
+        translation *= <a href="Time-deltaTime.html">Time.deltaTime</a>;
+        rotation *= <a href="Time-deltaTime.html">Time.deltaTime</a>;<br /><br />        // Move translation along the object's z-axis
+        transform.Translate(0, 0, translation);<br /><br />        // Rotate around our y-axis
+        transform.Rotate(0, rotation, 0);
+    }
+}
+</pre>
+      </div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />// Performs a mouse look.<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    float horizontalSpeed = 2.0f;
+    float verticalSpeed = 2.0f;<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        // Get the mouse delta. This is not in the range -1...1
+        float h = horizontalSpeed * <a href="Input.GetAxis.html">Input.GetAxis</a>("Mouse X");
+        float v = verticalSpeed * <a href="Input.GetAxis.html">Input.GetAxis</a>("Mouse Y");<br /><br />        transform.Rotate(v, h, 0);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>
+        <strong>Note:</strong> The Horizontal and Vertical ranges change from 0 to +1 or -1 with increase/decrease in 0.05f steps.  <a href="Input.GetAxisRaw.html">GetAxisRaw</a> has changes from 0 to 1 or -1 immediately, so with no steps.</p></div></div></div></div></body></html>

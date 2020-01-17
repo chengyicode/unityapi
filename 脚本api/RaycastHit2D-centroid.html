@@ -1,0 +1,20 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: RaycastHit2D.centroid</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="RaycastHit2D.html">RaycastHit2D</a>.centroid</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Vector2.html">Vector2</a> <span class="sig-kw">centroid</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The centroid of the primitive used to perform the cast.</p></div><div class="subsection"><p>When the <a href="RaycastHit2D.html">RaycastHit2D</a> is returned from line or ray casting, the centroid is identical to the return point property. However when using cast methods that use a geometry shape (as opposed to a simple point) such as circle or box casting, the <code class="varname">centroid</code> is the center of the respective shape when it is in contact with the returned point.<br /><br />The <code class="varname">centroid</code> is useful in determining the position the cast shape should be for it to collider at the contact point.  Note that the point takes into account any rotation specified for the shape when it was cast.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // A stationary planet
+    public <a href="GameObject.html">GameObject</a> planet;
+    // The satellite is moving around the planet
+    public <a href="GameObject.html">GameObject</a> satellite;<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        <a href="RaycastHit2D.html">RaycastHit2D</a> hit = <a href="Physics2D.CircleCast.html">Physics2D.CircleCast</a>(satellite.transform.position, 10.0f, planet.transform.position);<br /><br />        if (hit.collider != null)
+        {
+            // Draws a line from the planet to the centre of the satellite that was hit as the satellite moves
+            <a href="Debug.DrawLine.html">Debug.DrawLine</a>(planet.transform.position, hit.centroid, <a href="Color-yellow.html">Color.yellow</a>);
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="RaycastHit2D-point.html">point</a>, <a href="Physics2D.Raycast.html">Physics2D.Raycast</a>, <a href="Physics2D.Linecast.html">Physics2D.Linecast</a>, <a href="Physics2D.CircleCast.html">Physics2D.CircleCast</a> &amp; <a href="Physics2D.BoxCast.html">Physics2D.BoxCast</a>.</p></div></div></div></div></body></html>

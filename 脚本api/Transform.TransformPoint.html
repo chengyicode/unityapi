@@ -1,0 +1,34 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Transform.TransformPoint</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Transform.html">Transform</a>.TransformPoint</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Transform.html' title='Go to Transform Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Vector3.html">Vector3</a> <span class="sig-kw">TransformPoint</span>(<a href="Vector3.html">Vector3</a> <span class="sig-kw">position</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Transforms <code class="varname">position</code> from local space to world space.</p></div><div class="subsection"><p>Note that the returned position is affected by scale. Use <a href="Transform.TransformDirection.html">Transform.TransformDirection</a> if you are dealing with direction vectors.<br /><br />You can perform the opposite conversion, from world to local space using <a href="Transform.InverseTransformPoint.html">Transform.InverseTransformPoint</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="GameObject.html">GameObject</a> someObject;
+    public <a href="Vector3.html">Vector3</a> thePosition;<br /><br />    void Start()
+    {
+        // Instantiate an object to the right of the current object
+        thePosition = transform.TransformPoint(<a href="Vector3-right.html">Vector3.right</a> * 2);
+        Instantiate(someObject, thePosition, someObject.transform.rotation);
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Vector3.html">Vector3</a> <span class="sig-kw">TransformPoint</span>(float <span class="sig-kw">x</span>,
+float <span class="sig-kw">y</span>,
+float <span class="sig-kw">z</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Transforms the position <code class="varname">x</code>, <code class="varname">y</code>, <code class="varname">z</code> from local space to world space.</p></div><div class="subsection"><p>Note that the returned position is affected by scale. Use <a href="Transform.TransformDirection.html">Transform.TransformDirection</a> if you are dealing with directions.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="GameObject.html">GameObject</a> someObject;<br /><br />    void Start()
+    {
+        // Instantiate an object to the right of the current object
+        <a href="Vector3.html">Vector3</a> thePosition = transform.TransformPoint(2, 0, 0);
+        Instantiate(someObject, thePosition, someObject.transform.rotation);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

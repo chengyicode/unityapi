@@ -1,0 +1,20 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Bounds.IntersectRay</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Bounds.html">Bounds</a>.IntersectRay</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public bool <span class="sig-kw">IntersectRay</span>(<a href="Ray.html">Ray</a> <span class="sig-kw">ray</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Does <code class="varname">ray</code> intersect this bounding box?</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Function to detect if a ray (representing a beam weapon, say)
+    // makes contact with the collider's bounds.<br /><br />    <a href="Collider.html">Collider</a> myCollider;<br /><br />    void Start()
+    {
+        // Store a reference to the collider once at startup.
+        myCollider = GetComponent&lt;<a href="Collider.html">Collider</a>&gt;();
+    }<br /><br />    bool DetectHit(<a href="Ray.html">Ray</a> ray)
+    {
+        return myCollider.bounds.IntersectRay(ray);
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public bool <span class="sig-kw">IntersectRay</span>(<a href="Ray.html">Ray</a> <span class="sig-kw">ray</span>,
+out float <span class="sig-kw">distance</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Does <code class="varname">ray</code> intersect this bounding box?</p></div><div class="subsection"><p>When the function returns true, the distance to the ray's origin will be returned in the <code class="varname">distance</code> parameter.</p></div></div></div></div></body></html>

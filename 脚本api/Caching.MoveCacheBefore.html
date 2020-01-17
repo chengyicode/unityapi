@@ -1,0 +1,23 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Caching.MoveCacheBefore</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Caching.html">Caching</a>.MoveCacheBefore</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">MoveCacheBefore</span>(<a href="Cache.html">Cache</a> <span class="sig-kw">src</span>,
+<a href="Cache.html">Cache</a> <span class="sig-kw">dst</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">src</td><td class="desc"></td><td class="desc1">The Cache to move.</td></tr><tr><td class="name lbl">dst</td><td class="desc"></td><td class="desc1">The Cache which should come after the source Cache in the cache list.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Moves the source Cache before the destination Cache in the cache list.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.IO;
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void MoveCacheBeforeExample()
+    {
+        <a href="Windows.Directory.CreateDirectory.html">Directory.CreateDirectory</a>("Cache1");
+        <a href="Windows.Directory.CreateDirectory.html">Directory.CreateDirectory</a>("Cache2");
+        <a href="Windows.Directory.CreateDirectory.html">Directory.CreateDirectory</a>("Cache3");<br /><br />        <a href="Cache.html">Cache</a> c1 = <a href="Caching.AddCache.html">Caching.AddCache</a>("Cache1"); //Placed in cache list at position 1
+        <a href="Cache.html">Cache</a> c2 = <a href="Caching.AddCache.html">Caching.AddCache</a>("Cache2"); //Placed in cache list at position 2
+        <a href="Cache.html">Cache</a> c3 = <a href="Caching.AddCache.html">Caching.AddCache</a>("Cache3"); //Placed in cache list at position 3<br /><br />        <a href="Caching.MoveCacheBefore.html">Caching.MoveCacheBefore</a>(c2, c1);<br /><br />        //Now the <a href="Cache.html">Cache</a> list looks like:
+        //<a href="UIElements.Position.html">Position</a> 0: Default <a href="Cache.html">Cache</a>
+        //<a href="UIElements.Position.html">Position</a> 1: Cache2
+        //<a href="UIElements.Position.html">Position</a> 2: Cache1
+        //<a href="UIElements.Position.html">Position</a> 3: Cache3
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

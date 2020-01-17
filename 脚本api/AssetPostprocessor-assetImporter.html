@@ -1,0 +1,19 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AssetPostprocessor.assetImporter</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="AssetPostprocessor.html">AssetPostprocessor</a>.assetImporter</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="AssetImporter.html">AssetImporter</a> <span class="sig-kw">assetImporter</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Reference to the asset importer.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />// Set the scale of all the imported models to  "globalScaleModifier"
+// and dont generate materials for the imported objects<br /><br />public class CustomImportSettings : <a href="AssetPostprocessor.html">AssetPostprocessor</a>
+{
+    float globalScaleModifier  = 0.0028f;<br /><br />    void OnPreprocessModel()
+    {
+        <a href="ModelImporter.html">ModelImporter</a> importer = (<a href="ModelImporter.html">ModelImporter</a>)assetImporter;
+        importer.globalScale = globalScaleModifier;
+        importer.importMaterials = false;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

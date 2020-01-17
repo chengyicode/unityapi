@@ -1,0 +1,25 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: MaterialPropertyBlock.Clear</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="MaterialPropertyBlock.html">MaterialPropertyBlock</a>.Clear</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">Clear</span>();
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Clear material property values.</p></div><div class="subsection"><p>
+        <a href="Graphics.DrawMesh.html">Graphics.DrawMesh</a> copies the passed property block, so the most efficient way of using it is
+to create one block and reuse it for all DrawMesh calls. Use <a href="MaterialPropertyBlock.Clear.html">Clear</a> to clear block's values,
+and <a href="MaterialPropertyBlock.SetFloat.html">SetFloat</a>, <a href="MaterialPropertyBlock.SetVector.html">SetVector</a>, <a href="MaterialPropertyBlock.SetColor.html">SetColor</a>, <a href="MaterialPropertyBlock.SetMatrix.html">SetMatrix</a> to add values.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="Mesh.html">Mesh</a> aMesh;
+    <a href="Material.html">Material</a> aMaterial = new <a href="Material.html">Material</a>(<a href="Shader.Find.html">Shader.Find</a>("VertexLit"));<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        <a href="MaterialPropertyBlock.html">MaterialPropertyBlock</a> materialProperty = new <a href="MaterialPropertyBlock.html">MaterialPropertyBlock</a>();<br /><br />        // Clear any property and add a red color
+        materialProperty.Clear();
+        materialProperty.SetColor("_Color", <a href="Color-red.html">Color.red</a>);
+        <a href="Graphics.DrawMesh.html">Graphics.DrawMesh</a>(aMesh, new <a href="Vector3.html">Vector3</a>(5, 0, 0),
+            <a href="Quaternion-identity.html">Quaternion.identity</a>, aMaterial, 0, null, 0, materialProperty);<br /><br />        // Clear any property and add a green color
+        materialProperty.Clear();
+        materialProperty.SetColor("_Color", <a href="Color-green.html">Color.green</a>);
+        <a href="Graphics.DrawMesh.html">Graphics.DrawMesh</a>(aMesh, new <a href="Vector3.html">Vector3</a>(-5, 0, 0),
+            <a href="Quaternion-identity.html">Quaternion.identity</a>, aMaterial, 0, null, 0, materialProperty);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

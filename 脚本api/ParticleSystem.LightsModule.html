@@ -1,0 +1,31 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: LightsModule</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">LightsModule</h1><div class="clear"></div><p class="cl mb0 left mr10">struct in
+          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.ParticleSystemModule.html" class="cl">UnityEngine.ParticleSystemModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-ParticleSystem.html' title='Go to ParticleSystem Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Access the ParticleSystem Lights Module.</p></div><div class="subsection"><p>The Lights module allows you to attach real-time Lights to a percentage of your particles.<br /><br />The Lights Module is a simple and powerful module that allows particles to cast light onto their environment easily. Lights can inherit properties from the particles they are attached to, such as color and size. Point and Spot Lights are supported, including shadow casting and Light cookies.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Light.html">Light</a> myLight;<br /><br />    void Start()
+    {
+        <a href="ParticleSystem.html">ParticleSystem</a> ps = GetComponent&lt;<a href="ParticleSystem.html">ParticleSystem</a>&gt;();
+        var lights = ps.lights;
+        lights.enabled = true;
+        lights.ratio = 0.5f;
+        lights.light = myLight;
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="ParticleSystem.LightsModule-alphaAffectsIntensity.html">alphaAffectsIntensity</a></td><td class="desc"></td><td class="desc1">Toggle whether the particle alpha gets multiplied by the light intensity, when computing the final light intensity.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ParticleSystem.LightsModule-enabled.html">enabled</a></td><td class="desc"></td><td class="desc1">Enable or disable the Lights module.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ParticleSystem.LightsModule-intensity.html">intensity</a></td><td class="desc"></td><td class="desc1">Define a curve to apply custom intensity scaling to particle lights.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ParticleSystem.LightsModule-intensityMultiplier.html">intensityMultiplier</a></td><td class="desc"></td><td class="desc1">Intensity multiplier.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ParticleSystem.LightsModule-light.html">light</a></td><td class="desc"></td><td class="desc1">Select what Light Prefab you want to base your particle lights on.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ParticleSystem.LightsModule-maxLights.html">maxLights</a></td><td class="desc"></td><td class="desc1">Set a limit on how many lights this Module can create.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ParticleSystem.LightsModule-range.html">range</a></td><td class="desc"></td><td class="desc1">Define a curve to apply custom range scaling to particle lights.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ParticleSystem.LightsModule-rangeMultiplier.html">rangeMultiplier</a></td><td class="desc"></td><td class="desc1">Range multiplier.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ParticleSystem.LightsModule-ratio.html">ratio</a></td><td class="desc"></td><td class="desc1">Choose what proportion of particles will receive a dynamic light.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ParticleSystem.LightsModule-sizeAffectsRange.html">sizeAffectsRange</a></td><td class="desc"></td><td class="desc1">Toggle where the particle size will be multiplied by the light range, to determine the final light range.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ParticleSystem.LightsModule-useParticleColor.html">useParticleColor</a></td><td class="desc"></td><td class="desc1">Toggle whether the particle lights will have their color multiplied by the particle color.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ParticleSystem.LightsModule-useRandomDistribution.html">useRandomDistribution</a></td><td class="desc"></td><td class="desc1">Randomly assign lights to new particles based on ParticleSystem.LightsModule.ratio.</td></tr>
+    </table></div></div></div></div></body></html>

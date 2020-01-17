@@ -1,0 +1,120 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Resources.FindObjectsOfTypeAll</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Resources.html">Resources</a>.FindObjectsOfTypeAll</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static Object[] <span class="sig-kw">FindObjectsOfTypeAll</span>(Type <span class="sig-kw">type</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">type</td><td class="desc"></td><td class="desc1">Type of the class to match while searching.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>Object[]</strong>
+        An array of objects whose class is <em>type</em> or is derived from <em>type</em>.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Returns a list of all objects of Type <code class="varname">type</code>.</p></div><div class="subsection"><p>This function can return any type of Unity object that is loaded, including game objects, prefabs, materials, meshes, textures, etc. It will also list internal objects. Therefore be careful with the way you handle the returned objects.
+Contrary to <a href="Object.FindObjectsOfType.html">Object.FindObjectsOfType</a> this function will also list disabled objects.<br /><br /><strong>Note:</strong> This function is very slow and is not recommended to be used every frame.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // This script displays the number of allocated Unity objects by type.
+    // This is useful for finding leaks. Knowing the type of object
+    // (mesh, texture, sound clip, game object) that is getting leaked is
+    // the first step. You could then print the names of all leaked assets of that type.<br /><br />    void Start()
+    {
+        print("All " + <a href="Resources.FindObjectsOfTypeAll.html">Resources.FindObjectsOfTypeAll</a>(typeof(UnityEngine.Object)).<a href="UIElements.Length.html">Length</a>);
+        print("Textures " + <a href="Resources.FindObjectsOfTypeAll.html">Resources.FindObjectsOfTypeAll</a>(typeof(<a href="Texture.html">Texture</a>)).<a href="UIElements.Length.html">Length</a>);
+        print("AudioClips " + <a href="Resources.FindObjectsOfTypeAll.html">Resources.FindObjectsOfTypeAll</a>(typeof(<a href="AudioClip.html">AudioClip</a>)).<a href="UIElements.Length.html">Length</a>);
+        print("Meshes " + <a href="Resources.FindObjectsOfTypeAll.html">Resources.FindObjectsOfTypeAll</a>(typeof(<a href="Mesh.html">Mesh</a>)).<a href="UIElements.Length.html">Length</a>);
+        print("Materials " + <a href="Resources.FindObjectsOfTypeAll.html">Resources.FindObjectsOfTypeAll</a>(typeof(<a href="Material.html">Material</a>)).<a href="UIElements.Length.html">Length</a>);
+        print("GameObjects " + <a href="Resources.FindObjectsOfTypeAll.html">Resources.FindObjectsOfTypeAll</a>(typeof(<a href="GameObject.html">GameObject</a>)).<a href="UIElements.Length.html">Length</a>);
+        print("Components " + <a href="Resources.FindObjectsOfTypeAll.html">Resources.FindObjectsOfTypeAll</a>(typeof(<a href="Component.html">Component</a>)).<a href="UIElements.Length.html">Length</a>);
+    }
+}
+</pre>
+      </div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;
+using System.Collections.Generic;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // This script finds all the objects in <a href="SceneManagement.Scene.html">Scene</a>, excluding Prefabs:<br /><br />    List&lt;<a href="GameObject.html">GameObject</a>&gt; GetAllObjectsInScene()
+    {
+        List&lt;<a href="GameObject.html">GameObject</a>&gt; objectsInScene = new List&lt;<a href="GameObject.html">GameObject</a>&gt;();<br /><br />        foreach (<a href="GameObject.html">GameObject</a> go in <a href="Resources.FindObjectsOfTypeAll.html">Resources.FindObjectsOfTypeAll</a>(typeof(<a href="GameObject.html">GameObject</a>)) as <a href="GameObject.html">GameObject</a>[])
+        {
+            if (go.hideFlags == <a href="HideFlags.NotEditable.html">HideFlags.NotEditable</a> || go.hideFlags == <a href="HideFlags.HideAndDontSave.html">HideFlags.HideAndDontSave</a>)
+                continue;<br /><br />            if (!<a href="EditorUtility.IsPersistent.html">EditorUtility.IsPersistent</a>(go.transform.root.gameObject))
+                continue;<br /><br />            objectsInScene.Add(go);
+        }<br /><br />        return objectsInScene;
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static T[] <span class="sig-kw">FindObjectsOfTypeAll</span>();
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Returns a list of all objects of Type <code class="varname">T</code>.</p></div><div class="subsection"><p>This function can return any type of Unity object that is loaded, including game objects, prefabs, materials, meshes, textures, etc. It will also list internal stuff, therefore please be <em>extra</em> careful the way you handle the returned objects.
+Contrary to <a href="Object.FindObjectsOfType.html">Object.FindObjectsOfType</a> this function will also list disabled objects.<br /><br />Please note that this function is very slow and is not recommended to be used every frame.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;
+using System.Collections.Generic;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // This script displays the number of allocated Unity objects by type.
+    // This is useful for finding leaks. Knowing the type of object
+    // (mesh, texture, sound clip, game object) that is getting leaked is
+    // the first step. You could then print the names  of all leaked assets of that type.<br /><br />    void Start()
+    {
+        print("All " + <a href="Resources.FindObjectsOfTypeAll.html">Resources.FindObjectsOfTypeAll</a>&lt;UnityEngine.Object&gt;().<a href="UIElements.Length.html">Length</a>);
+        print("Textures " + <a href="Resources.FindObjectsOfTypeAll.html">Resources.FindObjectsOfTypeAll</a>&lt;<a href="Texture.html">Texture</a>&gt;().<a href="UIElements.Length.html">Length</a>);
+        print("AudioClips " + <a href="Resources.FindObjectsOfTypeAll.html">Resources.FindObjectsOfTypeAll</a>&lt;<a href="AudioClip.html">AudioClip</a>&gt;().<a href="UIElements.Length.html">Length</a>);
+        print("Meshes " + <a href="Resources.FindObjectsOfTypeAll.html">Resources.FindObjectsOfTypeAll</a>&lt;<a href="Mesh.html">Mesh</a>&gt;().<a href="UIElements.Length.html">Length</a>);
+        print("Materials " + <a href="Resources.FindObjectsOfTypeAll.html">Resources.FindObjectsOfTypeAll</a>&lt;<a href="Material.html">Material</a>&gt;().<a href="UIElements.Length.html">Length</a>);
+        print("GameObjects " + <a href="Resources.FindObjectsOfTypeAll.html">Resources.FindObjectsOfTypeAll</a>&lt;<a href="GameObject.html">GameObject</a>&gt;().<a href="UIElements.Length.html">Length</a>);
+        print("Components " + <a href="Resources.FindObjectsOfTypeAll.html">Resources.FindObjectsOfTypeAll</a>&lt;<a href="Component.html">Component</a>&gt;().<a href="UIElements.Length.html">Length</a>);
+    }
+}
+</pre>
+      </div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;
+using System.Collections.Generic;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // This script finds all the objects in <a href="SceneManagement.Scene.html">Scene</a>, excluding Prefabs:<br /><br />    List&lt;<a href="GameObject.html">GameObject</a>&gt; GetAllObjectsInScene()
+    {
+        List&lt;<a href="GameObject.html">GameObject</a>&gt; objectsInScene = new List&lt;<a href="GameObject.html">GameObject</a>&gt;();<br /><br />        foreach (<a href="GameObject.html">GameObject</a> go in <a href="Resources.FindObjectsOfTypeAll.html">Resources.FindObjectsOfTypeAll</a>(typeof(<a href="GameObject.html">GameObject</a>)) as <a href="GameObject.html">GameObject</a>[])
+        {
+            if (go.hideFlags == <a href="HideFlags.NotEditable.html">HideFlags.NotEditable</a> || go.hideFlags == <a href="HideFlags.HideAndDontSave.html">HideFlags.HideAndDontSave</a>)
+                continue;<br /><br />            if (!<a href="EditorUtility.IsPersistent.html">EditorUtility.IsPersistent</a>(go.transform.root.gameObject))
+                continue;<br /><br />            objectsInScene.Add(go);
+        }<br /><br />        return objectsInScene;
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Display the stored GameObject names:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;
+using System.Collections.Generic;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Find all of the GameObjects in the <a href="Resources.html">Resources</a> folder
+    // Add a <a href="GameObject.html">GameObject</a> called "Player" so at least 1 <a href="GameObject.html">GameObject</a> will be stored.
+    // However, there are nearly twenty GameObjects.<br /><br />    void Start()
+    {
+        string s = "";
+        <a href="GameObject.html">GameObject</a>[] gameObjects;
+        int count = 0;<br /><br />        <a href="GameObject.html">GameObject</a> player = new <a href="GameObject.html">GameObject</a>("Player");
+        gameObjects = <a href="Resources.FindObjectsOfTypeAll.html">Resources.FindObjectsOfTypeAll</a>&lt;<a href="GameObject.html">GameObject</a>&gt;();<br /><br />        foreach (<a href="GameObject.html">GameObject</a> go in gameObjects)
+        {
+            s = s + go.name;<br /><br />            if ((count == 4))
+            {
+                s = s + "\n";
+                count = 0;
+            }
+            else
+            {
+                s = s + ' ';
+                count++;
+            }
+        }<br /><br />        <a href="Debug.Log.html">Debug.Log</a>(s);<br /><br />        // Prints:
+        //Player SceneLight SceneLight SceneLight SceneCamera
+        //<a href="GameObject.html">GameObject</a> InternalIdentityTransform torus cube cylinder
+        //sphere PreviewMaterials Cylinder HandlesGO Cone
+        //Cube Sphere Directional <a href="Light.html">Light</a> Main <a href="Camera.html">Camera</a>
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Collision.rigidbody</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Collision.html">Collision</a>.rigidbody</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Rigidbody.html">Rigidbody</a> <span class="sig-kw">rigidbody</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The <a href="Rigidbody.html">Rigidbody</a> we hit (Read Only). This is <code class="varname">null</code> if the object we hit is a collider with no rigidbody attached.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Make all rigidbodies we touch fly upwards
+    void OnCollisionStay(<a href="Collision.html">Collision</a> collision)
+    {
+        // Check if the collider we hit has a rigidbody
+        // Then apply the force
+        if (collision.rigidbody)
+        {
+            collision.rigidbody.AddForce(<a href="Vector3-up.html">Vector3.up</a> * 15);
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

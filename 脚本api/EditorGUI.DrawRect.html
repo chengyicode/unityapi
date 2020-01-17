@@ -1,0 +1,24 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorGUI.DrawRect</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorGUI.html">EditorGUI</a>.DrawRect</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">DrawRect</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">rect</span>,
+<a href="Color.html">Color</a> <span class="sig-kw">color</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">rect</td><td class="desc"></td><td class="desc1">The position and size of the rectangle to draw.</td></tr><tr><td class="name lbl">color</td><td class="desc"></td><td class="desc1">The color of the rectange.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Draws a filled rectangle of color at the specified position and size within the current editor window.</p></div><div class="subsection"><p>Use this to give blocks of Color to areas you want to highlight in the Inspector window of a GameObject in the Editor. You can also use them to simulate statistics in the Editor, for example, an in-Editor health bar.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//First, create a script called “MyScript” and attach it to the Inspector window you would like to effect.You can create your own script name, but remember to change it in the script too.
+//Create a folder and name it “<a href="Editor.html">Editor</a>” in the Assets folder (if it doesn’t already exist). Put this script into the <a href="Editor.html">Editor</a> folder to see it work automatically.<br /><br />using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />// Uncomment the following line after replacing "MyScript" with your script name:
+// [<a href="CustomEditor.html">CustomEditor</a>(typeof(MyScript))]
+[<a href="CanEditMultipleObjects.html">CanEditMultipleObjects</a>]
+public class EditorGUIDrawRectExample : <a href="Editor.html">Editor</a>
+{
+    //This is the value of the <a href="UIElements.Slider.html">Slider</a>
+    float m_Value;<br /><br />    public override void OnInspectorGUI()
+    {
+        //This is the <a href="UIElements.Label.html">Label</a> for the <a href="UIElements.Slider.html">Slider</a>
+        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(0, 300, 100, 30), "Rectangle Width");
+        //This is the <a href="UIElements.Slider.html">Slider</a> that changes the size of the Rectangle drawn
+        m_Value = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(100, 300, 100, 30), m_Value, 1.0f, 250.0f);<br /><br />        //The rectangle is drawn in the <a href="Editor.html">Editor</a> (when MyScript is attached) with the width depending on the value of the <a href="UIElements.Slider.html">Slider</a>
+        <a href="EditorGUI.DrawRect.html">EditorGUI.DrawRect</a>(new <a href="Rect.html">Rect</a>(50, 350, m_Value, 70), <a href="Color-green.html">Color.green</a>);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

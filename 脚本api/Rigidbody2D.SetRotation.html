@@ -1,0 +1,36 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Rigidbody2D.SetRotation</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Rigidbody2D.html">Rigidbody2D</a>.SetRotation</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Rigidbody2D.html' title='Go to Rigidbody2D Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">SetRotation</span>(float <span class="sig-kw">angle</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">angle</td><td class="desc"></td><td class="desc1">The rotation of the Rigidbody (in degrees).</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Sets the rotation of the <a href="Rigidbody2D.html">Rigidbody2D</a> to <code class="varname">angle</code> (given in degrees).</p></div><div class="subsection"><p>See Also: <a href="Rigidbody2D-rotation.html">Rigidbody2D.rotation</a> and <a href="Rigidbody2D.MoveRotation.html">Rigidbody2D.MoveRotation</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />// Rotate rigidBody2D every frame.
+public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Rigidbody2D.html">Rigidbody2D</a> rigidBody2D;
+    public float rotation = 0.0f;<br /><br />    void Start()
+    {
+        rigidBody2D = GetComponent&lt;<a href="Rigidbody2D.html">Rigidbody2D</a>&gt;();
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        rigidBody2D.SetRotation(rotation);<br /><br />        rotation += 1.0f;
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">SetRotation</span>(<a href="Quaternion.html">Quaternion</a> <span class="sig-kw">rotation</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">rotation</td><td class="desc"></td><td class="desc1">Full 3D rotation used to extract only the z-axis rotation.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Sets the rotation of the <a href="Rigidbody2D.html">Rigidbody2D</a> to the z-axis rotation extracted from the full 3D <code class="varname">rotation</code>.</p></div><div class="subsection"><p>The z-axis rotation is extracted from the given <a href="Quaternion.html">Quaternion</a> <code class="varname">rotation</code> and used as the rotation for <a href="Rigidbody2D.html">Rigidbody2D</a>. It is important to understand that the full 3D rotation isn't used because the <a href="Rigidbody2D.html">Rigidbody2D</a> only has a single degree of rotational freedom around the z-axis.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />// Rotate rigidBody2D every frame.
+public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Rigidbody2D.html">Rigidbody2D</a> rigidBody2D;
+    public float rotation = 0.0f;<br /><br />    void Start()
+    {
+        rigidBody2D = GetComponent&lt;<a href="Rigidbody2D.html">Rigidbody2D</a>&gt;();
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        var quaternionRotation = <a href="Quaternion.Euler.html">Quaternion.Euler</a>(0f, 0f, rotation);
+        rigidBody2D.SetRotation(rotation);<br /><br />        rotation += 1.0f;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

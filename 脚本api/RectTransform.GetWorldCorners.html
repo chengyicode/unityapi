@@ -1,0 +1,29 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: RectTransform.GetWorldCorners</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="RectTransform.html">RectTransform</a>.GetWorldCorners</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-RectTransform.html' title='Go to RectTransform Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">GetWorldCorners</span>(Vector3[] <span class="sig-kw">fourCornersArray</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">fourCornersArray</td><td class="desc"></td><td class="desc1">The array that corners are filled into.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Get the corners of the calculated rectangle in world space.</p></div><div class="subsection"><p>Each corner provides its world space value.  The returned array of
+                    4 vertices is clockwise.  It starts bottom left and rotates to top left,
+                    then top right, and finally bottom right.  Note that bottom left, for
+                    example, is an (x, y, z) vector with x being left and y being bottom.<br /><br /><strong>Note</strong>: If the <a href="RectTransform.html">RectTransform</a> is rotated in Z then the dimensions of the <a href="RectTransform.GetWorldCorners.html">GetWorldCorners</a>
+will be changed.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />// GetWorldCorners():
+//  Access the <a href="RectTransform.html">RectTransform</a> and read the vertices
+//  that define the location and size of the
+//  object.<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="RectTransform.html">RectTransform</a> rt;<br /><br />    void Start()
+    {
+        rt = GetComponent&lt;<a href="RectTransform.html">RectTransform</a>&gt;();
+        DisplayWorldCorners();
+    }<br /><br />    void DisplayWorldCorners()
+    {
+        <a href="Vector3.html">Vector3</a>[] v = new <a href="Vector3.html">Vector3</a>[4];
+        rt.GetWorldCorners(v);<br /><br />        <a href="Debug.Log.html">Debug.Log</a>("World Corners");
+        for (var i = 0; i &lt; 4; i++)
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("World Corner " + i + " : " + v[i]);
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="RectTransform.GetLocalCorners.html">GetLocalCorners</a>.</p></div></div></div></div></body></html>

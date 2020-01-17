@@ -1,0 +1,19 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: MonoBehaviour.OnParticleSystemStopped()</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="MonoBehaviour.html">MonoBehaviour</a>.OnParticleSystemStopped()</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>OnParticleSystemStopped is called when all particles in the system have died, and no new particles will be born. New particles cease to be created either after Stop is called, or when the duration property of a non-looping system has been exceeded.</p></div><div class="subsection"><p>This can be used to notify a script of when a Particle System has finished.
+In order to receive the callback, you must set the <a href="ParticleSystem.MainModule-stopAction.html">ParticleSystem.MainModule.stopAction</a> property to Callback.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;<br /><br />public class StoppedScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        var main = GetComponent&lt;<a href="ParticleSystem.html">ParticleSystem</a>&gt;().main;
+        main.stopAction = <a href="ParticleSystemStopAction.Callback.html">ParticleSystemStopAction.Callback</a>;
+    }<br /><br />    void OnParticleSystemStopped()
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("System has stopped!");
+    }
+}
+</pre>
+      </div><div class="subsection"><p>In order to retrieve detailed information about all the collisions caused by the <a href="ParticleSystem.html">ParticleSystem</a>, <a href="ParticlePhysicsExtensions.GetTriggerParticles.html">ParticlePhysicsExtensions.GetTriggerParticles</a> must be used to retrieve the array of <a href="ParticleSystem.Particle.html">Particle</a>.</p></div></div></div></div></body></html>

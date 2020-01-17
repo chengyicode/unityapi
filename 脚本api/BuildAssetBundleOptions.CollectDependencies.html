@@ -1,0 +1,26 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: BuildAssetBundleOptions.CollectDependencies</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Method group is Obsolete</b><br /></div><h1 class="heading inherit"><a href="BuildAssetBundleOptions.html">BuildAssetBundleOptions</a>.CollectDependencies</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Includes all dependencies.</p></div><div class="subsection"><p>This follows all references to any assets,
+game objects or components and includes them in the build.<br /><br />See Also: <a href="BuildPipeline.BuildAssetBundle.html">BuildPipeline.BuildAssetBundle</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//Create a folder (right click in the Assets folder and go to <strong>Create</strong>&gt;<strong>Folder</strong>), and name it “<a href="Editor.html">Editor</a>” if it doesn’t already exist
+//Place this script in the <a href="Editor.html">Editor</a> folder<br /><br />//This script creates a new <a href="Menu.html">Menu</a> named “Build <a href="VersionControl.Asset.html">Asset</a>” and new options within the menu named “Normal” and “Collect Dependencies”. Click these menu items to build an <a href="AssetBundle.html">AssetBundle</a> into a folder with either no extra build options, or a collect dependencies build.<br /><br />using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    //Creates a new menu (Build <a href="VersionControl.Asset.html">Asset</a> Bundles) and item (Normal) in the <a href="Editor.html">Editor</a>
+    [<a href="MenuItem.html">MenuItem</a>("Build <a href="VersionControl.Asset.html">Asset</a> Bundles/Normal")]
+    static void BuildABsNone()
+    {
+        //Create a folder to put the <a href="VersionControl.Asset.html">Asset</a> Bundle in.
+        // This puts the bundles in your custom folder (this case it's "MyAssetBuilds") within the Assets folder.
+        //Build AssetBundles with no special options
+        <a href="BuildPipeline.BuildAssetBundles.html">BuildPipeline.BuildAssetBundles</a>("Assets/MyAssetBuilds", <a href="BuildAssetBundleOptions.None.html">BuildAssetBundleOptions.None</a>, <a href="BuildTarget.StandaloneOSX.html">BuildTarget.StandaloneOSX</a>);
+    }<br /><br />    //Creates a new item (Collect Dependencies) in the new Build <a href="VersionControl.Asset.html">Asset</a> Bundles menu
+    [<a href="MenuItem.html">MenuItem</a>("Build <a href="VersionControl.Asset.html">Asset</a> Bundles/Collect Dependencies ")]
+    static void BuildABsCollect()
+    {
+        //Build the AssetBundles in this mode
+        <a href="BuildPipeline.BuildAssetBundles.html">BuildPipeline.BuildAssetBundles</a>("Assets/MyAssetBuilds", BuildAssetBundleOptions.CollectDependencies, <a href="BuildTarget.StandaloneOSX.html">BuildTarget.StandaloneOSX</a>);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

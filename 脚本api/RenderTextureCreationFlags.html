@@ -1,0 +1,36 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: RenderTextureCreationFlags</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">RenderTextureCreationFlags</h1><div class="clear"></div><p class="cl mb0 left mr10">enumeration</p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Set of flags that control the state of a newly-created RenderTexture.</p></div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="RenderTextureCreationFlags.MipMap.html">MipMap</a></td><td class="desc"></td><td class="desc1">Set this flag to allocate mipmaps in the RenderTexture. See RenderTexture.useMipMap for more details.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="RenderTextureCreationFlags.AutoGenerateMips.html">AutoGenerateMips</a></td><td class="desc"></td><td class="desc1">Determines whether or not mipmaps are automatically generated when the RenderTexture is modified.
+This flag is set by default, and has no effect if the RenderTextureCreationFlags.MipMap flag is not also set.
+See RenderTexture.autoGenerateMips for more details.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="RenderTextureCreationFlags.SRGB.html">SRGB</a></td><td class="desc"></td><td class="desc1">When this flag is set, reads and writes to this texture are converted to SRGB color space. See RenderTexture.sRGB for more details.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="RenderTextureCreationFlags.EyeTexture.html">EyeTexture</a></td><td class="desc"></td><td class="desc1">Set this flag when the Texture is to be used as a VR eye texture. This flag is cleared by default. This flag is set on a RenderTextureDesc when it is returned from GetDefaultVREyeTextureDesc or other VR functions returning a RenderTextureDesc.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="RenderTextureCreationFlags.EnableRandomWrite.html">EnableRandomWrite</a></td><td class="desc"></td><td class="desc1">Set this flag to enable random access writes to the RenderTexture from shaders.
+Normally, pixel shaders only operate on pixels they are given. Compute shaders cannot write to textures without this flag. Random write enables shaders to write to arbitrary locations on a RenderTexture.  See RenderTexture.enableRandomWrite for more details, including supported platforms.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="RenderTextureCreationFlags.CreatedFromScript.html">CreatedFromScript</a></td><td class="desc"></td><td class="desc1">This flag is always set internally when a RenderTexture is created from script. It has no effect when set manually from script code.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="RenderTextureCreationFlags.AllowVerticalFlip.html">AllowVerticalFlip</a></td><td class="desc"></td><td class="desc1">Clear this flag when a RenderTexture is a VR eye texture and the device does not automatically flip the texture when being displayed. This is platform specific and
+It is set by default. This flag is only cleared when part of a RenderTextureDesc that is returned from GetDefaultVREyeTextureDesc or other VR functions that return a RenderTextureDesc. Currently, only Hololens eye textures need to clear this flag.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="RenderTextureCreationFlags.NoResolvedColorSurface.html">NoResolvedColorSurface</a></td><td class="desc"></td><td class="desc1">When this flag is set, the engine will not automatically resolve the color surface.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="RenderTextureCreationFlags.DynamicallyScalable.html">DynamicallyScalable</a></td><td class="desc"></td><td class="desc1">Set this flag to mark this RenderTexture for Dynamic Resolution should the target platform/graphics API support Dynamic Resolution. See ScalabeBufferManager for more details.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="RenderTextureCreationFlags.BindMS.html">BindMS</a></td><td class="desc"></td><td class="desc1">Setting this flag causes the RenderTexture to be bound as a multisampled texture in a shader. The flag prevents the RenderTexture from being resolved by default when RenderTexture.antiAliasing is greater than 1.</td></tr>
+    </table></div></div></div></div></body></html>

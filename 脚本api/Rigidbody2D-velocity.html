@@ -1,0 +1,46 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Rigidbody2D.velocity</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Rigidbody2D.html">Rigidbody2D</a>.velocity</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Rigidbody2D.html' title='Go to Rigidbody2D Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Vector2.html">Vector2</a> <span class="sig-kw">velocity</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Linear velocity of the Rigidbody in units per second.</p></div><div class="subsection"><p>The velocity is specified as a vector with components in the X and Y directions (there is no Z direction in 2D physics). The value is not usually set directly but rather by using <em>forces</em>. Disable drag in the Inspector to stop the gradual decay of the velocity.<br /><br />See Also: <a href="Rigidbody2D.AddForce.html">AddForce</a>, <a href="Rigidbody2D-drag.html">drag</a>, <a href="Rigidbody2D-angularVelocity.html">angularVelocity</a>, <a href="Rigidbody-velocity.html">Rigidbody.velocity</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//Create a new 2D <a href="Sprite.html">Sprite</a> <a href="GameObject.html">GameObject</a> and attach this script to it.<br /><br />//This script moves a <a href="GameObject.html">GameObject</a> up or down when you press the up or down arrow keys.
+//The velocity is set to the <a href="Vector2.html">Vector2</a>() value.  Unchanging the <a href="Vector2.html">Vector2</a>() keeps the
+//<a href="GameObject.html">GameObject</a> moving at a constant rate.<br /><br />using UnityEngine;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private <a href="Rigidbody2D.html">Rigidbody2D</a> rb;<br /><br />    private float t = 0.0f;
+    private bool moving = false;<br /><br />    void Awake()
+    {
+        rb = gameObject.AddComponent&lt;<a href="Rigidbody2D.html">Rigidbody2D</a>&gt;() as <a href="Rigidbody2D.html">Rigidbody2D</a>;
+        rb.bodyType = <a href="RigidbodyType2D.Kinematic.html">RigidbodyType2D.Kinematic</a>;
+    }<br /><br />    void Start()
+    {
+        gameObject.GetComponent&lt;<a href="SpriteRenderer.html">SpriteRenderer</a>&gt;().sprite = <a href="Resources.Load.html">Resources.Load</a>&lt;<a href="Sprite.html">Sprite</a>&gt;("image128x128");
+        gameObject.transform.Translate(0.0f, 0.0f, 0.0f);
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        //Press the Up arrow key to move the RigidBody upwards
+        if (<a href="Input.GetKey.html">Input.GetKey</a>(<a href="KeyCode.UpArrow.html">KeyCode.UpArrow</a>))
+        {
+            rb.velocity = new <a href="Vector2.html">Vector2</a>(0.0f, 2.0f);
+            moving = true;
+            t = 0.0f;
+        }<br /><br />        //Press the Down arrow key to move the RigidBody downwards
+        if (<a href="Input.GetKey.html">Input.GetKey</a>(<a href="KeyCode.DownArrow.html">KeyCode.DownArrow</a>))
+        {
+            rb.velocity = new <a href="Vector2.html">Vector2</a>(0.0f, -1.0f);
+            moving = true;
+            t = 0.0f;
+        }<br /><br />        if (moving)
+        {
+            // Record the time spent moving up or down.
+            // When this is 1sec then display info
+            t = t + <a href="Time-deltaTime.html">Time.deltaTime</a>;
+            if (t &gt; 1.0f)
+            {
+                <a href="Debug.Log.html">Debug.Log</a>(gameObject.transform.position.y + " : " + t);
+                t = 0.0f;
+            }
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

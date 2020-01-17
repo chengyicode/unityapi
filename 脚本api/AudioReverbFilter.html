@@ -1,0 +1,67 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AudioReverbFilter</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">AudioReverbFilter</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Inherits from:<a href="Behaviour.html" class="cl">Behaviour</a></p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.AudioModule.html" class="cl">UnityEngine.AudioModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-AudioReverbFilter.html' title='Go to AudioReverbFilter Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>The Audio Reverb Filter takes an Audio Clip and distorts it to create a custom reverb effect.</p></div><div class="subsection"><p>See Also: <a href="../Manual/class-AudioReverbFilter.html">Audio Reverb Filter</a> information.</p></div><div class="subsection"><h2>Properties 属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="AudioReverbFilter-decayHFRatio.html">decayHFRatio</a></td><td class="desc"></td><td class="desc1">Decay HF Ratio : High-frequency to low-frequency decay time ratio. Ranges from 0.1 to 2.0. Default is 0.5.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AudioReverbFilter-decayTime.html">decayTime</a></td><td class="desc"></td><td class="desc1">Reverberation decay time at low-frequencies in seconds. Ranges from 0.1 to 20.0. Default is 1.0.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AudioReverbFilter-density.html">density</a></td><td class="desc"></td><td class="desc1">Reverberation density (modal density) in percent. Ranges from 0.0 to 100.0. Default is 100.0.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AudioReverbFilter-diffusion.html">diffusion</a></td><td class="desc"></td><td class="desc1">Reverberation diffusion (echo density) in percent. Ranges from 0.0 to 100.0. Default is 100.0.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AudioReverbFilter-dryLevel.html">dryLevel</a></td><td class="desc"></td><td class="desc1">Mix level of dry signal in output in millibels (mB). Ranges from -10000.0 to 0.0. Default is 0.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AudioReverbFilter-hfReference.html">hfReference</a></td><td class="desc"></td><td class="desc1">Reference high frequency in hertz (Hz). Ranges from 1000.0 to 20000.0. Default is 5000.0.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AudioReverbFilter-lfReference.html">lfReference</a></td><td class="desc"></td><td class="desc1">Reference low-frequency in hertz (Hz). Ranges from 20.0 to 1000.0. Default is 250.0.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AudioReverbFilter-reflectionsDelay.html">reflectionsDelay</a></td><td class="desc"></td><td class="desc1">Late reverberation level relative to room effect in millibels (mB). Ranges from -10000.0 to 2000.0. Default is 0.0.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AudioReverbFilter-reflectionsLevel.html">reflectionsLevel</a></td><td class="desc"></td><td class="desc1">Early reflections level relative to room effect in millibels (mB). Ranges from -10000.0 to 1000.0. Default is -10000.0.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AudioReverbFilter-reverbDelay.html">reverbDelay</a></td><td class="desc"></td><td class="desc1">Late reverberation delay time relative to first reflection in seconds. Ranges from 0.0 to 0.1. Default is 0.04.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AudioReverbFilter-reverbLevel.html">reverbLevel</a></td><td class="desc"></td><td class="desc1">Late reverberation level relative to room effect in millibels (mB). Ranges from -10000.0 to 2000.0. Default is 0.0.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AudioReverbFilter-reverbPreset.html">reverbPreset</a></td><td class="desc"></td><td class="desc1">Set/Get reverb preset properties.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AudioReverbFilter-room.html">room</a></td><td class="desc"></td><td class="desc1">Room effect level at low frequencies in millibels (mB). Ranges from -10000.0 to 0.0. Default is 0.0.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AudioReverbFilter-roomHF.html">roomHF</a></td><td class="desc"></td><td class="desc1">Room effect high-frequency level re. low frequency level in millibels (mB). Ranges from -10000.0 to 0.0. Default is 0.0.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AudioReverbFilter-roomLF.html">roomLF</a></td><td class="desc"></td><td class="desc1">Room effect low-frequency level in millibels (mB). Ranges from -10000.0 to 0.0. Default is 0.0.</td></tr>
+    </table></div><div class="subsection"><h2>Inherited Members 继承成员</h2>
+      
+      <div class="subsection"><h2>Properties 属性</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Behaviour-enabled.html">enabled</a></td><td class="desc"></td><td class="desc1">Enabled Behaviours are Updated, disabled Behaviours are not.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Behaviour-isActiveAndEnabled.html">isActiveAndEnabled</a></td><td class="desc"></td><td class="desc1">Has the Behaviour had active and enabled called?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component-gameObject.html">gameObject</a></td><td class="desc"></td><td class="desc1">The game object this component is attached to. A component is always attached to a game object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component-tag.html">tag</a></td><td class="desc"></td><td class="desc1">The tag of this game object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component-transform.html">transform</a></td><td class="desc"></td><td class="desc1">The Transform attached to this GameObject.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-hideFlags.html">hideFlags</a></td><td class="desc"></td><td class="desc1">Should the object be hidden, saved with the Scene or modifiable by the user?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-name.html">name</a></td><td class="desc"></td><td class="desc1">The name of the object.</td></tr>
+      </table></div>
+      
+      
+      
+      <div class="subsection"><h2>Public Methods 公共方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.BroadcastMessage.html">BroadcastMessage</a></td><td class="desc"></td><td class="desc1">Calls the method named methodName on every MonoBehaviour in this game object or any of its children.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.CompareTag.html">CompareTag</a></td><td class="desc"></td><td class="desc1">Is this game object tagged with tag ?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponent.html">GetComponent</a></td><td class="desc"></td><td class="desc1">Returns the component of Type type if the game object has one attached, null if it doesn't.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponentInChildren.html">GetComponentInChildren</a></td><td class="desc"></td><td class="desc1">Returns the component of Type type in the GameObject or any of its children using depth first search.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponentInParent.html">GetComponentInParent</a></td><td class="desc"></td><td class="desc1">Returns the component of Type type in the GameObject or any of its parents.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponents.html">GetComponents</a></td><td class="desc"></td><td class="desc1">Returns all components of Type type in the GameObject.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponentsInChildren.html">GetComponentsInChildren</a></td><td class="desc"></td><td class="desc1">Returns all components of Type type in the GameObject or any of its children.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponentsInParent.html">GetComponentsInParent</a></td><td class="desc"></td><td class="desc1">Returns all components of Type type in the GameObject or any of its parents.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.SendMessage.html">SendMessage</a></td><td class="desc"></td><td class="desc1">Calls the method named methodName on every MonoBehaviour in this game object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.SendMessageUpwards.html">SendMessageUpwards</a></td><td class="desc"></td><td class="desc1">Calls the method named methodName on every MonoBehaviour in this game object and on every ancestor of the behaviour.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.TryGetComponent.html">TryGetComponent</a></td><td class="desc"></td><td class="desc1">Gets the component of the specified type, if it exists.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.GetInstanceID.html">GetInstanceID</a></td><td class="desc"></td><td class="desc1">Returns the instance id of the object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.ToString.html">ToString</a></td><td class="desc"></td><td class="desc1">Returns the name of the object.</td></tr>
+      </table></div>
+      
+      <div class="subsection"><h2>Static Methods 静态方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.Destroy.html">Destroy</a></td><td class="desc"></td><td class="desc1">Removes a GameObject, component or asset.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.DestroyImmediate.html">DestroyImmediate</a></td><td class="desc"></td><td class="desc1">Destroys the object obj immediately. You are strongly recommended to use Destroy instead.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.DontDestroyOnLoad.html">DontDestroyOnLoad</a></td><td class="desc"></td><td class="desc1">Do not destroy the target Object when loading a new Scene.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectOfType.html">FindObjectOfType</a></td><td class="desc"></td><td class="desc1">Returns the first active loaded object of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectsOfType.html">FindObjectsOfType</a></td><td class="desc"></td><td class="desc1">Returns a list of all active loaded objects of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.Instantiate.html">Instantiate</a></td><td class="desc"></td><td class="desc1">Clones the object original and returns the clone.</td></tr>
+      </table></div>
+      <div class="subsection"><h2>Operators   运算符</h2>
+<h2>Operators   运算符</h2>
+
+<h2>Operators   运算符</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_Object.html">bool</a></td><td class="desc"></td><td class="desc1">Does the object exist?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_ne.html">operator !=</a></td><td class="desc"></td><td class="desc1">Compares if two objects refer to a different object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_eq.html">operator ==</a></td><td class="desc"></td><td class="desc1">Compares two object references to see if they refer to the same object.</td></tr>
+      </table></div>
+      
+      
+      
+    </div></div></div></div></body></html>

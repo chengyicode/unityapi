@@ -1,0 +1,20 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AI.NavMesh.SetAreaCost</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="AI.NavMesh.html">NavMesh</a>.SetAreaCost</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">SetAreaCost</span>(int <span class="sig-kw">areaIndex</span>,
+float <span class="sig-kw">cost</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">areaIndex</td><td class="desc"></td><td class="desc1">Index of the area to set.</td></tr><tr><td class="name lbl">cost</td><td class="desc"></td><td class="desc1">New cost.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Sets the cost for finding path over geometry of the area type on all agents.</p></div><div class="subsection"><p>This will replace any custom area costs on all agents, and set the default cost for new agents that are created after calling the function. The cost must be larger than 1.0.<br /><br />You can use <a href="AI.NavMesh.GetAreaFromName.html">NavMesh.GetAreaFromName</a> to find the area index based on the name of the NavMesh area type.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// ToggleWaterCost
+using UnityEngine;
+using UnityEngine.AI;<br /><br />public class ToggleWaterCost : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        if (<a href="Input-anyKeyDown.html">Input.anyKeyDown</a>)
+        {
+            // Make water area 10x more costly to traverse.
+            <a href="AI.NavMesh.SetAreaCost.html">NavMesh.SetAreaCost</a>(<a href="AI.NavMesh.GetAreaFromName.html">NavMesh.GetAreaFromName</a>("water"), 10.0f);
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="../Manual/nav-AreasAndCosts.html">Areas and Costs</a> to learn how to use different Area types.</p></div></div></div></div></body></html>

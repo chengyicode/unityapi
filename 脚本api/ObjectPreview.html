@@ -1,0 +1,32 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ObjectPreview</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">ObjectPreview</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEditor</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEditor.html" class="cl">UnityEditor</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Base Class to derive from when creating Custom Previews.</p></div><div class="subsection"><p>You specify which type is the preview for by using the CustomPreview attribute derived from <a href="ObjectPreview.html">ObjectPreview</a>.
+Below you can see an small example that will display the name of the object being inspected.  The preview window will appear at the bottom of the Inspector window.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />[CustomPreview(typeof(<a href="GameObject.html">GameObject</a>))]
+public class MyPreview : <a href="ObjectPreview.html">ObjectPreview</a>
+{
+    public override bool HasPreviewGUI()
+    {
+        return true;
+    }<br /><br />    public override void OnPreviewGUI(<a href="Rect.html">Rect</a> r, <a href="GUIStyle.html">GUIStyle</a> background)
+    {
+        <a href="GUI.Label.html">GUI.Label</a>(r, target.name + " is being previewed");
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="ObjectPreview-target.html">target</a></td><td class="desc"></td><td class="desc1">The object currently being previewed.</td></tr>
+    </table></div><div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="ObjectPreview.DrawPreview.html">DrawPreview</a></td><td class="desc"></td><td class="desc1">This is the first entry point for Preview Drawing.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ObjectPreview.GetInfoString.html">GetInfoString</a></td><td class="desc"></td><td class="desc1">Implement this method to show object information on top of the object preview.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ObjectPreview.GetPreviewTitle.html">GetPreviewTitle</a></td><td class="desc"></td><td class="desc1">Override this method if you want to change the label of the Preview area.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ObjectPreview.HasPreviewGUI.html">HasPreviewGUI</a></td><td class="desc"></td><td class="desc1">Can this component be Previewed in its current state?</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ObjectPreview.Initialize.html">Initialize</a></td><td class="desc"></td><td class="desc1">Called when the Preview gets created with the objects being previewed.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ObjectPreview.MoveNextTarget.html">MoveNextTarget</a></td><td class="desc"></td><td class="desc1">Called to iterate through the targets, this will be used when previewing more than one target.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ObjectPreview.OnInteractivePreviewGUI.html">OnInteractivePreviewGUI</a></td><td class="desc"></td><td class="desc1">Implement to create your own interactive custom preview. Interactive custom previews are used in the preview area of the inspector and the object selector.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ObjectPreview.OnPreviewGUI.html">OnPreviewGUI</a></td><td class="desc"></td><td class="desc1">Implement to create your own custom preview for the preview area of the inspector, primary editor headers and the object selector.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ObjectPreview.OnPreviewSettings.html">OnPreviewSettings</a></td><td class="desc"></td><td class="desc1">Override this method if you want to show custom controls in the preview header.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ObjectPreview.ResetTarget.html">ResetTarget</a></td><td class="desc"></td><td class="desc1">Called to Reset the target before iterating through them.</td></tr>
+    </table></div></div></div></div></body></html>

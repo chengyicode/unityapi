@@ -1,0 +1,25 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Collider.isTrigger</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Collider.html">Collider</a>.isTrigger</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public bool <span class="sig-kw">isTrigger</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Is the collider a trigger?</p></div><div class="subsection"><p>A trigger doesn't register a collision with an incoming <a href="Rigidbody.html">Rigidbody</a>. Instead, it sends <a href="Collider.OnTriggerEnter.html">OnTriggerEnter</a>, <a href="Collider.OnTriggerExit.html">OnTriggerExit</a> and <a href="Collider.OnTriggerStay.html">OnTriggerStay</a> message
+when a rigidbody enters or exits the trigger volume.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="Collider.html">Collider</a> m_ObjectCollider;<br /><br />    void Start()
+    {
+        //Fetch the <a href="GameObject.html">GameObject</a>'s <a href="Collider.html">Collider</a> (make sure they have a <a href="Collider.html">Collider</a> component)
+        m_ObjectCollider = GetComponent&lt;<a href="Collider.html">Collider</a>&gt;();
+        //Here the <a href="GameObject.html">GameObject</a>'s <a href="Collider.html">Collider</a> is not a trigger
+        m_ObjectCollider.isTrigger = false;
+        //Output whether the <a href="Collider.html">Collider</a> is a trigger type <a href="Collider.html">Collider</a> or not
+        <a href="Debug.Log.html">Debug.Log</a>("Trigger On : " + m_ObjectCollider.isTrigger);
+    }<br /><br />    void OnMouseDown()
+    {
+        //<a href="GameObject.html">GameObject</a>'s <a href="Collider.html">Collider</a> is now a trigger <a href="Collider.html">Collider</a> when the <a href="GameObject.html">GameObject</a> is clicked. It now acts as a trigger
+        m_ObjectCollider.isTrigger = true;
+        //Output to console the <a href="GameObject.html">GameObject</a>’s trigger state
+        <a href="Debug.Log.html">Debug.Log</a>("Trigger On : " + m_ObjectCollider.isTrigger);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

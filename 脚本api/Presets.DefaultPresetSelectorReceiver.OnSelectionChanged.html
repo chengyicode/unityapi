@@ -1,0 +1,29 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Presets.DefaultPresetSelectorReceiver.OnSelectionChanged</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Presets.DefaultPresetSelectorReceiver.html">DefaultPresetSelectorReceiver</a>.OnSelectionChanged</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">OnSelectionChanged</span>(<a href="Presets.Preset.html">Presets.Preset</a> <span class="sig-kw">selection</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Applies the <a href="Presets.Preset.html">Preset</a> to each target. If <a href="Presets.Preset.html">Preset</a> is null, this method reverts the value of each target.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEditor.Presets;
+using UnityEngine;<br /><br />public class <a href="Presets.DefaultPresetSelectorReceiver.html">DefaultPresetSelectorReceiver</a> : <a href="Presets.PresetSelectorReceiver.html">PresetSelectorReceiver</a>
+{
+    Object[] m_Targets;
+    <a href="Presets.Preset.html">Preset</a>[] m_InitialValues;<br /><br />    public override void OnSelectionChanged(<a href="Presets.Preset.html">Preset</a> selection)
+    {
+        if (selection != null)
+        {
+            foreach (var target in m_Targets)
+            {
+                selection.ApplyTo(target);
+            }
+        }
+        else
+        {
+            for (int i = 0; i &lt; m_Targets.Length; i++)
+            {
+                m_InitialValues[i].ApplyTo(m_Targets[i]);
+            }
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

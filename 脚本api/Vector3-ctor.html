@@ -1,0 +1,29 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Vector3.Vector3</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">Vector3 Constructor</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <span class="sig-kw">Vector3</span>(float <span class="sig-kw">x</span>,
+float <span class="sig-kw">y</span>,
+float <span class="sig-kw">z</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Creates a new vector with given x, y, z components.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//Attach this script to a <a href="GameObject.html">GameObject</a>.
+//Attach a <a href="Rigidbody.html">Rigidbody</a> component to the <a href="GameObject.html">GameObject</a> (Click <strong>Add Component</strong> button in the Inspector window and go to <strong>Physics</strong>&lt;<strong>Rigidbody</strong>)
+//This script moves a <a href="GameObject.html">GameObject</a> upwards using a <a href="Vector3.html">Vector3</a>
+using UnityEngine;<br /><br />public class Vector3CtorExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="Vector3.html">Vector3</a> myVector;
+    <a href="Rigidbody.html">Rigidbody</a> m_Rigidbody;
+    float m_Speed = 2.0f;<br /><br />    void Start()
+    {
+        //Set the vector, which you use to move the RigidBody upwards straight away
+        myVector = new <a href="Vector3.html">Vector3</a>(0.0f, 1.0f, 0.0f);
+        //Fetch the RigidBody you attach to the <a href="GameObject.html">GameObject</a>
+        m_Rigidbody = GetComponent&lt;<a href="Rigidbody.html">Rigidbody</a>&gt;();
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        //Move the RigidBody upwards at the speed you define
+        m_Rigidbody.velocity = myVector * m_Speed;
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <span class="sig-kw">Vector3</span>(float <span class="sig-kw">x</span>,
+float <span class="sig-kw">y</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Creates a new vector with given x, y components and sets <code class="varname">z</code> to zero.</p></div></div></div></div></body></html>

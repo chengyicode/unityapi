@@ -1,0 +1,24 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Application.backgroundLoadingPriority</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Application.html">Application</a>.backgroundLoadingPriority</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="ThreadPriority.html">ThreadPriority</a> <span class="sig-kw">backgroundLoadingPriority</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Priority of background loading thread.</p></div><div class="subsection"><p>Lets you control how long it takes to load data asynchronously vs performance impact on the game while loading in the background.<br /><br />Asynchronous load functions that load objects (<a href="Resources.LoadAsync.html">Resources.LoadAsync</a>, <a href="AssetBundle.LoadAssetAsync.html">AssetBundle.LoadAssetAsync</a>, AssetBundle.LoadAllAssetAsync), scenes (<a href="SceneManagement.SceneManager.LoadSceneAsync.html">SceneManager.LoadSceneAsync</a>) do data read and deserealization on a separate background loading thread and object integration on a main thread.
+<em>Integration</em> depends on an object type and for textures, meshes means uploading data to the GPU, audio clips prepare data for playing.<br /><br />To avoid hiccups we limit <em>integration</em> time on a main thread depending on <a href="Application-backgroundLoadingPriority.html">backgroundLoadingPriority</a> value:<br />
+- <a href="ThreadPriority.Low.html">ThreadPriority.Low</a> - 2ms<br />
+- <a href="ThreadPriority.BelowNormal.html">ThreadPriority.BelowNormal</a> - 4ms<br />
+- <a href="ThreadPriority.Normal.html">ThreadPriority.Normal</a> - 10ms<br />
+- <a href="ThreadPriority.High.html">ThreadPriority.High</a> - 50ms<br />
+This is a maximum time all asynchronous operations can spend within a single frame on a main thread.<br /><br />Background loading thread uses <a href="Application-backgroundLoadingPriority.html">backgroundLoadingPriority</a> directly.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Example1()
+    {
+        // Load as much data as possible, as a result frame rate will drop.
+        // Good for fast loading when showing progress bars.<br /><br />        <a href="Application-backgroundLoadingPriority.html">Application.backgroundLoadingPriority</a> = <a href="ThreadPriority.High.html">ThreadPriority.High</a>;
+    }<br /><br />    void Example2()
+    {
+        // Load data very slowly and try not to affect performance of the game.
+        // Good for loading in the background while the game is playing.<br /><br />        <a href="Application-backgroundLoadingPriority.html">Application.backgroundLoadingPriority</a> = <a href="ThreadPriority.Low.html">ThreadPriority.Low</a>;
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="ThreadPriority.html">ThreadPriority</a> enum, <a href="AsyncOperation-priority.html">AsyncOperation.priority</a>.</p></div></div></div></div></body></html>

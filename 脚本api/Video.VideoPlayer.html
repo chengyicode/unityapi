@@ -1,0 +1,304 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: VideoPlayer</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">VideoPlayer</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine.Video</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Inherits from:<a href="Behaviour.html" class="cl">Behaviour</a></p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.VideoModule.html" class="cl">UnityEngine.VideoModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Plays video content onto a target.</p></div><div class="subsection"><p>Content can be either a <a href="Video.VideoClip.html">VideoClip</a> imported asset or a URL such as <code class="mono">file://</code> or <code class="mono">http://</code>. Video content will be projected onto one of the supported targets, such as camera background or <a href="RenderTexture.html">RenderTexture</a>.
+If the video content includes transparency, this transparency will be present in the target, allowing objects behind the video target to be visible. When the data <a href="Video.VideoPlayer-source.html">VideoPlayer.source</a> is set to URL, the audio and video description of what is being played will only be initialized once the <a href="Video.VideoPlayer.html">VideoPlayer</a> preparation is completed. This can be tested with <a href="Video.VideoPlayer-isPrepared.html">VideoPlayer.isPrepared</a>.<br /><br /><strong>Movie File Format Support Notes</strong><br /><br />The VideoPlayer uses native audio and video decoding libraries. It is your responsibility to use videos that match the requirements for the target platform. The <a href="VideoClipImporter.html">VideoClipImporter</a> offers an option to transcode the <a href="Video.VideoClip.html">VideoClip</a> assets into one of <a href="https://en.wikipedia.org/wiki/H.264/MPEG-4_AVC">H.264</a>, <a href="https://en.wikipedia.org/wiki/High_Efficiency_Video_Coding">H.265</a> or <a href="https://en.wikipedia.org/wiki/VP8">VP8</a> video codecs, along with a few options to experiment with, such as resolution. This uses the matching codec for audio tracks: <a href="https://en.wikipedia.org/wiki/Advanced_Audio_Coding">AAC</a> and <a href="https://en.wikipedia.org/wiki/Vorbis">Vorbis</a> respectively.<br /><br />See Also: <a href="VideoClipImporter.SetTargetSettings.html">VideoClipImporter.SetTargetSettings</a> and <a href="VideoImporterTargetSettings-enableTranscoding.html">VideoImporterTargetSettings.enableTranscoding</a>.<br /><br />You may choose to omit this transcoding and instead use videos that you already know are supported by the target systems, keeping finer control over the encoding process using an external program. Over time, the <a href="VideoClipImporter.html">VideoClipImporter</a> editor will provide guidelines and warnings to better help making proper format and encoding choices.<br /><br />For now, vendor recommendations must be followed, and are especially constrained on older mobile platforms. For example, videos you find on the web will often require inspection and manipulations before they can be used reliably in the context of a game running on multiple devices. The following are examples of recommendations and known limitations:<br /><br /><strong>*</strong> <em>Android</em>: <a href="https://developer.android.com/guide/topics/media/media-formats.html#recommendations">Supported Media Formats</a>.  See additional notes below.<br />
+<strong>*</strong> <em>Windows</em>: <a href="https://docs.microsoft.com/en-us/windows/desktop/medfound/supported-media-formats-in-media-foundation">Supported Media Formats</a>, <a href="https://docs.microsoft.com/en-us/windows/desktop/medfound/h-265---hevc-video-decoder#format-constraints">H.265 </a><br />
+<strong>*</strong> <em>iPhone 6-7</em>: <a href="http://www.apple.com/iphone/compare/">Compare iPhone Models</a> (see TV and Video)<br />
+<strong>*</strong> <em>UWP</em>: <a href="https://docs.microsoft.com/en-us/windows/uwp/audio-video-camera/supported-codecs"> Supported Codecs </a><br /><br />The best natively supported video codec for hardware acceleration is H.264, with VP8 being a software decoding solution that can be used when required. On Android, VP8 is also supported using native libraries and as such may also be hardware-assisted depending on models. H.265 is also available for hardware acceleration where the device supports it. Key values to look for in your encoding parameters:<br /><br /><strong>*</strong> <em>Video Codec</em>: H.264, H.265 or VP8.<br />
+<strong>*</strong> <em>Resolution</em>: For example: 1280 x 720.<br />
+<strong>*</strong> <em>Profile</em>: Applicable for H.264/H.265. The profile is a set of capabilities and constraints; vendors often specify this, such as "Baseline" or "Main". See <a href="https://en.wikipedia.org/wiki/H.264/MPEG-4_AVC#Profiles">H.264</a> or <a href="https://en.wikipedia.org/wiki/High_Efficiency_Video_Coding#Profiles">H.265</a>.<br />
+<strong>*</strong> <em>Profile Level</em>: Applicable for H.264/H.265. Within a given profile, the level specifies certain performance requirements such as "Baseline 3.1". See <a href="https://en.wikipedia.org/wiki/H.264/MPEG-4_AVC#Levels">H.264</a> and <a href="https://en.wikipedia.org/wiki/High_Efficiency_Video_Coding_tiers_and_levels">H.265</a> <br />
+<strong>*</strong> <em>Audio Codec</em>: Typically AAC (with mp4 videos using H.264/H.265) or Vorbis (with webm videos using VP8).<br />
+<strong>*</strong> <em>Audio Channels</em>: depends on platform.  For example, the Android recommendation is for stereo files, but many devices will accept 5.1.<br /><br /><strong>Android Notes</strong><br /><br /><strong>*</strong> Support for resolutions above 640 x 360 is not available on all devices. Runtime checks are done to verify this and failures will cause the movie to not be played.<br />
+<strong>*</strong> For Jelly Bean/MR1, movies above 1280 x 720 or with more than 2 audio tracks will not be played due to bugs in the OS libraries.<br />
+<strong>*</strong> For Lollipop and above, any resolution or number of audio channels may be attempted, but will be constrained by device capabilities.<br />
+<strong>*</strong> The Vulkan graphics API is not yet supported.<br />
+<strong>*</strong> Format compatibility issues are reported in the <code class="mono">adb logcat</code> output and are always prefixed with <code class="mono">AndroidVideoMedia</code>.<br />
+<strong>*</strong> Also pay attention to device-specific error messages located near Unity's error messages: they are not available to the engine, but often explain what the compatibility issue is.<br />
+<strong>*</strong> Playback from asset bundles is only supported for uncompressed bundles, read directly from disk.<br /><br /><strong>H.265 Compatibility Notes</strong><br /><br /><strong>OSX</strong><br />
+Requirements: <em>SDK 10.13+</em><br /><br />
+Hardware encoding: <em>6th Generation Intel Core processor</em><br />
+Software encoding: <em>All Macs</em><br />
+Hardware decoding: <em>6th Generation Intel Core processor</em><br />
+Software decoding: <em>All Macs</em><br /><br />
+<strong>Windows</strong><br />
+Requirements: <em>Windows 10 + HEVC extensions</em><br /><br />
+<a href="https://www.microsoft.com/en-ca/p/hevc-video-extensions-from-device-manufacturer/9n4wgh0z6vhq">HEVC extension (Hardware only)</a><br />
+<a href="https://www.microsoft.com/en-ca/p/hevc-video-extensions/9nmzlz57r3t7/0010">HEVC extension (Hardware + software support)</a><br /><br />
+<a href="https://docs.microsoft.com/en-us/windows/desktop/medfound/h-265---hevc-video-encoder">Encoder</a><br />
+<a href="https://docs.microsoft.com/en-us/windows/desktop/medfound/h-265---hevc-video-decoder">Decoder</a><br /><br />
+<strong>iOS</strong><br />
+Requirements: <em>SDK 11.0+</em><br /><br />
+Hardware decoding: <em>A9 Chip</em><br />
+Software decoding: <em>All iOS Devices</em><br /><br />
+<strong>tvOS</strong><br />
+Requirements: <em>SDK 11.0+</em><br /><br />
+<strong>XBox</strong><br />
+Requirements: See <a href="https://docs.microsoft.com/en-us/windows/uwp/audio-video-camera/supported-codecs">here</a><br /><br />
+<strong>UWP</strong><br />
+Requirements: <em>Windows 10</em> + See <a href="https://docs.microsoft.com/en-us/windows/uwp/audio-video-camera/supported-codecs">here</a><br /><br />
+Note: <em>Where H.265 support is indicated, it is not necessarily supported by all devices within the device family.</em><br /><br />
+<strong>Android</strong>:<br />
+Requirements: <em>5.0+</em> See <a href="&lt;a href=https://developer.android.com/guide/topics/media/media-formats">here</a><br /><br /><br /><strong>The following demonstrates a few features of the VideoPlayer: </strong></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Examples of <a href="Video.VideoPlayer.html">VideoPlayer</a> function<br /><br />using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        // Will attach a <a href="Video.VideoPlayer.html">VideoPlayer</a> to the main camera.
+        <a href="GameObject.html">GameObject</a> camera = <a href="GameObject.Find.html">GameObject.Find</a>("Main <a href="Camera.html">Camera</a>");<br /><br />        // <a href="Video.VideoPlayer.html">VideoPlayer</a> automatically targets the camera backplane when it is added
+        // to a camera object, no need to change videoPlayer.targetCamera.
+        var videoPlayer = camera.AddComponent&lt;UnityEngine.Video.VideoPlayer&gt;();<br /><br />        // Play on awake defaults to true. Set it to false to avoid the url set
+        // below to auto-start playback since we're in Start().
+        videoPlayer.playOnAwake = false;<br /><br />        // By default, VideoPlayers added to a camera will use the far plane.
+        // Let's target the near plane instead.
+        videoPlayer.renderMode = UnityEngine.Video.VideoRenderMode.CameraNearPlane;<br /><br />        // This will cause our <a href="SceneManagement.Scene.html">Scene</a> to be visible through the video being played.
+        videoPlayer.targetCameraAlpha = 0.5F;<br /><br />        // Set the video to play. URL supports local absolute or relative paths.
+        // Here, using absolute.
+        videoPlayer.url = "/Users/graham/movie.mov";<br /><br />        // Skip the first 100 frames.
+        videoPlayer.frame = 100;<br /><br />        // Restart from beginning when done.
+        videoPlayer.isLooping = true;<br /><br />        // Each time we reach the end, we slow down the playback by a factor of 10.
+        videoPlayer.loopPointReached += EndReached;<br /><br />        // Start playback. This means the <a href="Video.VideoPlayer.html">VideoPlayer</a> may have to prepare (reserve
+        // resources, pre-load a few frames, etc.). To better control the delays
+        // associated with this preparation one can use videoPlayer.Prepare() along with
+        // its prepareCompleted event.
+        videoPlayer.Play();
+    }<br /><br />    void EndReached(UnityEngine.Video.VideoPlayer vp)
+    {
+        vp.playbackSpeed = vp.playbackSpeed / 10.0F;
+    }
+}
+</pre>
+      </div><div class="subsection"><p>
+        <strong>MovieTexture Migration Notes</strong>
+        <br />
+        <br />Since the VideoPlayer is fundamentally different from the legacy movie playback solution MovieTexture, we are providing a few examples to help you migrate your project using MovieTexture to the new VideoPlayer solution.<br /><br /><strong>Playing the Movie Example</strong> :<br /><br /><em>MovieTexture</em> :</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class PlayMovieMT : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="AudioClip.html">AudioClip</a> movieAudioClip;
+    public MovieTexture movieTexture;<br /><br />    void Start()
+    {
+        var audioSource = gameObject.AddComponent&lt;<a href="AudioSource.html">AudioSource</a>&gt;();
+        audioSource.clip = movieAudioClip;
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        if (<a href="Input.GetButtonDown.html">Input.GetButtonDown</a>("Jump"))
+        {
+            var audioSource = GetComponent&lt;<a href="AudioSource.html">AudioSource</a>&gt;();
+            GetComponent&lt;<a href="Renderer.html">Renderer</a>&gt;().material.mainTexture = movieTexture;<br /><br />            if (movieTexture.isPlaying)
+            {
+                movieTexture.Pause();
+                audioSource.Pause();
+            }
+            else
+            {
+                movieTexture.Play();
+                audioSource.Play();
+            }
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>
+        <em>VideoPlayer</em> :</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class PlayMovieVP : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public UnityEngine.Video.VideoClip videoClip;<br /><br />    void Start()
+    {
+        var videoPlayer = gameObject.AddComponent&lt;UnityEngine.Video.VideoPlayer&gt;();
+        var audioSource = gameObject.AddComponent&lt;<a href="AudioSource.html">AudioSource</a>&gt;();<br /><br />        videoPlayer.playOnAwake = false;
+        videoPlayer.clip = videoClip;
+        videoPlayer.renderMode = UnityEngine.Video.VideoRenderMode.MaterialOverride;
+        videoPlayer.targetMaterialRenderer = GetComponent&lt;<a href="Renderer.html">Renderer</a>&gt;();
+        videoPlayer.targetMaterialProperty = "_MainTex";
+        videoPlayer.audioOutputMode = UnityEngine.Video.VideoAudioOutputMode.AudioSource;
+        videoPlayer.SetTargetAudioSource(0, audioSource);
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        if (<a href="Input.GetButtonDown.html">Input.GetButtonDown</a>("Jump"))
+        {
+            var vp = GetComponent&lt;UnityEngine.Video.VideoPlayer&gt;();<br /><br />            if (vp.isPlaying)
+            {
+                vp.Pause();
+            }
+            else
+            {
+                vp.Play();
+            }
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>
+        <strong>Downloading a Movie Example</strong> :<br /><br /><em>MovieTexture</em> :</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class DownloadMovieMT : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        StartCoroutine(GetMovieTexture());
+    }<br /><br />    IEnumerator GetMovieTexture()
+    {
+        using (var uwr = UnityWebRequestMultimedia.GetMovieTexture("http://myserver.com/mymovie.ogv"))
+        {
+            yield return uwr.SendWebRequest();
+            if (uwr.isNetworkError || uwr.isHttpError)
+            {
+                <a href="Debug.LogError.html">Debug.LogError</a>(uwr.error);
+                yield break;
+            }<br /><br />            MovieTexture movie = DownloadHandlerMovieTexture.GetContent(uwr);<br /><br />            GetComponent&lt;<a href="Renderer.html">Renderer</a>&gt;().material.mainTexture = movie;
+            movie.loop = true;
+            movie.Play();
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>
+        <em>VideoPlayer</em> :</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class DownloadMovieVP : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        var vp = gameObject.AddComponent&lt;UnityEngine.Video.VideoPlayer&gt;();
+        vp.url = "http://myserver.com/mymovie.mp4";<br /><br />        vp.isLooping = true;
+        vp.renderMode = UnityEngine.Video.VideoRenderMode.MaterialOverride;
+        vp.targetMaterialRenderer = GetComponent&lt;<a href="Renderer.html">Renderer</a>&gt;();
+        vp.targetMaterialProperty = "_MainTex";<br /><br />        vp.Play();
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Static Properties</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer-controlledAudioTrackMaxCount.html">controlledAudioTrackMaxCount</a></td><td class="desc"></td><td class="desc1">Maximum number of audio tracks that can be controlled. (Read Only)</td></tr>
+    </table></div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer-aspectRatio.html">aspectRatio</a></td><td class="desc"></td><td class="desc1">Defines how the video content will be stretched to fill the target area.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer-audioOutputMode.html">audioOutputMode</a></td><td class="desc"></td><td class="desc1">Destination for the audio embedded in the video.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer-audioTrackCount.html">audioTrackCount</a></td><td class="desc"></td><td class="desc1">Number of audio tracks found in the data source currently configured. (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer-canSetDirectAudioVolume.html">canSetDirectAudioVolume</a></td><td class="desc"></td><td class="desc1">Whether direct-output volume controls are supported for the current platform and video format. (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer-canSetPlaybackSpeed.html">canSetPlaybackSpeed</a></td><td class="desc"></td><td class="desc1">Whether the playback speed can be changed. (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer-canSetSkipOnDrop.html">canSetSkipOnDrop</a></td><td class="desc"></td><td class="desc1">Whether frame-skipping to maintain synchronization can be controlled. (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer-canSetTime.html">canSetTime</a></td><td class="desc"></td><td class="desc1">Whether current time can be changed using the time or timeFrames property. (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer-canSetTimeSource.html">canSetTimeSource</a></td><td class="desc"></td><td class="desc1">Whether the time source followed by the VideoPlayer can be changed. (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer-canStep.html">canStep</a></td><td class="desc"></td><td class="desc1">Returns true if the VideoPlayer can step forward through the video content. (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer-clip.html">clip</a></td><td class="desc"></td><td class="desc1">The clip being played by the VideoPlayer.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer-clockTime.html">clockTime</a></td><td class="desc"></td><td class="desc1">The clock time that the VideoPlayer follows to schedule its samples. The clock time is expressed in seconds. (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer-controlledAudioTrackCount.html">controlledAudioTrackCount</a></td><td class="desc"></td><td class="desc1">Number of audio tracks that this VideoPlayer will take control of.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer-externalReferenceTime.html">externalReferenceTime</a></td><td class="desc"></td><td class="desc1">Reference time of the external clock the VideoPlayer uses to correct its drift.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer-frame.html">frame</a></td><td class="desc"></td><td class="desc1">The frame index of the currently available frame in VideoPlayer.texture.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer-frameCount.html">frameCount</a></td><td class="desc"></td><td class="desc1">Number of frames in the current video content. (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer-frameRate.html">frameRate</a></td><td class="desc"></td><td class="desc1">The frame rate of the clip or URL in frames/second. (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer-height.html">height</a></td><td class="desc"></td><td class="desc1">The height of the images in the VideoClip, or URL, in pixels. (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer-isLooping.html">isLooping</a></td><td class="desc"></td><td class="desc1">Determines whether the VideoPlayer restarts from the beginning when it reaches the end of the clip.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer-isPaused.html">isPaused</a></td><td class="desc"></td><td class="desc1">Whether playback is paused. (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer-isPlaying.html">isPlaying</a></td><td class="desc"></td><td class="desc1">Whether content is being played. (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer-isPrepared.html">isPrepared</a></td><td class="desc"></td><td class="desc1">Whether the VideoPlayer has successfully prepared the content to be played. (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer-length.html">length</a></td><td class="desc"></td><td class="desc1">The length of the VideoClip, or the URL, in seconds. (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer-pixelAspectRatioDenominator.html">pixelAspectRatioDenominator</a></td><td class="desc"></td><td class="desc1">Denominator of the pixel aspect ratio (num:den) for the VideoClip or the URL. (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer-pixelAspectRatioNumerator.html">pixelAspectRatioNumerator</a></td><td class="desc"></td><td class="desc1">Numerator of the pixel aspect ratio (num:den) for the VideoClip or the URL. (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer-playbackSpeed.html">playbackSpeed</a></td><td class="desc"></td><td class="desc1">Factor by which the basic playback rate will be multiplied.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer-playOnAwake.html">playOnAwake</a></td><td class="desc"></td><td class="desc1">Whether the content will start playing back as soon as the component awakes.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer-renderMode.html">renderMode</a></td><td class="desc"></td><td class="desc1">Where the video content will be drawn.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer-sendFrameReadyEvents.html">sendFrameReadyEvents</a></td><td class="desc"></td><td class="desc1">Enables the frameReady events.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer-skipOnDrop.html">skipOnDrop</a></td><td class="desc"></td><td class="desc1">Whether the VideoPlayer is allowed to skip frames to catch up with current time.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer-source.html">source</a></td><td class="desc"></td><td class="desc1">The source that the VideoPlayer uses for playback.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer-targetCamera.html">targetCamera</a></td><td class="desc"></td><td class="desc1">
+          Camera component to draw to when VideoPlayer.renderMode is set to either VideoRenderMode.CameraFarPlane or VideoRenderMode.CameraNearPlane.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer-targetCamera3DLayout.html">targetCamera3DLayout</a></td><td class="desc"></td><td class="desc1">Type of 3D content contained in the source video media.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer-targetCameraAlpha.html">targetCameraAlpha</a></td><td class="desc"></td><td class="desc1">Overall transparency level of the target camera plane video.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer-targetMaterialProperty.html">targetMaterialProperty</a></td><td class="desc"></td><td class="desc1">
+          Material texture property which is targeted when VideoPlayer.renderMode is set to Video.VideoTarget.MaterialOverride.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer-targetMaterialRenderer.html">targetMaterialRenderer</a></td><td class="desc"></td><td class="desc1">
+          Renderer which is targeted when VideoPlayer.renderMode is set to Video.VideoTarget.MaterialOverride</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer-targetTexture.html">targetTexture</a></td><td class="desc"></td><td class="desc1">
+          RenderTexture to draw to when VideoPlayer.renderMode is set to Video.VideoTarget.RenderTexture.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer-texture.html">texture</a></td><td class="desc"></td><td class="desc1">Internal texture in which video content is placed. (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer-time.html">time</a></td><td class="desc"></td><td class="desc1">The presentation time of the currently available frame in VideoPlayer.texture.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer-timeReference.html">timeReference</a></td><td class="desc"></td><td class="desc1">The clock that the VideoPlayer observes to detect and correct drift.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer-timeSource.html">timeSource</a></td><td class="desc"></td><td class="desc1">[NOT YET IMPLEMENTED] The source used used by the VideoPlayer to derive its current time.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer-url.html">url</a></td><td class="desc"></td><td class="desc1">The file or HTTP URL that the VideoPlayer reads content from.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer-waitForFirstFrame.html">waitForFirstFrame</a></td><td class="desc"></td><td class="desc1">Determines whether the VideoPlayer will wait for the first frame to be loaded into the texture before starting playback when VideoPlayer.playOnAwake is on.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer-width.html">width</a></td><td class="desc"></td><td class="desc1">The width of the images in the VideoClip, or URL, in pixels. (Read Only)</td></tr>
+    </table></div><div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer.EnableAudioTrack.html">EnableAudioTrack</a></td><td class="desc"></td><td class="desc1">Enable/disable audio track decoding. Only effective when the VideoPlayer is not currently playing.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer.GetAudioChannelCount.html">GetAudioChannelCount</a></td><td class="desc"></td><td class="desc1">The number of audio channels in the specified audio track.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer.GetAudioLanguageCode.html">GetAudioLanguageCode</a></td><td class="desc"></td><td class="desc1">Returns the language code, if any, for the specified track.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer.GetAudioSampleRate.html">GetAudioSampleRate</a></td><td class="desc"></td><td class="desc1">Gets the audio track sampling rate in Hertz.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer.GetDirectAudioMute.html">GetDirectAudioMute</a></td><td class="desc"></td><td class="desc1">Gets the direct-output audio mute status for the specified track.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer.GetDirectAudioVolume.html">GetDirectAudioVolume</a></td><td class="desc"></td><td class="desc1">Return the direct-output volume for specified track.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer.GetTargetAudioSource.html">GetTargetAudioSource</a></td><td class="desc"></td><td class="desc1">Gets the AudioSource that will receive audio samples for the specified track if VideoPlayer.audioOutputMode is set to VideoAudioOutputMode.AudioSource.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer.IsAudioTrackEnabled.html">IsAudioTrackEnabled</a></td><td class="desc"></td><td class="desc1">Whether decoding for the specified audio track is enabled. See VideoPlayer.EnableAudioTrack for distinction with mute.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer.Pause.html">Pause</a></td><td class="desc"></td><td class="desc1">Pauses the playback and leaves the current time intact.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer.Play.html">Play</a></td><td class="desc"></td><td class="desc1">Starts playback.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer.Prepare.html">Prepare</a></td><td class="desc"></td><td class="desc1">Initiates playback engine preparation.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer.SetDirectAudioMute.html">SetDirectAudioMute</a></td><td class="desc"></td><td class="desc1">Set the direct-output audio mute status for the specified track.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer.SetDirectAudioVolume.html">SetDirectAudioVolume</a></td><td class="desc"></td><td class="desc1">Set the direct-output audio volume for the specified track.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer.SetTargetAudioSource.html">SetTargetAudioSource</a></td><td class="desc"></td><td class="desc1">Sets the AudioSource that will receive audio samples for the specified track if this audio target is selected with VideoPlayer.audioOutputMode.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer.StepForward.html">StepForward</a></td><td class="desc"></td><td class="desc1">Advances the current time by one frame immediately.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer.Stop.html">Stop</a></td><td class="desc"></td><td class="desc1">Stops the playback and sets the current time to 0.</td></tr>
+    </table></div><div class="subsection"><h2>Events</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer-clockResyncOccurred.html">clockResyncOccurred</a></td><td class="desc"></td><td class="desc1">Invoked when the VideoPlayer clock is synced back to its VideoTimeReference.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer-errorReceived.html">errorReceived</a></td><td class="desc"></td><td class="desc1">Errors such as HTTP connection problems are reported through this callback.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer-frameDropped.html">frameDropped</a></td><td class="desc"></td><td class="desc1">[NOT YET IMPLEMENTED] Invoked when the video decoder does not produce a frame as per the time source during playback.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer-frameReady.html">frameReady</a></td><td class="desc"></td><td class="desc1">Invoked when a new frame is ready.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer-loopPointReached.html">loopPointReached</a></td><td class="desc"></td><td class="desc1">Invoked when the VideoPlayer reaches the end of the content to play.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer-prepareCompleted.html">prepareCompleted</a></td><td class="desc"></td><td class="desc1">Invoked when the VideoPlayer preparation is complete.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer-seekCompleted.html">seekCompleted</a></td><td class="desc"></td><td class="desc1">Invoke after a seek operation completes.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer-started.html">started</a></td><td class="desc"></td><td class="desc1">Invoked immediately after Play is called.</td></tr>
+    </table></div><div class="subsection"><h2>Delegates</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer.ErrorEventHandler.html">ErrorEventHandler</a></td><td class="desc"></td><td class="desc1">Delegate type for VideoPlayer events that contain an error message.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer.EventHandler.html">EventHandler</a></td><td class="desc"></td><td class="desc1">Delegate type for all parameterless events emitted by VideoPlayers.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer.FrameReadyEventHandler.html">FrameReadyEventHandler</a></td><td class="desc"></td><td class="desc1">Delegate type for VideoPlayer events that carry a frame number.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Video.VideoPlayer.TimeEventHandler.html">TimeEventHandler</a></td><td class="desc"></td><td class="desc1">Delegate type for VideoPlayer events that carry a time position.</td></tr>
+    </table></div><div class="subsection"><h2>Inherited Members   继承成员</h2>
+      
+      <div class="subsection"><h2>Properties   属性</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Behaviour-enabled.html">enabled</a></td><td class="desc"></td><td class="desc1">Enabled Behaviours are Updated, disabled Behaviours are not.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Behaviour-isActiveAndEnabled.html">isActiveAndEnabled</a></td><td class="desc"></td><td class="desc1">Has the Behaviour had active and enabled called?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component-gameObject.html">gameObject</a></td><td class="desc"></td><td class="desc1">The game object this component is attached to. A component is always attached to a game object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component-tag.html">tag</a></td><td class="desc"></td><td class="desc1">The tag of this game object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component-transform.html">transform</a></td><td class="desc"></td><td class="desc1">The Transform attached to this GameObject.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-hideFlags.html">hideFlags</a></td><td class="desc"></td><td class="desc1">Should the object be hidden, saved with the Scene or modifiable by the user?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-name.html">name</a></td><td class="desc"></td><td class="desc1">The name of the object.</td></tr>
+      </table></div>
+      
+      
+      
+      <div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.BroadcastMessage.html">BroadcastMessage</a></td><td class="desc"></td><td class="desc1">Calls the method named methodName on every MonoBehaviour in this game object or any of its children.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.CompareTag.html">CompareTag</a></td><td class="desc"></td><td class="desc1">Is this game object tagged with tag ?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponent.html">GetComponent</a></td><td class="desc"></td><td class="desc1">Returns the component of Type type if the game object has one attached, null if it doesn't.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponentInChildren.html">GetComponentInChildren</a></td><td class="desc"></td><td class="desc1">Returns the component of Type type in the GameObject or any of its children using depth first search.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponentInParent.html">GetComponentInParent</a></td><td class="desc"></td><td class="desc1">Returns the component of Type type in the GameObject or any of its parents.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponents.html">GetComponents</a></td><td class="desc"></td><td class="desc1">Returns all components of Type type in the GameObject.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponentsInChildren.html">GetComponentsInChildren</a></td><td class="desc"></td><td class="desc1">Returns all components of Type type in the GameObject or any of its children.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponentsInParent.html">GetComponentsInParent</a></td><td class="desc"></td><td class="desc1">Returns all components of Type type in the GameObject or any of its parents.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.SendMessage.html">SendMessage</a></td><td class="desc"></td><td class="desc1">Calls the method named methodName on every MonoBehaviour in this game object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.SendMessageUpwards.html">SendMessageUpwards</a></td><td class="desc"></td><td class="desc1">Calls the method named methodName on every MonoBehaviour in this game object and on every ancestor of the behaviour.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.TryGetComponent.html">TryGetComponent</a></td><td class="desc"></td><td class="desc1">Gets the component of the specified type, if it exists.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.GetInstanceID.html">GetInstanceID</a></td><td class="desc"></td><td class="desc1">Returns the instance id of the object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.ToString.html">ToString</a></td><td class="desc"></td><td class="desc1">Returns the name of the object.</td></tr>
+      </table></div>
+      
+      <div class="subsection"><h2>Static Methods   静态方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.Destroy.html">Destroy</a></td><td class="desc"></td><td class="desc1">Removes a GameObject, component or asset.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.DestroyImmediate.html">DestroyImmediate</a></td><td class="desc"></td><td class="desc1">Destroys the object obj immediately. You are strongly recommended to use Destroy instead.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.DontDestroyOnLoad.html">DontDestroyOnLoad</a></td><td class="desc"></td><td class="desc1">Do not destroy the target Object when loading a new Scene.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectOfType.html">FindObjectOfType</a></td><td class="desc"></td><td class="desc1">Returns the first active loaded object of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectsOfType.html">FindObjectsOfType</a></td><td class="desc"></td><td class="desc1">Returns a list of all active loaded objects of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.Instantiate.html">Instantiate</a></td><td class="desc"></td><td class="desc1">Clones the object original and returns the clone.</td></tr>
+      </table></div>
+      <div class="subsection"><h2>Operators   运算符</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_Object.html">bool</a></td><td class="desc"></td><td class="desc1">Does the object exist?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_ne.html">operator !=</a></td><td class="desc"></td><td class="desc1">Compares if two objects refer to a different object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_eq.html">operator ==</a></td><td class="desc"></td><td class="desc1">Compares two object references to see if they refer to the same object.</td></tr>
+      </table></div>
+      
+      
+      
+    </div></div></div></div></body></html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: TerrainData.SetAlphamaps</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="TerrainData.html">TerrainData</a>.SetAlphamaps</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">SetAlphamaps</span>(int <span class="sig-kw">x</span>,
+int <span class="sig-kw">y</span>,
+float[,,] <span class="sig-kw">map</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Assign all splat values in the given map area.</p></div><div class="subsection"><p>The array supplied to this function determines the width and height
+of the portion to be replaced. The third dimension of the array
+corresponds to the number of splatmap textures.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Terrain.html">Terrain</a> t;
+    // Blend the two terrain textures according to the steepness of
+    // the slope at each point.
+    void Start()
+    {
+        float[,,] map = new float[t.terrainData.alphamapWidth, t.terrainData.alphamapHeight, 2];<br /><br />        // For each point on the alphamap...
+        for (int y = 0; y &lt; t.terrainData.alphamapHeight; y++)
+        {
+            for (int x = 0; x &lt; t.terrainData.alphamapWidth; x++)
+            {
+                // Get the normalized terrain coordinate that
+                // corresponds to the the point.
+                float normX = x * 1.0f / (t.terrainData.alphamapWidth - 1);
+                float normY = y * 1.0f / (t.terrainData.alphamapHeight - 1);<br /><br />                // Get the steepness value at the normalized coordinate.
+                var angle = t.terrainData.GetSteepness(normX, normY);<br /><br />                // Steepness is given as an angle, 0..90 degrees. Divide
+                // by 90 to get an alpha blending value in the range 0..1.
+                var frac = angle / 90.0;
+                map[x, y, 0] = (float)frac;
+                map[x, y, 1] = (float)(1 - frac);
+            }
+        }
+        t.terrainData.SetAlphamaps(0, 0, map);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

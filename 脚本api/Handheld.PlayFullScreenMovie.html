@@ -1,0 +1,47 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Handheld.PlayFullScreenMovie</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Handheld.html">Handheld</a>.PlayFullScreenMovie</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">PlayFullScreenMovie</span>(string <span class="sig-kw">path</span>,
+<a href="Color.html">Color</a> <span class="sig-kw">bgColor</span> = Color.black,
+<a href="FullScreenMovieControlMode.html">FullScreenMovieControlMode</a> <span class="sig-kw">controlMode</span> = FullScreenMovieControlMode.Full,
+<a href="FullScreenMovieScalingMode.html">FullScreenMovieScalingMode</a> <span class="sig-kw">scalingMode</span> = FullScreenMovieScalingMode.AspectFit);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">path</td><td class="desc"></td><td class="desc1">Filesystem path to the movie file.</td></tr><tr><td class="name lbl">bgColor</td><td class="desc"></td><td class="desc1">Background color.</td></tr><tr><td class="name lbl">controlMode</td><td class="desc"></td><td class="desc1">How the playback controls are to be displayed.</td></tr><tr><td class="name lbl">scalingMode</td><td class="desc"></td><td class="desc1">How the movie is to be scaled to fit the screen.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Plays a full-screen movie.</p></div><div class="subsection"><p>Note that player will stream movie directly
+from the device storage, therefore you have to provide movie as a
+separate files and not as a usual asset. You will have to create a
+folder named <code class="mono">StreamingAssets</code> inside your Unity project (inside your
+Assets folder). Store your movies inside that folder.
+Unity will automatically copy contents of that folder into the
+application bundle.<br /><br />Calling this function will pause Unity during movie playback. When
+playback finishes Unity will resume.<br /><br />The first parameter, <code class="mono">path</code>, can be a network-based URL. The function
+will detect that by looking for a "://" substring that follows the
+protocol name.<br /><br />On iOS, <code class="mono">Handheld.PlayFullScreenMovie</code> internally uses MPMoviePlayerController
+object to play movies. Therefore, you should expect the same behavior
+and the same supported formats. MPMoviePlayerController supports any
+movie or audio files that already play correctly on an iPod or iPhone.<br /><br />For movie files, this typically means files with the extensions .mov,
+.mp4, .mpv, and .3gp and using one of the following compression
+standards:<br /><br />H.264 Baseline Profile Level 3.0 video, up to 640 x 480 at 30 fps.
+Note that B frames are not supported in the Baseline profile.<br /><br />MPEG-4 Part 2 video (Simple Profile).<br /><br />
+Calling this function will initiate a transition that fades the screen
+from your current content to the designated background color of the
+player. When playback finishes, the player uses another fade effect to
+transition back to your content.<br /><br />You can find Apple's MPMoviePlayerController documentation here:
+<a href="http://developer.apple.com/library/ios/#DOCUMENTATION/MediaPlayer/Reference/MPMoviePlayerController_Class/Reference/Reference.html">MPMoviePlayerController Class Reference</a><br /><br />On Windows Phone 8, <code class="mono">Handheld.PlayFullScreenMovie</code> internally uses Microsoft Media
+Foundation for movie playback. On this platform, calling <code class="mono">Handheld.PlayFullScreenMovie</code>
+with full or minimal control mode is not supported.<br /><br />On Windows Store Apps and Windows Phone 8.1, <code class="mono">Handheld.PlayFullScreenMovie</code>
+internally uses XAML MediaElement control.<br /><br />On Windows Phone and Windows Store Apps, there generally isn't movie
+resolution or bitrate limit, however, higher resolution or bitrate movies
+will consume more memory for decoding. Weaker devices will also start
+skipping frames much sooner at extremely high resolutions. For example,
+Nokia Lumia 620 can only play videos smoothly up to 1920x1080.
+For these platforms, you can find list of supported formats here:
+<a href="http://msdn.microsoft.com/en-us/library/windows/apps/hh986969.aspx">Supported audio and video formats on Windows Store</a></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        <a href="Handheld.PlayFullScreenMovie.html">Handheld.PlayFullScreenMovie</a>("StarWars.mp4", <a href="Color-black.html">Color.black</a>, <a href="FullScreenMovieControlMode.CancelOnInput.html">FullScreenMovieControlMode.CancelOnInput</a>);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

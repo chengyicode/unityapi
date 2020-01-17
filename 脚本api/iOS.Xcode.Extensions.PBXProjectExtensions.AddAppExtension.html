@@ -1,0 +1,32 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: iOS.Xcode.Extensions.PBXProjectExtensions.AddAppExtension</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="iOS.Xcode.Extensions.PBXProjectExtensions.html">PBXProjectExtensions</a>.AddAppExtension</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static string <span class="sig-kw">AddAppExtension</span>(<a href="iOS.Xcode.PBXProject.html">iOS.Xcode.PBXProject</a> <span class="sig-kw">proj</span>,
+string <span class="sig-kw">mainTargetGuid</span>,
+string <span class="sig-kw">name</span>,
+string <span class="sig-kw">bundleId</span>,
+string <span class="sig-kw">infoPlistPath</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">proj</td><td class="desc"></td><td class="desc1">The implicit <code class="mono">this</code> parameter for the extension method.</td></tr><tr><td class="name lbl">mainTargetGuid</td><td class="desc"></td><td class="desc1">The GUID of the main target to link the app to.</td></tr><tr><td class="name lbl">name</td><td class="desc"></td><td class="desc1">The name of the app extension.</td></tr><tr><td class="name lbl">bundleId</td><td class="desc"></td><td class="desc1">The bundle ID of the app extension. The bundle ID must be prefixed with the parent app bundle ID.</td></tr><tr><td class="name lbl">infoPlistPath</td><td class="desc"></td><td class="desc1">Path to the app extension Info.plist document.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>string</strong>
+        The GUID of the new target.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Creates an app extension.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;
+using UnityEditor.iOS.Xcode;
+using UnityEditor.iOS.Xcode.Extensions;
+using System.IO;
+using UnityEditor.Callbacks;<br /><br />public class ScriptBatch : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    [PostProcessBuild]
+    private static void PostProcessBuild_iOS(<a href="BuildTarget.html">BuildTarget</a> target, string buildPath)
+    {
+        File.Copy("Assets/extension/TodayViewController.h", buildPath + "/appext/TodayViewController.h");
+        File.Copy("Assets/extension/TodayViewController.m", buildPath + "/appext/TodayViewController.m");<br /><br />        <a href="iOS.Xcode.PBXProject.html">PBXProject</a> proj = new <a href="iOS.Xcode.PBXProject.html">PBXProject</a>();
+        string projPath = <a href="iOS.Xcode.PBXProject.GetPBXProjectPath.html">PBXProject.GetPBXProjectPath</a>(buildPath);
+        proj.ReadFromFile(projPath);<br /><br />        string mainTarget = proj.TargetGuidByName(<a href="iOS.Xcode.PBXProject.GetUnityTargetName.html">PBXProject.GetUnityTargetName</a>());<br /><br />        string newTarget = proj.AddAppExtension(mainTarget, "appext", "com.unity3d.product.appext", "appext/Info.plist");
+        proj.AddFileToBuild(newTarget, proj.AddFile(buildPath + "/appext/TodayViewController.h", "appext/TodayViewController.h"));
+        proj.AddFileToBuild(newTarget, proj.AddFile(buildPath + "/appext/TodayViewController.m", "appext/TodayViewController.m"));
+        proj.AddFrameworkToProject(newTarget, "NotificationCenter.framework", true);
+        proj.WriteToFile(projPath);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

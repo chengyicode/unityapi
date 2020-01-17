@@ -1,0 +1,80 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Camera.projectionMatrix</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Camera.html">Camera</a>.projectionMatrix</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Camera.html' title='Go to Camera Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Matrix4x4.html">Matrix4x4</a> <span class="sig-kw">projectionMatrix</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Set a custom projection matrix.</p></div><div class="subsection"><p>If you change this matrix, the camera no longer updates its rendering based on its <a href="Camera-fieldOfView.html">fieldOfView</a>.
+This lasts until you call <a href="Camera.ResetProjectionMatrix.html">ResetProjectionMatrix</a>.<br /><br />Use a custom projection only if you really need a non-standard projection.
+This property is used by Unity's water rendering to setup an
+<em>oblique projection</em> matrix. Using custom projections requires good knowledge
+of transformation and projection matrices.<br /><br />Note that projection matrix passed to shaders can be modified depending
+on platform and other state. If you need to calculate projection matrix
+for shader use from camera's projection, use <a href="GL.GetGPUProjectionMatrix.html">GL.GetGPUProjectionMatrix</a>.<br /><br />See Also: <a href="Camera-nonJitteredProjectionMatrix.html">Camera.nonJitteredProjectionMatrix</a></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Make camera wobble in a funky way!
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Matrix4x4.html">Matrix4x4</a> originalProjection;
+    <a href="Camera.html">Camera</a> cam;<br /><br />    void Start()
+    {
+        cam = GetComponent&lt;<a href="Camera.html">Camera</a>&gt;();
+        originalProjection = cam.projectionMatrix;
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        <a href="Matrix4x4.html">Matrix4x4</a> p = originalProjection;
+        p.m01 += <a href="Mathf.Sin.html">Mathf.Sin</a>(<a href="Time-time.html">Time.time</a> * 1.2F) * 0.1F;
+        p.m10 += <a href="Mathf.Sin.html">Mathf.Sin</a>(<a href="Time-time.html">Time.time</a> * 1.5F) * 0.1F;
+        cam.projectionMatrix = p;
+    }
+}
+</pre>
+      </div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Set an off-center projection, where perspective's vanishing
+// point is not necessarily in the center of the screen.
+//
+// left/right/top/bottom define near plane size, i.e.
+// how offset are corners of camera's near plane.
+// Tweak the values and you can see camera's frustum change.<br /><br />using UnityEngine;
+using System.Collections;<br /><br />[<a href="ExecuteInEditMode.html">ExecuteInEditMode</a>]
+public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public float left = -0.2F;
+    public float right = 0.2F;
+    public float top = 0.2F;
+    public float bottom = -0.2F;
+    void LateUpdate()
+    {
+        <a href="Camera.html">Camera</a> cam = <a href="Camera-main.html">Camera.main</a>;
+        <a href="Matrix4x4.html">Matrix4x4</a> m = PerspectiveOffCenter(left, right, bottom, top, cam.nearClipPlane, cam.farClipPlane);
+        cam.projectionMatrix = m;
+    }<br /><br />    static <a href="Matrix4x4.html">Matrix4x4</a> PerspectiveOffCenter(float left, float right, float bottom, float top, float near, float far)
+    {
+        float x = 2.0F * near / (right - left);
+        float y = 2.0F * near / (top - bottom);
+        float a = (right + left) / (right - left);
+        float b = (top + bottom) / (top - bottom);
+        float c = -(far + near) / (far - near);
+        float d = -(2.0F * far * near) / (far - near);
+        float e = -1.0F;
+        <a href="Matrix4x4.html">Matrix4x4</a> m = new <a href="Matrix4x4.html">Matrix4x4</a>();
+        m[0, 0] = x;
+        m[0, 1] = 0;
+        m[0, 2] = a;
+        m[0, 3] = 0;
+        m[1, 0] = 0;
+        m[1, 1] = y;
+        m[1, 2] = b;
+        m[1, 3] = 0;
+        m[2, 0] = 0;
+        m[2, 1] = 0;
+        m[2, 2] = c;
+        m[2, 3] = d;
+        m[3, 0] = 0;
+        m[3, 1] = 0;
+        m[3, 2] = e;
+        m[3, 3] = 0;
+        return m;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

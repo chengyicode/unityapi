@@ -1,0 +1,45 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: MediaEncoder</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">MediaEncoder</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEditor.Media</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEditor.html" class="cl">UnityEditor</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Encodes images and audio samples into an audio or movie file.</p></div><div class="subsection"><p>Constructing an instance of this class creates an encoder that will create an audio, video or audio/video file with the specified tracks in it.<br /><br />Call the AddFrame() and AddSamples() methods alternately for each track, so that frames and samples keep each track equally filled.<br /><br />Once all the wanted frames and samples are added to the file, call Dispose() to end each track properly and close the file.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEditor.Media;
+using UnityEngine;
+using Unity.Collections;
+using System.IO;<br /><br />public class <a href="Profiling.Recorder.html">Recorder</a>
+{
+    static public void RecordMovie()
+    {
+        var videoAttr = new <a href="Media.VideoTrackAttributes.html">VideoTrackAttributes</a>
+        {
+            frameRate = new <a href="Media.MediaRational.html">MediaRational</a>(50),
+            width = 320,
+            height = 200,
+            includeAlpha = false
+        };<br /><br />        var audioAttr = new <a href="Media.AudioTrackAttributes.html">AudioTrackAttributes</a>
+        {
+            sampleRate = new <a href="Media.MediaRational.html">MediaRational</a>(48000),
+            channelCount = 2,
+            language = "fr"
+        };<br /><br />        int sampleFramesPerVideoFrame = audioAttr.channelCount *
+            audioAttr.sampleRate.numerator / videoAttr.frameRate.numerator;<br /><br />        var encodedFilePath = <a href="Path.Combine.html">Path.Combine</a>(Path.GetTempPath(), "my_movie.mp4");<br /><br />        <a href="Texture2D.html">Texture2D</a> tex = new <a href="Texture2D.html">Texture2D</a>((int)videoAttr.width, (int)videoAttr.height, <a href="TextureFormat.RGBA32.html">TextureFormat.RGBA32</a>, false);<br /><br />        using (var encoder = new <a href="Media.MediaEncoder.html">MediaEncoder</a>(encodedFilePath, videoAttr, audioAttr))
+        using (var audioBuffer = new NativeArray&lt;float&gt;(sampleFramesPerVideoFrame, <a href="Unity.Collections.Allocator.Temp.html">Allocator.Temp</a>))
+        {
+            for (int i = 0; i &lt; 100; ++i)
+            {
+                // Fill 'tex' with the video content to be encoded into the file for this frame.
+                // ...
+                encoder.AddFrame(tex);<br /><br />                // Fill 'audioBuffer' with the audio content to be encoded into the file for this frame.
+                // ...
+                encoder.AddSamples(audioBuffer);
+            }
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Constructors</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Media.MediaEncoder-ctor.html">MediaEncoder</a></td><td class="desc"></td><td class="desc1">Create a new encoder with various track arrangements.</td></tr>
+    </table></div><div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Media.MediaEncoder.AddFrame.html">AddFrame</a></td><td class="desc"></td><td class="desc1">Appends a frame to the file's video track.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Media.MediaEncoder.AddSamples.html">AddSamples</a></td><td class="desc"></td><td class="desc1">Appends sample frames to the specified audio track.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Media.MediaEncoder.Dispose.html">Dispose</a></td><td class="desc"></td><td class="desc1">Finishes writing all tracks and closes the file being written.</td></tr>
+    </table></div></div></div></div></body></html>

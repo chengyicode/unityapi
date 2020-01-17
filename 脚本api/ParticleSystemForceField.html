@@ -1,0 +1,153 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ParticleSystemForceField</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">ParticleSystemForceField</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Inherits from:<a href="Component.html" class="cl">Component</a></p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.ParticleSystemModule.html" class="cl">UnityEngine.ParticleSystemModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-ParticleSystemForceField.html' title='Go to ParticleSystemForceField Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Script interface for Particle System Force Fields.</p></div><div class="subsection"><p>Particle System Force Fields can be used to influence groups of particles that enter each field's zone of influence.<br /><br />The shape of the Force Field can be set to a variety of shapes, and how the particles are affected is controlled by various properties in the Force Field.<br /><br />As part of choosing the shape, you may define a start and end range. The end range describes the maximum extent of the shape, and the start range can be used to create a hollow shape.<br /><br />A number of forces can be applied to particles that are within this volume: directional, gravitational, rotational, drag, and a vector field.<br /><br />The settings for each type of force make use of the <a href="ParticleSystem.MinMaxCurve.html">MinMaxCurve</a> type, which is also used in the Particle System. This type allows you to set simple uniform values, or more complicated values that vary per-particle, and vary over the lifetime of each particle.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="ParticleSystemForceFieldShape.html">ParticleSystemForceFieldShape</a> m_Shape = <a href="ParticleSystemForceFieldShape.Sphere.html">ParticleSystemForceFieldShape.Sphere</a>;
+    public float m_StartRange = 0.0f;
+    public float m_EndRange = 3.0f;
+    public <a href="Vector3.html">Vector3</a> m_Direction = <a href="Vector3-zero.html">Vector3.zero</a>;
+    public float m_Gravity = 0.0f;
+    public float m_GravityFocus = 0.0f;
+    public float m_RotationSpeed = 0.0f;
+    public float m_RotationAttraction = 0.0f;
+    public <a href="Vector2.html">Vector2</a> m_RotationRandomness = <a href="Vector2-zero.html">Vector2.zero</a>;
+    public float m_Drag = 0.0f;
+    public bool m_MultiplyDragByParticleSize = false;
+    public bool m_MultiplyDragByParticleVelocity = false;<br /><br />    private <a href="ParticleSystemForceField.html">ParticleSystemForceField</a> m_ForceField;<br /><br />    void Start()
+    {
+        // Create a Force Field
+        var go = new <a href="GameObject.html">GameObject</a>("ForceField", typeof(<a href="ParticleSystemForceField.html">ParticleSystemForceField</a>));
+        go.transform.position = new <a href="Vector3.html">Vector3</a>(0, 2, 0);
+        go.transform.rotation = <a href="Quaternion.Euler.html">Quaternion.Euler</a>(new <a href="Vector3.html">Vector3</a>(90.0f, 0.0f, 0.0f));<br /><br />        m_ForceField = go.GetComponent&lt;<a href="ParticleSystemForceField.html">ParticleSystemForceField</a>&gt;();<br /><br />        // Configure <a href="ParticleSystem.Particle.html">Particle</a> System
+        transform.position = new <a href="Vector3.html">Vector3</a>(0, -4, 0);
+        transform.rotation = <a href="Quaternion-identity.html">Quaternion.identity</a>;
+        var ps = GetComponent&lt;<a href="ParticleSystem.html">ParticleSystem</a>&gt;();<br /><br />        var main = ps.main;
+        main.startSize = new <a href="ParticleSystem.MinMaxCurve.html">ParticleSystem.MinMaxCurve</a>(0.05f, 0.2f);
+        main.startSpeed = new <a href="ParticleSystem.MinMaxCurve.html">ParticleSystem.MinMaxCurve</a>(1.5f, 2.5f);
+        main.maxParticles = 100000;<br /><br />        var emission = ps.emission;
+        emission.rateOverTime = 0.0f;
+        emission.burstCount = 1;
+        emission.SetBurst(0, new <a href="ParticleSystem.Burst.html">ParticleSystem.Burst</a>(0.0f, 200, 200, -1, 0.1f));<br /><br />        var shape = ps.shape;
+        shape.shapeType = <a href="ParticleSystemShapeType.SingleSidedEdge.html">ParticleSystemShapeType.SingleSidedEdge</a>;
+        shape.radius = 5.0f;
+        shape.radiusMode = <a href="ParticleSystemShapeMultiModeValue.BurstSpread.html">ParticleSystemShapeMultiModeValue.BurstSpread</a>;
+        shape.randomPositionAmount = 0.1f;
+        shape.randomDirectionAmount = 0.05f;<br /><br />        var forces = ps.externalForces;
+        forces.enabled = true;
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        m_ForceField.shape = m_Shape;
+        m_ForceField.startRange = m_StartRange;
+        m_ForceField.endRange = m_EndRange;
+        m_ForceField.directionX = m_Direction.x;
+        m_ForceField.directionY = m_Direction.y;
+        m_ForceField.directionZ = m_Direction.z;
+        m_ForceField.gravity = m_Gravity;
+        m_ForceField.gravityFocus = m_GravityFocus;
+        m_ForceField.rotationSpeed = m_RotationSpeed;
+        m_ForceField.rotationAttraction = m_RotationAttraction;
+        m_ForceField.rotationRandomness = m_RotationRandomness;
+        m_ForceField.drag = m_Drag;
+        m_ForceField.multiplyDragByParticleSize = m_MultiplyDragByParticleSize;
+        m_ForceField.multiplyDragByParticleVelocity = m_MultiplyDragByParticleVelocity;
+    }<br /><br />    void OnGUI()
+    {
+        <a href="GUIContent.html">GUIContent</a>[] shapeLabels = Enum.GetNames(typeof(<a href="ParticleSystemForceFieldShape.html">ParticleSystemForceFieldShape</a>)).Select(n =&gt; new <a href="GUIContent.html">GUIContent</a>(n)).ToArray();
+        m_Shape = (<a href="ParticleSystemForceFieldShape.html">ParticleSystemForceFieldShape</a>)<a href="GUI.SelectionGrid.html">GUI.SelectionGrid</a>(new <a href="Rect.html">Rect</a>(25, 25, 400, 25), (int)m_Shape, shapeLabels, 4);<br /><br />        float y = 80.0f;
+        float spacing = 40.0f;<br /><br />        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, y, 140, 30), "Start <a href="SocialPlatforms.Range.html">Range</a>");
+        m_StartRange = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(165, y + 5, 100, 30), m_StartRange, 0.0f, 2.0f);
+        y += spacing;<br /><br />        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, y, 140, 30), "End <a href="SocialPlatforms.Range.html">Range</a>");
+        m_EndRange = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(165, y + 5, 100, 30), m_EndRange, 2.0f, 3.0f);
+        y += spacing;<br /><br />        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, y, 140, 30), "<a href="Experimental.GraphView.Direction.html">Direction</a>");
+        m_Direction.x = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(165, y + 5, 40, 30), m_Direction.x, -1.0f, 1.0f);
+        m_Direction.y = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(210, y + 5, 40, 30), m_Direction.y, -1.0f, 1.0f);
+        m_Direction.z = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(255, y + 5, 40, 30), m_Direction.z, -1.0f, 1.0f);
+        y += spacing;<br /><br />        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, y, 140, 30), "Gravity");
+        m_Gravity = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(165, y + 5, 100, 30), m_Gravity, -0.05f, 0.05f);
+        y += spacing;<br /><br />        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, y, 140, 30), "Gravity Focus");
+        m_GravityFocus = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(165, y + 5, 100, 30), m_GravityFocus, 0.0f, 1.0f);
+        y += spacing;<br /><br />        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, y, 140, 30), "Rotation Speed");
+        m_RotationSpeed = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(165, y + 5, 100, 30), m_RotationSpeed, -10.0f, 10.0f);
+        y += spacing;<br /><br />        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, y, 140, 30), "Rotation Attraction");
+        m_RotationAttraction = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(165, y + 5, 100, 30), m_RotationAttraction, 0.0f, 0.01f);
+        y += spacing;<br /><br />        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, y, 140, 30), "Rotation Randomness");
+        m_RotationRandomness.x = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(165, y + 5, 60, 30), m_RotationRandomness.x, 0.0f, 1.0f);
+        m_RotationRandomness.y = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(230, y + 5, 60, 30), m_RotationRandomness.y, 0.0f, 1.0f);
+        y += spacing;<br /><br />        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, y, 140, 30), "Drag");
+        m_Drag = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(165, y + 5, 100, 30), m_Drag, 0.0f, 20.0f);
+        y += spacing;<br /><br />        m_MultiplyDragByParticleSize = <a href="GUI.Toggle.html">GUI.Toggle</a>(new <a href="Rect.html">Rect</a>(25, y, 220, 30), m_MultiplyDragByParticleSize, "Multiply Drag by <a href="ParticleSystem.Particle.html">Particle</a> Size");
+        y += spacing;<br /><br />        m_MultiplyDragByParticleVelocity = <a href="GUI.Toggle.html">GUI.Toggle</a>(new <a href="Rect.html">Rect</a>(25, y, 220, 30), m_MultiplyDragByParticleVelocity, "Multiply Drag by <a href="ParticleSystem.Particle.html">Particle</a> Velocity");
+        y += spacing;
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="ParticleSystemForceField-directionX.html">directionX</a></td><td class="desc"></td><td class="desc1">Apply a linear force along the local X axis to particles within the volume of the Force Field.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ParticleSystemForceField-directionY.html">directionY</a></td><td class="desc"></td><td class="desc1">Apply a linear force along the local Y axis to particles within the volume of the Force Field.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ParticleSystemForceField-directionZ.html">directionZ</a></td><td class="desc"></td><td class="desc1">Apply a linear force along the local Z axis to particles within the volume of the Force Field.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ParticleSystemForceField-drag.html">drag</a></td><td class="desc"></td><td class="desc1">Apply drag to particles within the volume of the Force Field.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ParticleSystemForceField-endRange.html">endRange</a></td><td class="desc"></td><td class="desc1">Determines the size of the shape used for influencing particles.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ParticleSystemForceField-gravity.html">gravity</a></td><td class="desc"></td><td class="desc1">Apply gravity to particles within the volume of the Force Field.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ParticleSystemForceField-gravityFocus.html">gravityFocus</a></td><td class="desc"></td><td class="desc1">When using the gravity force, set this value between 0 and 1 to control the focal point of the gravity effect.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ParticleSystemForceField-length.html">length</a></td><td class="desc"></td><td class="desc1">Describes the length of the Cylinder when using the Cylinder Force Field shape to influence particles.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ParticleSystemForceField-multiplyDragByParticleSize.html">multiplyDragByParticleSize</a></td><td class="desc"></td><td class="desc1">When using Drag, the drag strength will be multiplied by the size of the particles if this toggle is enabled.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ParticleSystemForceField-multiplyDragByParticleVelocity.html">multiplyDragByParticleVelocity</a></td><td class="desc"></td><td class="desc1">When using Drag, the drag strength will be multiplied by the speed of the particles if this toggle is enabled.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ParticleSystemForceField-rotationAttraction.html">rotationAttraction</a></td><td class="desc"></td><td class="desc1">Controls how strongly particles are dragged into the vortex motion.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ParticleSystemForceField-rotationRandomness.html">rotationRandomness</a></td><td class="desc"></td><td class="desc1">Apply randomness to the Force Field axis that particles will travel around.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ParticleSystemForceField-rotationSpeed.html">rotationSpeed</a></td><td class="desc"></td><td class="desc1">The speed at which particles are propelled around a vortex.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ParticleSystemForceField-shape.html">shape</a></td><td class="desc"></td><td class="desc1">Selects the type of shape used for influencing particles.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ParticleSystemForceField-startRange.html">startRange</a></td><td class="desc"></td><td class="desc1">Setting a value greater than 0 creates a hollow Force Field shape. This will cause particles to not be affected by the Force Field when closer to the center of the volume than the startRange property.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ParticleSystemForceField-vectorField.html">vectorField</a></td><td class="desc"></td><td class="desc1">Apply forces to particles within the volume of the Force Field, by using a 3D texture containing vector field data.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ParticleSystemForceField-vectorFieldAttraction.html">vectorFieldAttraction</a></td><td class="desc"></td><td class="desc1">Controls how strongly particles are dragged into the vector field motion.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ParticleSystemForceField-vectorFieldSpeed.html">vectorFieldSpeed</a></td><td class="desc"></td><td class="desc1">The speed at which particles are propelled through the vector field.</td></tr>
+    </table></div><div class="subsection"><h2>Inherited Members   继承成员</h2>
+      
+      <div class="subsection"><h2>Properties   属性</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Component-gameObject.html">gameObject</a></td><td class="desc"></td><td class="desc1">The game object this component is attached to. A component is always attached to a game object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component-tag.html">tag</a></td><td class="desc"></td><td class="desc1">The tag of this game object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component-transform.html">transform</a></td><td class="desc"></td><td class="desc1">The Transform attached to this GameObject.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-hideFlags.html">hideFlags</a></td><td class="desc"></td><td class="desc1">Should the object be hidden, saved with the Scene or modifiable by the user?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-name.html">name</a></td><td class="desc"></td><td class="desc1">The name of the object.</td></tr>
+      </table></div>
+      
+      
+      
+      <div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.BroadcastMessage.html">BroadcastMessage</a></td><td class="desc"></td><td class="desc1">Calls the method named methodName on every MonoBehaviour in this game object or any of its children.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.CompareTag.html">CompareTag</a></td><td class="desc"></td><td class="desc1">Is this game object tagged with tag ?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponent.html">GetComponent</a></td><td class="desc"></td><td class="desc1">Returns the component of Type type if the game object has one attached, null if it doesn't.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponentInChildren.html">GetComponentInChildren</a></td><td class="desc"></td><td class="desc1">Returns the component of Type type in the GameObject or any of its children using depth first search.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponentInParent.html">GetComponentInParent</a></td><td class="desc"></td><td class="desc1">Returns the component of Type type in the GameObject or any of its parents.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponents.html">GetComponents</a></td><td class="desc"></td><td class="desc1">Returns all components of Type type in the GameObject.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponentsInChildren.html">GetComponentsInChildren</a></td><td class="desc"></td><td class="desc1">Returns all components of Type type in the GameObject or any of its children.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponentsInParent.html">GetComponentsInParent</a></td><td class="desc"></td><td class="desc1">Returns all components of Type type in the GameObject or any of its parents.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.SendMessage.html">SendMessage</a></td><td class="desc"></td><td class="desc1">Calls the method named methodName on every MonoBehaviour in this game object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.SendMessageUpwards.html">SendMessageUpwards</a></td><td class="desc"></td><td class="desc1">Calls the method named methodName on every MonoBehaviour in this game object and on every ancestor of the behaviour.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.TryGetComponent.html">TryGetComponent</a></td><td class="desc"></td><td class="desc1">Gets the component of the specified type, if it exists.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.GetInstanceID.html">GetInstanceID</a></td><td class="desc"></td><td class="desc1">Returns the instance id of the object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.ToString.html">ToString</a></td><td class="desc"></td><td class="desc1">Returns the name of the object.</td></tr>
+      </table></div>
+      
+      <div class="subsection"><h2>Static Methods   静态方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.Destroy.html">Destroy</a></td><td class="desc"></td><td class="desc1">Removes a GameObject, component or asset.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.DestroyImmediate.html">DestroyImmediate</a></td><td class="desc"></td><td class="desc1">Destroys the object obj immediately. You are strongly recommended to use Destroy instead.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.DontDestroyOnLoad.html">DontDestroyOnLoad</a></td><td class="desc"></td><td class="desc1">Do not destroy the target Object when loading a new Scene.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectOfType.html">FindObjectOfType</a></td><td class="desc"></td><td class="desc1">Returns the first active loaded object of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectsOfType.html">FindObjectsOfType</a></td><td class="desc"></td><td class="desc1">Returns a list of all active loaded objects of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.Instantiate.html">Instantiate</a></td><td class="desc"></td><td class="desc1">Clones the object original and returns the clone.</td></tr>
+      </table></div>
+      <div class="subsection"><h2>Operators   运算符</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_Object.html">bool</a></td><td class="desc"></td><td class="desc1">Does the object exist?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_ne.html">operator !=</a></td><td class="desc"></td><td class="desc1">Compares if two objects refer to a different object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_eq.html">operator ==</a></td><td class="desc"></td><td class="desc1">Compares two object references to see if they refer to the same object.</td></tr>
+      </table></div>
+      
+      
+      
+    </div></div></div></div></body></html>

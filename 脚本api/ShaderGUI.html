@@ -1,0 +1,50 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ShaderGUI</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">ShaderGUI</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEditor</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEditor.html" class="cl">UnityEditor</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Abstract class to derive from for defining custom GUI for shader properties and for extending the material preview.</p></div><div class="subsection"><p>Derive from this class for controlling how shader properties should be presented. For a shader to use this custom GUI use the 'CustomEditor' property in the shader. Note that CustomEditor can also be used for classes deriving from MaterialEditor (search for: Custom Material Editors). Note: Only the ShaderGUI approach works with Substance materials this is therefore the recommended approach to custom gui for shaders.
+See <a href="ShaderGUI.OnGUI.html">ShaderGUI.OnGUI</a>, <a href="ShaderGUI.OnMaterialPreviewGUI.html">ShaderGUI.OnMaterialPreviewGUI</a>, <a href="ShaderGUI.OnMaterialPreviewSettingsGUI.html">ShaderGUI.OnMaterialPreviewSettingsGUI</a>.<br /><br /></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.Collections.Generic;
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;
+using System.Linq;<br /><br />public class CustomShaderGUI : <a href="ShaderGUI.html">ShaderGUI</a>
+{
+    override public void OnGUI(<a href="MaterialEditor.html">MaterialEditor</a> materialEditor, <a href="MaterialProperty.html">MaterialProperty</a>[] properties)
+    {
+        // render the shader properties using the default <a href="GUI.html">GUI</a>
+        base.OnGUI(materialEditor, properties);<br /><br />        // get the current keywords from the material
+        <a href="Material.html">Material</a> targetMat = materialEditor.target as <a href="Material.html">Material</a>;
+        string[] keyWords = targetMat.shaderKeywords;<br /><br />        // see if redify is set, then show a checkbox
+        bool redify = keyWords.Contains("REDIFY_ON");
+        <a href="EditorGUI.BeginChangeCheck.html">EditorGUI.BeginChangeCheck</a>();
+        redify = <a href="EditorGUILayout.Toggle.html">EditorGUILayout.Toggle</a>("Redify material", redify);
+        if (<a href="EditorGUI.EndChangeCheck.html">EditorGUI.EndChangeCheck</a>())
+        {
+            // if the checkbox is changed, reset the shader keywords
+            var keywords = new List&lt;string&gt; { redify ? "REDIFY_ON" : "REDIFY_OFF" };
+            targetMat.shaderKeywords = keywords.ToArray();
+            <a href="EditorUtility.SetDirty.html">EditorUtility.SetDirty</a>(targetMat);
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="ShaderGUI.AssignNewShaderToMaterial.html">AssignNewShaderToMaterial</a></td><td class="desc"></td><td class="desc1">This method is called when a new shader has been selected for a Material.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="ShaderGUI.OnClosed.html">OnClosed</a></td><td class="desc"></td><td class="desc1">This method is called when the ShaderGUI is being closed.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="ShaderGUI.OnGUI.html">OnGUI</a></td><td class="desc"></td><td class="desc1">To define a custom shader GUI use the methods of materialEditor to render controls for the properties array.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="ShaderGUI.OnMaterialPreviewGUI.html">OnMaterialPreviewGUI</a></td><td class="desc"></td><td class="desc1">Override for extending the rendering of the Preview area or completly replace the preview (by not calling base.OnMaterialPreviewGUI).</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="ShaderGUI.OnMaterialPreviewSettingsGUI.html">OnMaterialPreviewSettingsGUI</a></td><td class="desc"></td><td class="desc1">Override for extending the functionality of the toolbar of the preview area or completly replace the toolbar by not calling base.OnMaterialPreviewSettingsGUI.</td></tr>
+    </table></div><div class="subsection"><h2>Static Methods   静态方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="ShaderGUI.FindProperty.html">FindProperty</a></td><td class="desc"></td><td class="desc1">Find shader properties.</td></tr>
+    </table></div></div></div></div></body></html>

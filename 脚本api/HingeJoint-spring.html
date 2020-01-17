@@ -1,0 +1,21 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: HingeJoint.spring</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="HingeJoint.html">HingeJoint</a>.spring</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-HingeJoint.html' title='Go to HingeJoint Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="JointSpring.html">JointSpring</a> <span class="sig-kw">spring</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The spring attempts to reach a target angle by adding spring and damping forces.</p></div><div class="subsection"><p>The <a href="JointSpring-spring.html">JointSpring.spring</a> force attempts to reach the target angle. A larger value makes the spring reach the target position faster.<br /><br />The <a href="JointSpring-damper.html">JointSpring.damper</a> force dampens the angular velocity. A larger value makes the spring reach the goal slower.<br /><br />The spring reaches for the <a href="JointSpring-targetPosition.html">JointSpring.targetPosition</a> angle in degrees relative to the rest angle. The rest angle between the bodies is always zero at the beginning of the simulation.<br /><br />See Also: <a href="HingeJoint-useSpring.html">useSpring</a>, <a href="JointSpring.html">JointSpring</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />
+public class HingeExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        <a href="HingeJoint.html">HingeJoint</a> hinge = GetComponent&lt;<a href="HingeJoint.html">HingeJoint</a>&gt;();<br /><br />        // Make the spring reach shoot for a 70 degree angle.
+        // This could be used to fire off a catapult.<br /><br />        <a href="JointSpring.html">JointSpring</a> hingeSpring = hinge.spring;
+        hingeSpring.spring = 10;
+        hingeSpring.damper = 3;
+        hingeSpring.targetPosition = 70;
+        hinge.spring = hingeSpring;
+        hinge.useSpring = true;
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Modifying the spring does <strong>not</strong> automatically enable it.<br /><br />Enabling the <a href="HingeJoint-motor.html">motor</a> <strong>overrides</strong> the spring, given the spring was enabled. If the motor is again disabled the spring will be restored.</p></div></div></div></div></body></html>

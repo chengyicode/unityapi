@@ -1,0 +1,16 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Application.quitting</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Application.html">Application</a>.quitting</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Unity raises this event when the player application is qutting.</p></div><div class="subsection"><p>Add an event handler to this event to recieve a notification that the application is quitting.<br /><br />Note: This will not fire if the player is forced to quit or if there is a crash. This event is raised when the quitting process cannot be cancelled.<br /><br />Note: iOS applications are usually suspended and do not quit. You should tick "Exit on Suspend" in Player settings for iOS builds to cause the game to quit and not suspend, otherwise you may not see this call. If "Exit on Suspend" is not ticked then you will see calls to OnApplicationPause instead.<br /><br />Note: On Windows Store Apps and Windows Phone 8.1 there's no application quit event, consider using OnApplicationFocus event when focusStatus equals false.<br /><br />To prevent the player application from quitting look at the <a href="Application-wantsToQuit.html">Application.wantsToQuit</a> event.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class PlayerQuitExample
+{
+    static void Quit()
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("Quitting the Player");
+    }<br /><br />    [RuntimeInitializeOnLoadMethod]
+    static void RunOnStart()
+    {
+        <a href="Application-quitting.html">Application.quitting</a> += Quit;
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="Application-wantsToQuit.html">Application.wantsToQuit</a></p></div></div></div></div></body></html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: PropertyStreamHandle</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Experimental</b>: this API is experimental and might be changed or removed in the future.</div><h1 class="heading inherit">PropertyStreamHandle</h1><div class="clear"></div><p class="cl mb0 left mr10">struct in
+          UnityEngine.Experimental.Animations</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.AnimationModule.html" class="cl">UnityEngine.AnimationModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Handle for a <a href="Component.html">Component</a> property on an object in the <a href="Experimental.Animations.AnimationStream.html">AnimationStream</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.Playables;
+using UnityEngine.Animations;<br /><br />using UnityEngine.Experimental.Animations;<br /><br />public struct PropertyStreamHandleJob : <a href="Experimental.Animations.IAnimationJob.html">IAnimationJob</a>
+{
+    public <a href="Experimental.Animations.PropertyStreamHandle.html">PropertyStreamHandle</a> handleR;
+    public <a href="Experimental.Animations.PropertyStreamHandle.html">PropertyStreamHandle</a> handleG;
+    public <a href="Experimental.Animations.PropertyStreamHandle.html">PropertyStreamHandle</a> handleB;
+    public <a href="Color.html">Color</a> color;<br /><br />    public void ProcessRootMotion(<a href="Experimental.Animations.AnimationStream.html">AnimationStream</a> stream)
+    {
+    }<br /><br />    public void ProcessAnimation(<a href="Experimental.Animations.AnimationStream.html">AnimationStream</a> stream)
+    {
+        // Set the new light color.
+        handleR.SetFloat(stream, color.r);
+        handleG.SetFloat(stream, color.g);
+        handleB.SetFloat(stream, color.b);
+    }
+}<br /><br />[<a href="RequireComponent.html">RequireComponent</a>(typeof(<a href="Animator.html">Animator</a>))]
+[<a href="RequireComponent.html">RequireComponent</a>(typeof(<a href="Light.html">Light</a>))]
+public class PropertyStreamHandleExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Color.html">Color</a> color = <a href="Color-white.html">Color.white</a>;<br /><br />    <a href="Playables.PlayableGraph.html">PlayableGraph</a> m_Graph;
+    <a href="Experimental.Animations.AnimationScriptPlayable.html">AnimationScriptPlayable</a> m_AnimationScriptPlayable;<br /><br />    void Start()
+    {
+        var animator = GetComponent&lt;<a href="Animator.html">Animator</a>&gt;();<br /><br />        m_Graph = <a href="Playables.PlayableGraph.Create.html">PlayableGraph.Create</a>("PropertyStreamHandleExample");
+        var output = <a href="Animations.AnimationPlayableOutput.Create.html">AnimationPlayableOutput.Create</a>(m_Graph, "output", animator);<br /><br />        var animationJob = new PropertyStreamHandleJob();
+        animationJob.handleR = animator.BindStreamProperty(gameObject.transform, typeof(<a href="Light.html">Light</a>), "m_Color.r");
+        animationJob.handleG = animator.BindStreamProperty(gameObject.transform, typeof(<a href="Light.html">Light</a>), "m_Color.g");
+        animationJob.handleB = animator.BindStreamProperty(gameObject.transform, typeof(<a href="Light.html">Light</a>), "m_Color.b");
+        m_AnimationScriptPlayable = <a href="Experimental.Animations.AnimationScriptPlayable.Create.html">AnimationScriptPlayable.Create</a>(m_Graph, animationJob);<br /><br />        output.SetSourcePlayable(m_AnimationScriptPlayable);
+        m_Graph.Play();
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        var animationJob = m_AnimationScriptPlayable.GetJobData&lt;PropertyStreamHandleJob&gt;();
+        animationJob.color = color;
+        m_AnimationScriptPlayable.SetJobData(animationJob);
+    }<br /><br />    void OnDisable()
+    {
+        m_Graph.Destroy();
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="Experimental.Animations.AnimatorJobExtensions.BindStreamProperty.html">AnimatorJobExtensions.BindStreamProperty</a>, <a href="Experimental.Animations.TransformStreamHandle.html">TransformStreamHandle</a>, <a href="Experimental.Animations.PropertySceneHandle.html">PropertySceneHandle</a>, and <a href="Experimental.Animations.TransformSceneHandle.html">TransformSceneHandle</a>.</p></div><div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.Animations.PropertyStreamHandle.GetBool.html">GetBool</a></td><td class="desc"></td><td class="desc1">Gets the boolean property value from a stream.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.Animations.PropertyStreamHandle.GetFloat.html">GetFloat</a></td><td class="desc"></td><td class="desc1">Gets the float property value from a stream.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.Animations.PropertyStreamHandle.GetInt.html">GetInt</a></td><td class="desc"></td><td class="desc1">Gets the integer property value from a stream.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.Animations.PropertyStreamHandle.GetReadMask.html">GetReadMask</a></td><td class="desc"></td><td class="desc1">Gets the read mask of the property.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.Animations.PropertyStreamHandle.IsResolved.html">IsResolved</a></td><td class="desc"></td><td class="desc1">Returns whether or not the handle is resolved.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.Animations.PropertyStreamHandle.IsValid.html">IsValid</a></td><td class="desc"></td><td class="desc1">Returns whether or not the handle is valid.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.Animations.PropertyStreamHandle.Resolve.html">Resolve</a></td><td class="desc"></td><td class="desc1">Resolves the handle.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.Animations.PropertyStreamHandle.SetBool.html">SetBool</a></td><td class="desc"></td><td class="desc1">Sets the boolean property value into a stream.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.Animations.PropertyStreamHandle.SetFloat.html">SetFloat</a></td><td class="desc"></td><td class="desc1">Sets the float property value into a stream.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.Animations.PropertyStreamHandle.SetInt.html">SetInt</a></td><td class="desc"></td><td class="desc1">Sets the integer property value into a stream.</td></tr>
+    </table></div></div></div></div></body></html>

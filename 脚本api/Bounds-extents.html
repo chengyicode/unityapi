@@ -1,0 +1,27 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Bounds.extents</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Bounds.html">Bounds</a>.extents</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Vector3.html">Vector3</a> <span class="sig-kw">extents</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The extents of the Bounding Box. This is always half of the <a href="Bounds-size.html">size</a> of the Bounds.</p></div><div class="subsection"><p>
+        <strong>Note:</strong> If <a href="Bounds-extents.html">Bounds.extents</a> has a negative value for any axis, <a href="Bounds.Contains.html">Bounds.Contains</a>
+            always returns False.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//Attach this script to a visible <a href="GameObject.html">GameObject</a>.
+//Click on the <a href="GameObject.html">GameObject</a> to expand it and output the Bound extents to the Console.<br /><br />using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="Collider.html">Collider</a> m_ObjectCollider;
+    public <a href="Vector3.html">Vector3</a> m_MyScale;<br /><br />    void Start()
+    {
+        //Fetch the <a href="GameObject.html">GameObject</a>'s collider (make sure they have a <a href="Collider.html">Collider</a> component)
+        m_ObjectCollider = gameObject.GetComponent&lt;<a href="Collider.html">Collider</a>&gt;();
+        //Output the <a href="GameObject.html">GameObject</a>'s <a href="Collider.html">Collider</a> Bound extents
+        <a href="Debug.Log.html">Debug.Log</a>("extents : " + m_ObjectCollider.bounds.extents);
+    }<br /><br />    //Detect when the user clicks the <a href="GameObject.html">GameObject</a>
+    void OnMouseDown()
+    {
+        //Change the scale of the <a href="GameObject.html">GameObject</a> to the size you define in the Inspector
+        transform.localScale = m_MyScale;
+        //Output the extents of the <a href="Bounds.html">Bounds</a> after clicking the <a href="GameObject.html">GameObject</a>. Extents change to half of the scale.
+        <a href="Debug.Log.html">Debug.Log</a>("extents : " + m_ObjectCollider.bounds.extents);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

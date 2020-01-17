@@ -1,0 +1,18 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorApplication.quitting</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorApplication.html">EditorApplication</a>.quitting</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Unity raises this event when the editor application is quitting.</p></div><div class="subsection"><p>Add an event handler to this event to receive a notification that the application is quitting.<br /><br />Note that this will not fire if the Editor is forced to quit or if there is a crash. This event is raised when the quitting process cannot be cancelled.<br /><br />To prevent the EditorApplication from quitting look at the <a href="EditorApplication-wantsToQuit.html">EditorApplication.wantsToQuit</a> event.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />// Ensure class initializer is called whenever scripts recompile
+[InitializeOnLoad]
+public class EditorQuitExample
+{
+    static void Quit()
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("Quitting the <a href="Editor.html">Editor</a>");
+    }<br /><br />    static EditorQuitExample()
+    {
+        <a href="EditorApplication-quitting.html">EditorApplication.quitting</a> += Quit;
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="EditorApplication-wantsToQuit.html">EditorApplication.wantsToQuit</a>.</p></div></div></div></div></body></html>

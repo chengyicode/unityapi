@@ -1,0 +1,12 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: NonSerialized</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">NonSerialized</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>The NonSerialized attribute marks a variable to not be serialized.</p></div><div class="subsection"><p>This way you can keep a variable public and Unity does not attempt to serialize it or show it in the Inspector.<br />
+See Also: <a href="HideInInspector.html">HideInInspector</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+class Test
+{
+    // p will not be shown in the inspector or serialized
+    [System.NonSerialized]
+    public int p = 5;
+}
+</pre>
+      </div></div></div></div></body></html>

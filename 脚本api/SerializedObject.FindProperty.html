@@ -1,0 +1,18 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: SerializedObject.FindProperty</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="SerializedObject.html">SerializedObject</a>.FindProperty</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="SerializedProperty.html">SerializedProperty</a> <span class="sig-kw">FindProperty</span>(string <span class="sig-kw">propertyPath</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Find serialized property by name.</p></div><div class="subsection"><p>You can use this to find a specific property in the target object.<br /><br />See Also: <a href="SerializedObject.GetIterator.html">GetIterator</a>, <a href="SerializedProperty.html">SerializedProperty</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class MyObject : <a href="ScriptableObject.html">ScriptableObject</a>
+{
+    public int myInt = 42;
+}<br /><br />public class SerializedPropertyTest : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        MyObject obj = <a href="ScriptableObject.CreateInstance.html">ScriptableObject.CreateInstance</a>&lt;MyObject&gt;();
+        <a href="SerializedObject.html">SerializedObject</a> serializedObject = new UnityEditor.SerializedObject(obj);<br /><br />        <a href="SerializedProperty.html">SerializedProperty</a> serializedPropertyMyInt = serializedObject.FindProperty("myInt");<br /><br />        <a href="Debug.Log.html">Debug.Log</a>("myInt " + serializedPropertyMyInt.intValue);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

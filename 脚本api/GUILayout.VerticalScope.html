@@ -1,0 +1,22 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: VerticalScope</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">VerticalScope</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.IMGUIModule.html" class="cl">UnityEngine.IMGUIModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Disposable helper class for managing <a href="GUILayout.BeginVertical.html">BeginVertical</a> / <a href="GUILayout.EndVertical.html">EndVertical</a>.</p></div><div class="subsection"><p>All controls rendered inside this element will be placed vertically below each other. The group must be closed with a call to EndVertical.<br /><br /><img src="../StaticFiles/ScriptRefImages/GUILayoutVertical.png" /><br />
+<em>Vertical Layout.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void OnGUI()
+    {
+        // Starts a vertical group
+        using (var verticalScope = new <a href="GUILayout.VerticalScope.html">VerticalScope</a>("box"))
+        {
+            <a href="GUILayout.Button.html">GUILayout.Button</a>("I'm the top button");
+            <a href="GUILayout.Button.html">GUILayout.Button</a>("I'm the bottom button");
+        }
+        // The group is now ended
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Constructors</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="GUILayout.VerticalScope-ctor.html">GUILayout.VerticalScope</a></td><td class="desc"></td><td class="desc1">Create a new VerticalScope and begin the corresponding vertical group.</td></tr>
+    </table></div></div></div></div></body></html>

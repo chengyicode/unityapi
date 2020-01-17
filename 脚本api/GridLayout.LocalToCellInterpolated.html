@@ -1,0 +1,19 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: GridLayout.LocalToCellInterpolated</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="GridLayout.html">GridLayout</a>.LocalToCellInterpolated</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Vector3.html">Vector3</a> <span class="sig-kw">LocalToCellInterpolated</span>(<a href="Vector3.html">Vector3</a> <span class="sig-kw">localPosition</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">localPosition</td><td class="desc"></td><td class="desc1">Local Position to convert.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>Vector3</strong>
+        Interpolated cell position of the local position.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Converts a local position to cell position.</p></div><div class="subsection"><p>Returns the interpolated cell position in floats, rather than the exact cell position.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Move <a href="GameObject.html">GameObject</a> left by 1/4th of cell width of parent <a href="GridLayout.html">GridLayout</a>
+using UnityEngine;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        <a href="GridLayout.html">GridLayout</a> gridLayout = transform.parent.GetComponent&lt;<a href="GridLayout.html">GridLayout</a>&gt;();
+        <a href="Vector3.html">Vector3</a> cellPosition = gridLayout.LocalToCellInterpolated(transform.localPosition);
+        cellPosition += <a href="Vector3-left.html">Vector3.left</a> * 0.25f;
+        transform.localPosition = gridLayout.CellToLocalInterpolated(cellPosition);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

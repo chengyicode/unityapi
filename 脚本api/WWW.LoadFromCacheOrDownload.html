@@ -1,0 +1,36 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: WWW.LoadFromCacheOrDownload</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Method group is Obsolete</b><br /></div><h1 class="heading inherit"><a href="WWW.html">WWW</a>.LoadFromCacheOrDownload</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public static WWW <span class="sig-kw">LoadFromCacheOrDownload</span>(string <span class="sig-kw">url</span>,
+int <span class="sig-kw">version</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public static WWW <span class="sig-kw">LoadFromCacheOrDownload</span>(string <span class="sig-kw">url</span>,
+int <span class="sig-kw">version</span>,
+uint <span class="sig-kw">crc</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public static WWW <span class="sig-kw">LoadFromCacheOrDownload</span>(string <span class="sig-kw">url</span>,
+<a href="Hash128.html">Hash128</a> <span class="sig-kw">hash</span>,
+uint <span class="sig-kw">crc</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public static WWW <span class="sig-kw">LoadFromCacheOrDownload</span>(string <span class="sig-kw">url</span>,
+<a href="CachedAssetBundle.html">CachedAssetBundle</a> <span class="sig-kw">cachedBundle</span>,
+uint <span class="sig-kw">crc</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">url</td><td class="desc"></td><td class="desc1">The URL to download the AssetBundle from, if it is not present in the cache. Must be '%' escaped.</td></tr><tr><td class="name lbl">version</td><td class="desc"></td><td class="desc1">Version of the AssetBundle. The file will only be loaded from the disk cache if it has previously been downloaded with the same <code class="varname">version</code> parameter. By incrementing the version number requested by your application, you can force Caching to download a new copy of the AssetBundle from <code class="varname">url</code>.</td></tr><tr><td class="name lbl">hash</td><td class="desc"></td><td class="desc1">Hash128 which is used as the version of the AssetBundle.</td></tr><tr><td class="name lbl">cachedBundle</td><td class="desc"></td><td class="desc1">A structure used to download a given version of AssetBundle to a customized cache path.<br /><br />Analogous to the <code class="varname">cachedAssetBundle</code> parameter for <a href="Networking.UnityWebRequestAssetBundle.GetAssetBundle.html">UnityWebRequestAssetBundle.GetAssetBundle</a>.&lt;/param&gt;</td></tr><tr><td class="name lbl">crc</td><td class="desc"></td><td class="desc1">An optional CRC-32 Checksum of the uncompressed contents. If this is non-zero, then the content will be compared against the checksum before loading it, and give an error if it does not match. You can use this to avoid data corruption from bad downloads or users tampering with the cached files on disk. If the CRC does not match, Unity will try to redownload the data, and if the CRC on the server does not match it will fail with an error. Look at the error string returned to see the correct CRC value to use for an AssetBundle.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>WWW</strong>
+        A WWW instance, which can be used to access the data once the load/download operation is completed.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Loads an AssetBundle with the specified version number from the cache. If the AssetBundle is not currently cached, it will automatically be downloaded and stored in the cache for future retrieval from local storage.</p></div><div class="subsection"><p>LoadFromCacheOrDownload() must be used in place of "new WWW (url)" in order to utilize caching functionality.<br /><br />Cached AssetBundles are uniquely identified solely by the filename and version. All domain and path information in <code class="varname">url</code> is ignored by Caching. Since cached AssetBundles are identified by filename instead of the full URL, you can change the directory from where the asset bundle is downloaded at any time. This is useful for pushing out new versions of the game and ensuring that files are not cached incorrectly by the browser or by a CDN.<br /><br />Usually using the filename of the AssetBundle to generate the cache path is fine. But if there are different AssetBundles with the same last file name, cache conflicts will happen. With CachedAssetBundle, users can use <a href="CachedAssetBundle-name.html">CachedAssetBundle.name</a> to customized the cache path to avoid the cache conflicts. Users can also utilize this to organize the cache data structure.<br /><br />If the cache folder does not have any space for caching additional files, LoadFromCacheOrDownload will iteratively delete the least-recently-used AssetBundles from the Cache until sufficient space is available to store the new AssetBundle. If making space is not possible (because the hard disk is full, or all files in the cache are currently in use), LoadFromCacheOrDownload() will bypass Caching and stream the file into memory like a normal "new WWW()" call.<br /><br />Cached data can be stored in a compressed form depending on <a href="Caching-compressionEnabled.html">Caching.compressionEnabled</a> value.<br /><br />This function can only be used to access AssetBundles. No other types or content are cacheable.<br /><br />The CRC passed into this function is computed during Asset Bundle build time, see <a href="BuildPipeline.BuildAssetBundles.html">BuildPipeline.BuildAssetBundles</a>.<br /><br /><strong><em>Note:</em></strong> URL must be '%' escaped.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class LoadFromCacheOrDownloadExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    IEnumerator Start()
+    {
+        while (!<a href="Caching-ready.html">Caching.ready</a>)
+            yield return null;<br /><br />        using (var www = WWW.LoadFromCacheOrDownload("http://myserver.com/myassetBundle.unity3d", 5))
+        {
+            yield return www;
+            if (!string.IsNullOrEmpty(www.error))
+            {
+                <a href="Debug.Log.html">Debug.Log</a>(www.error);
+                yield return null;
+            }
+            var myLoadedAssetBundle = www.assetBundle;<br /><br />            var asset = myLoadedAssetBundle.mainAsset;
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="BuildPipeline.BuildAssetBundles.html">BuildPipeline.BuildAssetBundles</a>.</p></div></div></div></div></body></html>

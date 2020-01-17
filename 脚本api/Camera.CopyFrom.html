@@ -1,0 +1,18 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Camera.CopyFrom</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Camera.html">Camera</a>.CopyFrom</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Camera.html' title='Go to Camera Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">CopyFrom</span>(<a href="Camera.html">Camera</a> <span class="sig-kw">other</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">other</td><td class="desc"></td><td class="desc1">Copy camera settings to the other camera.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Makes this camera's settings match other camera.</p></div><div class="subsection"><p>This will copy all camera's variables (field of view, clear flags, culling mask, ...) from the other
+camera. It will also set this camera's transform to match the other camera, as well as this camera's
+layer to match the layer of the other camera.<br /><br />This can be useful if you want one camera to match the other camera's setup, when doing custom
+rendering effects. For example when using <a href="Camera.RenderWithShader.html">RenderWithShader</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Two cameras.  One based on the Main <a href="Camera.html">Camera</a> and the other on a new camera that takes over.<br /><br />using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Camera.html">Camera</a> cam;<br /><br />    void Start()
+    {
+        // Set the current camera's settings from the main <a href="SceneManagement.Scene.html">Scene</a> camera
+        cam.CopyFrom(<a href="Camera-main.html">Camera.main</a>);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

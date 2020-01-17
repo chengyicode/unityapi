@@ -1,0 +1,80 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: QualitySettings</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">QualitySettings</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Inherits from:<a href="Object.html" class="cl">Object</a></p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.CoreModule.html" class="cl">UnityEngine.CoreModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-QualitySettings.html' title='Go to QualitySettings Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Script interface for <a href="../Manual/class-QualitySettings.html">Quality Settings</a>.</p></div><div class="subsection"><p>There can be an arbitrary number of quality settings. The details of each are set up
+in the project's <a href="../Manual/class-QualitySettings.html">Quality Settings</a>. At run time, the
+current quality level can be changed using this class.</p></div><div class="subsection"><h2>Static Properties</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="QualitySettings-activeColorSpace.html">activeColorSpace</a></td><td class="desc"></td><td class="desc1">Active color space (Read Only).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="QualitySettings-anisotropicFiltering.html">anisotropicFiltering</a></td><td class="desc"></td><td class="desc1">Global anisotropic filtering mode.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="QualitySettings-antiAliasing.html">antiAliasing</a></td><td class="desc"></td><td class="desc1">Set The AA Filtering option.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="QualitySettings-asyncUploadBufferSize.html">asyncUploadBufferSize</a></td><td class="desc"></td><td class="desc1">Async texture upload provides timesliced async texture upload on the render thread with tight control over memory and timeslicing. There are no allocations except for the ones which driver has to do. To read data and upload texture data a ringbuffer whose size can be controlled is re-used.Use asyncUploadBufferSize to set the buffer size for asynchronous texture uploads. The size is in megabytes. Minimum value is 2 and maximum is 512. Although the buffer will resize automatically to fit the largest texture currently loading, it is recommended to set the value approximately to the size of biggest texture used in the Scene to avoid re-sizing of the buffer which can incur performance cost.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="QualitySettings-asyncUploadPersistentBuffer.html">asyncUploadPersistentBuffer</a></td><td class="desc"></td><td class="desc1">This flag controls if the async upload pipeline's ring buffer remains allocated when there are no active loading operations.
+Set this to true, to make the ring buffer allocation persist after all upload operations have completed.
+If you have issues with excessive memory usage, you can set this to false. This means you reduce the runtime memory footprint, but memory fragmentation can occur.
+The default value is true.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="QualitySettings-asyncUploadTimeSlice.html">asyncUploadTimeSlice</a></td><td class="desc"></td><td class="desc1">Async texture upload provides timesliced async texture upload on the render thread with tight control over memory and timeslicing. There are no allocations except for the ones which driver has to do. To read data and upload texture data a ringbuffer whose size can be controlled is re-used.Use asyncUploadTimeSlice to set the time-slice in milliseconds for asynchronous texture uploads per
+frame. Minimum value is 1 and maximum is 33.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="QualitySettings-billboardsFaceCameraPosition.html">billboardsFaceCameraPosition</a></td><td class="desc"></td><td class="desc1">If enabled, billboards will face towards camera position rather than camera orientation.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="QualitySettings-desiredColorSpace.html">desiredColorSpace</a></td><td class="desc"></td><td class="desc1">Desired color space (Read Only).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="QualitySettings-lodBias.html">lodBias</a></td><td class="desc"></td><td class="desc1">Global multiplier for the LOD's switching distance.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="QualitySettings-masterTextureLimit.html">masterTextureLimit</a></td><td class="desc"></td><td class="desc1">A texture size limit applied to all textures.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="QualitySettings-maximumLODLevel.html">maximumLODLevel</a></td><td class="desc"></td><td class="desc1">A maximum LOD level. All LOD groups.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="QualitySettings-maxQueuedFrames.html">maxQueuedFrames</a></td><td class="desc"></td><td class="desc1">Maximum number of frames queued up by graphics driver.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="QualitySettings-names.html">names</a></td><td class="desc"></td><td class="desc1">The indexed list of available Quality Settings.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="QualitySettings-particleRaycastBudget.html">particleRaycastBudget</a></td><td class="desc"></td><td class="desc1">Budget for how many ray casts can be performed per frame for approximate collision testing.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="QualitySettings-pixelLightCount.html">pixelLightCount</a></td><td class="desc"></td><td class="desc1">The maximum number of pixel lights that should affect any object.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="QualitySettings-realtimeReflectionProbes.html">realtimeReflectionProbes</a></td><td class="desc"></td><td class="desc1">Enables realtime reflection probes.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="QualitySettings-resolutionScalingFixedDPIFactor.html">resolutionScalingFixedDPIFactor</a></td><td class="desc"></td><td class="desc1">In resolution scaling mode, this factor is used to multiply with the target Fixed DPI specified to get the actual Fixed DPI to use for this quality setting.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="QualitySettings-shadowCascade2Split.html">shadowCascade2Split</a></td><td class="desc"></td><td class="desc1">The normalized cascade distribution for a 2 cascade setup. The value defines the position of the cascade with respect to Zero.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="QualitySettings-shadowCascade4Split.html">shadowCascade4Split</a></td><td class="desc"></td><td class="desc1">The normalized cascade start position for a 4 cascade setup. Each member of the vector defines the normalized position of the coresponding cascade with respect to Zero.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="QualitySettings-shadowCascades.html">shadowCascades</a></td><td class="desc"></td><td class="desc1">Number of cascades to use for directional light shadows.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="QualitySettings-shadowDistance.html">shadowDistance</a></td><td class="desc"></td><td class="desc1">Shadow drawing distance.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="QualitySettings-shadowmaskMode.html">shadowmaskMode</a></td><td class="desc"></td><td class="desc1">The rendering mode of Shadowmask.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="QualitySettings-shadowNearPlaneOffset.html">shadowNearPlaneOffset</a></td><td class="desc"></td><td class="desc1">Offset shadow frustum near plane.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="QualitySettings-shadowProjection.html">shadowProjection</a></td><td class="desc"></td><td class="desc1">Directional light shadow projection.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="QualitySettings-shadowResolution.html">shadowResolution</a></td><td class="desc"></td><td class="desc1">The default resolution of the shadow maps.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="QualitySettings-shadows.html">shadows</a></td><td class="desc"></td><td class="desc1">Realtime Shadows type to be used.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="QualitySettings-skinWeights.html">skinWeights</a></td><td class="desc"></td><td class="desc1">Skin weights.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="QualitySettings-softParticles.html">softParticles</a></td><td class="desc"></td><td class="desc1">Should soft blending be used for particles?</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="QualitySettings-softVegetation.html">softVegetation</a></td><td class="desc"></td><td class="desc1">Use a two-pass shader for the vegetation in the terrain engine.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="QualitySettings-streamingMipmapsActive.html">streamingMipmapsActive</a></td><td class="desc"></td><td class="desc1">Enable automatic streaming of texture mipmap levels based on their distance from all active cameras.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="QualitySettings-streamingMipmapsAddAllCameras.html">streamingMipmapsAddAllCameras</a></td><td class="desc"></td><td class="desc1">Process all enabled Cameras for texture streaming (rather than just those with StreamingController components).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="QualitySettings-streamingMipmapsMaxFileIORequests.html">streamingMipmapsMaxFileIORequests</a></td><td class="desc"></td><td class="desc1">The maximum number of active texture file IO requests from the texture streaming system.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="QualitySettings-streamingMipmapsMaxLevelReduction.html">streamingMipmapsMaxLevelReduction</a></td><td class="desc"></td><td class="desc1">The maximum number of mipmap levels to discard for each texture.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="QualitySettings-streamingMipmapsMemoryBudget.html">streamingMipmapsMemoryBudget</a></td><td class="desc"></td><td class="desc1">The total amount of memory to be used by streaming and non-streaming textures.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="QualitySettings-streamingMipmapsRenderersPerFrame.html">streamingMipmapsRenderersPerFrame</a></td><td class="desc"></td><td class="desc1">Number of renderers used to process each frame during the calculation of desired mipmap levels for the associated textures.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="QualitySettings-vSyncCount.html">vSyncCount</a></td><td class="desc"></td><td class="desc1">The VSync Count.</td></tr>
+    </table></div><div class="subsection"><h2>Static Methods   静态方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="QualitySettings.DecreaseLevel.html">DecreaseLevel</a></td><td class="desc"></td><td class="desc1">Decrease the current quality level.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="QualitySettings.GetQualityLevel.html">GetQualityLevel</a></td><td class="desc"></td><td class="desc1">Returns the current graphics quality level.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="QualitySettings.IncreaseLevel.html">IncreaseLevel</a></td><td class="desc"></td><td class="desc1">Increase the current quality level.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="QualitySettings.SetQualityLevel.html">SetQualityLevel</a></td><td class="desc"></td><td class="desc1">Sets a new graphics quality level.</td></tr>
+    </table></div><div class="subsection"><h2>Inherited Members   继承成员</h2>
+      
+      <div class="subsection"><h2>Properties   属性</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-hideFlags.html">hideFlags</a></td><td class="desc"></td><td class="desc1">Should the object be hidden, saved with the Scene or modifiable by the user?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-name.html">name</a></td><td class="desc"></td><td class="desc1">The name of the object.</td></tr>
+      </table></div>
+      
+      
+      
+      <div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.GetInstanceID.html">GetInstanceID</a></td><td class="desc"></td><td class="desc1">Returns the instance id of the object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.ToString.html">ToString</a></td><td class="desc"></td><td class="desc1">Returns the name of the object.</td></tr>
+      </table></div>
+      
+      <div class="subsection"><h2>Static Methods   静态方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.Destroy.html">Destroy</a></td><td class="desc"></td><td class="desc1">Removes a GameObject, component or asset.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.DestroyImmediate.html">DestroyImmediate</a></td><td class="desc"></td><td class="desc1">Destroys the object obj immediately. You are strongly recommended to use Destroy instead.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.DontDestroyOnLoad.html">DontDestroyOnLoad</a></td><td class="desc"></td><td class="desc1">Do not destroy the target Object when loading a new Scene.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectOfType.html">FindObjectOfType</a></td><td class="desc"></td><td class="desc1">Returns the first active loaded object of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectsOfType.html">FindObjectsOfType</a></td><td class="desc"></td><td class="desc1">Returns a list of all active loaded objects of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.Instantiate.html">Instantiate</a></td><td class="desc"></td><td class="desc1">Clones the object original and returns the clone.</td></tr>
+      </table></div>
+      <div class="subsection"><h2>Operators   运算符</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_Object.html">bool</a></td><td class="desc"></td><td class="desc1">Does the object exist?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_ne.html">operator !=</a></td><td class="desc"></td><td class="desc1">Compares if two objects refer to a different object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_eq.html">operator ==</a></td><td class="desc"></td><td class="desc1">Compares two object references to see if they refer to the same object.</td></tr>
+      </table></div>
+      
+      
+      
+    </div></div></div></div></body></html>

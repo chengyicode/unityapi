@@ -1,0 +1,78 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Graphics.DrawMesh</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Graphics.html">Graphics</a>.DrawMesh</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">DrawMesh</span>(<a href="Mesh.html">Mesh</a> <span class="sig-kw">mesh</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">position</span>,
+<a href="Quaternion.html">Quaternion</a> <span class="sig-kw">rotation</span>,
+<a href="Material.html">Material</a> <span class="sig-kw">material</span>,
+int <span class="sig-kw">layer</span>,
+<a href="Camera.html">Camera</a> <span class="sig-kw">camera</span> = null,
+int <span class="sig-kw">submeshIndex</span> = 0,
+<a href="MaterialPropertyBlock.html">MaterialPropertyBlock</a> <span class="sig-kw">properties</span> = null,
+bool <span class="sig-kw">castShadows</span> = true,
+bool <span class="sig-kw">receiveShadows</span> = true,
+bool <span class="sig-kw">useLightProbes</span> = true);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">DrawMesh</span>(<a href="Mesh.html">Mesh</a> <span class="sig-kw">mesh</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">position</span>,
+<a href="Quaternion.html">Quaternion</a> <span class="sig-kw">rotation</span>,
+<a href="Material.html">Material</a> <span class="sig-kw">material</span>,
+int <span class="sig-kw">layer</span>,
+<a href="Camera.html">Camera</a> <span class="sig-kw">camera</span>,
+int <span class="sig-kw">submeshIndex</span>,
+<a href="MaterialPropertyBlock.html">MaterialPropertyBlock</a> <span class="sig-kw">properties</span>,
+<a href="Rendering.ShadowCastingMode.html">Rendering.ShadowCastingMode</a> <span class="sig-kw">castShadows</span>,
+bool <span class="sig-kw">receiveShadows</span> = true,
+<a href="Transform.html">Transform</a> <span class="sig-kw">probeAnchor</span> = null,
+bool <span class="sig-kw">useLightProbes</span> = true);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">DrawMesh</span>(<a href="Mesh.html">Mesh</a> <span class="sig-kw">mesh</span>,
+<a href="Matrix4x4.html">Matrix4x4</a> <span class="sig-kw">matrix</span>,
+<a href="Material.html">Material</a> <span class="sig-kw">material</span>,
+int <span class="sig-kw">layer</span>,
+<a href="Camera.html">Camera</a> <span class="sig-kw">camera</span> = null,
+int <span class="sig-kw">submeshIndex</span> = 0,
+<a href="MaterialPropertyBlock.html">MaterialPropertyBlock</a> <span class="sig-kw">properties</span> = null,
+bool <span class="sig-kw">castShadows</span> = true,
+bool <span class="sig-kw">receiveShadows</span> = true,
+bool <span class="sig-kw">useLightProbes</span> = true);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">DrawMesh</span>(<a href="Mesh.html">Mesh</a> <span class="sig-kw">mesh</span>,
+<a href="Matrix4x4.html">Matrix4x4</a> <span class="sig-kw">matrix</span>,
+<a href="Material.html">Material</a> <span class="sig-kw">material</span>,
+int <span class="sig-kw">layer</span>,
+<a href="Camera.html">Camera</a> <span class="sig-kw">camera</span>,
+int <span class="sig-kw">submeshIndex</span>,
+<a href="MaterialPropertyBlock.html">MaterialPropertyBlock</a> <span class="sig-kw">properties</span>,
+<a href="Rendering.ShadowCastingMode.html">Rendering.ShadowCastingMode</a> <span class="sig-kw">castShadows</span>,
+bool <span class="sig-kw">receiveShadows</span> = true,
+<a href="Transform.html">Transform</a> <span class="sig-kw">probeAnchor</span> = null,
+bool <span class="sig-kw">useLightProbes</span> = true);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">DrawMesh</span>(<a href="Mesh.html">Mesh</a> <span class="sig-kw">mesh</span>,
+<a href="Matrix4x4.html">Matrix4x4</a> <span class="sig-kw">matrix</span>,
+<a href="Material.html">Material</a> <span class="sig-kw">material</span>,
+int <span class="sig-kw">layer</span>,
+<a href="Camera.html">Camera</a> <span class="sig-kw">camera</span>,
+int <span class="sig-kw">submeshIndex</span>,
+<a href="MaterialPropertyBlock.html">MaterialPropertyBlock</a> <span class="sig-kw">properties</span>,
+<a href="Rendering.ShadowCastingMode.html">Rendering.ShadowCastingMode</a> <span class="sig-kw">castShadows</span>,
+bool <span class="sig-kw">receiveShadows</span>,
+<a href="Transform.html">Transform</a> <span class="sig-kw">probeAnchor</span>,
+<a href="Rendering.LightProbeUsage.html">Rendering.LightProbeUsage</a> <span class="sig-kw">lightProbeUsage</span>,
+<a href="LightProbeProxyVolume.html">LightProbeProxyVolume</a> <span class="sig-kw">lightProbeProxyVolume</span> = null);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">mesh</td><td class="desc"></td><td class="desc1">The <a href="Mesh.html">Mesh</a> to draw.</td></tr><tr><td class="name lbl">position</td><td class="desc"></td><td class="desc1">Position of the mesh.</td></tr><tr><td class="name lbl">rotation</td><td class="desc"></td><td class="desc1">Rotation of the mesh.</td></tr><tr><td class="name lbl">matrix</td><td class="desc"></td><td class="desc1">Transformation matrix of the mesh (combines position, rotation and other transformations).</td></tr><tr><td class="name lbl">material</td><td class="desc"></td><td class="desc1">
+          <a href="Material.html">Material</a> to use.</td></tr><tr><td class="name lbl">layer</td><td class="desc"></td><td class="desc1">
+          <a href="../Manual/Layers.html">Layer</a> to use.</td></tr><tr><td class="name lbl">camera</td><td class="desc"></td><td class="desc1">If <code class="varname">null</code> (default), the mesh will be drawn in all cameras. Otherwise it will be rendered in the given camera only.</td></tr><tr><td class="name lbl">submeshIndex</td><td class="desc"></td><td class="desc1">Which subset of the mesh to draw. This applies only to meshes that are composed of several materials.</td></tr><tr><td class="name lbl">properties</td><td class="desc"></td><td class="desc1">Additional material properties to apply onto material just before this mesh will be drawn. See <a href="MaterialPropertyBlock.html">MaterialPropertyBlock</a>.</td></tr><tr><td class="name lbl">castShadows</td><td class="desc"></td><td class="desc1">Determines whether the mesh can cast shadows.</td></tr><tr><td class="name lbl">receiveShadows</td><td class="desc"></td><td class="desc1">Determines whether the mesh can receive shadows.</td></tr><tr><td class="name lbl">useLightProbes</td><td class="desc"></td><td class="desc1">Should the mesh use light probes?</td></tr><tr><td class="name lbl">probeAnchor</td><td class="desc"></td><td class="desc1">If used, the mesh will use this Transform's position to sample light probes and find the matching reflection probe.</td></tr><tr><td class="name lbl">lightProbeUsage</td><td class="desc"></td><td class="desc1">
+          <a href="Rendering.LightProbeUsage.html">LightProbeUsage</a> for the mesh.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Draw a mesh.</p></div><div class="subsection"><p>DrawMesh draws a mesh for one frame. The mesh will be affected by the lights, can cast and receive shadows and be
+affected by Projectors - just like it was part of some game object. It can be drawn for all cameras or just for
+some specific camera.<br /><br />Use DrawMesh in situations where you want to draw large amount of meshes, but don't want the overhead of creating and
+managing game objects. Note that DrawMesh does not draw the mesh immediately; it merely "submits" it for rendering. The mesh
+will be rendered as part of normal rendering process. If you want to draw a mesh immediately, use <a href="Graphics.DrawMeshNow.html">Graphics.DrawMeshNow</a>.<br /><br />Because DrawMesh does not draw mesh immediately, modifying material properties between calls to this function won't make
+the meshes pick up them. If you want to draw series of meshes with the same material, but slightly different
+properties (e.g. change color of each mesh), use <a href="MaterialPropertyBlock.html">MaterialPropertyBlock</a> parameter.<br /><br />Note that this call will create some internal resources while the mesh is queued up for rendering. The allocation happens immediately and will be kept around until the end of frame (if the object was queued for all cameras) or until the specified camera renders itself.<br /><br />See Also: <a href="MaterialPropertyBlock.html">MaterialPropertyBlock</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a> {
+    public <a href="Mesh.html">Mesh</a> mesh;
+    public <a href="Material.html">Material</a> material;
+    public void <a href="Experimental.PlayerLoop.Update.html">Update</a>() {
+        // will make the mesh appear in the <a href="SceneManagement.Scene.html">Scene</a> at origin position
+        <a href="Graphics.DrawMesh.html">Graphics.DrawMesh</a>(mesh, <a href="Vector3-zero.html">Vector3.zero</a>, <a href="Quaternion-identity.html">Quaternion.identity</a>, material, 0);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

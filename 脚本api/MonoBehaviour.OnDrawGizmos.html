@@ -1,0 +1,15 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: MonoBehaviour.OnDrawGizmos()</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="MonoBehaviour.html">MonoBehaviour</a>.OnDrawGizmos()</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Implement OnDrawGizmos if you want to draw gizmos that are also pickable and always drawn.</p></div><div class="subsection"><p>This allows you to quickly pick important objects in your Scene.<br /><br />Note that OnDrawGizmos will use a mouse position that is relative to the Scene View.<br /><br />This function does <em>not</em> get called if the component is collapsed in the Inspector. Use <a href="MonoBehaviour.OnDrawGizmosSelected.html">OnDrawGizmosSelected</a> to draw gizmos when the game object is selected.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void OnDrawGizmos()
+    {
+        // Draw a yellow sphere at the transform's position
+        <a href="Gizmos-color.html">Gizmos.color</a> = <a href="Color-yellow.html">Color.yellow</a>;
+        <a href="Gizmos.DrawSphere.html">Gizmos.DrawSphere</a>(transform.position, 1);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="MonoBehaviour.OnDrawGizmosSelected.html">OnDrawGizmosSelected</a>.</p></div></div></div></div></body></html>

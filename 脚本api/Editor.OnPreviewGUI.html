@@ -1,0 +1,26 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Editor.OnPreviewGUI</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Editor.html">Editor</a>.OnPreviewGUI</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">OnPreviewGUI</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">r</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">background</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">r</td><td class="desc"></td><td class="desc1">Rectangle in which to draw the preview.</td></tr><tr><td class="name lbl">background</td><td class="desc"></td><td class="desc1">Background image.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Implement to create your own custom preview for the preview area of the inspector, the headers of the primary editor, and the object selector.</p></div><div class="subsection"><p>If you implement <a href="Editor.OnInteractivePreviewGUI.html">OnInteractivePreviewGUI</a>, then this method is only called for non-interactive custom previews.
+The overidden method should render a preview of the asset in the specified rectangle (r).
+The default implementation is a no-op.<br /><br /><strong>Note:</strong> Inspector previews are limited to the primary editor of persistent objects (assets), e.g., GameObjectInspector, MaterialEditor, TextureInspector.
+This means that it is currently not possible for a component to have its own inspector preview.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class GameObjectEditorWindow: <a href="EditorWindow.html">EditorWindow</a>
+{
+    <a href="GameObject.html">GameObject</a> gameObject;
+    <a href="Editor.html">Editor</a> gameObjectEditor;<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Window/<a href="GameObject.html">GameObject</a> <a href="Editor.html">Editor</a>")]
+    static void ShowWindow()
+    {
+        GetWindow&lt;GameObjectEditorWindow&gt;("<a href="GameObject.html">GameObject</a> <a href="Editor.html">Editor</a>");
+    }<br /><br />    void OnGUI()
+    {
+        gameObject = (<a href="GameObject.html">GameObject</a>) <a href="EditorGUILayout.ObjectField.html">EditorGUILayout.ObjectField</a>(gameObject, typeof(<a href="GameObject.html">GameObject</a>), true);<br /><br />        if (gameObject != null)
+        {
+            if (gameObjectEditor == null)
+                gameObjectEditor = <a href="Editor.CreateEditor.html">Editor.CreateEditor</a>(gameObject);<br /><br />            gameObjectEditor.OnPreviewGUI(<a href="GUILayoutUtility.GetRect.html">GUILayoutUtility.GetRect</a>(500, 500), <a href="EditorStyles-whiteLabel.html">EditorStyles.whiteLabel</a>);
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="Editor.OnInteractivePreviewGUI.html">OnInteractivePreviewGUI</a>.</p></div></div></div></div></body></html>

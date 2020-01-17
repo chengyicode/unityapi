@@ -1,0 +1,37 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: WWW.texture</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Method group is Obsolete</b><br /></div><h1 class="heading inherit"><a href="WWW.html">WWW</a>.texture</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public <a href="Texture2D.html">Texture2D</a> <span class="sig-kw">texture</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Returns a <a href="Texture2D.html">Texture2D</a> generated from the downloaded data (Read Only).</p></div><div class="subsection"><p>The data must be an image in JPG or PNG format. If the data is not a valid
+image, the generated texture will be a small image of a question mark.
+It is recommended to use power-of-two size for each dimension of the image;
+arbitrary sizes will also work but can load slightly slower and take up
+a bit more memory. Each invocation of texture property allocates a new <a href="Texture2D.html">Texture2D</a>. If you
+continously download textures you must use <a href="WWW.LoadImageIntoTexture.html">LoadImageIntoTexture</a> or <a href="Object.Destroy.html">Destroy</a>
+the previously created texture.<br /><br />For PNG files, gamma correction is applied to the texture if PNG file contains
+gamma information. Display gamma for correction is assumed to be 2.0. If file
+does not contain gamma information, no color correction will be performed.<br /><br />JPG files are loaded into <a href="TextureFormat.RGB24.html">RGB24</a> format, PNG files are loaded into
+<a href="TextureFormat.ARGB32.html">ARGB32</a> format. If you want to DXT-compress the downloaded image,
+use <a href="WWW.LoadImageIntoTexture.html">LoadImageIntoTexture</a> instead.<br /><br />If the object has not finished downloading the data a dummy image will be returned.
+Use isDone or <a href="YieldInstruction.html">yield</a> to see if the data is available.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />// Get the latest webcam shot from outside "Friday's" in Times Square
+public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public string url = "http://images.earthcam.com/ec_metros/ourcams/fridays.jpg";<br /><br />    IEnumerator Start()
+    {
+        // Start a download of the given URL
+        using (WWW www = new WWW(url))
+        {
+            // Wait for download to complete
+            yield return www;<br /><br />            // assign texture
+            <a href="Renderer.html">Renderer</a> renderer = GetComponent&lt;<a href="Renderer.html">Renderer</a>&gt;();
+            renderer.material.mainTexture = www.texture;
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>
+        <strong>Note:</strong> The WWW.texture property allocates a new <a href="Texture2D.html">Texture2D</a> every time it is called.
+Therefore, it is important to always assign the result to a local variable so that it can
+later be freed using Destroy().<br /><br />The call to www.texture allocates a new texture, but the texture is never deallocated because
+no local reference to it exists.<br /><br />Alternatively, use WWW.LoadImageIntoTexture.</p></div></div></div></div></body></html>

@@ -1,0 +1,13 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ControllerColliderHit.moveLength</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="ControllerColliderHit.html">ControllerColliderHit</a>.moveLength</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public float <span class="sig-kw">moveLength</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>How far the character has travelled until it hit the collider.</p></div><div class="subsection"><p>Note that this can be different from what you pass to <a href="CharacterController.Move.html">CharacterController.Move</a>, because the initial movement vector is decomposed into a set of movements, according to <a href="CharacterController-stepOffset.html">CharacterController.stepOffset</a>.<br /><br />See Also: <a href="ControllerColliderHit-moveDirection.html">ControllerColliderHit.moveDirection</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void OnControllerColliderHit(<a href="ControllerColliderHit.html">ControllerColliderHit</a> hit)
+    {
+        <a href="Debug.Log.html">Debug.Log</a>(hit.moveLength);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

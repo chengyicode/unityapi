@@ -1,0 +1,53 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ColorUtility.TryParseHtmlString</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="ColorUtility.html">ColorUtility</a>.TryParseHtmlString</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">TryParseHtmlString</span>(string <span class="sig-kw">htmlString</span>,
+out <a href="Color.html">Color</a> <span class="sig-kw">color</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">htmlString</td><td class="desc"></td><td class="desc1">Case insensitive html string to be converted into a color.</td></tr><tr><td class="name lbl">color</td><td class="desc"></td><td class="desc1">The converted color.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>bool</strong>
+        True if the string was successfully converted else false.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Attempts to convert a html color string.</p></div><div class="subsection"><p>
+        <strong>Strings that begin with '#' will be parsed as hexadecimal in the following way:</strong>
+        <br />
+#RGB (becomes RRGGBB)<br />
+#RRGGBB<br />
+#RGBA (becomes RRGGBBAA)<br />
+#RRGGBBAA<br /><br />
+When not specified alpha will default to FF.
+<br />
+<strong>Strings that do not begin with '#' will be parsed as literal colors, with the following supported:</strong><br />
+red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta..<br />
+<br />
+The following example creates a custom PropertyDrawer that allows the user to input html colors. This property drawer can be shown in the inspector when a color property has the attribute ColorHtmlProperty.<br /><br /><img src="../StaticFiles/ScriptRefImages/HexColorPropertyDrawer.png" /><br />
+<em>our custom property drawer.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// This is not an editor script.
+using UnityEngine;<br /><br />public class ColorHtmlPropertyAttribute : <a href="PropertyAttribute.html">PropertyAttribute</a>
+{
+}
+</pre>
+      </div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// This is an editor script and should be placed in an '<a href="Editor.html">Editor</a>' directory.
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />[<a href="CustomPropertyDrawer.html">CustomPropertyDrawer</a>(typeof(ColorHtmlPropertyAttribute))]
+public class ColorHtmlPropertyDrawer : <a href="PropertyDrawer.html">PropertyDrawer</a>
+{
+    public override void OnGUI(<a href="Rect.html">Rect</a> position, <a href="SerializedProperty.html">SerializedProperty</a> property, <a href="GUIContent.html">GUIContent</a> label)
+    {
+        <a href="Rect.html">Rect</a> htmlField = new <a href="Rect.html">Rect</a>(position.x, position.y, position.width - 100, position.height);
+        <a href="Rect.html">Rect</a> colorField = new <a href="Rect.html">Rect</a>(position.x + htmlField.width, position.y, position.width - htmlField.width, position.height);<br /><br />        string htmlValue = <a href="EditorGUI.TextField.html">EditorGUI.TextField</a>(htmlField, label, "#" + <a href="ColorUtility.ToHtmlStringRGBA.html">ColorUtility.ToHtmlStringRGBA</a>(property.colorValue));<br /><br />        <a href="Color.html">Color</a> newCol;
+        if (<a href="ColorUtility.TryParseHtmlString.html">ColorUtility.TryParseHtmlString</a>(htmlValue, out newCol))
+            property.colorValue = newCol;<br /><br />        property.colorValue = <a href="EditorGUI.ColorField.html">EditorGUI.ColorField</a>(colorField, property.colorValue);
+    }
+}
+</pre>
+      </div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// This shows how we would use the <a href="PropertyDrawer.html">PropertyDrawer</a>.
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    [ColorHtmlProperty]
+    public <a href="Color.html">Color</a> htmlColor = <a href="Color-green.html">Color.green</a>;<br /><br />    public <a href="Color.html">Color</a> standardColor = <a href="Color-green.html">Color.green</a>;
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Renderer.material</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Renderer.html">Renderer</a>.material</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Material.html">Material</a> <span class="sig-kw">material</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Returns the first instantiated <a href="Material.html">Material</a> assigned to the renderer.</p></div><div class="subsection"><p>Modifying <code class="varname">material</code> will change the material for this object only.<br /><br />If the material is used by any other renderers,
+this will clone the shared material and start using it from now on.<br /><br /><strong>Note:</strong><br />
+This function automatically instantiates the materials and makes them unique to this renderer.
+It is your responsibility to destroy the materials when the game object is being destroyed. <a href="Resources.UnloadUnusedAssets.html">Resources.UnloadUnusedAssets</a>
+also destroys the materials but it is usually only called when loading a new level.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="Material.html">Material</a> m_Material;<br /><br />    void Start()
+    {
+        //Fetch the <a href="Material.html">Material</a> from the <a href="Renderer.html">Renderer</a> of the <a href="GameObject.html">GameObject</a>
+        m_Material = GetComponent&lt;<a href="Renderer.html">Renderer</a>&gt;().material;
+        print("Materials " + <a href="Resources.FindObjectsOfTypeAll.html">Resources.FindObjectsOfTypeAll</a>(typeof(<a href="Material.html">Material</a>)).<a href="UIElements.Length.html">Length</a>);
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        if (<a href="Input.GetKeyDown.html">Input.GetKeyDown</a>(<a href="KeyCode.A.html">KeyCode.A</a>))
+        {
+            //Output the amount of materials before <a href="GameObject.html">GameObject</a> is destroyed
+            print("Materials " + <a href="Resources.FindObjectsOfTypeAll.html">Resources.FindObjectsOfTypeAll</a>(typeof(<a href="Material.html">Material</a>)).<a href="UIElements.Length.html">Length</a>);
+            //Destroy <a href="GameObject.html">GameObject</a>
+            Destroy(gameObject);
+        }
+    }<br /><br />    void OnMouseOver()
+    {
+        // Change the <a href="Color.html">Color</a> of the <a href="GameObject.html">GameObject</a> when the mouse hovers over it
+        m_Material.color = <a href="Color-red.html">Color.red</a>;
+    }<br /><br />    void OnMouseExit()
+    {
+        //Change the <a href="Color.html">Color</a> back to white when the mouse exits the <a href="GameObject.html">GameObject</a>
+        m_Material.color = <a href="Color-white.html">Color.white</a>;
+    }<br /><br />    void OnDestroy()
+    {
+        //Destroy the instance
+        Destroy(m_Material);
+        //Output the amount of materials to show if the instance was deleted
+        print("Materials " + <a href="Resources.FindObjectsOfTypeAll.html">Resources.FindObjectsOfTypeAll</a>(typeof(<a href="Material.html">Material</a>)).<a href="UIElements.Length.html">Length</a>);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

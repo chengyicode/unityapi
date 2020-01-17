@@ -1,0 +1,18 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Bounds.size</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Bounds.html">Bounds</a>.size</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Vector3.html">Vector3</a> <span class="sig-kw">size</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The total size of the box. This is always twice as large as the <a href="Bounds-extents.html">extents</a>.</p></div><div class="subsection"><p>
+        <em>size.x</em> is the width, <em>size.y</em> is the height and <em>size.z</em> is the depth of the box.  Note that <em>size</em> is given in world size.  A Bound surrounding a tall human might have <em>size.y</em> approximately 2.0f, meaning a 2 meter height body.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//This script outputs the size of the <a href="Collider.html">Collider</a> bounds to the console<br /><br />using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="Collider.html">Collider</a> m_Collider;
+    <a href="Vector3.html">Vector3</a> m_Size;<br /><br />    void Start()
+    {
+        //Fetch the <a href="Collider.html">Collider</a> from the <a href="GameObject.html">GameObject</a>
+        m_Collider = GetComponent&lt;<a href="Collider.html">Collider</a>&gt;();<br /><br />        //Fetch the size of the <a href="Collider.html">Collider</a> volume
+        m_Size = m_Collider.bounds.size;<br /><br />        //Output to the console the size of the <a href="Collider.html">Collider</a> volume
+        <a href="Debug.Log.html">Debug.Log</a>("<a href="Collider.html">Collider</a> Size : " + m_Size);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

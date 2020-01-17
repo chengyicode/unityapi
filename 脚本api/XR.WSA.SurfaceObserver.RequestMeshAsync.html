@@ -1,0 +1,45 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: XR.WSA.SurfaceObserver.RequestMeshAsync</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="XR.WSA.SurfaceObserver.html">SurfaceObserver</a>.RequestMeshAsync</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public bool <span class="sig-kw">RequestMeshAsync</span>(<a href="XR.WSA.SurfaceData.html">XR.WSA.SurfaceData</a> <span class="sig-kw">dataRequest</span>,
+<a href="XR.WSA.SurfaceObserver.SurfaceDataReadyDelegate.html">XR.WSA.SurfaceObserver.SurfaceDataReadyDelegate</a> <span class="sig-kw">onDataReady</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">dataRequest</td><td class="desc"></td><td class="desc1">Bundle of request data used to bake the specified surface.</td></tr><tr><td class="name lbl">onDataReady</td><td class="desc"></td><td class="desc1">Callback called when the baking of this surface is complete.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>bool</strong>
+        Returns false if the request has failed, typically due to specifying a bad surface ID.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Call RequestMeshAsync to start the process of baking mesh data for the specified surface.  This data may take several frames to create.  Baked data will be delivered through the specified SurfaceDataReadyDelegate.  This method will throw ArgumentNullExcpetion and ArgumentException if parameters specified in the dataRequest are invalid.</p></div><div class="subsection"><p>If you expect to draw the resulting Meshes returned by RequestMeshAsync it is recommended that you disable shadow casting and receive shadows on the MeshRenderer for performance.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;
+using UnityEngine.XR.WSA;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // <a href="PackageManager.Requests.Request.html">Request</a> a new Surface's data given the <a href="XR.WSA.SurfaceId.html">SurfaceId</a> and the <a href="XR.WSA.SurfaceObserver.html">SurfaceObserver</a>.
+    void RequestMeshData(<a href="XR.WSA.SurfaceId.html">SurfaceId</a> id, <a href="XR.WSA.SurfaceObserver.html">SurfaceObserver</a> observer)
+    {
+        // create a new <a href="GameObject.html">GameObject</a> to hold the new Surface with all the appropriate components
+        <a href="GameObject.html">GameObject</a> newSurface = new <a href="GameObject.html">GameObject</a>("Surface-" + id.handle);<br /><br />        // fill out the <a href="XR.WSA.SurfaceData.html">SurfaceData</a> struct in order to call RequestMeshAsync
+        <a href="XR.WSA.SurfaceData.html">SurfaceData</a> sd;
+        sd.id = id;
+        sd.outputMesh = newSurface.AddComponent&lt;<a href="MeshFilter.html">MeshFilter</a>&gt;();
+        sd.outputAnchor = newSurface.AddComponent&lt;<a href="XR.WSA.WorldAnchor.html">WorldAnchor</a>&gt;();
+        sd.outputCollider = newSurface.AddComponent&lt;<a href="MeshCollider.html">MeshCollider</a>&gt;();
+        sd.trianglesPerCubicMeter = 300.0f;
+        sd.bakeCollider = true;<br /><br />        // make the request
+        if (observer.RequestMeshAsync(sd, NewSurfaceBaked))
+        {
+            // New surface request is in the queue and the specified callback will be invoked at a later frame.
+        }
+        else
+        {
+            // New surface request has failed.  No callback for this request will be issued.
+        }
+    }<br /><br />    void NewSurfaceBaked(<a href="XR.WSA.SurfaceData.html">SurfaceData</a> sd, bool outputWritten, float elapsedBakeTimeSeconds)
+    {
+        if (outputWritten)
+        {
+            // <a href="PackageManager.Requests.Request.html">Request</a> completed successfully
+        }
+        else
+        {
+            // <a href="PackageManager.Requests.Request.html">Request</a> has failed.
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

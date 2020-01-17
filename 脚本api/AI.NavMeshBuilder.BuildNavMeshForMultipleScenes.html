@@ -1,0 +1,16 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AI.NavMeshBuilder.BuildNavMeshForMultipleScenes</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="AI.NavMeshBuilder.html">NavMeshBuilder</a>.BuildNavMeshForMultipleScenes</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">BuildNavMeshForMultipleScenes</span>(string[] <span class="sig-kw">paths</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">paths</td><td class="desc"></td><td class="desc1">Array of paths to Scenes that are used for building the navmesh.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Builds the combined navmesh for the contents of multiple Scenes. (UnityEditor)</p></div><div class="subsection"><p>Loads all the Scenes by path and then builds the combined navmesh data.<br /><br />The resulting navmesh data is stored in a single file. The navmesh file path is identical to the default path for the first Scene in the array – e.g. "Assets/Scene1/NavMesh.asset".<br /><br />The navmesh data is shared between all the Scenes specified.<br /><br />Note that your current Scene will be saved before, and restored after, the build process. Additionally all Scenes passed to this method will be saved in order to reference the combined navmesh data.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;<br /><br />public class BuildNavMeshFor3Scenes
+{
+    [<a href="MenuItem.html">MenuItem</a>("<a href="AI.NavMesh.html">NavMesh</a>/BuildNavMeshFor3Scenes")]
+    public static void Build()
+    {
+        string[] sceneNames = { "Assets/Scene1.unity", "Assets/Scene2.unity", "Assets/Scene3.unity" };
+        UnityEditor.AI.NavMeshBuilder.BuildNavMeshForMultipleScenes(sceneNames);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

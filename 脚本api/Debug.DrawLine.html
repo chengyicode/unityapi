@@ -1,0 +1,42 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Debug.DrawLine</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Debug.html">Debug</a>.DrawLine</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">DrawLine</span>(<a href="Vector3.html">Vector3</a> <span class="sig-kw">start</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">end</span>,
+<a href="Color.html">Color</a> <span class="sig-kw">color</span> = Color.white,
+float <span class="sig-kw">duration</span> = 0.0f,
+bool <span class="sig-kw">depthTest</span> = true);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">start</td><td class="desc"></td><td class="desc1">Point in world space where the line should start.</td></tr><tr><td class="name lbl">end</td><td class="desc"></td><td class="desc1">Point in world space where the line should end.</td></tr><tr><td class="name lbl">color</td><td class="desc"></td><td class="desc1">Color of the line.</td></tr><tr><td class="name lbl">duration</td><td class="desc"></td><td class="desc1">How long the line should be visible for.</td></tr><tr><td class="name lbl">depthTest</td><td class="desc"></td><td class="desc1">Should the line be obscured by objects closer to the camera?</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Draws a line between specified start and end points.</p></div><div class="subsection"><p>The line will be drawn in the Game view of the editor when the game is running and the gizmo drawing is enabled.  The line will also be drawn in the Scene when it is visible in the Game view.  Leave the game running and showing the line. Switch to the Scene view and the line will be visible.<br /><br />The <code class="varname">duration</code> is the time (in seconds) for which the line will be visible after it is first displayed. A duration of zero shows the line for just one frame.<br /><br /><strong>Note:</strong> This is for debugging playmode only. Editor gizmos should be drawn with Gizmos.Drawline or <a href="Handles.DrawLine.html">Handles.DrawLine</a> instead.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        // draw a 5-unit white line from the origin for 2.5 seconds
+        <a href="Debug.DrawLine.html">Debug.DrawLine</a>(<a href="Vector3-zero.html">Vector3.zero</a>, new <a href="Vector3.html">Vector3</a>(5, 0, 0), <a href="Color-white.html">Color.white</a>, 2.5f);
+    }<br /><br />    private float q = 0.0f;<br /><br />    void <a href="Experimental.PlayerLoop.FixedUpdate.html">FixedUpdate</a>()
+    {
+        // always draw a 5-unit colored line from the origin
+        <a href="Color.html">Color</a> color = new <a href="Color.html">Color</a>(q, q, 1.0f);
+        <a href="Debug.DrawLine.html">Debug.DrawLine</a>(<a href="Vector3-zero.html">Vector3.zero</a>, new <a href="Vector3.html">Vector3</a>(0, 5, 0), color);
+        q = q + 0.01f;<br /><br />        if (q &gt; 1.0f)
+        {
+            q = 0.0f;
+        }
+    }
+}
+</pre>
+      </div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // <a href="Event.html">Event</a> callback example: <a href="Debug.html">Debug</a>-draw all contact points and normals for 2 seconds.
+    void OnCollisionEnter(<a href="Collision.html">Collision</a> collision)
+    {
+        foreach (<a href="ContactPoint.html">ContactPoint</a> contact in collision.contacts)
+        {
+            <a href="Debug.DrawLine.html">Debug.DrawLine</a>(contact.point, contact.point + contact.normal, <a href="Color-green.html">Color.green</a>, 2, false);
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

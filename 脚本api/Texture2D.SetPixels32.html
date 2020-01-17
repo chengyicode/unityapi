@@ -1,0 +1,51 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Texture2D.SetPixels32</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Texture2D.html">Texture2D</a>.SetPixels32</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">SetPixels32</span>(Color32[] <span class="sig-kw">colors</span>,
+int <span class="sig-kw">miplevel</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Set a block of pixel colors.</p></div><div class="subsection"><p>This function takes a Color32 array and changes the pixel colors of the whole
+mip level of the texture. Call <a href="Texture2D.Apply.html">Apply</a> to actually upload the changed
+pixels to the graphics card.<br /><br />The <code class="varname">colors</code> array is a flattened 2D array, where pixels are laid out left to right,
+bottom to top (i.e. row after row). Array size must be at least width by height of the mip level used.
+The default mip level is zero (the base texture) in which case the size is just the size of the texture.
+In general case, mip level size is <code class="mono">mipWidth=max(1,width&gt;&gt;miplevel)</code>
+and similarly for height.<br /><br />This function works only on <code class="varname">RGBA32</code>, <code class="varname">ARGB32</code> texture formats.
+For other formats <code class="varname">SetPixels32</code> is ignored.
+The texture also has to have <a href="TextureImporter-isReadable.html">read/write enabled</a> flag set in the <a href="../Manual/Textures.html">texture import settings</a>.<br /><br />Using <code class="varname">SetPixels32</code> is faster than calling <a href="Texture2D.SetPixels.html">SetPixels</a>. For an even faster pixel data
+access, use <a href="Texture2D.GetRawTextureData.html">GetRawTextureData</a> that returns a <code class="mono">NativeArray</code>.<br /><br />See Also: <a href="Texture2D.SetPixels.html">SetPixels</a>, <a href="Texture2D.GetPixels32.html">GetPixels32</a>, <a href="Texture2D.GetPixels.html">GetPixels</a>, <a href="Texture2D.Apply.html">Apply</a>, <a href="Texture2D.GetRawTextureData.html">GetRawTextureData</a>, <a href="Texture2D.LoadRawTextureData.html">LoadRawTextureData</a>, <a href="Texture2D-mipmapCount.html">mipmapCount</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // This script will tint texture's mip levels in different colors
+    // (1st level red, 2nd green, 3rd blue). You can use it to see
+    // which mip levels are actually used and how.<br /><br />    void Start()
+    {
+        <a href="Renderer.html">Renderer</a> rend = GetComponent&lt;<a href="Renderer.html">Renderer</a>&gt;();<br /><br />        // duplicate the original texture and assign to the material
+        <a href="Texture2D.html">Texture2D</a> texture = (<a href="Texture2D.html">Texture2D</a>)Instantiate(rend.material.mainTexture);
+        rend.material.mainTexture = texture;<br /><br />        // colors used to tint the first 3 mip levels
+        var colors = new <a href="Color32.html">Color32</a>[3];
+        colors[0] = <a href="Color-red.html">Color.red</a>;
+        colors[1] = <a href="Color-green.html">Color.green</a>;
+        colors[2] = <a href="Color-blue.html">Color.blue</a>;
+        var mipCount = <a href="Mathf.Min.html">Mathf.Min</a>(3, texture.mipmapCount);<br /><br />        // tint each mip level
+        for (var mip = 0; mip &lt; mipCount; ++mip)
+        {
+            var cols = texture.GetPixels32(mip);
+            for (var i = 0; i &lt; cols.Length; ++i)
+            {
+                cols[i] = <a href="Color32.Lerp.html">Color32.Lerp</a>(cols[i], colors[mip], 0.33f);
+            }
+            texture.SetPixels32(cols, mip);
+        }<br /><br />        // actually apply all SetPixels32, don't recalculate mip levels
+        texture.Apply(false);
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">SetPixels32</span>(int <span class="sig-kw">x</span>,
+int <span class="sig-kw">y</span>,
+int <span class="sig-kw">blockWidth</span>,
+int <span class="sig-kw">blockHeight</span>,
+Color32[] <span class="sig-kw">colors</span>,
+int <span class="sig-kw">miplevel</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Set a block of pixel colors.</p></div><div class="subsection"><p>This function is an extended version of <code class="varname">SetPixels32</code> above; it does not modify the whole
+mip level but modifies only <code class="varname">blockWidth</code> by <code class="varname">blockHeight</code> region starting at <em>x,y</em>.
+The <code class="varname">colors</code> array must be <em>blockWidth*blockHeight</em> size, and the modified block
+must fit into the used mip level.</p></div></div></div></div></body></html>

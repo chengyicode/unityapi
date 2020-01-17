@@ -1,0 +1,19 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Rect.Rect</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">Rect Constructor</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <span class="sig-kw">Rect</span>(float <span class="sig-kw">x</span>,
+float <span class="sig-kw">y</span>,
+float <span class="sig-kw">width</span>,
+float <span class="sig-kw">height</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">x</td><td class="desc"></td><td class="desc1">The X value the rect is measured from.</td></tr><tr><td class="name lbl">y</td><td class="desc"></td><td class="desc1">The Y value the rect is measured from.</td></tr><tr><td class="name lbl">width</td><td class="desc"></td><td class="desc1">The width of the rectangle.</td></tr><tr><td class="name lbl">height</td><td class="desc"></td><td class="desc1">The height of the rectangle.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Creates a new rectangle.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class RectExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        <a href="Rect.html">Rect</a> rect = new <a href="Rect.html">Rect</a>(0, 0, 10, 10);<br /><br />        // prints: (x:0, y:0, width:10, height:10)
+        <a href="Debug.Log.html">Debug.Log</a>(rect);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Note: Rect represents an abstract rectangle, and can be used in a variety of situations. As such, Rects don't have an explicit top, bottom, left or right. For example, Y values in Camera space are measured from the bottom of the screen, but Y values in Editor GUI space are measured from the top of the window, therefore whether the Y value of a Rect is its "top" or "bottom" will vary depending on where you use the Rect value. You can refer to the corners by using <a href="Rect-min.html">Rect.min</a> and <a href="Rect-max.html">Rect.max</a>.</p></div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <span class="sig-kw">Rect</span>(<a href="Vector2.html">Vector2</a> <span class="sig-kw">position</span>,
+<a href="Vector2.html">Vector2</a> <span class="sig-kw">size</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">position</td><td class="desc"></td><td class="desc1">The position of the minimum corner of the rect.</td></tr><tr><td class="name lbl">size</td><td class="desc"></td><td class="desc1">The width and height of the rect.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Creates a rectangle given a size and position.</p></div><div class="subsection"><p>This form of the constructor is convenient when you are already working with Vector2 values.</p></div></div></div></div></body></html>

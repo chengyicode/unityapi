@@ -1,0 +1,19 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Rigidbody.OnCollisionStay(Collision)</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Rigidbody.html">Rigidbody</a>.OnCollisionStay(Collision)</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Rigidbody.html' title='Go to Rigidbody Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>OnCollisionStay is called once per frame for every collider/rigidbody that is touching rigidbody/collider.</p></div><div class="subsection"><p>In contrast to OnTriggerStay, OnCollisionStay is passed the <a href="Collision.html">Collision</a> class and not a Collider.
+The <a href="Collision.html">Collision</a> class contains information about contact points, impact velocity etc.
+If you don't use collisionInfo in the function, leave out the collisionInfo parameter as this avoids unneccessary calculations.
+Notes: Collision events are only sent if one of the colliders also has a non-kinematic rigidbody attached. Collision events will be sent to disabled MonoBehaviours, to allow enabling Behaviours in response to collisions.  Collision stay events are not sent for sleeping Rigidbodies.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// <a href="Debug.html">Debug</a>-draw all contact points and normals<br /><br />using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void OnCollisionStay(<a href="Collision.html">Collision</a> collisionInfo)
+    {
+        foreach (<a href="ContactPoint.html">ContactPoint</a> contact in collisionInfo.contacts)
+        {
+            <a href="Debug.DrawRay.html">Debug.DrawRay</a>(contact.point, contact.normal, <a href="Color-white.html">Color.white</a>);
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

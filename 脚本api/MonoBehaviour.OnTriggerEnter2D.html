@@ -1,0 +1,69 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: MonoBehaviour.OnTriggerEnter2D(Collider2D)</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="MonoBehaviour.html">MonoBehaviour</a>.OnTriggerEnter2D(Collider2D)</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">other</td><td class="desc"></td><td class="desc1">The other Collider2D involved in this collision.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Sent when another object enters a trigger collider attached to this object (2D physics only).</p></div><div class="subsection"><p>Further information about the other collider is reported in the Collider2D parameter passed during the call.<br /><br />This message is sent to the trigger Collider2D and the Rigidbody2D (if any) that the trigger Collider2D belongs to, and to the Rigidbody2D (or the Collider2D if there is no Rigidbody2D) that touches the trigger.<br /><br /><strong>Note:</strong> Trigger events are only sent if one of the Colliders also has a Rigidbody2D attached. Trigger events are sent to disabled MonoBehaviours, to allow enabling Behaviours in response to collisions.<br /><br />See Also: <a href="Collider2D.html">Collider2D</a> class, <a href="MonoBehaviour.OnTriggerExit2D.html">OnTriggerExit2D</a>, <a href="MonoBehaviour.OnTriggerStay2D.html">OnTriggerStay2D</a>.<br /><br />The following two script examples create an <a href="MonoBehaviour.OnTriggerEnter2D.html">OnTriggerEnter2D</a> demo.  Example1 generates
+a Unity logo sprite, <code class="mono">GameObject1</code>.  This sprite is collided with by the Example2 sprite,
+<code class="mono">GameObject2</code>.  The Example1 script creates the <a href="Rigidbody2D.html">Rigidbody2D</a>.  The kinematic mode is used
+on this script.  Example2 supports the <a href="MonoBehaviour.OnCollisionEnter2D.html">OnCollisionEnter2D</a> method.
+This is called when GameObject2 collides with
+<code class="mono">GameObject1</code>.  The script code for <code class="mono">GameObject2</code> controls the time it takes to collide with
+<code class="mono">GameObject1</code>.  <code class="mono">GameObject2</code> is animated left-to-right repeatedly.  When on the left side
+of the screen <code class="mono">GameObject2</code> moves right towards <code class="mono">GameObject1</code>.  When these have collided <code class="mono">GameObject2</code>
+returns back to the left.  The left side of the screen is the starting point for <code class="mono">GameObject2</code>.
+The right side of the screen is the constant position of <code class="mono">GameObject1</code>.  The Example2 script
+code makes <code class="mono">GameObject2</code> collide with <code class="mono">GameObject1</code>. <code class="mono">GameObject2</code> stays collided for a short length of time.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;<br /><br />public class Example1 : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private <a href="BoxCollider2D.html">BoxCollider2D</a> bc;
+    private <a href="Rigidbody2D.html">Rigidbody2D</a> rb;<br /><br />    void Awake()
+    {
+        <a href="SpriteRenderer.html">SpriteRenderer</a> sprRend = gameObject.AddComponent&lt;<a href="SpriteRenderer.html">SpriteRenderer</a>&gt;() as <a href="SpriteRenderer.html">SpriteRenderer</a>;
+        sprRend.color = new <a href="Color.html">Color</a>(0.9f, 0.9f, 0.9f, 1.0f);<br /><br />        bc = gameObject.AddComponent&lt;<a href="BoxCollider2D.html">BoxCollider2D</a>&gt;() as <a href="BoxCollider2D.html">BoxCollider2D</a>;
+        bc.size = new <a href="Vector2.html">Vector2</a>(1.3f, 1.3f);
+        bc.isTrigger = true;<br /><br />        rb = gameObject.AddComponent&lt;<a href="Rigidbody2D.html">Rigidbody2D</a>&gt;() as <a href="Rigidbody2D.html">Rigidbody2D</a>;
+        rb.bodyType = <a href="RigidbodyType2D.Kinematic.html">RigidbodyType2D.Kinematic</a>;
+    }<br /><br />    void Start()
+    {
+        gameObject.GetComponent&lt;<a href="SpriteRenderer.html">SpriteRenderer</a>&gt;().sprite = <a href="Resources.Load.html">Resources.Load</a>&lt;<a href="Sprite.html">Sprite</a>&gt;("logo");
+        gameObject.transform.Translate(4.0f, 0.0f, 0.0f);
+        gameObject.transform.localScale = new <a href="Vector2.html">Vector2</a>(2.0f, 2.0f);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Example2.  This is the sprite that moves forwards and backwards and triggers with Example1.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;<br /><br />public class Example2 : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private float spriteMove;<br /><br />    void Awake()
+    {
+        <a href="SpriteRenderer.html">SpriteRenderer</a> sprRend;
+        sprRend = gameObject.AddComponent&lt;<a href="SpriteRenderer.html">SpriteRenderer</a>&gt;() as <a href="SpriteRenderer.html">SpriteRenderer</a>;
+        sprRend.color = new <a href="Color.html">Color</a>(0.9f, 0.9f, 0.9f, 1.0f);<br /><br />        <a href="BoxCollider2D.html">BoxCollider2D</a> bc;
+        bc = gameObject.AddComponent&lt;<a href="BoxCollider2D.html">BoxCollider2D</a>&gt;() as <a href="BoxCollider2D.html">BoxCollider2D</a>;
+        bc.size = new <a href="Vector2.html">Vector2</a>(1.3f, 1.3f);
+        bc.isTrigger = true;
+    }<br /><br />    void Start()
+    {
+        gameObject.GetComponent&lt;<a href="SpriteRenderer.html">SpriteRenderer</a>&gt;().sprite = <a href="Resources.Load.html">Resources.Load</a>&lt;<a href="Sprite.html">Sprite</a>&gt;("circle");
+        gameObject.transform.Translate(-4.0f, 0.0f, 0.0f);
+        spriteMove = 0.1f;
+    }<br /><br />    void <a href="Experimental.PlayerLoop.FixedUpdate.html">FixedUpdate</a>()
+    {
+        gameObject.transform.Translate(spriteMove, 0.0f, 0.0f);<br /><br />        if (gameObject.transform.position.x &lt; -4.0f)
+        {
+            // move GameObject2 to the right
+            spriteMove = 0.1f;
+        }
+    }<br /><br />    // when the GameObjects collider arrange for this <a href="GameObject.html">GameObject</a> to travel to the left of the screen
+    void OnTriggerEnter2D(<a href="Collider2D.html">Collider2D</a> col)
+    {
+        <a href="Debug.Log.html">Debug.Log</a>(col.gameObject.name + " : " + gameObject.name + " : " + <a href="Time-time.html">Time.time</a>);
+        spriteMove = -0.1f;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

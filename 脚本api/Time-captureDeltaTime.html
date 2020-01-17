@@ -1,0 +1,27 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Time.captureDeltaTime</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Time.html">Time</a>.captureDeltaTime</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static float <span class="sig-kw">captureDeltaTime</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Slows game playback time to allow screenshots to be saved between frames.</p></div><div class="subsection"><p>If this property has a non-zero value then frame update will occur at an interval of <code class="varname">captureDeltaTime</code> regardless of real time and the time required to render a frame. This is useful if you want to capture a movie where you need a constant frame rate and leave enough time between frames to save screen images.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />// Capture frames as a screenshot sequence. Images are
+// stored as PNG files in a folder - these can be combined into
+// a movie using image utility software (eg, QuickTime Pro).<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // The folder to contain our screenshots.
+    // If the folder exists we will append numbers to create an empty folder.
+    public string folder = "ScreenshotFolder";
+    public int frameRate = 25;
+    void Start()
+    {
+        // Set the playback framerate (real time will not relate to game time after this).
+        <a href="Time-captureDeltaTime.html">Time.captureDeltaTime</a> = 1.0f / frameRate;<br /><br />        // Create the folder
+        System.IO.Directory.CreateDirectory(folder);
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        // Append filename to folder name (format is '0005 shot.png"')
+        string name = string.Format("{0}/{1:D04} shot.png", folder, <a href="Time-frameCount.html">Time.frameCount</a>);<br /><br />        // Capture the screenshot to the specified file.
+        <a href="ScreenCapture.CaptureScreenshot.html">ScreenCapture.CaptureScreenshot</a>(name);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

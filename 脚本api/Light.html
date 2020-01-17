@@ -1,0 +1,112 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Light</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">Light</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Inherits from:<a href="Behaviour.html" class="cl">Behaviour</a></p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.CoreModule.html" class="cl">UnityEngine.CoreModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Light.html' title='Go to Light Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Script interface for <a href="../Manual/class-Light.html">light components</a>.</p></div><div class="subsection"><p>Use this to control all aspects of Unity's lights. The properties are an exact match for the
+values shown in the Inspector.<br /><br />Usually lights are just created in the editor but sometimes you want to create a light from a script:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        // Make a game object
+        <a href="GameObject.html">GameObject</a> lightGameObject = new <a href="GameObject.html">GameObject</a>("The <a href="Light.html">Light</a>");<br /><br />        // Add the light component
+        <a href="Light.html">Light</a> lightComp = lightGameObject.AddComponent&lt;<a href="Light.html">Light</a>&gt;();<br /><br />        // Set color and position
+        lightComp.color = <a href="Color-blue.html">Color.blue</a>;<br /><br />        // Set the position (or any transform property)
+        lightGameObject.transform.position = new <a href="Vector3.html">Vector3</a>(0, 5, 0);
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Light-areaSize.html">areaSize</a></td><td class="desc"></td><td class="desc1">The size of the area light.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Light-bakingOutput.html">bakingOutput</a></td><td class="desc"></td><td class="desc1">This property describes the output of the last Global Illumination bake.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Light-bounceIntensity.html">bounceIntensity</a></td><td class="desc"></td><td class="desc1">The multiplier that defines the strength of the bounce lighting.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Light-boundingSphereOverride.html">boundingSphereOverride</a></td><td class="desc"></td><td class="desc1">Bounding sphere used to override the regular light bounding sphere during culling.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Light-color.html">color</a></td><td class="desc"></td><td class="desc1">The color of the light.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Light-colorTemperature.html">colorTemperature</a></td><td class="desc"></td><td class="desc1">
+          The color temperature of the light.
+          Correlated Color Temperature (abbreviated as CCT) is multiplied with the color filter when calculating the final color of a light source. The color temperature of the electromagnetic radiation emitted from an ideal black body is defined as its surface temperature in Kelvin. White is 6500K according to the D65 standard. Candle light is 1800K.
+          If you want to use lightsUseCCT, lightsUseLinearIntensity has to be enabled to ensure physically correct output.
+          See Also: GraphicsSettings.lightsUseLinearIntensity, GraphicsSettings.lightsUseCCT.
+        </td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Light-commandBufferCount.html">commandBufferCount</a></td><td class="desc"></td><td class="desc1">Number of command buffers set up on this light (Read Only).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Light-cookie.html">cookie</a></td><td class="desc"></td><td class="desc1">The cookie texture projected by the light.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Light-cookieSize.html">cookieSize</a></td><td class="desc"></td><td class="desc1">The size of a directional light's cookie.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Light-cullingMask.html">cullingMask</a></td><td class="desc"></td><td class="desc1">This is used to light certain objects in the Scene selectively.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Light-flare.html">flare</a></td><td class="desc"></td><td class="desc1">The flare asset to use for this light.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Light-innerSpotAngle.html">innerSpotAngle</a></td><td class="desc"></td><td class="desc1">The angle of the light's spotlight inner cone in degrees.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Light-intensity.html">intensity</a></td><td class="desc"></td><td class="desc1">The Intensity of a light is multiplied with the Light color.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Light-layerShadowCullDistances.html">layerShadowCullDistances</a></td><td class="desc"></td><td class="desc1">Per-light, per-layer shadow culling distances.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Light-lightmapBakeType.html">lightmapBakeType</a></td><td class="desc"></td><td class="desc1">This property describes what part of a light's contribution can be baked.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Light-lightShadowCasterMode.html">lightShadowCasterMode</a></td><td class="desc"></td><td class="desc1">Allows you to override the global Shadowmask Mode per light. Only use this with render pipelines that can handle per light Shadowmask modes. Incompatible with the legacy renderers.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Light-range.html">range</a></td><td class="desc"></td><td class="desc1">The range of the light.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Light-renderingLayerMask.html">renderingLayerMask</a></td><td class="desc"></td><td class="desc1">Determines which rendering LayerMask this Light affects.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Light-renderMode.html">renderMode</a></td><td class="desc"></td><td class="desc1">How to render the light.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Light-shadowAngle.html">shadowAngle</a></td><td class="desc"></td><td class="desc1">Controls the amount of artificial softening applied to the edges of shadows cast by directional lights.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Light-shadowBias.html">shadowBias</a></td><td class="desc"></td><td class="desc1">Shadow mapping constant bias.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Light-shadowCustomResolution.html">shadowCustomResolution</a></td><td class="desc"></td><td class="desc1">The custom resolution of the shadow map.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Light-shadowMatrixOverride.html">shadowMatrixOverride</a></td><td class="desc"></td><td class="desc1">Projection matrix used to override the regular light matrix during shadow culling.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Light-shadowNearPlane.html">shadowNearPlane</a></td><td class="desc"></td><td class="desc1">Near plane value to use for shadow frustums.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Light-shadowNormalBias.html">shadowNormalBias</a></td><td class="desc"></td><td class="desc1">Shadow mapping normal-based bias.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Light-shadowRadius.html">shadowRadius</a></td><td class="desc"></td><td class="desc1">Controls the amount of artificial softening applied to the edges of shadows cast by the Point or Spot light.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Light-shadowResolution.html">shadowResolution</a></td><td class="desc"></td><td class="desc1">The resolution of the shadow map.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Light-shadows.html">shadows</a></td><td class="desc"></td><td class="desc1">How this light casts shadows</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Light-shadowStrength.html">shadowStrength</a></td><td class="desc"></td><td class="desc1">Strength of light's shadows.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Light-spotAngle.html">spotAngle</a></td><td class="desc"></td><td class="desc1">The angle of the light's spotlight cone in degrees.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Light-type.html">type</a></td><td class="desc"></td><td class="desc1">The type of the light.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Light-useBoundingSphereOverride.html">useBoundingSphereOverride</a></td><td class="desc"></td><td class="desc1">Set to true to override light bounding sphere for culling.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Light-useShadowMatrixOverride.html">useShadowMatrixOverride</a></td><td class="desc"></td><td class="desc1">Set to true to enable custom matrix for culling during shadows.</td></tr>
+    </table></div><div class="subsection"><h2>Public Methods</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Light.AddCommandBuffer.html">AddCommandBuffer</a></td><td class="desc"></td><td class="desc1">Add a command buffer to be executed at a specified place.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Light.AddCommandBufferAsync.html">AddCommandBufferAsync</a></td><td class="desc"></td><td class="desc1">Adds a command buffer to the GPU's async compute queues and executes that command buffer when graphics processing reaches a given point.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Light.GetCommandBuffers.html">GetCommandBuffers</a></td><td class="desc"></td><td class="desc1">Get command buffers to be executed at a specified place.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Light.RemoveAllCommandBuffers.html">RemoveAllCommandBuffers</a></td><td class="desc"></td><td class="desc1">Remove all command buffers set on this light.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Light.RemoveCommandBuffer.html">RemoveCommandBuffer</a></td><td class="desc"></td><td class="desc1">Remove command buffer from execution at a specified place.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Light.RemoveCommandBuffers.html">RemoveCommandBuffers</a></td><td class="desc"></td><td class="desc1">Remove command buffers from execution at a specified place.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Light.Reset.html">Reset</a></td><td class="desc"></td><td class="desc1">Revert all light parameters to default.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Light.SetLightDirty.html">SetLightDirty</a></td><td class="desc"></td><td class="desc1">Sets a light dirty to notify the light baking backends to update their internal light representation.</td></tr>
+    </table></div><div class="subsection"><h2>Inherited Members   继承成员</h2>
+      
+      <div class="subsection"><h2>Properties   属性</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Behaviour-enabled.html">enabled</a></td><td class="desc"></td><td class="desc1">Enabled Behaviours are Updated, disabled Behaviours are not.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Behaviour-isActiveAndEnabled.html">isActiveAndEnabled</a></td><td class="desc"></td><td class="desc1">Has the Behaviour had active and enabled called?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component-gameObject.html">gameObject</a></td><td class="desc"></td><td class="desc1">The game object this component is attached to. A component is always attached to a game object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component-tag.html">tag</a></td><td class="desc"></td><td class="desc1">The tag of this game object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component-transform.html">transform</a></td><td class="desc"></td><td class="desc1">The Transform attached to this GameObject.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-hideFlags.html">hideFlags</a></td><td class="desc"></td><td class="desc1">Should the object be hidden, saved with the Scene or modifiable by the user?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-name.html">name</a></td><td class="desc"></td><td class="desc1">The name of the object.</td></tr>
+      </table></div>
+      
+      
+      
+      <div class="subsection"><h2>Public Methods</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.BroadcastMessage.html">BroadcastMessage</a></td><td class="desc"></td><td class="desc1">Calls the method named methodName on every MonoBehaviour in this game object or any of its children.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.CompareTag.html">CompareTag</a></td><td class="desc"></td><td class="desc1">Is this game object tagged with tag ?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponent.html">GetComponent</a></td><td class="desc"></td><td class="desc1">Returns the component of Type type if the game object has one attached, null if it doesn't.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponentInChildren.html">GetComponentInChildren</a></td><td class="desc"></td><td class="desc1">Returns the component of Type type in the GameObject or any of its children using depth first search.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponentInParent.html">GetComponentInParent</a></td><td class="desc"></td><td class="desc1">Returns the component of Type type in the GameObject or any of its parents.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponents.html">GetComponents</a></td><td class="desc"></td><td class="desc1">Returns all components of Type type in the GameObject.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponentsInChildren.html">GetComponentsInChildren</a></td><td class="desc"></td><td class="desc1">Returns all components of Type type in the GameObject or any of its children.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponentsInParent.html">GetComponentsInParent</a></td><td class="desc"></td><td class="desc1">Returns all components of Type type in the GameObject or any of its parents.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.SendMessage.html">SendMessage</a></td><td class="desc"></td><td class="desc1">Calls the method named methodName on every MonoBehaviour in this game object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.SendMessageUpwards.html">SendMessageUpwards</a></td><td class="desc"></td><td class="desc1">Calls the method named methodName on every MonoBehaviour in this game object and on every ancestor of the behaviour.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.TryGetComponent.html">TryGetComponent</a></td><td class="desc"></td><td class="desc1">Gets the component of the specified type, if it exists.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.GetInstanceID.html">GetInstanceID</a></td><td class="desc"></td><td class="desc1">Returns the instance id of the object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.ToString.html">ToString</a></td><td class="desc"></td><td class="desc1">Returns the name of the object.</td></tr>
+      </table></div>
+      
+      <div class="subsection"><h2>Static Methods   静态方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.Destroy.html">Destroy</a></td><td class="desc"></td><td class="desc1">Removes a GameObject, component or asset.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.DestroyImmediate.html">DestroyImmediate</a></td><td class="desc"></td><td class="desc1">Destroys the object obj immediately. You are strongly recommended to use Destroy instead.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.DontDestroyOnLoad.html">DontDestroyOnLoad</a></td><td class="desc"></td><td class="desc1">Do not destroy the target Object when loading a new Scene.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectOfType.html">FindObjectOfType</a></td><td class="desc"></td><td class="desc1">Returns the first active loaded object of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectsOfType.html">FindObjectsOfType</a></td><td class="desc"></td><td class="desc1">Returns a list of all active loaded objects of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.Instantiate.html">Instantiate</a></td><td class="desc"></td><td class="desc1">Clones the object original and returns the clone.</td></tr>
+      </table></div>
+      <div class="subsection"><h2>Operators   运算符</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_Object.html">bool</a></td><td class="desc"></td><td class="desc1">Does the object exist?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_ne.html">operator !=</a></td><td class="desc"></td><td class="desc1">Compares if two objects refer to a different object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_eq.html">operator ==</a></td><td class="desc"></td><td class="desc1">Compares two object references to see if they refer to the same object.</td></tr>
+      </table></div>
+      
+      
+      
+    </div></div></div></div></body></html>

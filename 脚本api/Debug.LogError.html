@@ -1,0 +1,18 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Debug.LogError</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Debug.html">Debug</a>.LogError</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">LogError</span>(object <span class="sig-kw">message</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">LogError</span>(object <span class="sig-kw">message</span>,
+<a href="Object.html">Object</a> <span class="sig-kw">context</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">message</td><td class="desc"></td><td class="desc1">String or object to be converted to string representation for display.</td></tr><tr><td class="name lbl">context</td><td class="desc"></td><td class="desc1">Object to which the message applies.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>A variant of Debug.Log that logs an error message to the console.</p></div><div class="subsection"><p>When you select the message in the console a connection to the context object will be drawn.
+This is very useful if you want know on which object an error occurs.<br /><br />When the message is a string, rich text markup can be used to add emphasis. See the manual page about <a href="../Manual/StyledText.html">rich text</a> for details of the different markup tags available.<br /><br />See Also: <a href="Debug-unityLogger.html">Debug.unityLogger</a>, <a href="ILogger.html">ILogger</a>, <a href="Logger.LogError.html">Logger.LogError</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class MyGameClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private <a href="Transform.html">Transform</a> transform;<br /><br />    void MyGameMethod()
+    {
+        if (transform == null)
+            <a href="Debug.LogError.html">Debug.LogError</a>("memberVariable must be set to point to a <a href="Transform.html">Transform</a>.", transform);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Note that this pauses the editor when 'ErrorPause' is enabled.</p></div></div></div></div></body></html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: GL.wireframe</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="GL.html">GL</a>.wireframe</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">wireframe</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Should rendering be done in wireframe?</p></div><div class="subsection"><p>Turning on wireframe mode will affect all objects rendered after the call, until you turn
+wireframe back off. In the Unity editor, wireframe mode is always turned off
+before repainting any window.<br /><br />Note that some platforms, for example mobile (OpenGL ES) does not support
+wireframe rendering.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Attach this script to a camera, this will make it render in wireframe
+    void OnPreRender()
+    {
+        <a href="GL-wireframe.html">GL.wireframe</a> = true;
+    }<br /><br />    void OnPostRender()
+    {
+        <a href="GL-wireframe.html">GL.wireframe</a> = false;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

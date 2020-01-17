@@ -1,0 +1,19 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: SceneManagement.SceneManager.GetActiveScene</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="SceneManagement.SceneManager.html">SceneManager</a>.GetActiveScene</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="SceneManagement.Scene.html">SceneManagement.Scene</a> <span class="sig-kw">GetActiveScene</span>();
+    </div></div></div><div class="subsection"><h2>Returns</h2><p><strong>Scene</strong>
+        The active Scene.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Gets the currently active Scene.</p></div><div class="subsection"><p>The currently active Scene is the Scene which will be used as the target for new GameObjects instantiated by scripts.
+Note the active Scene has no impact on what Scenes are rendered.
+See Also: <a href="SceneManagement.Scene.html">Scene</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.SceneManagement;<br /><br />public class GetActiveSceneExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        <a href="SceneManagement.Scene.html">Scene</a> scene = <a href="SceneManagement.SceneManager.GetActiveScene.html">SceneManager.GetActiveScene</a>();
+        <a href="Debug.Log.html">Debug.Log</a>("Active <a href="SceneManagement.Scene.html">Scene</a> is '" + scene.name + "'.");
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

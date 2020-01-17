@@ -1,0 +1,25 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Rigidbody.AddRelativeTorque</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Rigidbody.html">Rigidbody</a>.AddRelativeTorque</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Rigidbody.html' title='Go to Rigidbody Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">AddRelativeTorque</span>(<a href="Vector3.html">Vector3</a> <span class="sig-kw">torque</span>,
+<a href="ForceMode.html">ForceMode</a> <span class="sig-kw">mode</span> = ForceMode.Force);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">torque</td><td class="desc"></td><td class="desc1">Torque vector in local coordinates.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Adds a torque to the rigidbody relative to its coordinate system.</p></div><div class="subsection"><p>Force can be applied only to an active rigidbody. If a GameObject is inactive, AddRelativeTorque has no effect.<br /><br />Wakes up the Rigidbody by default. If the torque size is zero then the Rigidbody will not be woken up.<br /><br />See Also: <a href="Rigidbody.AddTorque.html">AddTorque</a>, <a href="Rigidbody.AddRelativeForce.html">AddRelativeForce</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Rotate an object around its Y (upward) axis in response to
+// left/right controls.<br /><br />using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public float torque;
+    public <a href="Rigidbody.html">Rigidbody</a> rb;<br /><br />    void Start()
+    {
+        rb = GetComponent&lt;<a href="Rigidbody.html">Rigidbody</a>&gt;();
+    }<br /><br />    void <a href="Experimental.PlayerLoop.FixedUpdate.html">FixedUpdate</a>()
+    {
+        float turn = <a href="Input.GetAxis.html">Input.GetAxis</a>("Horizontal");
+        rb.AddRelativeTorque(<a href="Vector3-up.html">Vector3.up</a> * torque * turn);
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">AddRelativeTorque</span>(float <span class="sig-kw">x</span>,
+float <span class="sig-kw">y</span>,
+float <span class="sig-kw">z</span>,
+<a href="ForceMode.html">ForceMode</a> <span class="sig-kw">mode</span> = ForceMode.Force);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">x</td><td class="desc"></td><td class="desc1">Size of torque along the local x-axis.</td></tr><tr><td class="name lbl">y</td><td class="desc"></td><td class="desc1">Size of torque along the local y-axis.</td></tr><tr><td class="name lbl">z</td><td class="desc"></td><td class="desc1">Size of torque along the local z-axis.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Adds a torque to the rigidbody relative to its coordinate system.</p></div><div class="subsection"><p>Force can be applied only to an active rigidbody. If a GameObject is inactive, AddRelativeTorque has no effect.<br /><br />Wakes up the Rigidbody by default. If the torque size is zero then the Rigidbody will not be woken up.</p></div></div></div></div></body></html>

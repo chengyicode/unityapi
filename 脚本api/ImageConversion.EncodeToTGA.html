@@ -1,0 +1,29 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ImageConversion.EncodeToTGA</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="ImageConversion.html">ImageConversion</a>.EncodeToTGA</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static byte[] <span class="sig-kw">EncodeToTGA</span>(<a href="Texture2D.html">Texture2D</a> <span class="sig-kw">tex</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">tex</td><td class="desc"></td><td class="desc1">The texture to encode.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Encodes the specified texture in TGA format.</p></div><div class="subsection"><p>For this function to execute properly, you must set the <a href="TextureImporter-isReadable.html">read/write enabled</a> flag of the texture to true in the <a href="../Manual/Textures.html">texture import settings</a>.<br /><br />The TGA encoded texture is returned as a byte array. You can store the encoded texture as a file or send it over the network without further processing.<br /><br />This function works only on uncompressed, non-HDR texture formats.<br /><br />The encoded TGA data is not compressed and contains an alpha channel for <code class="varname">RGBA32</code>, <code class="varname">ARGB32</code> textures, and no alpha channel for <code class="varname">RGB24</code> textures.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Saves screenshot as TGA file.
+using UnityEngine;
+using System.Collections;
+using System.IO;<br /><br />public class TGAScreenSaver : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Take a shot immediately
+    IEnumerator Start()
+    {
+        yield return SaveScreenTGA();
+    }<br /><br />    IEnumerator SaveScreenTGA()
+    {
+        // Read the screen buffer after rendering is complete
+        yield return new <a href="WaitForEndOfFrame.html">WaitForEndOfFrame</a>();<br /><br />        // Create a texture in RGB24 format the size of the screen
+        int width = <a href="Screen-width.html">Screen.width</a>;
+        int height = <a href="Screen-height.html">Screen.height</a>;
+        <a href="Texture2D.html">Texture2D</a> tex = new <a href="Texture2D.html">Texture2D</a>(width, height, <a href="TextureFormat.RGB24.html">TextureFormat.RGB24</a>, false);<br /><br />        // Read the screen contents into the texture
+        tex.ReadPixels(new <a href="Rect.html">Rect</a>(0, 0, width, height), 0, 0);
+        tex.Apply();<br /><br />        // Encode the texture in TGA format
+        byte[] bytes = tex.EncodeToTGA();
+        <a href="Object.Destroy.html">Object.Destroy</a>(tex);<br /><br />        // Write the returned byte array to a file in the project folder
+        <a href="Windows.File.WriteAllBytes.html">File.WriteAllBytes</a>(<a href="Application-dataPath.html">Application.dataPath</a> + "/../SavedScreen.tga", bytes);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="Texture2D.ReadPixels.html">Texture2D.ReadPixels</a>, <a href="WaitForEndOfFrame.html">WaitForEndOfFrame</a>, <a href="ImageConversion.LoadImage.html">LoadImage</a>, <a href="ImageConversion.EncodeToPNG.html">EncodeToPNG</a>.</p></div></div></div></div></body></html>

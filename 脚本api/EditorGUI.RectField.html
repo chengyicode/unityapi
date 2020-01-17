@@ -1,0 +1,42 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorGUI.RectField</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorGUI.html">EditorGUI</a>.RectField</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Rect.html">Rect</a> <span class="sig-kw">RectField</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+<a href="Rect.html">Rect</a> <span class="sig-kw">value</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Rect.html">Rect</a> <span class="sig-kw">RectField</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+string <span class="sig-kw">label</span>,
+<a href="Rect.html">Rect</a> <span class="sig-kw">value</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Rect.html">Rect</a> <span class="sig-kw">RectField</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+<a href="GUIContent.html">GUIContent</a> <span class="sig-kw">label</span>,
+<a href="Rect.html">Rect</a> <span class="sig-kw">value</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">position</td><td class="desc"></td><td class="desc1">Rectangle on the screen to use for the field.</td></tr><tr><td class="name lbl">label</td><td class="desc"></td><td class="desc1">Optional label to display above the field.</td></tr><tr><td class="name lbl">value</td><td class="desc"></td><td class="desc1">The value to edit.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>Rect</strong>
+        The value entered by the user.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Makes an X, Y, W, and H field for entering a <a href="Rect.html">Rect</a>.</p></div><div class="subsection"><p>
+        <img src="../StaticFiles/ScriptRefImages/EditorGUIRectField.png" />
+        <br />
+<em>Rect field in an Editor Window.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />// Find all the cameras in the <a href="SceneManagement.Scene.html">Scene</a> and shows all their viewports togheter<br /><br />class EditorGUIRectField : <a href="EditorWindow.html">EditorWindow</a>
+{
+    <a href="Camera.html">Camera</a>[] cameras;<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Examples/<a href="Editor.html">Editor</a> <a href="GUI.html">GUI</a> <a href="UIElements.RectField.html">RectField</a> usage")]
+    static void Init()
+    {
+        var window = GetWindow&lt;EditorGUIRectField&gt;();
+        window.position = new <a href="Rect.html">Rect</a>(0, 0, 150, 120);
+        window.Show();
+    }<br /><br />    void OnGUI()
+    {
+        if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(3, 3, position.width - 6, 20), "<a href="Experimental.PlayerLoop.Update.html">Update</a> list"))
+            cameras = FindObjectsOfType&lt;<a href="Camera.html">Camera</a>&gt;();<br /><br />        if (cameras.Length &gt; 0)
+        {
+            for (var i = 0; i &lt; cameras.Length; i++)
+            {
+                cameras[i].rect = <a href="EditorGUI.RectField.html">EditorGUI.RectField</a>(
+                    new <a href="Rect.html">Rect</a>(3, 25 + 45 * i, position.width - 6, 25),
+                    cameras[i].name,
+                    cameras[i].rect);
+            }
+        }
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Makes an X, Y, W, and H for Rect using SerializedProperty (not public).</p></div></div></div></div></body></html>

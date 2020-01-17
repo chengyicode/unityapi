@@ -1,0 +1,31 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Camera.orthographicSize</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Camera.html">Camera</a>.orthographicSize</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Camera.html' title='Go to Camera Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public float <span class="sig-kw">orthographicSize</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Camera's half-size when in orthographic mode.</p></div><div class="subsection"><p>The orthographicSize property defines the viewing volume of an <a href="Camera-orthographic.html">orthographic</a> Camera. In order to edit this size, set the Camera to be orthographic first through script or in the Inspector.
+The orthographicSize is half the size of the vertical viewing volume. The horizontal size of the viewing volume depends on the aspect ratio.<br /><br />Orthographic size is ignored when the camera is not orthographic (see <a href="Camera-orthographic.html">orthographic</a>).<br /><br />See Also: <a href="../Manual/class-Camera.html">camera component</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    //Assign this <a href="Camera.html">Camera</a> in the Inspector
+    public <a href="Camera.html">Camera</a> m_OrthographicCamera;
+    //These are the positions and dimensions of the <a href="Camera.html">Camera</a> view in the Game view
+    float m_ViewPositionX, m_ViewPositionY, m_ViewWidth, m_ViewHeight;<br /><br />    void Start()
+    {
+        //This sets the <a href="Camera.html">Camera</a> view rectangle to be in the bottom corner of the screen
+        m_ViewPositionX = 0;
+        m_ViewPositionY = 0;<br /><br />        //This sets the <a href="Camera.html">Camera</a> view rectangle to be smaller so you can compare the orthographic view of this <a href="Camera.html">Camera</a> with the perspective view of the Main <a href="Camera.html">Camera</a>
+        m_ViewWidth = 0.4f;
+        m_ViewHeight = 0.4f;<br /><br />        //This enables the <a href="Camera.html">Camera</a> (the one that is orthographic)
+        m_OrthographicCamera.enabled = true;<br /><br />        //If the <a href="Camera.html">Camera</a> exists in the inspector, enable orthographic mode and change the size
+        if (m_OrthographicCamera)
+        {
+            //This enables the orthographic mode
+            m_OrthographicCamera.orthographic = true;
+            //Set the size of the viewing volume you'd like the orthographic <a href="Camera.html">Camera</a> to pick up (5)
+            m_OrthographicCamera.orthographicSize = 5.0f;
+            //Set the orthographic <a href="Camera.html">Camera</a> Viewport size and position
+            m_OrthographicCamera.rect = new <a href="Rect.html">Rect</a>(m_ViewPositionX, m_ViewPositionY, m_ViewWidth, m_ViewHeight);
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

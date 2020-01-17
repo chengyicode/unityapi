@@ -1,0 +1,24 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Vector3.Dot</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Vector3.html">Vector3</a>.Dot</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static float <span class="sig-kw">Dot</span>(<a href="Vector3.html">Vector3</a> <span class="sig-kw">lhs</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">rhs</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Dot Product of two vectors.</p></div><div class="subsection"><p>The dot product is a float value equal to the magnitudes of the two vectors multiplied together
+and then multiplied by the cosine of the angle between them.<br /><br />For <a href="Vector3-normalized.html">normalized</a> vectors Dot returns 1 if they point in exactly the same direction,
+-1 if they point in completely opposite directions and zero if the vectors are perpendicular.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// detects if other transform is behind this object<br /><br />using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Transform.html">Transform</a> other;<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        if (other)
+        {
+            <a href="Vector3.html">Vector3</a> forward = transform.TransformDirection(<a href="Vector3-forward.html">Vector3.forward</a>);
+            <a href="Vector3.html">Vector3</a> toOther = other.position - transform.position;<br /><br />            if (<a href="Vector3.Dot.html">Vector3.Dot</a>(forward, toOther) &lt; 0)
+            {
+                print("The other transform is behind me!");
+            }
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

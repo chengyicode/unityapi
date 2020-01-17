@@ -1,0 +1,24 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Light.layerShadowCullDistances</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Light.html">Light</a>.layerShadowCullDistances</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Light.html' title='Go to Light Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public float[] <span class="sig-kw">layerShadowCullDistances</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Per-light, per-layer shadow culling distances.</p></div><div class="subsection"><p>Dynamic shadows can be cast into view from shadow casters that are very far away from the camera. At low incident light angles, this can lead to a lot of objects needing to cast dynamic shadows, which in turn can result in high rendering costs during shadow maps generation.<br /><br />Using <a href="Light-layerShadowCullDistances.html">Light.layerShadowCullDistances</a> lets you limit, on a per-layer basis, how far from the camera shadows casters are allowed to be before they get culled from shadow maps generation. The feature complements <a href="Camera-layerCullDistances.html">Camera.layerCullDistances</a>, but only affects shadow casting, not regular object rendering.<br /><br />Just like <a href="Camera-layerCullDistances.html">Camera.layerCullDistances</a>, <a href="Light-layerShadowCullDistances.html">Light.layerShadowCullDistances</a> requires that you assign a float array of exactly 32 values. A distance of 0 in a layer's index means keep current behaviour for that layer. Assigning null completely disables shadow distance culling, and is effectively the same as passing an array of 32 zeros.<br /><br />By default, per-layer shadow culling will use a plane aligned with the camera. You can change this to a sphere by setting <a href="Camera-layerCullSpherical.html">Camera.layerCullSpherical</a> to true. The effect of this flag is shared by both <a href="Camera-layerCullDistances.html">Camera.layerCullDistances</a> and <a href="Light-layerShadowCullDistances.html">Light.layerShadowCullDistances</a>.<br /><br />Please be aware that when you restrict camera culling distances using <a href="Camera-layerCullDistances.html">Camera.layerCullDistances</a>, this also restricts shadow casting to those same culling distances. As a result, if you use <a href="Camera-layerCullDistances.html">Camera.layerCullDistances</a> and <a href="Light-layerShadowCullDistances.html">Light.layerShadowCullDistances</a> at the same time *for the same layer index*, the effective shadow culling distance for that layer will be the smallest of those two distances. For layer indices where one of the values are zero, the other value gets used directly, and for layer indices where both values are zero, no special culling behaviour gets applied for that layer.<br /><br />See Also: <a href="Camera-layerCullDistances.html">Camera.layerCullDistances</a>, <a href="Camera-layerCullSpherical.html">Camera.layerCullSpherical</a>
+</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />[<a href="RequireComponent.html">RequireComponent</a>(typeof(<a href="Light.html">Light</a>))]
+public class LayerShadowCullDistancesExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void OnEnable()
+    {
+        // Setup shadow cull distances
+        var shadowCullDistances = new float[32];
+        shadowCullDistances[10] = 5f;   // Let's imagine this is our 'Tiny Objects' layer
+        shadowCullDistances[11] = 15f;  // Let's imagine this is our 'Small Things' layer
+        shadowCullDistances[12] = 100f; // Let's imagine this is our 'Trees' layer<br /><br />        // Assign shadow cull distances. This will only affect layers 10, 11 and 12.
+        GetComponent&lt;<a href="Light.html">Light</a>&gt;().layerShadowCullDistances = shadowCullDistances;
+    }<br /><br />    void OnDisable()
+    {
+        // Completely disable shadow cull distances
+        GetComponent&lt;<a href="Light.html">Light</a>&gt;().layerShadowCullDistances = null;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

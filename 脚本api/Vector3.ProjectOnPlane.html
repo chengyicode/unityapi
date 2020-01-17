@@ -1,0 +1,54 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Vector3.ProjectOnPlane</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Vector3.html">Vector3</a>.ProjectOnPlane</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Vector3.html">Vector3</a> <span class="sig-kw">ProjectOnPlane</span>(<a href="Vector3.html">Vector3</a> <span class="sig-kw">vector</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">planeNormal</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">planeNormal</td><td class="desc"></td><td class="desc1">The direction from the vector towards the plane.</td></tr><tr><td class="name lbl">vector</td><td class="desc"></td><td class="desc1">The location of the vector above the plane.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>Vector3</strong>
+        The location of the vector on the plane.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Projects a vector onto a plane defined by a normal orthogonal to the plane.</p></div><div class="subsection"><p>A <a href="Vector3.html">Vector3</a> stores the position of the given <a href="Vector3-vector.html">vector</a> in 3d space. A second <a href="Vector3.html">Vector3</a> is given by <a href="Vector3-planeNormal.html">planeNormal</a> and defines a direction from a plane towards <a href="Vector3-vector.html">vector</a> that passes through the origin. <a href="Vector3.ProjectOnPlane.html">Vector3.ProjectOnPlane</a> uses the two <a href="Vector3.html">Vector3</a> values to generate the position of <a href="Vector3-vector.html">vector</a> in the <a href="Vector3-planeNormal.html">planeNormal</a> direction, and return the location of the <a href="Vector3.html">Vector3</a> on the plane.<br /><br /><img src="../StaticFiles/ScriptRefImages/Vector3ProjectOnPlane.png" /><br />
+<em>The vector starts at the red circle and ends at the black circle representing the plane normal.</em><br /><br />The script example below makes <code class="varname">Update</code> generate a <code class="varname">vector</code> position, and a <code class="varname">planeNormal</code> normal. The <a href="Vector3.ProjectOnPlane.html">Vector3.ProjectOnPlane</a> static method receives the arguments and returns the <a href="Vector3.html">Vector3</a> position.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;<br /><br />// <a href="Vector3.ProjectOnPlane.html">Vector3.ProjectOnPlane</a> - example<br /><br />// Generate a random plane in xy. Show the position of a random
+// vector and a connection to the plane. The example shows nothing
+// in the Game view but uses <a href="Experimental.PlayerLoop.Update.html">Update</a>(). The script reference example
+// uses <a href="Gizmos.html">Gizmos</a> to show the positions and axes in the <a href="SceneManagement.Scene.html">Scene</a>.<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private <a href="Vector3.html">Vector3</a> vector, planeNormal;
+    private <a href="Vector3.html">Vector3</a> response;
+    private float radians;
+    private float degrees;
+    private float timer = 12345.0f;<br /><br />    // Generate the values for all the examples.
+    // Change the example every two seconds.
+    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        if (timer &gt; 2.0f)
+        {
+            // Generate a position inside xy space.
+            vector = new <a href="Vector3.html">Vector3</a>(<a href="Random.Range.html">Random.Range</a>(-1.0f, 1.0f), <a href="Random.Range.html">Random.Range</a>(-1.0f, 1.0f), 0.0f);<br /><br />            // Compute a normal from the plane through the origin.
+            degrees = <a href="Random.Range.html">Random.Range</a>(-45.0f, 45.0f);
+            radians = degrees * <a href="Mathf.Deg2Rad.html">Mathf.Deg2Rad</a>;
+            planeNormal = new <a href="Vector3.html">Vector3</a>(<a href="Mathf.Cos.html">Mathf.Cos</a>(radians), <a href="Mathf.Sin.html">Mathf.Sin</a>(radians), 0.0f);<br /><br />            // Obtain the ProjectOnPlane result.
+            response = <a href="Vector3.ProjectOnPlane.html">Vector3.ProjectOnPlane</a>(vector, planeNormal);<br /><br />            // Reset the timer.
+            timer = 0.0f;
+        }
+        timer += <a href="Time-deltaTime.html">Time.deltaTime</a>;
+    }<br /><br />    // Show a <a href="SceneManagement.Scene.html">Scene</a> view example.
+    void OnDrawGizmosSelected()
+    {
+        // Left/right and up/down axes.
+        <a href="Gizmos-color.html">Gizmos.color</a> = <a href="Color-white.html">Color.white</a>;
+        <a href="Gizmos.DrawLine.html">Gizmos.DrawLine</a>(transform.position - new <a href="Vector3.html">Vector3</a>(2.25f, 0, 0), transform.position + new <a href="Vector3.html">Vector3</a>(2.25f, 0, 0));
+        <a href="Gizmos.DrawLine.html">Gizmos.DrawLine</a>(transform.position - new <a href="Vector3.html">Vector3</a>(0, 1.75f, 0), transform.position + new <a href="Vector3.html">Vector3</a>(0, 1.75f, 0));<br /><br />        // <a href="Display.html">Display</a> the plane.
+        <a href="Gizmos-color.html">Gizmos.color</a> = <a href="Color-green.html">Color.green</a>;
+        <a href="Vector3.html">Vector3</a> angle = new <a href="Vector3.html">Vector3</a>(-1.75f * <a href="Mathf.Sin.html">Mathf.Sin</a>(radians), 1.75f * <a href="Mathf.Cos.html">Mathf.Cos</a>(radians), 0.0f);
+        <a href="Gizmos.DrawLine.html">Gizmos.DrawLine</a>(transform.position - angle, transform.position + angle);<br /><br />        // Show a connection between vector and response.
+        <a href="Gizmos-color.html">Gizmos.color</a> = <a href="Color-yellow.html">Color.yellow</a>;
+        <a href="Gizmos.DrawLine.html">Gizmos.DrawLine</a>(vector, response);<br /><br />        // Now show the input position.
+        <a href="Gizmos-color.html">Gizmos.color</a> = <a href="Color-red.html">Color.red</a>;
+        <a href="Gizmos.DrawSphere.html">Gizmos.DrawSphere</a>(vector, 0.05f);<br /><br />        // And finally the resulting position.
+        <a href="Gizmos-color.html">Gizmos.color</a> = <a href="Color-black.html">Color.black</a>;
+        <a href="Gizmos.DrawSphere.html">Gizmos.DrawSphere</a>(response, 0.05f);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

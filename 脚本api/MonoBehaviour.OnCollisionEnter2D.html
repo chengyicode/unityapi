@@ -1,0 +1,50 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: MonoBehaviour.OnCollisionEnter2D(Collision2D)</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="MonoBehaviour.html">MonoBehaviour</a>.OnCollisionEnter2D(Collision2D)</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">other</td><td class="desc"></td><td class="desc1">The Collision2D data associated with this collision.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Sent when an incoming collider makes contact with this object's collider (2D physics only).</p></div><div class="subsection"><p>Further information about the collision is reported in the Collision2D parameter passed during the call. If you don't need this information then you can declare <a href="MonoBehaviour.OnCollisionEnter2D.html">OnCollisionEnter2D</a> without the parameter.<br /><br /><strong>Note:</strong> Collision events will be sent to disabled MonoBehaviours, to allow enabling Behaviours in response to collisions.<br /><br />See Also: <a href="Collision2D.html">Collision2D</a> class, <a href="MonoBehaviour.OnCollisionExit2D.html">OnCollisionExit2D</a>, <a href="MonoBehaviour.OnCollisionStay2D.html">OnCollisionStay2D</a>.<br /><br />The folllowing two script examples create an <a href="MonoBehaviour.OnCollisionEnter2D.html">OnCollisionEnter2D</a> demo.  Example1 generates
+a (white) <code class="mono">box</code> sprite called <code class="mono">GameObject1</code>.  This sprite collides with the Example2
+<code class="mono">GameObject2</code> which is the <code class="mono">floor</code> sprite.  The <code class="mono">box</code> sprite can be moved using the up, down,
+left and right keys.  For example, once the <code class="mono">box</code> has fallen to the <code class="mono">floor</code> it can be pushed
+upwards with the up key.  Once the up key is released the <code class="mono">box</code> will fall back to the <code class="mono">floor</code>.
+Each time the <code class="mono">box</code> hits the <code class="mono">floor</code> an <a href="MonoBehaviour.OnCollisionEnter2D.html">OnCollisionEnter2D</a> call will be made.
+<code class="mono">GameObject1</code> simply provides a string in the console to indicate the collision has
+happened.
+                </p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />// Create a box sprite which falls and hits a floor sprite.  The box can be moved/animated
+// with the up, left, right, and down keys.  Moving the box sprite upwards and letting it
+// fall will increate the number of calls from OnCollisionEnter2D.<br /><br />public class Example1 : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Texture2D.html">Texture2D</a> tex;<br /><br />    void Awake()
+    {
+        <a href="SpriteRenderer.html">SpriteRenderer</a> sr = gameObject.AddComponent&lt;<a href="SpriteRenderer.html">SpriteRenderer</a>&gt;() as <a href="SpriteRenderer.html">SpriteRenderer</a>;
+        transform.position = new <a href="Vector3.html">Vector3</a>(0.0f, 2.5f, 0.0f);<br /><br />        <a href="Sprite.html">Sprite</a> sp = <a href="Sprite.Create.html">Sprite.Create</a>(tex, new <a href="Rect.html">Rect</a>(0.0f, 0.0f, tex.width, tex.height), new <a href="Vector2.html">Vector2</a>(0.5f, 0.5f), 100.0f);
+        sr.sprite = sp;<br /><br />        gameObject.AddComponent&lt;<a href="BoxCollider2D.html">BoxCollider2D</a>&gt;();<br /><br />        <a href="Rigidbody2D.html">Rigidbody2D</a> rb = gameObject.AddComponent&lt;<a href="Rigidbody2D.html">Rigidbody2D</a>&gt;();
+        rb.bodyType = <a href="RigidbodyType2D.Dynamic.html">RigidbodyType2D.Dynamic</a>;
+    }<br /><br />    void <a href="Experimental.PlayerLoop.FixedUpdate.html">FixedUpdate</a>()
+    {
+        float moveHorizontal = <a href="Input.GetAxis.html">Input.GetAxis</a>("Horizontal");
+        float moveVertical = <a href="Input.GetAxis.html">Input.GetAxis</a>("Vertical");<br /><br />        gameObject.transform.Translate(moveHorizontal * 0.05f, moveVertical * 0.25f, 0.0f);
+    }<br /><br />    // called when the cube hits the floor
+    void OnCollisionEnter2D(<a href="Collision2D.html">Collision2D</a> col)
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("OnCollisionEnter2D");
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Example2.  This creates the floor.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example2 : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Texture2D.html">Texture2D</a> tex;<br /><br />    void Awake()
+    {
+        <a href="SpriteRenderer.html">SpriteRenderer</a> sr = gameObject.AddComponent&lt;<a href="SpriteRenderer.html">SpriteRenderer</a>&gt;() as <a href="SpriteRenderer.html">SpriteRenderer</a>;
+        transform.position = new <a href="Vector3.html">Vector3</a>(0.0f, -2.0f, 0.0f);<br /><br />        <a href="Sprite.html">Sprite</a> sp = <a href="Sprite.Create.html">Sprite.Create</a>(tex, new <a href="Rect.html">Rect</a>(0.0f, 0.0f, tex.width, tex.height), new <a href="Vector2.html">Vector2</a>(0.5f, 0.5f), 100.0f);
+        sr.sprite = sp;<br /><br />        gameObject.AddComponent&lt;<a href="BoxCollider2D.html">BoxCollider2D</a>&gt;();
+    }
+}
+</pre>
+      </div><div class="subsection"><p>
+            The two objects are stored as GameObjects each with one of the scripts.
+            These GameObjects start with just the script example that it needs.
+            Example1 is applied to GameObject1 and Example2 to GameObject2.
+        </p></div></div></div></div></body></html>

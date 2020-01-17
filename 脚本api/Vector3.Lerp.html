@@ -1,0 +1,33 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Vector3.Lerp</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Vector3.html">Vector3</a>.Lerp</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Vector3.html">Vector3</a> <span class="sig-kw">Lerp</span>(<a href="Vector3.html">Vector3</a> <span class="sig-kw">a</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">b</span>,
+float <span class="sig-kw">t</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Linearly interpolates between two points.</p></div><div class="subsection"><p>Interpolates between the points <code class="varname">a</code> and <code class="varname">b</code> by the interpolant <code class="varname">t</code>. The parameter <code class="varname">t</code> is clamped to the range [0, 1]. This is most commonly used to find a point some fraction of the way along a line between two endpoints (e.g. to move an object gradually between those points).<br /><br />The value returned equals (b - a) * t.
+When <code class="varname">t</code> = 0 returns <code class="varname">a</code>.
+When <code class="varname">t</code> = 1 returns <code class="varname">b</code>.
+When <code class="varname">t</code> = 0.5 returns the point midway between <code class="varname">a</code> and <code class="varname">b</code>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Transforms to act as start and end markers for the journey.
+    public <a href="Transform.html">Transform</a> startMarker;
+    public <a href="Transform.html">Transform</a> endMarker;<br /><br />    // Movement speed in units per second.
+    public float speed = 1.0F;<br /><br />    // <a href="Time.html">Time</a> when the movement started.
+    private float startTime;<br /><br />    // Total distance between the markers.
+    private float journeyLength;<br /><br />    void Start()
+    {
+        // Keep a note of the time the movement started.
+        startTime = <a href="Time-time.html">Time.time</a>;<br /><br />        // Calculate the journey length.
+        journeyLength = <a href="Vector3.Distance.html">Vector3.Distance</a>(startMarker.position, endMarker.position);
+    }<br /><br />    // Move to the target end position.
+    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        // Distance moved equals elapsed time times speed..
+        float distCovered = (<a href="Time-time.html">Time.time</a> - startTime) * speed;<br /><br />        // Fraction of journey completed equals current distance divided by total distance.
+        float fractionOfJourney = distCovered / journeyLength;<br /><br />        // Set our position as a fraction of the distance between the markers.
+        transform.position = <a href="Vector3.Lerp.html">Vector3.Lerp</a>(startMarker.position, endMarker.position, fractionOfJourney);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="Vector3.Slerp.html">Slerp</a>, <a href="Vector3.LerpUnclamped.html">LerpUnclamped</a>.</p></div></div></div></div></body></html>

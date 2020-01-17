@@ -1,0 +1,44 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Display</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">Display</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.CoreModule.html" class="cl">UnityEngine.CoreModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Provides access to a display / screen for rendering operations.</p></div><div class="subsection"><p>Multi-display rendering is available on PC (Windows/Mac/Linux), iOS and Android.<br /><br />Use the Display class to operate on the displays themselves, and <a href="Camera-targetDisplay.html">Camera.targetDisplay</a> to set up cameras for rendering to individual displays.<br /><br />See Also: <a href="Camera-targetDisplay.html">Camera.targetDisplay</a>, <a href="Canvas-targetDisplay.html">Canvas.targetDisplay</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="Camera.html">Camera</a> extCam;
+    <a href="Camera.html">Camera</a> cam;<br /><br />    void Start()
+    {
+        // <a href="GUI.html">GUI</a> is rendered with last camera.
+        // As we want it to end up in the main screen, make sure main camera is the last one drawn.
+        extCam.depth = cam.depth - 1;<br /><br />        cam.SetTargetBuffers(Display.main.colorBuffer, Display.main.depthBuffer);
+        extCam.enabled = false;
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        if (Display.displays.Length &gt; 1 &amp;&amp; !extCam.enabled)
+        {
+            <a href="Display-displays.html">Display.displays</a>[1].SetRenderingResolution(256, 256);
+            extCam.SetTargetBuffers(<a href="Display-displays.html">Display.displays</a>[1].colorBuffer, <a href="Display-displays.html">Display.displays</a>[1].depthBuffer);
+        }
+        extCam.enabled = Display.displays.Length &gt; 1;
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Static Properties</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Display-displays.html">displays</a></td><td class="desc"></td><td class="desc1">The list of currently connected Displays. Contains at least one (main) display.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Display-main.html">main</a></td><td class="desc"></td><td class="desc1">Main Display.</td></tr>
+    </table></div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Display-active.html">active</a></td><td class="desc"></td><td class="desc1">Gets the state of the display and returns true if the display is active and false if otherwise.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Display-colorBuffer.html">colorBuffer</a></td><td class="desc"></td><td class="desc1">Color RenderBuffer.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Display-depthBuffer.html">depthBuffer</a></td><td class="desc"></td><td class="desc1">Depth RenderBuffer.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Display-renderingHeight.html">renderingHeight</a></td><td class="desc"></td><td class="desc1">Vertical resolution that the display is rendering at.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Display-renderingWidth.html">renderingWidth</a></td><td class="desc"></td><td class="desc1">Horizontal resolution that the display is rendering at.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Display-requiresBlitToBackbuffer.html">requiresBlitToBackbuffer</a></td><td class="desc"></td><td class="desc1">True when the back buffer requires an intermediate texture to render.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Display-requiresSrgbBlitToBackbuffer.html">requiresSrgbBlitToBackbuffer</a></td><td class="desc"></td><td class="desc1">True when doing a blit to the back buffer requires manual color space conversion.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Display-systemHeight.html">systemHeight</a></td><td class="desc"></td><td class="desc1">Vertical native display resolution.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Display-systemWidth.html">systemWidth</a></td><td class="desc"></td><td class="desc1">Horizontal native display resolution.</td></tr>
+    </table></div><div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Display.Activate.html">Activate</a></td><td class="desc"></td><td class="desc1">Activate an external display. Eg. Secondary Monitors connected to the System.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Display.SetParams.html">SetParams</a></td><td class="desc"></td><td class="desc1">Set rendering size and position on screen (Windows only).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Display.SetRenderingResolution.html">SetRenderingResolution</a></td><td class="desc"></td><td class="desc1">Sets rendering resolution for the display.</td></tr>
+    </table></div><div class="subsection"><h2>Static Methods   静态方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Display.RelativeMouseAt.html">RelativeMouseAt</a></td><td class="desc"></td><td class="desc1">Query relative mouse coordinates.</td></tr>
+    </table></div></div></div></div></body></html>

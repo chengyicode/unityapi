@@ -1,0 +1,16 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: RemoteSettings.GetInt</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="RemoteSettings.html">RemoteSettings</a>.GetInt</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static int <span class="sig-kw">GetInt</span>(string <span class="sig-kw">key</span>,
+int <span class="sig-kw">defaultValue</span> = 0);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">key</td><td class="desc"></td><td class="desc1">The key identifying the setting.</td></tr><tr><td class="name lbl">defaultValue</td><td class="desc"></td><td class="desc1">The default value to use if the setting identified by the <strong>key</strong> parameter cannot be found or is unavailable.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>int</strong>
+        The current value of the setting identified by <strong>key</strong>, or the default value.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Gets the value corresponding to remote setting identified by <strong>key</strong>, if it exists.</p></div><div class="subsection"><p>If it doesn't exist, it will return <code class="varname">defaultValue</code>. If you don't provide a default value, it will return 0.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class HandleRemoteSettings : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private void Start()
+    {
+        <a href="Debug.Log.html">Debug.Log</a>(<a href="RemoteSettings.GetInt.html">RemoteSettings.GetInt</a>("maxLevelDifficulty"));
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

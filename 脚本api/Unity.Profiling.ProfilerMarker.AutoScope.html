@@ -1,0 +1,16 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AutoScope</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">AutoScope</h1><div class="clear"></div><p class="cl mb0 left mr10">struct in
+          Unity.Profiling</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.CoreModule.html" class="cl">UnityEngine.CoreModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Helper IDisposable struct for use with <a href="Unity.Profiling.ProfilerMarker.Auto.html">ProfilerMarker.Auto</a>.</p></div><div class="subsection"><p>Use <a href="Unity.Profiling.ProfilerMarker.Auto.html">ProfilerMarker.Auto</a> to enclose a piece of code you want to profile in <em>using</em> statement. Constructor of <em>AutoScope</em> calls <a href="Unity.Profiling.ProfilerMarker.Begin.html">ProfilerMarker.Begin</a> and <em>Dispose</em> method - <a href="Unity.Profiling.ProfilerMarker.Begin.html">ProfilerMarker.Begin</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using Unity.Profiling;<br /><br />public class MySystemClass
+{
+    <a href="Unity.Profiling.ProfilerMarker.html">ProfilerMarker</a> simulatePerfMarker = new <a href="Unity.Profiling.ProfilerMarker.html">ProfilerMarker</a>("MySystem.Simulate");<br /><br />    public void UpdateLogic()
+    {
+        using (simulatePerfMarker.Auto())
+        {
+            // ...
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

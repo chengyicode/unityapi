@@ -1,0 +1,20 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: GUI.SetNextControlName</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="GUI.html">GUI</a>.SetNextControlName</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">SetNextControlName</span>(string <span class="sig-kw">name</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Set the name of the next control.</p></div><div class="subsection"><p>This makes the following control be registered with a given name.<br /><br />See Also: <a href="GUI.GetNameOfFocusedControl.html">GetNameOfFocusedControl</a>, <a href="GUI.FocusControl.html">FocusControl</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Sets the login textfield with "user".  If it is selected and the user
+// presses enter, it prints Login<br /><br />using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public string login = "username";
+    public string login2 = "no action here";<br /><br />    void OnGUI()
+    {
+        <a href="GUI.SetNextControlName.html">GUI.SetNextControlName</a>("user");
+        login = <a href="GUI.TextField.html">GUI.TextField</a>(new <a href="Rect.html">Rect</a>(10, 10, 130, 20), login);<br /><br />        login2 = <a href="GUI.TextField.html">GUI.TextField</a>(new <a href="Rect.html">Rect</a>(10, 40, 130, 20), login2);
+        if (Event.current.Equals(<a href="Event.KeyboardEvent.html">Event.KeyboardEvent</a>("return")) &amp;&amp; <a href="GUI.GetNameOfFocusedControl.html">GUI.GetNameOfFocusedControl</a>() == "user")
+            <a href="Debug.Log.html">Debug.Log</a>("Login");<br /><br />        if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(150, 10, 50, 20), "Login"))
+            <a href="Debug.Log.html">Debug.Log</a>("Login");
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

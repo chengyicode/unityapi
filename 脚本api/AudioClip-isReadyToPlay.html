@@ -1,0 +1,22 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AudioClip.isReadyToPlay</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Method group is Obsolete</b><br /></div><h1 class="heading inherit"><a href="AudioClip.html">AudioClip</a>.isReadyToPlay</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-AudioClip.html' title='Go to AudioClip Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public bool <span class="sig-kw">isReadyToPlay</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Returns true if the AudioClip is ready to play (read-only).</p></div><div class="subsection"><p>This applies to any type of AudioClip, regardless whether they load all data at startup, dynamically in the background or streamed from disk or web. In the first case the property will be true when the whole clip has been loaded, while in the streamed cases it will be true when enough data is buffered to start playback.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.Networking;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="AudioSource.html">AudioSource</a> source;<br /><br />    void Start()
+    {
+        <a href="Networking.UnityWebRequest.html">UnityWebRequest</a> webRequest = <a href="Networking.UnityWebRequestMultimedia.GetAudioClip.html">UnityWebRequestMultimedia.GetAudioClip</a>("www.example.com", <a href="AudioType.UNKNOWN.html">AudioType.UNKNOWN</a>);
+        source = GetComponent&lt;<a href="AudioSource.html">AudioSource</a>&gt;();
+        source.clip = <a href="Networking.DownloadHandlerAudioClip.GetContent.html">DownloadHandlerAudioClip.GetContent</a>(webRequest);
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        if (!source.isPlaying &amp;&amp; source.clip.isReadyToPlay)
+        {
+            source.Play();
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

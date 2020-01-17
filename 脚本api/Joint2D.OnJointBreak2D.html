@@ -1,0 +1,17 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Joint2D.OnJointBreak2D(Joint2D)</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Joint2D.html">Joint2D</a>.OnJointBreak2D(Joint2D)</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Called when a <a href="Joint2D.html">Joint2D</a> attached to the same game object breaks.</p></div><div class="subsection"><p>When the <a href="Joint2D-reactionForce.html">reactionForce</a> is higher than the <a href="Joint2D-breakForce.html">breakForce</a> or the <a href="Joint2D-reactionTorque.html">reactionTorque</a> is higher than the <a href="Joint2D-breakTorque.html">breakTorque</a> of the joint, the joint will break.
+When the joint breaks, <a href="Joint2D.OnJointBreak2D.html">OnJointBreak2D</a> will be called and the specific <a href="Joint2D.html">Joint2D</a> that broke will be passed in.
+After <a href="Joint2D.OnJointBreak2D.html">OnJointBreak2D</a> is called, the joint will automatically be removed from the game object and deleted.<br /><br />See Also: <a href="Joint2D-breakForce.html">breakForce</a>, <a href="Joint2D-breakTorque.html">breakTorque</a>, <a href="Joint2D-reactionForce.html">reactionForce</a> and <a href="Joint2D-reactionTorque.html">reactionTorque</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void OnJointBreak2D(<a href="Joint2D.html">Joint2D</a> brokenJoint)
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("A joint has just been broken!");
+        <a href="Debug.Log.html">Debug.Log</a>("The broken joint exerted a reaction force of " + brokenJoint.reactionForce);
+        <a href="Debug.Log.html">Debug.Log</a>("The broken joint exerted a reaction torque of " + brokenJoint.reactionTorque);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

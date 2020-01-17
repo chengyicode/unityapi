@@ -1,0 +1,25 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: RenderTargetBinding</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">RenderTargetBinding</h1><div class="clear"></div><p class="cl mb0 left mr10">struct in
+          UnityEngine.Rendering</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.CoreModule.html" class="cl">UnityEngine.CoreModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Describes a render target with one or more color buffers, a depth/stencil buffer and the associated load/store-actions that are applied when the render target is active.</p></div><div class="subsection"><p>This data structure is similiar to <a href="RenderTargetSetup.html">RenderTargetSetup</a>, but relies on a <a href="Rendering.RenderTargetIdentifier.html">RenderTargetIdentifier</a> to ensure compatability with <a href="Rendering.CommandBuffer.SetRenderTarget.html">CommandBuffer.SetRenderTarget</a>.<br /><br />To render to a specific mip-level, cubemap face or depth slice the <a href="Rendering.RenderTargetIdentifier.html">RenderTargetIdentifier</a> should be created accordingly.<br /><br />Note: the number of load- and store-actions specified for color buffers must be equal to the number of color buffers.<br /><br />See Also: <a href="Rendering.CommandBuffer.html">CommandBuffer</a>.</p></div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.RenderTargetBinding-colorLoadActions.html">colorLoadActions</a></td><td class="desc"></td><td class="desc1">Load actions for color buffers.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.RenderTargetBinding-colorRenderTargets.html">colorRenderTargets</a></td><td class="desc"></td><td class="desc1">Color buffers to use as render targets.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.RenderTargetBinding-colorStoreActions.html">colorStoreActions</a></td><td class="desc"></td><td class="desc1">Store actions for color buffers.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.RenderTargetBinding-depthLoadAction.html">depthLoadAction</a></td><td class="desc"></td><td class="desc1">Load action for the depth/stencil buffer.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.RenderTargetBinding-depthRenderTarget.html">depthRenderTarget</a></td><td class="desc"></td><td class="desc1">Depth/stencil buffer to use as render target.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.RenderTargetBinding-depthStoreAction.html">depthStoreAction</a></td><td class="desc"></td><td class="desc1">Store action for the depth/stencil buffer.</td></tr>
+    </table></div><div class="subsection"><h2>Constructors</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.RenderTargetBinding-ctor.html">RenderTargetBinding</a></td><td class="desc"></td><td class="desc1">Constructs RenderTargetBinding.</td></tr>
+    </table></div></div></div></div></body></html>

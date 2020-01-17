@@ -1,0 +1,30 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Matrix4x4.transpose</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Matrix4x4.html">Matrix4x4</a>.transpose</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Matrix4x4.html">Matrix4x4</a> <span class="sig-kw">transpose</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Returns the transpose of this matrix (Read Only).</p></div><div class="subsection"><p>The transposed matrix is the one that has the Matrix4x4's columns exchanged with its rows.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">using UnityEngine;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // You construct a <a href="Matrix4x4.html">Matrix4x4</a> by passing in four <a href="Vector4.html">Vector4</a> objects
+    // as being COLUMNS and not ROWS
+    <a href="Matrix4x4.html">Matrix4x4</a> matrix = new <a href="Matrix4x4.html">Matrix4x4</a>(
+        new <a href="Vector4.html">Vector4</a>(1, 2, 3, 4),
+        new <a href="Vector4.html">Vector4</a>(5, 6, 7, 8),
+        new <a href="Vector4.html">Vector4</a>(9, 10, 11, 12),
+        new <a href="Vector4.html">Vector4</a>(13, 14, 15, 16));<br /><br />
+    void Start()
+    {
+        <a href="Debug.Log.html">Debug.Log</a>(matrix);
+        // This outputs
+        // 1, 5, 9, 13,
+        // 2, 6, 10, 14,
+        // 3, 7, 11, 15,
+        // 4, 8, 12, 16<br /><br />
+        <a href="Debug.Log.html">Debug.Log</a>(matrix.transpose);
+        // This outputs
+        // 1, 2, 3, 4,
+        // 5, 6, 7, 8,
+        // 9, 10, 11, 12,
+        // 13, 14, 15, 16
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Input.mouseScrollDelta</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Input.html">Input</a>.mouseScrollDelta</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Vector2.html">Vector2</a> <span class="sig-kw">mouseScrollDelta</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The current mouse scroll delta. (Read Only)</p></div><div class="subsection"><p>
+        <a href="Input-mouseScrollDelta.html">Input.mouseScrollDelta</a> is stored in a <a href="Vector2-y.html">Vector2.y</a> property. (The <a href="Vector2-x.html">Vector2.x</a> value is ignored.) <a href="Input-mouseScrollDelta.html">Input.mouseScrollDelta</a> can be positive (up) or negative (down). The value is zero when the mouse scroll is not rotated. Note that a mouse with a center scroll wheel is typical on a PC. Modern <code class="varname">macOS</code> uses double finger movement up and down on the trackpad to emulate center scrolling. The value returned by <a href="Input-mouseScrollDelta.html">mouseScrollDelta</a> will need to be adjusted according to the scroll rate. In the example below a <code class="mono">scale</code> of <code class="varname">0.1f</code> is used.<br /><br />Note that <a href="Input-mouseScrollDelta.html">mouseScrollDelta</a> is read-only.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;<br /><br />// <a href="Input-mouseScrollDelta.html">Input.mouseScrollDelta</a> example
+//
+// Create a sphere moved by a mouse scrollwheel or two-finger
+// slide on a Mac trackpad.<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private <a href="Transform.html">Transform</a> sphere;
+    private float scale;<br /><br />    void Awake()
+    {
+        <a href="GameObject.html">GameObject</a> go = <a href="GameObject.CreatePrimitive.html">GameObject.CreatePrimitive</a>(<a href="PrimitiveType.Sphere.html">PrimitiveType.Sphere</a>);
+        sphere = go.transform;<br /><br />        // create a yellow quad
+        go = <a href="GameObject.CreatePrimitive.html">GameObject.CreatePrimitive</a>(<a href="PrimitiveType.Quad.html">PrimitiveType.Quad</a>);
+        go.transform.Rotate(new <a href="Vector3.html">Vector3</a>(90.0f, 0.0f, 0.0f));
+        go.transform.localScale = new <a href="Vector3.html">Vector3</a>(4.0f, 4.0f, 4.0f);
+        go.GetComponent&lt;<a href="Renderer.html">Renderer</a>&gt;().material.color = new <a href="Color.html">Color</a>(0.75f, 0.75f, 0.0f, 0.5f);<br /><br />        // change the camera color and position
+        Camera.main.clearFlags = <a href="CameraClearFlags.SolidColor.html">CameraClearFlags.SolidColor</a>;
+        Camera.main.transform.position = new <a href="Vector3.html">Vector3</a>(2, 1, 5);
+        Camera.main.transform.Rotate(0, -160, 0);<br /><br />        scale = 0.1f;
+    }<br /><br />    void OnGUI()
+    {
+        <a href="Vector3.html">Vector3</a> pos = sphere.position;
+        pos.y += Input.mouseScrollDelta.y * scale;
+        sphere.position = pos;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

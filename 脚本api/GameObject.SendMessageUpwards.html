@@ -1,0 +1,23 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: GameObject.SendMessageUpwards</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="GameObject.html">GameObject</a>.SendMessageUpwards</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-GameObject.html' title='Go to GameObject Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">SendMessageUpwards</span>(string <span class="sig-kw">methodName</span>,
+object <span class="sig-kw">value</span> = null,
+<a href="SendMessageOptions.html">SendMessageOptions</a> <span class="sig-kw">options</span> = SendMessageOptions.RequireReceiver);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">methodName</td><td class="desc"></td><td class="desc1">The name of the method to call.</td></tr><tr><td class="name lbl">value</td><td class="desc"></td><td class="desc1">An optional parameter value to pass to the called method.</td></tr><tr><td class="name lbl">options</td><td class="desc"></td><td class="desc1">Should an error be raised if the method doesn't exist on the target object?</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Calls the method named <code class="varname">methodName</code> on every <a href="MonoBehaviour.html">MonoBehaviour</a> in this game object and on every ancestor of the behaviour.</p></div><div class="subsection"><p>The receiving method can choose to ignore the argument by having zero parameters.
+If options is set to <a href="SendMessageOptions.RequireReceiver.html">SendMessageOptions.RequireReceiver</a> an error is printed when the message is not picked up by any component.<br /><br />Note that messages will not be sent to inactive objects (ie, those that have been deactivated in the editor or with the <a href="GameObject.SetActive.html">SetActive</a> function).</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        // Calls the function ApplyDamage with a value of 5
+        gameObject.SendMessage("ApplyDamage", 5.0);
+    }
+}<br /><br />public class Example2 : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public void ApplyDamage(float damage)
+    {
+        print(damage);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

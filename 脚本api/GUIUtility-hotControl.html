@@ -1,0 +1,16 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: GUIUtility.hotControl</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="GUIUtility.html">GUIUtility</a>.hotControl</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static int <span class="sig-kw">hotControl</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The controlID of the current hot control.</p></div><div class="subsection"><p>The hot control is one that is temporarily active. When the user mousedown's on a button, it becomes hot. <br />
+No other controls are allowed to respond to mouse events while some other control is hot.<br />
+once the user mouseup's, the control sets <code class="varname">hotControl</code> to 0 in order to indicate that other controls can now respond to user input.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Click on the button to see the id<br /><br />    void OnGUI()
+    {
+        <a href="GUILayout.Button.html">GUILayout.Button</a>("Press Me!");
+        <a href="Debug.Log.html">Debug.Log</a>("id: " + <a href="GUIUtility-hotControl.html">GUIUtility.hotControl</a>);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

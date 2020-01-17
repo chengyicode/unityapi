@@ -1,0 +1,98 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Experimental.AI.NavMeshQuery.Raycast</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Experimental</b>: this API is experimental and might be changed or removed in the future.</div><h1 class="heading inherit"><a href="Experimental.AI.NavMeshQuery.html">NavMeshQuery</a>.Raycast</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Experimental.AI.PathQueryStatus.html">Experimental.AI.PathQueryStatus</a> <span class="sig-kw">Raycast</span>(out <a href="AI.NavMeshHit.html">AI.NavMeshHit</a> <span class="sig-kw">hit</span>,
+<a href="Experimental.AI.NavMeshLocation.html">Experimental.AI.NavMeshLocation</a> <span class="sig-kw">start</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">targetPosition</span>,
+int <span class="sig-kw">areaMask</span>,
+NativeArray&lt;float&gt; <span class="sig-kw">costs</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">hit</td><td class="desc"></td><td class="desc1">Holds the properties of the raycast resulting location.</td></tr><tr><td class="name lbl">start</td><td class="desc"></td><td class="desc1">The start location of the ray on the NavMesh. <code class="mono">start.polygon</code> must be of the type <a href="Experimental.AI.NavMeshPolyTypes.Ground.html">NavMeshPolyTypes.Ground</a>.</td></tr><tr><td class="name lbl">targetPosition</td><td class="desc"></td><td class="desc1">The desired end of the ray, in world coordinates.</td></tr><tr><td class="name lbl">areaMask</td><td class="desc"></td><td class="desc1">Bitmask that correlates index positions with area types.  The index goes from 0 to 31. In each relevant index position, you have to set the value to either 1 or 0. 1 indicates area types that the ray can pass through. 0 indicates area types that block the ray. This parameter is optional. If you leave out this parameter, it defaults to <a href="AI.NavMesh.AllAreas.html">NavMesh.AllAreas</a>. To learn more, see: <a href="../Manual/nav-AreasAndCosts.html">Areas and Costs</a>.</td></tr><tr><td class="name lbl">costs</td><td class="desc"></td><td class="desc1">Array of custom cost values for all of the 32 possible area types. They act as multipliers to the distance reported by the ray when crossing various areas. This parameter is optional. If you omit it, it defaults to the area costs that you configured in the Project settings. To learn more, see <a href="AI.NavMesh.GetAreaCost.html">NavMesh.GetAreaCost</a>.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>PathQueryStatus</strong>
+        
+          <code class="mono">Success</code> if the ray can be correctly traced using the provided arguments.<br />
+<code class="mono">Failure</code> if the <code class="mono">start</code> location is not valid in the query's NavMeshWorld, or if it is inside an area not permitted by the <code class="mono">areaMask</code> argument, or when it is on a <a href="../Manual/class-NavMeshLink.html">NavMeshLink</a>/<a href="AI.OffMeshLink.html">OffMeshLink</a>.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Trace a line between two points on the NavMesh.</p></div><div class="subsection"><p>This method is similar to <a href="AI.NavMesh.Raycast.html">NavMesh.Raycast</a>, both of them sharing the same underlying implementation.<br />
+The properties that make this one different are:<br />
+- it can be used in parallel <a href="../Manual/JobSystem.html">jobs</a>;<br />
+- it returns status flags indicating whether the operation succeeded or failed;<br />
+- the reported <code class="mono">hit.distance</code> is affected by the area costs;<br />
+- the resulting <code class="mono">hit.position</code> is not adjusted on the vertical axis according to the <a href="../Manual/nav-HeightMesh.html">Height Mesh</a>, if that exists;<br />
+- it has the variant described below that returns also the list of polygons through which the ray passes.<br />
+<br />
+The returned <code class="mono">hit.distance</code> represents the straight line between the start and termination point. It also takes into account the list of the provided area costs. It is the result of summing up all the distances covered by the ray over each separate area, multiplied by the cost of that respective area.<br />
+<br />
+First, the start location is verified to be valid in the NavMeshWorld, and the target point is mapped on the NavMesh. Then, a ray is traced from the start point towards the target. If the computation is successful, the <code class="mono">hit</code> data is filled with information about the furthest point that the ray has reached. This happens regardless of whether the path from the source to target has been obstructed.<br />
+If the computation fails, the returned <code class="mono">hit</code> is filled with invalid data. Most notably, the <code class="mono">hit.distance</code> field gets the value <code class="mono">positiveInfinity</code>.<br /><br />If the raycast terminates on an outer edge, <code class="mono">hit.mask</code> is 0; otherwise it contains the area mask of the blocking polygon.<br /><br />You can use this function to check if an agent can walk unobstructed between two points on the NavMesh. For example, if your character has an evasive dodge move that needs space, you can shoot a ray from the character's location to multiple directions. This finds a spot where the character can dodge to.<br /><br />The <a href="Experimental.AI.NavMeshQuery.Raycast.html">NavMeshQuery.Raycast</a> is different from the Physics raycast. The NavMeshQuery.Raycast can detect all kinds of navigation obstructions, for example holes in the ground. It can also climb up slopes, if the area is navigable.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// TargetReachable
+using Unity.Collections;
+using UnityEngine;
+using UnityEngine.AI;
+using UnityEngine.Experimental.AI;<br /><br />public class TargetReachable : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Transform.html">Transform</a> target;
+    <a href="Experimental.AI.NavMeshQuery.html">NavMeshQuery</a> m_NavQuery;
+    <a href="AI.NavMeshHit.html">NavMeshHit</a> m_Hit;<br /><br />    void OnEnable()
+    {
+        m_NavQuery = new <a href="Experimental.AI.NavMeshQuery.html">NavMeshQuery</a>(<a href="Experimental.AI.NavMeshWorld.GetDefaultWorld.html">NavMeshWorld.GetDefaultWorld</a>(), <a href="Unity.Collections.Allocator.Persistent.html">Allocator.Persistent</a>);
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        var startLocation = m_NavQuery.MapLocation(transform.position, <a href="Vector3-one.html">Vector3.one</a>, 0);
+        var status = m_NavQuery.Raycast(out m_Hit, startLocation, target.position, <a href="AI.NavMesh.AllAreas.html">NavMesh.AllAreas</a>, new NativeArray&lt;float&gt;());
+        if ((status &amp; <a href="Experimental.AI.PathQueryStatus.Success.html">PathQueryStatus.Success</a>) != 0)
+        {
+            <a href="Debug.DrawLine.html">Debug.DrawLine</a>(transform.position, target.position, m_Hit.hit ? <a href="Color-red.html">Color.red</a> : <a href="Color-green.html">Color.green</a>);<br /><br />            if (m_Hit.hit)
+                <a href="Debug.DrawRay.html">Debug.DrawRay</a>(m_Hit.position, <a href="Vector3-up.html">Vector3.up</a>, <a href="Color-red.html">Color.red</a>);
+        }
+    }<br /><br />    void OnDisable()
+    {
+        m_NavQuery.Dispose();
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Experimental.AI.PathQueryStatus.html">Experimental.AI.PathQueryStatus</a> <span class="sig-kw">Raycast</span>(out <a href="AI.NavMeshHit.html">AI.NavMeshHit</a> <span class="sig-kw">hit</span>,
+NativeSlice&lt;PolygonId&gt; <span class="sig-kw">path</span>,
+out int <span class="sig-kw">pathCount</span>,
+<a href="Experimental.AI.NavMeshLocation.html">Experimental.AI.NavMeshLocation</a> <span class="sig-kw">start</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">targetPosition</span>,
+int <span class="sig-kw">areaMask</span>,
+NativeArray&lt;float&gt; <span class="sig-kw">costs</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">hit</td><td class="desc"></td><td class="desc1">Holds the properties of the raycast resulting location.</td></tr><tr><td class="name lbl">path</td><td class="desc"></td><td class="desc1">A buffer that will be filled with the sequence of polygons through which the ray passes.</td></tr><tr><td class="name lbl">pathCount</td><td class="desc"></td><td class="desc1">The reported number of polygons through which the ray has passed, all stored in the <code class="mono">path</code> buffer. It will not be greater than <code class="mono">path.Length</code>.</td></tr><tr><td class="name lbl">start</td><td class="desc"></td><td class="desc1">The start location of the ray on the NavMesh. <code class="mono">start.polygon</code> must be of the type <a href="Experimental.AI.NavMeshPolyTypes.Ground.html">NavMeshPolyTypes.Ground</a>.</td></tr><tr><td class="name lbl">targetPosition</td><td class="desc"></td><td class="desc1">The desired end of the ray, in world coordinates.</td></tr><tr><td class="name lbl">areaMask</td><td class="desc"></td><td class="desc1">A bitfield that specifies which NavMesh areas can be traversed when the ray is traced. This parameter is optional. If you do not fill out this parameter, it defaults to <a href="AI.NavMesh.AllAreas.html">NavMesh.AllAreas</a>.</td></tr><tr><td class="name lbl">costs</td><td class="desc"></td><td class="desc1">Cost multipliers that affect the distance reported by the ray over different area types. This parameter is optional. If you omit it, it defaults to the area costs that you configured in the Project settings.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>PathQueryStatus</strong>
+        
+          <code class="mono">Success</code> if the ray can be correctly traced using the provided arguments.<br />
+<code class="mono">Failure</code> if the <code class="mono">start</code> location is not valid in the query's NavMeshWorld, or if it is inside an area not permitted by the <code class="mono">areaMask</code> argument, or when it is on a <a href="../Manual/class-NavMeshLink.html">NavMeshLink</a>/<a href="AI.OffMeshLink.html">OffMeshLink</a>.<br />
+<code class="mono">BufferTooSmall</code> is part of the returned flags when the provided <code class="mono">path</code> buffer is not large enough to hold all the polygons that the ray passed through.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Trace a line between two points on the NavMesh, and return the list of polygons through which it passed.</p></div><div class="subsection"><p>Even if the <code class="mono">path</code> buffer is too small it will still hold as many polygons as it has room for, starting from the ray's origin location.<br />
+<br />
+See Also: <a href="Experimental.AI.PolygonId.html">PolygonId</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// StraightPathFromRay
+using Unity.Collections;
+using UnityEngine;
+using UnityEngine.AI;
+using UnityEngine.Experimental.AI;<br /><br />public class StraightPathFromRay : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Transform.html">Transform</a> target;
+    <a href="Experimental.AI.NavMeshQuery.html">NavMeshQuery</a> m_NavQuery;
+    <a href="AI.NavMeshHit.html">NavMeshHit</a> m_Hit;
+    NativeArray&lt;<a href="Experimental.AI.PolygonId.html">PolygonId</a>&gt; m_Path;
+    int m_PathCount;<br /><br />    void OnEnable()
+    {
+        m_Path = new NativeArray&lt;<a href="Experimental.AI.PolygonId.html">PolygonId</a>&gt;(3, <a href="Unity.Collections.Allocator.Persistent.html">Allocator.Persistent</a>);
+        m_NavQuery = new <a href="Experimental.AI.NavMeshQuery.html">NavMeshQuery</a>(<a href="Experimental.AI.NavMeshWorld.GetDefaultWorld.html">NavMeshWorld.GetDefaultWorld</a>(), <a href="Unity.Collections.Allocator.Persistent.html">Allocator.Persistent</a>);
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        var startLocation = m_NavQuery.MapLocation(transform.position, <a href="Vector3-one.html">Vector3.one</a>, 0);
+        <a href="Experimental.AI.PathQueryStatus.html">PathQueryStatus</a> status = m_NavQuery.Raycast(out m_Hit, m_Path, out m_PathCount, startLocation, target.position, <a href="AI.NavMesh.AllAreas.html">NavMesh.AllAreas</a>, new NativeArray&lt;float&gt;());
+        if ((status &amp; <a href="Experimental.AI.PathQueryStatus.Success.html">PathQueryStatus.Success</a>) != 0)
+        {
+            var bufferTooSmall = (status &amp; <a href="Experimental.AI.PathQueryStatus.BufferTooSmall.html">PathQueryStatus.BufferTooSmall</a>) != 0;
+            <a href="Debug.DrawLine.html">Debug.DrawLine</a>(transform.position, m_Hit.position, bufferTooSmall ? <a href="Color-black.html">Color.black</a> : <a href="Color-green.html">Color.green</a>);<br /><br />            if (m_Hit.hit)
+                <a href="Debug.DrawRay.html">Debug.DrawRay</a>(m_Hit.position, <a href="Vector3-up.html">Vector3.up</a>, <a href="Color-red.html">Color.red</a>);
+        }
+    }<br /><br />    void OnDisable()
+    {
+        m_NavQuery.Dispose();
+        m_Path.Dispose();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

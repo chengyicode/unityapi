@@ -1,0 +1,44 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: TerrainChangedFlags</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">TerrainChangedFlags</h1><div class="clear"></div><p class="cl mb0 left mr10">enumeration</p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Indicate the types of changes to the terrain in OnTerrainChanged callback.</p></div><div class="subsection"><p>Use bitwise AND to detect multiple changes.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />[<a href="ExecuteInEditMode.html">ExecuteInEditMode</a>]
+public class DetectTerrainChanges : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void OnTerrainChanged(<a href="TerrainChangedFlags.html">TerrainChangedFlags</a> flags)
+    {
+        if ((flags &amp; <a href="TerrainChangedFlags.Heightmap.html">TerrainChangedFlags.Heightmap</a>) != 0)
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("Heightmap changes");
+        }<br /><br />        if ((flags &amp; <a href="TerrainChangedFlags.DelayedHeightmapUpdate.html">TerrainChangedFlags.DelayedHeightmapUpdate</a>) != 0)
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("Heightmap painting");
+        }<br /><br />        if ((flags &amp; <a href="TerrainChangedFlags.TreeInstances.html">TerrainChangedFlags.TreeInstances</a>) != 0)
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("<a href="Tree.html">Tree</a> changes");
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>The above example shows how you can detect terrain changes by using OnTerrainChanged callback and TerrainChangedFlags enum.</p></div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="TerrainChangedFlags.Heightmap.html">Heightmap</a></td><td class="desc"></td><td class="desc1">Indicates a change to the heightmap data.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="TerrainChangedFlags.TreeInstances.html">TreeInstances</a></td><td class="desc"></td><td class="desc1">Indicates a change to the tree data.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="TerrainChangedFlags.DelayedHeightmapUpdate.html">DelayedHeightmapUpdate</a></td><td class="desc"></td><td class="desc1">Indicates a change to the heightmap data without computing LOD.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="TerrainChangedFlags.FlushEverythingImmediately.html">FlushEverythingImmediately</a></td><td class="desc"></td><td class="desc1">Indicates that a change was made to the terrain that was so significant that the internal rendering data need to be flushed and recreated.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="TerrainChangedFlags.RemoveDirtyDetailsImmediately.html">RemoveDirtyDetailsImmediately</a></td><td class="desc"></td><td class="desc1">Indicates a change to the detail data.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="TerrainChangedFlags.HeightmapResolution.html">HeightmapResolution</a></td><td class="desc"></td><td class="desc1">Indicates a change to the heightmap resolution.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="TerrainChangedFlags.WillBeDestroyed.html">WillBeDestroyed</a></td><td class="desc"></td><td class="desc1">Indicates that the TerrainData object is about to be destroyed.</td></tr>
+    </table></div></div></div></div></body></html>

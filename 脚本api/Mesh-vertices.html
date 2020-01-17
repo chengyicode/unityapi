@@ -1,0 +1,29 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Mesh.vertices</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Mesh.html">Mesh</a>.vertices</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Mesh.html' title='Go to Mesh Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public Vector3[] <span class="sig-kw">vertices</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Returns a copy of the vertex positions or assigns a new vertex positions array.</p></div><div class="subsection"><p>The number of vertices in the Mesh is changed by assigning a vertex array with a different number of vertices.
+Note that if you resize the vertex array then all other vertex attributes (normals, colors, tangents, UVs) are automatically resized too.
+<a href="Mesh.RecalculateBounds.html">RecalculateBounds</a> is automatically invoked if no vertices have been assigned to the Mesh when setting the vertices.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="Mesh.html">Mesh</a> mesh;
+    <a href="Vector3.html">Vector3</a>[] vertices;
+    void Start()
+    {
+        mesh = GetComponent&lt;<a href="MeshFilter.html">MeshFilter</a>&gt;().mesh;
+        vertices = mesh.vertices;
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        for (var i = 0; i &lt; vertices.Length; i++)
+        {
+            vertices[i] += <a href="Vector3-up.html">Vector3.up</a> * <a href="Time-deltaTime.html">Time.deltaTime</a>;
+        }<br /><br />        // assign the local vertices array into the vertices array of the <a href="Mesh.html">Mesh</a>.
+        mesh.vertices = vertices;
+        mesh.RecalculateBounds();
+    }
+}
+</pre>
+      </div><div class="subsection"><p>
+        <strong>Note:</strong> To make changes to the <a href="Mesh-vertices.html">vertices</a> it is important to
+          copy the vertices from the <a href="Mesh.html">Mesh</a>. Once the <a href="Mesh-vertices.html">vertices</a> have been copied and
+          changed the <a href="Mesh-vertices.html">vertices</a> can be reassigned back to the <a href="Mesh.html">Mesh</a>.</p></div></div></div></div></body></html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Cursor.lockState</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Cursor.html">Cursor</a>.lockState</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="CursorLockMode.html">CursorLockMode</a> <span class="sig-kw">lockState</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Determines whether the hardware pointer is locked to the center of the view, constrained to the window, or not constrained at all.</p></div><div class="subsection"><p>When Locked, the cursor is placed in the center of the view and cannot be moved. The cursor is invisible in this state, regardless of the value of <a href="Cursor-visible.html">Cursor.visible</a>.<br /><br />When Confined, the cursor behaves normally with the exception of being confined to the view. For example, if the application is running in a window, the mouse cursor cannot leave the window in Confined mode. This is only supported on Windows and Linux standalone builds.<br /><br />To provide a good user experience the recommended behavior is only to lock or confine the cursor as a result of user action, for example by pressing a button.<br /><br />The cursor state can be changed by the operating system or Unity. You should therefore check the state of the cursor for example when the application regains focus or the state of a game changes to reveal a UI.
+In the Editor the cursor is automatically reset when escape is pressed, or on switching applications.
+In the Standalone Player you have full control over the mouse cursor, but switching applications still resets the cursor.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class CursorLockExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        //Press the space bar to apply no locking to the <a href="Cursor.html">Cursor</a>
+        if (<a href="Input.GetKey.html">Input.GetKey</a>(<a href="KeyCode.Space.html">KeyCode.Space</a>))
+            <a href="Cursor-lockState.html">Cursor.lockState</a> = <a href="CursorLockMode.None.html">CursorLockMode.None</a>;
+    }<br /><br />    void OnGUI()
+    {
+        //Press this button to lock the <a href="Cursor.html">Cursor</a>
+        if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(0, 0, 100, 50), "Lock <a href="Cursor.html">Cursor</a>"))
+        {
+            <a href="Cursor-lockState.html">Cursor.lockState</a> = <a href="CursorLockMode.Locked.html">CursorLockMode.Locked</a>;
+        }<br /><br />        //Press this button to confine the <a href="Cursor.html">Cursor</a> within the screen
+        if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(125, 0, 100, 50), "Confine <a href="Cursor.html">Cursor</a>"))
+        {
+            <a href="Cursor-lockState.html">Cursor.lockState</a> = <a href="CursorLockMode.Confined.html">CursorLockMode.Confined</a>;
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

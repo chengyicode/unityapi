@@ -1,0 +1,28 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Joint.massScale</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Joint.html">Joint</a>.massScale</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public float <span class="sig-kw">massScale</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The scale to apply to the inverse mass and inertia tensor of the body prior to solving the constraints.</p></div><div class="subsection"><p>Scale mass and the inertia tensor to make the joints solver converge faster, thus resulting in less stretch of the limbs of a typical ragdoll. Most useful in conjunction with <a href="Joint-connectedMassScale.html">Joint.connectedMassScale</a>.<br /><br />For example, if you have two objects in a ragdoll of masses 1 and 10, the physics engine will typically resolve the joint by changing the velocity of the lighter body much more than the heavier one. Applying a mass scale of 10 to the first body makes solver change the velocity of both bodies by an equal amount. Applying mass scales such that the joint sees similar effective masses and inertias makes the solver converge faster, which can make individual joints seem less rubbery or separated, and sets of jointed bodies appear less twitchy<br /><br />Note that scaling mass and inertia is fundamentally nonphysical and momentum won't be conserved.<br /><br />The following script is useful to adjust the mass and inertia scaling in order to get the same corrective velocity out of the solver. Attach it to the ragdoll's root, or to a limb that is over-stretched during the gameplay and it will find all joints down in the transform hierarchy below itself and adjust the mass scale.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;<br /><br />public class NormalizeMass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private void Apply(<a href="Transform.html">Transform</a> root)
+    {
+        var j = root.GetComponent&lt;<a href="Joint.html">Joint</a>&gt;();<br /><br />        // Apply the inertia scaling if possible
+        if (j &amp;&amp; j.connectedBody)
+        {
+            // Make sure that both of the connected bodies will be moved by the solver with equal speed
+            j.massScale = j.connectedBody.mass / root.GetComponent&lt;<a href="Rigidbody.html">Rigidbody</a>&gt;().mass;
+            j.connectedMassScale = 1f;
+        }<br /><br />        // Continue for all children...
+        for (int childId = 0; childId &lt; root.childCount; ++childId)
+        {
+            Apply(root.GetChild(childId));
+        }
+    }<br /><br />    public void Start()
+    {
+        Apply(this.transform);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

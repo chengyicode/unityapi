@@ -1,0 +1,45 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AI.NavMesh.SamplePosition</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="AI.NavMesh.html">NavMesh</a>.SamplePosition</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">SamplePosition</span>(<a href="Vector3.html">Vector3</a> <span class="sig-kw">sourcePosition</span>,
+out <a href="AI.NavMeshHit.html">AI.NavMeshHit</a> <span class="sig-kw">hit</span>,
+float <span class="sig-kw">maxDistance</span>,
+int <span class="sig-kw">areaMask</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">sourcePosition</td><td class="desc"></td><td class="desc1">The origin of the sample query.</td></tr><tr><td class="name lbl">hit</td><td class="desc"></td><td class="desc1">Holds the properties of the resulting location.</td></tr><tr><td class="name lbl">maxDistance</td><td class="desc"></td><td class="desc1">Sample within this distance from sourcePosition.</td></tr><tr><td class="name lbl">areaMask</td><td class="desc"></td><td class="desc1">A mask specifying which NavMesh areas are allowed when finding the nearest point.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>bool</strong>
+        True if a nearest point is found.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Finds the closest point on NavMesh within specified range.</p></div><div class="subsection"><p>The function samples the NavMesh to find the closest point on the NavMesh.<br /><br />The closest point is returned based on distance to the query point. The function does not check for obstruction in the world. For example, you the sourcePosition is on the ceiling, a point on the second floor will be returned (if there is NavMesh there), instead of floor position on the first floor.<br /><br />The function can get quite expensive if the search radius is really big. A good starting point for the maxDistance is 2 times the agent height.<br /><br />If you are trying to find a random point on the NavMesh, it is better to use recommended radius and do try multiple times instead of using one very large radius.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// RandomPointOnNavMesh
+using UnityEngine;
+using UnityEngine.AI;<br /><br />public class RandomPointOnNavMesh : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public float range = 10.0f;<br /><br />    bool RandomPoint(<a href="Vector3.html">Vector3</a> center, float range, out <a href="Vector3.html">Vector3</a> result)
+    {
+        for (int i = 0; i &lt; 30; i++)
+        {
+            <a href="Vector3.html">Vector3</a> randomPoint = center + <a href="Random-insideUnitSphere.html">Random.insideUnitSphere</a> * range;
+            <a href="AI.NavMeshHit.html">NavMeshHit</a> hit;
+            if (<a href="AI.NavMesh.SamplePosition.html">NavMesh.SamplePosition</a>(randomPoint, out hit, 1.0f, <a href="AI.NavMesh.AllAreas.html">NavMesh.AllAreas</a>))
+            {
+                result = hit.position;
+                return true;
+            }
+        }
+        result = <a href="Vector3-zero.html">Vector3.zero</a>;
+        return false;
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        <a href="Vector3.html">Vector3</a> point;
+        if (RandomPoint(transform.position, range, out point))
+        {
+            <a href="Debug.DrawRay.html">Debug.DrawRay</a>(point, <a href="Vector3-up.html">Vector3.up</a>, <a href="Color-blue.html">Color.blue</a>, 1.0f);
+        }
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">SamplePosition</span>(<a href="Vector3.html">Vector3</a> <span class="sig-kw">sourcePosition</span>,
+out <a href="AI.NavMeshHit.html">AI.NavMeshHit</a> <span class="sig-kw">hit</span>,
+float <span class="sig-kw">maxDistance</span>,
+<a href="AI.NavMeshQueryFilter.html">AI.NavMeshQueryFilter</a> <span class="sig-kw">filter</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">sourcePosition</td><td class="desc"></td><td class="desc1">The origin of the sample query.</td></tr><tr><td class="name lbl">hit</td><td class="desc"></td><td class="desc1">Holds the properties of the resulting location.</td></tr><tr><td class="name lbl">maxDistance</td><td class="desc"></td><td class="desc1">Sample within this distance from sourcePosition.</td></tr><tr><td class="name lbl">filter</td><td class="desc"></td><td class="desc1">A filter specifying which NavMesh areas are allowed when finding the nearest point.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>bool</strong>
+        True if a nearest point is found.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Samples the position closest to sourcePosition - on any NavMesh built for the agent type specified by the filter.</p></div><div class="subsection"><p>Consider only positions on areas defined in the <a href="AI.NavMeshQueryFilter-areaMask.html">NavMeshQueryFilter.areaMask</a>.
+A maximum search radius is set by maxDistance. The information of any found position is returned in the hit argument.</p></div></div></div></div></body></html>

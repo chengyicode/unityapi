@@ -1,0 +1,199 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ParticleSystem.ShapeModule.shapeType</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="ParticleSystem.ShapeModule.html">ParticleSystem.ShapeModule</a>.shapeType</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-ParticleSystem.html' title='Go to ParticleSystem Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="ParticleSystemShapeType.html">ParticleSystemShapeType</a> <span class="sig-kw">shapeType</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Type of shape to emit particles from.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System;
+using System.Collections;
+using System.Collections.Generic;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private <a href="ParticleSystem.html">ParticleSystem</a> ps;
+    public <a href="ParticleSystemShapeType.html">ParticleSystemShapeType</a> shapeType = <a href="ParticleSystemShapeType.Cone.html">ParticleSystemShapeType.Cone</a>;
+    private int shapeTypeIndex = 2;
+    public float arc = 360.0f;
+    public <a href="ParticleSystemShapeMultiModeValue.html">ParticleSystemShapeMultiModeValue</a> arcMode = <a href="ParticleSystemShapeMultiModeValue.Random.html">ParticleSystemShapeMultiModeValue.Random</a>;
+    public float arcSpread = 0.0f;
+    public float arcSpeed = 1.0f;
+    public float angle = 25.0f;
+    public float radius = 1.0f;
+    public float radiusThickness = 1.0f;
+    public <a href="ParticleSystemShapeMultiModeValue.html">ParticleSystemShapeMultiModeValue</a> radiusMode = <a href="ParticleSystemShapeMultiModeValue.Random.html">ParticleSystemShapeMultiModeValue.Random</a>;
+    public float radiusSpread = 0.0f;
+    public float radiusSpeed = 1.0f;
+    public float donutRadius = 0.2f;
+    public float length = 2.0f;
+    public <a href="Vector3.html">Vector3</a> boxThickness = new <a href="Vector3.html">Vector3</a>(0.0f, 0.0f, 0.0f);
+    public <a href="ParticleSystemMeshShapeType.html">ParticleSystemMeshShapeType</a> meshShapeType;
+    public float normalOffset = 0.0f;
+    public float randomizeDirection = 0.0f;
+    public float spherizeDirection = 0.0f;
+    public float randomizePosition = 0.0f;
+    public <a href="Vector3.html">Vector3</a> position = new <a href="Vector3.html">Vector3</a>(0.0f, 0.0f, 0.0f);
+    public <a href="Vector3.html">Vector3</a> rotation = new <a href="Vector3.html">Vector3</a>(0.0f, 0.0f, 0.0f);
+    public <a href="Vector3.html">Vector3</a> scale = new <a href="Vector3.html">Vector3</a>(1.0f, 1.0f, 1.0f);<br /><br />    void Start()
+    {
+        ps = GetComponent&lt;<a href="ParticleSystem.html">ParticleSystem</a>&gt;();<br /><br />        var main = ps.main;
+        main.startSpeed = 0.1f;
+        main.startSize = 0.1f;
+        main.startLifetime = 1.0f;<br /><br />        var emission = ps.emission;
+        emission.rateOverTime = 500.0f;<br /><br />        var shape = ps.shape;
+        shape.mesh = Resources.GetBuiltinResource&lt;<a href="Mesh.html">Mesh</a>&gt;("Capsule.fbx");
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        var shape = ps.shape;
+        shape.shapeType = shapeType;
+        shape.arc = arc;
+        shape.arcMode = arcMode;
+        shape.arcSpread = arcSpread;
+        shape.arcSpeed = arcSpeed;
+        shape.angle = angle;
+        shape.radius = radius;
+        shape.radiusMode = radiusMode;
+        shape.radiusSpread = radiusSpread;
+        shape.radiusSpeed = radiusSpeed;
+        shape.radiusThickness = radiusThickness;
+        shape.donutRadius = donutRadius;
+        shape.length = length;
+        shape.boxThickness = boxThickness;
+        shape.meshShapeType = meshShapeType;
+        shape.normalOffset = normalOffset;
+        shape.randomDirectionAmount = randomizeDirection;
+        shape.sphericalDirectionAmount = spherizeDirection;
+        shape.randomPositionAmount = randomizePosition;
+        shape.position = position;
+        shape.rotation = rotation;
+        shape.scale = scale;
+    }<br /><br />    void OnGUI()
+    {
+        List&lt;<a href="GUIContent.html">GUIContent</a>&gt; content = new List&lt;<a href="GUIContent.html">GUIContent</a>&gt;();
+        for (int i = 0; i &lt; (int)<a href="ParticleSystemShapeType.SpriteRenderer.html">ParticleSystemShapeType.SpriteRenderer</a> + 1; i++)
+        {
+            <a href="ParticleSystemShapeType.html">ParticleSystemShapeType</a> currentShapeType = (<a href="ParticleSystemShapeType.html">ParticleSystemShapeType</a>)i;
+            var obsoleteAttribute = Attribute.GetCustomAttribute(currentShapeType.GetType().GetField(currentShapeType.ToString()), typeof(ObsoleteAttribute), false);   // skip the obsolete shape types
+            if (obsoleteAttribute == null)
+                content.Add(new <a href="GUIContent.html">GUIContent</a>(currentShapeType.ToString(), i.ToString()));
+        }
+        shapeTypeIndex = <a href="GUI.SelectionGrid.html">GUI.SelectionGrid</a>(new <a href="Rect.html">Rect</a>(25, 25, 1000, 80), shapeTypeIndex, content.ToArray(), content.Count / 3);
+        shapeType = (<a href="ParticleSystemShapeType.html">ParticleSystemShapeType</a>)int.Parse(content[shapeTypeIndex].tooltip);<br /><br />        float y = 120.0f;
+        float spacing = 40.0f;<br /><br />        if (shapeType == <a href="ParticleSystemShapeType.Sphere.html">ParticleSystemShapeType.Sphere</a> || shapeType == <a href="ParticleSystemShapeType.Hemisphere.html">ParticleSystemShapeType.Hemisphere</a>)
+        {
+            <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, y, 140, 30), "Radius");
+            radius = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(165, y + 5, 100, 30), radius, 1.0f, 5.0f);
+            y += spacing;<br /><br />            <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, y, 140, 30), "Radius Thickness");
+            radiusThickness = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(165, y + 5, 100, 30), radiusThickness, 0.0f, 1.0f);
+            y += spacing;<br /><br />            <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, y, 140, 30), "Arc");
+            arc = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(165, y + 5, 100, 30), arc, 1.0f, 360.0f);
+            y += spacing;<br /><br />            <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, y, 140, 30), "Arc <a href="Scripting.GarbageCollector.Mode.html">Mode</a>");
+            arcMode = (<a href="ParticleSystemShapeMultiModeValue.html">ParticleSystemShapeMultiModeValue</a>)<a href="GUI.SelectionGrid.html">GUI.SelectionGrid</a>(new <a href="Rect.html">Rect</a>(165, 280, 360, 20), (int)arcMode, new <a href="GUIContent.html">GUIContent</a>[] { new <a href="GUIContent.html">GUIContent</a>("<a href="Random.html">Random</a>"), new <a href="GUIContent.html">GUIContent</a>("Loop"), new <a href="GUIContent.html">GUIContent</a>("<a href="Ping.html">Ping</a>-Pong"), new <a href="GUIContent.html">GUIContent</a>("<a href="ParticleSystem.Burst.html">Burst</a> Spread") }, 4);
+            y += spacing;<br /><br />            <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, y, 140, 30), "Arc Spread");
+            arcSpread = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(165, y + 5, 100, 30), arcSpread, 0.0f, 1.0f);
+            y += spacing;<br /><br />            <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, y, 140, 30), "Arc Speed");
+            arcSpeed = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(165, y + 5, 100, 30), arcSpeed, 0.0f, 2.0f);
+            y += spacing;
+        }<br /><br />        if (shapeType == <a href="ParticleSystemShapeType.Cone.html">ParticleSystemShapeType.Cone</a> || shapeType == <a href="ParticleSystemShapeType.ConeVolume.html">ParticleSystemShapeType.ConeVolume</a>)
+        {
+            <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, y, 140, 30), "Angle");
+            angle = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(165, y + 5, 100, 30), angle, 1.0f, 90.0f);
+            y += spacing;<br /><br />            <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, y, 140, 30), "Radius");
+            radius = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(165, y + 5, 100, 30), radius, 0.2f, 5.0f);
+            y += spacing;<br /><br />            <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, y, 140, 30), "Radius Thickness");
+            radiusThickness = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(165, y + 5, 100, 30), radiusThickness, 0.0f, 1.0f);
+            y += spacing;<br /><br />            <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, y, 140, 30), "Arc");
+            arc = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(165, y + 5, 100, 30), arc, 1.0f, 360.0f);
+            y += spacing;<br /><br />            <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, y, 140, 30), "Arc <a href="Scripting.GarbageCollector.Mode.html">Mode</a>");
+            arcMode = (<a href="ParticleSystemShapeMultiModeValue.html">ParticleSystemShapeMultiModeValue</a>)<a href="GUI.SelectionGrid.html">GUI.SelectionGrid</a>(new <a href="Rect.html">Rect</a>(165, 280, 360, 20), (int)arcMode, new <a href="GUIContent.html">GUIContent</a>[] { new <a href="GUIContent.html">GUIContent</a>("<a href="Random.html">Random</a>"), new <a href="GUIContent.html">GUIContent</a>("Loop"), new <a href="GUIContent.html">GUIContent</a>("<a href="Ping.html">Ping</a>-Pong"), new <a href="GUIContent.html">GUIContent</a>("<a href="ParticleSystem.Burst.html">Burst</a> Spread") }, 4);
+            y += spacing;<br /><br />            <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, y, 140, 30), "Arc Spread");
+            arcSpread = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(165, y + 5, 100, 30), arcSpread, 0.0f, 1.0f);
+            y += spacing;<br /><br />            <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, y, 140, 30), "Arc Speed");
+            arcSpeed = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(165, y + 5, 100, 30), arcSpeed, 0.0f, 2.0f);
+            y += spacing;<br /><br />            if (shapeType == <a href="ParticleSystemShapeType.ConeVolume.html">ParticleSystemShapeType.ConeVolume</a>)
+            {
+                <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, y, 140, 30), "<a href="UIElements.Length.html">Length</a>");
+                length = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(165, y + 5, 100, 30), length, 1.0f, 5.0f);
+                y += spacing;
+            }
+        }<br /><br />        if (shapeType == <a href="ParticleSystemShapeType.Box.html">ParticleSystemShapeType.Box</a> || shapeType == <a href="ParticleSystemShapeType.BoxShell.html">ParticleSystemShapeType.BoxShell</a> || shapeType == <a href="ParticleSystemShapeType.BoxEdge.html">ParticleSystemShapeType.BoxEdge</a>)
+        {
+            if (shapeType == <a href="ParticleSystemShapeType.BoxShell.html">ParticleSystemShapeType.BoxShell</a> || shapeType == <a href="ParticleSystemShapeType.BoxEdge.html">ParticleSystemShapeType.BoxEdge</a>)
+            {
+                <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, y, 140, 30), "<a href="UIElements.Box.html">Box</a> Thickness");
+                boxThickness.x = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(165, y + 5, 50, 30), boxThickness.x, 0.0f, 1.0f);
+                boxThickness.y = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(220, y + 5, 50, 30), boxThickness.y, 0.0f, 1.0f);
+                boxThickness.z = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(275, y + 5, 50, 30), boxThickness.z, 0.0f, 1.0f);
+                y += spacing;
+            }
+        }<br /><br />        if (shapeType == <a href="ParticleSystemShapeType.Donut.html">ParticleSystemShapeType.Donut</a>)
+        {
+            <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, y, 140, 30), "Arc");
+            arc = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(165, y + 5, 100, 30), arc, 1.0f, 360.0f);
+            y += spacing;<br /><br />            <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, y, 140, 30), "Arc <a href="Scripting.GarbageCollector.Mode.html">Mode</a>");
+            arcMode = (<a href="ParticleSystemShapeMultiModeValue.html">ParticleSystemShapeMultiModeValue</a>)<a href="GUI.SelectionGrid.html">GUI.SelectionGrid</a>(new <a href="Rect.html">Rect</a>(165, y, 360, 20), (int)arcMode, new <a href="GUIContent.html">GUIContent</a>[] { new <a href="GUIContent.html">GUIContent</a>("<a href="Random.html">Random</a>"), new <a href="GUIContent.html">GUIContent</a>("Loop"), new <a href="GUIContent.html">GUIContent</a>("<a href="Ping.html">Ping</a>-Pong"), new <a href="GUIContent.html">GUIContent</a>("<a href="ParticleSystem.Burst.html">Burst</a> Spread") }, 4);
+            y += spacing;<br /><br />            <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, y, 140, 30), "Arc Spread");
+            arcSpread = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(165, y + 5, 100, 30), arcSpread, 0.0f, 1.0f);
+            y += spacing;<br /><br />            <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, y, 140, 30), "Arc Speed");
+            arcSpeed = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(165, y + 5, 100, 30), arcSpeed, 0.0f, 2.0f);
+            y += spacing;<br /><br />            <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, y, 140, 30), "Radius");
+            radius = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(165, y + 5, 100, 30), radius, 0.2f, 5.0f);
+            y += spacing;<br /><br />            <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, y, 140, 30), "Radius Thickness");
+            radiusThickness = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(165, y + 5, 100, 30), radiusThickness, 0.0f, 1.0f);
+            y += spacing;<br /><br />            <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, y, 140, 30), "Donut Radius");
+            donutRadius = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(165, y + 5, 100, 30), donutRadius, 0.0f, 5.0f);
+            y += spacing;
+        }<br /><br />        if (shapeType == <a href="ParticleSystemShapeType.Circle.html">ParticleSystemShapeType.Circle</a>)
+        {
+            <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, y, 140, 30), "Arc");
+            arc = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(165, y + 5, 100, 30), arc, 1.0f, 360.0f);
+            y += spacing;<br /><br />            <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, y, 140, 30), "Arc <a href="Scripting.GarbageCollector.Mode.html">Mode</a>");
+            arcMode = (<a href="ParticleSystemShapeMultiModeValue.html">ParticleSystemShapeMultiModeValue</a>)<a href="GUI.SelectionGrid.html">GUI.SelectionGrid</a>(new <a href="Rect.html">Rect</a>(165, y, 360, 20), (int)arcMode, new <a href="GUIContent.html">GUIContent</a>[] { new <a href="GUIContent.html">GUIContent</a>("<a href="Random.html">Random</a>"), new <a href="GUIContent.html">GUIContent</a>("Loop"), new <a href="GUIContent.html">GUIContent</a>("<a href="Ping.html">Ping</a>-Pong"), new <a href="GUIContent.html">GUIContent</a>("<a href="ParticleSystem.Burst.html">Burst</a> Spread") }, 4);
+            y += spacing;<br /><br />            <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, y, 140, 30), "Arc Spread");
+            arcSpread = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(165, y + 5, 100, 30), arcSpread, 0.0f, 1.0f);
+            y += spacing;<br /><br />            <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, y, 140, 30), "Arc Speed");
+            arcSpeed = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(165, y + 5, 100, 30), arcSpeed, 0.0f, 2.0f);
+            y += spacing;<br /><br />            <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, y, 140, 30), "Radius");
+            radius = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(165, y + 5, 100, 30), radius, 0.2f, 5.0f);
+            y += spacing;<br /><br />            <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, y, 140, 30), "Radius Thickness");
+            radiusThickness = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(165, y + 5, 100, 30), radiusThickness, 0.0f, 1.0f);
+            y += spacing;
+        }<br /><br />        if (shapeType == <a href="ParticleSystemShapeType.SingleSidedEdge.html">ParticleSystemShapeType.SingleSidedEdge</a>)
+        {
+            <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, y, 140, 30), "Radius");
+            radius = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(165, y + 5, 100, 30), radius, 0.2f, 5.0f);
+            y += spacing;<br /><br />            <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, y, 140, 30), "Radius <a href="Scripting.GarbageCollector.Mode.html">Mode</a>");
+            radiusMode = (<a href="ParticleSystemShapeMultiModeValue.html">ParticleSystemShapeMultiModeValue</a>)<a href="GUI.SelectionGrid.html">GUI.SelectionGrid</a>(new <a href="Rect.html">Rect</a>(165, y, 360, 20), (int)radiusMode, new <a href="GUIContent.html">GUIContent</a>[] { new <a href="GUIContent.html">GUIContent</a>("<a href="Random.html">Random</a>"), new <a href="GUIContent.html">GUIContent</a>("Loop"), new <a href="GUIContent.html">GUIContent</a>("<a href="Ping.html">Ping</a>-Pong"), new <a href="GUIContent.html">GUIContent</a>("<a href="ParticleSystem.Burst.html">Burst</a> Spread") }, 4);
+            y += spacing;<br /><br />            <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, y, 140, 30), "Radius Spread");
+            radiusSpread = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(165, y + 5, 100, 30), radiusSpread, 0.0f, 1.0f);
+            y += spacing;<br /><br />            <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, y, 140, 30), "Radius Speed");
+            radiusSpeed = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(165, y + 5, 100, 30), radiusSpeed, 0.0f, 2.0f);
+            y += spacing;
+        }<br /><br />        if (shapeType == <a href="ParticleSystemShapeType.Mesh.html">ParticleSystemShapeType.Mesh</a> || shapeType == <a href="ParticleSystemShapeType.Sprite.html">ParticleSystemShapeType.Sprite</a>)
+        {
+            meshShapeType = (<a href="ParticleSystemMeshShapeType.html">ParticleSystemMeshShapeType</a>)<a href="GUI.SelectionGrid.html">GUI.SelectionGrid</a>(new <a href="Rect.html">Rect</a>(25, y + 5, 300, 20), (int)meshShapeType, new <a href="GUIContent.html">GUIContent</a>[] { new <a href="GUIContent.html">GUIContent</a>("Vertex"), new <a href="GUIContent.html">GUIContent</a>("<a href="RectTransform.Edge.html">Edge</a>"), new <a href="GUIContent.html">GUIContent</a>("Polygon") }, 3);
+            y += spacing;<br /><br />            <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, y, 140, 30), "Normal Offset");
+            normalOffset = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(165, y + 5, 100, 30), normalOffset, -3.0f, 3.0f);
+            y += spacing;
+        }<br /><br />        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, y, 140, 30), "Randomize <a href="Experimental.GraphView.Direction.html">Direction</a>");
+        randomizeDirection = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(165, y + 5, 100, 30), randomizeDirection, 0.0f, 1.0f);
+        y += spacing;<br /><br />        if (shapeType != <a href="ParticleSystemShapeType.Sphere.html">ParticleSystemShapeType.Sphere</a>)
+        {
+            <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, y, 140, 30), "Spherize <a href="Experimental.GraphView.Direction.html">Direction</a>");
+            spherizeDirection = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(165, y + 5, 100, 30), spherizeDirection, 0.0f, 1.0f);
+            y += spacing;
+        }<br /><br />        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, y, 140, 30), "Randomize <a href="UIElements.Position.html">Position</a>");
+        randomizePosition = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(165, y + 5, 100, 30), randomizePosition, 0.0f, 1.0f);
+        y += spacing;<br /><br />        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, y, 140, 30), "<a href="UIElements.Position.html">Position</a>");
+        position.x = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(165, y + 5, 50, 30), position.x, -2.0f, 2.0f);
+        position.y = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(220, y + 5, 50, 30), position.y, -2.0f, 2.0f);
+        position.z = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(275, y + 5, 50, 30), position.z, -2.0f, 2.0f);
+        y += spacing;<br /><br />        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, y, 140, 30), "Rotation");
+        rotation.x = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(165, y + 5, 50, 30), rotation.x, 0.0f, 360.0f);
+        rotation.y = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(220, y + 5, 50, 30), rotation.y, 0.0f, 360.0f);
+        rotation.z = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(275, y + 5, 50, 30), rotation.z, 0.0f, 360.0f);
+        y += spacing;<br /><br />        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, y, 140, 30), "Scale");
+        scale.x = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(165, y + 5, 50, 30), scale.x, 0.0f, 3.0f);
+        scale.y = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(220, y + 5, 50, 30), scale.y, 0.0f, 3.0f);
+        scale.z = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(275, y + 5, 50, 30), scale.z, 0.0f, 3.0f);
+        y += spacing;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

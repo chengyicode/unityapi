@@ -1,0 +1,26 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Font.HasCharacter</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Font.html">Font</a>.HasCharacter</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Font.html' title='Go to Font Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public bool <span class="sig-kw">HasCharacter</span>(char <span class="sig-kw">c</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">c</td><td class="desc"></td><td class="desc1">The character to check for.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>bool</strong>
+        Whether or not the font has the character specified.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Does this font have a specific character?</p></div><div class="subsection"><p>This function checks whether the font has a particular character defined. Some fonts do not have all characters defined (for example, no symbols, or no lower case characters).</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class FontCheck : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Detects if the current font of a 3D text
+    // supports '-' sign
+    <a href="TextMesh.html">TextMesh</a> t;
+    void Start()
+    {
+        t = transform.GetComponent&lt;<a href="TextMesh.html">TextMesh</a>&gt;();
+        if (t.font.HasCharacter('-'))
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("<a href="Font.html">Font</a> supports '-' sign.");
+        }
+        else
+        {
+            <a href="Debug.LogWarning.html">Debug.LogWarning</a>("This font doesnt support '-'");
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

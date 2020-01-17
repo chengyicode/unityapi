@@ -1,0 +1,119 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AnimatorOverrideController</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">AnimatorOverrideController</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Inherits from:<a href="RuntimeAnimatorController.html" class="cl">RuntimeAnimatorController</a></p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.AnimationModule.html" class="cl">UnityEngine.AnimationModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Interface to control Animator Override Controller.</p></div><div class="subsection"><p>Animator Override Controller is used to override Animation Clips from a controller to specialize animations for a given Avatar.
+Swapping <a href="Animator-runtimeAnimatorController.html">Animator.runtimeAnimatorController</a> with an <a href="AnimatorOverrideController.html">AnimatorOverrideController</a> based on the same <a href="Animations.AnimatorController.html">AnimatorController</a> at runtime doesn't reset state machine's current state.<br /><br />There are three ways to use the Animator Override Controller.<br />
+<strong>1. Create an Animator Override Controller in the Editor.</strong><br />
+<strong>2. Change one Animation Clip per frame at runtime (Basic use case).</strong><br />
+In this case the indexer operator <a href="AnimatorOverrideController.Index_operator.html">AnimatorOverrideController.this[string]</a> could be used, but be careful as each call will trigger a reallocation of the animator's clip bindings.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class SwapWeapon : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="AnimationClip.html">AnimationClip</a>[] weaponAnimationClip;<br /><br />    protected <a href="Animator.html">Animator</a> animator;
+    protected <a href="AnimatorOverrideController.html">AnimatorOverrideController</a> animatorOverrideController;<br /><br />    protected int weaponIndex;<br /><br />    public void Start()
+    {
+        animator = GetComponent&lt;<a href="Animator.html">Animator</a>&gt;();
+        weaponIndex = 0;<br /><br />        animatorOverrideController = new <a href="AnimatorOverrideController.html">AnimatorOverrideController</a>(animator.runtimeAnimatorController);
+        animator.runtimeAnimatorController = animatorOverrideController;
+    }<br /><br />    public void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        if (<a href="Input.GetButtonDown.html">Input.GetButtonDown</a>("NextWeapon"))
+        {
+            weaponIndex = (weaponIndex + 1) % weaponAnimationClip.Length;
+            animatorOverrideController["shot"] = weaponAnimationClip[weaponIndex];
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>
+        <strong>3. Changing many Animation Clips per frame at runtime (Advanced use case).</strong>
+        <br />
+The <a href="AnimatorOverrideController.ApplyOverrides.html">AnimatorOverrideController.ApplyOverrides</a> method is well suited for this case as it reduce the number of animator's clips bindings reallocation to only one per call.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections.Generic;<br /><br />public class AnimationClipOverrides : List&lt;KeyValuePair&lt;<a href="AnimationClip.html">AnimationClip</a>, <a href="AnimationClip.html">AnimationClip</a>&gt;&gt;
+{
+    public AnimationClipOverrides(int capacity) : base(capacity) {}<br /><br />    public <a href="AnimationClip.html">AnimationClip</a> this[string name]
+    {
+        get { return this.Find(x =&gt; x.Key.name.Equals(name)).Value; }
+        set
+        {
+            int index = this.FindIndex(x =&gt; x.Key.name.Equals(name));
+            if (index != -1)
+                this[index] = new KeyValuePair&lt;<a href="AnimationClip.html">AnimationClip</a>, <a href="AnimationClip.html">AnimationClip</a>&gt;(this[index].Key, value);
+        }
+    }
+}<br /><br />public class Weapon
+{
+    public <a href="AnimationClip.html">AnimationClip</a> singleAttack;
+    public <a href="AnimationClip.html">AnimationClip</a> comboAttack;
+    public <a href="AnimationClip.html">AnimationClip</a> dashAttack;
+    public <a href="AnimationClip.html">AnimationClip</a> smashAttack;
+}<br /><br />public class SwapWeapon : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public Weapon[] weapons;<br /><br />    protected <a href="Animator.html">Animator</a> animator;
+    protected <a href="AnimatorOverrideController.html">AnimatorOverrideController</a> animatorOverrideController;<br /><br />    protected int weaponIndex;<br /><br />    protected AnimationClipOverrides clipOverrides;
+    public void Start()
+    {
+        animator = GetComponent&lt;<a href="Animator.html">Animator</a>&gt;();
+        weaponIndex = 0;<br /><br />        animatorOverrideController = new <a href="AnimatorOverrideController.html">AnimatorOverrideController</a>(animator.runtimeAnimatorController);
+        animator.runtimeAnimatorController = animatorOverrideController;<br /><br />        clipOverrides = new AnimationClipOverrides(animatorOverrideController.overridesCount);
+        animatorOverrideController.GetOverrides(clipOverrides);
+    }<br /><br />    public void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        if (<a href="Input.GetButtonDown.html">Input.GetButtonDown</a>("NextWeapon"))
+        {
+            weaponIndex = (weaponIndex + 1) % weapons.Length;
+            clipOverrides["SingleAttack"] = weapons[weaponIndex].singleAttack;
+            clipOverrides["ComboAttack"] = weapons[weaponIndex].comboAttack;
+            clipOverrides["DashAttack"] = weapons[weaponIndex].dashAttack;
+            clipOverrides["SmashAttack"] = weapons[weaponIndex].smashAttack;
+            animatorOverrideController.ApplyOverrides(clipOverrides);
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Properties 属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="AnimatorOverrideController-overridesCount.html">overridesCount</a></td><td class="desc"></td><td class="desc1">Returns the count of overrides.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AnimatorOverrideController-runtimeAnimatorController.html">runtimeAnimatorController</a></td><td class="desc"></td><td class="desc1">The Runtime Animator Controller that the Animator Override Controller overrides.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AnimatorOverrideController.Index_operator.html">this[string]</a></td><td class="desc"></td><td class="desc1">Returns either the overriding Animation Clip if set or the original Animation Clip named name.</td></tr>
+    </table></div><div class="subsection"><h2>Constructors</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="AnimatorOverrideController-ctor.html">AnimatorOverrideController</a></td><td class="desc"></td><td class="desc1">Creates an empty Animator Override Controller.</td></tr>
+    </table></div><div class="subsection"><h2>Public Methods 公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="AnimatorOverrideController.ApplyOverrides.html">ApplyOverrides</a></td><td class="desc"></td><td class="desc1">Applies the list of overrides on this Animator Override Controller.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AnimatorOverrideController.GetOverrides.html">GetOverrides</a></td><td class="desc"></td><td class="desc1">Gets the list of Animation Clip overrides currently defined in this Animator Override Controller.</td></tr>
+    </table></div><div class="subsection"><h2>Inherited Members 继承成员</h2>
+      
+      <div class="subsection"><h2>Properties 属性</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-hideFlags.html">hideFlags</a></td><td class="desc"></td><td class="desc1">Should the object be hidden, saved with the Scene or modifiable by the user?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-name.html">name</a></td><td class="desc"></td><td class="desc1">The name of the object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="RuntimeAnimatorController-animationClips.html">animationClips</a></td><td class="desc"></td><td class="desc1">Retrieves all AnimationClip used by the controller.</td></tr>
+      </table></div>
+      
+      
+      
+      <div class="subsection"><h2>Public Methods 公共方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.GetInstanceID.html">GetInstanceID</a></td><td class="desc"></td><td class="desc1">Returns the instance id of the object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.ToString.html">ToString</a></td><td class="desc"></td><td class="desc1">Returns the name of the object.</td></tr>
+      </table></div>
+      
+      <div class="subsection"><h2>Static Methods 静态方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.Destroy.html">Destroy</a></td><td class="desc"></td><td class="desc1">Removes a GameObject, component or asset.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.DestroyImmediate.html">DestroyImmediate</a></td><td class="desc"></td><td class="desc1">Destroys the object obj immediately. You are strongly recommended to use Destroy instead.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.DontDestroyOnLoad.html">DontDestroyOnLoad</a></td><td class="desc"></td><td class="desc1">Do not destroy the target Object when loading a new Scene.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectOfType.html">FindObjectOfType</a></td><td class="desc"></td><td class="desc1">Returns the first active loaded object of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectsOfType.html">FindObjectsOfType</a></td><td class="desc"></td><td class="desc1">Returns a list of all active loaded objects of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.Instantiate.html">Instantiate</a></td><td class="desc"></td><td class="desc1">Clones the object original and returns the clone.</td></tr>
+      </table></div>
+      <div class="subsection"><h2>Operators   运算符</h2>
+<h2>Operators   运算符</h2>
+
+<h2>Operators   运算符</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_Object.html">bool</a></td><td class="desc"></td><td class="desc1">Does the object exist?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_ne.html">operator !=</a></td><td class="desc"></td><td class="desc1">Compares if two objects refer to a different object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_eq.html">operator ==</a></td><td class="desc"></td><td class="desc1">Compares two object references to see if they refer to the same object.</td></tr>
+      </table></div>
+      
+      
+      
+    </div></div></div></div></body></html>

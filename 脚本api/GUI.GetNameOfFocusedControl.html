@@ -1,0 +1,19 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: GUI.GetNameOfFocusedControl</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="GUI.html">GUI</a>.GetNameOfFocusedControl</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static string <span class="sig-kw">GetNameOfFocusedControl</span>();
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Get the name of named control that has focus.</p></div><div class="subsection"><p>Control names are set up by using <a href="GUI.SetNextControlName.html">SetNextControlName</a>. When a named control has focus, this function will return its name. If no control has focus or the focused control has no name set, an empty string will be returned instead.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public string login = "username";
+    public string login2 = "no action here";<br /><br />    void OnGUI()
+    {
+        <a href="GUI.SetNextControlName.html">GUI.SetNextControlName</a>("user");
+        login = <a href="GUI.TextField.html">GUI.TextField</a>(new <a href="Rect.html">Rect</a>(10, 10, 130, 20), login);<br /><br />        login2 = <a href="GUI.TextField.html">GUI.TextField</a>(new <a href="Rect.html">Rect</a>(10, 40, 130, 20), login2);
+        if (Event.current.isKey &amp;&amp; Event.current.keyCode == <a href="KeyCode.Return.html">KeyCode.Return</a> &amp;&amp; <a href="GUI.GetNameOfFocusedControl.html">GUI.GetNameOfFocusedControl</a>() == "user")
+            <a href="Debug.Log.html">Debug.Log</a>("Login");<br /><br />        if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(150, 10, 50, 20), "Login"))
+            <a href="Debug.Log.html">Debug.Log</a>("Login");
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="GUI.SetNextControlName.html">SetNextControlName</a>, <a href="GUI.FocusControl.html">FocusControl</a>.</p></div></div></div></div></body></html>

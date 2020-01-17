@@ -1,0 +1,31 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorGUI.BeginProperty</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorGUI.html">EditorGUI</a>.BeginProperty</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="GUIContent.html">GUIContent</a> <span class="sig-kw">BeginProperty</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">totalPosition</span>,
+<a href="GUIContent.html">GUIContent</a> <span class="sig-kw">label</span>,
+<a href="SerializedProperty.html">SerializedProperty</a> <span class="sig-kw">property</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">totalPosition</td><td class="desc"></td><td class="desc1">Rectangle on the screen to use for the control, including label if applicable.</td></tr><tr><td class="name lbl">label</td><td class="desc"></td><td class="desc1">Optional label in front of the slider. Use null to use the name from the SerializedProperty. Use GUIContent.none to not display a label.</td></tr><tr><td class="name lbl">property</td><td class="desc"></td><td class="desc1">The SerializedProperty to use for the control.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>GUIContent</strong>
+        The actual label to use for the control.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Create a Property wrapper, useful for making regular GUI controls work with <a href="SerializedProperty.html">SerializedProperty</a>.</p></div><div class="subsection"><p>Most <a href="EditorGUI.html">EditorGUI</a> and <a href="EditorGUILayout.html">EditorGUILayout</a> GUI controls already have overloads that work with SerializedProperty.
+However, for GUI controls that don't handle SerializedProperty you can wrap them inside BeginProperty and EndProperty as shown in the example below.
+You can use this for your own custom GUI controls too.<br /><br />BeginProperty and EndProperty automatically handle default labels, bold font for Prefab overrides, revert to Prefab right click menu, and setting <a href="EditorGUI-showMixedValue.html">showMixedValue</a> to true if the values of the property are different when multi-object editing.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />
+class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // A slider function that takes a <a href="SerializedProperty.html">SerializedProperty</a>
+    void <a href="UIElements.Slider.html">Slider</a>(<a href="Rect.html">Rect</a> position, <a href="SerializedProperty.html">SerializedProperty</a> property, float leftValue, float rightValue, <a href="GUIContent.html">GUIContent</a> label)
+    {
+        label = <a href="EditorGUI.BeginProperty.html">EditorGUI.BeginProperty</a>(position, label, property);<br /><br />        <a href="EditorGUI.BeginChangeCheck.html">EditorGUI.BeginChangeCheck</a>();
+        var newValue = <a href="EditorGUI.Slider.html">EditorGUI.Slider</a>(position, label, property.floatValue, leftValue, rightValue);
+        // Only assign the value back if it was actually changed by the user.
+        // Otherwise a single value will be assigned to all objects when multi-object editing,
+        // even when the user didn't touch the control.
+        if (<a href="EditorGUI.EndChangeCheck.html">EditorGUI.EndChangeCheck</a>())
+        {
+            property.floatValue = newValue;
+        }
+        <a href="EditorGUI.EndProperty.html">EditorGUI.EndProperty</a>();
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="EditorGUI.EndProperty.html">EndProperty</a>.</p></div></div></div></div></body></html>

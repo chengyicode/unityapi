@@ -1,0 +1,68 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Resources.Load</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Resources.html">Resources</a>.Load</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static T <span class="sig-kw">Load</span>(string <span class="sig-kw">path</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">path</td><td class="desc"></td><td class="desc1">Path to the target resource to load.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>T</strong>
+        The requested asset's Type.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Loads an asset stored at <code class="varname">path</code> in a folder called Resources.</p></div><div class="subsection"><p>If an asset can be found at <code class="varname">path</code>, it is returned with type <code class="varname">T</code>, otherwise returns null. If the file at <code class="varname">path</code> is of a type that cannot be converted to <code class="varname">T</code>, also returns null.
+The <code class="varname">path</code> is relative to any folder named <code class="varname">Resources</code> inside the Assets folder of your project.
+More than one <a href="Resources.html">Resources</a> folder can be used.  For example, a project may have <a href="Resources.html">Resources</a>
+folders called <code class="mono">Assets/Resources</code> and @@Assets<code class="varname">Assets</code>Resources@@.
+The path does not need to include <code class="varname">Assets</code> and <code class="varname">Resources</code> in the string, for example loading a GameObject at
+@@Assets<code class="varname">path</code>Shotgun.prefab@@ would only require Shotgun as the <code class="varname">path</code>.
+Also, if @@Assets<code class="varname">path</code>Missiles/PlasmaGun.prefab<code class="mono"> exists it can
+be loaded using </code>Guns<code class="varname">path</code>PlasmaGun@@ as the <code class="varname">path</code> string.
+If you have multiple <a href="Resources.html">Resources</a> folders you cannot duplicate the use of
+an asset name.<br /><br /><strong>Note:</strong> Extensions must be omitted.<br />
+<strong>Note:</strong> All asset names and paths in Unity use forward slashes, paths using backslashes will <strong>not</strong> work.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Load assets from the <a href="Resources.html">Resources</a> folder.  Ignore other named and typed assets.
+using UnityEngine;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        //Load a text file (Assets/<a href="Resources.html">Resources</a>/Text/textFile01.txt)
+        var textFile = <a href="Resources.Load.html">Resources.Load</a>&lt;<a href="TextAsset.html">TextAsset</a>&gt;("Text/textFile01");<br /><br />        //Load text from a JSON file (Assets/<a href="Resources.html">Resources</a>/Text/jsonFile01.json)
+        var jsonTextFile = <a href="Resources.Load.html">Resources.Load</a>&lt;<a href="TextAsset.html">TextAsset</a>&gt;("Text/jsonFile01");
+        //Then use <a href="JsonUtility.FromJson.html">JsonUtility.FromJson</a>&lt;T&gt;() to deserialize jsonTextFile into an object<br /><br />        //Load a <a href="Texture.html">Texture</a> (Assets/<a href="Resources.html">Resources</a>/Textures/texture01.png)
+        var texture = <a href="Resources.Load.html">Resources.Load</a>&lt;<a href="Texture2D.html">Texture2D</a>&gt;("Textures/texture01");<br /><br />        //Load a <a href="Sprite.html">Sprite</a> (Assets/<a href="Resources.html">Resources</a>/Sprites/sprite01.png)
+        var sprite = <a href="Resources.Load.html">Resources.Load</a>&lt;<a href="Sprite.html">Sprite</a>&gt;("Sprites/sprite01");<br /><br />        //Load an <a href="AudioClip.html">AudioClip</a> (Assets/<a href="Resources.html">Resources</a>/Audio/audioClip01.mp3)
+        var audioClip = <a href="Resources.Load.html">Resources.Load</a>&lt;<a href="AudioClip.html">AudioClip</a>&gt;("Audio/audioClip01");
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static Object <span class="sig-kw">Load</span>(string <span class="sig-kw">path</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static Object <span class="sig-kw">Load</span>(string <span class="sig-kw">path</span>,
+Type <span class="sig-kw">systemTypeInstance</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">path</td><td class="desc"></td><td class="desc1">Path to the target resource to load. When using an empty string (i.e., ""), the function loads the entire contents of the Resources folder.</td></tr><tr><td class="name lbl">systemTypeInstance</td><td class="desc"></td><td class="desc1">Type filter for objects returned.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>Object</strong>
+        The requested asset returned as an Object.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Loads an asset stored at <code class="varname">path</code> in a Resources folder.</p></div><div class="subsection"><p>Returns the asset at <code class="varname">path</code> if it can be found, otherwise returns null.
+If the <code class="varname">type</code> parameter is specified, only objects of this type are returned.
+The <code class="varname">path</code> is relative to any Resources folder inside the Assets folder of your project, extensions must be omitted.<br /><br /><strong>Note:</strong> All asset names and paths in Unity use forward slashes, paths using backslashes will <strong>not</strong> work.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Assigns a texture named "Assets/<a href="Resources.html">Resources</a>/glass" to a <a href="Plane.html">Plane</a>.
+    void Start()
+    {
+        <a href="GameObject.html">GameObject</a> go = <a href="GameObject.CreatePrimitive.html">GameObject.CreatePrimitive</a>(<a href="PrimitiveType.Plane.html">PrimitiveType.Plane</a>);
+        var rend = go.GetComponent&lt;<a href="Renderer.html">Renderer</a>&gt;();
+        rend.material.mainTexture = <a href="Resources.Load.html">Resources.Load</a>("glass") as <a href="Texture.html">Texture</a>;
+    }
+}
+</pre>
+      </div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        // Instantiates a Prefab named "enemy" located in any <a href="Resources.html">Resources</a>
+        // folder in your project's Assets folder.
+        <a href="GameObject.html">GameObject</a> instance = Instantiate(<a href="Resources.Load.html">Resources.Load</a>("enemy", typeof(<a href="GameObject.html">GameObject</a>))) as <a href="GameObject.html">GameObject</a>;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ScreenCapture.CaptureScreenshot</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="ScreenCapture.html">ScreenCapture</a>.CaptureScreenshot</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">CaptureScreenshot</span>(string <span class="sig-kw">filename</span>,
+int <span class="sig-kw">superSize</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">CaptureScreenshot</span>(string <span class="sig-kw">filename</span>,
+<a href="ScreenCapture.StereoScreenCaptureMode.html">ScreenCapture.StereoScreenCaptureMode</a> <span class="sig-kw">stereoCaptureMode</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">filename</td><td class="desc"></td><td class="desc1">Pathname to save the screenshot file to.</td></tr><tr><td class="name lbl">superSize</td><td class="desc"></td><td class="desc1">Factor by which to increase resolution.</td></tr><tr><td class="name lbl">stereoCaptureMode</td><td class="desc"></td><td class="desc1">Specifies the eye texture to capture when stereo rendering is enabled.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Captures a screenshot at path <code class="varname">filename</code> as a PNG file.</p></div><div class="subsection"><p>If the file exists already, it will be overwritten.<br /><br />On mobile platforms the filename is appended to the persistent data path.  See <a href="Application-persistentDataPath.html">Application.persistentDataPath</a> for more information.<br /><br />When <code class="varname">superSize</code> parameter is more than 1, a larger resolution screenshot will be
+produced. For example, passing 4 will make the screenshot be 4x4 larger than normal. This is useful to produce screenshots for printing.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />// Generate a screenshot and save to disk with the name SomeLevel.png.<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void OnMouseDown()
+    {
+        <a href="ScreenCapture.CaptureScreenshot.html">ScreenCapture.CaptureScreenshot</a>("SomeLevel");
+    }
+}
+</pre>
+      </div><div class="subsection"><p>The <a href="ScreenCapture.CaptureScreenshot.html">CaptureScreenshot</a> returns immediately on Android. The screen capture continues in the background.  The resulting screen shot is saved in the file system after a few seconds.</p></div></div></div></div></body></html>

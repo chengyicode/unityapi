@@ -1,0 +1,89 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorGUILayout.BeginToggleGroup</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorGUILayout.html">EditorGUILayout</a>.BeginToggleGroup</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">BeginToggleGroup</span>(string <span class="sig-kw">label</span>,
+bool <span class="sig-kw">toggle</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">BeginToggleGroup</span>(<a href="GUIContent.html">GUIContent</a> <span class="sig-kw">label</span>,
+bool <span class="sig-kw">toggle</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">label</td><td class="desc"></td><td class="desc1">Label to show above the toggled controls.</td></tr><tr><td class="name lbl">toggle</td><td class="desc"></td><td class="desc1">Enabled state of the toggle group.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>bool</strong>
+        The enabled state selected by the user.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Begin a vertical group with a toggle to enable or disable all the controls within at once.</p></div><div class="subsection"><p>See Also: <a href="EditorGUILayout.EndToggleGroup.html">EndToggleGroup</a>.<br /><br /><img src="../StaticFiles/ScriptRefImages/Aligner.png" /><br />
+<em>Align position/rotation/scale of the selected GameObjects.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Simple script that lets you align GameObjects
+// position/rotation/scale wise with the selected active transform<br /><br />using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class Aligner : <a href="EditorWindow.html">EditorWindow</a>
+{
+    bool[] pos = new bool[3] { true, true, true };
+    bool[] rot = new bool[3] { true, true, true };
+    bool[] scale = new bool[3] { true, true, true };<br /><br />    bool posGroupEnabled = true;
+    bool rotGroupEnabled = true;
+    bool scaleGroupEnabled = false;<br /><br />    void OnGUI()
+    {
+        posGroupEnabled = <a href="EditorGUILayout.BeginToggleGroup.html">EditorGUILayout.BeginToggleGroup</a>("<a href="UIElements.Align.html">Align</a> position", posGroupEnabled);
+        pos[0] = <a href="EditorGUILayout.Toggle.html">EditorGUILayout.Toggle</a>("x", pos[0]);
+        pos[1] = <a href="EditorGUILayout.Toggle.html">EditorGUILayout.Toggle</a>("y", pos[1]);
+        pos[2] = <a href="EditorGUILayout.Toggle.html">EditorGUILayout.Toggle</a>("z", pos[2]);
+        <a href="EditorGUILayout.EndToggleGroup.html">EditorGUILayout.EndToggleGroup</a>();<br /><br />        rotGroupEnabled = <a href="EditorGUILayout.BeginToggleGroup.html">EditorGUILayout.BeginToggleGroup</a>("<a href="UIElements.Align.html">Align</a> rotation", rotGroupEnabled);
+        rot[0] = <a href="EditorGUILayout.Toggle.html">EditorGUILayout.Toggle</a>("x", rot[0]);
+        rot[1] = <a href="EditorGUILayout.Toggle.html">EditorGUILayout.Toggle</a>("y", rot[1]);
+        rot[2] = <a href="EditorGUILayout.Toggle.html">EditorGUILayout.Toggle</a>("z", rot[2]);
+        <a href="EditorGUILayout.EndToggleGroup.html">EditorGUILayout.EndToggleGroup</a>();<br /><br />        scaleGroupEnabled = <a href="EditorGUILayout.BeginToggleGroup.html">EditorGUILayout.BeginToggleGroup</a>("<a href="UIElements.Align.html">Align</a> scale", scaleGroupEnabled);
+        scale[0] = <a href="EditorGUILayout.Toggle.html">EditorGUILayout.Toggle</a>("x", scale[0]);
+        scale[1] = <a href="EditorGUILayout.Toggle.html">EditorGUILayout.Toggle</a>("y", scale[1]);
+        scale[2] = <a href="EditorGUILayout.Toggle.html">EditorGUILayout.Toggle</a>("z", scale[2]);
+        <a href="EditorGUILayout.EndToggleGroup.html">EditorGUILayout.EndToggleGroup</a>();<br /><br />        <a href="GUILayout.Space.html">GUILayout.Space</a>(30);
+        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("<a href="UIElements.Align.html">Align</a>!"))
+            <a href="UIElements.Align.html">Align</a>();
+    }<br /><br />    void <a href="UIElements.Align.html">Align</a>()
+    {
+        <a href="Transform.html">Transform</a>[] transforms = <a href="Selection-transforms.html">Selection.transforms</a>;
+        <a href="Transform.html">Transform</a> activeTransform = <a href="Selection-activeTransform.html">Selection.activeTransform</a>;
+        if (transforms.Length &lt; 2)
+        {
+            <a href="Debug.LogWarning.html">Debug.LogWarning</a>("Aligner: select at least two objects.");
+            return;
+        }
+        for (int i = 0; i &lt; transforms.Length; i++)
+        {
+            if (posGroupEnabled)
+            {
+                <a href="Vector3.html">Vector3</a> newPos;
+                newPos.x = pos[0] ?
+                    activeTransform.position.x : transforms[i].position.x;
+                newPos.y = pos[1] ?
+                    activeTransform.position.y : transforms[i].position.y;
+                newPos.z = pos[2] ?
+                    activeTransform.position.z : transforms[i].position.z;
+                transforms[i].position = newPos;
+            }
+            if (rotGroupEnabled)
+            {
+                <a href="Vector3.html">Vector3</a> newRot;
+                newRot.x = rot[0] ?
+                    activeTransform.rotation.eulerAngles.x : transforms[i].rotation.eulerAngles.x;
+                newRot.y = rot[1] ?
+                    activeTransform.rotation.eulerAngles.y : transforms[i].rotation.eulerAngles.y;
+                newRot.z = rot[2] ?
+                    activeTransform.rotation.eulerAngles.z : transforms[i].rotation.eulerAngles.z;
+                transforms[i].rotation = <a href="Quaternion.Euler.html">Quaternion.Euler</a>(newRot);
+            }
+            if (scaleGroupEnabled)
+            {
+                <a href="Vector3.html">Vector3</a> newScale;
+                newScale.x = scale[0] ?
+                    activeTransform.localScale.x : transforms[i].localScale.x;
+                newScale.y = scale[1] ?
+                    activeTransform.localScale.y : transforms[i].localScale.y;
+                newScale.z = scale[2] ?
+                    activeTransform.localScale.z : transforms[i].localScale.z;
+                transforms[i].localScale = newScale;
+            }
+        }
+    }<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Examples/<a href="UIElements.Position.html">Position</a>-Rotation-Scale Aligner")]
+    static void Init()
+    {
+        Aligner window = (Aligner)<a href="EditorWindow.GetWindow.html">EditorWindow.GetWindow</a>(typeof(Aligner));
+        window.Show();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

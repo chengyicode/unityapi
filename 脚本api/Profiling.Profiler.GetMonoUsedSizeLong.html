@@ -1,0 +1,18 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Profiling.Profiler.GetMonoUsedSizeLong</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Profiling.Profiler.html">Profiler</a>.GetMonoUsedSizeLong</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static long <span class="sig-kw">GetMonoUsedSizeLong</span>();
+    </div></div></div><div class="subsection"><h2>Returns</h2><p><strong>long</strong>
+        A long integer value of the memory in use. This returns 0 if the Profiler is not available.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>The allocated managed-memory for live objects and non-collected objects.</p></div><div class="subsection"><p>This function returns the amount of allocated managed-memory for all objects, both live and non-collected. Always call GC.Collect() before calling this function as non-referenced objects will still take up space until they are collected by the garbage collector (GC). Note that this will return an ever increasing value until GC.Collect() is called.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;
+using UnityEngine.Profiling;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        System.GC.Collect();
+        <a href="Debug.Log.html">Debug.Log</a>("Mono used size" + <a href="Profiling.Profiler.GetMonoUsedSizeLong.html">Profiler.GetMonoUsedSizeLong</a>() + "Bytes");
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

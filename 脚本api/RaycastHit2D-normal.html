@@ -1,0 +1,22 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: RaycastHit2D.normal</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="RaycastHit2D.html">RaycastHit2D</a>.normal</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Vector2.html">Vector2</a> <span class="sig-kw">normal</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The normal vector of the surface hit by the ray.</p></div><div class="subsection"><p>The <em>normal vector</em> of a surface is the vector that points outward perpendicularly at a given point on that surface. This vector can be useful in raycasting as a way to determine reflections or ricochets from projectiles or to align a character so that it stands upright on the surface.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="GameObject.html">GameObject</a> sprite;<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        if (<a href="Input.GetMouseButton.html">Input.GetMouseButton</a>(0))
+        {
+            <a href="Vector2.html">Vector2</a> worldPoint = Camera.main.ScreenToWorldPoint(<a href="Input-mousePosition.html">Input.mousePosition</a>);
+            <a href="RaycastHit2D.html">RaycastHit2D</a> hit = <a href="Physics2D.Raycast.html">Physics2D.Raycast</a>(worldPoint, sprite.transform.position);<br /><br />            if (hit.collider != null)
+            {
+                // Draws a line from the normal of the object that you clicked
+                <a href="Debug.DrawLine.html">Debug.DrawLine</a>(sprite.transform.position, hit.normal, <a href="Color-yellow.html">Color.yellow</a>, 10.0f);
+            }
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>
+        <strong>Note:</strong> If a hit occurs starting inside a collider the collision normal is the opposite direction of the line/ray query.</p></div></div></div></div></body></html>

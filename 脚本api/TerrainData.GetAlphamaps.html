@@ -1,0 +1,31 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: TerrainData.GetAlphamaps</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="TerrainData.html">TerrainData</a>.GetAlphamaps</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public float[,,] <span class="sig-kw">GetAlphamaps</span>(int <span class="sig-kw">x</span>,
+int <span class="sig-kw">y</span>,
+int <span class="sig-kw">width</span>,
+int <span class="sig-kw">height</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">x</td><td class="desc"></td><td class="desc1">The x offset to read from.</td></tr><tr><td class="name lbl">y</td><td class="desc"></td><td class="desc1">The y offset to read from.</td></tr><tr><td class="name lbl">width</td><td class="desc"></td><td class="desc1">The width of the alpha map area to read.</td></tr><tr><td class="name lbl">height</td><td class="desc"></td><td class="desc1">The height of the alpha map area to read.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>float[,,]</strong>
+        A 3D array of floats, where the 3rd dimension represents the mixing weight of each splatmap at each x,y coordinate.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Returns the alpha map at a position x, y given a width and height.</p></div><div class="subsection"><p>The returned array is three-dimensional - the first two dimensions
+represent x and y coordinates on the map, while the third denotes the
+splatmap texture to which the alphamap is applied.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Add some random "noise" to the alphamaps.
+    void AddAlphaNoise(<a href="Terrain.html">Terrain</a> t, float noiseScale)
+    {
+        float[,,] maps = t.terrainData.GetAlphamaps(0, 0, t.terrainData.alphamapWidth, t.terrainData.alphamapHeight);<br /><br />        for (int y = 0; y &lt; t.terrainData.alphamapHeight; y++)
+        {
+            for (int x = 0; x &lt; t.terrainData.alphamapWidth; x++)
+            {
+                float a0 = maps[x, y, 0];
+                float a1 = maps[x, y, 1];<br /><br />                a0 += <a href="Random-value.html">Random.value</a> * noiseScale;
+                a1 += <a href="Random-value.html">Random.value</a> * noiseScale;<br /><br />                float total = a0 + a1;<br /><br />                maps[x, y, 0] = a0 / total;
+                maps[x, y, 1] = a1 / total;
+            }
+        }<br /><br />        t.terrainData.SetAlphamaps(0, 0, maps);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

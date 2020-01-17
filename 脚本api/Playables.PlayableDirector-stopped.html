@@ -1,0 +1,20 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Playables.PlayableDirector.stopped</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Playables.PlayableDirector.html">PlayableDirector</a>.stopped</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Event that is raised when a PlayableDirector component has stopped.</p></div><div class="subsection"><p>Add an event handler, to this event, to receive a notification when a PlayableDirector is stopped. The event handler also receives the PlayableDirector that is stopped.<br /><br />When using <a href="Playables.PlayableBehaviour.html">PlayableBehaviour</a>, this event is raised before <a href="Playables.PlayableBehaviour.OnBehaviourPause.html">PlayableBehaviour.OnBehaviourPause</a> and <a href="Playables.PlayableBehaviour.OnGraphStop.html">PlayableBehaviour.OnGraphStop</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.Playables;<br /><br />public class PlayableDirectorCallbackExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Playables.PlayableDirector.html">PlayableDirector</a> director;<br /><br />    void OnEnable()
+    {
+        director.stopped += OnPlayableDirectorStopped;
+    }<br /><br />    void OnPlayableDirectorStopped(<a href="Playables.PlayableDirector.html">PlayableDirector</a> aDirector)
+    {
+        if (director == aDirector)
+            <a href="Debug.Log.html">Debug.Log</a>("<a href="Playables.PlayableDirector.html">PlayableDirector</a> named " + aDirector.name + " is now stopped.");
+    }<br /><br />    void OnDisable()
+    {
+        director.stopped -= OnPlayableDirectorStopped;
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="Playables.PlayableDirector-played.html">PlayableDirector.played</a>, <a href="Playables.PlayableDirector-paused.html">PlayableDirector.paused</a>.</p></div></div></div></div></body></html>

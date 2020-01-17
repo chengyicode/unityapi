@@ -1,0 +1,38 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: GUI.DrawTextureWithTexCoords</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="GUI.html">GUI</a>.DrawTextureWithTexCoords</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">DrawTextureWithTexCoords</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+<a href="Texture.html">Texture</a> <span class="sig-kw">image</span>,
+<a href="Rect.html">Rect</a> <span class="sig-kw">texCoords</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">DrawTextureWithTexCoords</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+<a href="Texture.html">Texture</a> <span class="sig-kw">image</span>,
+<a href="Rect.html">Rect</a> <span class="sig-kw">texCoords</span>,
+bool <span class="sig-kw">alphaBlend</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">position</td><td class="desc"></td><td class="desc1">Rectangle on the screen to draw the texture within.</td></tr><tr><td class="name lbl">image</td><td class="desc"></td><td class="desc1">
+          <a href="Texture.html">Texture</a> to display.</td></tr><tr><td class="name lbl">texCoords</td><td class="desc"></td><td class="desc1">How to scale the image when the aspect ratio of it doesn't fit the aspect ratio to be drawn within.</td></tr><tr><td class="name lbl">alphaBlend</td><td class="desc"></td><td class="desc1">Whether to alpha blend the image on to the display (the default). If false, the picture is drawn on to the display.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Draw a texture within a rectangle with the given texture coordinates.</p></div><div class="subsection"><p>Use this function for clipping or tiling the image within the given rectangle.  The second <a href="Rect.html">Rect</a> <code class="varname">texCoords</code> describes how the texture is adjusted to fit the position <a href="Rect.html">Rect</a>.  The first rectangle has its size in pixels provided; the second rectangle is given in a 0.0 to 1.0 range.<br />
+<br />
+See Also: <a href="GUI-color.html">GUI.color</a>, <a href="GUI-contentColor.html">GUI.contentColor</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />// Use DrawTextureWithTexCoords() to draw a texture.  The texture is draw on the window
+// inside a given pixel rectangle.  The size of the drawn texture is based on the value
+// of hor.  This ranges from 0.5 to 1.25 so the bottom left half of the texture to a
+// greater than normal value.<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Texture2D.html">Texture2D</a> tex;
+    private <a href="Rect.html">Rect</a> rect;
+    private float hor;
+    private <a href="Rect.html">Rect</a> hs;
+    private <a href="Rect.html">Rect</a> label;<br /><br />    void Start()
+    {
+        float center = <a href="Screen-width.html">Screen.width</a> / 2.0f;
+        rect = new <a href="Rect.html">Rect</a>(center - 200, 200, 400, 250);
+        hs = new <a href="Rect.html">Rect</a>(center - 200, 125, 400, 30);
+        label = new <a href="Rect.html">Rect</a>(center - 20, 155, 50, 30);
+        hor = 0.5f;
+    }<br /><br />    void OnGUI()
+    {
+        hor = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(hs, hor, 0.5f, 1.25f);
+        <a href="GUI.Label.html">GUI.Label</a>(label, hor.ToString("F3"));
+        <a href="GUI.DrawTextureWithTexCoords.html">GUI.DrawTextureWithTexCoords</a>(rect, tex, new <a href="Rect.html">Rect</a>(0.0f, 0.0f, hor, hor));
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

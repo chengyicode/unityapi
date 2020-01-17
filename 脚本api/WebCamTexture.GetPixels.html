@@ -1,0 +1,14 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: WebCamTexture.GetPixels</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="WebCamTexture.html">WebCamTexture</a>.GetPixels</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public Color[] <span class="sig-kw">GetPixels</span>();
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Get a block of pixel colors.</p></div><div class="subsection"><p>This function returns an array of pixel colors of the whole
+mip level of the texture.<br /><br />The returned array is a flattened 2D array, where pixels are laid out left to right,
+top to bottom (i.e. row after row). Array size is width by height of the mip level used.
+The default mip level is zero (the base texture) in which case the size is just the size of the texture.
+In general case, mip level size is <code class="mono">mipWidth=max(1,width&gt;&gt;miplevel)</code>
+and similarly for height.<br /><br />Using <code class="varname">GetPixels</code> can be faster than calling <a href="WebCamTexture.GetPixel.html">GetPixel</a> repeatedly, especially
+for large textures. In addition, <code class="varname">GetPixels</code> can access individual mipmap levels.</p></div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public Color[] <span class="sig-kw">GetPixels</span>(int <span class="sig-kw">x</span>,
+int <span class="sig-kw">y</span>,
+int <span class="sig-kw">blockWidth</span>,
+int <span class="sig-kw">blockHeight</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Get a block of pixel colors.</p></div><div class="subsection"><p>This function is an extended version of <code class="varname">GetPixels</code> above; it does not return the whole
+mip level but only <code class="varname">blockWidth</code> by <code class="varname">blockHeight</code> region starting at <em>x,y</em>.
+The block is limited by the size of the used mipmap level (must refer to a block of pixels within the mipmap). The size of the returned array is <em>blockWidth*blockHeight</em>.<br /><br /><strong>Note:</strong> For depth data based WebCamTexture instances, this method returns an array of the depth values via <a href="Color-r.html">Color.r</a> property. See Also: <a href="WebCamTexture-isDepth.html">WebCamTexture.isDepth</a>.</p></div></div></div></div></body></html>

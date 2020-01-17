@@ -1,0 +1,28 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Apple.ReplayKit.ReplayKit.StartBroadcasting(BroadcastStatusDelegate, bool, bool)</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Apple.ReplayKit.ReplayKit.html">ReplayKit</a>.StartBroadcasting(BroadcastStatusDelegate, bool, bool)</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">callback</td><td class="desc"></td><td class="desc1">A callback for getting the status of broadcast initiation.</td></tr><tr><td class="name lbl">enableMicrophone</td><td class="desc"></td><td class="desc1">Enable or disable the microphone while broadcasting. Enabling the microphone allows you to include user commentary while broadcasting. The default value is false.</td></tr><tr><td class="name lbl">enableCamera</td><td class="desc"></td><td class="desc1">Enable or disable the camera while broadcasting. Enabling camera allows you to include user camera footage while broadcasting. The default value is false. To actually include camera footage in your broadcast, you also have to call ShowCameraPreviewAt as well to position the preview view.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Initiates and starts a new broadcast
+When StartBroadcast is called, user is presented with a broadcast provider selection screen, and then a broadcast setup screen. Once it is finished, a broadcast will be started, and the callback will be invoked.
+It will also be invoked in case of any error.
+        </p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Apple.ReplayKit;<br /><br />public class CubController : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // ....<br /><br />    void OnGUI()
+    {
+        <a href="GUI.Box.html">GUI.Box</a>(new <a href="Rect.html">Rect</a>(2 * 10, 2 * 10, 2 * 200, 4 * 90), "Broadcasting");<br /><br />        if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(2 * 20, 2 * 40, 2 * 180, 2 * 30), "Start Broadcasting"))
+        {
+            <a href="Apple.ReplayKit.ReplayKit.StartBroadcasting.html">ReplayKit.StartBroadcasting</a>((bool success, string error) =&gt; <a href="Debug.Log.html">Debug.Log</a>(string.Format("Start : {0}, error : `{1}`", success, error)));
+        }
+        if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(2 * 20, 2 * 70, 2 * 180, 2 * 30), "Stop Broadcasting"))
+        {
+            <a href="Apple.ReplayKit.ReplayKit.StopBroadcasting.html">ReplayKit.StopBroadcasting</a>();
+        }<br /><br />        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(2 * 20, 2 * 100, 2 * 180, 2 * 10), "broadcastingAPIAvailable : " + (<a href="Apple.ReplayKit.ReplayKit-broadcastingAPIAvailable.html">ReplayKit.broadcastingAPIAvailable</a> ? "true" : "false"));
+        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(2 * 20, 2 * 120, 2 * 180, 2 * 10), "isBroadcasting : " + (<a href="Apple.ReplayKit.ReplayKit-isBroadcasting.html">ReplayKit.isBroadcasting</a> ? "true" : "false"));
+        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(2 * 20, 2 * 140, 2 * 180, 2 * 10), "broadcastURL : " + <a href="Apple.ReplayKit.ReplayKit-broadcastURL.html">ReplayKit.broadcastURL</a>);
+        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(2 * 20, 2 * 160, 2 * 180, 2 * 10), "lastError : " + <a href="Apple.ReplayKit.ReplayKit-lastError.html">ReplayKit.lastError</a>);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

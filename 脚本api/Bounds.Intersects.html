@@ -1,0 +1,26 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Bounds.Intersects</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Bounds.html">Bounds</a>.Intersects</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public bool <span class="sig-kw">Intersects</span>(<a href="Bounds.html">Bounds</a> <span class="sig-kw">bounds</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Does another bounding box intersect with this bounding box?</p></div><div class="subsection"><p>Check if the bounding box comes into contact with another bounding box. This returns a Boolean that is set to true if there is an intersection between bounds.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//Attach this script to an empty <a href="GameObject.html">GameObject</a>. Create 2 more GameObjects and attach a <a href="Collider.html">Collider</a> component on each. Choose these as the "My Object" and "New Object" in the Inspector.
+//This script allows you to move your main <a href="GameObject.html">GameObject</a> left to right. If it intersects with the other, it outputs the message to the Console.<br /><br />using UnityEngine;<br /><br />public class BoundsIntersectExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="GameObject.html">GameObject</a> m_MyObject, m_NewObject;
+    <a href="Collider.html">Collider</a> m_Collider, m_Collider2;<br /><br />    void Start()
+    {
+        //Check that the first <a href="GameObject.html">GameObject</a> exists in the Inspector and fetch the <a href="Collider.html">Collider</a>
+        if (m_MyObject != null)
+            m_Collider = m_MyObject.GetComponent&lt;<a href="Collider.html">Collider</a>&gt;();<br /><br />        //Check that the second <a href="GameObject.html">GameObject</a> exists in the Inspector and fetch the <a href="Collider.html">Collider</a>
+        if (m_NewObject != null)
+            m_Collider2 = m_NewObject.GetComponent&lt;<a href="Collider.html">Collider</a>&gt;();
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        //If the first <a href="GameObject.html">GameObject</a>'s <a href="Bounds.html">Bounds</a> enters the second <a href="GameObject.html">GameObject</a>'s <a href="Bounds.html">Bounds</a>, output the message
+        if (m_Collider.bounds.Intersects(m_Collider2.bounds))
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("<a href="Bounds.html">Bounds</a> intersecting");
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

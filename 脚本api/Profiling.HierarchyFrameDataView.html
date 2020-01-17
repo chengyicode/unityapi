@@ -1,0 +1,75 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: HierarchyFrameDataView</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">HierarchyFrameDataView</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEditor.Profiling</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEditor.html" class="cl">UnityEditor</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Provides access to the Profiler data for a specific frame and thread.</p></div><div class="subsection"><p>Use <em>HierarchyFrameDataView</em> to retrieve Profiler samples structured as a hierarchy.<br />
+This is used in the <strong>Hierachy mode</strong> of the <a href="../Manual/ProfilerCPU.html">CPU Usage Profiler</a>, for example.<br /><br />The <em>HierarchyFrameDataView</em> aggregates the data with time and memory information. Each hierarchy item includes accumulated data of its children.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System;
+using System.Collections.Generic;
+using UnityEditor.Profiling;
+using UnityEditorInternal;<br /><br />public class Example
+{
+    List&lt;int&gt; parentsCacheList = new List&lt;int&gt;();
+    List&lt;int&gt; childrenCacheList = new List&lt;int&gt;();<br /><br />    public void ProcessFrameData(int frame)
+    {
+        using (var frameData = ProfilerDriver.GetHierarchyFrameDataView(frame, 0, <a href="Profiling.HierarchyFrameDataView.ViewModes.Default.html">HierarchyFrameDataView.ViewModes.Default</a>, <a href="Profiling.HierarchyFrameDataView-columnGcMemory.html">HierarchyFrameDataView.columnGcMemory</a>, false))
+        {
+            int rootId = frameData.GetRootItemID();
+            frameData.GetItemDescendantsThatHaveChildren(rootId, parentsCacheList);
+            foreach (int parentId in parentsCacheList)
+            {
+                frameData.GetItemChildren(parentId, childrenCacheList);
+                // Process further records
+            }
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Static Properties</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Profiling.HierarchyFrameDataView-columnCalls.html">columnCalls</a></td><td class="desc"></td><td class="desc1">The Calls column.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Profiling.HierarchyFrameDataView-columnDontSort.html">columnDontSort</a></td><td class="desc"></td><td class="desc1">The column identifier that indicates whether sorting is disabled.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Profiling.HierarchyFrameDataView-columnGcMemory.html">columnGcMemory</a></td><td class="desc"></td><td class="desc1">The GC Allocation column.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Profiling.HierarchyFrameDataView-columnName.html">columnName</a></td><td class="desc"></td><td class="desc1">The Profiler Sample Name column.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Profiling.HierarchyFrameDataView-columnObjectName.html">columnObjectName</a></td><td class="desc"></td><td class="desc1">The Object Name column.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Profiling.HierarchyFrameDataView-columnSelfPercent.html">columnSelfPercent</a></td><td class="desc"></td><td class="desc1">The percentage of the time CPU spends in a call itself.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Profiling.HierarchyFrameDataView-columnSelfTime.html">columnSelfTime</a></td><td class="desc"></td><td class="desc1">The amount of the time CPU spends in a call itself. The amount of time is expressed in milliseconds.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Profiling.HierarchyFrameDataView-columnTotalPercent.html">columnTotalPercent</a></td><td class="desc"></td><td class="desc1">The percentage of time the CPU spends in a call hierarchy.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Profiling.HierarchyFrameDataView-columnTotalTime.html">columnTotalTime</a></td><td class="desc"></td><td class="desc1">The amount of time the CPU spends in a call hierarchy. The amount of time is expressed in milliseconds.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Profiling.HierarchyFrameDataView-columnWarningCount.html">columnWarningCount</a></td><td class="desc"></td><td class="desc1">The amount of samples that are inside a code execution path that is suboptimal for performance.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Profiling.HierarchyFrameDataView-invalidSampleId.html">invalidSampleId</a></td><td class="desc"></td><td class="desc1">Index of the invalid item.</td></tr>
+    </table></div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Profiling.HierarchyFrameDataView-frameFps.html">frameFps</a></td><td class="desc"></td><td class="desc1">The current frames per second (fps) for the frame.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Profiling.HierarchyFrameDataView-frameGpuTimeMs.html">frameGpuTimeMs</a></td><td class="desc"></td><td class="desc1">The amount of GPU frame time in milliseconds.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Profiling.HierarchyFrameDataView-frameIndex.html">frameIndex</a></td><td class="desc"></td><td class="desc1">The frame index for the HierarchyFrameDataView.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Profiling.HierarchyFrameDataView-frameTimeMs.html">frameTimeMs</a></td><td class="desc"></td><td class="desc1">The amount of CPU frame time in milliseconds.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Profiling.HierarchyFrameDataView-sortColumn.html">sortColumn</a></td><td class="desc"></td><td class="desc1">The column identifier that defines the sort column.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Profiling.HierarchyFrameDataView-sortColumnAscending.html">sortColumnAscending</a></td><td class="desc"></td><td class="desc1">Whether the sorting order is ascending, true, or descending, false.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Profiling.HierarchyFrameDataView-threadGroupName.html">threadGroupName</a></td><td class="desc"></td><td class="desc1">The name of the group that the thread belongs to.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Profiling.HierarchyFrameDataView-threadId.html">threadId</a></td><td class="desc"></td><td class="desc1">Persistent identifier associated with the thread.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Profiling.HierarchyFrameDataView-threadIndex.html">threadIndex</a></td><td class="desc"></td><td class="desc1">The index of the thread in the current frame.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Profiling.HierarchyFrameDataView-threadName.html">threadName</a></td><td class="desc"></td><td class="desc1">Name of the thread.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Profiling.HierarchyFrameDataView-valid.html">valid</a></td><td class="desc"></td><td class="desc1">True after the frame data for the thread is processed and ready for retrieval.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Profiling.HierarchyFrameDataView-viewMode.html">viewMode</a></td><td class="desc"></td><td class="desc1">The view mode which defines how data is aggregated.</td></tr>
+    </table></div><div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Profiling.HierarchyFrameDataView.GetFrameMetaData.html">GetFrameMetaData</a></td><td class="desc"></td><td class="desc1">Retrieves metadata associated with the frame.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Profiling.HierarchyFrameDataView.GetFrameMetaDataCount.html">GetFrameMetaDataCount</a></td><td class="desc"></td><td class="desc1">Gets the total number of metadata chunks for each id and tag pair in the frame.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Profiling.HierarchyFrameDataView.GetItemAncestors.html">GetItemAncestors</a></td><td class="desc"></td><td class="desc1">Retrieves a list of hierarchy item ancestors.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Profiling.HierarchyFrameDataView.GetItemChildren.html">GetItemChildren</a></td><td class="desc"></td><td class="desc1">Retrieves a list of hierarchy item children.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Profiling.HierarchyFrameDataView.GetItemColumnData.html">GetItemColumnData</a></td><td class="desc"></td><td class="desc1">Returns string representation of hierarchy item value associated with the column.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Profiling.HierarchyFrameDataView.GetItemColumnDataAsSingle.html">GetItemColumnDataAsSingle</a></td><td class="desc"></td><td class="desc1">Returns float representation of hierarchy item value associated with the column.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Profiling.HierarchyFrameDataView.GetItemDepth.html">GetItemDepth</a></td><td class="desc"></td><td class="desc1">Returns hierarchy level of the item.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Profiling.HierarchyFrameDataView.GetItemDescendantsThatHaveChildren.html">GetItemDescendantsThatHaveChildren</a></td><td class="desc"></td><td class="desc1">Use to retrieve a list of a hierarchy item descendants which have other children.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Profiling.HierarchyFrameDataView.GetItemInstanceID.html">GetItemInstanceID</a></td><td class="desc"></td><td class="desc1">Returns InstanceID of the UnityEngine.Object associated with the sample.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Profiling.HierarchyFrameDataView.GetItemMarkerID.html">GetItemMarkerID</a></td><td class="desc"></td><td class="desc1">Returns Profiler marker which uniquely identifies sample name.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Profiling.HierarchyFrameDataView.GetItemMarkerIDPath.html">GetItemMarkerIDPath</a></td><td class="desc"></td><td class="desc1">Use to retrieve a list of a marker identifiers of all hierarchy item parents.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Profiling.HierarchyFrameDataView.GetItemMergedSamplesColumnData.html">GetItemMergedSamplesColumnData</a></td><td class="desc"></td><td class="desc1">Use to retrieve a values of merged samples of a hierarchy item.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Profiling.HierarchyFrameDataView.GetItemMergedSamplesColumnDataAsFloats.html">GetItemMergedSamplesColumnDataAsFloats</a></td><td class="desc"></td><td class="desc1">Retrieves the merged samples for a specific hierarchy item. Merged samples are returned as a list of floats through the outValues param.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Profiling.HierarchyFrameDataView.GetItemMergedSamplesCount.html">GetItemMergedSamplesCount</a></td><td class="desc"></td><td class="desc1">Return merged samples count represented by the hierarchy item.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Profiling.HierarchyFrameDataView.GetItemMergedSamplesInstanceID.html">GetItemMergedSamplesInstanceID</a></td><td class="desc"></td><td class="desc1">Retrieves the instanceID of the merged samples corresponding to a hierarchy item.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Profiling.HierarchyFrameDataView.GetItemName.html">GetItemName</a></td><td class="desc"></td><td class="desc1">Gets the sample name associated with the item.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Profiling.HierarchyFrameDataView.GetItemPath.html">GetItemPath</a></td><td class="desc"></td><td class="desc1">Retrieves the hierarchy item path as a string. Each level is delimited by forward slashes ('/').</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Profiling.HierarchyFrameDataView.GetRootItemID.html">GetRootItemID</a></td><td class="desc"></td><td class="desc1">Gets the identifier for the root tree item.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Profiling.HierarchyFrameDataView.HasItemChildren.html">HasItemChildren</a></td><td class="desc"></td><td class="desc1">Checks whether the tree item has children.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Profiling.HierarchyFrameDataView.ResolveItemCallstack.html">ResolveItemCallstack</a></td><td class="desc"></td><td class="desc1">Gets the callstack associated with the specified hierarchy item.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Profiling.HierarchyFrameDataView.ResolveItemMergedSampleCallstack.html">ResolveItemMergedSampleCallstack</a></td><td class="desc"></td><td class="desc1">Gets the callstack associated with a specific item sample.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Profiling.HierarchyFrameDataView.Sort.html">Sort</a></td><td class="desc"></td><td class="desc1">Sorts the hierarchy view.</td></tr>
+    </table></div></div></div></div></body></html>

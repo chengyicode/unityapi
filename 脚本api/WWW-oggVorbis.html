@@ -1,0 +1,33 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: WWW.oggVorbis</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Removed in version 2019.2.18</b><br /></div><h1 class="heading inherit"><a href="WWW.html">WWW</a>.oggVorbis</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public Object <span class="sig-kw">oggVorbis</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Load an Ogg Vorbis file into the audio clip.</p></div><div class="subsection"><p>If the stream has not been downloaded completely, null will be returned.
+Use isDone or <code class="varname">yield</code> to see if the data is available.<br /><br />See Also: <a href="AudioClip.html">AudioClip</a>, <a href="AudioSource.html">AudioSource</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />[<a href="RequireComponent.html">RequireComponent</a>(typeof(<a href="AudioSource.html">AudioSource</a>))]
+public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    string path = "http://ia301106.us.archive.org/2/items/abird2005-02-10/abird2005-02-10t02.ogg";<br /><br />    IEnumerator Start()
+    {
+        // Start downloading
+        using (var download = new WWW(path))
+        {
+            // Wait for download to finish
+            yield return download;
+            // Create ogg vorbis file
+            var clip = download.GetAudioClip();
+            // Play it
+            if (clip != null)
+            {
+                GetComponent&lt;<a href="AudioSource.html">AudioSource</a>&gt;().clip = clip;
+                GetComponent&lt;<a href="AudioSource.html">AudioSource</a>&gt;().Play();
+            }
+            else     // Handle error
+            {
+                <a href="Debug.Log.html">Debug.Log</a>("Ogg vorbis download failed. (Incorrect link?)");
+            }
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

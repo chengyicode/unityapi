@@ -1,0 +1,20 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Mesh.uv8</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Mesh.html">Mesh</a>.uv8</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Mesh.html' title='Go to Mesh Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public Vector2[] <span class="sig-kw">uv8</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The eighth texture coordinate set of the mesh, if present.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Generate planar uv coordinates for the eighth uv set<br /><br />using UnityEngine;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        <a href="Mesh.html">Mesh</a> mesh = GetComponent&lt;<a href="MeshFilter.html">MeshFilter</a>&gt;().mesh;
+        <a href="Vector3.html">Vector3</a>[] vertices = mesh.vertices;
+        <a href="Vector2.html">Vector2</a>[] uvs = new <a href="Vector2.html">Vector2</a>[vertices.Length];<br /><br />        for (int i = 0; i &lt; uvs.Length; i++)
+            uvs[i] = new <a href="Vector2.html">Vector2</a>(vertices[i].x, vertices[i].z);<br /><br />        mesh.uv8 = uvs;
+    }
+}
+</pre>
+      </div><div class="subsection"><p>
+                    <strong>Note:</strong> Texture coordinates must be created or modified externally from the mesh.
+                    The script example above creates the uvs array, assigns texture coordinates to the
+                    uvs array, and then assigns the array to the <a href="Mesh.html">Mesh</a>.
+                </p></div></div></div></div></body></html>

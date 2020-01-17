@@ -1,0 +1,27 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorWindow.wantsMouseMove</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorWindow.html">EditorWindow</a>.wantsMouseMove</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public bool <span class="sig-kw">wantsMouseMove</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Checks whether MouseMove events are received in the GUI in this Editor window.</p></div><div class="subsection"><p>If set to true, the window recieves an OnGUI call whenever the mouse is moved over the window.<br /><br /><strong>Note:</strong> This function does not trigger Repaint() Automatically.<br /><br /><img src="../StaticFiles/ScriptRefImages/WantsMouseMoveEx.png" /><br />
+<em>Editor Window that detects mouse moves when the toggle button is activated and the mouse is over the window.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// <a href="Editor.html">Editor</a> Script that shows the mouse movement events
+// captured.  With "Receive Movement" set to true the position of the
+// mouse over the window will be reported.
+// "Mouse <a href="UIElements.Position.html">Position</a>" shows where the mouse is outside of the window.<br /><br />using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;
+using System.Collections;<br /><br />public class Example : <a href="EditorWindow.html">EditorWindow</a>
+{
+    [<a href="MenuItem.html">MenuItem</a>("Example/Mouse Move Example")]
+    static void InitWindow()
+    {
+        Example window = (Example)GetWindowWithRect(typeof(Example), new <a href="Rect.html">Rect</a>(0, 0, 300, 100));
+        window.Show();
+    }<br /><br />    void OnGUI()
+    {
+        wantsMouseMove = <a href="EditorGUILayout.Toggle.html">EditorGUILayout.Toggle</a>("Receive Movement: ", wantsMouseMove);
+        <a href="EditorGUILayout.LabelField.html">EditorGUILayout.LabelField</a>("Mouse <a href="UIElements.Position.html">Position</a>: ", Event.current.mousePosition.ToString());<br /><br />        // Repaint the window as wantsMouseMove doesnt trigger a repaint automatically
+        if (Event.current.type == <a href="EventType.MouseMove.html">EventType.MouseMove</a>)
+            Repaint();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

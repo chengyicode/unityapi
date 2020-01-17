@@ -1,0 +1,48 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ExposedReference&lt;T0&gt;</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">ExposedReference&lt;T0&gt;</h1><div class="clear"></div><p class="cl mb0 left mr10">struct in
+          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.CoreModule.html" class="cl">UnityEngine.CoreModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Creates a type whos value is resolvable at runtime.</p></div><div class="subsection"><p>ExposedReference is a generic type that can be used to create references to Scene objects and resolve their actual values at runtime and by using a context object. This can be used by assets, such as a <a href="ScriptableObject.html">ScriptableObject</a> or <a href="Playables.PlayableAsset.html">PlayableAsset</a> to create references to Scene objects.<br /><br />
+The example below shows how a <a href="Playables.PlayableAsset.html">PlayableAsset</a> can use exposed references to create references to a Scene GameObject.
+This is an example that uses Timeline, so you may want to <a href="../Manual/TimelineWorkflowCreatingAssetInstance.html">set up your GameObject in Timeline</a> and <a href="../Manual/TimelineWorkflowRecordingBasicAnimation.html">make an animation with your GameObject</a> first.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//Put both of these scripts in your Project, then go to your Timeline, click the <strong>Add</strong> dropdown and choose <strong>Playable Track</strong>. Place this script on your Timeline as a <a href="Playables.Playable.html">Playable</a> Track
+//Click on the track and choose a <a href="GameObject.html">GameObject</a> from your <a href="SceneManagement.Scene.html">Scene</a> in the "My <a href="SceneManagement.Scene.html">Scene</a> Object" field. Also set the velocity.<br /><br />using UnityEngine;
+using UnityEngine.Playables;<br /><br />[System.Serializable]
+public class ExposedReferenceExample : <a href="Playables.PlayableAsset.html">PlayableAsset</a>
+{
+    //This allows you to use GameObjects in your <a href="SceneManagement.Scene.html">Scene</a>
+    public ExposedReference&lt;<a href="GameObject.html">GameObject</a>&gt; m_MySceneObject;
+    //This variable allows you to decide the velocity of your <a href="GameObject.html">GameObject</a>
+    public <a href="Vector3.html">Vector3</a> m_SceneObjectVelocity;<br /><br />    public  override <a href="Playables.Playable.html">Playable</a> CreatePlayable(<a href="Playables.PlayableGraph.html">PlayableGraph</a> graph , <a href="GameObject.html">GameObject</a> myGameObject)
+    {
+        //Get access to the <a href="Playables.Playable.html">Playable</a> <a href="Behaviour.html">Behaviour</a> script
+        TestExample playableBehaviour = new TestExample();
+        //Resolve the exposed reference on the <a href="SceneManagement.Scene.html">Scene</a> <a href="GameObject.html">GameObject</a> by returning the table used by the graph
+        playableBehaviour.m_MySceneObject = m_MySceneObject.Resolve(graph.GetResolver());<br /><br />        //Make the <a href="Playables.PlayableBehaviour.html">PlayableBehaviour</a> velocity variable the same as the variable you set
+        playableBehaviour.m_SceneObjectVelocity = m_SceneObjectVelocity;<br /><br />        //Create a custom playable from this script using the Player <a href="Behaviour.html">Behaviour</a> script
+        return ScriptPlayable&lt;TestExample&gt;.Create(graph, playableBehaviour);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Place this next script in your Project in the same folder as the above script.
+This script changes the behaviour of the timeline by moving the Scene GameObject while the Playable Track is playing.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using  UnityEngine;
+using  UnityEngine.Playables;<br /><br />public  class TestExample : <a href="Playables.PlayableBehaviour.html">PlayableBehaviour</a>
+{
+    public <a href="GameObject.html">GameObject</a> m_MySceneObject;
+    public <a href="Vector3.html">Vector3</a> m_SceneObjectVelocity;<br /><br />    public override void PrepareFrame(<a href="Playables.Playable.html">Playable</a> playable, <a href="Playables.FrameData.html">FrameData</a> frameData)
+    {
+        //If the <a href="SceneManagement.Scene.html">Scene</a> <a href="GameObject.html">GameObject</a> exists, move it continuously until the <a href="Playables.Playable.html">Playable</a> pauses
+        if (m_MySceneObject != null)
+            //Move the <a href="GameObject.html">GameObject</a> using the velocity you set in your <a href="Playables.Playable.html">Playable</a> Track's inspector
+            m_MySceneObject.transform.Translate(m_SceneObjectVelocity);
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="ExposedReference_1-defaultValue.html">defaultValue</a></td><td class="desc"></td><td class="desc1">The default value, in case the value cannot be resolved.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ExposedReference_1-exposedName.html">exposedName</a></td><td class="desc"></td><td class="desc1">The name of the ExposedReference.</td></tr>
+    </table></div><div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="ExposedReference_1.Resolve.html">Resolve</a></td><td class="desc"></td><td class="desc1">Gets the value of the reference by resolving it given the ExposedPropertyResolver context object.</td></tr>
+    </table></div></div></div></div></body></html>

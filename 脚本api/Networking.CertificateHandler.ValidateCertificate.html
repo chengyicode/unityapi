@@ -1,0 +1,27 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Networking.CertificateHandler.ValidateCertificate</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Networking.CertificateHandler.html">CertificateHandler</a>.ValidateCertificate</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>protected bool <span class="sig-kw">ValidateCertificate</span>(byte[] <span class="sig-kw">certificateData</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">certificateData</td><td class="desc"></td><td class="desc1">Certificate data in PEM or DER format. If certificate data contains multiple certificates, the first one is the leaf certificate.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>bool</strong>
+        
+          <code class="mono">true</code> if the certificate should be accepted, <code class="mono">false</code> if not.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Callback, invoked for each leaf certificate sent by the remote server.</p></div><div class="subsection"><p>Override this to implement a custom certificate validation scheme.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine.Networking;
+using System.Security.Cryptography.X509Certificates;<br /><br />// Based on https://www.owasp.org/index.php/Certificate_and_Public_Key_Pinning#.Net
+class AcceptAllCertificatesSignedWithASpecificKeyPublicKey : <a href="Networking.CertificateHandler.html">CertificateHandler</a>
+{
+    // Encoded RSAPublicKey
+    private static string PUB_KEY = "30818902818100C4A06B7B52F8D17DC1CCB47362" +
+        "C64AB799AAE19E245A7559E9CEEC7D8AA4DF07CB0B21FDFD763C63A313A668FE9D764E" +
+        "D913C51A676788DB62AF624F422C2F112C1316922AA5D37823CD9F43D1FC54513D14B2" +
+        "9E36991F08A042C42EAAEEE5FE8E2CB10167174A359CEBF6FACC2C9CA933AD403137EE" +
+        "2C3F4CBED9460129C72B0203010001";<br /><br />    protected override bool ValidateCertificate(byte[] certificateData)
+    {
+        X509Certificate2 certificate = new X509Certificate2(certificateData);
+        string pk = certificate.GetPublicKeyString();
+        if (pk.Equals(PUB_KEY))
+            return true;<br /><br />        // Bad dog
+        return false;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

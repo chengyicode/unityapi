@@ -1,0 +1,22 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: HideFlags.HideAndDontSave</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="HideFlags.html">HideFlags</a>.HideAndDontSave</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>The GameObject is not shown in the Hierarchy, not saved to to Scenes, and not unloaded by <a href="Resources.UnloadUnusedAssets.html">Resources.UnloadUnusedAssets</a>.</p></div><div class="subsection"><p>This is most commonly used for GameObjects which are created by a script and are purely under the script's control.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Creates a <a href="Material.html">Material</a> that is explicitly created &amp; destroyed by the component.
+    // <a href="Resources.UnloadUnusedAssets.html">Resources.UnloadUnusedAssets</a> will not unload it, and it will not be editable by the Inspector.
+    private <a href="Material.html">Material</a> ownedMaterial;
+    void OnEnable()
+    {
+        ownedMaterial = new <a href="Material.html">Material</a>(<a href="Shader.Find.html">Shader.Find</a>("Diffuse"));
+        ownedMaterial.hideFlags = <a href="HideFlags.HideAndDontSave.html">HideFlags.HideAndDontSave</a>;
+        GetComponent&lt;<a href="Renderer.html">Renderer</a>&gt;().sharedMaterial = ownedMaterial;
+    }<br /><br />    // Objects created as hide and don't save must be explicitly destroyed by the owner of the object.
+    void OnDisable()
+    {
+        DestroyImmediate(ownedMaterial);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: PhotoCapture</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">PhotoCapture</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine.Windows.WebCam</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.CoreModule.html" class="cl">UnityEngine.CoreModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Captures a photo from the web camera and stores it in memory or on disk.</p></div><div class="subsection"><p>Demonstrates how to take a photo using the PhotoCapture functionality and display it on a Unity GameObject.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;
+using System.Linq;
+using UnityEngine.Windows.WebCam;<br /><br />public class PhotoCaptureExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="Windows.WebCam.PhotoCapture.html">PhotoCapture</a> photoCaptureObject = null;
+    <a href="Texture2D.html">Texture2D</a> targetTexture = null;<br /><br />    // Use this for initialization
+    void Start()
+    {
+        <a href="Resolution.html">Resolution</a> cameraResolution = PhotoCapture.SupportedResolutions.OrderByDescending((res) =&gt; res.width * res.height).First();
+        targetTexture = new <a href="Texture2D.html">Texture2D</a>(cameraResolution.width, cameraResolution.height);<br /><br />        // Create a <a href="Windows.WebCam.PhotoCapture.html">PhotoCapture</a> object
+        <a href="Windows.WebCam.PhotoCapture.CreateAsync.html">PhotoCapture.CreateAsync</a>(false, delegate(<a href="Windows.WebCam.PhotoCapture.html">PhotoCapture</a> captureObject) {
+            photoCaptureObject = captureObject;
+            <a href="Windows.WebCam.CameraParameters.html">CameraParameters</a> cameraParameters = new <a href="Windows.WebCam.CameraParameters.html">CameraParameters</a>();
+            cameraParameters.hologramOpacity = 0.0f;
+            cameraParameters.cameraResolutionWidth = cameraResolution.width;
+            cameraParameters.cameraResolutionHeight = cameraResolution.height;
+            cameraParameters.pixelFormat = <a href="Windows.WebCam.CapturePixelFormat.BGRA32.html">CapturePixelFormat.BGRA32</a>;<br /><br />            // Activate the camera
+            photoCaptureObject.StartPhotoModeAsync(cameraParameters, delegate(PhotoCapture.PhotoCaptureResult result) {
+                // Take a picture
+                photoCaptureObject.TakePhotoAsync(OnCapturedPhotoToMemory);
+            });
+        });
+    }<br /><br />    void OnCapturedPhotoToMemory(PhotoCapture.PhotoCaptureResult result, <a href="Windows.WebCam.PhotoCaptureFrame.html">PhotoCaptureFrame</a> photoCaptureFrame)
+    {
+        // Copy the raw image data into our target texture
+        photoCaptureFrame.UploadImageDataToTexture(targetTexture);<br /><br />        // Create a gameobject that we can apply our texture to
+        <a href="GameObject.html">GameObject</a> quad = <a href="GameObject.CreatePrimitive.html">GameObject.CreatePrimitive</a>(<a href="PrimitiveType.Quad.html">PrimitiveType.Quad</a>);
+        <a href="Renderer.html">Renderer</a> quadRenderer = quad.GetComponent&lt;<a href="Renderer.html">Renderer</a>&gt;() as <a href="Renderer.html">Renderer</a>;
+        quadRenderer.material = new <a href="Material.html">Material</a>(<a href="Shader.Find.html">Shader.Find</a>("Unlit/<a href="Texture.html">Texture</a>"));<br /><br />        quad.transform.parent = this.transform;
+        quad.transform.localPosition = new <a href="Vector3.html">Vector3</a>(0.0f, 0.0f, 3.0f);<br /><br />        quadRenderer.material.SetTexture("_MainTex", targetTexture);<br /><br />        // Deactivate our camera
+        photoCaptureObject.StopPhotoModeAsync(OnStoppedPhotoMode);
+    }<br /><br />    void OnStoppedPhotoMode(PhotoCapture.PhotoCaptureResult result)
+    {
+        // Shutdown our photo capture resource
+        photoCaptureObject.Dispose();
+        photoCaptureObject = null;
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Static Properties</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Windows.WebCam.PhotoCapture.SupportedResolutions.html">SupportedResolutions</a></td><td class="desc"></td><td class="desc1">A list of all the supported device resolutions for taking pictures.</td></tr>
+    </table></div><div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Windows.WebCam.PhotoCapture.Dispose.html">Dispose</a></td><td class="desc"></td><td class="desc1">Dispose must be called to shutdown the PhotoCapture instance.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Windows.WebCam.PhotoCapture.GetUnsafePointerToVideoDeviceController.html">GetUnsafePointerToVideoDeviceController</a></td><td class="desc"></td><td class="desc1">Provides a COM pointer to the native IVideoDeviceController.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Windows.WebCam.PhotoCapture.StartPhotoModeAsync.html">StartPhotoModeAsync</a></td><td class="desc"></td><td class="desc1">Asynchronously starts photo mode.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Windows.WebCam.PhotoCapture.StopPhotoModeAsync.html">StopPhotoModeAsync</a></td><td class="desc"></td><td class="desc1">Asynchronously stops photo mode.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Windows.WebCam.PhotoCapture.TakePhotoAsync.html">TakePhotoAsync</a></td><td class="desc"></td><td class="desc1">Asynchronously captures a photo from the web camera and saves it to disk.</td></tr>
+    </table></div><div class="subsection"><h2>Static Methods   静态方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Windows.WebCam.PhotoCapture.CreateAsync.html">CreateAsync</a></td><td class="desc"></td><td class="desc1">Asynchronously creates an instance of a PhotoCapture object that can be used to capture photos.</td></tr>
+    </table></div><div class="subsection"><h2>Delegates</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Windows.WebCam.PhotoCapture.OnCapturedToDiskCallback.html">OnCapturedToDiskCallback</a></td><td class="desc"></td><td class="desc1">Called when a photo has been saved to the file system.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Windows.WebCam.PhotoCapture.OnCapturedToMemoryCallback.html">OnCapturedToMemoryCallback</a></td><td class="desc"></td><td class="desc1">Called when a photo has been captured to memory.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Windows.WebCam.PhotoCapture.OnCaptureResourceCreatedCallback.html">OnCaptureResourceCreatedCallback</a></td><td class="desc"></td><td class="desc1">Called when a PhotoCapture resource has been created.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Windows.WebCam.PhotoCapture.OnPhotoModeStartedCallback.html">OnPhotoModeStartedCallback</a></td><td class="desc"></td><td class="desc1">Called when photo mode has been started.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Windows.WebCam.PhotoCapture.OnPhotoModeStoppedCallback.html">OnPhotoModeStoppedCallback</a></td><td class="desc"></td><td class="desc1">Called when photo mode has been stopped.</td></tr>
+    </table></div></div></div></div></body></html>

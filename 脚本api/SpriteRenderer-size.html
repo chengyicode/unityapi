@@ -1,0 +1,28 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: SpriteRenderer.size</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="SpriteRenderer.html">SpriteRenderer</a>.size</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-SpriteRenderer.html' title='Go to SpriteRenderer Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Vector2.html">Vector2</a> <span class="sig-kw">size</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Property to set/get the size to render when the <a href="SpriteRenderer-drawMode.html">SpriteRenderer.drawMode</a> is set to <a href="SpriteDrawMode.Sliced.html">SpriteDrawMode.Sliced</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private <a href="Rigidbody2D.html">Rigidbody2D</a> rb;
+    private <a href="SpriteRenderer.html">SpriteRenderer</a> sprRend;<br /><br />    void Awake()
+    {
+        sprRend = gameObject.AddComponent&lt;<a href="SpriteRenderer.html">SpriteRenderer</a>&gt;() as <a href="SpriteRenderer.html">SpriteRenderer</a>;
+        sprRend.drawMode = <a href="SpriteDrawMode.Sliced.html">SpriteDrawMode.Sliced</a>;<br /><br />        rb = gameObject.AddComponent&lt;<a href="Rigidbody2D.html">Rigidbody2D</a>&gt;() as <a href="Rigidbody2D.html">Rigidbody2D</a>;
+        rb.bodyType = <a href="RigidbodyType2D.Kinematic.html">RigidbodyType2D.Kinematic</a>;
+    }<br /><br />    void Start()
+    {
+        gameObject.GetComponent&lt;<a href="SpriteRenderer.html">SpriteRenderer</a>&gt;().sprite = <a href="Resources.Load.html">Resources.Load</a>&lt;<a href="Sprite.html">Sprite</a>&gt;("image256x128");
+        gameObject.transform.Translate(0.0f, 0.0f, 0.0f);
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        //Press the <a href="Space.html">Space</a> key to increase the size of the sprite
+        if (<a href="Input.GetKey.html">Input.GetKey</a>(<a href="KeyCode.Space.html">KeyCode.Space</a>))
+        {
+            sprRend.size += new <a href="Vector2.html">Vector2</a>(0.05f, 0.01f);
+            <a href="Debug.Log.html">Debug.Log</a>("<a href="Sprite.html">Sprite</a> size: " + sprRend.size.ToString("F2"));
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

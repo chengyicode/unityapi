@@ -1,0 +1,49 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AssetDatabase.AddObjectToAsset</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="AssetDatabase.html">AssetDatabase</a>.AddObjectToAsset</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">AddObjectToAsset</span>(<a href="Object.html">Object</a> <span class="sig-kw">objectToAdd</span>,
+string <span class="sig-kw">path</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">objectToAdd</td><td class="desc"></td><td class="desc1">Object to add to the existing asset.</td></tr><tr><td class="name lbl">path</td><td class="desc"></td><td class="desc1">Filesystem path to the asset.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Adds <code class="varname">objectToAdd</code> to an existing asset at <code class="varname">path</code>.</p></div><div class="subsection"><p>Please note that you should only add assets to '.asset' assets, imported models or texture assets for example will lose their data.<br /><br />All paths are relative to the project folder, for example: "Assets/MyTextures/hello.png".
+<strong>Note:</strong><br /><br />You can not add GameObjects; use <a href="PrefabUtility.html">PrefabUtility</a> instead.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class CreateMaterialExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    [<a href="MenuItem.html">MenuItem</a>("<a href="GameObject.html">GameObject</a>/Create <a href="Material.html">Material</a>")]
+    static void CreateMaterial()
+    {
+        // Create a simple material asset<br /><br />        <a href="Material.html">Material</a> material = new <a href="Material.html">Material</a>(<a href="Shader.Find.html">Shader.Find</a>("Specular"));
+        <a href="AssetDatabase.CreateAsset.html">AssetDatabase.CreateAsset</a>(material, "Assets/MyMaterial.mat");<br /><br />        // Add an animation clip to it
+        <a href="AnimationClip.html">AnimationClip</a> animationClip = new <a href="AnimationClip.html">AnimationClip</a>();
+        animationClip.name = "My Clip";
+        <a href="AssetDatabase.AddObjectToAsset.html">AssetDatabase.AddObjectToAsset</a>(animationClip, material);<br /><br />        // Reimport the asset after adding an object.
+        // Otherwise the change only shows up when saving the project
+        <a href="AssetDatabase.ImportAsset.html">AssetDatabase.ImportAsset</a>(<a href="AssetDatabase.GetAssetPath.html">AssetDatabase.GetAssetPath</a>(animationClip));<br /><br />        // Print the path of the created asset
+        <a href="Debug.Log.html">Debug.Log</a>(<a href="AssetDatabase.GetAssetPath.html">AssetDatabase.GetAssetPath</a>(material));
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">AddObjectToAsset</span>(<a href="Object.html">Object</a> <span class="sig-kw">objectToAdd</span>,
+<a href="Object.html">Object</a> <span class="sig-kw">assetObject</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Adds <code class="varname">objectToAdd</code> to an existing asset identified by <code class="varname">assetObject</code>.</p></div><div class="subsection"><p>
+        <strong>Note:</strong>
+        <br />
+        <br />You can not add GameObjects; use <a href="PrefabUtility.html">PrefabUtility</a> instead.<br /><br /></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class CreateMaterialExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    [<a href="MenuItem.html">MenuItem</a>("<a href="GameObject.html">GameObject</a>/Create <a href="Material.html">Material</a>")]
+    static void CreateMaterial()
+    {
+        // Create a simple material asset<br /><br />        <a href="Material.html">Material</a> material = new <a href="Material.html">Material</a>(<a href="Shader.Find.html">Shader.Find</a>("Specular"));
+        <a href="AssetDatabase.CreateAsset.html">AssetDatabase.CreateAsset</a>(material, "Assets/MyMaterial.mat");<br /><br />        // Add an animation clip to it
+        <a href="AnimationClip.html">AnimationClip</a> animationClip = new <a href="AnimationClip.html">AnimationClip</a>();
+        animationClip.name = "My Clip";
+        <a href="AssetDatabase.AddObjectToAsset.html">AssetDatabase.AddObjectToAsset</a>(animationClip, material);<br /><br />        // Reimport the asset after adding an object.
+        // Otherwise the change only shows up when saving the project
+        <a href="AssetDatabase.ImportAsset.html">AssetDatabase.ImportAsset</a>(<a href="AssetDatabase.GetAssetPath.html">AssetDatabase.GetAssetPath</a>(animationClip));<br /><br />        // Print the path of the created asset
+        <a href="Debug.Log.html">Debug.Log</a>(<a href="AssetDatabase.GetAssetPath.html">AssetDatabase.GetAssetPath</a>(material));
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

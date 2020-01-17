@@ -1,0 +1,25 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: JsonUtility.FromJson</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="JsonUtility.html">JsonUtility</a>.FromJson</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static T <span class="sig-kw">FromJson</span>(string <span class="sig-kw">json</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">json</td><td class="desc"></td><td class="desc1">The JSON representation of the object.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>T</strong>
+        An instance of the object.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Create an object from its JSON representation.</p></div><div class="subsection"><p>Internally, this method uses the Unity serializer; therefore the type you are creating must be supported by the serializer. It must be a plain class/struct marked with the Serializable attribute. Fields of the object must have types supported by the serializer. Fields that have unsupported types, as well as private fields or fields marked with the NonSerialized attribute, will be ignored.<br /><br />Only plain classes and structures are supported; classes derived from UnityEngine.Object (such as MonoBehaviour or ScriptableObject) are not.<br /><br />If the JSON representation is missing any fields, they will be given their default values (i.e. a field of type T will have value default(T) - it will not be given any value specified as a field initializer, as the constructor for the object is not executed during deserialization).<br /><br />The versions of this method that take strings can be called from background threads. The versions that take a TextAsset must be called from the main thread.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />[System.Serializable]
+public class PlayerInfo
+{
+    public string name;
+    public int lives;
+    public float health;<br /><br />    public static PlayerInfo CreateFromJSON(string jsonString)
+    {
+        return <a href="JsonUtility.FromJson.html">JsonUtility.FromJson</a>&lt;PlayerInfo&gt;(jsonString);
+    }<br /><br />    // Given JSON input:
+    // {"name":"Dr Charles","lives":3,"health":0.8}
+    // this example will return a PlayerInfo object with
+    // name == "Dr Charles", lives == 3, and health == 0.8f.
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static object <span class="sig-kw">FromJson</span>(string <span class="sig-kw">json</span>,
+Type <span class="sig-kw">type</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">json</td><td class="desc"></td><td class="desc1">The JSON representation of the object.</td></tr><tr><td class="name lbl">type</td><td class="desc"></td><td class="desc1">The type of object represented by the Json.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>object</strong>
+        An instance of the object.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Create an object from its JSON representation.</p></div><div class="subsection"><p>Internally, this method uses the Unity serializer; therefore the type you are creating must be supported by the serializer. It must be a plain class/struct marked with the Serializable attribute. Fields of the object must have types supported by the serializer. Fields that have unsupported types, as well as private fields or fields marked with the NonSerialized attribute, will be ignored.<br /><br />Only plain classes and structures are supported; classes derived from UnityEngine.Object (such as MonoBehaviour or ScriptableObject) are not.<br /><br />If the JSON representation is missing any fields, they will be given their default values (i.e. a field of type T will have value default(T) - it will not be given any value specified as a field initializer, as the constructor for the object is not executed during deserialization).<br /><br />The versions of this method that take strings can be called from background threads. The versions that take a TextAsset must be called from the main thread.</p></div></div></div></div></body></html>

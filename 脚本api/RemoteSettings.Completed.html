@@ -1,0 +1,12 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: RemoteSettings.Completed</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="RemoteSettings.html">RemoteSettings</a>.Completed</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Dispatched when the network request made by the <a href="RemoteSettings.html">RemoteSettings</a> object to fetch the remote configuration file is complete.</p></div><div class="subsection"><p>Your event handler function must have the signature: <code class="mono">Handler(bool wasUpdatedFromServer, bool settingsChanged, int serverResponse)</code>.<br /><br />Check the <code class="mono">wasUpdatedFromServer</code> parameter passed to your event handler to determine whether a remote configration file was received as a result of the request. (This file could be identical to the local, cached version if you have not updated your settings.)<br /><br />Check the <code class="mono">settingsChanged</code> parameter to determine if any values in the received configuration changed since the last remote update.<br /><br />Check the <code class="mono">serverResponse</code> parameter passed to determine whether the request succeeded or not. This parameter contains a standard HTTP response code (for example, <strong>200</strong> on success).</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class HandleRemoteSettings : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private void Start()
+    {
+        <a href="RemoteSettings.Completed.html">RemoteSettings.Completed</a> += RemoteSettingsUpdateCompleted;
+    }<br /><br />    private static void RemoteSettingsUpdateCompleted(bool wasUpdatedFromServer, bool settingsChanged, int serverResponse) { /*...*/}
+}
+</pre>
+      </div></div></div></div></body></html>

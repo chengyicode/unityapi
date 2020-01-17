@@ -1,0 +1,21 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: MonoBehaviour.OnAnimatorIK(int)</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="MonoBehaviour.html">MonoBehaviour</a>.OnAnimatorIK(int)</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">layerIndex</td><td class="desc"></td><td class="desc1">The index of the layer on which the IK solver is called.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Callback for setting up animation IK (inverse kinematics).</p></div><div class="subsection"><p>OnAnimatorIK() is called by the Animator Component immediately before it updates its internal IK system. This callback can be used to set the positions of the IK goals and their respective weights.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    float leftFootPositionWeight;
+    float leftFootRotationWeight;
+    <a href="Transform.html">Transform</a> leftFootObj;<br /><br />    private <a href="Animator.html">Animator</a> animator;<br /><br />    void Start()
+    {
+        animator = GetComponent&lt;<a href="Animator.html">Animator</a>&gt;();
+    }<br /><br />    void OnAnimatorIK(int layerIndex)
+    {
+        animator.SetIKPositionWeight(<a href="AvatarIKGoal.LeftFoot.html">AvatarIKGoal.LeftFoot</a>, leftFootPositionWeight);
+        animator.SetIKRotationWeight(<a href="AvatarIKGoal.LeftFoot.html">AvatarIKGoal.LeftFoot</a>, leftFootRotationWeight);
+        animator.SetIKPosition(<a href="AvatarIKGoal.LeftFoot.html">AvatarIKGoal.LeftFoot</a>, leftFootObj.position);
+        animator.SetIKRotation(<a href="AvatarIKGoal.LeftFoot.html">AvatarIKGoal.LeftFoot</a>, leftFootObj.rotation);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="Animator.SetIKPosition.html">Animator.SetIKPosition</a>, <a href="Animator.SetIKPositionWeight.html">Animator.SetIKPositionWeight</a>, <a href="Animator.SetIKRotation.html">Animator.SetIKRotation</a>, <a href="Animator.SetIKRotationWeight.html">Animator.SetIKRotationWeight</a>.</p></div></div></div></div></body></html>

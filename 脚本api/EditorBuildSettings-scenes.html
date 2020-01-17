@@ -1,0 +1,44 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorBuildSettings.scenes</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorBuildSettings.html">EditorBuildSettings</a>.scenes</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static EditorBuildSettingsScene[] <span class="sig-kw">scenes</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The list of Scenes that should be included in the build.
+This is the same list of Scenes that is shown in the <a href="../Manual/BuildSettings.html">Build Settings</a> window. You can modify this list to set up which Scenes should be included in the build.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.Collections.Generic;
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;<br /><br />public class ExampleWindow : <a href="EditorWindow.html">EditorWindow</a>
+{
+    List&lt;<a href="SceneAsset.html">SceneAsset</a>&gt; m_SceneAssets = new List&lt;<a href="SceneAsset.html">SceneAsset</a>&gt;();<br /><br />    // Add menu item named "Example Window" to the Window menu
+    [<a href="MenuItem.html">MenuItem</a>("Window/Example Window")]
+    public static void ShowWindow()
+    {
+        //Show existing window instance. If one doesn't exist, make one.
+        <a href="EditorWindow.GetWindow.html">EditorWindow.GetWindow</a>(typeof(ExampleWindow));
+    }<br /><br />    void OnGUI()
+    {
+        <a href="GUILayout.Label.html">GUILayout.Label</a>("Scenes to include in build:", <a href="EditorStyles-boldLabel.html">EditorStyles.boldLabel</a>);
+        for (int i = 0; i &lt; m_SceneAssets.Count; ++i)
+        {
+            m_SceneAssets[i] = (<a href="SceneAsset.html">SceneAsset</a>)<a href="EditorGUILayout.ObjectField.html">EditorGUILayout.ObjectField</a>(m_SceneAssets[i], typeof(<a href="SceneAsset.html">SceneAsset</a>), false);
+        }
+        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Add"))
+        {
+            m_SceneAssets.Add(null);
+        }<br /><br />        <a href="GUILayout.Space.html">GUILayout.Space</a>(8);<br /><br />        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Apply To Build <a href="CameraEditor.Settings.html">Settings</a>"))
+        {
+            SetEditorBuildSettingsScenes();
+        }
+    }<br /><br />    public void SetEditorBuildSettingsScenes()
+    {
+        // Find valid <a href="SceneManagement.Scene.html">Scene</a> paths and make a list of <a href="EditorBuildSettingsScene.html">EditorBuildSettingsScene</a>
+        List&lt;<a href="EditorBuildSettingsScene.html">EditorBuildSettingsScene</a>&gt; editorBuildSettingsScenes = new List&lt;<a href="EditorBuildSettingsScene.html">EditorBuildSettingsScene</a>&gt;();
+        foreach (var sceneAsset in m_SceneAssets)
+        {
+            string scenePath = <a href="AssetDatabase.GetAssetPath.html">AssetDatabase.GetAssetPath</a>(sceneAsset);
+            if (!string.IsNullOrEmpty(scenePath))
+                editorBuildSettingsScenes.Add(new <a href="EditorBuildSettingsScene.html">EditorBuildSettingsScene</a>(scenePath, true));
+        }<br /><br />        // Set the Build <a href="CameraEditor.Settings.html">Settings</a> window <a href="SceneManagement.Scene.html">Scene</a> list
+        <a href="EditorBuildSettings-scenes.html">EditorBuildSettings.scenes</a> = editorBuildSettingsScenes.ToArray();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

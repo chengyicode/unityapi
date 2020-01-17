@@ -1,0 +1,65 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Vector3.x</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Vector3.html">Vector3</a>.x</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public float <span class="sig-kw">x</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>X component of the vector.</p></div><div class="subsection"><p>Use this to modify or return the X component of a vector.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// This script moves a <a href="GameObject.html">GameObject</a> to a new x position using <a href="Vector3-x.html">Vector3.x</a>.
+// Attach this script to a <a href="GameObject.html">GameObject</a>
+// Set your x position in the Inspector<br /><br />using UnityEngine;<br /><br />public class Examples : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="Vector3.html">Vector3</a> m_NewPosition;
+    // his is the new X position. Set it in the Inspector.
+    public float m_XPosition;<br /><br />    // Use this for initialization
+    void Start()
+    {
+        // Initialise the vector
+        m_NewPosition = new <a href="Vector3.html">Vector3</a>(0.0f, 0.0f, 0.0f);
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        // Press the space key to change the x component of the vector
+        if (<a href="Input.GetKeyDown.html">Input.GetKeyDown</a>(<a href="KeyCode.Space.html">KeyCode.Space</a>))
+        {
+            m_NewPosition.x = m_XPosition;
+        }
+        // Change the position depending on the vector
+        transform.position = m_NewPosition;
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Below is another example that allows you to manipulate the GameObject’s x and y positions. Just type an x and y position in the Input Fields in Play Mode.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Attach this script to a <a href="GameObject.html">GameObject</a>
+// Create two <a href="Input.html">Input</a> Fields in the <a href="SceneManagement.Scene.html">Scene</a> (Create&gt;UI&gt;<a href="Input.html">Input</a> Field)
+// Click on the <a href="GameObject.html">GameObject</a> and attach both <a href="Input.html">Input</a> Fields in the Inspector window<br /><br />using UnityEngine;
+using UnityEngine.UI;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="Vector3.html">Vector3</a> m_NewPosition;<br /><br />    // Attach these in the Inspector window
+    public InputField m_InputFieldX, m_InputFieldY;<br /><br />    // These are the strings that are returned from the InputFields
+    string xString, yString;<br /><br />    // These are used when converting the strings to floats
+    float m_XValue, m_YValue;<br /><br />    // Use this for initialization
+    void Start()
+    {
+        // Initialise the vector
+        m_NewPosition = new <a href="Vector3.html">Vector3</a>(0.0f, 0.0f, 0.0f);
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        // Store the inputs from the InputFields as strings
+        xString = m_InputFieldX.text;
+        yString = m_InputFieldY.text;<br /><br />        // Convert the strings from the InputFields to floats
+        ConvertStringsToFloats(xString, yString);<br /><br />        // Change the NewPosition Vector's x and y components
+        m_NewPosition.x = m_XValue;
+        m_NewPosition.y = m_YValue;<br /><br />        // Change the position depending on the vector
+        transform.position = m_NewPosition;
+    }<br /><br />    void ConvertStringsToFloats(string XVal, string YVal)
+    {
+        try
+        {
+            // Convert the strings to floats
+            m_XValue = float.Parse(XVal);
+            m_YValue = float.Parse(YVal);
+        }
+        catch{}
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

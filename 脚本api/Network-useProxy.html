@@ -1,0 +1,28 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Network.useProxy</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Removed in version 2019.2.18</b><br /></div><h1 class="heading inherit"><a href="Network.html">Network</a>.useProxy</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public static bool <span class="sig-kw">useProxy</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Indicate if proxy support is needed, in which case traffic is relayed through the proxy server.</p></div><div class="subsection"><p>The proxy server is a solution to connectivity problems with servers
+as well as clients. When a user is running a machine with a non-NAT-punchthrough-capable
+router, their connectivity options are limited. A game cannot be hosted
+as nobody external can connect to them (only clients on the local network can).
+By using the proxy server the machine can be fully connectable but with
+the extra cost of having all traffic relayed through another server.
+A non NAT punchthrough capable client can connect to any server through
+the proxy server, as long as the proxy server is set up properly.<br /><br />Unity Technologies does not provide a proxy server for public use, so to
+use this feature you will need to set up your own proxy server. Of course
+it is advisable to set up a proxy server with a public IP address and
+a lot of available bandwidth.<br /><br />When running as a client, just enabling Network.useProxy is all you have
+to do. Connect to the server as usual with Network.Connect(). All traffic
+will be relayed through the proxy server. The servers external IP and internal
+IP still work as usual. So clients can connect to them directly without
+the proxy in case they are located on the same network.<br /><br />When running as a server OnServerInitialized(NetworkPlayer) returns a
+NetworkPlayer structure which indicates what the game servers relayed
+IP/port is, i.e. what port the proxy server allocated to the game server.
+This is the IP/port others can use to connect to. When connecting to the
+server, the clients don't treat the server any differently than other servers.
+Technically speaking, they don't need to know at all that the game server
+is getting help from a proxy server.<br /><br />When using the master server you can no longer only rely on the IP/port he
+registers for servers when using proxy support. The proxy server IP address
+and port which the server is using can be placed in the comment field of
+the data sent to the master server. A client which received host information
+from the master server can peek into the comment field and find out if
+he can use an alternative IP/port for that host.<br /><br />IMPORTANT: You should never enable proxy support for both the server and
+the client connecting to him. Unexpected things are bound to happen.</p></div></div></div></div></body></html>

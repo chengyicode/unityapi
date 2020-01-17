@@ -1,0 +1,66 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: GameObject.SetActive</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="GameObject.html">GameObject</a>.SetActive</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-GameObject.html' title='Go to GameObject Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">SetActive</span>(bool <span class="sig-kw">value</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">value</td><td class="desc"></td><td class="desc1">Activate or deactivate the object, where <code class="varname">true</code> activates the <a href="GameObject.html">GameObject</a> and <code class="varname">false</code> deactivates the <a href="GameObject.html">GameObject</a>.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Activates/Deactivates the GameObject, depending on the given <code class="varname">true</code> or <code class="varname">false</code> value.</p></div><div class="subsection"><p>A <a href="GameObject.html">GameObject</a> may be inactive because a parent is not active. In that case, calling <a href="GameObject.SetActive.html">SetActive</a> will not activate it, but only set the local state of the <a href="GameObject.html">GameObject</a>, which you can check using <a href="GameObject-activeSelf.html">GameObject.activeSelf</a>. Unity can then use this state when all parents become active.<br /><br />Deactivating a <a href="GameObject.html">GameObject</a> disables each component, including  attached renderers, colliders, rigidbodies, and scripts. For example, Unity will no longer call the <code class="mono">Update()</code> method of a script attached to a deactivated <a href="GameObject.html">GameObject</a>. <code class="varname">OnEnable</code> or <code class="varname">OnDisable</code> are called as the <a href="GameObject.html">GameObject</a> received <code class="mono">SetActive(true)</code> or <code class="mono">SetActive(false)</code>.
+                </p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />// <a href="GameObject.SetActive.html">GameObject.SetActive</a> demo.
+//
+// Show a column of cubes. Any cube can be clicked by the mouse
+// and have SetActive set to false. The cubes beneath the hidden
+// cube will not have SetActive set to false, but will not be
+// shown.  This is the feature of SetActive. Also, the cubes have
+// SetActive set back to true 2 seconds after they are hidden.<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private <a href="GameObject.html">GameObject</a>[] gameObjects;
+    private int numberOfGameObjects = 5;
+    private float delay = 2.0f;<br /><br />    void Awake()
+    {
+        // Create some GameObjects.
+        gameObjects = new <a href="GameObject.html">GameObject</a>[numberOfGameObjects];<br /><br />        for (int i = 0; i &lt; numberOfGameObjects; i++)
+        {
+            // Create, place in the world, and set name.
+            gameObjects[i] = <a href="GameObject.CreatePrimitive.html">GameObject.CreatePrimitive</a>(<a href="PrimitiveType.Cube.html">PrimitiveType.Cube</a>);
+            gameObjects[i].transform.position = new <a href="Vector3.html">Vector3</a>(0.0f, -1.5f * i, 0.0f);
+            gameObjects[i].name = i.ToString();<br /><br />            // The first <a href="GameObject.html">GameObject</a> is the top parent, so ignore it for now.
+            if (i &gt; 0)
+            {
+                gameObjects[i].transform.parent = gameObjects[i - 1].transform;
+            }
+        }
+    }<br /><br />    private float startTime = 0.0f;
+    private bool increaseTime = false;<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        if (<a href="Input.GetMouseButtonDown.html">Input.GetMouseButtonDown</a>(0))
+        {
+            <a href="RaycastHit.html">RaycastHit</a> hitInfo = new <a href="RaycastHit.html">RaycastHit</a>();
+            bool hit = <a href="Physics.Raycast.html">Physics.Raycast</a>(Camera.main.ScreenPointToRay(<a href="Input-mousePosition.html">Input.mousePosition</a>), out hitInfo);<br /><br />            // Set <a href="GameObject.html">GameObject</a> SetActive to false when
+            // hit by a mouse click.
+            if (hit)
+            {
+                hitInfo.transform.gameObject.SetActive(false);<br /><br />                startTime = 0.0f;
+                increaseTime = true;
+            }
+        }<br /><br />        // Show the GameObjects when time exceeds delay.
+        if (increaseTime)
+        {
+            startTime += <a href="Time-deltaTime.html">Time.deltaTime</a>;
+            if (startTime &gt; delay)
+            {
+                for (int i = 0; i &lt; numberOfGameObjects; i++)
+                {
+                    // Note that some of the GameObjects
+                    // might have true already.
+                    gameObjects[i].SetActive(true);
+                }<br /><br />                increaseTime = false;
+            }
+        }
+    }<br /><br />    // Show time.
+    void OnGUI()
+    {
+        <a href="GUIStyle.html">GUIStyle</a> fontSize = new <a href="GUIStyle.html">GUIStyle</a>(GUI.skin.GetStyle("label"));
+        fontSize.fontSize = 24;
+        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(10, 10, 250, 50), "<a href="Time.html">Time</a>: " + startTime.ToString("F2"), fontSize);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

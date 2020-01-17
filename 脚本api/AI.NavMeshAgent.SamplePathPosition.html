@@ -1,0 +1,35 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AI.NavMeshAgent.SamplePathPosition</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="AI.NavMeshAgent.html">NavMeshAgent</a>.SamplePathPosition</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public bool <span class="sig-kw">SamplePathPosition</span>(int <span class="sig-kw">areaMask</span>,
+float <span class="sig-kw">maxDistance</span>,
+out <a href="AI.NavMeshHit.html">AI.NavMeshHit</a> <span class="sig-kw">hit</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">areaMask</td><td class="desc"></td><td class="desc1">A bitfield mask specifying which NavMesh areas can be passed when tracing the path.</td></tr><tr><td class="name lbl">maxDistance</td><td class="desc"></td><td class="desc1">Terminate scanning the path at this distance.</td></tr><tr><td class="name lbl">hit</td><td class="desc"></td><td class="desc1">Holds the properties of the resulting location.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>bool</strong>
+        True if terminated before reaching the position at maxDistance, false otherwise.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Sample a position along the current path.</p></div><div class="subsection"><p>This function looks ahead a specified distance along the current path. Details of the mesh
+ at that position are then returned in a <a href="AI.NavMeshHit.html">NavMeshHit</a> object. This could be used, for example,
+ to check the type of surface that lies ahead before the character gets there - a character could
+ raise his gun above his head if he is about to wade through water, say.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.AI;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Transform.html">Transform</a> target;
+    private <a href="AI.NavMeshAgent.html">NavMeshAgent</a> agent;
+    private int waterMask;<br /><br />
+    void Start()
+    {
+        agent = GetComponent&lt;<a href="AI.NavMeshAgent.html">NavMeshAgent</a>&gt;();
+        waterMask = 1 &lt;&lt; <a href="AI.NavMesh.GetAreaFromName.html">NavMesh.GetAreaFromName</a>("Water");
+        agent.SetDestination(target.position);
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        <a href="AI.NavMeshHit.html">NavMeshHit</a> hit;<br /><br />        // Check all areas one length unit ahead.
+        if (!agent.SamplePathPosition(<a href="AI.NavMesh.AllAreas.html">NavMesh.AllAreas</a>, 1.0F, out hit))
+            if ((hit.mask &amp; waterMask) != 0)
+            {
+                // Water detected along the path...
+            }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

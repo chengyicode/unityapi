@@ -1,0 +1,105 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: GUI.Box</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="GUI.html">GUI</a>.Box</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">Box</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+string <span class="sig-kw">text</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">Box</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+<a href="Texture.html">Texture</a> <span class="sig-kw">image</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">Box</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+<a href="GUIContent.html">GUIContent</a> <span class="sig-kw">content</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">Box</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+string <span class="sig-kw">text</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">Box</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+<a href="Texture.html">Texture</a> <span class="sig-kw">image</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">Box</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+<a href="GUIContent.html">GUIContent</a> <span class="sig-kw">content</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">position</td><td class="desc"></td><td class="desc1">Rectangle on the screen to use for the box.</td></tr><tr><td class="name lbl">text</td><td class="desc"></td><td class="desc1">Text to display on the box.</td></tr><tr><td class="name lbl">image</td><td class="desc"></td><td class="desc1">
+          <a href="Texture.html">Texture</a> to display on the box.</td></tr><tr><td class="name lbl">content</td><td class="desc"></td><td class="desc1">Text, image and tooltip for this box.</td></tr><tr><td class="name lbl">style</td><td class="desc"></td><td class="desc1">The style to use. If left out, the <code class="varname">box</code> style from the current <a href="GUISkin.html">GUISkin</a> is used.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Create a Box on the GUI Layer.</p></div><div class="subsection"><p> A Box can contain text, an image, or a combination of these along
+        with an optional tooltip, through using a <a href="GUIContent.html">GUIContent</a> parameter. You may also use
+        a <a href="GUIStyle.html">GUIStyle</a> to adjust the layout of items in a box, text colour and other properties.<br />
+<br />
+Here is an example of a Box containing Text:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class BoxExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void OnGUI()
+    {
+        <a href="GUI.Box.html">GUI.Box</a>(new <a href="Rect.html">Rect</a>(0, 0, <a href="Screen-width.html">Screen.width</a>, <a href="Screen-height.html">Screen.height</a>), "This is a box");
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Here is an example of a Box containing a Texture:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class BoxWithTextureExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Texture.html">Texture</a> BoxTexture;      // Drag a <a href="Texture.html">Texture</a> onto this item in the Inspector<br /><br />    void OnGUI()
+    {
+        <a href="GUI.Box.html">GUI.Box</a>(new <a href="Rect.html">Rect</a>(0, 0, <a href="Screen-width.html">Screen.width</a>, <a href="Screen-height.html">Screen.height</a>), BoxTexture);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Here is an example of a Box containing a GUIContent, combining Text, Texture and Tooltip:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class BoxWithContentExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Texture.html">Texture</a> BoxTexture;      // Drag a <a href="Texture.html">Texture</a> onto this item in the Inspector<br /><br />    <a href="GUIContent.html">GUIContent</a> content;<br /><br />    void Start()
+    {
+        content = new <a href="GUIContent.html">GUIContent</a>("This is a box", BoxTexture, "This is a tooltip");
+    }<br /><br />    void OnGUI()
+    {
+        <a href="GUI.Box.html">GUI.Box</a>(new <a href="Rect.html">Rect</a>(0, 0, <a href="Screen-width.html">Screen.width</a>, <a href="Screen-height.html">Screen.height</a>), content);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Here is an example of a Box containing Text, with options set in a GUIStyle to position the Text in the center of the Box.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class BoxWithTextStyleExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="GUIStyle.html">GUIStyle</a> style = new <a href="GUIStyle.html">GUIStyle</a>();<br /><br />    void Start()
+    {
+        // <a href="UIElements.Position.html">Position</a> the Text in the center of the <a href="UIElements.Box.html">Box</a>
+        style.alignment = <a href="TextAnchor.MiddleCenter.html">TextAnchor.MiddleCenter</a>;
+    }<br /><br />    void OnGUI()
+    {
+        <a href="GUI.Box.html">GUI.Box</a>(new <a href="Rect.html">Rect</a>(0, 0, <a href="Screen-width.html">Screen.width</a>, <a href="Screen-height.html">Screen.height</a>), "This is a box", style);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Here is an example of a Box containing a Texture, with options set in a GUIStyle to position the Texture in the center of the Box.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class BoxWithTextureStyleExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Texture.html">Texture</a> BoxTexture;              // Drag a <a href="Texture.html">Texture</a> onto this item in the Inspector<br /><br />    <a href="GUIStyle.html">GUIStyle</a> style = new <a href="GUIStyle.html">GUIStyle</a>();<br /><br />
+    void Start()
+    {
+        // <a href="UIElements.Position.html">Position</a> the <a href="Texture.html">Texture</a> in the center of the <a href="UIElements.Box.html">Box</a>
+        style.alignment = <a href="TextAnchor.MiddleCenter.html">TextAnchor.MiddleCenter</a>;
+    }<br /><br />    void OnGUI()
+    {
+        <a href="GUI.Box.html">GUI.Box</a>(new <a href="Rect.html">Rect</a>(0, 0, <a href="Screen-width.html">Screen.width</a>, <a href="Screen-height.html">Screen.height</a>), BoxTexture, style);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Finally, here is an example of a Box containing a GUIContent, combining Text, Texture and Tooltip, with positional information contained in the GUIStyle parameter:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class BoxWithContentStyleExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Texture.html">Texture</a> BoxTexture;              // Drag a <a href="Texture.html">Texture</a> onto this item in the Inspector<br /><br />    <a href="GUIContent.html">GUIContent</a> content;
+    <a href="GUIStyle.html">GUIStyle</a> style = new <a href="GUIStyle.html">GUIStyle</a>();<br /><br />    void Start()
+    {
+        content = new <a href="GUIContent.html">GUIContent</a>("This is a box", BoxTexture, "This is a tooltip");<br /><br />        // <a href="UIElements.Position.html">Position</a> the Text and <a href="Texture.html">Texture</a> in the center of the box
+        style.alignment = <a href="TextAnchor.MiddleCenter.html">TextAnchor.MiddleCenter</a>;<br /><br />        // <a href="UIElements.Position.html">Position</a> the Text below the <a href="Texture.html">Texture</a> (rather than to the right of it)
+        style.imagePosition = <a href="ImagePosition.ImageAbove.html">ImagePosition.ImageAbove</a>;
+    }<br /><br />    void OnGUI()
+    {
+        <a href="GUI.Box.html">GUI.Box</a>(new <a href="Rect.html">Rect</a>(0, 0, <a href="Screen-width.html">Screen.width</a>, <a href="Screen-height.html">Screen.height</a>), content, style);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ParticleSystem.MainModule.startSizeZ</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="ParticleSystem.MainModule.html">ParticleSystem.MainModule</a>.startSizeZ</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-ParticleSystem.html' title='Go to ParticleSystem Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="ParticleSystem.MinMaxCurve.html">ParticleSystem.MinMaxCurve</a> <span class="sig-kw">startSizeZ</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The initial size of particles along the Z axis when emitted.</p></div><div class="subsection"><p>See Also: <a href="ParticleSystem.MinMaxCurve.html">MinMaxCurve</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private <a href="ParticleSystem.html">ParticleSystem</a> ps;
+    public float hSliderValue = 1.0F;<br /><br />    void Start()
+    {
+        ps = GetComponent&lt;<a href="ParticleSystem.html">ParticleSystem</a>&gt;();<br /><br />        var main = ps.main;
+        main.startSize3D = true;<br /><br />        var psr = GetComponent&lt;<a href="ParticleSystemRenderer.html">ParticleSystemRenderer</a>&gt;();
+        psr.renderMode = <a href="ParticleSystemRenderMode.Mesh.html">ParticleSystemRenderMode.Mesh</a>;
+        psr.mesh = Resources.GetBuiltinResource&lt;<a href="Mesh.html">Mesh</a>&gt;("Cube.fbx");// use a mesh, because billboards have no Z axis size
+        psr.material = new <a href="Material.html">Material</a>(<a href="Shader.Find.html">Shader.Find</a>("Sprites/Default"));
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        var main = ps.main;
+        main.startSizeZ = hSliderValue;
+    }<br /><br />    void OnGUI()
+    {
+        hSliderValue = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(25, 45, 100, 30), hSliderValue, 0.0F, 10.0F);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorGUI.Popup</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorGUI.html">EditorGUI</a>.Popup</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static int <span class="sig-kw">Popup</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+int <span class="sig-kw">selectedIndex</span>,
+string[] <span class="sig-kw">displayedOptions</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span> = EditorStyles.popup);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static int <span class="sig-kw">Popup</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+int <span class="sig-kw">selectedIndex</span>,
+GUIContent[] <span class="sig-kw">displayedOptions</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span> = EditorStyles.popup);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static int <span class="sig-kw">Popup</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+string <span class="sig-kw">label</span>,
+int <span class="sig-kw">selectedIndex</span>,
+string[] <span class="sig-kw">displayedOptions</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span> = EditorStyles.popup);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static int <span class="sig-kw">Popup</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+<a href="GUIContent.html">GUIContent</a> <span class="sig-kw">label</span>,
+int <span class="sig-kw">selectedIndex</span>,
+GUIContent[] <span class="sig-kw">displayedOptions</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span> = EditorStyles.popup);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">position</td><td class="desc"></td><td class="desc1">Rectangle on the screen to use for the field.</td></tr><tr><td class="name lbl">label</td><td class="desc"></td><td class="desc1">Optional label in front of the field.</td></tr><tr><td class="name lbl">selectedIndex</td><td class="desc"></td><td class="desc1">The index of the option the field shows.</td></tr><tr><td class="name lbl">displayedOptions</td><td class="desc"></td><td class="desc1">An array with the options shown in the popup.</td></tr><tr><td class="name lbl">style</td><td class="desc"></td><td class="desc1">Optional <a href="GUIStyle.html">GUIStyle</a>.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>int</strong>
+        The index of the option that has been selected by the user.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Makes a generic popup selection field.</p></div><div class="subsection"><p>Takes the currently selected index as a parameter and returns the index selected by the user.<br /><br /><img src="../StaticFiles/ScriptRefImages/EditorGUIPopup.png" /><br />
+<em>Popup in and Editor Window.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />
+// Adds a component to the selected GameObjects<br /><br />class EditorGUIPopup : <a href="EditorWindow.html">EditorWindow</a>
+{
+    string[] options = { "<a href="Rigidbody.html">Rigidbody</a>", "<a href="UIElements.Box.html">Box</a> <a href="Collider.html">Collider</a>", "Sphere <a href="Collider.html">Collider</a>" };
+    int index = 0;<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Examples/<a href="Editor.html">Editor</a> <a href="GUI.html">GUI</a> Popup usage")]
+    static void Init()
+    {
+        var window = GetWindow&lt;EditorGUIPopup&gt;();
+        window.position = new <a href="Rect.html">Rect</a>(0, 0, 180, 80);
+        window.Show();
+    }<br /><br />    void OnGUI()
+    {
+        index = <a href="EditorGUI.Popup.html">EditorGUI.Popup</a>(
+            new <a href="Rect.html">Rect</a>(0, 0, position.width, 20),
+            "<a href="Component.html">Component</a>:",
+            index,
+            options);<br /><br />        if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(0, 25, position.width, position.height - 26), "Add <a href="Component.html">Component</a>"))
+            AddComponentToObjects();
+    }<br /><br />    void AddComponentToObjects()
+    {
+        if (!<a href="Selection-activeGameObject.html">Selection.activeGameObject</a>)
+        {
+            <a href="Debug.LogError.html">Debug.LogError</a>("Please select at least one <a href="GameObject.html">GameObject</a> first");
+            return;
+        }<br /><br />        foreach (<a href="GameObject.html">GameObject</a> obj in <a href="Selection-gameObjects.html">Selection.gameObjects</a>)
+        {
+            switch (index)
+            {
+                case 0:
+                    obj.AddComponent&lt;<a href="Rigidbody.html">Rigidbody</a>&gt;();
+                    break;<br /><br />                case 1:
+                    obj.AddComponent&lt;<a href="BoxCollider.html">BoxCollider</a>&gt;();
+                    break;<br /><br />                case 2:
+                    obj.AddComponent&lt;<a href="SphereCollider.html">SphereCollider</a>&gt;();
+                    break;
+            }
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>
+        <strong>Note:</strong> The <code class="varname">displayedOptions</code> lists an array of options.  When these elements contain "/" (slash characters) the elements are use for sub-menus.  The text to the left of the slashes determines the structure.</p></div></div></div></div></body></html>

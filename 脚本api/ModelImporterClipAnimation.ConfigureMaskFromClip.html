@@ -1,0 +1,22 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ModelImporterClipAnimation.ConfigureMaskFromClip</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="ModelImporterClipAnimation.html">ModelImporterClipAnimation</a>.ConfigureMaskFromClip</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">ConfigureMaskFromClip</span>(ref <a href="AvatarMask.html">AvatarMask</a> <span class="sig-kw">mask</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">mask</td><td class="desc"></td><td class="desc1">
+          <a href="AvatarMask.html">AvatarMask</a> to which the masking values will be saved.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Copy the current masking settings from the clip to an <a href="AvatarMask.html">AvatarMask</a>.</p></div><div class="subsection"><p>When writing an <a href="AssetPostprocessor.html">AssetPostprocessor</a>, use this method to copy the  <a href="AvatarMask.html">AvatarMask</a> from your clip configuration so that you can modify it.<br /><br />Note: you will need to use <a href="ModelImporterClipAnimation.ConfigureClipFromMask.html">ModelImporterClipAnimation.ConfigureClipFromMask</a> to apply the <a href="AvatarMask.html">AvatarMask</a> back on the <a href="ModelImporterClipAnimation.html">ModelImporterClipAnimation</a><br /><br />See also: <a href="ModelImporterClipAnimation.ConfigureClipFromMask.html">ModelImporterClipAnimation.ConfigureClipFromMask</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;<br /><br />public class CopyAvatarMask : <a href="AssetPostprocessor.html">AssetPostprocessor</a>
+{
+    void OnPreprocessAnimation()
+    {
+        var modelImporter = assetImporter as <a href="ModelImporter.html">ModelImporter</a>;<br /><br />        //Create a new <a href="AvatarMask.html">AvatarMask</a> to edit the mask
+        var mask = new <a href="AvatarMask.html">AvatarMask</a>();
+        var clips = modelImporter.clipAnimations;<br /><br />        //Acquire the mask from the clip
+        clips[0].ConfigureMaskFromClip(ref mask);<br /><br />        //Filter out the first non-root (0) bone
+        mask.SetTransformActive(1, false);<br /><br />        //Apply the mask back to the clip
+        clips[0].ConfigureClipFromMask(mask);<br /><br />        //Apply the clips back to the <a href="ModelImporter.html">ModelImporter</a>
+        modelImporter.clipAnimations = clips;<br /><br />        //Destroy the <a href="AvatarMask.html">AvatarMask</a> since we're not using it anymore
+        <a href="Object.DestroyImmediate.html">Object.DestroyImmediate</a>(mask);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

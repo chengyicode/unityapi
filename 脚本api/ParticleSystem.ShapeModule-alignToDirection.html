@@ -1,0 +1,22 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ParticleSystem.ShapeModule.alignToDirection</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="ParticleSystem.ShapeModule.html">ParticleSystem.ShapeModule</a>.alignToDirection</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-ParticleSystem.html' title='Go to ParticleSystem Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public bool <span class="sig-kw">alignToDirection</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Align particles based on their initial direction of travel.</p></div><div class="subsection"><p>The Shape Module supports setting the initial rotation of particles based on their direction of travel. This can be useful to make particles appear to have originated from the surface of a Mesh (for example, paint flaking off a surface). This works with any shape type. Any ParticleSystem.startRotation set gets applied on top of this setting, so you can use both together.<br /><br />You can use this setting in conjunction with the <a href="ParticleSystem.MainModule-startRotation.html">ParticleSystem.MainModule.startRotation</a> setting; the rotation given by <a href="ParticleSystem.MainModule-startRotation.html">ParticleSystem.MainModule.startRotation</a> is added on top of that calculated by <a href="ParticleSystem.ShapeModule-alignToDirection.html">ParticleSystem.ShapeModule.alignToDirection</a>.<br /><br />For example: add a <a href="ParticleSystem.MainModule-startRotation.html">ParticleSystem.MainModule.startRotation</a> of 90 degrees when using <a href="ParticleSystem.ShapeModule-alignToDirection.html">ParticleSystem.ShapeModule.alignToDirection</a>, and all the particles become perpendicular to the surface, like little spikes sticking out of it.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private <a href="ParticleSystem.html">ParticleSystem</a> ps;
+    public bool toggle = true;<br /><br />    void Start()
+    {
+        ps = GetComponent&lt;<a href="ParticleSystem.html">ParticleSystem</a>&gt;();
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        var shape = ps.shape;
+        shape.alignToDirection = toggle;
+    }<br /><br />    void OnGUI()
+    {
+        toggle = <a href="GUI.Toggle.html">GUI.Toggle</a>(new <a href="Rect.html">Rect</a>(25, 45, 200, 30), toggle, "<a href="UIElements.Align.html">Align</a> To <a href="Experimental.GraphView.Direction.html">Direction</a>");
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

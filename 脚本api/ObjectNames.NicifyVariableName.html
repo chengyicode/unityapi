@@ -1,0 +1,20 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ObjectNames.NicifyVariableName</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="ObjectNames.html">ObjectNames</a>.NicifyVariableName</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static string <span class="sig-kw">NicifyVariableName</span>(string <span class="sig-kw">name</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Make a displayable name for a variable.</p></div><div class="subsection"><p>This function will insert spaces before capital letters and remove optional <code class="mono">m_</code>, <code class="mono">_</code>
+or <code class="mono">k</code> followed by uppercase letter in front of the name.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private void Start()
+    {
+        // prints "My Variable"
+        print(<a href="ObjectNames.NicifyVariableName.html">ObjectNames.NicifyVariableName</a>("MyVariable"));
+        // prints "The Other Variable"
+        print(<a href="ObjectNames.NicifyVariableName.html">ObjectNames.NicifyVariableName</a>("m_TheOtherVariable"));
+        // prints "Some Constant"
+        print(<a href="ObjectNames.NicifyVariableName.html">ObjectNames.NicifyVariableName</a>("kSomeConstant"));
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AI.NavMesh.Raycast</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="AI.NavMesh.html">NavMesh</a>.Raycast</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">Raycast</span>(<a href="Vector3.html">Vector3</a> <span class="sig-kw">sourcePosition</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">targetPosition</span>,
+out <a href="AI.NavMeshHit.html">AI.NavMeshHit</a> <span class="sig-kw">hit</span>,
+int <span class="sig-kw">areaMask</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">sourcePosition</td><td class="desc"></td><td class="desc1">The origin of the ray.</td></tr><tr><td class="name lbl">targetPosition</td><td class="desc"></td><td class="desc1">The end of the ray.</td></tr><tr><td class="name lbl">hit</td><td class="desc"></td><td class="desc1">Holds the properties of the ray cast resulting location.</td></tr><tr><td class="name lbl">areaMask</td><td class="desc"></td><td class="desc1">A bitfield mask specifying which NavMesh areas can be passed when tracing the ray.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>bool</strong>
+        True if the ray is terminated before reaching target position. Otherwise returns false.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Trace a line between two points on the NavMesh.</p></div><div class="subsection"><p>The source and destination points are first mapped on the NavMesh, then a ray is traced from the source point towards the target. If the ray hits a NavMesh boundary, the function returns true and the hit data is filled. If the path from the source to target is unobstructed, the function returns false.<br /><br />If the raycast terminates on an outer edge, <code class="varname">hit.mask</code> is 0; otherwise it contains the area mask of the blocking polygon.<br /><br />This function can be used to check if an agent can walk unobstructed between two points on the NavMesh. For example if you character has an evasive dodge move which needs space, you can shoot a ray from the characters location to multiple directions to find a spot where the character can dodge to.<br /><br />The <a href="AI.NavMesh.Raycast.html">NavMesh.Raycast</a> is different from physics ray cast because it works on “2.5D”, on the NavMesh. The difference to physics raycast is that the NavMesh version can detect all kind of navigation obstructions, such as holes in the ground, and it can also climb up slopes, if the area is navigable.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// TargetReachable
+using UnityEngine;
+using UnityEngine.AI;<br /><br />public class TargetReachable : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Transform.html">Transform</a> target;
+    private <a href="AI.NavMeshHit.html">NavMeshHit</a> hit;
+    private bool blocked = false;<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        blocked = <a href="AI.NavMesh.Raycast.html">NavMesh.Raycast</a>(transform.position, target.position, out hit, <a href="AI.NavMesh.AllAreas.html">NavMesh.AllAreas</a>);
+        <a href="Debug.DrawLine.html">Debug.DrawLine</a>(transform.position, target.position, blocked ? <a href="Color-red.html">Color.red</a> : <a href="Color-green.html">Color.green</a>);<br /><br />        if (blocked)
+            <a href="Debug.DrawRay.html">Debug.DrawRay</a>(hit.position, <a href="Vector3-up.html">Vector3.up</a>, <a href="Color-red.html">Color.red</a>);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>If you are looking for to find the nearest point on the <a href="AI.NavMesh.html">NavMesh</a> you should use physics raycast to find a point in the world, see <a href="../Manual/nav-MoveToClickPoint.html">Move to Click Point</a> example.</p></div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">Raycast</span>(<a href="Vector3.html">Vector3</a> <span class="sig-kw">sourcePosition</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">targetPosition</span>,
+out <a href="AI.NavMeshHit.html">AI.NavMeshHit</a> <span class="sig-kw">hit</span>,
+<a href="AI.NavMeshQueryFilter.html">AI.NavMeshQueryFilter</a> <span class="sig-kw">filter</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">sourcePosition</td><td class="desc"></td><td class="desc1">The origin of the ray.</td></tr><tr><td class="name lbl">targetPosition</td><td class="desc"></td><td class="desc1">The end of the ray.</td></tr><tr><td class="name lbl">hit</td><td class="desc"></td><td class="desc1">Holds the properties of the ray cast resulting location.</td></tr><tr><td class="name lbl">filter</td><td class="desc"></td><td class="desc1">A filter specifying which NavMesh areas can be passed when tracing the ray.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>bool</strong>
+        True if the ray is terminated before reaching target position. Otherwise returns false.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Traces a line between two positions on the NavMesh, subject to the constraints defined by the filter argument.</p></div><div class="subsection"><p>The line is terminated on outer edges or a non-passable area.</p></div></div></div></div></body></html>

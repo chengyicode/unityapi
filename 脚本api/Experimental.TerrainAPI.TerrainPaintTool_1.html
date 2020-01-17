@@ -1,0 +1,84 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: TerrainPaintTool&lt;T0&gt;</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Experimental</b>: this API is experimental and might be changed or removed in the future.</div><h1 class="heading inherit">TerrainPaintTool&lt;T0&gt;</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEditor.Experimental.TerrainAPI</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Inherits from:<a href="ScriptableObject.html" class="cl">ScriptableObject</a></p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEditor.html" class="cl">UnityEditor</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Base class for terrain painting tools.</p></div><div class="subsection"><p>Derive from this class to implement your own terrain painting tools.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine.Experimental.TerrainAPI;<br /><br />namespace UnityEditor.Experimental.TerrainAPI
+{
+    public class MyPaintHeightTool : TerrainPaintTool&lt;MyPaintHeightTool&gt;
+    {
+        <a href="Material.html">Material</a> m_Material = null;
+        <a href="Material.html">Material</a> GetPaintMaterial()
+        {
+            if (m_Material == null)
+                m_Material = new <a href="Material.html">Material</a>(<a href="Shader.Find.html">Shader.Find</a>("Hidden/<a href="Terrain.html">Terrain</a>/PaintHeight"));
+            return m_Material;
+        }<br /><br />        public override string GetName()
+        {
+            return "My Paint Height <a href="Tool.html">Tool</a>";
+        }<br /><br />        public override string GetDesc()
+        {
+            return "Left click to raise.\n\nHold shift and left click to lower.";
+        }<br /><br />        public override void OnSceneGUI(<a href="Terrain.html">Terrain</a> terrain, <a href="Experimental.TerrainAPI.IOnSceneGUI.html">IOnSceneGUI</a> editContext)
+        {
+            <a href="Experimental.TerrainAPI.TerrainPaintUtilityEditor.ShowDefaultPreviewBrush.html">TerrainPaintUtilityEditor.ShowDefaultPreviewBrush</a>(terrain, editContext.brushTexture, editContext.brushSize);
+        }<br /><br />        public override bool OnPaint(<a href="Terrain.html">Terrain</a> terrain, <a href="Experimental.TerrainAPI.IOnPaint.html">IOnPaint</a> editContext)
+        {
+            <a href="Material.html">Material</a> mat = <a href="Experimental.TerrainAPI.TerrainPaintUtility.GetBuiltinPaintMaterial.html">TerrainPaintUtility.GetBuiltinPaintMaterial</a>();<br /><br />            float rotationDegrees = 0.0f;
+            <a href="Experimental.TerrainAPI.BrushTransform.html">BrushTransform</a> brushXform = <a href="Experimental.TerrainAPI.TerrainPaintUtility.CalculateBrushTransform.html">TerrainPaintUtility.CalculateBrushTransform</a>(terrain, editContext.uv, editContext.brushSize, rotationDegrees);
+            <a href="Experimental.TerrainAPI.PaintContext.html">PaintContext</a> paintContext = <a href="Experimental.TerrainAPI.TerrainPaintUtility.BeginPaintHeightmap.html">TerrainPaintUtility.BeginPaintHeightmap</a>(terrain, brushXform.GetBrushXYBounds());<br /><br />            // apply brush
+            <a href="Vector4.html">Vector4</a> brushParams = new <a href="Vector4.html">Vector4</a>(editContext.brushStrength * 0.01f, 0.0f, 0.0f, 0.0f);
+            mat.SetTexture("_BrushTex", editContext.brushTexture);
+            mat.SetVector("_BrushParams", brushParams);
+            <a href="Experimental.TerrainAPI.TerrainPaintUtility.SetupTerrainToolMaterialProperties.html">TerrainPaintUtility.SetupTerrainToolMaterialProperties</a>(paintContext, brushXform, mat);<br /><br />            <a href="Graphics.Blit.html">Graphics.Blit</a>(paintContext.sourceRenderTexture, paintContext.destinationRenderTexture, mat, (int)<a href="Experimental.TerrainAPI.TerrainPaintUtility.BuiltinPaintMaterialPasses.RaiseLowerHeight.html">TerrainPaintUtility.BuiltinPaintMaterialPasses.RaiseLowerHeight</a>);<br /><br />            <a href="Experimental.TerrainAPI.TerrainPaintUtility.EndPaintHeightmap.html">TerrainPaintUtility.EndPaintHeightmap</a>(paintContext, "<a href="Terrain.html">Terrain</a> Paint - MyPaintHeightTool");
+            return false;
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.TerrainAPI.TerrainPaintTool_1.GetDesc.html">GetDesc</a></td><td class="desc"></td><td class="desc1">Retrieves the description of the custom terrain tool.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.TerrainAPI.TerrainPaintTool_1.GetName.html">GetName</a></td><td class="desc"></td><td class="desc1">Retrieves the name of the custom terrain tool.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.TerrainAPI.TerrainPaintTool_1.OnDisable.html">OnDisable</a></td><td class="desc"></td><td class="desc1">Called when the tool is destroyed.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.TerrainAPI.TerrainPaintTool_1.OnEnable.html">OnEnable</a></td><td class="desc"></td><td class="desc1">Called when the tool is created.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.TerrainAPI.TerrainPaintTool_1.OnEnterToolMode.html">OnEnterToolMode</a></td><td class="desc"></td><td class="desc1">Called when the tool is activated.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.TerrainAPI.TerrainPaintTool_1.OnExitToolMode.html">OnExitToolMode</a></td><td class="desc"></td><td class="desc1">Called when the tool becomes inactive.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.TerrainAPI.TerrainPaintTool_1.OnInspectorGUI.html">OnInspectorGUI</a></td><td class="desc"></td><td class="desc1">Custom terrain tool OnInspectorGUI callback.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.TerrainAPI.TerrainPaintTool_1.OnPaint.html">OnPaint</a></td><td class="desc"></td><td class="desc1">Custom terrain tool paint callback.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.TerrainAPI.TerrainPaintTool_1.OnSceneGUI.html">OnSceneGUI</a></td><td class="desc"></td><td class="desc1">Custom terrain tool OnSceneGUI callback.</td></tr>
+    </table></div><div class="subsection"><h2>Inherited Members   继承成员</h2>
+      
+      <div class="subsection"><h2>Properties   属性</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-hideFlags.html">hideFlags</a></td><td class="desc"></td><td class="desc1">Should the object be hidden, saved with the Scene or modifiable by the user?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-name.html">name</a></td><td class="desc"></td><td class="desc1">The name of the object.</td></tr>
+      </table></div>
+      
+      
+      
+      <div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.GetInstanceID.html">GetInstanceID</a></td><td class="desc"></td><td class="desc1">Returns the instance id of the object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.ToString.html">ToString</a></td><td class="desc"></td><td class="desc1">Returns the name of the object.</td></tr>
+      </table></div>
+      
+      <div class="subsection"><h2>Static Methods   静态方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.Destroy.html">Destroy</a></td><td class="desc"></td><td class="desc1">Removes a GameObject, component or asset.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.DestroyImmediate.html">DestroyImmediate</a></td><td class="desc"></td><td class="desc1">Destroys the object obj immediately. You are strongly recommended to use Destroy instead.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.DontDestroyOnLoad.html">DontDestroyOnLoad</a></td><td class="desc"></td><td class="desc1">Do not destroy the target Object when loading a new Scene.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectOfType.html">FindObjectOfType</a></td><td class="desc"></td><td class="desc1">Returns the first active loaded object of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectsOfType.html">FindObjectsOfType</a></td><td class="desc"></td><td class="desc1">Returns a list of all active loaded objects of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.Instantiate.html">Instantiate</a></td><td class="desc"></td><td class="desc1">Clones the object original and returns the clone.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="ScriptableObject.CreateInstance.html">CreateInstance</a></td><td class="desc"></td><td class="desc1">Creates an instance of a scriptable object.</td></tr>
+      </table></div>
+      <div class="subsection"><h2>Operators   运算符</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_Object.html">bool</a></td><td class="desc"></td><td class="desc1">Does the object exist?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_ne.html">operator !=</a></td><td class="desc"></td><td class="desc1">Compares if two objects refer to a different object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_eq.html">operator ==</a></td><td class="desc"></td><td class="desc1">Compares two object references to see if they refer to the same object.</td></tr>
+      </table></div>
+      <div class="subsection"><h2>Messages   消息</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="ScriptableObject.Awake.html">Awake</a></td><td class="desc"></td><td class="desc1">This function is called when the ScriptableObject script is started.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="ScriptableObject.OnDestroy.html">OnDestroy</a></td><td class="desc"></td><td class="desc1">This function is called when the scriptable object will be destroyed.</td></tr>
+      </table></div>
+      
+      
+    </div></div></div></div></body></html>

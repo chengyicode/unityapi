@@ -1,0 +1,153 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Animator</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">Animator</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Inherits from:<a href="Behaviour.html" class="cl">Behaviour</a></p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.AnimationModule.html" class="cl">UnityEngine.AnimationModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Animator.html' title='Go to Animator Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Interface to control the Mecanim animation system.</p></div><div class="subsection"><h2>Properties 属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator-angularVelocity.html">angularVelocity</a></td><td class="desc"></td><td class="desc1">Gets the avatar angular velocity for the last evaluated frame.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator-applyRootMotion.html">applyRootMotion</a></td><td class="desc"></td><td class="desc1">Should root motion be applied?</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator-avatar.html">avatar</a></td><td class="desc"></td><td class="desc1">Gets/Sets the current Avatar.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator-bodyPosition.html">bodyPosition</a></td><td class="desc"></td><td class="desc1">The position of the body center of mass.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator-bodyRotation.html">bodyRotation</a></td><td class="desc"></td><td class="desc1">The rotation of the body center of mass.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator-cullingMode.html">cullingMode</a></td><td class="desc"></td><td class="desc1">Controls culling of this Animator component.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator-deltaPosition.html">deltaPosition</a></td><td class="desc"></td><td class="desc1">Gets the avatar delta position for the last evaluated frame.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator-deltaRotation.html">deltaRotation</a></td><td class="desc"></td><td class="desc1">Gets the avatar delta rotation for the last evaluated frame.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator-feetPivotActive.html">feetPivotActive</a></td><td class="desc"></td><td class="desc1">Blends pivot point between body center of mass and feet pivot.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator-fireEvents.html">fireEvents</a></td><td class="desc"></td><td class="desc1">Sets whether the Animator sends events of type AnimationEvent.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator-gravityWeight.html">gravityWeight</a></td><td class="desc"></td><td class="desc1">The current gravity weight based on current animations that are played.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator-hasBoundPlayables.html">hasBoundPlayables</a></td><td class="desc"></td><td class="desc1">Returns true if Animator has any playables assigned to it.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator-hasRootMotion.html">hasRootMotion</a></td><td class="desc"></td><td class="desc1">Returns true if the current rig has root motion.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator-hasTransformHierarchy.html">hasTransformHierarchy</a></td><td class="desc"></td><td class="desc1">Returns true if the object has a transform hierarchy.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator-humanScale.html">humanScale</a></td><td class="desc"></td><td class="desc1">Returns the scale of the current Avatar for a humanoid rig, (1 by default if the rig is generic).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator-isHuman.html">isHuman</a></td><td class="desc"></td><td class="desc1">Returns true if the current rig is humanoid, false if it is generic.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator-isInitialized.html">isInitialized</a></td><td class="desc"></td><td class="desc1">Returns whether the animator is initialized successfully.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator-isMatchingTarget.html">isMatchingTarget</a></td><td class="desc"></td><td class="desc1">If automatic matching is active.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator-isOptimizable.html">isOptimizable</a></td><td class="desc"></td><td class="desc1">Returns true if the current rig is optimizable with AnimatorUtility.OptimizeTransformHierarchy.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator-keepAnimatorControllerStateOnDisable.html">keepAnimatorControllerStateOnDisable</a></td><td class="desc"></td><td class="desc1">Controls the behaviour of the Animator component when a GameObject is disabled.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator-layerCount.html">layerCount</a></td><td class="desc"></td><td class="desc1">Returns the number of layers in the controller.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator-layersAffectMassCenter.html">layersAffectMassCenter</a></td><td class="desc"></td><td class="desc1">Additional layers affects the center of mass.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator-leftFeetBottomHeight.html">leftFeetBottomHeight</a></td><td class="desc"></td><td class="desc1">Get left foot bottom height.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator-parameterCount.html">parameterCount</a></td><td class="desc"></td><td class="desc1">Returns the number of parameters in the controller.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator-parameters.html">parameters</a></td><td class="desc"></td><td class="desc1">The AnimatorControllerParameter list used by the animator. (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator-pivotPosition.html">pivotPosition</a></td><td class="desc"></td><td class="desc1">Get the current position of the pivot.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator-pivotWeight.html">pivotWeight</a></td><td class="desc"></td><td class="desc1">Gets the pivot weight.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator-playableGraph.html">playableGraph</a></td><td class="desc"></td><td class="desc1">The PlayableGraph created by the Animator.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator-playbackTime.html">playbackTime</a></td><td class="desc"></td><td class="desc1">Sets the playback position in the recording buffer.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator-recorderMode.html">recorderMode</a></td><td class="desc"></td><td class="desc1">Gets the mode of the Animator recorder.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator-recorderStartTime.html">recorderStartTime</a></td><td class="desc"></td><td class="desc1">Start time of the first frame of the buffer relative to the frame at which StartRecording was called.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator-recorderStopTime.html">recorderStopTime</a></td><td class="desc"></td><td class="desc1">End time of the recorded clip relative to when StartRecording was called.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator-rightFeetBottomHeight.html">rightFeetBottomHeight</a></td><td class="desc"></td><td class="desc1">Get right foot bottom height.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator-rootPosition.html">rootPosition</a></td><td class="desc"></td><td class="desc1">The root position, the position of the game object.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator-rootRotation.html">rootRotation</a></td><td class="desc"></td><td class="desc1">The root rotation, the rotation of the game object.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator-runtimeAnimatorController.html">runtimeAnimatorController</a></td><td class="desc"></td><td class="desc1">The runtime representation of AnimatorController that controls the Animator.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator-speed.html">speed</a></td><td class="desc"></td><td class="desc1">The playback speed of the Animator. 1 is normal playback speed.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator-stabilizeFeet.html">stabilizeFeet</a></td><td class="desc"></td><td class="desc1">Automatic stabilization of feet during transition and blending.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator-targetPosition.html">targetPosition</a></td><td class="desc"></td><td class="desc1">Returns the position of the target specified by SetTarget.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator-targetRotation.html">targetRotation</a></td><td class="desc"></td><td class="desc1">Returns the rotation of the target specified by SetTarget.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator-updateMode.html">updateMode</a></td><td class="desc"></td><td class="desc1">Specifies the update mode of the Animator.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator-velocity.html">velocity</a></td><td class="desc"></td><td class="desc1">Gets the avatar velocity  for the last evaluated frame.</td></tr>
+    </table></div><div class="subsection"><h2>Public Methods 公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator.ApplyBuiltinRootMotion.html">ApplyBuiltinRootMotion</a></td><td class="desc"></td><td class="desc1">Apply the default Root Motion.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator.CrossFade.html">CrossFade</a></td><td class="desc"></td><td class="desc1">Creates a crossfade from the current state to any other state using normalized times.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator.CrossFadeInFixedTime.html">CrossFadeInFixedTime</a></td><td class="desc"></td><td class="desc1">Creates a crossfade from the current state to any other state using times in seconds.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator.GetAnimatorTransitionInfo.html">GetAnimatorTransitionInfo</a></td><td class="desc"></td><td class="desc1">Returns an AnimatorTransitionInfo with the informations on the current transition.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator.GetBehaviour.html">GetBehaviour</a></td><td class="desc"></td><td class="desc1">Returns the first StateMachineBehaviour that matches type T or is derived from T. Returns null if none are found.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator.GetBehaviours.html">GetBehaviours</a></td><td class="desc"></td><td class="desc1">Returns all StateMachineBehaviour that match type T or are derived from T. Returns null if none are found.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator.GetBoneTransform.html">GetBoneTransform</a></td><td class="desc"></td><td class="desc1">Returns Transform mapped to this human bone id.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator.GetBool.html">GetBool</a></td><td class="desc"></td><td class="desc1">Returns the value of the given boolean parameter.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator.GetCurrentAnimatorClipInfo.html">GetCurrentAnimatorClipInfo</a></td><td class="desc"></td><td class="desc1">Returns an array of all the AnimatorClipInfo in the current state of the given layer.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator.GetCurrentAnimatorClipInfoCount.html">GetCurrentAnimatorClipInfoCount</a></td><td class="desc"></td><td class="desc1">Returns the number of AnimatorClipInfo in the current state.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator.GetCurrentAnimatorStateInfo.html">GetCurrentAnimatorStateInfo</a></td><td class="desc"></td><td class="desc1">Returns an AnimatorStateInfo with the information on the current state.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator.GetFloat.html">GetFloat</a></td><td class="desc"></td><td class="desc1">Returns the value of the given float parameter.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator.GetIKHintPosition.html">GetIKHintPosition</a></td><td class="desc"></td><td class="desc1">Gets the position of an IK hint.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator.GetIKHintPositionWeight.html">GetIKHintPositionWeight</a></td><td class="desc"></td><td class="desc1">Gets the translative weight of an IK Hint (0 = at the original animation before IK, 1 = at the hint).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator.GetIKPosition.html">GetIKPosition</a></td><td class="desc"></td><td class="desc1">Gets the position of an IK goal.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator.GetIKPositionWeight.html">GetIKPositionWeight</a></td><td class="desc"></td><td class="desc1">Gets the translative weight of an IK goal (0 = at the original animation before IK, 1 = at the goal).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator.GetIKRotation.html">GetIKRotation</a></td><td class="desc"></td><td class="desc1">Gets the rotation of an IK goal.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator.GetIKRotationWeight.html">GetIKRotationWeight</a></td><td class="desc"></td><td class="desc1">Gets the rotational weight of an IK goal (0 = rotation before IK, 1 = rotation at the IK goal).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator.GetInteger.html">GetInteger</a></td><td class="desc"></td><td class="desc1">Returns the value of the given integer parameter.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator.GetLayerIndex.html">GetLayerIndex</a></td><td class="desc"></td><td class="desc1">Returns the index of the layer with the given name.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator.GetLayerName.html">GetLayerName</a></td><td class="desc"></td><td class="desc1">Returns the layer name.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator.GetLayerWeight.html">GetLayerWeight</a></td><td class="desc"></td><td class="desc1">Returns the weight of the layer at the specified index.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator.GetNextAnimatorClipInfo.html">GetNextAnimatorClipInfo</a></td><td class="desc"></td><td class="desc1">Returns an array of all the AnimatorClipInfo in the next state of the given layer.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator.GetNextAnimatorClipInfoCount.html">GetNextAnimatorClipInfoCount</a></td><td class="desc"></td><td class="desc1">Returns the number of AnimatorClipInfo in the next state.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator.GetNextAnimatorStateInfo.html">GetNextAnimatorStateInfo</a></td><td class="desc"></td><td class="desc1">Returns an AnimatorStateInfo with the information on the next state.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator.GetParameter.html">GetParameter</a></td><td class="desc"></td><td class="desc1">See AnimatorController.parameters.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator.HasState.html">HasState</a></td><td class="desc"></td><td class="desc1">Returns true if the state exists in this layer, false otherwise.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator.InterruptMatchTarget.html">InterruptMatchTarget</a></td><td class="desc"></td><td class="desc1">Interrupts the automatic target matching.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator.IsInTransition.html">IsInTransition</a></td><td class="desc"></td><td class="desc1">Returns true if there is a transition on the given layer, false otherwise.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator.IsParameterControlledByCurve.html">IsParameterControlledByCurve</a></td><td class="desc"></td><td class="desc1">Returns true if the parameter is controlled by a curve, false otherwise.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator.MatchTarget.html">MatchTarget</a></td><td class="desc"></td><td class="desc1">Automatically adjust the GameObject position and rotation.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator.Play.html">Play</a></td><td class="desc"></td><td class="desc1">Plays a state.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator.PlayInFixedTime.html">PlayInFixedTime</a></td><td class="desc"></td><td class="desc1">Plays a state.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator.Rebind.html">Rebind</a></td><td class="desc"></td><td class="desc1">Rebind all the animated properties and mesh data with the Animator.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator.ResetTrigger.html">ResetTrigger</a></td><td class="desc"></td><td class="desc1">Resets the value of the given trigger parameter.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator.SetBoneLocalRotation.html">SetBoneLocalRotation</a></td><td class="desc"></td><td class="desc1">Sets local rotation of a human bone during a IK pass.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator.SetBool.html">SetBool</a></td><td class="desc"></td><td class="desc1">Sets the value of the given boolean parameter.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator.SetFloat.html">SetFloat</a></td><td class="desc"></td><td class="desc1">Send float values to the Animator to affect transitions.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator.SetIKHintPosition.html">SetIKHintPosition</a></td><td class="desc"></td><td class="desc1">Sets the position of an IK hint.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator.SetIKHintPositionWeight.html">SetIKHintPositionWeight</a></td><td class="desc"></td><td class="desc1">Sets the translative weight of an IK hint (0 = at the original animation before IK, 1 = at the hint).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator.SetIKPosition.html">SetIKPosition</a></td><td class="desc"></td><td class="desc1">Sets the position of an IK goal.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator.SetIKPositionWeight.html">SetIKPositionWeight</a></td><td class="desc"></td><td class="desc1">Sets the translative weight of an IK goal (0 = at the original animation before IK, 1 = at the goal).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator.SetIKRotation.html">SetIKRotation</a></td><td class="desc"></td><td class="desc1">Sets the rotation of an IK goal.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator.SetIKRotationWeight.html">SetIKRotationWeight</a></td><td class="desc"></td><td class="desc1">Sets the rotational weight of an IK goal (0 = rotation before IK, 1 = rotation at the IK goal).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator.SetInteger.html">SetInteger</a></td><td class="desc"></td><td class="desc1">Sets the value of the given integer parameter.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator.SetLayerWeight.html">SetLayerWeight</a></td><td class="desc"></td><td class="desc1">Sets the weight of the layer at the given index.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator.SetLookAtPosition.html">SetLookAtPosition</a></td><td class="desc"></td><td class="desc1">Sets the look at position.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator.SetLookAtWeight.html">SetLookAtWeight</a></td><td class="desc"></td><td class="desc1">Set look at weights.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator.SetTarget.html">SetTarget</a></td><td class="desc"></td><td class="desc1">Sets an AvatarTarget and a targetNormalizedTime for the current state.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator.SetTrigger.html">SetTrigger</a></td><td class="desc"></td><td class="desc1">Sets the value of the given trigger parameter.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator.StartPlayback.html">StartPlayback</a></td><td class="desc"></td><td class="desc1">Sets the animator in playback mode.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator.StartRecording.html">StartRecording</a></td><td class="desc"></td><td class="desc1">Sets the animator in recording mode, and allocates a circular buffer of size frameCount.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator.StopPlayback.html">StopPlayback</a></td><td class="desc"></td><td class="desc1">Stops the animator playback mode. When playback stops, the avatar resumes getting control from game logic.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator.StopRecording.html">StopRecording</a></td><td class="desc"></td><td class="desc1">Stops animator record mode.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator.Update.html">Update</a></td><td class="desc"></td><td class="desc1">Evaluates the animator based on deltaTime.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator.WriteDefaultValues.html">WriteDefaultValues</a></td><td class="desc"></td><td class="desc1">Forces a write of the default values stored in the animator.</td></tr>
+    </table></div><div class="subsection"><h2>Static Methods 静态方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Animator.StringToHash.html">StringToHash</a></td><td class="desc"></td><td class="desc1">Generates an parameter id from a string.</td></tr>
+    </table></div><div class="subsection"><h2>Inherited Members 继承成员</h2>
+      
+      <div class="subsection"><h2>Properties 属性</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Behaviour-enabled.html">enabled</a></td><td class="desc"></td><td class="desc1">Enabled Behaviours are Updated, disabled Behaviours are not.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Behaviour-isActiveAndEnabled.html">isActiveAndEnabled</a></td><td class="desc"></td><td class="desc1">Has the Behaviour had active and enabled called?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component-gameObject.html">gameObject</a></td><td class="desc"></td><td class="desc1">The game object this component is attached to. A component is always attached to a game object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component-tag.html">tag</a></td><td class="desc"></td><td class="desc1">The tag of this game object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component-transform.html">transform</a></td><td class="desc"></td><td class="desc1">The Transform attached to this GameObject.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-hideFlags.html">hideFlags</a></td><td class="desc"></td><td class="desc1">Should the object be hidden, saved with the Scene or modifiable by the user?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-name.html">name</a></td><td class="desc"></td><td class="desc1">The name of the object.</td></tr>
+      </table></div>
+      
+      
+      
+      <div class="subsection"><h2>Public Methods 公共方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.BroadcastMessage.html">BroadcastMessage</a></td><td class="desc"></td><td class="desc1">Calls the method named methodName on every MonoBehaviour in this game object or any of its children.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.CompareTag.html">CompareTag</a></td><td class="desc"></td><td class="desc1">Is this game object tagged with tag ?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponent.html">GetComponent</a></td><td class="desc"></td><td class="desc1">Returns the component of Type type if the game object has one attached, null if it doesn't.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponentInChildren.html">GetComponentInChildren</a></td><td class="desc"></td><td class="desc1">Returns the component of Type type in the GameObject or any of its children using depth first search.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponentInParent.html">GetComponentInParent</a></td><td class="desc"></td><td class="desc1">Returns the component of Type type in the GameObject or any of its parents.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponents.html">GetComponents</a></td><td class="desc"></td><td class="desc1">Returns all components of Type type in the GameObject.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponentsInChildren.html">GetComponentsInChildren</a></td><td class="desc"></td><td class="desc1">Returns all components of Type type in the GameObject or any of its children.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponentsInParent.html">GetComponentsInParent</a></td><td class="desc"></td><td class="desc1">Returns all components of Type type in the GameObject or any of its parents.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.SendMessage.html">SendMessage</a></td><td class="desc"></td><td class="desc1">Calls the method named methodName on every MonoBehaviour in this game object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.SendMessageUpwards.html">SendMessageUpwards</a></td><td class="desc"></td><td class="desc1">Calls the method named methodName on every MonoBehaviour in this game object and on every ancestor of the behaviour.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.TryGetComponent.html">TryGetComponent</a></td><td class="desc"></td><td class="desc1">Gets the component of the specified type, if it exists.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.GetInstanceID.html">GetInstanceID</a></td><td class="desc"></td><td class="desc1">Returns the instance id of the object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.ToString.html">ToString</a></td><td class="desc"></td><td class="desc1">Returns the name of the object.</td></tr>
+      </table></div>
+      
+      <div class="subsection"><h2>Static Methods 静态方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.Destroy.html">Destroy</a></td><td class="desc"></td><td class="desc1">Removes a GameObject, component or asset.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.DestroyImmediate.html">DestroyImmediate</a></td><td class="desc"></td><td class="desc1">Destroys the object obj immediately. You are strongly recommended to use Destroy instead.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.DontDestroyOnLoad.html">DontDestroyOnLoad</a></td><td class="desc"></td><td class="desc1">Do not destroy the target Object when loading a new Scene.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectOfType.html">FindObjectOfType</a></td><td class="desc"></td><td class="desc1">Returns the first active loaded object of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectsOfType.html">FindObjectsOfType</a></td><td class="desc"></td><td class="desc1">Returns a list of all active loaded objects of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.Instantiate.html">Instantiate</a></td><td class="desc"></td><td class="desc1">Clones the object original and returns the clone.</td></tr>
+      </table></div>
+      <div class="subsection"><h2>Operators   运算符</h2>
+<h2>Operators   运算符</h2>
+
+<h2>Operators   运算符</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_Object.html">bool</a></td><td class="desc"></td><td class="desc1">Does the object exist?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_ne.html">operator !=</a></td><td class="desc"></td><td class="desc1">Compares if two objects refer to a different object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_eq.html">operator ==</a></td><td class="desc"></td><td class="desc1">Compares two object references to see if they refer to the same object.</td></tr>
+      </table></div>
+      
+      
+      
+    </div></div></div></div></body></html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: TransformSceneHandle</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Experimental</b>: this API is experimental and might be changed or removed in the future.</div><h1 class="heading inherit">TransformSceneHandle</h1><div class="clear"></div><p class="cl mb0 left mr10">struct in
+          UnityEngine.Experimental.Animations</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.AnimationModule.html" class="cl">UnityEngine.AnimationModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Handle to read position, rotation and scale of an object in the Scene.</p></div><div class="subsection"><p>TransformSceneHandle are read-only.<br /><br />A TransformSceneHandle is a safe handle on a <a href="Jobs.TransformAccess.html">TransformAccess</a>. The <a href="Animator.html">Animator</a> used to create this handle manages the validity of this handle.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.Playables;
+using UnityEngine.Animations;<br /><br />using UnityEngine.Experimental.Animations;<br /><br />public struct TransformSceneHandleJob : <a href="Experimental.Animations.IAnimationJob.html">IAnimationJob</a>
+{
+    public <a href="Experimental.Animations.TransformSceneHandle.html">TransformSceneHandle</a> handle;<br /><br />    public void ProcessRootMotion(<a href="Experimental.Animations.AnimationStream.html">AnimationStream</a> stream)
+    {
+        // Log the local position.
+        var position = handle.GetLocalPosition(stream);
+        <a href="Debug.LogFormat.html">Debug.LogFormat</a>("<a href="UIElements.Position.html">Position</a>: {0}", position);<br /><br />        // Log the local rotation (converted from euler).
+        var rotation = handle.GetLocalRotation(stream);
+        <a href="Debug.LogFormat.html">Debug.LogFormat</a>("Rotation: {0}", rotation.eulerAngles);<br /><br />        // Log the local scale.
+        var scale = handle.GetLocalScale(stream);
+        <a href="Debug.LogFormat.html">Debug.LogFormat</a>("Scale: {0}", scale);
+    }<br /><br />    public void ProcessAnimation(<a href="Experimental.Animations.AnimationStream.html">AnimationStream</a> stream)
+    {
+    }
+}<br /><br />[<a href="RequireComponent.html">RequireComponent</a>(typeof(<a href="Animator.html">Animator</a>))]
+public class TransformSceneHandleExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Transform.html">Transform</a> sceneTransform;<br /><br />    <a href="Playables.PlayableGraph.html">PlayableGraph</a> m_Graph;
+    <a href="Experimental.Animations.AnimationScriptPlayable.html">AnimationScriptPlayable</a> m_AnimationScriptPlayable;<br /><br />    void Start()
+    {
+        if (sceneTransform == null)
+            return;<br /><br />        var animator = GetComponent&lt;<a href="Animator.html">Animator</a>&gt;();<br /><br />        m_Graph = <a href="Playables.PlayableGraph.Create.html">PlayableGraph.Create</a>("TransformSceneHandleExample");
+        var output = <a href="Animations.AnimationPlayableOutput.Create.html">AnimationPlayableOutput.Create</a>(m_Graph, "output", animator);<br /><br />        var animationJob = new TransformSceneHandleJob();
+        animationJob.handle = animator.BindSceneTransform(sceneTransform);
+        m_AnimationScriptPlayable = <a href="Experimental.Animations.AnimationScriptPlayable.Create.html">AnimationScriptPlayable.Create</a>(m_Graph, animationJob);<br /><br />        output.SetSourcePlayable(m_AnimationScriptPlayable);
+        m_Graph.Play();
+    }<br /><br />    void OnDisable()
+    {
+        if (sceneTransform == null)
+            return;<br /><br />        m_Graph.Destroy();
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="Experimental.Animations.AnimatorJobExtensions.BindSceneTransform.html">AnimatorJobExtensions.BindSceneTransform</a>, <a href="Experimental.Animations.PropertySceneHandle.html">PropertySceneHandle</a>, <a href="Experimental.Animations.PropertyStreamHandle.html">PropertyStreamHandle</a>, and <a href="Experimental.Animations.TransformStreamHandle.html">TransformStreamHandle</a>.</p></div><div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.Animations.TransformSceneHandle.GetGlobalTR.html">GetGlobalTR</a></td><td class="desc"></td><td class="desc1">Gets the position and scaled rotation of the transform in world space.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.Animations.TransformSceneHandle.GetLocalPosition.html">GetLocalPosition</a></td><td class="desc"></td><td class="desc1">Gets the position of the transform relative to the parent.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.Animations.TransformSceneHandle.GetLocalRotation.html">GetLocalRotation</a></td><td class="desc"></td><td class="desc1">Gets the rotation of the transform relative to the parent.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.Animations.TransformSceneHandle.GetLocalScale.html">GetLocalScale</a></td><td class="desc"></td><td class="desc1">Gets the scale of the transform relative to the parent.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.Animations.TransformSceneHandle.GetLocalTRS.html">GetLocalTRS</a></td><td class="desc"></td><td class="desc1">Gets the position, rotation and scale of the transform relative to the parent.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.Animations.TransformSceneHandle.GetPosition.html">GetPosition</a></td><td class="desc"></td><td class="desc1">Gets the position of the transform in world space.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.Animations.TransformSceneHandle.GetRotation.html">GetRotation</a></td><td class="desc"></td><td class="desc1">Gets the rotation of the transform in world space.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.Animations.TransformSceneHandle.IsValid.html">IsValid</a></td><td class="desc"></td><td class="desc1">Returns whether this is a valid handle.</td></tr>
+    </table></div></div></div></div></body></html>

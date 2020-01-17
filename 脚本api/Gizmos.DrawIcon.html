@@ -1,0 +1,21 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Gizmos.DrawIcon</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Gizmos.html">Gizmos</a>.DrawIcon</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">DrawIcon</span>(<a href="Vector3.html">Vector3</a> <span class="sig-kw">center</span>,
+string <span class="sig-kw">name</span>,
+bool <span class="sig-kw">allowScaling</span> = true);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Draw an icon at a position in the Scene view.</p></div><div class="subsection"><p>The image filename for the icon is specified with the <strong>name</strong> parameter
+while the <strong>center</strong> parameter denotes the location of the icon in world space
+and the <strong>allowScaling</strong> parameter determines if the icon is allowed to be scaled.
+The image file should be placed in the <strong>Assets/Gizmos</strong> folder.<br /><br />DrawIcon can be used to allow important objects in your game to be selected quickly.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void OnDrawGizmos()
+    {
+        // Draws the <a href="Light.html">Light</a> bulb icon at position of the object.
+        // Because we draw it inside OnDrawGizmos the icon is also pickable
+        // in the scene view.<br /><br />        <a href="Gizmos.DrawIcon.html">Gizmos.DrawIcon</a>(transform.position, "<a href="Light.html">Light</a> Gizmo.tiff", true);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

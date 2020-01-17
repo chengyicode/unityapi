@@ -1,0 +1,36 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: GUILayout.BeginArea</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="GUILayout.html">GUILayout</a>.BeginArea</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">BeginArea</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">screenRect</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">BeginArea</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">screenRect</span>,
+string <span class="sig-kw">text</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">BeginArea</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">screenRect</span>,
+<a href="Texture.html">Texture</a> <span class="sig-kw">image</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">BeginArea</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">screenRect</span>,
+<a href="GUIContent.html">GUIContent</a> <span class="sig-kw">content</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">BeginArea</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">screenRect</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">BeginArea</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">screenRect</span>,
+string <span class="sig-kw">text</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">BeginArea</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">screenRect</span>,
+<a href="Texture.html">Texture</a> <span class="sig-kw">image</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">BeginArea</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">screenRect</span>,
+<a href="GUIContent.html">GUIContent</a> <span class="sig-kw">content</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">text</td><td class="desc"></td><td class="desc1">Optional text to display in the area.</td></tr><tr><td class="name lbl">image</td><td class="desc"></td><td class="desc1">Optional texture to display in the area.</td></tr><tr><td class="name lbl">content</td><td class="desc"></td><td class="desc1">Optional text, image and tooltip top display for this area.</td></tr><tr><td class="name lbl">style</td><td class="desc"></td><td class="desc1">The style to use. If left out, the empty <a href="GUIStyle.html">GUIStyle</a> (<a href="GUIStyle-none.html">GUIStyle.none</a>) is used, giving a transparent background.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Begin a GUILayout block of GUI controls in a fixed screen area.</p></div><div class="subsection"><p>By default, any GUI controls made using GUILayout are placed in the top-left corner of the screen.
+If you want to place a series of automatically laid out controls in an arbitrary area, use GUILayout.BeginArea to define a new area for the automatic layouting system to use.<br /><br />See Also: <a href="GUILayout.EndArea.html">EndArea</a><br /><br /><img src="../StaticFiles/ScriptRefImages/GUILayoutArea.png" /><br />
+<em>Explained Area of the example.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void OnGUI()
+    {
+        // Starts an area to draw elements
+        <a href="GUILayout.BeginArea.html">GUILayout.BeginArea</a>(new <a href="Rect.html">Rect</a>(10, 10, 100, 100));
+        <a href="GUILayout.Button.html">GUILayout.Button</a>("Click me");
+        <a href="GUILayout.Button.html">GUILayout.Button</a>("Or me");
+        <a href="GUILayout.EndArea.html">GUILayout.EndArea</a>();
+    }
+}
+</pre>
+      </div><div class="subsection"><p>This function is very useful when mixing GUILayout code. It must be matched with a call to EndArea. BeginArea / EndArea cannot be nested.</p></div></div></div></div></body></html>

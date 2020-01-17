@@ -1,0 +1,44 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorPrefs.SetString</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorPrefs.html">EditorPrefs</a>.SetString</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">SetString</span>(string <span class="sig-kw">key</span>,
+string <span class="sig-kw">value</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Sets the value of the preference identified by <code class="varname">key</code>. Note that EditorPrefs does not support null strings and will store an empty string instead.</p></div><div class="subsection"><p>
+        <img src="../StaticFiles/ScriptRefImages/QuickNotes.png" />
+        <br />
+<em>Quick notes that last between Unity Sessions.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Simple <a href="Editor.html">Editor</a> Script that lets you create / save quick notes
+// Between Unity Sessions.<br /><br />using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class ExampleClass : <a href="EditorWindow.html">EditorWindow</a>
+{
+    string note = "Notes:\n-&gt;\n-&gt;";<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Examples/QuickNotes")]
+    static void Init()
+    {
+        ExampleClass window = (ExampleClass)<a href="EditorWindow.GetWindow.html">EditorWindow.GetWindow</a>(typeof(ExampleClass));
+        window.Show();
+    }<br /><br />    void OnGUI()
+    {
+        note = <a href="EditorGUILayout.TextArea.html">EditorGUILayout.TextArea</a>(note,
+            <a href="GUILayout.Width.html">GUILayout.Width</a>(position.width - 5),
+            <a href="GUILayout.Height.html">GUILayout.Height</a>(position.height - 30));
+        <a href="EditorGUILayout.BeginHorizontal.html">EditorGUILayout.BeginHorizontal</a>();
+        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Reset"))
+            note = "";
+        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Clear Story", <a href="GUILayout.Width.html">GUILayout.Width</a>(72)))
+        {
+            note = "Notes:\n-&gt;\n-&gt;";
+        }
+        <a href="EditorGUILayout.EndHorizontal.html">EditorGUILayout.EndHorizontal</a>();
+    }<br /><br />    void OnFocus()
+    {
+        if (<a href="EditorPrefs.HasKey.html">EditorPrefs.HasKey</a>("QuickNotes"))
+            note = <a href="EditorPrefs.GetString.html">EditorPrefs.GetString</a>("QuickNotes");
+    }<br /><br />    void OnLostFocus()
+    {
+        <a href="EditorPrefs.SetString.html">EditorPrefs.SetString</a>("QuickNotes", note);
+    }<br /><br />    void OnDestroy()
+    {
+        <a href="EditorPrefs.SetString.html">EditorPrefs.SetString</a>("QuickNotes", note);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

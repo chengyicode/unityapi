@@ -1,0 +1,26 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Selection.transforms</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Selection.html">Selection</a>.transforms</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static Transform[] <span class="sig-kw">transforms</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Returns the top level selection, excluding Prefabs.</p></div><div class="subsection"><p>This is the most common selection type when working with Scene objects.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />class LookAtMainCamera : <a href="ScriptableObject.html">ScriptableObject</a>
+{
+    [<a href="MenuItem.html">MenuItem</a>("Example/<a href="Selection.html">Selection</a> looks at Main <a href="Camera.html">Camera</a> _l")]<br /><br />    static void Look()
+    {
+        var camera = <a href="Camera-main.html">Camera.main</a>;<br /><br />        if (camera)
+        {
+            foreach (<a href="Transform.html">Transform</a> transform in <a href="Selection-transforms.html">Selection.transforms</a>)
+            {
+                Undo.RegisterUndo(transform, transform.name + " Looks at Main <a href="Camera.html">Camera</a>");
+                transform.LookAt(camera.transform);
+            }
+        }
+    }<br /><br />    //The menu item will be disabled if nothing, is selected.
+    [<a href="MenuItem.html">MenuItem</a>("Example/<a href="Selection.html">Selection</a> looks at Main <a href="Camera.html">Camera</a> _l", true)]
+    static bool ValidateSelection()
+    {
+        return Selection.transforms.Length != 0;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

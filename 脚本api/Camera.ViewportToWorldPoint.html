@@ -1,0 +1,23 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Camera.ViewportToWorldPoint</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Camera.html">Camera</a>.ViewportToWorldPoint</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Camera.html' title='Go to Camera Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Vector3.html">Vector3</a> <span class="sig-kw">ViewportToWorldPoint</span>(<a href="Vector3.html">Vector3</a> <span class="sig-kw">position</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">position</td><td class="desc"></td><td class="desc1">The 3d vector in Viewport space.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>Vector3</strong>
+        The 3d vector in World space.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Transforms <code class="varname">position</code> from viewport space into world space.</p></div><div class="subsection"><p>Viewport space is normalized and relative to the camera. The bottom-left
+        of the viewport is (0,0); the top-right is (1,1). The z position is in world units from the camera.<br /><br />Note that <a href="Camera.ViewportToWorldPoint.html">ViewportToWorldPoint</a> transforms an x-y screen position into a x-y-z position in 3D space.<br /><br />Provide the function with a vector where the x-y components of the vector are the screen coordinates
+and the z component is the distance of the resulting plane from the camera.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Draw a yellow sphere at top-right corner of the near plane
+// for the selected camera in the <a href="SceneManagement.Scene.html">Scene</a> view.
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void OnDrawGizmosSelected()
+    {
+        <a href="Camera.html">Camera</a> camera = GetComponent&lt;<a href="Camera.html">Camera</a>&gt;();
+        <a href="Vector3.html">Vector3</a> p = camera.ViewportToWorldPoint(new <a href="Vector3.html">Vector3</a>(1, 1, camera.nearClipPlane));
+        <a href="Gizmos-color.html">Gizmos.color</a> = <a href="Color-yellow.html">Color.yellow</a>;
+        <a href="Gizmos.DrawSphere.html">Gizmos.DrawSphere</a>(p, 0.1F);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

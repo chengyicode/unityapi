@@ -1,0 +1,25 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Experimental.Animations.AnimationHumanStream.SolveIK</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Experimental</b>: this API is experimental and might be changed or removed in the future.</div><h1 class="heading inherit"><a href="Experimental.Animations.AnimationHumanStream.html">AnimationHumanStream</a>.SolveIK</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">SolveIK</span>();
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Execute the IK solver.</p></div><div class="subsection"><p>The humanoid IK solver is executed using the IK goal position, rotation, and weight currently set in the <a href="Experimental.Animations.AnimationHumanStream.html">AnimationHumanStream</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.Playables;
+using UnityEngine.Animations;
+using UnityEngine.Experimental.Animations;<br /><br />public struct IKJob : <a href="Experimental.Animations.IAnimationJob.html">IAnimationJob</a>
+{
+    public <a href="Experimental.Animations.TransformSceneHandle.html">TransformSceneHandle</a> effector;
+    public <a href="Experimental.Animations.PropertySceneHandle.html">PropertySceneHandle</a> positionWeight;
+    public <a href="Experimental.Animations.PropertySceneHandle.html">PropertySceneHandle</a> rotationWeight;<br /><br />    public void ProcessRootMotion(<a href="Experimental.Animations.AnimationStream.html">AnimationStream</a> stream) {}<br /><br />    public void ProcessAnimation(<a href="Experimental.Animations.AnimationStream.html">AnimationStream</a> stream)
+    {
+        <a href="Experimental.Animations.AnimationHumanStream.html">AnimationHumanStream</a> humanStream = stream.AsHuman();
+        if (effector.IsValid(stream) &amp;&amp; positionWeight.IsValid(stream) &amp;&amp; rotationWeight.IsValid(stream))
+        {
+            humanStream.SetGoalPosition(<a href="AvatarIKGoal.LeftFoot.html">AvatarIKGoal.LeftFoot</a>, effector.GetPosition(stream));
+            humanStream.SetGoalRotation(<a href="AvatarIKGoal.LeftFoot.html">AvatarIKGoal.LeftFoot</a>, effector.GetRotation(stream));
+            humanStream.SetGoalWeightPosition(<a href="AvatarIKGoal.LeftFoot.html">AvatarIKGoal.LeftFoot</a>, positionWeight.GetFloat(stream));
+            humanStream.SetGoalWeightRotation(<a href="AvatarIKGoal.LeftFoot.html">AvatarIKGoal.LeftFoot</a>, rotationWeight.GetFloat(stream));
+        }<br /><br />        humanStream.SolveIK();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

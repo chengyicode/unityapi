@@ -1,0 +1,169 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Mesh</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">Mesh</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Inherits from:<a href="Object.html" class="cl">Object</a></p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.CoreModule.html" class="cl">UnityEngine.CoreModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Mesh.html' title='Go to Mesh Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>A class that allows creating or modifying meshes from scripts.</p></div><div class="subsection"><p>Meshes contain vertices and multiple triangle arrays.
+See the <a href="https://www.assetstore.unity3d.com/en/#!/content/5141">Procedural example project</a>
+for examples of using the mesh interface.<br /><br />The triangle arrays are simply indices into the vertex arrays; three indices for each triangle.<br /><br />For every vertex there can be a normal, two texture coordinates, color and tangent.
+These are optional though and can be removed at will. All vertex information is stored in separate
+arrays of the same size, so if your mesh has 10 vertices, you would also have 10-size arrays
+for normals and other attributes.<br /><br />There are probably 3 things you might want to use the modifyable mesh interface for:<br /><br /><strong>1. Building a mesh from scratch</strong>:
+should always be done in the following order:<br />
+a) assign <a href="Mesh-vertices.html">vertices</a><br />
+b) assign <a href="Mesh-triangles.html">triangles</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="Vector3.html">Vector3</a>[] newVertices;
+    <a href="Vector2.html">Vector2</a>[] newUV;
+    int[] newTriangles;<br /><br />    void Start()
+    {
+        <a href="Mesh.html">Mesh</a> mesh = new <a href="Mesh.html">Mesh</a>();
+        GetComponent&lt;<a href="MeshFilter.html">MeshFilter</a>&gt;().mesh = mesh;
+        mesh.vertices = newVertices;
+        mesh.uv = newUV;
+        mesh.triangles = newTriangles;
+    }
+}
+</pre>
+      </div><div class="subsection"><p>
+        <strong>2. Modifying vertex attributes every frame</strong>:<br />
+a) get vertices<br />
+b) modify them<br />
+c) assign them back to the mesh.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        <a href="Mesh.html">Mesh</a> mesh = GetComponent&lt;<a href="MeshFilter.html">MeshFilter</a>&gt;().mesh;
+        <a href="Vector3.html">Vector3</a>[] vertices = mesh.vertices;
+        <a href="Vector3.html">Vector3</a>[] normals = mesh.normals;<br /><br />        for (var i = 0; i &lt; vertices.Length; i++)
+        {
+            vertices[i] += normals[i] * <a href="Mathf.Sin.html">Mathf.Sin</a>(<a href="Time-time.html">Time.time</a>);
+        }<br /><br />        mesh.vertices = vertices;
+    }
+}
+</pre>
+      </div><div class="subsection"><p>
+        <strong>3. Continously changing the mesh triangles and vertices</strong>:<br />
+a) call <a href="Mesh.Clear.html">Clear</a> to start fresh<br />
+b) assign vertices and other attributes<br />
+c) assign triangle indices.<br /><br />It is important to call <a href="Mesh.Clear.html">Clear</a> before assigning new vertices or triangles.
+Unity always checks the supplied triangle indices whether they don't reference out of bounds vertices.
+Calling <a href="Mesh.Clear.html">Clear</a> then assigning vertices then triangles makes sure you never have out of bounds data.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="Vector3.html">Vector3</a>[] newVertices;
+    <a href="Vector2.html">Vector2</a>[] newUV;
+    int[] newTriangles;<br /><br />    void Start()
+    {
+        <a href="Mesh.html">Mesh</a> mesh = GetComponent&lt;<a href="MeshFilter.html">MeshFilter</a>&gt;().mesh;<br /><br />        mesh.Clear();<br /><br />        // Do some calculations...
+        mesh.vertices = newVertices;
+        mesh.uv = newUV;
+        mesh.triangles = newTriangles;
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Mesh-bindposes.html">bindposes</a></td><td class="desc"></td><td class="desc1">The bind poses. The bind pose at each index refers to the bone with the same index.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Mesh-blendShapeCount.html">blendShapeCount</a></td><td class="desc"></td><td class="desc1">Returns BlendShape count on this mesh.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Mesh-boneWeights.html">boneWeights</a></td><td class="desc"></td><td class="desc1">The bone weights of each vertex.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Mesh-bounds.html">bounds</a></td><td class="desc"></td><td class="desc1">The bounding volume of the mesh.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Mesh-colors.html">colors</a></td><td class="desc"></td><td class="desc1">Vertex colors of the Mesh.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Mesh-colors32.html">colors32</a></td><td class="desc"></td><td class="desc1">Vertex colors of the Mesh.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Mesh-indexFormat.html">indexFormat</a></td><td class="desc"></td><td class="desc1">Format of the mesh index buffer data.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Mesh-isReadable.html">isReadable</a></td><td class="desc"></td><td class="desc1">Returns true if the Mesh is read/write enabled, or false if it is not.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Mesh-normals.html">normals</a></td><td class="desc"></td><td class="desc1">The normals of the Mesh.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Mesh-subMeshCount.html">subMeshCount</a></td><td class="desc"></td><td class="desc1">The number of sub-meshes inside the Mesh object.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Mesh-tangents.html">tangents</a></td><td class="desc"></td><td class="desc1">The tangents of the Mesh.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Mesh-triangles.html">triangles</a></td><td class="desc"></td><td class="desc1">An array containing all triangles in the Mesh.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Mesh-uv.html">uv</a></td><td class="desc"></td><td class="desc1">The base texture coordinates of the Mesh.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Mesh-uv2.html">uv2</a></td><td class="desc"></td><td class="desc1">The second texture coordinate set of the mesh, if present.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Mesh-uv3.html">uv3</a></td><td class="desc"></td><td class="desc1">The third texture coordinate set of the mesh, if present.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Mesh-uv4.html">uv4</a></td><td class="desc"></td><td class="desc1">The fourth texture coordinate set of the mesh, if present.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Mesh-uv5.html">uv5</a></td><td class="desc"></td><td class="desc1">The fifth texture coordinate set of the mesh, if present.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Mesh-uv6.html">uv6</a></td><td class="desc"></td><td class="desc1">The sixth texture coordinate set of the mesh, if present.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Mesh-uv7.html">uv7</a></td><td class="desc"></td><td class="desc1">The seventh texture coordinate set of the mesh, if present.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Mesh-uv8.html">uv8</a></td><td class="desc"></td><td class="desc1">The eighth texture coordinate set of the mesh, if present.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Mesh-vertexBufferCount.html">vertexBufferCount</a></td><td class="desc"></td><td class="desc1">Gets the number of vertex buffers present in the Mesh. (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Mesh-vertexCount.html">vertexCount</a></td><td class="desc"></td><td class="desc1">Returns the number of vertices in the Mesh (Read Only).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Mesh-vertices.html">vertices</a></td><td class="desc"></td><td class="desc1">Returns a copy of the vertex positions or assigns a new vertex positions array.</td></tr>
+    </table></div><div class="subsection"><h2>Constructors</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Mesh-ctor.html">Mesh</a></td><td class="desc"></td><td class="desc1">Creates an empty Mesh.</td></tr>
+    </table></div><div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Mesh.AddBlendShapeFrame.html">AddBlendShapeFrame</a></td><td class="desc"></td><td class="desc1">Adds a new blend shape frame.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Mesh.Clear.html">Clear</a></td><td class="desc"></td><td class="desc1">Clears all vertex data and all triangle indices.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Mesh.ClearBlendShapes.html">ClearBlendShapes</a></td><td class="desc"></td><td class="desc1">Clears all blend shapes from Mesh.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Mesh.CombineMeshes.html">CombineMeshes</a></td><td class="desc"></td><td class="desc1">Combines several Meshes into this Mesh.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Mesh.GetAllBoneWeights.html">GetAllBoneWeights</a></td><td class="desc"></td><td class="desc1">The bone weights of all vertices.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Mesh.GetBaseVertex.html">GetBaseVertex</a></td><td class="desc"></td><td class="desc1">Gets the base vertex index of the given sub-mesh.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Mesh.GetBindposes.html">GetBindposes</a></td><td class="desc"></td><td class="desc1">Gets the bind poses for this instance.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Mesh.GetBlendShapeFrameCount.html">GetBlendShapeFrameCount</a></td><td class="desc"></td><td class="desc1">Returns the frame count for a blend shape.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Mesh.GetBlendShapeFrameVertices.html">GetBlendShapeFrameVertices</a></td><td class="desc"></td><td class="desc1">Retreives deltaVertices, deltaNormals and deltaTangents of a blend shape frame.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Mesh.GetBlendShapeFrameWeight.html">GetBlendShapeFrameWeight</a></td><td class="desc"></td><td class="desc1">Returns the weight of a blend shape frame.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Mesh.GetBlendShapeIndex.html">GetBlendShapeIndex</a></td><td class="desc"></td><td class="desc1">Returns index of BlendShape by given name.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Mesh.GetBlendShapeName.html">GetBlendShapeName</a></td><td class="desc"></td><td class="desc1">Returns name of BlendShape by given index.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Mesh.GetBonesPerVertex.html">GetBonesPerVertex</a></td><td class="desc"></td><td class="desc1">The number of non-zero bone weights for each vertex.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Mesh.GetBoneWeights.html">GetBoneWeights</a></td><td class="desc"></td><td class="desc1">Gets the bone weights for this instance.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Mesh.GetColors.html">GetColors</a></td><td class="desc"></td><td class="desc1">Gets the vertex colors for this instance.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Mesh.GetIndexCount.html">GetIndexCount</a></td><td class="desc"></td><td class="desc1">Gets the index count of the given sub-mesh.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Mesh.GetIndexStart.html">GetIndexStart</a></td><td class="desc"></td><td class="desc1">Gets the starting index location within the Mesh's index buffer, for the given sub-mesh.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Mesh.GetIndices.html">GetIndices</a></td><td class="desc"></td><td class="desc1">Fetches the index list for the specified sub-mesh.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Mesh.GetNativeIndexBufferPtr.html">GetNativeIndexBufferPtr</a></td><td class="desc"></td><td class="desc1">Retrieves a native (underlying graphics API) pointer to the index buffer.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Mesh.GetNativeVertexBufferPtr.html">GetNativeVertexBufferPtr</a></td><td class="desc"></td><td class="desc1">Retrieves a native (underlying graphics API) pointer to the vertex buffer.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Mesh.GetNormals.html">GetNormals</a></td><td class="desc"></td><td class="desc1">Gets the vertex normals for this instance.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Mesh.GetTangents.html">GetTangents</a></td><td class="desc"></td><td class="desc1">Gets the tangents for this instance.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Mesh.GetTopology.html">GetTopology</a></td><td class="desc"></td><td class="desc1">Gets the topology of a sub-mesh.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Mesh.GetTriangles.html">GetTriangles</a></td><td class="desc"></td><td class="desc1">Fetches the triangle list for the specified sub-mesh on this object.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Mesh.GetUVDistributionMetric.html">GetUVDistributionMetric</a></td><td class="desc"></td><td class="desc1">The UV distribution metric can be used to calculate the desired mipmap level based on the position of the camera.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Mesh.GetUVs.html">GetUVs</a></td><td class="desc"></td><td class="desc1">Gets the UVs of the Mesh.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Mesh.GetVertices.html">GetVertices</a></td><td class="desc"></td><td class="desc1">Gets the vertex positions for this instance.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Mesh.MarkDynamic.html">MarkDynamic</a></td><td class="desc"></td><td class="desc1">Optimize mesh for frequent updates.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Mesh.Optimize.html">Optimize</a></td><td class="desc"></td><td class="desc1">Optimizes the Mesh data to improve rendering performance.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Mesh.OptimizeIndexBuffers.html">OptimizeIndexBuffers</a></td><td class="desc"></td><td class="desc1">Optimizes the geometry of the Mesh to improve rendering performance.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Mesh.OptimizeReorderVertexBuffer.html">OptimizeReorderVertexBuffer</a></td><td class="desc"></td><td class="desc1">Optimizes the vertices of the Mesh to improve rendering performance.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Mesh.RecalculateBounds.html">RecalculateBounds</a></td><td class="desc"></td><td class="desc1">Recalculate the bounding volume of the Mesh from the vertices.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Mesh.RecalculateNormals.html">RecalculateNormals</a></td><td class="desc"></td><td class="desc1">Recalculates the normals of the Mesh from the triangles and vertices.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Mesh.RecalculateTangents.html">RecalculateTangents</a></td><td class="desc"></td><td class="desc1">Recalculates the tangents of the Mesh from the normals and texture coordinates.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Mesh.SetBoneWeights.html">SetBoneWeights</a></td><td class="desc"></td><td class="desc1">Sets the bone weights for the Mesh.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Mesh.SetColors.html">SetColors</a></td><td class="desc"></td><td class="desc1">Vertex colors of the Mesh.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Mesh.SetIndices.html">SetIndices</a></td><td class="desc"></td><td class="desc1">Sets the index buffer for the sub-mesh.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Mesh.SetNormals.html">SetNormals</a></td><td class="desc"></td><td class="desc1">Set the normals of the Mesh.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Mesh.SetTangents.html">SetTangents</a></td><td class="desc"></td><td class="desc1">Set the tangents of the Mesh.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Mesh.SetTriangles.html">SetTriangles</a></td><td class="desc"></td><td class="desc1">Sets the triangle list for the sub-mesh.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Mesh.SetUVs.html">SetUVs</a></td><td class="desc"></td><td class="desc1">Sets the UVs of the Mesh.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Mesh.SetVertices.html">SetVertices</a></td><td class="desc"></td><td class="desc1">Assigns a new vertex positions array.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Mesh.UploadMeshData.html">UploadMeshData</a></td><td class="desc"></td><td class="desc1">Upload previously done Mesh modifications to the graphics API.</td></tr>
+    </table></div><div class="subsection"><h2>Inherited Members   继承成员</h2>
+      
+      <div class="subsection"><h2>Properties   属性</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-hideFlags.html">hideFlags</a></td><td class="desc"></td><td class="desc1">Should the object be hidden, saved with the Scene or modifiable by the user?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-name.html">name</a></td><td class="desc"></td><td class="desc1">The name of the object.</td></tr>
+      </table></div>
+      
+      
+      
+      <div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.GetInstanceID.html">GetInstanceID</a></td><td class="desc"></td><td class="desc1">Returns the instance id of the object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.ToString.html">ToString</a></td><td class="desc"></td><td class="desc1">Returns the name of the object.</td></tr>
+      </table></div>
+      
+      <div class="subsection"><h2>Static Methods   静态方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.Destroy.html">Destroy</a></td><td class="desc"></td><td class="desc1">Removes a GameObject, component or asset.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.DestroyImmediate.html">DestroyImmediate</a></td><td class="desc"></td><td class="desc1">Destroys the object obj immediately. You are strongly recommended to use Destroy instead.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.DontDestroyOnLoad.html">DontDestroyOnLoad</a></td><td class="desc"></td><td class="desc1">Do not destroy the target Object when loading a new Scene.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectOfType.html">FindObjectOfType</a></td><td class="desc"></td><td class="desc1">Returns the first active loaded object of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectsOfType.html">FindObjectsOfType</a></td><td class="desc"></td><td class="desc1">Returns a list of all active loaded objects of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.Instantiate.html">Instantiate</a></td><td class="desc"></td><td class="desc1">Clones the object original and returns the clone.</td></tr>
+      </table></div>
+      <div class="subsection"><h2>Operators   运算符</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_Object.html">bool</a></td><td class="desc"></td><td class="desc1">Does the object exist?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_ne.html">operator !=</a></td><td class="desc"></td><td class="desc1">Compares if two objects refer to a different object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_eq.html">operator ==</a></td><td class="desc"></td><td class="desc1">Compares two object references to see if they refer to the same object.</td></tr>
+      </table></div>
+      
+      
+      
+    </div></div></div></div></body></html>

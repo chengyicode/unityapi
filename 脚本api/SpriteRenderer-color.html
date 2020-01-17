@@ -1,0 +1,33 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: SpriteRenderer.color</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="SpriteRenderer.html">SpriteRenderer</a>.color</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-SpriteRenderer.html' title='Go to SpriteRenderer Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Color.html">Color</a> <span class="sig-kw">color</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Rendering color for the Sprite graphic.</p></div><div class="subsection"><p>The selected vertex color becomes the rendering color, and is accessible in a pixel shader. The default color is white when no color is selected.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//This example outputs Sliders that control the red green and blue elements of a sprite's color
+//Attach this to a <a href="GameObject.html">GameObject</a> and attach a <a href="SpriteRenderer.html">SpriteRenderer</a> component<br /><br />using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="SpriteRenderer.html">SpriteRenderer</a> m_SpriteRenderer;
+    //The <a href="Color.html">Color</a> to be assigned to the <a href="Renderer.html">Renderer</a>’s <a href="Material.html">Material</a>
+    <a href="Color.html">Color</a> m_NewColor;<br /><br />    //These are the values that the <a href="Color.html">Color</a> Sliders return
+    float m_Red, m_Blue, m_Green;<br /><br />    void Start()
+    {
+        //Fetch the <a href="SpriteRenderer.html">SpriteRenderer</a> from the <a href="GameObject.html">GameObject</a>
+        m_SpriteRenderer = GetComponent&lt;<a href="SpriteRenderer.html">SpriteRenderer</a>&gt;();
+        //Set the <a href="GameObject.html">GameObject</a>'s <a href="Color.html">Color</a> quickly to a set <a href="Color.html">Color</a> (blue)
+        m_SpriteRenderer.color = <a href="Color-blue.html">Color.blue</a>;
+    }<br /><br />    void OnGUI()
+    {
+        //Use the Sliders to manipulate the RGB component of <a href="Color.html">Color</a>
+        //Use the <a href="UIElements.Label.html">Label</a> to identify the <a href="UIElements.Slider.html">Slider</a>
+        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(0, 30, 50, 30), "Red: ");
+        //Use the <a href="UIElements.Slider.html">Slider</a> to change amount of red in the <a href="Color.html">Color</a>
+        m_Red = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(35, 25, 200, 30), m_Red, 0, 1);<br /><br />        //The <a href="UIElements.Slider.html">Slider</a> manipulates the amount of green in the <a href="GameObject.html">GameObject</a>
+        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(0, 70, 50, 30), "Green: ");
+        m_Green = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(35, 60, 200, 30), m_Green, 0, 1);<br /><br />        //This <a href="UIElements.Slider.html">Slider</a> decides the amount of blue in the <a href="GameObject.html">GameObject</a>
+        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(0, 105, 50, 30), "Blue: ");
+        m_Blue = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(35, 95, 200, 30), m_Blue, 0, 1);<br /><br />        //Set the <a href="Color.html">Color</a> to the values gained from the Sliders
+        m_NewColor = new <a href="Color.html">Color</a>(m_Red, m_Green, m_Blue);<br /><br />        //Set the <a href="SpriteRenderer.html">SpriteRenderer</a> to the <a href="Color.html">Color</a> defined by the Sliders
+        m_SpriteRenderer.color = m_NewColor;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

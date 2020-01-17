@@ -1,0 +1,19 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Profiling.Profiler.enabled</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Profiling.Profiler.html">Profiler</a>.enabled</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">enabled</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Enables the Profiler.</p></div><div class="subsection"><p>When enabled along with <a href="Profiling.Profiler-enableBinaryLog.html">Profiler.enableBinaryLog</a>, the Unity player saves profiling data to the file specified in the <a href="Profiling.Profiler-logFile.html">Profiler.logFile</a> file. The player automatically assigns the file extension, “.raw” to this log file. You can load this file in the Unity Editor Profile window to view the data.<br /><br />If the buffer is too small to output the profiler data you will see a message in the debug log "Skipping profile frame. Receiver can not keep up with the amount of data sent".
+Use <a href="Profiling.Profiler-maxUsedMemory.html">Profiler.maxUsedMemory</a> to raise the buffer memory.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;
+using UnityEngine.Profiling;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        <a href="Profiling.Profiler-logFile.html">Profiler.logFile</a> = "mylog"; //Also supports passing "myLog.raw"
+        <a href="Profiling.Profiler-enableBinaryLog.html">Profiler.enableBinaryLog</a> = true;
+        <a href="Profiling.Profiler-enabled.html">Profiler.enabled</a> = true;<br /><br />        // Optional, if more memory is needed for the buffer
+        <a href="Profiling.Profiler-maxUsedMemory.html">Profiler.maxUsedMemory</a> = 256 * 1024 * 1024;<br /><br />        // ...
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

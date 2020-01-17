@@ -1,0 +1,27 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Event.alt</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Event.html">Event</a>.alt</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public bool <span class="sig-kw">alt</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Is Alt/Option key held down? (Read Only)</p></div><div class="subsection"><p>On Windows, this returns true if any Alt key is held down. <br />
+On Mac, this returns true if any Option key is held down.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Prints Option or Alt key was pressed depending the
+    // platform this script is being run.
+    void OnGUI()
+    {
+        <a href="Event.html">Event</a> e = <a href="Event-current.html">Event.current</a>;
+        if (e.alt)
+        {
+            if (<a href="Application-platform.html">Application.platform</a> == <a href="RuntimePlatform.OSXEditor.html">RuntimePlatform.OSXEditor</a>)
+            {
+                <a href="Debug.Log.html">Debug.Log</a>("Option key was pressed");
+            }
+            else if (<a href="Application-platform.html">Application.platform</a> == <a href="RuntimePlatform.WindowsEditor.html">RuntimePlatform.WindowsEditor</a>)
+            {
+                <a href="Debug.Log.html">Debug.Log</a>("Alt Key was pressed!");
+            }
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

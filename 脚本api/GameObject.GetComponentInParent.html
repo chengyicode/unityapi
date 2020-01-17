@@ -1,0 +1,29 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: GameObject.GetComponentInParent</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="GameObject.html">GameObject</a>.GetComponentInParent</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-GameObject.html' title='Go to GameObject Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Component.html">Component</a> <span class="sig-kw">GetComponentInParent</span>(Type <span class="sig-kw">type</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">type</td><td class="desc"></td><td class="desc1">Type of component to find.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Returns the component of Type <code class="varname">type</code> in the <a href="GameObject.html">GameObject</a> or any of its parents.</p></div><div class="subsection"><p>Recurses upwards till it finds a valid component. Returns null if no component found. Only component on active Game Objects are returned.<br /><br /></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class GetComponentInParentExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Disable the spring on the first <a href="HingeJoint.html">HingeJoint</a> component found on any parent object<br /><br />    void Start()
+    {
+        <a href="HingeJoint.html">HingeJoint</a> hinge = gameObject.GetComponentInParent(typeof(<a href="HingeJoint.html">HingeJoint</a>)) as <a href="HingeJoint.html">HingeJoint</a>;<br /><br />        if (hinge != null)
+            hinge.useSpring = false;
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public T <span class="sig-kw">GetComponentInParent</span>();
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Returns the component &lt;T&gt; in the <a href="GameObject.html">GameObject</a> or any of its parents.</p></div><div class="subsection"><p>Recurses upwards till it finds a valid component. Returns null if no component found. Only component on active Game Objects are returned.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class GetComponentInParentExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Disable the spring on the first <a href="HingeJoint.html">HingeJoint</a> component found on any parent object<br /><br />    void Start()
+    {
+        <a href="HingeJoint.html">HingeJoint</a> hinge = gameObject.GetComponentInParent&lt;<a href="HingeJoint.html">HingeJoint</a>&gt;();<br /><br />        if (hinge != null)
+            hinge.useSpring = false;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Undo.RegisterFullObjectHierarchyUndo</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Undo.html">Undo</a>.RegisterFullObjectHierarchyUndo</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">RegisterFullObjectHierarchyUndo</span>(<a href="Object.html">Object</a> <span class="sig-kw">objectToUndo</span>,
+string <span class="sig-kw">name</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">objectToUndo</td><td class="desc"></td><td class="desc1">The object used to determine a hierarchy of objects whose state changes need to be undone.</td></tr><tr><td class="name lbl">name</td><td class="desc"></td><td class="desc1">The name of the undo operation.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Copy the states of a hierarchy of objects onto the undo stack.</p></div><div class="subsection"><p>This function works similarly to <a href="Undo.RegisterCompleteObjectUndo.html">Undo.RegisterCompleteObjectUndo</a>. The key difference is that instead of copying the states of a single object, this function stores the states of a hierarchy of objects. Depending on the type of <code class="varname">objectToUndo</code>, the hierarchy is determined differently: <br /><br />* If <code class="varname">objectToUndo</code> is a game object, the hierarchy will contain (a) <code class="varname">objectToUndo</code> itself and its child game objects; (b) the components attached to these game objects.<br /><br />* If <code class="varname">objectToUndo</code> is a component attached to an existing game object, the hierarchy will contain the game object and all of its components, including <code class="varname">objectToUndo</code>. Child game objects are NOT involved in this case. <br /><br />* In all other cases, the hierarchy will only contain <code class="varname">objectToUndo</code> itself. It's then equivalent to calling <a href="Undo.RegisterCompleteObjectUndo.html">Undo.RegisterCompleteObjectUndo</a> with the same parameters. <br /><br />If the undo is performed, any changes made to the objects in the above described hierarchy after this function is called will be undone, and the objects will be restored to the recorded state.<br /><br />Transform parent change, AddComponent, and object destruction can not be restored with this function, for that you should use the dedicated functions. See <a href="Undo.SetTransformParent.html">Undo.SetTransformParent</a>, <a href="Undo.AddComponent.html">Undo.AddComponent</a>, <a href="Undo.DestroyObjectImmediate.html">Undo.DestroyObjectImmediate</a>.<br /><br />If any object involved is part of the current Scene (e.g. a game object in the Hierarchy window or a component attached to such game object), calling this function will immediately mark the Scene as modified, even if you don't actually change the states of the objects afterwards.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class UndoExamples
+{
+    [<a href="MenuItem.html">MenuItem</a>("<a href="Undo.html">Undo</a> Examples/RegisterFullObjectHierarchyUndo 1")]
+    static void Example1()
+    {
+        <a href="GameObject.html">GameObject</a> root = new <a href="GameObject.html">GameObject</a>("Root");
+        <a href="MeshRenderer.html">MeshRenderer</a> rootComponent1 = root.AddComponent&lt;<a href="MeshRenderer.html">MeshRenderer</a>&gt;();
+        <a href="MeshCollider.html">MeshCollider</a> rootComponent2 = root.AddComponent&lt;<a href="MeshCollider.html">MeshCollider</a>&gt;();<br /><br />        <a href="GameObject.html">GameObject</a> child = new <a href="GameObject.html">GameObject</a>("Child");
+        child.transform.parent = root.transform;
+        <a href="MeshRenderer.html">MeshRenderer</a> childComponent1 = child.AddComponent&lt;<a href="MeshRenderer.html">MeshRenderer</a>&gt;();
+        <a href="MeshCollider.html">MeshCollider</a> childComponent2 = child.AddComponent&lt;<a href="MeshCollider.html">MeshCollider</a>&gt;();<br /><br />        // Store the states of 'root' and its children.
+        <a href="Undo.RegisterFullObjectHierarchyUndo.html">Undo.RegisterFullObjectHierarchyUndo</a>(root, "full object hierarchy change");<br /><br />        root.name = "New Root";
+        child.name = "New Child";<br /><br />        rootComponent1.enabled = false;
+        rootComponent2.enabled = false;<br /><br />        childComponent1.enabled = false;
+        childComponent2.enabled = false;<br /><br />        // If you choose "Edit-&gt;<a href="Undo.html">Undo</a> full object hierarchy change" from the main menu now,
+        // the states of both game objects and their components will be restored to what they were right before calling <a href="Undo.RegisterFullObjectHierarchyUndo.html">Undo.RegisterFullObjectHierarchyUndo</a>.
+    }
+}
+</pre>
+      </div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class UndoExamples
+{
+    [<a href="MenuItem.html">MenuItem</a>("<a href="Undo.html">Undo</a> Examples/RegisterFullObjectHierarchyUndo 2")]
+    static void Example2()
+    {
+        <a href="GameObject.html">GameObject</a> root = new <a href="GameObject.html">GameObject</a>("Root");
+        <a href="MeshRenderer.html">MeshRenderer</a> rootComponent1 = root.AddComponent&lt;<a href="MeshRenderer.html">MeshRenderer</a>&gt;();
+        <a href="MeshCollider.html">MeshCollider</a> rootComponent2 = root.AddComponent&lt;<a href="MeshCollider.html">MeshCollider</a>&gt;();<br /><br />        <a href="GameObject.html">GameObject</a> child = new <a href="GameObject.html">GameObject</a>("Child");
+        child.transform.parent = root.transform;
+        <a href="MeshRenderer.html">MeshRenderer</a> childComponent1 = child.AddComponent&lt;<a href="MeshRenderer.html">MeshRenderer</a>&gt;();
+        <a href="MeshCollider.html">MeshCollider</a> childComponent2 = child.AddComponent&lt;<a href="MeshCollider.html">MeshCollider</a>&gt;();<br /><br />        // Store the states of 'root' and all of its components.
+        <a href="Undo.RegisterFullObjectHierarchyUndo.html">Undo.RegisterFullObjectHierarchyUndo</a>(rootComponent1, "full object hierarchy change");<br /><br />        root.name = "New Root";
+        child.name = "New Child";<br /><br />        rootComponent1.enabled = false;
+        rootComponent2.enabled = false;<br /><br />        childComponent1.enabled = false;
+        childComponent2.enabled = false;<br /><br />        // If you choose "Edit-&gt;<a href="Undo.html">Undo</a> full object hierarchy change" from the main menu now,
+        // the states of 'root' and all of its components will be restored to what they were right before calling <a href="Undo.RegisterFullObjectHierarchyUndo.html">Undo.RegisterFullObjectHierarchyUndo</a>,
+        // but changes made to 'child' and its components won't be restored.
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public static void <span class="sig-kw">RegisterFullObjectHierarchyUndo</span>(<a href="Object.html">Object</a> <span class="sig-kw">objectToUndo</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>This overload is deprecated. Use Undo.RegisterFullObjectHierarchyUndo(Object, string) instead.</p></div></div></div></div></body></html>

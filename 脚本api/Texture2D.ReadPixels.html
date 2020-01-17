@@ -1,0 +1,40 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Texture2D.ReadPixels</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Texture2D.html">Texture2D</a>.ReadPixels</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">ReadPixels</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">source</span>,
+int <span class="sig-kw">destX</span>,
+int <span class="sig-kw">destY</span>,
+bool <span class="sig-kw">recalculateMipMaps</span> = true);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">source</td><td class="desc"></td><td class="desc1">Rectangular region of the view to read from. Pixels are read from current render target.</td></tr><tr><td class="name lbl">destX</td><td class="desc"></td><td class="desc1">Horizontal pixel position in the texture to place the pixels that are read.</td></tr><tr><td class="name lbl">destY</td><td class="desc"></td><td class="desc1">Vertical pixel position in the texture to place the pixels that are read.</td></tr><tr><td class="name lbl">recalculateMipMaps</td><td class="desc"></td><td class="desc1">Should the texture's mipmaps be recalculated after reading?</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Read pixels from screen into the saved texture data.</p></div><div class="subsection"><p>This will copy a rectangular pixel area from the currently active <a href="RenderTexture.html">RenderTexture</a> or the view (specified by the <code class="varname">source</code> parameter) into the position defined
+by <code class="varname">destX</code> and <code class="varname">destY</code>. Both coordinates use pixel space - (0,0) is lower left.<br /><br />If <code class="varname">recalculateMipMaps</code> is set to true, the mip maps of the texture will also be updated. If <code class="varname">recalculateMipMaps</code> is set to false, you must call <a href="Texture2D.Apply.html">Apply</a> to recalculate them.<br /><br />This function works on <code class="varname">RGBA32</code>, <code class="varname">ARGB32</code> and <code class="varname">RGB24</code> texture formats, when render target is of a similar format too (e.g. usual 32 or 16 bit render texture).
+Reading from a HDR render target (ARGBFloat or ARGBHalf render texture formats) into HDR texture formats (RGBAFloat or RGBAHalf) is supported too.<br /><br />The texture also has to have <a href="TextureImporter-isReadable.html">read/write enabled</a> flag set in the <a href="../Manual/Textures.html">texture import settings</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Attach this script to a <a href="Camera.html">Camera</a>
+//Also attach a <a href="GameObject.html">GameObject</a> that has a <a href="Renderer.html">Renderer</a> (e.g. a cube) in the <a href="Display.html">Display</a> field
+//Press the space key in Play mode to capture<br /><br />using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Grab the camera's view when this variable is true.
+    bool grab;<br /><br />    // The "m_Display" is the <a href="GameObject.html">GameObject</a> whose <a href="Texture.html">Texture</a> will be set to the captured image.
+    public <a href="Renderer.html">Renderer</a> m_Display;<br /><br />    private void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        //Press space to start the screen grab
+        if (<a href="Input.GetKeyDown.html">Input.GetKeyDown</a>(<a href="KeyCode.Space.html">KeyCode.Space</a>))
+            grab = true;
+    }<br /><br />    private void OnPostRender()
+    {
+        if (grab)
+        {
+            //Create a new texture with the width and height of the screen
+            <a href="Texture2D.html">Texture2D</a> texture = new <a href="Texture2D.html">Texture2D</a>(<a href="Screen-width.html">Screen.width</a>, <a href="Screen-height.html">Screen.height</a>, <a href="TextureFormat.RGB24.html">TextureFormat.RGB24</a>, false);
+            //Read the pixels in the <a href="Rect.html">Rect</a> starting at 0,0 and ending at the screen's width and height
+            texture.ReadPixels(new <a href="Rect.html">Rect</a>(0, 0, <a href="Screen-width.html">Screen.width</a>, <a href="Screen-height.html">Screen.height</a>), 0, 0, false);
+            texture.Apply();
+            //Check that the display field has been assigned in the Inspector
+            if (m_Display != null)
+                //Give your <a href="GameObject.html">GameObject</a> with the renderer this texture
+                m_Display.material.mainTexture = texture;
+            //Reset the grab state
+            grab = false;
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="Texture2D.EncodeToPNG.html">EncodeToPNG</a>.</p></div></div></div></div></body></html>

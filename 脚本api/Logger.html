@@ -1,0 +1,40 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Logger</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">Logger</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.CoreModule.html" class="cl">UnityEngine.CoreModule</a></p><br /><p class="cl mb0 left">Implements interfaces:<a href="ILogger.html" class="cl">ILogger</a>, <a href="ILogHandler.html" class="cl">ILogHandler</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Initializes a new instance of the Logger.</p></div><div class="subsection"><p>Create a new instance or use default <a href="Debug-unityLogger.html">Debug.unityLogger</a>.
+See Also: <a href="ILogger.html">ILogger</a>, <a href="ILogHandler.html">ILogHandler</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;
+using System.IO;
+using System;<br /><br />public class MyLogHandler : <a href="ILogHandler.html">ILogHandler</a>
+{
+    public void LogFormat(<a href="LogType.html">LogType</a> logType, UnityEngine.Object context, string format, params object[] args)
+    {
+        Debug.unityLogger.logHandler.LogFormat(logType, context, format, args);
+    }<br /><br />    public void LogException(Exception exception, UnityEngine.Object context)
+    {
+        Debug.unityLogger.LogException(exception, context);
+    }
+}<br /><br />public class MyGameClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private static string kTAG = "MyGameTag";
+    private <a href="Logger.html">Logger</a> myLogger;<br /><br />    void Start()
+    {
+        myLogger = new <a href="Logger.html">Logger</a>(new MyLogHandler());<br /><br />        myLogger.Log(kTAG, "MyGameClass Start.");
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Logger-filterLogType.html">filterLogType</a></td><td class="desc"></td><td class="desc1">To selective enable debug log message.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Logger-logEnabled.html">logEnabled</a></td><td class="desc"></td><td class="desc1">To runtime toggle debug logging [ON/OFF].</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Logger-logHandler.html">logHandler</a></td><td class="desc"></td><td class="desc1">Set  Logger.ILogHandler.</td></tr>
+    </table></div><div class="subsection"><h2>Constructors</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Logger-ctor.html">Logger</a></td><td class="desc"></td><td class="desc1">Create a custom Logger.</td></tr>
+    </table></div><div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Logger.IsLogTypeAllowed.html">IsLogTypeAllowed</a></td><td class="desc"></td><td class="desc1">Check logging is enabled based on the LogType.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Logger.Log.html">Log</a></td><td class="desc"></td><td class="desc1">Logs message to the Unity Console using default logger.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Logger.LogError.html">LogError</a></td><td class="desc"></td><td class="desc1">A variant of Logger.Log that logs an error message.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Logger.LogException.html">LogException</a></td><td class="desc"></td><td class="desc1">A variant of Logger.Log that logs an exception message.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Logger.LogFormat.html">LogFormat</a></td><td class="desc"></td><td class="desc1">Logs a formatted message.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Logger.LogWarning.html">LogWarning</a></td><td class="desc"></td><td class="desc1">A variant of Logger.Log that logs an warning message.</td></tr>
+    </table></div></div></div></div></body></html>

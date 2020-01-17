@@ -1,0 +1,23 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Random.state</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Random.html">Random</a>.state</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Random.State.html">Random.State</a> <span class="sig-kw">state</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Gets/Sets the full internal state of the random number generator.</p></div><div class="subsection"><p>This property is usually used to save and restore a previously saved state of the random number generator (RNG).
+The RNG state can also be initialized with a seed using the <a href="Random.InitState.html">Random.InitState</a> function, but the effect is quite different, as shown in the following example.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        <a href="Random.InitState.html">Random.InitState</a>(255);<br /><br />        PrintRandom("Step 1");
+        PrintRandom("Step 2");<br /><br />        <a href="Random.State.html">Random.State</a> oldState = <a href="Random-state.html">Random.state</a>;<br /><br />        PrintRandom("Step 3");
+        PrintRandom("Step 4");<br /><br />        <a href="Random-state.html">Random.state</a> = oldState;<br /><br />        PrintRandom("Step 5");
+        PrintRandom("Step 6");<br /><br />        <a href="Random.InitState.html">Random.InitState</a>(255);<br /><br />        PrintRandom("Step 7");
+        PrintRandom("Step 8");
+    }<br /><br />    void PrintRandom(string label)
+    {
+        <a href="Debug.Log.html">Debug.Log</a>(string.Format("{0} - RandomValue {1}", label, <a href="Random.Range.html">Random.Range</a>(1, 100)));
+    }
+}
+</pre>
+      </div><div class="subsection"><p>After running this script we will observe that the random values from step 5 and 6 will be equal to those from step 3 and 4 because the internal state of the RNG was restored by using <a href="Random-state.html">Random.state</a> property.
+Also, the random values from step 7 and 8 will be equal to the ones from step 1 and 2 because <a href="Random.InitState.html">Random.InitState</a> reinitializes the state of the RNG with the initial seed.</p></div></div></div></div></body></html>

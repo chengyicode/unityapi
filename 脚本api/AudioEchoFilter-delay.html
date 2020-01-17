@@ -1,0 +1,15 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AudioEchoFilter.delay</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="AudioEchoFilter.html">AudioEchoFilter</a>.delay</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-AudioEchoFilter.html' title='Go to AudioEchoFilter Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public float <span class="sig-kw">delay</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Echo delay in ms. 10 to 5000. Default = 500.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />[<a href="RequireComponent.html">RequireComponent</a>(typeof(<a href="AudioSource.html">AudioSource</a>))]
+[<a href="RequireComponent.html">RequireComponent</a>(typeof(<a href="AudioEchoFilter.html">AudioEchoFilter</a>))]
+public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Set the delay on the chorus filter to the max working value.<br /><br />    void Start()
+    {
+        GetComponent&lt;<a href="AudioEchoFilter.html">AudioEchoFilter</a>&gt;().delay = 5000f;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

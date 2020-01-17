@@ -1,0 +1,89 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: VideoCapture</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">VideoCapture</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine.Windows.WebCam</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.CoreModule.html" class="cl">UnityEngine.CoreModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Records a video from the web camera directly to disk.</p></div><div class="subsection"><p>The final video recording will be stored on the file system in the MP4 format.<br /><br />The example below records a 5 second video to the file system.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;
+using System.Linq;
+using UnityEngine.Windows.WebCam;<br /><br />public class VideoCaptureExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    static readonly float MaxRecordingTime = 5.0f;<br /><br />    <a href="Windows.WebCam.VideoCapture.html">VideoCapture</a> m_VideoCapture = null;
+    float m_stopRecordingTimer = float.MaxValue;<br /><br />    // Use this for initialization
+    void Start()
+    {
+        StartVideoCaptureTest();
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        if (m_VideoCapture == null || !m_VideoCapture.IsRecording)
+        {
+            return;
+        }<br /><br />        if (<a href="Time-time.html">Time.time</a> &gt; m_stopRecordingTimer)
+        {
+            m_VideoCapture.StopRecordingAsync(OnStoppedRecordingVideo);
+        }
+    }<br /><br />    void StartVideoCaptureTest()
+    {
+        <a href="Resolution.html">Resolution</a> cameraResolution = VideoCapture.SupportedResolutions.OrderByDescending((res) =&gt; res.width * res.height).First();
+        <a href="Debug.Log.html">Debug.Log</a>(cameraResolution);<br /><br />        float cameraFramerate = <a href="Windows.WebCam.VideoCapture.GetSupportedFrameRatesForResolution.html">VideoCapture.GetSupportedFrameRatesForResolution</a>(cameraResolution).OrderByDescending((fps) =&gt; fps).First();
+        <a href="Debug.Log.html">Debug.Log</a>(cameraFramerate);<br /><br />        <a href="Windows.WebCam.VideoCapture.CreateAsync.html">VideoCapture.CreateAsync</a>(false, delegate(<a href="Windows.WebCam.VideoCapture.html">VideoCapture</a> videoCapture)
+        {
+            if (videoCapture != null)
+            {
+                m_VideoCapture = videoCapture;
+                <a href="Debug.Log.html">Debug.Log</a>("Created <a href="Windows.WebCam.VideoCapture.html">VideoCapture</a> Instance!");<br /><br />                <a href="Windows.WebCam.CameraParameters.html">CameraParameters</a> cameraParameters = new <a href="Windows.WebCam.CameraParameters.html">CameraParameters</a>();
+                cameraParameters.hologramOpacity = 0.0f;
+                cameraParameters.frameRate = cameraFramerate;
+                cameraParameters.cameraResolutionWidth = cameraResolution.width;
+                cameraParameters.cameraResolutionHeight = cameraResolution.height;
+                cameraParameters.pixelFormat = <a href="Windows.WebCam.CapturePixelFormat.BGRA32.html">CapturePixelFormat.BGRA32</a>;<br /><br />                m_VideoCapture.StartVideoModeAsync(cameraParameters,
+                    <a href="Windows.WebCam.VideoCapture.AudioState.ApplicationAndMicAudio.html">VideoCapture.AudioState.ApplicationAndMicAudio</a>,
+                    OnStartedVideoCaptureMode);
+            }
+            else
+            {
+                <a href="Debug.LogError.html">Debug.LogError</a>("Failed to create <a href="Windows.WebCam.VideoCapture.html">VideoCapture</a> Instance!");
+            }
+        });
+    }<br /><br />    void OnStartedVideoCaptureMode(VideoCapture.VideoCaptureResult result)
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("Started Video Capture <a href="Scripting.GarbageCollector.Mode.html">Mode</a>!");
+        string timeStamp = Time.time.ToString().Replace(".", "").Replace(":", "");
+        string filename = string.Format("TestVideo_{0}.mp4", timeStamp);
+        string filepath = System.IO.Path.Combine(<a href="Application-persistentDataPath.html">Application.persistentDataPath</a>, filename);
+        filepath = filepath.Replace("/", @"\");
+        m_VideoCapture.StartRecordingAsync(filepath, OnStartedRecordingVideo);
+    }<br /><br />    void OnStoppedVideoCaptureMode(VideoCapture.VideoCaptureResult result)
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("Stopped Video Capture <a href="Scripting.GarbageCollector.Mode.html">Mode</a>!");
+    }<br /><br />    void OnStartedRecordingVideo(VideoCapture.VideoCaptureResult result)
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("Started Recording Video!");
+        m_stopRecordingTimer = <a href="Time-time.html">Time.time</a> + MaxRecordingTime;
+    }<br /><br />    void OnStoppedRecordingVideo(VideoCapture.VideoCaptureResult result)
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("Stopped Recording Video!");
+        m_VideoCapture.StopVideoModeAsync(OnStoppedVideoCaptureMode);
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Static Properties</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Windows.WebCam.VideoCapture.SupportedResolutions.html">SupportedResolutions</a></td><td class="desc"></td><td class="desc1">A list of all the supported device resolutions for recording videos.</td></tr>
+    </table></div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Windows.WebCam.VideoCapture.IsRecording.html">IsRecording</a></td><td class="desc"></td><td class="desc1">Indicates whether or not the VideoCapture instance is currently recording video.</td></tr>
+    </table></div><div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Windows.WebCam.VideoCapture.Dispose.html">Dispose</a></td><td class="desc"></td><td class="desc1">Dispose must be called to shutdown the PhotoCapture instance.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Windows.WebCam.VideoCapture.GetUnsafePointerToVideoDeviceController.html">GetUnsafePointerToVideoDeviceController</a></td><td class="desc"></td><td class="desc1">Provides a COM pointer to the native IVideoDeviceController.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Windows.WebCam.VideoCapture.StartRecordingAsync.html">StartRecordingAsync</a></td><td class="desc"></td><td class="desc1">Asynchronously records a video from the web camera to the file system.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Windows.WebCam.VideoCapture.StartVideoModeAsync.html">StartVideoModeAsync</a></td><td class="desc"></td><td class="desc1">Asynchronously starts video mode.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Windows.WebCam.VideoCapture.StopRecordingAsync.html">StopRecordingAsync</a></td><td class="desc"></td><td class="desc1">Asynchronously stops recording a video from the web camera to the file system.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Windows.WebCam.VideoCapture.StopVideoModeAsync.html">StopVideoModeAsync</a></td><td class="desc"></td><td class="desc1">Asynchronously stops video mode.</td></tr>
+    </table></div><div class="subsection"><h2>Static Methods   静态方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Windows.WebCam.VideoCapture.CreateAsync.html">CreateAsync</a></td><td class="desc"></td><td class="desc1">Asynchronously creates an instance of a VideoCapture object that can be used to record videos from the web camera to disk.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Windows.WebCam.VideoCapture.GetSupportedFrameRatesForResolution.html">GetSupportedFrameRatesForResolution</a></td><td class="desc"></td><td class="desc1">Returns the supported frame rates at which a video can be recorded given a resolution.</td></tr>
+    </table></div><div class="subsection"><h2>Delegates</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Windows.WebCam.VideoCapture.OnStartedRecordingVideoCallback.html">OnStartedRecordingVideoCallback</a></td><td class="desc"></td><td class="desc1">Called when the web camera begins recording the video.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Windows.WebCam.VideoCapture.OnStoppedRecordingVideoCallback.html">OnStoppedRecordingVideoCallback</a></td><td class="desc"></td><td class="desc1">Called when the video recording has been saved to the file system.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Windows.WebCam.VideoCapture.OnVideoCaptureResourceCreatedCallback.html">OnVideoCaptureResourceCreatedCallback</a></td><td class="desc"></td><td class="desc1">Called when a VideoCapture resource has been created.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Windows.WebCam.VideoCapture.OnVideoModeStartedCallback.html">OnVideoModeStartedCallback</a></td><td class="desc"></td><td class="desc1">Called when video mode has been started.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Windows.WebCam.VideoCapture.OnVideoModeStoppedCallback.html">OnVideoModeStoppedCallback</a></td><td class="desc"></td><td class="desc1">Called when video mode has been stopped.</td></tr>
+    </table></div></div></div></div></body></html>

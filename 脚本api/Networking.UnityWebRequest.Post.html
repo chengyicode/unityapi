@@ -1,0 +1,122 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Networking.UnityWebRequest.Post</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Networking.UnityWebRequest.html">UnityWebRequest</a>.Post</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Networking.UnityWebRequest.html">Networking.UnityWebRequest</a> <span class="sig-kw">Post</span>(string <span class="sig-kw">uri</span>,
+string <span class="sig-kw">postData</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">uri</td><td class="desc"></td><td class="desc1">The target URI to which form data will be transmitted.</td></tr><tr><td class="name lbl">postData</td><td class="desc"></td><td class="desc1">Form body data. Will be URLEncoded prior to transmission.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>UnityWebRequest</strong>
+        A UnityWebRequest configured to send form data to <code class="varname">uri</code> via <code class="mono">POST</code>.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Creates a UnityWebRequest configured to send form data to a server via HTTP <code class="mono">POST</code>.</p></div><div class="subsection"><p>This method creates a UnityWebRequest, sets the <code class="varname">url</code> to the string <code class="varname">uri</code> argument and sets the <code class="varname">method</code> to <code class="mono">POST</code>. The <code class="mono">Content-Type</code> header will be set to <code class="mono">application/x-www-form-urlencoded</code> by default.<br /><br /><strong>Note:</strong> Many server backend languages do not properly handle <code class="mono">POST</code> requests with <code class="mono">Content-Type</code> headers set to encoding others than <code class="mono">application/x-www-form-urlencoded</code> or <code class="mono">multipart/form-data</code>.<br /><br />This method attaches a <a href="Networking.DownloadHandlerBuffer.html">DownloadHandlerBuffer</a> to the <a href="Networking.UnityWebRequest.html">UnityWebRequest</a>. This is for convenience, as we anticipate most users will use the <a href="Networking.DownloadHandler.html">DownloadHandler</a> to check replies from the server, particularly in the case of REST APIs.<br /><br />The data in <code class="varname">postData</code> will be escaped, then interpreted into a byte stream via <a href="http://msdn.microsoft.com/en-us/library/system.text.encoding.utf8">System.Text.Encoding.UTF8</a>. The resulting byte stream will be stored in an <a href="Networking.UploadHandlerRaw.html">UploadHandlerRaw</a> and the Upload Handler will be attached to this UnityWebRequest.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.Networking;
+using System.Collections;<br /><br />public class MyBehavior : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        StartCoroutine(Upload());
+    }<br /><br />    IEnumerator Upload()
+    {
+        <a href="WWWForm.html">WWWForm</a> form = new <a href="WWWForm.html">WWWForm</a>();
+        form.AddField("myField", "myData");<br /><br />        using (<a href="Networking.UnityWebRequest.html">UnityWebRequest</a> www = <a href="Networking.UnityWebRequest.Post.html">UnityWebRequest.Post</a>("http://www.my-server.com/myform", form))
+        {
+            yield return www.SendWebRequest();<br /><br />            if (www.isNetworkError || www.isHttpError)
+            {
+                <a href="Debug.Log.html">Debug.Log</a>(www.error);
+            }
+            else
+            {
+                <a href="Debug.Log.html">Debug.Log</a>("Form upload complete!");
+            }
+        }
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Networking.UnityWebRequest.html">Networking.UnityWebRequest</a> <span class="sig-kw">Post</span>(string <span class="sig-kw">uri</span>,
+<a href="WWWForm.html">WWWForm</a> <span class="sig-kw">formData</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">uri</td><td class="desc"></td><td class="desc1">The target URI to which form data will be transmitted.</td></tr><tr><td class="name lbl">formData</td><td class="desc"></td><td class="desc1">Form fields or files encapsulated in a <a href="WWWForm.html">WWWForm</a> object, for formatting and transmission to the remote server.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>UnityWebRequest</strong>
+        A UnityWebRequest configured to send form data to <code class="varname">uri</code> via <code class="mono">POST</code>.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Create a UnityWebRequest configured to send form data to a server via HTTP <code class="mono">POST</code>.</p></div><div class="subsection"><p>This method creates a UnityWebRequest, sets the <code class="varname">url</code> to the string <code class="varname">uri</code> argument and sets the <code class="varname">method</code> to <code class="mono">POST</code>. The <code class="mono">Content-Type</code> header will be copied from the <code class="varname">formData</code> parameter.<br /><br />This method attaches a <a href="Networking.DownloadHandlerBuffer.html">DownloadHandlerBuffer</a> to the <a href="Networking.UnityWebRequest.html">UnityWebRequest</a>. This is for convenience, as we anticipate most users will use the <a href="Networking.DownloadHandler.html">DownloadHandler</a> to check replies from the server, particularly in the case of REST APIs.<br /><br />The <code class="varname">formData</code> object will generate an appropriately-formatted byte stream, depending on its contents. The resulting byte stream will be stored in an <a href="Networking.UploadHandlerRaw.html">UploadHandlerRaw</a> and the Upload Handler will be attached to this UnityWebRequest.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.Networking;
+using System.Collections;<br /><br />public class MyBehavior2 : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        StartCoroutine(Upload());
+    }<br /><br />    IEnumerator Upload()
+    {
+        <a href="WWWForm.html">WWWForm</a> form = new <a href="WWWForm.html">WWWForm</a>();
+        form.AddField("myField", "myData");<br /><br />        <a href="Networking.UnityWebRequest.html">UnityWebRequest</a> www = <a href="Networking.UnityWebRequest.Post.html">UnityWebRequest.Post</a>("http://www.my-server.com/myform", form);
+        yield return www.SendWebRequest();<br /><br />        if (www.isNetworkError || www.isHttpError)
+        {
+            <a href="Debug.Log.html">Debug.Log</a>(www.error);
+        }
+        else
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("Form upload complete!");
+        }
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Networking.UnityWebRequest.html">Networking.UnityWebRequest</a> <span class="sig-kw">Post</span>(string <span class="sig-kw">uri</span>,
+List&lt;IMultipartFormSection&gt; <span class="sig-kw">multipartFormSections</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Networking.UnityWebRequest.html">Networking.UnityWebRequest</a> <span class="sig-kw">Post</span>(string <span class="sig-kw">uri</span>,
+List&lt;IMultipartFormSection&gt; <span class="sig-kw">multipartFormSections</span>,
+byte[] <span class="sig-kw">boundary</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">uri</td><td class="desc"></td><td class="desc1">The target URI to which form data will be transmitted.</td></tr><tr><td class="name lbl">multipartFormSections</td><td class="desc"></td><td class="desc1">A list of form fields or files to be formatted and transmitted to the remote server.</td></tr><tr><td class="name lbl">boundary</td><td class="desc"></td><td class="desc1">A unique boundary string, which will be used when separating form fields in a multipart form.  If not supplied, a boundary will be generated for you.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>UnityWebRequest</strong>
+        A UnityWebRequest configured to send form data to <code class="varname">uri</code> via <code class="mono">POST</code>.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Create a UnityWebRequest configured to send form data to a server via HTTP <code class="mono">POST</code>.</p></div><div class="subsection"><p>This method creates a UnityWebRequest, sets the <code class="varname">url</code> to the string <code class="varname">uri</code> argument and sets the <code class="varname">method</code> to <code class="mono">POST</code>. The <code class="mono">Content-Type</code> header will be set to <code class="mono">multipart/form-data</code>, with an appropriate boundary specification.<br /><br />If you supply a custom <code class="varname">boundary</code> byte array, note that the sequence of bytes must be guaranteed to be unique and must not appear anywhere in the body of your form data. For more information on multipart forms and form boundaries, see <a href="https://www.ietf.org/rfc/rfc2388.txt">RFC 2388</a>.<br /><br />This method attaches a <a href="Networking.DownloadHandlerBuffer.html">DownloadHandlerBuffer</a> to the <a href="Networking.UnityWebRequest.html">UnityWebRequest</a>. This is for convenience, as we anticipate most users will use the <a href="Networking.DownloadHandler.html">DownloadHandler</a> to check replies from the server, particularly in the case of REST APIs.<br /><br />The List of <a href="Networking.IMultipartFormSection.html">IMultipartFormSection</a> objects in <code class="varname">multipartFormSections</code> will be formatted into a valid multipart form body. Each object will be interpreted as a discrete form section. The byte stream resulting from formatting this multipart form body will be stored in an <a href="Networking.UploadHandlerRaw.html">UploadHandlerRaw</a> and attached to this UnityWebRequest.<br /><br /><strong>Using IMultipartFormSection</strong><br /><br />To provide greater control over how you specify your form data, the UnityWebRequest system contains a (user-implementable) <a href="Networking.IMultipartFormSection.html">IMultipartFormSection</a> interface. For standard applications, Unity also provides default implementations for data and file sections.<br /><br />See Also: <a href="Networking.MultipartFormDataSection.html">MultipartFormDataSection</a> and <a href="Networking.MultipartFormFileSection.html">MultipartFormFileSection</a>.<br /><br />A List of IMultipartFormSection objects can be provided to this method. The list's members will be formatted into a multipart form, as defined by <a href="https://www.ietf.org/rfc/rfc2388.txt">RFC 2388</a>.<br /><br />Multipart forms require a unique boundary string to define the separation between fields. The boundary string must be guaranteed to not be present anywhere within the body of any form field in the request. If you do not supply a boundary, Unity will generate one. The generated boundary is 40 random printable bytes, which effectively never collide with form field data. However, if your application requires you to supply a custom boundary string, you may do so.<br /><br />The supplied boundary, if any, will be automatically converted from a byte array to UTF8 characters.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.Networking;
+using System.Collections;<br /><br />public class MyBehavior3 : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        StartCoroutine(Upload());
+    }<br /><br />    IEnumerator Upload()
+    {
+        <a href="WWWForm.html">WWWForm</a> form = new <a href="WWWForm.html">WWWForm</a>();
+        form.AddField("myField", "myData");<br /><br />        <a href="Networking.UnityWebRequest.html">UnityWebRequest</a> www = <a href="Networking.UnityWebRequest.Post.html">UnityWebRequest.Post</a>("http://www.my-server.com/myform", form);
+        yield return www.SendWebRequest();<br /><br />        if (www.isNetworkError || www.isHttpError)
+        {
+            <a href="Debug.Log.html">Debug.Log</a>(www.error);
+        }
+        else
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("Form upload complete!");
+        }
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Networking.UnityWebRequest.html">Networking.UnityWebRequest</a> <span class="sig-kw">Post</span>(string <span class="sig-kw">uri</span>,
+Dictionary&lt;string,string&gt; <span class="sig-kw">formFields</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">uri</td><td class="desc"></td><td class="desc1">The target URI to which form data will be transmitted.</td></tr><tr><td class="name lbl">formFields</td><td class="desc"></td><td class="desc1">Strings indicating the keys and values of form fields. Will be automatically formatted into a URL-encoded form body.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>UnityWebRequest</strong>
+        A UnityWebRequest configured to send form data to <code class="varname">uri</code> via <code class="mono">POST</code>.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Create a UnityWebRequest configured to send form data to a server via HTTP <code class="mono">POST</code>.</p></div><div class="subsection"><p>This method creates a UnityWebRequest, sets the <code class="varname">url</code> to the string <code class="varname">uri</code> argument and sets the <code class="varname">method</code> to <code class="mono">POST</code>. The <code class="mono">Content-Type</code> header will be set to <code class="mono">application/x-www-form-urlencoded</code>.<br /><br />The Dictionary of strings in <code class="varname">formFields</code> will be interpreted as a list of form fields whose field IDs are the dictionary keys, and whose field values are the dictionary values. Both keys and values will be escaped, and then joined into a URL-encoded form string. (for example, <code class="mono">key1=value1&amp;key2=value2</code>).<br /><br />This method, by default, attaches a <a href="Networking.DownloadHandlerBuffer.html">DownloadHandlerBuffer</a> to the <a href="Networking.UnityWebRequest.html">UnityWebRequest</a>. This is for convenience, as we anticipate most users will use the <a href="Networking.DownloadHandler.html">DownloadHandler</a> to check replies from the server, particularly in the case of REST APIs.<br /><br />The URL-encoded form string generated from <code class="varname">formFields</code> will be converted into a byte stream and stored in an <a href="Networking.UploadHandlerRaw.html">UploadHandlerRaw</a>, which will be attached to this UnityWebRequest.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.Networking;
+using System.Collections;<br /><br />public class MyBehavior4 : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        StartCoroutine(Upload());
+    }<br /><br />    IEnumerator Upload()
+    {
+        <a href="WWWForm.html">WWWForm</a> form = new <a href="WWWForm.html">WWWForm</a>();
+        form.AddField("myField", "myData");<br /><br />        <a href="Networking.UnityWebRequest.html">UnityWebRequest</a> www = <a href="Networking.UnityWebRequest.Post.html">UnityWebRequest.Post</a>("http://www.my-server.com/myform", form);
+        yield return www.SendWebRequest();<br /><br />        if (www.isNetworkError || www.isHttpError)
+        {
+            <a href="Debug.Log.html">Debug.Log</a>(www.error);
+        }
+        else
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("Form upload complete!");
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

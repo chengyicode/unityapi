@@ -1,0 +1,14 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ConnectionConfig</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Method group is Obsolete</b><br /></div><h1 class="heading inherit">ConnectionConfig</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine.Networking</p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>This class defines parameters of connection between two peers, this definition includes various timeouts and sizes as well as channel configuration.</p></div><div class="subsection"><p>The NetworkServer and NetworkClient classes can be configured with instances of this class. This causes the settings in the ConnectionConfig to be applied to the transport layer connection of the NetworkConnections owned by these objects.<br /><br />The NetworkManager has a ConnectionConfig object that is used to configure servers and clients that it creates.<br /><br />The default channel connection configuration used by the high level components of the networking system is:
+* channel 0 - Reliable Sequenced channel
+* channel 1 - Unreliable channel.<br /><br />Some of the attributes of this ConnectionConfig instance can be modified using the Inspector UI for the NetworkManager in the Editor.<br /><br />Important: Some parameters of ConnectionConfig should be exactly the same for connected peers. If they are different, a CRCMismatch error is received when trying to establish a connection.<br /><br />These parameters are:<br />
+- PacketSize<br />
+- FragmentSize<br />
+- ResendTimeout<br />
+- DisconnectTimeout<br />
+- ConnectTimeout<br />
+- PingTimeout<br />
+- ReducedPingTimeout<br />
+- AllCostTimeout<br />
+- IsAckLong<br />
+- UsePlatformSpecificProtocols.<br /></p></div></div></div></div></body></html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: TrailRenderer.colorGradient</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="TrailRenderer.html">TrailRenderer</a>.colorGradient</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-TrailRenderer.html' title='Go to TrailRenderer Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Gradient.html">Gradient</a> <span class="sig-kw">colorGradient</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Set the color gradient describing the color of the trail at various points along its length.</p></div><div class="subsection"><p>See Also: <a href="Gradient.html">Gradient</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private <a href="TrailRenderer.html">TrailRenderer</a> tr;<br /><br />    void Start()
+    {
+        tr = GetComponent&lt;<a href="TrailRenderer.html">TrailRenderer</a>&gt;();
+        tr.material = new <a href="Material.html">Material</a>(<a href="Shader.Find.html">Shader.Find</a>("Sprites/Default"));<br /><br />        // A simple 2 color gradient with a fixed alpha of 1.0f.
+        float alpha = 1.0f;
+        <a href="Gradient.html">Gradient</a> gradient = new <a href="Gradient.html">Gradient</a>();
+        gradient.SetKeys(
+            new <a href="GradientColorKey.html">GradientColorKey</a>[] { new <a href="GradientColorKey.html">GradientColorKey</a>(<a href="Color-green.html">Color.green</a>, 0.0f), new <a href="GradientColorKey.html">GradientColorKey</a>(<a href="Color-red.html">Color.red</a>, 1.0f) },
+            new <a href="GradientAlphaKey.html">GradientAlphaKey</a>[] { new <a href="GradientAlphaKey.html">GradientAlphaKey</a>(alpha, 0.0f), new <a href="GradientAlphaKey.html">GradientAlphaKey</a>(alpha, 1.0f) }
+        );
+        tr.colorGradient = gradient;
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        tr.transform.position = new <a href="Vector3.html">Vector3</a>(<a href="Mathf.Sin.html">Mathf.Sin</a>(<a href="Time-time.html">Time.time</a> * 1.51f) * 7.0f, <a href="Mathf.Cos.html">Mathf.Cos</a>(<a href="Time-time.html">Time.time</a> * 1.27f) * 4.0f, 0.0f);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

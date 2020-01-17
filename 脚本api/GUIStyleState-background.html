@@ -1,0 +1,22 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: GUIStyleState.background</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="GUIStyleState.html">GUIStyleState</a>.background</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Texture2D.html">Texture2D</a> <span class="sig-kw">background</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The background image used by GUI elements in this given state.</p></div><div class="subsection"><p>See also: <a href="GUIStyleState-scaledBackgrounds.html">scaledBackgrounds</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Assigns a texture to customStyles[0] for when the control
+    // is pressed down<br /><br />    <a href="Texture2D.html">Texture2D</a> aTexture;<br /><br />    void OnGUI()
+    {
+        if (!aTexture)
+        {
+            <a href="Debug.LogError.html">Debug.LogError</a>("Assign a texture on the editor first");
+            return;
+        }
+        if (GUI.skin.customStyles.Length &gt; 0)
+        {
+            GUI.skin.customStyles[0].active.background = aTexture;
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

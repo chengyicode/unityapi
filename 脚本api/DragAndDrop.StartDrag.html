@@ -1,0 +1,22 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: DragAndDrop.StartDrag</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="DragAndDrop.html">DragAndDrop</a>.StartDrag</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">StartDrag</span>(string <span class="sig-kw">title</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Start a drag operation.</p></div><div class="subsection"><p>Initiates a drag operation with the current drag object state. Use <a href="DragAndDrop-paths.html">paths</a> and/or <a href="DragAndDrop-objectReferences.html">objectReferences</a> to setup
+drag state.<br /><br />See Also: <a href="DragAndDrop.PrepareStartDrag.html">PrepareStartDrag</a>, <a href="DragAndDrop-paths.html">paths</a>, <a href="DragAndDrop-objectReferences.html">objectReferences</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void OnGUI()
+    {
+        if (Event.current.type == <a href="EventType.MouseDrag.html">EventType.MouseDrag</a>)
+        {
+            // Clear out drag data
+            <a href="DragAndDrop.PrepareStartDrag.html">DragAndDrop.PrepareStartDrag</a>();<br /><br />            // Set up what we want to drag
+            <a href="DragAndDrop-paths.html">DragAndDrop.paths</a>[0] = "/Users/joe/myPath.txt";<br /><br />            // Start the actual drag
+            <a href="DragAndDrop.StartDrag.html">DragAndDrop.StartDrag</a>("Dragging title");<br /><br />            // Make sure no one uses the event after us
+            Event.current.Use();
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

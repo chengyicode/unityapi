@@ -1,0 +1,23 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: SystemInfo.graphicsShaderLevel</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="SystemInfo.html">SystemInfo</a>.graphicsShaderLevel</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static int <span class="sig-kw">graphicsShaderLevel</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Graphics device shader capability level (Read Only).</p></div><div class="subsection"><p>This is approximate "shader capability" level of the graphics device, expressed in DirectX shader model terms.
+Possible values are:<br /><br /><strong>50</strong> Shader Model 5.0 (DX11.0) <br />
+<strong>46</strong> OpenGL 4.1 capabilities (Shader Model 4.0 + tessellation) <br />
+<strong>45</strong> Metal / OpenGL ES 3.1 capabilities (Shader Model 3.5 + compute shaders) <br />
+<strong>40</strong> Shader Model 4.0 (DX10.0) <br />
+<strong>35</strong> OpenGL ES 3.0 capabilities (Shader Model 3.0 + integers, texture arrays, instancing) <br />
+<strong>30</strong> Shader Model 3.0 <br />
+<strong>25</strong> Shader Model 2.5 (DX11 feature level 9.3 feature set) <br />
+<strong>20</strong> Shader Model 2.0.<br /><br />See Also: <a href="../Manual/SL-ShaderCompileTargets.html">shader compilation targets</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        // Check for shader model 4.5 or better support
+        if (<a href="SystemInfo-graphicsShaderLevel.html">SystemInfo.graphicsShaderLevel</a> &gt;= 45)
+            print("Woohoo, decent shaders supported!");
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

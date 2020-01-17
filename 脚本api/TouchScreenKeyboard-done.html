@@ -1,0 +1,26 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: TouchScreenKeyboard.done</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Method group is Obsolete</b><br /></div><h1 class="heading inherit"><a href="TouchScreenKeyboard.html">TouchScreenKeyboard</a>.done</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public bool <span class="sig-kw">done</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Specifies if input process was finished. (Read Only)</p></div><div class="subsection"><p>Keyboard input process can be finished either by user tapping "Done"
+button or script setting <code class="varname">active</code> property to false. Note that keyboard
+might be temporarily inactive (either by sliding in/out due to
+orientation change or by appearance of another keyboard), however its
+input process might still be not finished and will be resumed
+automatically.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Opens a keyboard and shows what has been typed.<br /><br />    <a href="TouchScreenKeyboard.html">TouchScreenKeyboard</a> keyboard;
+    public string text = "";<br /><br />    void Start()
+    {
+        keyboard = <a href="TouchScreenKeyboard.Open.html">TouchScreenKeyboard.Open</a>(text, <a href="TouchScreenKeyboardType.Default.html">TouchScreenKeyboardType.Default</a>);
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        if (keyboard != null &amp;&amp; keyboard.status == <a href="TouchScreenKeyboard.Status.Done.html">TouchScreenKeyboard.Status.Done</a>)
+        {
+            text = keyboard.text;
+            print("User input is: " + text);
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

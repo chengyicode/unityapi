@@ -1,0 +1,21 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Vector3.Reflect</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Vector3.html">Vector3</a>.Reflect</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Vector3.html">Vector3</a> <span class="sig-kw">Reflect</span>(<a href="Vector3.html">Vector3</a> <span class="sig-kw">inDirection</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">inNormal</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Reflects a vector off the plane defined by a normal.</p></div><div class="subsection"><p>The <code class="varname">inNormal</code> vector defines a plane (a plane's normal is the vector that is perpendicular to
+its surface). the <code class="varname">inDirection</code> vector is treated as a directional arrow coming in to the plane.
+The returned value is a vector of equal magnitude to <code class="varname">inDirection</code> but with its direction reflected.<br /><br /><img src="../StaticFiles/ScriptRefImages/Vec3ReflectDiagram.png" /><br />
+<em>Reflection of a vector off a plane.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Transform.html">Transform</a> originalObject;
+    public <a href="Transform.html">Transform</a> reflectedObject;<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        // Makes the reflected object appear opposite of the original object,
+        // mirrored along the z-axis of the world
+        reflectedObject.position = <a href="Vector3.Reflect.html">Vector3.Reflect</a>(originalObject.position, <a href="Vector3-right.html">Vector3.right</a>);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

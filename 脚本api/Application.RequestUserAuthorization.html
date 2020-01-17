@@ -1,0 +1,45 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Application.RequestUserAuthorization</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Application.html">Application</a>.RequestUserAuthorization</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="AsyncOperation.html">AsyncOperation</a> <span class="sig-kw">RequestUserAuthorization</span>(<a href="UserAuthorization.html">UserAuthorization</a> <span class="sig-kw">mode</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Request authorization to use the webcam or microphone on iOS.</p></div><div class="subsection"><p>The call of <a href="Application.RequestUserAuthorization.html">Application.RequestUserAuthorization</a> requests permission for microphone and camera.  The application shows a dialog box to the user and waits for operation to complete before being able to use these features.<br /><br /><strong>Note:</strong> Use <a href="Application.HasUserAuthorization.html">Application.HasUserAuthorization</a> to query the result of the operation.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.iOS;
+using System.Collections;<br /><br />// Show WebCams and Microphones on an iPhone/iPad.
+// Make sure NSCameraUsageDescription and NSMicrophoneUsageDescription
+// are in the Info.plist.<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    IEnumerator Start()
+    {
+        findWebCams();<br /><br />        yield return <a href="Application.RequestUserAuthorization.html">Application.RequestUserAuthorization</a>(<a href="UserAuthorization.WebCam.html">UserAuthorization.WebCam</a>);
+        if (<a href="Application.HasUserAuthorization.html">Application.HasUserAuthorization</a>(<a href="UserAuthorization.WebCam.html">UserAuthorization.WebCam</a>))
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("webcam found");
+        }
+        else
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("webcam not found");
+        }<br /><br />        findMicrophones();<br /><br />        yield return <a href="Application.RequestUserAuthorization.html">Application.RequestUserAuthorization</a>(<a href="UserAuthorization.Microphone.html">UserAuthorization.Microphone</a>);
+        if (<a href="Application.HasUserAuthorization.html">Application.HasUserAuthorization</a>(<a href="UserAuthorization.Microphone.html">UserAuthorization.Microphone</a>))
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("<a href="Microphone.html">Microphone</a> found");
+        }
+        else
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("<a href="Microphone.html">Microphone</a> not found");
+        }
+    }<br /><br />    void findWebCams()
+    {
+        foreach (var device in <a href="WebCamTexture-devices.html">WebCamTexture.devices</a>)
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("Name: " + device.name);
+        }
+    }<br /><br />    void findMicrophones()
+    {
+        foreach (var device in <a href="Microphone-devices.html">Microphone.devices</a>)
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("Name: " + device);
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

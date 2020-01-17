@@ -1,0 +1,25 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Input.GetMouseButton</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Input.html">Input</a>.GetMouseButton</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">GetMouseButton</span>(int <span class="sig-kw">button</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Returns whether the given mouse button is held down.</p></div><div class="subsection"><p>
+        <em>button</em> values are 0 for left button, 1 for right button, 2 for the middle button.  The return is <code class="mono">true</code> when the mouse button is pressed down, and <code class="mono">false</code> when released.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />// Detects clicks from the mouse and prints a message
+// depending on the click detected.<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        if (<a href="Input.GetMouseButton.html">Input.GetMouseButton</a>(0))
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("Pressed left click.");
+        }<br /><br />        if (<a href="Input.GetMouseButton.html">Input.GetMouseButton</a>(1))
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("Pressed right click.");
+        }<br /><br />        if (<a href="Input.GetMouseButton.html">Input.GetMouseButton</a>(2))
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("Pressed middle click.");
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: CapsuleBoundsHandle</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">CapsuleBoundsHandle</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEditor.IMGUI.Controls</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Inherits from:<a href="IMGUI.Controls.PrimitiveBoundsHandle.html" class="cl">IMGUI.Controls.PrimitiveBoundsHandle</a></p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEditor.html" class="cl">UnityEditor</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>A compound handle to edit a capsule-shaped bounding volume in the Scene view.</p></div><div class="subsection"><p>A capsule volume is defined by two parameters. The <a href="IMGUI.Controls.CapsuleBoundsHandle-height.html">height</a> specifies the upper and lower bounds along the <a href="IMGUI.Controls.CapsuleBoundsHandle-heightAxis.html">heightAxis</a>, while the <a href="IMGUI.Controls.CapsuleBoundsHandle-radius.html">radius</a> specifies the radius of the capsule's cross section between the upper and lower points on its height axis.<br />
+<br />
+<img src="../StaticFiles/ScriptRefImages/CapsuleBoundsHandle.png" />
+<em>2D and 3D CapsuleBoundsHandle in the Scene View.</em><br />
+<br />
+See Also: <a href="IMGUI.Controls.PrimitiveBoundsHandle.html">PrimitiveBoundsHandle</a>.</p></div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="IMGUI.Controls.CapsuleBoundsHandle-height.html">height</a></td><td class="desc"></td><td class="desc1">Returns or specifies the height of the capsule bounding volume.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="IMGUI.Controls.CapsuleBoundsHandle-heightAxis.html">heightAxis</a></td><td class="desc"></td><td class="desc1">Returns or specifies the axis in the handle's space to which height maps. The radius maps to the remaining axes.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="IMGUI.Controls.CapsuleBoundsHandle-radius.html">radius</a></td><td class="desc"></td><td class="desc1">Returns or specifies the radius of the capsule bounding volume.</td></tr>
+    </table></div><div class="subsection"><h2>Constructors</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="IMGUI.Controls.CapsuleBoundsHandle-ctor.html">CapsuleBoundsHandle</a></td><td class="desc"></td><td class="desc1">Create a new instance of the CapsuleBoundsHandle class.</td></tr>
+    </table></div><div class="subsection"><h2>Protected Methods</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="IMGUI.Controls.CapsuleBoundsHandle.DrawWireframe.html">DrawWireframe</a></td><td class="desc"></td><td class="desc1">Draw a wireframe capsule for this instance.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="IMGUI.Controls.CapsuleBoundsHandle.OnHandleChanged.html">OnHandleChanged</a></td><td class="desc"></td><td class="desc1">A callback for when a control handle was dragged in the Scene.</td></tr>
+    </table></div><div class="subsection"><h2>Inherited Members   继承成员</h2>
+      
+      <div class="subsection"><h2>Properties   属性</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="IMGUI.Controls.PrimitiveBoundsHandle-axes.html">axes</a></td><td class="desc"></td><td class="desc1">Flags specifying which axes should display control handles.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="IMGUI.Controls.PrimitiveBoundsHandle-center.html">center</a></td><td class="desc"></td><td class="desc1">Returns or specifies the center of the bounding volume for the handle.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="IMGUI.Controls.PrimitiveBoundsHandle-handleColor.html">handleColor</a></td><td class="desc"></td><td class="desc1">Returns or specifies the color of the control handles.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="IMGUI.Controls.PrimitiveBoundsHandle-midpointHandleDrawFunction.html">midpointHandleDrawFunction</a></td><td class="desc"></td><td class="desc1">An optional CapFunction to use when displaying the control handles. Defaults to Handles.DotHandleCap if no value is specified.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="IMGUI.Controls.PrimitiveBoundsHandle-midpointHandleSizeFunction.html">midpointHandleSizeFunction</a></td><td class="desc"></td><td class="desc1">The SizeFunction to specify how large the midpoint control handles should be.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="IMGUI.Controls.PrimitiveBoundsHandle-wireframeColor.html">wireframeColor</a></td><td class="desc"></td><td class="desc1">Returns or specifies the color of the wireframe shape.</td></tr>
+      </table></div>
+      
+      
+      
+      <div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="IMGUI.Controls.PrimitiveBoundsHandle.DrawHandle.html">DrawHandle</a></td><td class="desc"></td><td class="desc1">A function to display this instance in the current handle camera using its current configuration.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="IMGUI.Controls.PrimitiveBoundsHandle.SetColor.html">SetColor</a></td><td class="desc"></td><td class="desc1">Sets handleColor and wireframeColor to the same value.</td></tr>
+      </table></div>
+      <div class="subsection"><h2>Protected Methods</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="IMGUI.Controls.PrimitiveBoundsHandle.GetSize.html">GetSize</a></td><td class="desc"></td><td class="desc1">Gets the current size of the bounding volume for this instance.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="IMGUI.Controls.PrimitiveBoundsHandle.IsAxisEnabled.html">IsAxisEnabled</a></td><td class="desc"></td><td class="desc1">Gets a value indicating whether the specified axis is enabled for the current instance.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="IMGUI.Controls.PrimitiveBoundsHandle.SetSize.html">SetSize</a></td><td class="desc"></td><td class="desc1">Sets the current size of the bounding volume for this instance.</td></tr>
+      </table></div>
+      <div class="subsection"><h2>Static Methods   静态方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="IMGUI.Controls.PrimitiveBoundsHandle.DefaultMidpointHandleSizeFunction.html">DefaultMidpointHandleSizeFunction</a></td><td class="desc"></td><td class="desc1">A SizeFunction that returns a fixed screen-space size.</td></tr>
+      </table></div>
+      
+      
+      
+      
+    </div></div></div></div></body></html>

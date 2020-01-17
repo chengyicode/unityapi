@@ -1,0 +1,34 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Networking.UnityWebRequestTexture.GetTexture</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Networking.UnityWebRequestTexture.html">UnityWebRequestTexture</a>.GetTexture</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Networking.UnityWebRequest.html">Networking.UnityWebRequest</a> <span class="sig-kw">GetTexture</span>(string <span class="sig-kw">uri</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Networking.UnityWebRequest.html">Networking.UnityWebRequest</a> <span class="sig-kw">GetTexture</span>(string <span class="sig-kw">uri</span>,
+bool <span class="sig-kw">nonReadable</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">uri</td><td class="desc"></td><td class="desc1">The URI of the image to download.</td></tr><tr><td class="name lbl">nonReadable</td><td class="desc"></td><td class="desc1">If true, the texture's raw data will not be accessible to script. This can conserve memory. Default: <code class="mono">false</code>.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>UnityWebRequest</strong>
+        A <a href="Networking.UnityWebRequest.html">UnityWebRequest</a> properly configured to download an image and convert it to a <a href="Texture.html">Texture</a>.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Create a <a href="Networking.UnityWebRequest.html">UnityWebRequest</a> intended to download an image via HTTP GET and create a <a href="Texture.html">Texture</a> based on the retrieved data.</p></div><div class="subsection"><p>This method creates a <a href="Networking.UnityWebRequest.html">UnityWebRequest</a> and sets the target URL to the string <code class="varname">uri</code> argument. This method sets no other flags or custom headers.<br /><br />This method attaches a <a href="Networking.DownloadHandlerTexture.html">DownloadHandlerTexture</a> object to the <a href="Networking.UnityWebRequest.html">UnityWebRequest</a>. <a href="Networking.DownloadHandlerTexture.html">DownloadHandlerTexture</a> is a specialized <a href="Networking.DownloadHandler.html">DownloadHandler</a> which is optimized for storing images which are to be used as textures in the Unity Engine. Using this class significantly reduces memory reallocation compared to downloading raw bytes and creating a texture manually in script. In addition, texture conversion will be performed on a worker thread.<br /><br />This method attaches no <a href="Networking.UploadHandler.html">UploadHandler</a> to the <a href="Networking.UnityWebRequest.html">UnityWebRequest</a>.<br /><br />Please note that the texture will be created as if it stores color data (See Also: <a href="TextureImporter-sRGBTexture.html">TextureImporter.sRGBTexture</a>). If you need to download linear data use <a href="ImageConversion.LoadImage.html">ImageConversion.LoadImage</a>.<br /><br /><strong>Note:</strong> Only JPG and PNG formats are supported.<br />
+<strong>Note:</strong> UnityWebRequest.GetTexture is obsolete. Use <a href="Networking.UnityWebRequestTexture.GetTexture.html">UnityWebRequestTexture.GetTexture</a> instead.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.Networking;
+using System.Collections;<br /><br />public class MyBehaviour : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        StartCoroutine(GetText());
+    }<br /><br />    IEnumerator GetText()
+    {
+        using (<a href="Networking.UnityWebRequest.html">UnityWebRequest</a> uwr = <a href="Networking.UnityWebRequestTexture.GetTexture.html">UnityWebRequestTexture.GetTexture</a>("http://www.my-server.com/myimage.png"))
+        {
+            yield return uwr.SendWebRequest();<br /><br />            if (uwr.isNetworkError || uwr.isHttpError)
+            {
+                <a href="Debug.Log.html">Debug.Log</a>(uwr.error);
+            }
+            else
+            {
+                // Get downloaded asset bundle
+                var texture = <a href="Networking.DownloadHandlerTexture.GetContent.html">DownloadHandlerTexture.GetContent</a>(uwr);
+            }
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

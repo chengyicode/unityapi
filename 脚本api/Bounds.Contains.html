@@ -1,0 +1,30 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Bounds.Contains</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Bounds.html">Bounds</a>.Contains</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public bool <span class="sig-kw">Contains</span>(<a href="Vector3.html">Vector3</a> <span class="sig-kw">point</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Is <code class="varname">point</code> contained in the bounding box?</p></div><div class="subsection"><p>If the <code class="varname">point</code> passed into <a href="Bounds.Contains.html">Contains</a> is inside the bounding box
+            a value of True is returned.<br /><br /><strong>Note:</strong> If <a href="Bounds-extents.html">Bounds.extents</a> contains a negative value in any coordinate then
+<a href="Bounds.Contains.html">Bounds.Contains</a> will always return False.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//Attach this script to a <a href="GameObject.html">GameObject</a> with a <a href="Collider.html">Collider</a> component
+//Create an empty <a href="GameObject.html">GameObject</a> (<strong>Create</strong>&gt;<strong>Create Empty</strong>) and attach it in the New <a href="Transform.html">Transform</a> field in the Inspector of the first <a href="GameObject.html">GameObject</a>
+//This script tells if a point  you specify (the position of the empty <a href="GameObject.html">GameObject</a>) is within the first <a href="GameObject.html">GameObject</a>’s <a href="Collider.html">Collider</a><br /><br />using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    //Make sure to assign this in the Inspector window
+    public <a href="Transform.html">Transform</a> m_NewTransform;
+    <a href="Collider.html">Collider</a> m_Collider;
+    <a href="Vector3.html">Vector3</a> m_Point;<br /><br />    void Start()
+    {
+        //Fetch the <a href="Collider.html">Collider</a> from the <a href="GameObject.html">GameObject</a> this script is attached to
+        m_Collider = GetComponent&lt;<a href="Collider.html">Collider</a>&gt;();
+        //Assign the point to be that of the <a href="Transform.html">Transform</a> you assign in the Inspector window
+        m_Point = m_NewTransform.position;
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        //If the first <a href="GameObject.html">GameObject</a>'s <a href="Bounds.html">Bounds</a> contains the <a href="Transform.html">Transform</a>'s position, output a message in the console
+        if (m_Collider.bounds.Contains(m_Point))
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("<a href="Bounds.html">Bounds</a> contain the point : " + m_Point);
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

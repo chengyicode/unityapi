@@ -1,0 +1,41 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Time.realtimeSinceStartup</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Time.html">Time</a>.realtimeSinceStartup</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static float <span class="sig-kw">realtimeSinceStartup</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The real time in seconds since the game started (Read Only).</p></div><div class="subsection"><p>In almost all cases you can and should use <a href="Time-time.html">Time.time</a> instead.<br /><br /><code class="varname">realtimeSinceStartup</code> returns the time since startup, not affected by <a href="Time-timeScale.html">Time.timeScale</a>.
+<code class="varname">realtimeSinceStartup</code> also keeps increasing while the player is paused (in the background).
+Using <code class="varname">realtimeSinceStartup</code> is useful when you want to pause the game by setting <a href="Time-timeScale.html">Time.timeScale</a> to zero,
+but still want to be able to measure time somehow.<br /><br />Note that <code class="varname">realtimeSinceStartup</code> returns time as reported by system timer. Depending on
+the platform and the hardware, it may report the same time even in several consecutive
+frames. If you're dividing something by time difference, take this into account
+(time difference may become zero!).</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />// An FPS counter.
+// It calculates frames/second over each updateInterval,
+// so the display does not keep changing wildly.
+public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public float updateInterval = 0.5F;
+    private double lastInterval;
+    private int frames = 0;
+    private float fps;
+    void Start()
+    {
+        lastInterval = <a href="Time-realtimeSinceStartup.html">Time.realtimeSinceStartup</a>;
+        frames = 0;
+    }<br /><br />    void OnGUI()
+    {
+        <a href="GUILayout.Label.html">GUILayout.Label</a>("" + fps.ToString("f2"));
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        ++frames;
+        float timeNow = <a href="Time-realtimeSinceStartup.html">Time.realtimeSinceStartup</a>;
+        if (timeNow &gt; lastInterval + updateInterval)
+        {
+            fps = (float)(frames / (timeNow - lastInterval));
+            frames = 0;
+            lastInterval = timeNow;
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

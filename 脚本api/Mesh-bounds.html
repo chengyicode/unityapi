@@ -1,0 +1,26 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Mesh.bounds</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Mesh.html">Mesh</a>.bounds</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Mesh.html' title='Go to Mesh Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Bounds.html">Bounds</a> <span class="sig-kw">bounds</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The bounding volume of the mesh.</p></div><div class="subsection"><p>This is the axis-aligned bounding box of the mesh in its local space (that is, not affected
+by the transform). Note that the <a href="Renderer-bounds.html">Renderer.bounds</a> property is similar but returns the bounds in world space.<br /><br />See Also: <a href="Bounds.html">Bounds</a> class, <a href="Renderer-bounds.html">Renderer.bounds</a></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Generates planar UV coordinates independent of mesh size
+// by scaling vertices by the bounding box size<br /><br />using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        <a href="Mesh.html">Mesh</a> mesh = GetComponent&lt;<a href="MeshFilter.html">MeshFilter</a>&gt;().mesh;
+        <a href="Vector3.html">Vector3</a>[] vertices = mesh.vertices;
+        <a href="Vector2.html">Vector2</a>[] uvs = new <a href="Vector2.html">Vector2</a>[vertices.Length];
+        <a href="Bounds.html">Bounds</a> bounds = mesh.bounds;
+        int i = 0;
+        while (i &lt; uvs.Length)
+        {
+            uvs[i] = new <a href="Vector2.html">Vector2</a>(vertices[i].x / bounds.size.x, vertices[i].z / bounds.size.x);
+            i++;
+        }
+        mesh.uv = uvs;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

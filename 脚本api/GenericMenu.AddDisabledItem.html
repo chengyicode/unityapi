@@ -1,0 +1,49 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: GenericMenu.AddDisabledItem</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="GenericMenu.html">GenericMenu</a>.AddDisabledItem</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">AddDisabledItem</span>(<a href="GUIContent.html">GUIContent</a> <span class="sig-kw">content</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">content</td><td class="desc"></td><td class="desc1">The GUIContent to display as a disabled menu item.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Add a disabled item to the menu.</p></div><div class="subsection"><p>The example below shows a context menu with a disabled menu item that can be toggled on and off.<br /><br /><img src="../StaticFiles/ScriptRefImages/AddDisabledItem.png" /><br /><br />See Also: <a href="GenericMenu.AddItem.html">GenericMenu.AddItem</a>, <a href="GenericMenu.AddSeparator.html">GenericMenu.AddSeparator</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// This example shows how to create a context menu inside a custom <a href="EditorWindow.html">EditorWindow</a>,
+// where the first menu item toggles whether the second menu item is enabled
+// or disabled.<br /><br />using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class MyWindow : <a href="EditorWindow.html">EditorWindow</a>
+{
+    [<a href="MenuItem.html">MenuItem</a>("TestContextMenu/Open Window")]
+    public static void Init()
+    {
+        var window = GetWindow(typeof(MyWindow));
+        window.position = new <a href="Rect.html">Rect</a>(50, 50, 250, 60);
+        window.Show();
+    }<br /><br />    bool item2enabled = false;
+    public void <a href="UIElements.Toggle.html">Toggle</a>()
+    {
+        item2enabled = !item2enabled;
+        <a href="Debug.Log.html">Debug.Log</a>("item2enabled: " + item2enabled);
+    }<br /><br />    public void Item2Callback()
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("Item 2 Selected");
+    }<br /><br />    public void OnGUI()
+    {
+        <a href="Event.html">Event</a> evt = <a href="Event-current.html">Event.current</a>;
+        <a href="Rect.html">Rect</a> contextRect = new <a href="Rect.html">Rect</a>(10, 10, 100, 100);<br /><br />        if (evt.type == <a href="EventType.ContextClick.html">EventType.ContextClick</a>)
+        {
+            <a href="Vector2.html">Vector2</a> mousePos = evt.mousePosition;
+            if (contextRect.Contains(mousePos))
+            {
+                // Now create the menu, add items and show it
+                <a href="GenericMenu.html">GenericMenu</a> menu = new <a href="GenericMenu.html">GenericMenu</a>();<br /><br />                menu.AddItem(new <a href="GUIContent.html">GUIContent</a>("<a href="UIElements.Toggle.html">Toggle</a> item 2"), item2enabled, <a href="UIElements.Toggle.html">Toggle</a>);
+                if (item2enabled)
+                {
+                    menu.AddItem(new <a href="GUIContent.html">GUIContent</a>("Item 2"), false, Item2Callback);
+                }
+                else
+                {
+                    menu.AddDisabledItem(new <a href="GUIContent.html">GUIContent</a>("Item 2"));
+                }<br /><br />                menu.ShowAsContext();<br /><br />                evt.Use();
+            }
+        }
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">AddDisabledItem</span>(<a href="GUIContent.html">GUIContent</a> <span class="sig-kw">content</span>,
+bool <span class="sig-kw">on</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">content</td><td class="desc"></td><td class="desc1">The GUIContent to display as a disabled menu item.</td></tr><tr><td class="name lbl">on</td><td class="desc"></td><td class="desc1">Specifies whether to show that the item is currently activated (i.e. a tick next to the item in the menu).</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Add a disabled item to the menu.</p></div></div></div></div></body></html>

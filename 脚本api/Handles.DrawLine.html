@@ -1,0 +1,43 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Handles.DrawLine</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Handles.html">Handles</a>.DrawLine</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">DrawLine</span>(<a href="Vector3.html">Vector3</a> <span class="sig-kw">p1</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">p2</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Draw a line from <strong>p1</strong> to <strong>p2</strong>.</p></div><div class="subsection"><p>
+        <img src="../StaticFiles/ScriptRefImages/DrawLine.png" />
+        <br />
+<em>Draw Line in the Scene View.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Draw lines to the connected game objects that a script has.
+// If the target object doesnt have any game objects attached
+// then it draws a line from the object to (0, 0, 0).<br /><br />using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;<br /><br />[<a href="CustomEditor.html">CustomEditor</a>(typeof(ConnectedObjectsExampleScript))]
+class ConnectLineHandleExampleScript : <a href="Editor.html">Editor</a>
+{
+    void OnSceneGUI()
+    {
+        ConnectedObjectsExampleScript connectedObjects = target as ConnectedObjectsExampleScript;
+        if (connectedObjects.objs == null)
+            return;<br /><br />        <a href="Vector3.html">Vector3</a> center = connectedObjects.transform.position;
+        for (int i = 0; i &lt; connectedObjects.objs.Length; i++)
+        {
+            <a href="GameObject.html">GameObject</a> connectedObject = connectedObjects.objs[i];
+            if (connectedObject)
+            {
+                <a href="Handles.DrawLine.html">Handles.DrawLine</a>(center, connectedObject.transform.position);
+            }
+            else
+            {
+                <a href="Handles.DrawLine.html">Handles.DrawLine</a>(center, <a href="Vector3-zero.html">Vector3.zero</a>);
+            }
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>And the script attached to this Handle:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class ConnectedObjectsExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="GameObject.html">GameObject</a>[] objs = null;
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorWindow.ShowModalUtility</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorWindow.html">EditorWindow</a>.ShowModalUtility</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">ShowModalUtility</span>();
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Show the EditorWindow as a floating modal window.</p></div><div class="subsection"><p>The utility window does not allow interaction with the editor while running.  This means the <a href="EditorWindow.ShowModalUtility.html">EditorWindow.ShowModalUtility</a> window is never hidden by the Unity editor.  It is, however, notdockable to the editor.<br /><br />Utility windows will always be in front of normal Unity windows. It will be hidden whenthe user switches from Unity to another application.<br /><br /><strong>Note:</strong> You do not need to use <a href="EditorWindow.GetWindow.html">EditorWindow.GetWindow</a> before using this function to show the window.<br /><br /><img src="../StaticFiles/ScriptRefImages/RandomizeInSelection.png" /><br />
+<em>Floating window utility that lets you randomize the rotation of the selected objects.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;
+using System.Collections;<br /><br />// Simple script that randomizes the rotation of the selected GameObjects.
+// It also lists which objects are currently selected.<br /><br />public class RandomizeInSelection : <a href="EditorWindow.html">EditorWindow</a>
+{
+    public float rotationAmount = 0.33f;
+    public string selected = "";<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Example/Randomize Children In <a href="Selection.html">Selection</a>")]
+    static void RandomizeWindow()
+    {
+        RandomizeInSelection window = <a href="ScriptableObject.CreateInstance.html">ScriptableObject.CreateInstance</a>(typeof(RandomizeInSelection)) as RandomizeInSelection;
+        window.ShowUtility();
+    }<br /><br />    void RandomizeSelected()
+    {
+        foreach (var transform in <a href="Selection-transforms.html">Selection.transforms</a>)
+        {
+            <a href="Quaternion.html">Quaternion</a> rotation = <a href="Random-rotation.html">Random.rotation</a>;
+            transform.localRotation = <a href="Quaternion.Slerp.html">Quaternion.Slerp</a>(transform.localRotation, rotation, rotationAmount);
+        }
+    }<br /><br />    void OnGUI()
+    {
+        foreach (var t in <a href="Selection-transforms.html">Selection.transforms</a>)
+        {
+            selected += t.name + " ";
+        }<br /><br />        <a href="EditorGUILayout.LabelField.html">EditorGUILayout.LabelField</a>("Selected Object:", selected);<br /><br />        selected = "";<br /><br />        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Randomize!"))
+            RandomizeSelected();<br /><br />        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Close"))
+            Close();
+    }<br /><br />    void OnInspectorUpdate()
+    {
+        Repaint();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

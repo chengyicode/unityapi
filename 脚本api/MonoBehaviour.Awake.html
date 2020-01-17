@@ -1,0 +1,67 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: MonoBehaviour.Awake()</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="MonoBehaviour.html">MonoBehaviour</a>.Awake()</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Awake is called when the script instance is being loaded.</p></div><div class="subsection"><p>
+        <a href="MonoBehaviour.Awake.html">Awake</a> is used to initialize any variables or game state before the game starts.
+<a href="MonoBehaviour.Awake.html">Awake</a> is called only once during the lifetime of the script instance.
+<a href="MonoBehaviour.Awake.html">Awake</a> is called after all objects are initialized so you can safely speak to other objects or query them using for example <a href="GameObject.FindWithTag.html">GameObject.FindWithTag</a>.
+Each GameObject's <a href="MonoBehaviour.Awake.html">Awake</a> is called in a random order between objects. Because of this, you should use <a href="MonoBehaviour.Awake.html">Awake</a> to set up references between scripts, and use Start to pass any information back and forth.
+<a href="MonoBehaviour.Awake.html">Awake</a> is always called before any <code class="mono">Start</code> functions. This allows you to order initialization of scripts.
+<a href="MonoBehaviour.Awake.html">Awake</a> can not act as a coroutine.<br /><br /><strong>Note:</strong> Use <a href="MonoBehaviour.Awake.html">Awake</a> instead of the constructor for initialization, as the serialized state of the component is undefined at construction time.
+<a href="MonoBehaviour.Awake.html">Awake</a> is called once, just like the constructor.
+                </p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private <a href="GameObject.html">GameObject</a> target;<br /><br />    void Awake()
+    {
+        target = <a href="GameObject.FindWithTag.html">GameObject.FindWithTag</a>("Player");
+    }
+}
+</pre>
+      </div><div class="subsection"><p>An inactive <a href="GameObject.html">GameObject</a> can be activated when <a href="GameObject.SetActive.html">GameObject.SetActive</a> is called on it.<br /><br />The following two scripts work together.  Two GameObjects called Cube1 and Cube2 are used.  Example1.cs is the script for Cube1.  The script is marked as inactive using the Inspector top-left button.  This means that Cube1 is hidden.  Cube2 is marked as active.  However, Cube1 is a public GameObject for Cube2.  The Example2 script can activate Cube1 and cause it to execute the <a href="MonoBehaviour.Awake.html">Awake</a> function in the Example1.cs script .
+                </p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />// Make sure that Cube1 is assigned this script and is inactive at the start of the game.<br /><br />public class Example1 : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Awake()
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("Awake");
+    }<br /><br />    void Start()
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("Example1");
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        if (<a href="Input.GetKeyDown.html">Input.GetKeyDown</a>("b"))
+        {
+            print("b key was pressed");
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>
+                    Example2. This causes Awake in Example1 to be called. The Space key is used to perform this:
+                </p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example2 : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // GO has Example1 script assigned to it so is Cube1
+    public <a href="GameObject.html">GameObject</a> GO;<br /><br />    void Start()
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("Example2");
+    }<br /><br />    // allow Cube1 to activated just once
+    private bool activateGO = true;<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        if (activateGO == true)
+        {
+            if (<a href="Input.GetKeyDown.html">Input.GetKeyDown</a>("space"))
+            {
+                <a href="Debug.Log.html">Debug.Log</a>("space key was pressed");
+                GO.SetActive(true);
+                activateGO = false;
+            }
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Awake cannot be a co-routine.</p></div></div></div></div></body></html>

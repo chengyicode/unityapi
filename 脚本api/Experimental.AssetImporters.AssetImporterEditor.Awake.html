@@ -1,0 +1,16 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Experimental.AssetImporters.AssetImporterEditor.Awake</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Experimental</b>: this API is experimental and might be changed or removed in the future.</div><h1 class="heading inherit"><a href="Experimental.AssetImporters.AssetImporterEditor.html">AssetImporterEditor</a>.Awake</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>protected void <span class="sig-kw">Awake</span>();
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>This function is called when the Editor script is started.</p></div><div class="subsection"><p>Awake is called as the AssetImporterEditor script starts. This happens as the editor is launched and is similar to <a href="MonoBehaviour.Awake.html">MonoBehaviour.Awake</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEditor.Experimental.AssetImporters;<br /><br />public class ExampleScript : <a href="Experimental.AssetImporters.AssetImporterEditor.html">AssetImporterEditor</a>
+{
+    protected override void Awake()
+    {
+        base.Awake();
+        <a href="Debug.Log.html">Debug.Log</a>("Awake");
+    }
+}
+</pre>
+      </div><div class="subsection"><p>OnDisable cannot be a co-routine.</p></div></div></div></div></body></html>

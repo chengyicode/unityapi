@@ -1,0 +1,48 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ParticleSystem.LightsModule.useParticleColor</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="ParticleSystem.LightsModule.html">ParticleSystem.LightsModule</a>.useParticleColor</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-ParticleSystem.html' title='Go to ParticleSystem Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public bool <span class="sig-kw">useParticleColor</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Toggle whether the particle lights will have their color multiplied by the particle color.</p></div><div class="subsection"><p>Remember to also set your light color to white, if you want to control the lights to have the exact same color as the particles.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />// For best results, use Deferred Rendering (see <a href="Camera.html">Camera</a> settings)
+public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private <a href="ParticleSystem.html">ParticleSystem</a> ps;
+    public <a href="Light.html">Light</a> lightPrefab;     // Provide a light Prefab in the inspector
+    public float hSliderValueR = 1.0f;
+    public float hSliderValueG = 1.0f;
+    public float hSliderValueB = 1.0f;
+    public float hSliderValueA = 1.0f;
+    public bool useParticleColor = true;<br /><br />    void Start()
+    {
+        ps = GetComponent&lt;<a href="ParticleSystem.html">ParticleSystem</a>&gt;();
+        ps.transform.localRotation = <a href="Quaternion.Euler.html">Quaternion.Euler</a>(0.0f, 0.0f, 45.0f);<br /><br />        var shape = ps.shape;
+        shape.shapeType = <a href="ParticleSystemShapeType.Circle.html">ParticleSystemShapeType.Circle</a>;<br /><br />        var lights = ps.lights;
+        lights.enabled = true;
+        lights.light = lightPrefab;
+        lights.ratio = 1.0f;
+        lights.maxLights = 1000;<br /><br />        // plane to receive lights
+        var plane = <a href="GameObject.CreatePrimitive.html">GameObject.CreatePrimitive</a>(<a href="PrimitiveType.Plane.html">PrimitiveType.Plane</a>);
+        plane.transform.parent = ps.transform;
+        plane.transform.localPosition = new <a href="Vector3.html">Vector3</a>(0.0f, 0.0f, 3.0f);
+        plane.transform.localScale = new <a href="Vector3.html">Vector3</a>(20.0f, 20.0f, 20.0f);
+        plane.transform.localRotation = <a href="Quaternion.Euler.html">Quaternion.Euler</a>(-90.0f, 0.0f, 0.0f);<br /><br />        var material = new <a href="Material.html">Material</a>(<a href="Shader.Find.html">Shader.Find</a>("Standard"));
+        material.color = new <a href="Color.html">Color</a>(0.1f, 0.1f, 0.1f, 1.0f);
+        plane.GetComponent&lt;<a href="MeshRenderer.html">MeshRenderer</a>&gt;().material = material;
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        var lights = ps.lights;
+        lights.useParticleColor = useParticleColor;<br /><br />        var main = ps.main;
+        main.startColor = new <a href="Color.html">Color</a>(hSliderValueR, hSliderValueG, hSliderValueB, hSliderValueA);
+    }<br /><br />    void OnGUI()
+    {
+        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, 40, 100, 30), "Red");
+        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, 70, 100, 30), "Green");
+        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, 100, 100, 30), "Blue");
+        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, 130, 100, 30), "Alpha");<br /><br />        hSliderValueR = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(95, 45, 100, 30), hSliderValueR, 0.0f, 1.0f);
+        hSliderValueG = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(95, 75, 100, 30), hSliderValueG, 0.0f, 1.0f);
+        hSliderValueB = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(95, 105, 100, 30), hSliderValueB, 0.0f, 1.0f);
+        hSliderValueA = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(95, 135, 100, 30), hSliderValueA, 0.0f, 1.0f);<br /><br />        useParticleColor = <a href="GUI.Toggle.html">GUI.Toggle</a>(new <a href="Rect.html">Rect</a>(25, 175, 200, 30), useParticleColor, "Use <a href="ParticleSystem.Particle.html">Particle</a> <a href="Color.html">Color</a> for <a href="Light.html">Light</a> <a href="Color.html">Color</a>");
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

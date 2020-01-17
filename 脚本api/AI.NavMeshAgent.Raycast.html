@@ -1,0 +1,33 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AI.NavMeshAgent.Raycast</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="AI.NavMeshAgent.html">NavMeshAgent</a>.Raycast</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public bool <span class="sig-kw">Raycast</span>(<a href="Vector3.html">Vector3</a> <span class="sig-kw">targetPosition</span>,
+out <a href="AI.NavMeshHit.html">AI.NavMeshHit</a> <span class="sig-kw">hit</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">targetPosition</td><td class="desc"></td><td class="desc1">The desired end position of movement.</td></tr><tr><td class="name lbl">hit</td><td class="desc"></td><td class="desc1">Properties of the obstacle detected by the ray (if any).</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>bool</strong>
+        True if there is an obstacle between the agent and the target position, otherwise false.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Trace a straight path towards a target postion in the NavMesh without moving the agent.</p></div><div class="subsection"><p>This function follows the path of a "ray" between the agent's
+position and the specified target position. If an obstruction is
+encountered along the line then a true value is returned and
+the position and other details of the obstructing object are stored
+in the <code class="varname">hit</code> parameter. This can be used to check if there is a clear
+shot or line of sight between a character and a target object.
+This function is preferable to the similar <a href="Physics.Raycast.html">Physics.Raycast</a>
+because the line tracing is performed in a simpler way using the navmesh
+ and has a lower processing overhead.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.AI;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Transform.html">Transform</a> target;
+    private <a href="AI.NavMeshAgent.html">NavMeshAgent</a> agent;<br /><br />    void Start()
+    {
+        agent = GetComponent&lt;<a href="AI.NavMeshAgent.html">NavMeshAgent</a>&gt;();
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        <a href="AI.NavMeshHit.html">NavMeshHit</a> hit;
+        if (!agent.Raycast(target.position, out hit))
+        {
+            // <a href="GraphicsBuffer.Target.html">Target</a> is "visible" from our position.
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

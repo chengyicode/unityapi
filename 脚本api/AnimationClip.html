@@ -1,0 +1,56 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AnimationClip</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">AnimationClip</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Inherits from:<a href="Motion.html" class="cl">Motion</a></p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.AnimationModule.html" class="cl">UnityEngine.AnimationModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-AnimationClip.html' title='Go to AnimationClip Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Stores keyframe based animations.</p></div><div class="subsection"><p>AnimationClip is used by <a href="Animation.html">Animation</a> to play back animations.</p></div><div class="subsection"><h2>Properties 属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="AnimationClip-empty.html">empty</a></td><td class="desc"></td><td class="desc1">Returns true if the animation clip has no curves and no events.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AnimationClip-events.html">events</a></td><td class="desc"></td><td class="desc1">Animation Events for this animation clip.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AnimationClip-frameRate.html">frameRate</a></td><td class="desc"></td><td class="desc1">Frame rate at which keyframes are sampled. (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AnimationClip-hasGenericRootTransform.html">hasGenericRootTransform</a></td><td class="desc"></td><td class="desc1">Returns true if the Animation has animation on the root transform.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AnimationClip-hasMotionCurves.html">hasMotionCurves</a></td><td class="desc"></td><td class="desc1">Returns true if the AnimationClip has root motion curves.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AnimationClip-hasMotionFloatCurves.html">hasMotionFloatCurves</a></td><td class="desc"></td><td class="desc1">Returns true if the AnimationClip has editor curves for its root motion.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AnimationClip-hasRootCurves.html">hasRootCurves</a></td><td class="desc"></td><td class="desc1">Returns true if the AnimationClip has root Curves.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AnimationClip-humanMotion.html">humanMotion</a></td><td class="desc"></td><td class="desc1">Returns true if the animation contains curve that drives a humanoid rig.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AnimationClip-legacy.html">legacy</a></td><td class="desc"></td><td class="desc1">Set to true if the AnimationClip will be used with the Legacy Animation component ( instead of the Animator ).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AnimationClip-length.html">length</a></td><td class="desc"></td><td class="desc1">Animation length in seconds. (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AnimationClip-localBounds.html">localBounds</a></td><td class="desc"></td><td class="desc1">AABB of this Animation Clip in local space of Animation component that it is attached too.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AnimationClip-wrapMode.html">wrapMode</a></td><td class="desc"></td><td class="desc1">Sets the default wrap mode used in the animation state.</td></tr>
+    </table></div><div class="subsection"><h2>Constructors</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="AnimationClip-ctor.html">AnimationClip</a></td><td class="desc"></td><td class="desc1">Creates a new animation clip.</td></tr>
+    </table></div><div class="subsection"><h2>Public Methods 公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="AnimationClip.AddEvent.html">AddEvent</a></td><td class="desc"></td><td class="desc1">Adds an animation event to the clip.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AnimationClip.ClearCurves.html">ClearCurves</a></td><td class="desc"></td><td class="desc1">Clears all curves from the clip.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AnimationClip.EnsureQuaternionContinuity.html">EnsureQuaternionContinuity</a></td><td class="desc"></td><td class="desc1">Realigns quaternion keys to ensure shortest interpolation paths.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AnimationClip.SampleAnimation.html">SampleAnimation</a></td><td class="desc"></td><td class="desc1">Samples an animation at a given time for any animated properties.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AnimationClip.SetCurve.html">SetCurve</a></td><td class="desc"></td><td class="desc1">Assigns the curve to animate a specific property.</td></tr>
+    </table></div><div class="subsection"><h2>Inherited Members 继承成员</h2>
+      
+      <div class="subsection"><h2>Properties 属性</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-hideFlags.html">hideFlags</a></td><td class="desc"></td><td class="desc1">Should the object be hidden, saved with the Scene or modifiable by the user?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-name.html">name</a></td><td class="desc"></td><td class="desc1">The name of the object.</td></tr>
+      </table></div>
+      
+      
+      
+      <div class="subsection"><h2>Public Methods 公共方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.GetInstanceID.html">GetInstanceID</a></td><td class="desc"></td><td class="desc1">Returns the instance id of the object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.ToString.html">ToString</a></td><td class="desc"></td><td class="desc1">Returns the name of the object.</td></tr>
+      </table></div>
+      
+      <div class="subsection"><h2>Static Methods 静态方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.Destroy.html">Destroy</a></td><td class="desc"></td><td class="desc1">Removes a GameObject, component or asset.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.DestroyImmediate.html">DestroyImmediate</a></td><td class="desc"></td><td class="desc1">Destroys the object obj immediately. You are strongly recommended to use Destroy instead.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.DontDestroyOnLoad.html">DontDestroyOnLoad</a></td><td class="desc"></td><td class="desc1">Do not destroy the target Object when loading a new Scene.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectOfType.html">FindObjectOfType</a></td><td class="desc"></td><td class="desc1">Returns the first active loaded object of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectsOfType.html">FindObjectsOfType</a></td><td class="desc"></td><td class="desc1">Returns a list of all active loaded objects of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.Instantiate.html">Instantiate</a></td><td class="desc"></td><td class="desc1">Clones the object original and returns the clone.</td></tr>
+      </table></div>
+      <div class="subsection"><h2>Operators   运算符</h2>
+<h2>Operators   运算符</h2>
+
+<h2>Operators   运算符</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_Object.html">bool</a></td><td class="desc"></td><td class="desc1">Does the object exist?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_ne.html">operator !=</a></td><td class="desc"></td><td class="desc1">Compares if two objects refer to a different object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_eq.html">operator ==</a></td><td class="desc"></td><td class="desc1">Compares two object references to see if they refer to the same object.</td></tr>
+      </table></div>
+      
+      
+      
+    </div></div></div></div></body></html>

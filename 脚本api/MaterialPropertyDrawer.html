@@ -1,0 +1,81 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: MaterialPropertyDrawer</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">MaterialPropertyDrawer</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEditor</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEditor.html" class="cl">UnityEditor</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Base class to derive custom material property drawers from.</p></div><div class="subsection"><p>Use this to create custom UI drawers for your material properties, without having to write custom <a href="MaterialEditor.html">MaterialEditor</a> classes. This is similar to how <a href="PropertyDrawer.html">PropertyDrawer</a> enables custom UI without writing custom inspectors.<br /><br />In shader code, C#-like attribute syntax can be used in front of shader properties to add drawers to them. Unity has several built-in drawers, and you can write your own. Here's a shader code snippet demonstrating the syntax:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+          <a href="Shader.html">Shader</a> "Custom/Example"
+{
+    Properties
+    {
+        _MainTex("Base (RGB)", 2D) = "white" {}<br /><br />        // <a href="Display.html">Display</a> a popup with None,Add,Multiply choices,
+        // and setup corresponding shader keywords.
+        [KeywordEnum(None, Add, Multiply)] _Overlay("Overlay mode", Float) = 0<br /><br />        _OverlayTex("Overlay", 2D) = "black" {}<br /><br />        // <a href="Display.html">Display</a> as a toggle.
+        [<a href="UIElements.Toggle.html">Toggle</a>] _Invert("Invert color?", Float) = 0
+    }<br /><br />    // rest of shader code...
+}</pre>
+      </div><div class="subsection"><p>When implementing your own drawers, you should override OnGUI function. You can also optionally override GetPropertyHeight and Apply functions. Here's an example of a property drawer that displays a checkbox for a float property, with the value set to 0 or 1 depending on the state:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;
+using System;<br /><br />// The property drawer class should be placed in an editor script, inside a folder called <a href="Editor.html">Editor</a>.
+// Use with "[MyToggle]" before a float shader property.<br /><br />public class MyToggleDrawer : <a href="MaterialPropertyDrawer.html">MaterialPropertyDrawer</a>
+{
+    // Draw the property inside the given rect
+    public override void OnGUI (<a href="Rect.html">Rect</a> position, <a href="MaterialProperty.html">MaterialProperty</a> prop, String label, <a href="MaterialEditor.html">MaterialEditor</a> editor)
+    {
+        // Setup
+        bool value = (prop.floatValue != 0.0f);<br /><br />        <a href="EditorGUI.BeginChangeCheck.html">EditorGUI.BeginChangeCheck</a>();
+        <a href="EditorGUI-showMixedValue.html">EditorGUI.showMixedValue</a> = prop.hasMixedValue;<br /><br />        // Show the toggle control
+        value = <a href="EditorGUI.Toggle.html">EditorGUI.Toggle</a>(position, label, value);<br /><br />        <a href="EditorGUI-showMixedValue.html">EditorGUI.showMixedValue</a> = false;
+        if (<a href="EditorGUI.EndChangeCheck.html">EditorGUI.EndChangeCheck</a>())
+        {
+            // Set the new value if it has changed
+            prop.floatValue = value ? 1.0f : 0.0f;
+        }
+    }
+}</pre>
+      </div><div class="subsection"><p>The built-in MaterialPropertyDrawers are: ToggleDrawer, EnumDrawer, KeywordEnumDrawer, PowerSliderDrawer, IntRangeDrawer. In shader code, the "Drawer" suffix of the class name is not written; when Unity searches for the drawer class it adds "Drawer" automatically.<br /><br />
+<strong>Toggle</strong> displays a float as a toggle. The property value will be 0 or 1, depending on the toggle state. When it is on, a shader keyword with the uppercase property name +"_ON" will be set, or an explicitly specified shader keyword.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">// Will set "_INVERT_ON" shader keyword when set
+[<a href="UIElements.Toggle.html">Toggle</a>] _Invert ("Invert?", Float) = 0<br /><br />// Will set "ENABLE_FANCY" shader keyword when set.
+[<a href="UIElements.Toggle.html">Toggle</a>(ENABLE_FANCY)] _Fancy ("Fancy?", Float) = 0</pre>
+      </div><div class="subsection"><p>
+        <strong>Enum</strong> displays a popup menu for a float property. You can supply either an enum type name (preferably fully qualified with namespaces, in case there are multiple types), or explicit name/value pairs to display. Up to 7 name/value pairs can be specified.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">// Blend mode values
+[Enum(UnityEngine.Rendering.BlendMode)] _Blend ("Blend mode", Float) = 1<br /><br />// A subset of blend mode values, just "One" (value 1) and "SrcAlpha" (value 5).
+[Enum(One,1,SrcAlpha,5)] _Blend2 ("Blend mode subset", Float) = 1</pre>
+      </div><div class="subsection"><p>
+        <strong>KeywordEnum</strong> displays a popup menu for a float property, and enables corresponding shader keyword. This is used with "#pragma multi_compile" in shaders, to enable or disable parts of shader code. Each name will
+enable "property name" + underscore + "enum name", uppercased, shader keyword. Up to 9 names can be provided.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">// <a href="Display.html">Display</a> a popup with None, Add, Multiply choices.
+// Each option will set _OVERLAY_NONE, _OVERLAY_ADD, _OVERLAY_MULTIPLY shader keywords.
+[KeywordEnum(None, Add, Multiply)] _Overlay ("Overlay mode", Float) = 0<br /><br />// ...later on in CGPROGRAM code:
+#pragma multi_compile _OVERLAY_NONE _OVERLAY_ADD _OVERLAY_MULTIPLY
+// ...</pre>
+      </div><div class="subsection"><p>
+        <strong>PowerSlider</strong> displays a slider with a non-linear response for a Range shader property.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">// A slider with 3.0 response curve
+[PowerSlider(3.0)] _Shininess ("Shininess", <a href="SocialPlatforms.Range.html">Range</a> (0.01, 1)) = 0.08</pre>
+      </div><div class="subsection"><p>
+        <strong>IntRange</strong> displays an integer slider for a Range shader property.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">// An integer slider for specified range (0 to 255)
+[IntRange] _Alpha ("Alpha", <a href="SocialPlatforms.Range.html">Range</a> (0, 255)) = 100</pre>
+      </div><div class="subsection"><p>When a property drawer class name ends with "Decorator", that is a property decorator, similar to <a href="DecoratorDrawer.html">DecoratorDrawer</a>. They are used to create headings
+and dividers between properties that don't affect the property itself. A single property can have multiple decorators on it. The built-in decorator drawers are: SpaceDecorator, HeaderDecorator.<br /><br /><strong>Space</strong> creates vertical space before the shader property.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">// Default small amount of space.
+[<a href="Space.html">Space</a>] _Prop1 ("Prop1", Float) = 0<br /><br />// Large amount of space.
+[<a href="Space.html">Space</a>(50)] _Prop2 ("Prop2", Float) = 0</pre>
+      </div><div class="subsection"><p>
+        <strong>Header</strong> creates a header text before the shader property.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">[Header(A group of things)] _Prop1 ("Prop1", Float) = 0</pre>
+      </div><div class="subsection"><p>Note that for performance reasons, EditorGUILayout functions are not usable with MaterialPropertyDrawers.<br /><br />See Also: <a href="MaterialProperty.html">MaterialProperty</a> class.</p></div><div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="MaterialPropertyDrawer.Apply.html">Apply</a></td><td class="desc"></td><td class="desc1">Apply extra initial values to the material.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="MaterialPropertyDrawer.GetPropertyHeight.html">GetPropertyHeight</a></td><td class="desc"></td><td class="desc1">Override this method to specify how tall the GUI for this property is in pixels.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="MaterialPropertyDrawer.OnGUI.html">OnGUI</a></td><td class="desc"></td><td class="desc1">Override this method to make your own GUI for the property.</td></tr>
+    </table></div></div></div></div></body></html>

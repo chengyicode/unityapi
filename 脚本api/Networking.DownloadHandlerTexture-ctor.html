@@ -1,0 +1,21 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Networking.DownloadHandlerTexture.DownloadHandlerTexture</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">DownloadHandlerTexture Constructor</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <span class="sig-kw">DownloadHandlerTexture</span>();
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Default constructor.</p></div><div class="subsection"><p>Convenience constructor. Assumes the value of <code class="varname">readable</code> is <code class="mono">false</code>. The <a href="Texture.html">Texture</a> returned by <code class="varname">texture</code> will not have its texture data accessible from script.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.Collections;
+using UnityEngine;
+using UnityEngine.Networking;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    IEnumerator Start()
+    {
+        using (var uwr = new <a href="Networking.UnityWebRequest.html">UnityWebRequest</a>("https://website.com/image.jpg", <a href="Networking.UnityWebRequest-kHttpVerbGET.html">UnityWebRequest.kHttpVerbGET</a>))
+        {
+            uwr.downloadHandler = new <a href="Networking.DownloadHandlerTexture.html">DownloadHandlerTexture</a>();
+            yield return uwr.SendWebRequest();
+            GetComponent&lt;<a href="Renderer.html">Renderer</a>&gt;().material.mainTexture = <a href="Networking.DownloadHandlerTexture.GetContent.html">DownloadHandlerTexture.GetContent</a>(uwr);
+        }
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <span class="sig-kw">DownloadHandlerTexture</span>(bool <span class="sig-kw">readable</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">readable</td><td class="desc"></td><td class="desc1">Value to set for <a href="TextureImporter-isReadable.html">TextureImporter.isReadable</a>.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Constructor, allows <a href="TextureImporter-isReadable.html">TextureImporter.isReadable</a> property to be set.</p></div><div class="subsection"><p>The value in <code class="varname">readable</code> will be used to set the <a href="TextureImporter-isReadable.html">TextureImporter.isReadable</a> property when importing the downloaded texture data.</p></div></div></div></div></body></html>

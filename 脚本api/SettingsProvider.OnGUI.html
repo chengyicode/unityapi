@@ -1,0 +1,28 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: SettingsProvider.OnGUI</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="SettingsProvider.html">SettingsProvider</a>.OnGUI</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">OnGUI</span>(string <span class="sig-kw">searchContext</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">searchContext</td><td class="desc"></td><td class="desc1">Search context for the Settings window. Used to show or hide relevant properties.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Use this function to draw the UI based on IMGUI. This assumes you haven't added any children to the rootElement passed to the OnActivate function.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;
+using UnityEngine.UIElements;<br /><br />class SimpleIMGUISettingsProvider : <a href="SettingsProvider.html">SettingsProvider</a>
+{
+    <a href="SerializedObject.html">SerializedObject</a> m_Settings;
+    const string k_MyCustomSettingsPath = "Assets/<a href="Editor.html">Editor</a>/MyCustomSettings.asset";
+    public SimpleIMGUISettingsProvider(string path, <a href="SettingsScope.html">SettingsScope</a> scope = <a href="SettingsScope.User.html">SettingsScope.User</a>)
+        : base(path, scope) {}<br /><br />    public override void OnActivate(string searchContext, <a href="UIElements.VisualElement.html">VisualElement</a> rootElement)
+    {
+        // Called when the user clicks on the MyCustom element in the <a href="CameraEditor.Settings.html">Settings</a> window.
+        m_Settings = new <a href="SerializedObject.html">SerializedObject</a>(<a href="AssetDatabase.LoadAssetAtPath.html">AssetDatabase.LoadAssetAtPath</a>&lt;UnityEngine.Object&gt;(k_MyCustomSettingsPath));
+    }<br /><br />    public override void OnDeactivate()
+    {
+        // User selected another setting or closed the <a href="CameraEditor.Settings.html">Settings</a> window.
+        m_Settings = null;
+    }<br /><br />    public override void OnGUI(string searchContext)
+    {
+        // Use IMGUI to display UI:
+        <a href="EditorGUILayout.PropertyField.html">EditorGUILayout.PropertyField</a>(m_Settings.FindProperty("m_Number"), new <a href="GUIContent.html">GUIContent</a>("My Number"));
+        <a href="EditorGUILayout.PropertyField.html">EditorGUILayout.PropertyField</a>(m_Settings.FindProperty("m_SomeString"), new <a href="GUIContent.html">GUIContent</a>("Some string"));
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

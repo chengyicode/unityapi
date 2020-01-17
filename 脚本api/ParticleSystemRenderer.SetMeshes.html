@@ -1,0 +1,18 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ParticleSystemRenderer.SetMeshes</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="ParticleSystemRenderer.html">ParticleSystemRenderer</a>.SetMeshes</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">SetMeshes</span>(Mesh[] <span class="sig-kw">meshes</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">SetMeshes</span>(Mesh[] <span class="sig-kw">meshes</span>,
+int <span class="sig-kw">size</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">meshes</td><td class="desc"></td><td class="desc1">Array of meshes to be used.</td></tr><tr><td class="name lbl">size</td><td class="desc"></td><td class="desc1">Number of elements from the mesh array to be applied.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Set an array of meshes to be used as particles when the <a href="ParticleSystemRenderer-renderMode.html">ParticleSystemRenderer.renderMode</a> is set to <a href="ParticleSystemRenderMode.Mesh.html">ParticleSystemRenderMode.Mesh</a>.</p></div><div class="subsection"><p>See Also: <a href="ParticleSystemRenderer-renderMode.html">ParticleSystemRenderer.renderMode</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private <a href="ParticleSystem.html">ParticleSystem</a> ps;
+    private <a href="ParticleSystemRenderer.html">ParticleSystemRenderer</a> psr;<br /><br />    void Start() {<br /><br />        ps = GetComponent&lt;<a href="ParticleSystem.html">ParticleSystem</a>&gt;();
+        psr = GetComponent&lt;<a href="ParticleSystemRenderer.html">ParticleSystemRenderer</a>&gt;();<br /><br />        psr.renderMode = <a href="ParticleSystemRenderMode.Mesh.html">ParticleSystemRenderMode.Mesh</a>;
+        psr.SetMeshes(new <a href="Mesh.html">Mesh</a>[]{ Resources.GetBuiltinResource&lt;<a href="Mesh.html">Mesh</a>&gt;("Capsule.fbx"), Resources.GetBuiltinResource&lt;<a href="Mesh.html">Mesh</a>&gt;("Cube.fbx"), Resources.GetBuiltinResource&lt;<a href="Mesh.html">Mesh</a>&gt;("Sphere.fbx") });
+    }<br /><br />    void OnGUI() {
+        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, 40, 200, 30), "<a href="Mesh.html">Mesh</a> Count: " + psr.meshCount.ToString());
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

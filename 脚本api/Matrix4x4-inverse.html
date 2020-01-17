@@ -1,0 +1,42 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Matrix4x4.inverse</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Matrix4x4.html">Matrix4x4</a>.inverse</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Matrix4x4.html">Matrix4x4</a> <span class="sig-kw">inverse</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The inverse of this matrix (Read Only).</p></div><div class="subsection"><p>Inverted matrix is such that if multiplied by the original would result
+in <a href="Matrix4x4-identity.html">identity</a> matrix.<br /><br />If some matrix transforms vectors in a particular way,
+then the inverse matrix can transform them back. For example,
+Transform's <a href="Transform-worldToLocalMatrix.html">worldToLocalMatrix</a> and <a href="Transform-localToWorldMatrix.html">localToWorldMatrix</a>
+are inverses of each other.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">using UnityEngine;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Stretch a mesh at an arbitrary angle around the X axis.<br /><br />    // Angle and amount of stretching.
+    float rotAngle;
+    float stretch;<br /><br />
+    private <a href="MeshFilter.html">MeshFilter</a> mf;
+    private <a href="Vector3.html">Vector3</a>[] origVerts;
+    private <a href="Vector3.html">Vector3</a>[] newVerts;<br /><br />
+    void Start()
+    {
+        // Get the <a href="Mesh.html">Mesh</a> Filter component, save its original vertices
+        // and make a new vertex array for processing.
+        mf = GetComponent&lt; <a href="MeshFilter.html">MeshFilter</a> &gt; ();
+        origVerts = mf.mesh.vertices;
+        newVerts = new <a href="Vector3.html">Vector3</a>[origVerts.Length];
+    }<br /><br />
+    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        // Create a rotation matrix from a <a href="Quaternion.html">Quaternion</a>.
+        <a href="Quaternion.html">Quaternion</a> rot = <a href="Quaternion.Euler.html">Quaternion.Euler</a>(rotAngle, 0, 0);
+        <a href="Matrix4x4.html">Matrix4x4</a> m = <a href="Matrix4x4.TRS.html">Matrix4x4.TRS</a>(<a href="Vector3-zero.html">Vector3.zero</a>, rot, <a href="Vector3-one.html">Vector3.one</a>);<br /><br />        // Get the inverse of the matrix (ie, to undo the rotation).
+        <a href="Matrix4x4.html">Matrix4x4</a> inv = m.inverse;<br /><br />        // For each vertex...
+        for (var i = 0; i &lt; origVerts.Length; i++)
+        {
+            // Rotate the vertex and scale it along its new Y axis.
+            <a href="Vector3.html">Vector3</a> pt = m.MultiplyPoint3x4(origVerts[i]);
+            pt.y *= stretch;<br /><br />            // Return the vertex to its original rotation (but with the
+            // scaling still applied).
+            newVerts[i] = inv.MultiplyPoint3x4(pt);
+        }<br /><br />        // Copy the transformed vertices back to the mesh.
+        mf.mesh.vertices = newVerts;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

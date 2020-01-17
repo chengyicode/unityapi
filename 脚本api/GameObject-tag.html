@@ -1,0 +1,25 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: GameObject.tag</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="GameObject.html">GameObject</a>.tag</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-GameObject.html' title='Go to GameObject Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public string <span class="sig-kw">tag</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The tag of this game object.</p></div><div class="subsection"><p>A tag can be used to identify a game object.
+Tags must be declared in the <a href="../Manual/class-TagManager.html">Tags and Layers manager</a> before using them.<br /><br /><strong>Note:</strong> You should not set a tag from the <a href="MonoBehaviour.Awake.html">Awake()</a> or <a href="MonoBehaviour.OnValidate.html">OnValidate()</a> method. This is because the order in which components become awake is not deterministic, and therefore can result in unexpected behaviour such as the tag being overwritten when it is awoken. If you try this, Unity will generate a warning reading "SendMessage cannot be called during Awake, CheckConsistency, or OnValidate".</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class CollisionGameObjectExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    //Detect collisions between the GameObjects with Colliders attached
+    void OnCollisionEnter(<a href="Collision.html">Collision</a> collision)
+    {
+        //Check for a match with the specified name on any <a href="GameObject.html">GameObject</a> that collides with your <a href="GameObject.html">GameObject</a>
+        if (collision.gameObject.name == "MyGameObjectName")
+        {
+            //If the <a href="GameObject.html">GameObject</a>'s name matches the one you suggest, output this message in the console
+            <a href="Debug.Log.html">Debug.Log</a>("Do something here");
+        }<br /><br />        //Check for a match with the specific tag on any <a href="GameObject.html">GameObject</a> that collides with your <a href="GameObject.html">GameObject</a>
+        if (collision.gameObject.tag == "MyGameObjectTag")
+        {
+            //If the <a href="GameObject.html">GameObject</a> has the same tag as specified, output this message in the console
+            <a href="Debug.Log.html">Debug.Log</a>("Do something else here");
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

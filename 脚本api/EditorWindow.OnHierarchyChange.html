@@ -1,0 +1,62 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorWindow.OnHierarchyChange()</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorWindow.html">EditorWindow</a>.OnHierarchyChange()</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Handler for message that is sent when an object or group of objects in the hierarchy changes.</p></div><div class="subsection"><p>Actions that trigger this message include creating, renaming, reparenting, or destroying objects in the current hierarchy, as well as loading, unloading, renaming, or reordering loaded Scenes. Note that the message is not sent immediately in response to these actions, but rather during the next update of the editor application.<br /><br />Actions taken with objects that have <a href="HideFlags.HideInHierarchy.html">HideFlags.HideInHierarchy</a> set will not cause this message to be sent, but changing <a href="Object-hideFlags.html">Object.hideFlags</a> will.<br /><br />The <a href="EditorWindow.OnHierarchyChange.html">OnHierarchyChange</a>() is added to the Unity editor.  Once installed
+objects are watches in the Scene and inspector.  Adding a new GameObject
+into the Scene, or changing the position of a GameObject in the Inspector will be
+observed by <a href="EditorWindow.OnHierarchyChange.html">OnHierarchyChange</a>().
+Similarly changes to the rotation and scale will be seen.<br /><br /><img src="../StaticFiles/ScriptRefImages/EditorWindowOnHierarchyChange.gif" /><br />
+<em>An animation showing how the OnHierarchyChange can be used.</em><br /><br />See Also: EditorApplication.hierarchyChange<br /><br />The following example script created an <a href="EditorWindow.html">EditorWindow</a> that monitors the number of objects and updates whenever the hierarchy changes. Copy it into a file called HierarchyMonitorWindow.cs and put it in a folder called Editor.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.Linq;
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;<br /><br />class HierarchyMonitorWindow : <a href="EditorWindow.html">EditorWindow</a>
+{
+    [<a href="MenuItem.html">MenuItem</a>("Window/<a href="UIElements.VisualElement.Hierarchy.html">Hierarchy</a> Monitor")]
+    static void CreateWindow()
+    {
+        <a href="EditorWindow.GetWindow.html">EditorWindow.GetWindow</a>&lt;HierarchyMonitorWindow&gt;();
+    }<br /><br />    [<a href="SerializeField.html">SerializeField</a>]
+    int m_NumberVisible;<br /><br />    void OnEnable()
+    {
+        titleContent.text = "<a href="UIElements.VisualElement.Hierarchy.html">Hierarchy</a> Monitor";
+        // manually call the event handler when the window is first loaded so its contents are up-to-date
+        OnHierarchyChange();
+    }<br /><br />    void OnHierarchyChange()
+    {
+        var all = <a href="Resources.FindObjectsOfTypeAll.html">Resources.FindObjectsOfTypeAll</a>(typeof(<a href="GameObject.html">GameObject</a>));
+        m_NumberVisible =
+            all.Where(obj =&gt; (obj.hideFlags &amp; <a href="HideFlags.HideInHierarchy.html">HideFlags.HideInHierarchy</a>) != <a href="HideFlags.HideInHierarchy.html">HideFlags.HideInHierarchy</a>).Count();
+    }<br /><br />    void OnGUI()
+    {
+        <a href="EditorGUILayout.LabelField.html">EditorGUILayout.LabelField</a>(
+            string.Format("There are currently {0} GameObjects visible in the hierarchy.", m_NumberVisible)
+        );
+    }
+}
+</pre>
+      </div><div class="subsection"><p>
+                        Another simple example.
+                    </p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// OnHierarchyChange
+//
+// Watch <a href="UIElements.VisualElement.Hierarchy.html">Hierarchy</a> and Inspector access.  When GameObjects are changed, or new ones
+// added or deleted this example will be called.<br /><br />using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class ExampleClass : <a href="EditorWindow.html">EditorWindow</a>
+{
+    static int count = 0;<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Example/OnHierarchyChange Example")]
+    static void Init()
+    {
+        ExampleClass window = (ExampleClass)GetWindow(typeof(ExampleClass));
+        window.Show();
+    }<br /><br />    void OnHierarchyChange()
+    {
+        count += 1;
+        this.Repaint();
+    }<br /><br />    void OnGUI()
+    {
+        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(5, 5, 205, 35), "OnHierarchyChange: " + count.ToString());
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

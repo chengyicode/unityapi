@@ -1,0 +1,128 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: SerializedObject</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">SerializedObject</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEditor</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEditor.html" class="cl">UnityEditor</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>SerializedObject and <a href="SerializedProperty.html">SerializedProperty</a> are classes for editing serialized fields on <a href="Object.html">Unity objects</a> in a completely generic way. These classes automatically handle dirtying individual serialized fields so they will be processed by the <a href="Undo.html">Undo</a> system and styled correctly for Prefab overrides when drawn in the Inspector.</p></div><div class="subsection"><p>In many cases, you may create tools to modify objects in your project. For instance, the following script example creates a menu item that resets the local position of all GameObjects currently selected. Put it in a file called Example1.cs in a folder called Editor:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;<br /><br />static class Example1
+{
+    [<a href="MenuItem.html">MenuItem</a>("Edit/Reset Selected Objects <a href="UIElements.Position.html">Position</a> (No <a href="Undo.html">Undo</a>)")]
+    static void ResetPosition()
+    {
+        // this action will not be undoable
+        foreach (var go in <a href="Selection-gameObjects.html">Selection.gameObjects</a>)
+            go.transform.localPosition = <a href="Vector3-zero.html">Vector3.zero</a>;
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Although you can edit objects via their API points in this way, you would also have to use other editor APIs to specify which components have been dirtied so that this action would be undoable and would be detected as a change the next time the Scene is saved, and so on. In contrast, using SerializedObject handles this process automatically. The following script example has the same effect as the previous one, but is also undoable and is tracked as a change in the Scene. Put it in a file called Example2.cs in a folder called Editor:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.Linq;
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;<br /><br />static class Example2
+{
+    [<a href="MenuItem.html">MenuItem</a>("Edit/Reset Selected Objects <a href="UIElements.Position.html">Position</a>")]
+    static void ResetPosition()
+    {
+        var transforms = Selection.gameObjects.Select(go =&gt; go.transform).ToArray();
+        var so = new <a href="SerializedObject.html">SerializedObject</a>(transforms);
+        // you can Shift+Right Click on property names in the Inspector to see their paths
+        so.FindProperty("m_LocalPosition").vector3Value = <a href="Vector3-zero.html">Vector3.zero</a>;
+        so.ApplyModifiedProperties();
+    }
+}
+</pre>
+      </div><div class="subsection"><p>SerializedObject opens a data stream to one or more target <a href="Object.html">Unity objects</a> at a time, which allows you to simultaneously edit serialized data that the objects share in common. For example, if you have several <a href="Behaviour.html">Behaviours</a> of different types in the data stream, the only property they have in common may be 'm_Enabled'.<br /><br />When you first create a SerializedObject instance it is up-to-date. Any changes that you make to a <a href="SerializedProperty.html">SerializedProperty</a> accessed within this data stream must ultimately be flushed via the <a href="SerializedObject.ApplyModifiedProperties.html">SerializedObject.ApplyModifiedProperties</a> method. If you keep a reference to a SerializedObject instance for more than one frame, you must make sure to manually call its <a href="SerializedObject.Update.html">SerializedObject.Update</a> method before you read any data from it, as one or more target objects may have been modified elsewhere, such as from a separate SerializedObject stream. Respectively, note that two different SerializedObject streams with the same target objects are independent from one another and you must manually synchronize them in this fashion if one or more of them is maintained over the course of several frames.<br /><br />One of the most common uses of the SerializedObject and <a href="SerializedProperty.html">SerializedProperty</a> classes is when creating custom <a href="Editor.html">Editors</a>, where using SerializedObject is the recommended approach as opposed to modifying inspected target objects directly.<br /><br />The following example script defines a component that animates an object’s local position using a sine function. Put it in a script called SineAnimation.cs:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class SineAnimation : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Vector3.html">Vector3</a> axis { get { return m_Axis; } set { m_Axis = value; } }
+    [<a href="SerializeField.html">SerializeField</a>]
+    private <a href="Vector3.html">Vector3</a> m_Axis = <a href="Vector3-up.html">Vector3.up</a>;<br /><br />    public float period { get { return m_Period; } set { m_Period = value; } }
+    [<a href="SerializeField.html">SerializeField</a>]
+    private float m_Period = 1f / <a href="Mathf.PI.html">Mathf.PI</a>;<br /><br />    public float amplitude { get { return m_Amplitude; } set { m_Amplitude = value; } }
+    [<a href="SerializeField.html">SerializeField</a>]
+    private float m_Amplitude = 1f;<br /><br />    public float phaseShift { get { return m_PhaseShift; } set { m_PhaseShift = <a href="Mathf.Clamp01.html">Mathf.Clamp01</a>(value); } }
+    [<a href="SerializeField.html">SerializeField</a>, <a href="SocialPlatforms.Range.html">Range</a>(0f, 1f)]
+    private float m_PhaseShift;<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        transform.localPosition = m_Axis * m_Amplitude * <a href="Mathf.Sin.html">Mathf.Sin</a>((<a href="Time-time.html">Time.time</a> + m_PhaseShift) / m_Period);
+    }<br /><br />    void OnValidate()
+    {
+        m_PhaseShift = <a href="Mathf.Clamp01.html">Mathf.Clamp01</a>(m_PhaseShift);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>The following example script defines a custom <a href="Editor.html">Editor</a> for SineAnimation that adds a button after the default controls to randomize the sine function parameters. Put it in a file called SineAnimationEditor.cs in a folder called Editor:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;<br /><br />[<a href="CustomEditor.html">CustomEditor</a>(typeof(SineAnimation)), <a href="CanEditMultipleObjects.html">CanEditMultipleObjects</a>]
+public class SineAnimationEditor : <a href="Editor.html">Editor</a>
+{
+    public override void OnInspectorGUI()
+    {
+        base.OnInspectorGUI();
+        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Randomize Sine Function", <a href="EditorStyles-miniButton.html">EditorStyles.miniButton</a>))
+        {
+            serializedObject.FindProperty("m_Period").floatValue = <a href="Random.Range.html">Random.Range</a>(0f, 10f);
+            serializedObject.FindProperty("m_Amplitude").floatValue = <a href="Random.Range.html">Random.Range</a>(0f, 10f);
+            serializedObject.FindProperty("m_PhaseShift").floatValue = <a href="Random.Range.html">Random.Range</a>(0f, 1f);
+            serializedObject.ApplyModifiedProperties();
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>The <a href="Editor.html">Editor</a> class has a <a href="Editor-serializedObject.html">serializedObject</a> property that provides a stream to all of the inspected targets (SineAnimation components in this case), which makes it easy to support editing multiple objects at the same time. Because this SerializedObject instance persists for the lifetime of the <a href="Editor.html">Editor</a> instance, the base implementation of OnInspectorGUI handles calling Update before drawing any controls, as well as calling ApplyModifiedProperties after any user interaction. As such, modifications made when pressing the button added to this inspector must all be flushed via ApplyModifiedProperties before the method exits, or they will be lost the next time the base implementation of <a href="Editor.OnInspectorGUI.html">Editor.OnInspectorGUI</a> calls the <a href="SerializedObject.Update.html">SerializedObject.Update</a> method on the <a href="Editor-serializedObject.html">serializedObject</a> instance.<br /><br />Note that flushing data to a Unity object via <a href="SerializedObject.ApplyModifiedProperties.html">SerializedObject.ApplyModifiedProperties</a> will not respect any data validation logic you may have in property setters associated with the serialized fields. In this example, the value of the 'm_PhaseShift' field is clamped between 0 and 1, both in the phaseShift property setter and in the UI (via the RangeAttribute). Because users can access 'm_PhaseShift' via <a href="SerializedProperty.html">SerializedProperty</a> (as well as by editing the asset on disk) and not only via the 'phaseShift' API or the UI, it is necessary to also clamp it to the valid range in the <a href="MonoBehaviour.OnValidate.html">MonoBehaviour.OnValidate</a> callback, which will sanitize the data when the <a href="Object.html">Unity object</a> is loaded.<br /><br />Also note that although SerializedObject is designed to work with multiple targets, the value getter properties on the SerializedProperty class (e.g., <a href="SerializedProperty-floatValue.html">floatValue</a>, <a href="SerializedProperty-vector3Value.html">vector3Value</a>) are not multi-select friendly. As such, assigning a value to them will affect all targets, but reading a value from them only returns the value associated with the first target in the list.<br /><br />See Also: <a href="SerializedProperty.html">SerializedProperty</a>, <a href="SerializeField.html">SerializeField</a>, <a href="Editor.html">Editor</a>, <a href="MonoBehaviour.OnValidate.html">MonoBehaviour.OnValidate</a>, <a href="SerializedProperty-hasMultipleDifferentValues.html">hasMultipleDifferentValues</a>.</p></div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedObject-context.html">context</a></td><td class="desc"></td><td class="desc1">The context used to store and resolve ExposedReference types. This is set by the SerializedObject constructor.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedObject-hasModifiedProperties.html">hasModifiedProperties</a></td><td class="desc"></td><td class="desc1">Is true when the SerializedObject has a modified property that has not been applied.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedObject-isEditingMultipleObjects.html">isEditingMultipleObjects</a></td><td class="desc"></td><td class="desc1">Does the serialized object represents multiple objects due to multi-object editing? (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedObject-maxArraySizeForMultiEditing.html">maxArraySizeForMultiEditing</a></td><td class="desc"></td><td class="desc1">Defines the maximum size beyond which arrays cannot be edited when multiple objects are selected.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedObject-targetObject.html">targetObject</a></td><td class="desc"></td><td class="desc1">The inspected object (Read Only).</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedObject-targetObjects.html">targetObjects</a></td><td class="desc"></td><td class="desc1">The inspected objects (Read Only).</td></tr>
+    </table></div><div class="subsection"><h2>Constructors</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedObject-ctor.html">SerializedObject</a></td><td class="desc"></td><td class="desc1">Create SerializedObject for inspected object.</td></tr>
+    </table></div><div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedObject.ApplyModifiedProperties.html">ApplyModifiedProperties</a></td><td class="desc"></td><td class="desc1">Apply property modifications.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedObject.ApplyModifiedPropertiesWithoutUndo.html">ApplyModifiedPropertiesWithoutUndo</a></td><td class="desc"></td><td class="desc1">Applies property modifications without registering an undo operation.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedObject.CopyFromSerializedProperty.html">CopyFromSerializedProperty</a></td><td class="desc"></td><td class="desc1">Copies a value from a SerializedProperty to the corresponding serialized property on the serialized object.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedObject.CopyFromSerializedPropertyIfDifferent.html">CopyFromSerializedPropertyIfDifferent</a></td><td class="desc"></td><td class="desc1">Copies a changed value from a SerializedProperty to the corresponding serialized property on the serialized object.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedObject.FindProperty.html">FindProperty</a></td><td class="desc"></td><td class="desc1">Find serialized property by name.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedObject.GetIterator.html">GetIterator</a></td><td class="desc"></td><td class="desc1">Get the first serialized property.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedObject.SetIsDifferentCacheDirty.html">SetIsDifferentCacheDirty</a></td><td class="desc"></td><td class="desc1">Update hasMultipleDifferentValues cache on the next /Update()/ call.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedObject.Update.html">Update</a></td><td class="desc"></td><td class="desc1">Update serialized object's representation.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedObject.UpdateIfRequiredOrScript.html">UpdateIfRequiredOrScript</a></td><td class="desc"></td><td class="desc1">Update serialized object's representation, only if the object has been modified since the last call to Update or if it is a script.</td></tr>
+    </table></div></div></div></div></body></html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AnimationState.time</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="AnimationState.html">AnimationState</a>.time</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public float <span class="sig-kw">time</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The current time of the animation.</p></div><div class="subsection"><p>If the time is larger than length it will be wrapped according to wrapMode.
+The value can be larger than the animations length.
+In this case playback mode will remap the time before sampling.
+This value usually goes from 0 to infinity.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Animation.html">Animation</a> anim;<br /><br />    void Start()
+    {
+        // Rewind the walk animation
+        anim["Walk"].time = 0.0f;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

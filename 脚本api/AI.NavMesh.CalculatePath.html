@@ -1,0 +1,41 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AI.NavMesh.CalculatePath</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="AI.NavMesh.html">NavMesh</a>.CalculatePath</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">CalculatePath</span>(<a href="Vector3.html">Vector3</a> <span class="sig-kw">sourcePosition</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">targetPosition</span>,
+int <span class="sig-kw">areaMask</span>,
+<a href="AI.NavMeshPath.html">AI.NavMeshPath</a> <span class="sig-kw">path</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">sourcePosition</td><td class="desc"></td><td class="desc1">The initial position of the path requested.</td></tr><tr><td class="name lbl">targetPosition</td><td class="desc"></td><td class="desc1">The final position of the path requested.</td></tr><tr><td class="name lbl">areaMask</td><td class="desc"></td><td class="desc1">A bitfield mask specifying which NavMesh areas can be passed when calculating a path.</td></tr><tr><td class="name lbl">path</td><td class="desc"></td><td class="desc1">The resulting path.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>bool</strong>
+        True if a either a complete or partial path is found and false otherwise.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Calculate a path between two points and store the resulting path.</p></div><div class="subsection"><p>This function can be used to plan a path ahead of time to avoid a delay in gameplay when the path is needed. Another use is to check if a target position is reachable before moving the agent.<br /><br />In contrast to <a href="AI.NavMeshAgent.SetDestination.html">NavMeshAgent.SetDestination</a>, which is asyncronous call, this function calculates the path immeditely. This can be costly operation for very long paths and can cause hiccup in the frame rate. It is recommended to do only a few path finds per frame, for example when evaluating distances to cover points.<br /><br />The returned path can be used to set the path for an agent using <a href="AI.NavMeshAgent.SetPath.html">NavMeshAgent.SetPath</a>. The agent needs to be close the starting point for the set path to work.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// ShowGoldenPath
+using UnityEngine;
+using UnityEngine.AI;<br /><br />public class ShowGoldenPath : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Transform.html">Transform</a> target;
+    private <a href="AI.NavMeshPath.html">NavMeshPath</a> path;
+    private float elapsed = 0.0f;
+    void Start()
+    {
+        path = new <a href="AI.NavMeshPath.html">NavMeshPath</a>();
+        elapsed = 0.0f;
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        // <a href="Experimental.PlayerLoop.Update.html">Update</a> the way to the goal every second.
+        elapsed += <a href="Time-deltaTime.html">Time.deltaTime</a>;
+        if (elapsed &gt; 1.0f)
+        {
+            elapsed -= 1.0f;
+            <a href="AI.NavMesh.CalculatePath.html">NavMesh.CalculatePath</a>(transform.position, target.position, <a href="AI.NavMesh.AllAreas.html">NavMesh.AllAreas</a>, path);
+        }
+        for (int i = 0; i &lt; path.corners.Length - 1; i++)
+            <a href="Debug.DrawLine.html">Debug.DrawLine</a>(path.corners[i], path.corners[i + 1], <a href="Color-red.html">Color.red</a>);
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">CalculatePath</span>(<a href="Vector3.html">Vector3</a> <span class="sig-kw">sourcePosition</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">targetPosition</span>,
+<a href="AI.NavMeshQueryFilter.html">AI.NavMeshQueryFilter</a> <span class="sig-kw">filter</span>,
+<a href="AI.NavMeshPath.html">AI.NavMeshPath</a> <span class="sig-kw">path</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">sourcePosition</td><td class="desc"></td><td class="desc1">The initial position of the path requested.</td></tr><tr><td class="name lbl">targetPosition</td><td class="desc"></td><td class="desc1">The final position of the path requested.</td></tr><tr><td class="name lbl">filter</td><td class="desc"></td><td class="desc1">A filter specifying the cost of NavMesh areas that can be passed when calculating a path.</td></tr><tr><td class="name lbl">path</td><td class="desc"></td><td class="desc1">The resulting path.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>bool</strong>
+        True if a either a complete or partial path is found and false otherwise.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Calculates a path between two positions mapped to the NavMesh, subject to the constraints and costs defined by the filter argument.</p></div></div></div></div></body></html>

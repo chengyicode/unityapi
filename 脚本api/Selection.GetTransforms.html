@@ -1,0 +1,26 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Selection.GetTransforms</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Selection.html">Selection</a>.GetTransforms</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static Transform[] <span class="sig-kw">GetTransforms</span>(<a href="SelectionMode.html">SelectionMode</a> <span class="sig-kw">mode</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">mode</td><td class="desc"></td><td class="desc1">Options for refining the selection.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Allows for fine grained control of the selection type using the <a href="SelectionMode.html">SelectionMode</a> bitmask.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />
+class CreateParentForTransforms : <a href="ScriptableObject.html">ScriptableObject</a>
+{
+    [<a href="MenuItem.html">MenuItem</a>("Example/Create Parent For <a href="Selection.html">Selection</a> _p")]
+    static void MenuInsertParent()
+    {
+        <a href="Transform.html">Transform</a>[] selection = <a href="Selection.GetTransforms.html">Selection.GetTransforms</a>(
+            <a href="SelectionMode.TopLevel.html">SelectionMode.TopLevel</a> | <a href="SelectionMode.Editable.html">SelectionMode.Editable</a>);
+        <a href="GameObject.html">GameObject</a> newParent = new <a href="GameObject.html">GameObject</a>("Parent");<br /><br />        foreach (<a href="Transform.html">Transform</a> t in selection)
+        {
+            t.parent = newParent.transform;
+        }
+    }<br /><br />    // Disable the menu if there is nothing selected
+    [<a href="MenuItem.html">MenuItem</a>("Example/Create Parent For <a href="Selection.html">Selection</a> _p", true)]
+    static bool ValidateSelection()
+    {
+        return <a href="Selection-activeGameObject.html">Selection.activeGameObject</a> != null;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

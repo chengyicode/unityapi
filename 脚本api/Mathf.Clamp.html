@@ -1,0 +1,85 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Mathf.Clamp</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Mathf.html">Mathf</a>.Clamp</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static float <span class="sig-kw">Clamp</span>(float <span class="sig-kw">value</span>,
+float <span class="sig-kw">min</span>,
+float <span class="sig-kw">max</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">value</td><td class="desc"></td><td class="desc1">The floating point value to restrict inside the range defined by the min and max values.</td></tr><tr><td class="name lbl">min</td><td class="desc"></td><td class="desc1">The minimum floating point value to compare against.</td></tr><tr><td class="name lbl">max</td><td class="desc"></td><td class="desc1">The maximum floating point value to compare against.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>float</strong>
+        The float result between the min and max values.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Clamps the given value between the given minimum float and maximum float values.  Returns the given value if it is within the min and max range.</p></div><div class="subsection"><p>Returns the min value if the given float value is less than the min.  Returns the max value if the given value is greater than the max value. Use Clamp to restrict a value to a range that is defined by the min and max values.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />// <a href="Mathf.Clamp.html">Mathf.Clamp</a> example.
+//
+// Animate a cube along the x-axis using a sine wave.
+// Let the minimum and maximum positions on the x-axis
+// be changed.  The cube will be visible inside the
+// minimum and maximum values.<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private float xMin = -1.0f, xMax = 1.0f;
+    private float timeValue = 0.0f;<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        // Compute the sin position.
+        float xValue = <a href="Mathf.Sin.html">Mathf.Sin</a>(timeValue * 5.0f);<br /><br />        // Now compute the Clamp value.
+        float xPos = <a href="Mathf.Clamp.html">Mathf.Clamp</a>(xValue, xMin, xMax);<br /><br />        // <a href="Experimental.PlayerLoop.Update.html">Update</a> the position of the cube.
+        transform.position = new <a href="Vector3.html">Vector3</a>(xPos, 0.0f, 0.0f);<br /><br />        // Increase animation time.
+        timeValue = timeValue + <a href="Time-deltaTime.html">Time.deltaTime</a>;<br /><br />        // Reset the animation time if it is greater than the planned time.
+        if (xValue &gt; <a href="Mathf.PI.html">Mathf.PI</a> * 2.0f)
+        {
+            timeValue = 0.0f;
+        }
+    }<br /><br />    void OnGUI()
+    {
+        // Let the minimum and maximum values be changed
+        xMin = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(25, 25, 100, 30), xMin, -1.0f, +1.0f);
+        xMax = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(25, 60, 100, 30), xMax, -1.0f, +1.0f);<br /><br />        // xMin is kept less-than or equal to xMax.
+        if (xMin &gt; xMax)
+        {
+            xMin = xMax;
+        }<br /><br />        // <a href="Display.html">Display</a> the xMin and xMax value with better size labels.
+        <a href="GUIStyle.html">GUIStyle</a> fontSize = new <a href="GUIStyle.html">GUIStyle</a>(GUI.skin.GetStyle("label"));
+        fontSize.fontSize = 24;<br /><br />        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(135, 10, 150, 30), "xMin: " + xMin.ToString("f2"), fontSize);
+        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(135, 45, 150, 30), "xMax: " + xMax.ToString("f2"), fontSize);
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static int <span class="sig-kw">Clamp</span>(int <span class="sig-kw">value</span>,
+int <span class="sig-kw">min</span>,
+int <span class="sig-kw">max</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">value</td><td class="desc"></td><td class="desc1">The integer point value to restrict inside the min-to-max range</td></tr><tr><td class="name lbl">min</td><td class="desc"></td><td class="desc1">The minimum integer point value to compare against.</td></tr><tr><td class="name lbl">max</td><td class="desc"></td><td class="desc1">The maximum  integer point value to compare against.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>int</strong>
+        The int result between min and max values.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Clamps the given value between a range defined by the given minimum integer and maximum integer values. Returns the given value if it is within min and max.</p></div><div class="subsection"><p>Returns the min value if the given value is less than the min value. Returns the max value if the given value is greater than the max value. The min and max parameters are inclusive. For example, Clamp(10, 0, 5) will return a maximum argument of 5 and not 4.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />// <a href="Mathf.Clamp.html">Mathf.Clamp</a> integer example.
+//
+// Add or subtract values from health.
+// Keep health between 1 and 100. Start at 17.<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public int health = 17;
+    private int[] healthUp = new int[] {25, 10, 5, 1};
+    private int[] healthDown = new int[] {-10, -5, -2, -1};<br /><br />    // Width and height for the buttons.
+    private int xButton = 75;
+    private int yButton = 50;<br /><br />    // Place of the top left button.
+    private int xPos1 = 50, yPos1 = 100;
+    private int xPos2 = 125, yPos2 = 100;<br /><br />    void OnGUI()
+    {
+        GUI.skin.label.fontSize = 20;
+        GUI.skin.button.fontSize = 20;<br /><br />        // Generate and show positive buttons.
+        for (int i = 0; i &lt; healthUp.Length; i++)
+        {
+            if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(xPos1, yPos1 + i * yButton, xButton, yButton), healthUp[i].ToString()))
+            {
+                health += healthUp[i];
+            }
+        }<br /><br />        // Generate and show negative buttons.
+        for (int i = 0; i &lt; healthDown.Length; i++)
+        {
+            if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(xPos2, yPos2 + i * yButton, xButton, yButton), healthDown[i].ToString()))
+            {
+                health += healthDown[i];
+            }
+        }<br /><br />        // Show health between 1 and 100.
+        health = <a href="Mathf.Clamp.html">Mathf.Clamp</a>(health, 1, 100);
+        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(xPos1, xPos1, 2 * xButton, yButton), "Health: " + health.ToString("D3"));
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

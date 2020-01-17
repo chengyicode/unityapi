@@ -1,0 +1,14 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Mesh.GetNativeIndexBufferPtr</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Mesh.html">Mesh</a>.GetNativeIndexBufferPtr</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Mesh.html' title='Go to Mesh Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public IntPtr <span class="sig-kw">GetNativeIndexBufferPtr</span>();
+    </div></div></div><div class="subsection"><h2>Returns</h2><p><strong>IntPtr</strong>
+        Pointer to the underlying graphics API index buffer.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Retrieves a native (underlying graphics API) pointer to the index buffer.</p></div><div class="subsection"><p>Use this function to retrieve a pointer/handle corresponding to the Mesh index buffer,
+as it is represented in the native graphics API. This can be used to enable
+Mesh manipulation from <a href="../Manual/NativePluginInterface.html">native code plugins</a>.<br /><br />Index buffer data is either 16 or 32 bit per index, depending on <a href="Mesh-indexFormat.html">indexFormat</a>. The layout of the index buffer
+otherwise depends on the <a href="MeshTopology.html">MeshTopology</a> that is used (see <a href="Mesh.SetIndices.html">SetIndices</a>). The most common case is Meshes composed
+of triangle lists, which have index buffers with three indices per triangle.<br /><br />The type of data returned depends on the underlying graphics API:<br />
+- IDirect3DIndexBuffer9 on D3D9<br />
+- ID3D11Buffer on D3D11<br />
+- ID3D12Resource on D3D12<br />
+- buffer "name" (as GLuint) on OpenGL/ES<br />
+- id&lt;MTLBuffer&gt; on Metal<br /><br /><br />For most use cases (when writing Mesh data from native code), you need to mark the Mesh as "dynamic"
+(see <a href="Mesh.MarkDynamic.html">MarkDynamic</a>) before getting the native buffer pointer. Generally this switches the buffers to be CPU-writable.<br /><br />Note that calling this function when using multi-threaded rendering will synchronize with the rendering thread (a slow operation), so best practice is to set up necessary buffer pointers only at initialization time.<br /><br />See Also: <a href="../Manual/NativePluginInterface.html">Native code plugins</a>, <a href="Mesh.GetNativeVertexBufferPtr.html">GetNativeVertexBufferPtr</a>, <a href="Mesh.SetIndices.html">SetIndices</a>.</p></div></div></div></div></body></html>

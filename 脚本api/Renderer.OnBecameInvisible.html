@@ -1,0 +1,22 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Renderer.OnBecameInvisible()</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Renderer.html">Renderer</a>.OnBecameInvisible()</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>
+        <em>OnBecameInvisible</em> is called when the object is no longer visible by any camera.</p></div><div class="subsection"><p>This message is sent to all scripts attached to the renderer.
+<em>OnBecameVisible</em> and <em>OnBecameInvisible</em> are useful to avoid computations that are only necessary when the object is visible.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Disable the behaviour when it becomes invisible...
+    void OnBecameInvisible()
+    {
+        enabled = false;
+    }<br /><br />    // ...and enable it again when it becomes visible.
+    void OnBecameVisible()
+    {
+        enabled = true;
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Note that object is considered visible when it needs to be rendered in the Scene. It
+might not be actually visible by any camera, but still need to be rendered for shadows
+for example. Also, when running in the editor, the Scene view cameras will also
+cause this function to be called.<br /><br />See Also: <a href="Renderer.OnBecameVisible.html">OnBecameVisible</a>, <a href="Renderer-isVisible.html">isVisible</a>.</p></div></div></div></div></body></html>

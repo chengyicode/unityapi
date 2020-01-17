@@ -1,0 +1,105 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Object.Instantiate</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Object.html">Object</a>.Instantiate</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static Object <span class="sig-kw">Instantiate</span>(<a href="Object.html">Object</a> <span class="sig-kw">original</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static Object <span class="sig-kw">Instantiate</span>(<a href="Object.html">Object</a> <span class="sig-kw">original</span>,
+<a href="Transform.html">Transform</a> <span class="sig-kw">parent</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static Object <span class="sig-kw">Instantiate</span>(<a href="Object.html">Object</a> <span class="sig-kw">original</span>,
+<a href="Transform.html">Transform</a> <span class="sig-kw">parent</span>,
+bool <span class="sig-kw">instantiateInWorldSpace</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static Object <span class="sig-kw">Instantiate</span>(<a href="Object.html">Object</a> <span class="sig-kw">original</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">position</span>,
+<a href="Quaternion.html">Quaternion</a> <span class="sig-kw">rotation</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static Object <span class="sig-kw">Instantiate</span>(<a href="Object.html">Object</a> <span class="sig-kw">original</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">position</span>,
+<a href="Quaternion.html">Quaternion</a> <span class="sig-kw">rotation</span>,
+<a href="Transform.html">Transform</a> <span class="sig-kw">parent</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">original</td><td class="desc"></td><td class="desc1">An existing object that you want to make a copy of.</td></tr><tr><td class="name lbl">position</td><td class="desc"></td><td class="desc1">Position for the new object.</td></tr><tr><td class="name lbl">rotation</td><td class="desc"></td><td class="desc1">Orientation of the new object.</td></tr><tr><td class="name lbl">parent</td><td class="desc"></td><td class="desc1">Parent that will be assigned to the new object.</td></tr><tr><td class="name lbl">instantiateInWorldSpace</td><td class="desc"></td><td class="desc1">When you assign a parent Object, pass true to position the new object directly in world space. Pass false to set the Object’s position relative to its new parent..</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>Object</strong>
+        The instantiated clone.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Clones the object <code class="varname">original</code> and returns the clone.</p></div><div class="subsection"><p>This function makes a copy of an object in a similar way to the Duplicate command in the editor. If you are cloning a <a href="GameObject.html">GameObject</a> you can specify its position and rotation (these default to the original GameObject's position and rotation otherwise). If you are cloning a <a href="Component.html">Component</a> the GameObject it is attached to is also cloned, again with an optional position and rotation.<br /><br />When you clone a <a href="GameObject.html">GameObject</a> or <a href="Component.html">Component</a>, all child objects and components are also cloned with their properties set like those of the original object.<br /><br />By default the <em>parent</em> of the new object is null; it is not a "sibling" of the original. However, you can still set the parent using the overloaded methods. If a parent is specified and no position and rotation are specified, the original object's position and rotation are used for the cloned object's local position and rotation, or its world position and rotation if the <code class="varname">instantiateInWorldSpace</code> parameter is true. If the position and rotation are specified, they are used as the object's position and rotation in world space.<br /><br />The active status of a GameObject at the time of cloning is maintained, so if the original is inactive the clone is created in an inactive state too. Additionally for the object and all child objects in the hierarchy, each of their Monobehaviours and Components will have their Awake and OnEnable methods called only if they are active in the hierarchy at the time of this method call.<br /><br />These methods do not create a prefab connection to the new instantiated object. Creating objects with a prefab connection can be achieved using <a href="PrefabUtility.InstantiatePrefab.html">PrefabUtility.InstantiatePrefab</a>.<br /><br />See Also:<br /><br /><a href="../Manual/InstantiatingPrefabs.html">Instantiating Prefabs at run time</a><br />
+<a href="PrefabUtility.InstantiatePrefab.html">PrefabUtility.InstantiatePrefab</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Instantiates 10 copies of Prefab each 2 units apart from each other<br /><br />using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Transform.html">Transform</a> prefab;
+    void Start()
+    {
+        for (int i = 0; i &lt; 10; i++)
+        {
+            Instantiate(prefab, new <a href="Vector3.html">Vector3</a>(i * 2.0F, 0, 0), <a href="Quaternion-identity.html">Quaternion.identity</a>);
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Instantiate can be used to create new objects at runtime. Examples include objects used for projectiles, or particle systems for explosion effects.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />// Instantiate a rigidbody then set the velocity<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Assign a <a href="Rigidbody.html">Rigidbody</a> component in the inspector to instantiate<br /><br />    public <a href="Rigidbody.html">Rigidbody</a> projectile;<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        // Ctrl was pressed, launch a projectile
+        if (<a href="Input.GetButtonDown.html">Input.GetButtonDown</a>("Fire1"))
+        {
+            // Instantiate the projectile at the position and rotation of this transform
+            <a href="Rigidbody.html">Rigidbody</a> clone;
+            clone = Instantiate(projectile, transform.position, transform.rotation);<br /><br />            // Give the cloned object an initial velocity along the current
+            // object's Z axis
+            clone.velocity = transform.TransformDirection(<a href="Vector3-forward.html">Vector3.forward</a> * 10);
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Instantiate can also clone script instances directly.
+The entire game object hierarchy will be cloned and the cloned script instance will be returned.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class Missile : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public int timeoutDestructor;<br /><br />    // ...other code...
+}<br /><br />
+public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Instantiate a Prefab with an attached Missile script
+    public Missile projectile;<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        // Ctrl was pressed, launch a projectile
+        if (<a href="Input.GetButtonDown.html">Input.GetButtonDown</a>("Fire1"))
+        {
+            // Instantiate the projectile at the position and rotation of this transform
+            Missile clone = Instantiate(projectile, transform.position, transform.rotation);<br /><br />            // Set the missiles timeout destructor to 5
+            clone.timeoutDestructor = 5;
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>After cloning an object you can also use GetComponent to set properties on a specific component attached to the cloned object.</p></div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static T <span class="sig-kw">Instantiate</span>(T <span class="sig-kw">original</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static T <span class="sig-kw">Instantiate</span>(T <span class="sig-kw">original</span>,
+<a href="Transform.html">Transform</a> <span class="sig-kw">parent</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static T <span class="sig-kw">Instantiate</span>(T <span class="sig-kw">original</span>,
+<a href="Transform.html">Transform</a> <span class="sig-kw">parent</span>,
+bool <span class="sig-kw">worldPositionStays</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static T <span class="sig-kw">Instantiate</span>(T <span class="sig-kw">original</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">position</span>,
+<a href="Quaternion.html">Quaternion</a> <span class="sig-kw">rotation</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static T <span class="sig-kw">Instantiate</span>(T <span class="sig-kw">original</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">position</span>,
+<a href="Quaternion.html">Quaternion</a> <span class="sig-kw">rotation</span>,
+<a href="Transform.html">Transform</a> <span class="sig-kw">parent</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">original</td><td class="desc"></td><td class="desc1">Object of type T that you want to clone.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>T</strong>
+        Object of type T.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>You can also use Generics to instantiate objects. See the <a href="../Manual/GenericFunctions.html">Generic Functions</a> page for more details.</p></div><div class="subsection"><p>By using Generics we don't need to cast the result to a specific type.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Missile : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // ...other code...
+}<br /><br />public class InstantiateGenericsExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public Missile missile;<br /><br />    void Start()
+    {
+        Missile missileCopy = Instantiate&lt;Missile&gt;(missile);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

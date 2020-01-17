@@ -1,0 +1,23 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Collider.enabled</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Collider.html">Collider</a>.enabled</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public bool <span class="sig-kw">enabled</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Enabled Colliders will collide with other Colliders, disabled Colliders won't.</p></div><div class="subsection"><p>This is shown as the small checkbox in the inspector of the Colliders. It decides if a GameObject can collide with other Colliders.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//This example enables and disables the <a href="GameObject.html">GameObject</a>'s <a href="Collider.html">Collider</a> when the space bar is pressed.
+//Attach this to a <a href="GameObject.html">GameObject</a> and attach a <a href="Collider.html">Collider</a> to the <a href="GameObject.html">GameObject</a><br /><br />using UnityEngine;<br /><br />public class ColliderEnabled : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="Collider.html">Collider</a> m_Collider;<br /><br />    void Start()
+    {
+        //Fetch the <a href="GameObject.html">GameObject</a>'s <a href="Collider.html">Collider</a> (make sure it has a <a href="Collider.html">Collider</a> component)
+        m_Collider = GetComponent&lt;<a href="Collider.html">Collider</a>&gt;();
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        if (<a href="Input.GetKeyDown.html">Input.GetKeyDown</a>(<a href="KeyCode.Space.html">KeyCode.Space</a>))
+        {
+            //<a href="UIElements.Toggle.html">Toggle</a> the <a href="Collider.html">Collider</a> on and off when pressing the space bar
+            m_Collider.enabled = !m_Collider.enabled;<br /><br />            //Output to console whether the <a href="Collider.html">Collider</a> is on or not
+            <a href="Debug.Log.html">Debug.Log</a>("<a href="Collider-enabled.html">Collider.enabled</a> = " + m_Collider.enabled);
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

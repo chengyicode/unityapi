@@ -1,0 +1,28 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AssetDatabase.GetAssetPathsFromAssetBundleAndAssetName</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="AssetDatabase.html">AssetDatabase</a>.GetAssetPathsFromAssetBundleAndAssetName</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static string[] <span class="sig-kw">GetAssetPathsFromAssetBundleAndAssetName</span>(string <span class="sig-kw">assetBundleName</span>,
+string <span class="sig-kw">assetName</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Get the Asset paths for all Assets tagged with assetBundleName and
+                named assetName.</p></div><div class="subsection"><p>
+                    Get the Asset paths for all Assets tagged with assetBundleName and named
+                    assetName, regardless of extension or path e.g. "Assets/House.prefab",
+                    "Assets/Textures/House.png" and "Assets/Data/House.xml" when assetName
+                    is "House".
+                </p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;<br /><br />public class ExampleScript
+{
+    [<a href="MenuItem.html">MenuItem</a>("<a href="AssetDatabase.html">AssetDatabase</a>/<a href="Display.html">Display</a> assets in an <a href="AssetBundle.html">AssetBundle</a>")]
+    static void ExampleScriptCode1()
+    {
+        string[] assetPaths = <a href="AssetDatabase.GetAssetPathsFromAssetBundleAndAssetName.html">AssetDatabase.GetAssetPathsFromAssetBundleAndAssetName</a>("assetname", "House");
+        foreach (var assetPath in assetPaths)
+            <a href="Debug.Log.html">Debug.Log</a>(assetPath);
+    }<br /><br />    [<a href="MenuItem.html">MenuItem</a>("<a href="AssetDatabase.html">AssetDatabase</a>/<a href="AssetBundle.html">AssetBundle</a> creation")]
+    static void ExampleScriptCode2()
+    {
+        <a href="BuildPipeline.BuildAssetBundles.html">BuildPipeline.BuildAssetBundles</a>("Assets/AssetBundles", <a href="BuildAssetBundleOptions.None.html">BuildAssetBundleOptions.None</a>, <a href="BuildTarget.StandaloneOSX.html">BuildTarget.StandaloneOSX</a>);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

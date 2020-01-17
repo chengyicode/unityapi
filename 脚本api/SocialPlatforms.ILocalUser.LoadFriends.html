@@ -1,0 +1,17 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: SocialPlatforms.ILocalUser.LoadFriends</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="SocialPlatforms.ILocalUser.html">ILocalUser</a>.LoadFriends</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">LoadFriends</span>(Action&lt;bool&gt; <span class="sig-kw">callback</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Fetches the friends list of the logged in user. The friends list on the <a href="SocialPlatforms.ISocialPlatform-localUser.html">Social.localUser</a> instance is populated if this call succeeds.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.SocialPlatforms;
+using System.Collections;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        Social.localUser.LoadFriends(success =&gt; {
+            <a href="Debug.Log.html">Debug.Log</a>(success ? "Loaded " + Social.localUser.friends.Length + " friends" : "Loading friends failed");
+        });
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AssetPostprocessor.OnPostprocessAllAssets(string[],string[],string[],string[])</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="AssetPostprocessor.html">AssetPostprocessor</a>.OnPostprocessAllAssets(string[],string[],string[],string[])</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>This is called after importing of any number of assets is complete (when the Assets progress bar has reached the end).</p></div><div class="subsection"><p>This call may occur after a manual reimport, or when you move an asset or a folder of assets to a new location in the Project window. Every string array item contains a file path relative to the Assets folder, under the Project root. <code class="varname">importedAssets</code> contains paths of all assets used in the operation. Each consecutive index of <code class="varname">movedAssets</code> and <code class="varname">movedFromAssetPaths</code> refers to the same asset.<br /><br />If you perform a bulk operation on several individual assets instead of a folder containing those assets, this function will be called once per asset with each individual asset as the only item in the various arrays.<br /><br />Note that this function must be declared as <code class="varname">static</code>, that is it will not be called correctly if it is declared as an instance function.<br /><br />The order specified by GetPostprocessOrder does not affect this function.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />class MyAllPostprocessor : <a href="AssetPostprocessor.html">AssetPostprocessor</a>
+{
+    static void OnPostprocessAllAssets(string[] importedAssets, string[] deletedAssets, string[] movedAssets, string[] movedFromAssetPaths)
+    {
+        foreach (string str in importedAssets)
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("Reimported <a href="VersionControl.Asset.html">Asset</a>: " + str);
+        }
+        foreach (string str in deletedAssets)
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("Deleted <a href="VersionControl.Asset.html">Asset</a>: " + str);
+        }<br /><br />        for (int i = 0; i &lt; movedAssets.Length; i++)
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("Moved <a href="VersionControl.Asset.html">Asset</a>: " + movedAssets[i] + " from: " + movedFromAssetPaths[i]);
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

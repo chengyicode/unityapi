@@ -1,0 +1,44 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Handles.DrawBezier</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Handles.html">Handles</a>.DrawBezier</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">DrawBezier</span>(<a href="Vector3.html">Vector3</a> <span class="sig-kw">startPosition</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">endPosition</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">startTangent</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">endTangent</span>,
+<a href="Color.html">Color</a> <span class="sig-kw">color</span>,
+<a href="Texture2D.html">Texture2D</a> <span class="sig-kw">texture</span>,
+float <span class="sig-kw">width</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">startPosition</td><td class="desc"></td><td class="desc1">The start point of the bezier line.</td></tr><tr><td class="name lbl">endPosition</td><td class="desc"></td><td class="desc1">The end point of the bezier line.</td></tr><tr><td class="name lbl">startTangent</td><td class="desc"></td><td class="desc1">The start tangent of the bezier line.</td></tr><tr><td class="name lbl">endTangent</td><td class="desc"></td><td class="desc1">The end tangent of the bezier line.</td></tr><tr><td class="name lbl">color</td><td class="desc"></td><td class="desc1">The color to use for the bezier line.</td></tr><tr><td class="name lbl">texture</td><td class="desc"></td><td class="desc1">The texture to use for drawing the bezier line.</td></tr><tr><td class="name lbl">width</td><td class="desc"></td><td class="desc1">The width of the bezier line.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Draw textured bezier line through start and end points with the given tangents.</p></div><div class="subsection"><p>To get an anti-aliased effect use a texture that is 1x2 pixels with one transparent white pixel and one opaque white pixel.  The bezier curve will be swept using this texture.<br /><br /><strong>Note:</strong> Use <a href="HandleUtility.GetHandleSize.html">HandleUtility.GetHandleSize</a> where you might want to have constant screen-sized handles.<br /><br /><img src="../StaticFiles/ScriptRefImages/DrawBezier.png" /><br />
+<em>Bezier Line in the Scene View.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />[<a href="CustomEditor.html">CustomEditor</a>(typeof(BezierExample))]
+public class DrawBezierExample : <a href="Editor.html">Editor</a>
+{
+    private void OnSceneViewGUI(<a href="SceneView.html">SceneView</a> sv)
+    {
+        BezierExample be = target as BezierExample;<br /><br />        be.startPoint = <a href="Handles.PositionHandle.html">Handles.PositionHandle</a>(be.startPoint, <a href="Quaternion-identity.html">Quaternion.identity</a>);
+        be.endPoint = <a href="Handles.PositionHandle.html">Handles.PositionHandle</a>(be.endPoint, <a href="Quaternion-identity.html">Quaternion.identity</a>);
+        be.startTangent = <a href="Handles.PositionHandle.html">Handles.PositionHandle</a>(be.startTangent, <a href="Quaternion-identity.html">Quaternion.identity</a>);
+        be.endTangent = <a href="Handles.PositionHandle.html">Handles.PositionHandle</a>(be.endTangent, <a href="Quaternion-identity.html">Quaternion.identity</a>);<br /><br />        <a href="Handles.DrawBezier.html">Handles.DrawBezier</a>(be.startPoint, be.endPoint, be.startTangent, be.endTangent, <a href="Color-red.html">Color.red</a>, null, 2f);
+    }<br /><br />    void OnEnable()
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("OnEnable");
+        SceneView.onSceneGUIDelegate += OnSceneViewGUI;
+    }<br /><br />    void OnDisable()
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("OnDisable");
+        SceneView.onSceneGUIDelegate -= OnSceneViewGUI;
+    }
+}
+</pre>
+      </div><div class="subsection"><p>And the script attached to this Handle:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class BezierExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Vector3.html">Vector3</a> startPoint = new <a href="Vector3.html">Vector3</a>(-0.0f, 0.0f, 0.0f);
+    public <a href="Vector3.html">Vector3</a> endPoint = new <a href="Vector3.html">Vector3</a>(-2.0f, 2.0f, 0.0f);
+    public <a href="Vector3.html">Vector3</a> startTangent = <a href="Vector3-zero.html">Vector3.zero</a>;
+    public <a href="Vector3.html">Vector3</a> endTangent = <a href="Vector3-zero.html">Vector3.zero</a>;
+}
+</pre>
+      </div></div></div></div></body></html>

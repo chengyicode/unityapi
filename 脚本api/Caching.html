@@ -1,0 +1,143 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Caching</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">Caching</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.CoreModule.html" class="cl">UnityEngine.CoreModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>The Caching class lets you manage cached AssetBundles, downloaded using UnityWebRequestAssetBundle.GetAssetBundle().</p></div><div class="subsection"><p>See Also: <a href="Networking.DownloadHandlerAssetBundle.html">DownloadHandlerAssetBundle</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.Collections;
+using UnityEngine;
+using System.IO;
+using System;
+using UnityEngine.Networking;
+using System.Collections.Generic;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    IEnumerator DownloadAndCacheAssetBundle(string uri, string manifestBundlePath)
+    {
+        //Load the manifest
+        <a href="AssetBundle.html">AssetBundle</a> manifestBundle = <a href="AssetBundle.LoadFromFile.html">AssetBundle.LoadFromFile</a>(manifestBundlePath);
+        <a href="AssetBundleManifest.html">AssetBundleManifest</a> manifest = manifestBundle.LoadAsset&lt;<a href="AssetBundleManifest.html">AssetBundleManifest</a>&gt;("<a href="AssetBundleManifest.html">AssetBundleManifest</a>");<br /><br />        //Create new cache
+        string today = DateTime.Today.ToLongDateString();
+        <a href="Windows.Directory.CreateDirectory.html">Directory.CreateDirectory</a>(today);
+        <a href="Cache.html">Cache</a> newCache = <a href="Caching.AddCache.html">Caching.AddCache</a>(today);<br /><br />        //Set current cache for writing to the new cache if the cache is valid
+        if (newCache.valid)
+            <a href="Caching-currentCacheForWriting.html">Caching.currentCacheForWriting</a> = newCache;<br /><br />        //Download the bundle
+        <a href="Hash128.html">Hash128</a> hash = manifest.GetAssetBundleHash("bundleName");
+        <a href="Networking.UnityWebRequest.html">UnityWebRequest</a> request = <a href="Networking.UnityWebRequestAssetBundle.GetAssetBundle.html">UnityWebRequestAssetBundle.GetAssetBundle</a>(uri, hash, 0);
+        yield return request.SendWebRequest();
+        <a href="AssetBundle.html">AssetBundle</a> bundle = <a href="Networking.DownloadHandlerAssetBundle.GetContent.html">DownloadHandlerAssetBundle.GetContent</a>(request);<br /><br />        //Get all the cached versions
+        List&lt;<a href="Hash128.html">Hash128</a>&gt; listOfCachedVersions = new List&lt;<a href="Hash128.html">Hash128</a>&gt;();
+        <a href="Caching.GetCachedVersions.html">Caching.GetCachedVersions</a>(bundle.name, listOfCachedVersions);<br /><br />        if (!AssetBundleContainsAssetIWantToLoad(bundle))     //Or any conditions you want to check on your new asset bundle
+        {
+            //If our criteria wasn't met, we can remove the new cache and revert back to the most recent one
+            <a href="Caching-currentCacheForWriting.html">Caching.currentCacheForWriting</a> = <a href="Caching.GetCacheAt.html">Caching.GetCacheAt</a>(<a href="Caching-cacheCount.html">Caching.cacheCount</a>);
+            <a href="Caching.RemoveCache.html">Caching.RemoveCache</a>(newCache);<br /><br />            for (int i = listOfCachedVersions.Count - 1; i &gt; 0; i--)
+            {
+                //Load a different bundle from a different cache
+                request = <a href="Networking.UnityWebRequestAssetBundle.GetAssetBundle.html">UnityWebRequestAssetBundle.GetAssetBundle</a>(uri, listOfCachedVersions[i], 0);
+                yield return request.SendWebRequest();
+                bundle = <a href="Networking.DownloadHandlerAssetBundle.GetContent.html">DownloadHandlerAssetBundle.GetContent</a>(request);<br /><br />                //Check and see if the newly loaded bundle from the cache meets your criteria
+                if (AssetBundleContainsAssetIWantToLoad(bundle))
+                    break;
+            }
+        }
+        else
+        {
+            //This is if we only want to keep 5 local caches at any time
+            if (<a href="Caching-cacheCount.html">Caching.cacheCount</a> &gt; 5)
+                <a href="Caching.RemoveCache.html">Caching.RemoveCache</a>(<a href="Caching.GetCacheAt.html">Caching.GetCacheAt</a>(1));     //Removes the oldest user created cache
+        }
+    }<br /><br />    bool AssetBundleContainsAssetIWantToLoad(<a href="AssetBundle.html">AssetBundle</a> bundle)
+    {
+        return (bundle.LoadAsset&lt;<a href="GameObject.html">GameObject</a>&gt;("MyAsset") != null);     //this could be any conditional
+    }
+}
+</pre>
+      </div><div class="subsection"><p>If you wanted to store up to 5 cached versions of the same bundle and use the previous caches in the event your most recent cache becomes invalid or the downloaded Asset Bundle has a problem, you could set that up like this.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Networking;
+using System.IO;<br /><br />public class Example2 : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public static class CacheWithPriority
+    {
+        public enum ResolutionType
+        {
+            High,
+            Medium,
+            Low,
+        }
+        static readonly Dictionary&lt;ResolutionType, <a href="Cache.html">Cache</a>&gt; ResolutionCaches = new Dictionary&lt;ResolutionType, <a href="Cache.html">Cache</a>&gt;();<br /><br />        public static void InitResolutionCaches()
+        {
+            string highResPath = "HighRes";
+            string medResPath = "MedRes";
+            string lowResPath = <a href="Application-streamingAssetsPath.html">Application.streamingAssetsPath</a>;<br /><br />            //Create cache paths
+            <a href="Windows.Directory.CreateDirectory.html">Directory.CreateDirectory</a>(highResPath);
+            <a href="Windows.Directory.CreateDirectory.html">Directory.CreateDirectory</a>(medResPath);<br /><br />            //Create the caches and add them to a Dictionary
+            ResolutionCaches.Add(ResolutionType.High, <a href="Caching.AddCache.html">Caching.AddCache</a>(highResPath));
+            ResolutionCaches.Add(ResolutionType.Medium, <a href="Caching.AddCache.html">Caching.AddCache</a>(medResPath));
+            ResolutionCaches.Add(ResolutionType.Low, <a href="Caching.AddCache.html">Caching.AddCache</a>(lowResPath));
+        }<br /><br />        public static void PrioritizeCacheForLoading(ResolutionType resolutionToPrioritize)
+        {
+            //Move cache to the start of the queue
+            <a href="Caching.MoveCacheBefore.html">Caching.MoveCacheBefore</a>(ResolutionCaches[resolutionToPrioritize], <a href="Caching.GetCacheAt.html">Caching.GetCacheAt</a>(0));
+        }<br /><br />        public static void SetResolutionCacheForWriting(ResolutionType resolutionToWriteTo)
+        {
+            <a href="Caching-currentCacheForWriting.html">Caching.currentCacheForWriting</a> = ResolutionCaches[resolutionToWriteTo];
+        }
+    }<br /><br />    <a href="AssetBundle.html">AssetBundle</a> currentTextureAssetBundle;
+    IEnumerator RearrangeCacheOrderExample(string manifestBundlePath)
+    {
+        CacheWithPriority.InitResolutionCaches();<br /><br />        //Load the manifest
+        <a href="AssetBundle.html">AssetBundle</a> manifestBundle = <a href="AssetBundle.LoadFromFile.html">AssetBundle.LoadFromFile</a>(manifestBundlePath);
+        <a href="AssetBundleManifest.html">AssetBundleManifest</a> manifest = manifestBundle.LoadAsset&lt;<a href="AssetBundleManifest.html">AssetBundleManifest</a>&gt;("<a href="AssetBundleManifest.html">AssetBundleManifest</a>");<br /><br />        //We know we want to start loading from the Low <a href="Resolution.html">Resolution</a> <a href="Cache.html">Cache</a>
+        CacheWithPriority.PrioritizeCacheForLoading(CacheWithPriority.ResolutionType.Low);<br /><br />        //Load the low res bundle from StreamingAssets
+        <a href="Networking.UnityWebRequest.html">UnityWebRequest</a> lowRequest = <a href="Networking.UnityWebRequestAssetBundle.GetAssetBundle.html">UnityWebRequestAssetBundle.GetAssetBundle</a>("lowResBundlePath",
+            manifest.GetAssetBundleHash("lowResBundle"), 0);
+        yield return lowRequest;
+        currentTextureAssetBundle = <a href="Networking.DownloadHandlerAssetBundle.GetContent.html">DownloadHandlerAssetBundle.GetContent</a>(lowRequest);<br /><br />        //In the background we can start downloading our higher resolution bundles
+        StartCoroutine(StartDownloadHigherResolutionBundles(manifest));<br /><br />        //Do work with low res bundle while the higher resolutions download...
+    }<br /><br />    IEnumerator StartDownloadHigherResolutionBundles(<a href="AssetBundleManifest.html">AssetBundleManifest</a> manifest)
+    {
+        CacheWithPriority.SetResolutionCacheForWriting(CacheWithPriority.ResolutionType.Medium);
+        <a href="Networking.UnityWebRequest.html">UnityWebRequest</a> medRequest = <a href="Networking.UnityWebRequestAssetBundle.GetAssetBundle.html">UnityWebRequestAssetBundle.GetAssetBundle</a>("medResBundleUrl", manifest.GetAssetBundleHash("medResBundle"), 0);
+        medRequest.SendWebRequest();<br /><br />        while (!medRequest.isDone)
+            yield return null;
+        SwitchTextureBundleTo(CacheWithPriority.ResolutionType.Medium, medRequest);<br /><br />        //Now you'll be using the medium resolution bundle<br /><br />        CacheWithPriority.SetResolutionCacheForWriting(CacheWithPriority.ResolutionType.High);
+        <a href="Networking.UnityWebRequest.html">UnityWebRequest</a> highRequest = <a href="Networking.UnityWebRequestAssetBundle.GetAssetBundle.html">UnityWebRequestAssetBundle.GetAssetBundle</a>("highResBundleUrl", manifest.GetAssetBundleHash("highResBundle"), 0);
+        highRequest.SendWebRequest();<br /><br />        while (!highRequest.isDone)
+            yield return null;
+        SwitchTextureBundleTo(CacheWithPriority.ResolutionType.High, highRequest);<br /><br />        //Do work with the high resolution bundle now...
+    }<br /><br />    void SwitchTextureBundleTo(CacheWithPriority.ResolutionType typeToSwitchTo, <a href="Networking.UnityWebRequest.html">UnityWebRequest</a> request)
+    {
+        //For performance, we tell the <a href="Caching.html">Caching</a> system what cache we want it to search first
+        CacheWithPriority.PrioritizeCacheForLoading(typeToSwitchTo);
+        //Unload our current texture bundle
+        currentTextureAssetBundle.Unload(true);
+        //Load the new one from the passed in <a href="Networking.UnityWebRequest.html">UnityWebRequest</a>
+        currentTextureAssetBundle = <a href="Networking.DownloadHandlerAssetBundle.GetContent.html">DownloadHandlerAssetBundle.GetContent</a>(request);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>The ability to have multiple caches allows you to keep several cached version of a particular Asset Bundle.  You can use these for things like backups and fallbacks.<br /><br />This example shows downloading medium resolution and high resolution textures after startup and caching them in their own appropriate caches.</p></div><div class="subsection"><h2>Static Properties</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Caching-cacheCount.html">cacheCount</a></td><td class="desc"></td><td class="desc1">Returns the cache count in the cache list.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Caching-compressionEnabled.html">compressionEnabled</a></td><td class="desc"></td><td class="desc1">Controls compression of cache data. Enabled by default.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Caching-currentCacheForWriting.html">currentCacheForWriting</a></td><td class="desc"></td><td class="desc1">Gets or sets the current cache in which AssetBundles should be cached.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Caching-defaultCache.html">defaultCache</a></td><td class="desc"></td><td class="desc1">Returns the default cache which is added by Unity internally.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Caching-ready.html">ready</a></td><td class="desc"></td><td class="desc1">Returns true if Caching system is ready for use.</td></tr>
+    </table></div><div class="subsection"><h2>Static Methods   静态方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Caching.AddCache.html">AddCache</a></td><td class="desc"></td><td class="desc1">Add a cache with the given path.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Caching.ClearAllCachedVersions.html">ClearAllCachedVersions</a></td><td class="desc"></td><td class="desc1">Removes all the cached versions of the given AssetBundle from the cache.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Caching.ClearCache.html">ClearCache</a></td><td class="desc"></td><td class="desc1">Removes all AssetBundle content that has been cached by the current application.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Caching.ClearCachedVersion.html">ClearCachedVersion</a></td><td class="desc"></td><td class="desc1">Removes the given version of the AssetBundle.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Caching.ClearOtherCachedVersions.html">ClearOtherCachedVersions</a></td><td class="desc"></td><td class="desc1">Removes all the cached versions of the AssetBundle from the cache, except for the specified version.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Caching.GetAllCachePaths.html">GetAllCachePaths</a></td><td class="desc"></td><td class="desc1">Returns all paths of the cache in the cache list.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Caching.GetCacheAt.html">GetCacheAt</a></td><td class="desc"></td><td class="desc1">Returns the Cache at the given position in the cache list.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Caching.GetCacheByPath.html">GetCacheByPath</a></td><td class="desc"></td><td class="desc1">Returns the Cache that has the given cache path.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Caching.GetCachedVersions.html">GetCachedVersions</a></td><td class="desc"></td><td class="desc1">Returns all cached versions of the given AssetBundle.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Caching.IsVersionCached.html">IsVersionCached</a></td><td class="desc"></td><td class="desc1">Checks if an AssetBundle is cached.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Caching.MarkAsUsed.html">MarkAsUsed</a></td><td class="desc"></td><td class="desc1">Bumps the timestamp of a cached file to be the current time.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Caching.MoveCacheAfter.html">MoveCacheAfter</a></td><td class="desc"></td><td class="desc1">Moves the source Cache after the destination Cache in the cache list.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Caching.MoveCacheBefore.html">MoveCacheBefore</a></td><td class="desc"></td><td class="desc1">Moves the source Cache before the destination Cache in the cache list.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Caching.RemoveCache.html">RemoveCache</a></td><td class="desc"></td><td class="desc1">Removes the Cache from cache list.</td></tr>
+    </table></div></div></div></div></body></html>

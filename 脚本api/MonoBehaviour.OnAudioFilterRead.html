@@ -1,0 +1,60 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: MonoBehaviour.OnAudioFilterRead(float[], int)</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="MonoBehaviour.html">MonoBehaviour</a>.OnAudioFilterRead(float[], int)</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">data</td><td class="desc"></td><td class="desc1">An <code class="mono">array of floats</code> comprising the audio data.</td></tr><tr><td class="name lbl">channels</td><td class="desc"></td><td class="desc1">An <code class="mono">int</code> that stores the number of channels of audio data passed to this delegate.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>If OnAudioFilterRead is implemented, Unity will insert a custom filter into the audio DSP chain.</p></div><div class="subsection"><p>The filter is inserted in the same order as the MonoBehaviour script is shown in the Inspector.<br /><br />OnAudioFilterRead is called every time a chunk of audio is sent to the filter (this happens frequently, every ~20ms depending on the sample rate and platform).
+The audio data is an array of floats ranging from [-1.0f;1.0f] and contains audio from the previous filter in the chain or the <a href="AudioClip.html">AudioClip</a> on the <a href="AudioSource.html">AudioSource</a>. If this is the first filter in the chain and a clip isn't attached to the audio source, this filter will be played as the audio source. In this way you can use the filter as the audio clip, procedurally generating audio.<br /><br />If there is more than one channel, the channel data is interleaved. This means each consecutive data sample in the array comes from a different channel until you run out of channels and loop back to the first. <code class="mono">data.Length</code> reports the total size of the data, so to find the number of samples per channel, divide <code class="mono">data.Length</code> by <code class="mono">channels</code>.<br /><br />If OnAudioFilterRead is implemented a VU meter is shown in the Inspector displaying the outgoing sample level. The process time of the filter is also measured and the spent milliseconds are shown next to the VU meter. The number turns red if the filter is taking up too much time, meaning the mixer will be starved of audio data.<br /><br />Also note that OnAudioFilterRead is called on a different thread from the main thread (namely the audio thread) so calling into many Unity functions from this function is not allowed (if you try, a warning shows up at run time).<br /><br />See Also: <a href="../Manual/class-AudioEffect.html">Audio Filters</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />// The code example shows how to implement a metronome that procedurally
+// generates the click sounds via the OnAudioFilterRead callback.
+// While the game is paused or suspended, this time will not be updated and sounds
+// playing will be paused. Therefore developers of music scheduling routines do not have
+// to do any rescheduling after the app is unpaused<br /><br />[<a href="RequireComponent.html">RequireComponent</a>(typeof(<a href="AudioSource.html">AudioSource</a>))]
+public class AudioTest : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public double bpm = 140.0F;
+    public float gain = 0.5F;
+    public int signatureHi = 4;
+    public int signatureLo = 4;<br /><br />    private double nextTick = 0.0F;
+    private float amp = 0.0F;
+    private float phase = 0.0F;
+    private double sampleRate = 0.0F;
+    private int accent;
+    private bool running = false;<br /><br />    void Start()
+    {
+        accent = signatureHi;
+        double startTick = <a href="AudioSettings-dspTime.html">AudioSettings.dspTime</a>;
+        sampleRate = <a href="AudioSettings-outputSampleRate.html">AudioSettings.outputSampleRate</a>;
+        nextTick = startTick * sampleRate;
+        running = true;
+    }<br /><br />    void OnAudioFilterRead(float[] data, int channels)
+    {
+        if (!running)
+            return;<br /><br />        double samplesPerTick = sampleRate * 60.0F / bpm * 4.0F / signatureLo;
+        double sample = <a href="AudioSettings-dspTime.html">AudioSettings.dspTime</a> * sampleRate;
+        int dataLen = data.Length / channels;<br /><br />        int n = 0;
+        while (n &lt; dataLen)
+        {
+            float x = gain * amp * <a href="Mathf.Sin.html">Mathf.Sin</a>(phase);
+            int i = 0;
+            while (i &lt; channels)
+            {
+                data[n * channels + i] += x;
+                i++;
+            }
+            while (sample + n &gt;= nextTick)
+            {
+                nextTick += samplesPerTick;
+                amp = 1.0F;
+                if (++accent &gt; signatureHi)
+                {
+                    accent = 1;
+                    amp *= 2.0F;
+                }
+                <a href="Debug.Log.html">Debug.Log</a>("Tick: " + accent + "/" + signatureHi);
+            }
+            phase += amp * 0.3F;
+            amp *= 0.993F;
+            n++;
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

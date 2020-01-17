@@ -1,0 +1,107 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: WWWForm</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">WWWForm</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.UnityWebRequestModule.html" class="cl">UnityEngine.UnityWebRequestModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Helper class to generate form data to post to web servers using the <a href="Networking.UnityWebRequest.html">UnityWebRequest</a> or WWW classes.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">using UnityEngine;
+using UnityEngine.Networking;
+using System.Collections;<br /><br />public class WWWFormImage : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{<br /><br />    public string screenShotURL= "http://www.my-server.com/cgi-bin/screenshot.pl";<br /><br />    // Use this for initialization
+    void Start()
+    {
+        StartCoroutine(UploadPNG());
+    }<br /><br />    IEnumerator UploadPNG()
+    {
+        // We should only read the screen after all rendering is complete
+        yield return new <a href="WaitForEndOfFrame.html">WaitForEndOfFrame</a>();<br /><br />        // Create a texture the size of the screen, RGB24 format
+        int width = <a href="Screen-width.html">Screen.width</a>;
+        int height = <a href="Screen-height.html">Screen.height</a>;
+        var tex = new <a href="Texture2D.html">Texture2D</a>( width, height, <a href="TextureFormat.RGB24.html">TextureFormat.RGB24</a>, false );<br /><br />        // Read screen contents into the texture
+        tex.ReadPixels( new <a href="Rect.html">Rect</a>(0, 0, width, height), 0, 0 );
+        tex.Apply();<br /><br />        // Encode texture into PNG
+        byte[] bytes = tex.EncodeToPNG();
+        Destroy( tex );<br /><br />        // Create a Web Form
+        <a href="WWWForm.html">WWWForm</a> form = new <a href="WWWForm.html">WWWForm</a>();
+        form.AddField("frameCount", Time.frameCount.ToString());
+        form.AddBinaryData("fileUpload", bytes, "screenShot.png", "image/png");<br /><br />        // Upload to a cgi script
+        using (var w = <a href="Networking.UnityWebRequest.Post.html">UnityWebRequest.Post</a>(screenShotURL, form))
+        {
+            yield return w.SendWebRequest();
+            if (w.isNetworkError || w.isHttpError) {
+                print(w.error);
+            }
+            else {
+                print("Finished Uploading Screenshot");
+            }
+        }
+    }
+}</pre>
+      </div><div class="subsection"><p>Here is a sample script that retrieves the high scores stored
+in a table in an SQL database.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.Networking;
+using System.Collections;<br /><br />public class WWWFormScore : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    string highscore_url = "http://www.my-site.com/highscores.pl";
+    string playName = "Player 1";
+    int score = -1;<br /><br />    // Use this for initialization
+    IEnumerator Start()
+    {
+        // Create a form object for sending high score data to the server
+        <a href="WWWForm.html">WWWForm</a> form = new <a href="WWWForm.html">WWWForm</a>();<br /><br />        // Assuming the perl script manages high scores for different games
+        form.AddField( "game", "MyGameName" );<br /><br />        // The name of the player submitting the scores
+        form.AddField( "playerName", playName );<br /><br />        // The score
+        form.AddField( "score", score );<br /><br />        // Create a download object
+        var download = <a href="Networking.UnityWebRequest.Post.html">UnityWebRequest.Post</a>(highscore_url, form);<br /><br />        // Wait until the download is done
+        yield return download.SendWebRequest();<br /><br />        if (download.isNetworkError || download.isHttpError)
+        {
+            print( "<a href="PackageManager.Error.html">Error</a> downloading: " + download.error );
+        }
+        else
+        {
+            // show the highscores
+            <a href="Debug.Log.html">Debug.Log</a>(download.downloadHandler.text);
+        }
+    }
+}</pre>
+      </div><div class="subsection"><p>Here is a sample Perl script that processes the high scores stored
+in a table in an SQL database.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">#!/usr/bin/perl
+# The SQL database needs to have a table called highscores
+# that looks something like this:
+#
+#   CREATE TABLE highscores (
+#     game varchar(255) NOT NULL,
+#     player varchar(255) NOT NULL,
+#     score integer NOT NULL
+#   );
+#
+use strict;
+use CGI;
+use DBI;<br /><br /># Read form data etc.
+my $cgi = new CGI;<br /><br /># The results from the high score script will be in plain text
+print $cgi-&gt;header("text/plain");<br /><br />my $game = $cgi-&gt;param('game');
+my $playerName = $cgi-&gt;param('playerName');
+my $score = $cgi-&gt;param('score');<br /><br />exit 0 unless $game; # This parameter is required<br /><br /># Connect to a database
+my $dbh = DBI-&gt;connect( 'DBI:mysql:databasename', 'username', 'password' )
+    || die "Could not connect to database: $DBI::errstr";<br /><br /># Insert the player score if there are any
+if( $playerName &amp;&amp; $score) {
+    $dbh-&gt;do( "insert into highscores (game, player, score) values(?,?,?)",
+        undef, $game, $playerName, $score );
+}<br /><br /># Fetch the high scores
+my $sth = $dbh-&gt;prepare(
+    'SELECT player, score FROM highscores WHERE game=? ORDER BY score desc LIMIT 10' );
+$sth-&gt;execute($game);
+while (my $r = $sth-&gt;fetchrow_arrayref) {
+    print join(':',@$r),"\n"
+}</pre>
+      </div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="WWWForm-data.html">data</a></td><td class="desc"></td><td class="desc1">(Read Only) The raw data to pass as the POST request body when sending the form.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="WWWForm-headers.html">headers</a></td><td class="desc"></td><td class="desc1">(Read Only) Returns the correct request headers for posting the form using the WWW class.</td></tr>
+    </table></div><div class="subsection"><h2>Constructors</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="WWWForm-ctor.html">WWWForm</a></td><td class="desc"></td><td class="desc1">Creates an empty WWWForm object.</td></tr>
+    </table></div><div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="WWWForm.AddBinaryData.html">AddBinaryData</a></td><td class="desc"></td><td class="desc1">Add binary data to the form.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="WWWForm.AddField.html">AddField</a></td><td class="desc"></td><td class="desc1">Add a simple field to the form.</td></tr>
+    </table></div></div></div></div></body></html>

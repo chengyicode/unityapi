@@ -1,0 +1,30 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Camera.fieldOfView</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Camera.html">Camera</a>.fieldOfView</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Camera.html' title='Go to Camera Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public float <span class="sig-kw">fieldOfView</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The field of view of the camera in degrees.</p></div><div class="subsection"><p>This is the vertical field of view; horizontal
+Field of view varies depending on the viewport's aspect ratio.
+Field of view is ignored when camera is orthographic (see <a href="Camera-orthographic.html">orthographic</a>).<br /><br />Some VR SDKs have fixed field of view values that are used for VR cameras. When VR is enabled with those SDKs, this property will always return the value from the SDK. You will see a warning logged if you attempt to set the property and the value will be ignored.<br /><br />See Also: <a href="../Manual/class-Camera.html">camera component</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//Attach this script to an empty <a href="GameObject.html">GameObject</a>.
+//This script creates a <a href="UIElements.Slider.html">Slider</a> that allows you to manipulate the <a href="Camera.html">Camera</a>'s field of view. Place GameObjects in the <a href="SceneManagement.Scene.html">Scene</a> to show the full effect.<br /><br />using UnityEngine;<br /><br />public class CameraFieldOfViewExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    //This is the field of view that the <a href="Camera.html">Camera</a> has
+    float m_FieldOfView;<br /><br />    void Start()
+    {
+        //Start the <a href="Camera.html">Camera</a> field of view at 60
+        m_FieldOfView = 60.0f;
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        //<a href="Experimental.PlayerLoop.Update.html">Update</a> the camera's field of view to be the variable returning from the <a href="UIElements.Slider.html">Slider</a>
+        Camera.main.fieldOfView = m_FieldOfView;
+    }<br /><br />    void OnGUI()
+    {
+        //Set up the maximum and minimum values the <a href="UIElements.Slider.html">Slider</a> can return (you can change these)
+        float max, min;
+        max = 150.0f;
+        min = 20.0f;
+        //This <a href="UIElements.Slider.html">Slider</a> changes the field of view of the <a href="Camera.html">Camera</a> between the minimum and maximum values
+        m_FieldOfView = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(20, 20, 100, 40), m_FieldOfView, min, max);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AudioSettings.dspTime</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="AudioSettings.html">AudioSettings</a>.dspTime</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-AudioSettings.html' title='Go to AudioSettings Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static double <span class="sig-kw">dspTime</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Returns the current time of the audio system.</p></div><div class="subsection"><p>This is a value specified in seconds and based on the actual number of samples the audio system processes and is therefore much more precise than the time obtained via the <a href="Time-time.html">Time.time</a> property.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />// The code example shows how to implement a metronome that procedurally generates the click sounds via the OnAudioFilterRead callback.
+// While the game is paused or the suspended, this time will not be updated and sounds playing will be paused. Therefore developers of music scheduling routines do not have to do any rescheduling after the app is unpaused<br /><br />[<a href="RequireComponent.html">RequireComponent</a>(typeof(<a href="AudioSource.html">AudioSource</a>))]
+public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public double bpm = 140.0F;
+    public float gain = 0.5F;
+    public int signatureHi = 4;
+    public int signatureLo = 4;
+    private double nextTick = 0.0F;
+    private float amp = 0.0F;
+    private float phase = 0.0F;
+    private double sampleRate = 0.0F;
+    private int accent;
+    private bool running = false;
+    void Start()
+    {
+        accent = signatureHi;
+        double startTick = <a href="AudioSettings-dspTime.html">AudioSettings.dspTime</a>;
+        sampleRate = <a href="AudioSettings-outputSampleRate.html">AudioSettings.outputSampleRate</a>;
+        nextTick = startTick * sampleRate;
+        running = true;
+    }<br /><br />    void OnAudioFilterRead(float[] data, int channels)
+    {
+        if (!running)
+            return;<br /><br />        double samplesPerTick = sampleRate * 60.0F / bpm * 4.0F / signatureLo;
+        double sample = <a href="AudioSettings-dspTime.html">AudioSettings.dspTime</a> * sampleRate;
+        int dataLen = data.Length / channels;
+        int n = 0;
+        while (n &lt; dataLen)
+        {
+            float x = gain * amp * <a href="Mathf.Sin.html">Mathf.Sin</a>(phase);
+            int i = 0;
+            while (i &lt; channels)
+            {
+                data[n * channels + i] += x;
+                i++;
+            }
+            while (sample + n &gt;= nextTick)
+            {
+                nextTick += samplesPerTick;
+                amp = 1.0F;
+                if (++accent &gt; signatureHi)
+                {
+                    accent = 1;
+                    amp *= 2.0F;
+                }
+                <a href="Debug.Log.html">Debug.Log</a>("Tick: " + accent + "/" + signatureHi);
+            }
+            phase += amp * 0.3F;
+            amp *= 0.993F;
+            n++;
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: RemoteSettings.UpdatedEventHandler</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="RemoteSettings.html">RemoteSettings</a>.UpdatedEventHandler</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public delegate void <span class="sig-kw">UpdatedEventHandler</span>();
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Defines the delegate signature for handling <a href="RemoteSettings.Updated.html">RemoteSettings.Updated</a> events.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class HandleRemoteSettings : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private void Start()
+    {
+        // Add this class's updated settings handler to the <a href="RemoteSettings.Updated.html">RemoteSettings.Updated</a> event.
+        <a href="RemoteSettings.Updated.html">RemoteSettings.Updated</a> += RemoteSettingsUpdated;
+    }<br /><br />    private static void RemoteSettingsUpdated()
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("***** GOT NEW REMOTE SETTINGS ******");
+        <a href="Debug.Log.html">Debug.Log</a>(<a href="RemoteSettings.GetInt.html">RemoteSettings.GetInt</a>("testInt"));
+        <a href="Debug.Log.html">Debug.Log</a>(<a href="RemoteSettings.GetString.html">RemoteSettings.GetString</a>("testString"));
+        <a href="Debug.Log.html">Debug.Log</a>(<a href="RemoteSettings.GetFloat.html">RemoteSettings.GetFloat</a>("testFloat"));
+        <a href="Debug.Log.html">Debug.Log</a>(<a href="RemoteSettings.GetBool.html">RemoteSettings.GetBool</a>("testBool"));
+        <a href="Debug.Log.html">Debug.Log</a>(<a href="RemoteSettings.GetBool.html">RemoteSettings.GetBool</a>("testFakeKey"));
+        <a href="Debug.Log.html">Debug.Log</a>(<a href="RemoteSettings.GetBool.html">RemoteSettings.GetBool</a>("testFakeKey", true));
+        <a href="Debug.Log.html">Debug.Log</a>(<a href="RemoteSettings.HasKey.html">RemoteSettings.HasKey</a>("qqq"));
+        <a href="Debug.Log.html">Debug.Log</a>(<a href="RemoteSettings.HasKey.html">RemoteSettings.HasKey</a>("testInt"));
+        <a href="Debug.Log.html">Debug.Log</a>(<a href="RemoteSettings.GetBool.html">RemoteSettings.GetBool</a>("unity.heatmaps"));
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

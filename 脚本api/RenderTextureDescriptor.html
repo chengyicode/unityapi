@@ -1,0 +1,61 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: RenderTextureDescriptor</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">RenderTextureDescriptor</h1><div class="clear"></div><p class="cl mb0 left mr10">struct in
+          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.CoreModule.html" class="cl">UnityEngine.CoreModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>This struct contains all the information required to create a RenderTexture. It can be copied, cached, and reused to easily create RenderTextures that all share the same properties.</p></div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="RenderTextureDescriptor-autoGenerateMips.html">autoGenerateMips</a></td><td class="desc"></td><td class="desc1">Mipmap levels are generated automatically when this flag is set.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="RenderTextureDescriptor-bindMS.html">bindMS</a></td><td class="desc"></td><td class="desc1">If true and msaaSamples is greater than 1, the render texture will not be resolved by default.  Use this if the render texture needs to be bound as a multisampled texture in a shader.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="RenderTextureDescriptor-depthBufferBits.html">depthBufferBits</a></td><td class="desc"></td><td class="desc1">The precision of the render texture's depth buffer in bits (0, 16, 24/32 are supported).See RenderTexture.depth.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="RenderTextureDescriptor-dimension.html">dimension</a></td><td class="desc"></td><td class="desc1">Dimensionality (type) of the render texture.See RenderTexture.dimension.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="RenderTextureDescriptor-enableRandomWrite.html">enableRandomWrite</a></td><td class="desc"></td><td class="desc1">Enable random access write into this render texture on Shader Model 5.0 level shaders.See RenderTexture.enableRandomWrite.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="RenderTextureDescriptor-flags.html">flags</a></td><td class="desc"></td><td class="desc1">A set of RenderTextureCreationFlags that control how the texture is created.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="RenderTextureDescriptor-graphicsFormat.html">graphicsFormat</a></td><td class="desc"></td><td class="desc1">The color format for the RenderTexture.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="RenderTextureDescriptor-height.html">height</a></td><td class="desc"></td><td class="desc1">The height of the render texture in pixels.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="RenderTextureDescriptor-memoryless.html">memoryless</a></td><td class="desc"></td><td class="desc1">The render texture memoryless mode property.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="RenderTextureDescriptor-mipCount.html">mipCount</a></td><td class="desc"></td><td class="desc1">User-defined mipmap count.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="RenderTextureDescriptor-msaaSamples.html">msaaSamples</a></td><td class="desc"></td><td class="desc1">The multisample antialiasing level for the RenderTexture.See RenderTexture.antiAliasing.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="RenderTextureDescriptor-shadowSamplingMode.html">shadowSamplingMode</a></td><td class="desc"></td><td class="desc1">Determines how the RenderTexture is sampled if it is used as a shadow map.See ShadowSamplingMode for more details.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="RenderTextureDescriptor-sRGB.html">sRGB</a></td><td class="desc"></td><td class="desc1">This flag causes the render texture uses sRGB read/write conversions.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="RenderTextureDescriptor-useDynamicScale.html">useDynamicScale</a></td><td class="desc"></td><td class="desc1">Set to true to enable dynamic resolution scaling on this render texture.SA RenderTexture.useDynamicScale.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="RenderTextureDescriptor-useMipMap.html">useMipMap</a></td><td class="desc"></td><td class="desc1">Render texture has mipmaps when this flag is set.See RenderTexture.useMipMap.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="RenderTextureDescriptor-volumeDepth.html">volumeDepth</a></td><td class="desc"></td><td class="desc1">Volume extent of a 3D render texture.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="RenderTextureDescriptor-vrUsage.html">vrUsage</a></td><td class="desc"></td><td class="desc1">If this RenderTexture is a VR eye texture used in stereoscopic rendering, this property decides what special rendering occurs, if any. Instead of setting this manually, use the value returned by eyeTextureDesc or other VR functions returning a RenderTextureDescriptor.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="RenderTextureDescriptor-width.html">width</a></td><td class="desc"></td><td class="desc1">The width of the render texture in pixels.</td></tr>
+    </table></div><div class="subsection"><h2>Constructors</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="RenderTextureDescriptor-ctor.html">RenderTextureDescriptor</a></td><td class="desc"></td><td class="desc1">Create a RenderTextureDescriptor with default values, or a certain width, height, and format.</td></tr>
+    </table></div></div></div></div></body></html>

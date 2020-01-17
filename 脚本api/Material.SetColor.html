@@ -1,0 +1,21 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Material.SetColor</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Material.html">Material</a>.SetColor</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Material.html' title='Go to Material Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">SetColor</span>(string <span class="sig-kw">name</span>,
+<a href="Color.html">Color</a> <span class="sig-kw">value</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">SetColor</span>(int <span class="sig-kw">nameID</span>,
+<a href="Color.html">Color</a> <span class="sig-kw">value</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">nameID</td><td class="desc"></td><td class="desc1">Property name ID, use <a href="Shader.PropertyToID.html">Shader.PropertyToID</a> to get it.</td></tr><tr><td class="name lbl">name</td><td class="desc"></td><td class="desc1">Property name, e.g. "_Color".</td></tr><tr><td class="name lbl">value</td><td class="desc"></td><td class="desc1">Color value to set.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Sets a named color value.</p></div><div class="subsection"><p>Many shaders use more than one color. Use SetColor to change the color (identified by shader property name, or unique property name ID).<br /><br />When setting color values on materials using the Standard Shader, you should be aware that you may need to use <a href="Material.EnableKeyword.html">EnableKeyword</a> to enable features of the shader that were not previously in use. For more detail, read <a href="../Manual/MaterialsAccessingViaScript.html">Accessing Materials via Script</a>.<br /><br />Common color names used by Unity's builtin shaders: <br />
+<code class="mono">"_Color"</code> is the main color of a material. This can also be accessed via <a href="Material-color.html">color</a> property. <br />
+<code class="mono">"_EmissionColor"</code> is the emissive color of a material.<br /><br />See Also: <a href="Material-color.html">color</a>, <a href="Material.GetColor.html">GetColor</a>, <a href="Shader.PropertyToID.html">Shader.PropertyToID</a>, <a href="../Manual/SL-PropertiesInPrograms.html">Properties in Shader Programs</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">//Attach this script to any <a href="GameObject.html">GameObject</a> in your scene to spawn a cube and change the material color
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+   void Start()
+   {
+       //Create a new cube primitive to set the color on
+       <a href="GameObject.html">GameObject</a> cube = <a href="GameObject.CreatePrimitive.html">GameObject.CreatePrimitive</a>(<a href="PrimitiveType.Cube.html">PrimitiveType.Cube</a>);<br /><br />       //Get the <a href="Renderer.html">Renderer</a> component from the new cube
+       var cubeRenderer = cube.GetComponent&lt;<a href="Renderer.html">Renderer</a>&gt;();<br /><br />       //Call SetColor using the shader property name "_Color" and setting the color to red
+       cubeRenderer.material.SetColor("_Color", <a href="Color-red.html">Color.red</a>);
+   }
+}
+</pre>
+      </div></div></div></div></body></html>

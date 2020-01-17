@@ -1,0 +1,45 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: TextureImporter.GetPlatformTextureSettings</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="TextureImporter.html">TextureImporter</a>.GetPlatformTextureSettings</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-TextureImporter.html' title='Go to TextureImporter Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public bool <span class="sig-kw">GetPlatformTextureSettings</span>(string <span class="sig-kw">platform</span>,
+out int <span class="sig-kw">maxTextureSize</span>,
+out <a href="TextureImporterFormat.html">TextureImporterFormat</a> <span class="sig-kw">textureFormat</span>,
+out int <span class="sig-kw">compressionQuality</span>,
+out bool <span class="sig-kw">etc1AlphaSplitEnabled</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">platform</td><td class="desc"></td><td class="desc1">The platform for which settings are required (see options below).</td></tr><tr><td class="name lbl">maxTextureSize</td><td class="desc"></td><td class="desc1">Maximum texture width/height in pixels.</td></tr><tr><td class="name lbl">textureFormat</td><td class="desc"></td><td class="desc1">Format of the texture for the given platform.</td></tr><tr><td class="name lbl">compressionQuality</td><td class="desc"></td><td class="desc1">Value from 0..100, equivalent to the standard JPEG quality setting.</td></tr><tr><td class="name lbl">etc1AlphaSplitEnabled</td><td class="desc"></td><td class="desc1">Status of the ETC1 and alpha split flag.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>bool</strong>
+        True if the platform override was found, false if no override was found.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Get platform specific texture settings.</p></div><div class="subsection"><p>The values for the chosen platform are returned in the "out" parameters. The options for the platform string are "Standalone", "Web", "iPhone", "Android", "WebGL", "Windows Store Apps", "PS4", "XboxOne", "Nintendo 3DS" and "tvOS".</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine.UI;
+using System.Collections;<br /><br />public class DisplayInfo : <a href="EditorWindow.html">EditorWindow</a>
+{
+    [<a href="MenuItem.html">MenuItem</a>("PlatformSettings/GetSettingsForAndroid")]
+    static void GetAndroidSettings()
+    {
+        string  platformString = "<a href="PlayerSettings.Android.html">Android</a>";
+        int     platformMaxTextureSize = 0;
+        <a href="TextureImporterFormat.html">TextureImporterFormat</a> platformTextureFmt;
+        int     platformCompressionQuality = 0;
+        bool    platformAllowsAlphaSplit = false;<br /><br />        <a href="TextureImporter.html">TextureImporter</a> ti = (<a href="TextureImporter.html">TextureImporter</a>)TextureImporter.GetAtPath("Assets/characters.png");
+        if (ti.GetPlatformTextureSettings(platformString, out platformMaxTextureSize, out platformTextureFmt, out platformCompressionQuality, out platformAllowsAlphaSplit))
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("Found some overrides for platform: " + platformString);
+        }
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public bool <span class="sig-kw">GetPlatformTextureSettings</span>(string <span class="sig-kw">platform</span>,
+out int <span class="sig-kw">maxTextureSize</span>,
+out <a href="TextureImporterFormat.html">TextureImporterFormat</a> <span class="sig-kw">textureFormat</span>,
+out int <span class="sig-kw">compressionQuality</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">platform</td><td class="desc"></td><td class="desc1">The platform whose settings are required (see below).</td></tr><tr><td class="name lbl">maxTextureSize</td><td class="desc"></td><td class="desc1">Maximum texture width/height in pixels.</td></tr><tr><td class="name lbl">textureFormat</td><td class="desc"></td><td class="desc1">Format of the texture.</td></tr><tr><td class="name lbl">compressionQuality</td><td class="desc"></td><td class="desc1">Value from 0..100, equivalent to the standard JPEG quality setting.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>bool</strong>
+        True if the platform override was found, false if no override was found.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Get platform specific texture settings.</p></div><div class="subsection"><p>The values for the chosen platform are returned in the "out" parameters. The options for the platform string are "Standalone", "Web", "iPhone", "Android", "WebGL", "Windows Store Apps", "PS4", "XboxOne", "Nintendo 3DS" and "tvOS".</p></div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public bool <span class="sig-kw">GetPlatformTextureSettings</span>(string <span class="sig-kw">platform</span>,
+out int <span class="sig-kw">maxTextureSize</span>,
+out <a href="TextureImporterFormat.html">TextureImporterFormat</a> <span class="sig-kw">textureFormat</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">platform</td><td class="desc"></td><td class="desc1">The platform whose settings are required (see below).</td></tr><tr><td class="name lbl">maxTextureSize</td><td class="desc"></td><td class="desc1">Maximum texture width/height in pixels.</td></tr><tr><td class="name lbl">textureFormat</td><td class="desc"></td><td class="desc1">Format of the texture.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>bool</strong>
+        True if the platform override was found, false if no override was found.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Get platform specific texture settings.</p></div><div class="subsection"><p>The values for the chosen platform are returned in the "out" parameters. The options for the platform string are "Standalone", "Web", "iPhone", "Android", "WebGL", "Windows Store Apps", "PS4", "XboxOne", "Nintendo 3DS" and "tvOS".</p></div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="TextureImporterPlatformSettings.html">TextureImporterPlatformSettings</a> <span class="sig-kw">GetPlatformTextureSettings</span>(string <span class="sig-kw">platform</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">platform</td><td class="desc"></td><td class="desc1">The platform whose settings are required (see below).</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>TextureImporterPlatformSettings</strong>
+        A <a href="TextureImporterPlatformSettings.html">TextureImporterPlatformSettings</a> structure containing the platform parameters.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Get platform specific texture settings.</p></div><div class="subsection"><p>Returns the parameters for the chosen platform. The options for the platform string are "Standalone", "Web", "iPhone", "Android", "WebGL", "Windows Store Apps", "PS4", "XboxOne", "Nintendo 3DS" and "tvOS".</p></div></div></div></div></body></html>

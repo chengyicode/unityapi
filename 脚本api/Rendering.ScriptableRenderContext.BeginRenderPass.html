@@ -1,0 +1,81 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Rendering.ScriptableRenderContext.BeginRenderPass</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Rendering.ScriptableRenderContext.html">ScriptableRenderContext</a>.BeginRenderPass</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">BeginRenderPass</span>(int <span class="sig-kw">width</span>,
+int <span class="sig-kw">height</span>,
+int <span class="sig-kw">samples</span>,
+NativeArray&lt;AttachmentDescriptor&gt; <span class="sig-kw">attachments</span>,
+int <span class="sig-kw">depthAttachmentIndex</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">width</td><td class="desc"></td><td class="desc1">The width of the render pass surfaces in pixels.</td></tr><tr><td class="name lbl">height</td><td class="desc"></td><td class="desc1">The height of the render pass surfaces in pixels.</td></tr><tr><td class="name lbl">samples</td><td class="desc"></td><td class="desc1">MSAA sample count; set to 1 to disable antialiasing.</td></tr><tr><td class="name lbl">attachments</td><td class="desc"></td><td class="desc1">Array of color attachments to use within this render pass. The values in the array are copied immediately.</td></tr><tr><td class="name lbl">depthAttachmentIndex</td><td class="desc"></td><td class="desc1">The index of the attachment to be used as the depth/stencil buffer for this render pass, or -1 to disable depth/stencil.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Begins a new render pass. Only one render pass can be active.</p></div><div class="subsection"><p>A render pass provides a new way to switch rendertargets in the context of a Scriptable Rendering Pipeline. As opposed to the SetRenderTargets function, the render pass specifies a clear beginning and an end for the rendering, alongside explicit load/store actions on the rendering surfaces.<br /><br />The render pass also allows running multiple subpasses within the same renderpass, where the pixel shaders have a read access to the current pixel value within the renderpass. This allows for efficient implementation of various rendering methods on tile-based GPUs, such as deferred rendering.<br /><br />Render passes are natively implemented on Metal (iOS) and Vulkan, but the API is fully functional on all rendering backends via emulation (using legacy SetRenderTargets calls and reading the current pixel values via texel fetches).<br /><br />The render pass mechanism has the following limitations:
+- All attachments must have the same resolution and MSAA sample count
+- The rendering results of previous subpasses are only available within the same screen-space pixel
+  coordinate via the UNITY_READ_FRAMEBUFFER_INPUT(x) macro in the shader; the attachments cannot be bound
+  as textures or otherwise accessed until the renderpass has ended
+- iOS Metal does not allow reading from the Z-Buffer, so an additional render target is needed to work around that
+- The maximum amount of attachments allowed per render pass is currently 8 + depth, but note that various GPUs may
+  have stricter limits.<br /><br />See Also: <a href="Rendering.ScriptableRenderContext.BeginSubPass.html">BeginSubPass</a>, <a href="Rendering.ScriptableRenderContext.EndRenderPass.html">EndRenderPass</a>, <a href="Rendering.ScriptableRenderContext.BeginScopedRenderPass.html">BeginScopedRenderPass</a>, <a href="Rendering.ScriptableRenderContext.BeginScopedSubPass.html">BeginScopedSubPass</a>.<br /><br />A quick example on how to use the render pass API within the Scriptable Render Pipeline to implement deferred rendering:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.Rendering;
+using Unity.Collections;<br /><br />public static class DeferredRenderer
+{
+    public static void ExecuteRenderLoop(<a href="Camera.html">Camera</a> camera, <a href="Rendering.CullingResults.html">CullingResults</a> cullResults, <a href="Rendering.ScriptableRenderContext.html">ScriptableRenderContext</a> context)
+    {
+        // Create the attachment descriptors. If these attachments are not specifically bound to any <a href="RenderTexture.html">RenderTexture</a> using the ConfigureTarget calls,
+        // these are treated as temporary surfaces that are discarded at the end of the renderpass
+        var albedo = new <a href="Rendering.AttachmentDescriptor.html">AttachmentDescriptor</a>(<a href="RenderTextureFormat.ARGB32.html">RenderTextureFormat.ARGB32</a>);
+        var specRough = new <a href="Rendering.AttachmentDescriptor.html">AttachmentDescriptor</a>(<a href="RenderTextureFormat.ARGB32.html">RenderTextureFormat.ARGB32</a>);
+        var normal = new <a href="Rendering.AttachmentDescriptor.html">AttachmentDescriptor</a>(<a href="RenderTextureFormat.ARGB2101010.html">RenderTextureFormat.ARGB2101010</a>);
+        var emission = new <a href="Rendering.AttachmentDescriptor.html">AttachmentDescriptor</a>(<a href="RenderTextureFormat.ARGBHalf.html">RenderTextureFormat.ARGBHalf</a>);
+        var depth = new <a href="Rendering.AttachmentDescriptor.html">AttachmentDescriptor</a>(<a href="RenderTextureFormat.Depth.html">RenderTextureFormat.Depth</a>);<br /><br />        // At the beginning of the render pass, clear the emission buffer to all black, and the depth buffer to 1.0f
+        emission.ConfigureClear(new <a href="Color.html">Color</a>(0.0f, 0.0f, 0.0f, 0.0f), 1.0f, 0);
+        depth.ConfigureClear(new <a href="Color.html">Color</a>(), 1.0f, 0);<br /><br />        // Bind the albedo surface to the current camera target, so the final pass will render the <a href="SceneManagement.Scene.html">Scene</a> to the screen backbuffer
+        // The second argument specifies whether the existing contents of the surface need to be loaded as the initial values;
+        // in our case we do not need that because we'll be clearing the attachment anyway. This saves a lot of memory
+        // bandwidth on tiled GPUs.
+        // The third argument specifies whether the rendering results need to be written out to memory at the end of
+        // the renderpass. We need this as we'll be generating the final image there.
+        // We could do this in the constructor already, but the camera target may change on the fly, esp. in the editor
+        albedo.ConfigureTarget(<a href="Rendering.BuiltinRenderTextureType.CameraTarget.html">BuiltinRenderTextureType.CameraTarget</a>, false, true);<br /><br />        // All other attachments are transient surfaces that are not stored anywhere. If the renderer allows,
+        // those surfaces do not even have a memory allocated for the pixel values, saving RAM usage.<br /><br />        // Start the renderpass using the given scriptable rendercontext, resolution, samplecount, array of attachments that will be used within the renderpass and the depth surface
+        var attachments = new NativeArray&lt;<a href="Rendering.AttachmentDescriptor.html">AttachmentDescriptor</a>&gt;(5, <a href="Unity.Collections.Allocator.Temp.html">Allocator.Temp</a>);
+        const int depthIndex = 0, albedoIndex = 1, specRoughIndex = 2, normalIndex = 3, emissionIndex = 4;
+        attachments[depthIndex] = depth;
+        attachments[albedoIndex] = albedo;
+        attachments[specRoughIndex] = specRough;
+        attachments[normalIndex] = normal;
+        attachments[emissionIndex] = emission;
+        context.BeginRenderPass(camera.pixelWidth, camera.pixelHeight, 1, attachments, depthIndex);
+        attachments.Dispose();<br /><br />        // Start the first subpass, GBuffer creation: render to albedo, specRough, normal and emission, no need to read any input attachments
+        var gbufferColors = new NativeArray&lt;int&gt;(4, <a href="Unity.Collections.Allocator.Temp.html">Allocator.Temp</a>);
+        gbufferColors[0] = albedoIndex;
+        gbufferColors[1] = specRoughIndex;
+        gbufferColors[2] = normalIndex;
+        gbufferColors[3] = emissionIndex;
+        context.BeginSubPass(gbufferColors);
+        gbufferColors.Dispose();<br /><br />        // Render the deferred G-Buffer
+        // RenderGBuffer(cullResults, camera, context);<br /><br />        context.EndSubPass();<br /><br />        // Second subpass, lighting: Render to the emission buffer, read from albedo, specRough, normal and depth.
+        // The last parameter indicates whether the depth buffer can be bound as read-only.
+        // Note that some renderers (notably <a href="PlayerSettings.iOS.html">iOS</a> Metal) won't allow reading from the depth buffer while it's bound as Z-buffer,
+        // so those renderers should write the Z into an additional FP32 render target manually in the pixel shader and read from it instead
+        var lightingColors = new NativeArray&lt;int&gt;(1, <a href="Unity.Collections.Allocator.Temp.html">Allocator.Temp</a>);
+        lightingColors[0] = emissionIndex;
+        var lightingInputs = new NativeArray&lt;int&gt;(4, <a href="Unity.Collections.Allocator.Temp.html">Allocator.Temp</a>);
+        lightingInputs[0] = albedoIndex;
+        lightingInputs[1] = specRoughIndex;
+        lightingInputs[2] = normalIndex;
+        lightingInputs[3] = depthIndex;
+        context.BeginSubPass(lightingColors, lightingInputs, true);
+        lightingColors.Dispose();
+        lightingInputs.Dispose();<br /><br />        // PushGlobalShadowParams(context);
+        // RenderLighting(camera, cullResults, context);<br /><br />        context.EndSubPass();<br /><br />        // Third subpass, tonemapping: Render to albedo (which is bound to the camera target), read from emission.
+        var tonemappingColors = new NativeArray&lt;int&gt;(1, <a href="Unity.Collections.Allocator.Temp.html">Allocator.Temp</a>);
+        tonemappingColors[0] = albedoIndex;
+        var tonemappingInputs = new NativeArray&lt;int&gt;(1, <a href="Unity.Collections.Allocator.Temp.html">Allocator.Temp</a>);
+        tonemappingInputs[0] = emissionIndex;
+        context.BeginSubPass(tonemappingColors, tonemappingInputs, true);
+        tonemappingColors.Dispose();
+        tonemappingInputs.Dispose();<br /><br />        // present frame buffer.
+        // FinalPass(context);<br /><br />        context.EndSubPass();<br /><br />        context.EndRenderPass();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

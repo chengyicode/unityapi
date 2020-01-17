@@ -1,0 +1,29 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AI.NavMeshEditorHelpers.DrawBuildDebug</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="AI.NavMeshEditorHelpers.html">NavMeshEditorHelpers</a>.DrawBuildDebug</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">DrawBuildDebug</span>(<a href="AI.NavMeshData.html">AI.NavMeshData</a> <span class="sig-kw">navMeshData</span>,
+<a href="AI.NavMeshBuildDebugFlags.html">AI.NavMeshBuildDebugFlags</a> <span class="sig-kw">flags</span> = NavMeshBuildDebugFlags.All);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">navMeshData</td><td class="desc"></td><td class="desc1">NavMesh object for which debug data has been deliberately collected during the build process.</td></tr><tr><td class="name lbl">flags</td><td class="desc"></td><td class="desc1">Bitmask that designates the types of data to show at one time.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Displays in the Editor the precise intermediate data used during the build process of the specified NavMesh.</p></div><div class="subsection"><p>See Also: <a href="AI.NavMeshBuildSettings-debug.html">NavMeshBuildSettings.debug</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.Collections.Generic;
+using UnityEditor.AI;
+using UnityEngine;
+using UnityEngine.AI;<br /><br />public class NavMeshBuildDebugDraw : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="AI.NavMeshData.html">NavMeshData</a> m_NavMeshData;<br /><br />    void Start()
+    {
+        var bounds = new <a href="Bounds.html">Bounds</a>(transform.position, new <a href="Vector3.html">Vector3</a>(100.0f, 100.0f, 100.0f));
+        var markups = new List&lt;<a href="AI.NavMeshBuildMarkup.html">NavMeshBuildMarkup</a>&gt;();
+        var sources = new List&lt;<a href="AI.NavMeshBuildSource.html">NavMeshBuildSource</a>&gt;();
+        UnityEditor.AI.NavMeshBuilder.CollectSourcesInStage(
+            bounds, ~0, <a href="AI.NavMeshCollectGeometry.RenderMeshes.html">NavMeshCollectGeometry.RenderMeshes</a>, 0, markups, gameObject.scene, sources);<br /><br />        var settings = <a href="AI.NavMesh.GetSettingsByID.html">NavMesh.GetSettingsByID</a>(0);
+        var debug = new <a href="AI.NavMeshBuildDebugSettings.html">NavMeshBuildDebugSettings</a>();
+        debug.flags = <a href="AI.NavMeshBuildDebugFlags.All.html">NavMeshBuildDebugFlags.All</a>;
+        settings.debug = debug;<br /><br />        m_NavMeshData = new <a href="AI.NavMeshData.html">NavMeshData</a>();
+        UnityEngine.AI.NavMeshBuilder.UpdateNavMeshDataAsync(m_NavMeshData, settings, sources, bounds);
+    }<br /><br />    void OnDrawGizmos()
+    {
+        <a href="AI.NavMeshEditorHelpers.DrawBuildDebug.html">NavMeshEditorHelpers.DrawBuildDebug</a>(
+            m_NavMeshData, <a href="AI.NavMeshBuildDebugFlags.Regions.html">NavMeshBuildDebugFlags.Regions</a> | <a href="AI.NavMeshBuildDebugFlags.SimplifiedContours.html">NavMeshBuildDebugFlags.SimplifiedContours</a>);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

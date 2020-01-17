@@ -1,0 +1,151 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AudioSource</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">AudioSource</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Inherits from:<a href="Behaviour.html" class="cl">Behaviour</a></p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.AudioModule.html" class="cl">UnityEngine.AudioModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-AudioSource.html' title='Go to AudioSource Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>A representation of audio sources in 3D.</p></div><div class="subsection"><p>An AudioSource is attached to a <a href="GameObject.html">GameObject</a> for playing back sounds in a 3D environment.
+In order to play 3D sounds you also need to have a <a href="AudioListener.html">AudioListener</a>.
+The audio listener is normally attached to the camera you want to use.
+Whether sounds are played in 3D or 2D is determined by <a href="AudioImporter.html">AudioImporter</a> settings.<br /><br />You can play a single audio clip using <a href="AudioSource.Play.html">Play</a>, <a href="AudioSource.Pause.html">Pause</a> and <a href="AudioSource.Stop.html">Stop</a>.
+You can also adjust its volume while playing using the <a href="AudioSource-volume.html">volume</a> property, or seek using <a href="AudioSource-time.html">time</a>.
+Multiple sounds can be played on one AudioSource using <a href="AudioSource.PlayOneShot.html">PlayOneShot</a>.
+You can play a clip at a static position in 3D space using <a href="AudioSource.PlayClipAtPoint.html">PlayClipAtPoint</a>.<br /><br />See Also: <a href="AudioListener.html">AudioListener</a>, <a href="AudioClip.html">AudioClip</a>, <a href="../Manual/class-AudioSource.html">AudioSource component</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//This script allows you to toggle music to play and stop.
+//Assign an <a href="AudioSource.html">AudioSource</a> to a <a href="GameObject.html">GameObject</a> and attach an Audio Clip in the Audio Source. Attach this script to the <a href="GameObject.html">GameObject</a>.<br /><br />using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="AudioSource.html">AudioSource</a> m_MyAudioSource;<br /><br />    //Play the music
+    bool m_Play;
+    //Detect when you use the toggle, ensures music isn’t played multiple times
+    bool m_ToggleChange;<br /><br />    void Start()
+    {
+        //Fetch the <a href="AudioSource.html">AudioSource</a> from the <a href="GameObject.html">GameObject</a>
+        m_MyAudioSource = GetComponent&lt;<a href="AudioSource.html">AudioSource</a>&gt;();
+        //Ensure the toggle is set to true for the music to play at start-up
+        m_Play = true;
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        //Check to see if you just set the toggle to positive
+        if (m_Play == true &amp;&amp; m_ToggleChange == true)
+        {
+            //Play the audio you attach to the <a href="AudioSource.html">AudioSource</a> component
+            m_MyAudioSource.Play();
+            //Ensure audio doesn’t play more than once
+            m_ToggleChange = false;
+        }
+        //Check if you just set the toggle to false
+        if (m_Play == false &amp;&amp; m_ToggleChange == true)
+        {
+            //Stop the audio
+            m_MyAudioSource.Stop();
+            //Ensure audio doesn’t play more than once
+            m_ToggleChange = false;
+        }
+    }<br /><br />    void OnGUI()
+    {
+        //<a href="PlayerSettings.Switch.html">Switch</a> this toggle to activate and deactivate the parent <a href="GameObject.html">GameObject</a>
+        m_Play = <a href="GUI.Toggle.html">GUI.Toggle</a>(new <a href="Rect.html">Rect</a>(10, 10, 100, 30), m_Play, "Play Music");<br /><br />        //Detect if there is a change with the toggle
+        if (<a href="GUI-changed.html">GUI.changed</a>)
+        {
+            //Change to true to show that there was just a change in the toggle state
+            m_ToggleChange = true;
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Properties 属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="AudioSource-bypassEffects.html">bypassEffects</a></td><td class="desc"></td><td class="desc1">Bypass effects (Applied from filter components or global listener filters).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AudioSource-bypassListenerEffects.html">bypassListenerEffects</a></td><td class="desc"></td><td class="desc1">When set global effects on the AudioListener will not be applied to the audio signal generated by the AudioSource. Does not apply if the AudioSource is playing into a mixer group.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AudioSource-bypassReverbZones.html">bypassReverbZones</a></td><td class="desc"></td><td class="desc1">When set doesn't route the signal from an AudioSource into the global reverb associated with reverb zones.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AudioSource-clip.html">clip</a></td><td class="desc"></td><td class="desc1">The default AudioClip to play.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AudioSource-dopplerLevel.html">dopplerLevel</a></td><td class="desc"></td><td class="desc1">Sets the Doppler scale for this AudioSource.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AudioSource-ignoreListenerPause.html">ignoreListenerPause</a></td><td class="desc"></td><td class="desc1">Allows AudioSource to play even though AudioListener.pause is set to true. This is useful for the menu element sounds or background music in pause menus.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AudioSource-ignoreListenerVolume.html">ignoreListenerVolume</a></td><td class="desc"></td><td class="desc1">This makes the audio source not take into account the volume of the audio listener.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AudioSource-isPlaying.html">isPlaying</a></td><td class="desc"></td><td class="desc1">Is the clip playing right now (Read Only)?</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AudioSource-isVirtual.html">isVirtual</a></td><td class="desc"></td><td class="desc1">True if all sounds played by the AudioSource (main sound started by Play() or playOnAwake as well as one-shots) are culled by the audio system.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AudioSource-loop.html">loop</a></td><td class="desc"></td><td class="desc1">Is the audio clip looping?</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AudioSource-maxDistance.html">maxDistance</a></td><td class="desc"></td><td class="desc1">(Logarithmic rolloff) MaxDistance is the distance a sound stops attenuating at.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AudioSource-minDistance.html">minDistance</a></td><td class="desc"></td><td class="desc1">Within the Min distance the AudioSource will cease to grow louder in volume.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AudioSource-mute.html">mute</a></td><td class="desc"></td><td class="desc1">Un- / Mutes the AudioSource. Mute sets the volume=0, Un-Mute restore the original volume.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AudioSource-outputAudioMixerGroup.html">outputAudioMixerGroup</a></td><td class="desc"></td><td class="desc1">The target group to which the AudioSource should route its signal.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AudioSource-panStereo.html">panStereo</a></td><td class="desc"></td><td class="desc1">Pans a playing sound in a stereo way (left or right). This only applies to sounds that are Mono or Stereo.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AudioSource-pitch.html">pitch</a></td><td class="desc"></td><td class="desc1">The pitch of the audio source.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AudioSource-playOnAwake.html">playOnAwake</a></td><td class="desc"></td><td class="desc1">If set to true, the audio source will automatically start playing on awake.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AudioSource-priority.html">priority</a></td><td class="desc"></td><td class="desc1">Sets the priority of the AudioSource.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AudioSource-reverbZoneMix.html">reverbZoneMix</a></td><td class="desc"></td><td class="desc1">The amount by which the signal from the AudioSource will be mixed into the global reverb associated with the Reverb Zones.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AudioSource-rolloffMode.html">rolloffMode</a></td><td class="desc"></td><td class="desc1">Sets/Gets how the AudioSource attenuates over distance.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AudioSource-spatialBlend.html">spatialBlend</a></td><td class="desc"></td><td class="desc1">Sets how much this AudioSource is affected by 3D spatialisation calculations (attenuation, doppler etc). 0.0 makes the sound full 2D, 1.0 makes it full 3D.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AudioSource-spatialize.html">spatialize</a></td><td class="desc"></td><td class="desc1">Enables or disables spatialization.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AudioSource-spatializePostEffects.html">spatializePostEffects</a></td><td class="desc"></td><td class="desc1">Determines if the spatializer effect is inserted before or after the effect filters.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AudioSource-spread.html">spread</a></td><td class="desc"></td><td class="desc1">Sets the spread angle (in degrees) of a 3d stereo or multichannel sound in speaker space.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AudioSource-time.html">time</a></td><td class="desc"></td><td class="desc1">Playback position in seconds.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AudioSource-timeSamples.html">timeSamples</a></td><td class="desc"></td><td class="desc1">Playback position in PCM samples.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AudioSource-velocityUpdateMode.html">velocityUpdateMode</a></td><td class="desc"></td><td class="desc1">Whether the Audio Source should be updated in the fixed or dynamic update.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AudioSource-volume.html">volume</a></td><td class="desc"></td><td class="desc1">The volume of the audio source (0.0 to 1.0).</td></tr>
+    </table></div><div class="subsection"><h2>Public Methods 公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="AudioSource.GetAmbisonicDecoderFloat.html">GetAmbisonicDecoderFloat</a></td><td class="desc"></td><td class="desc1">Reads a user-defined parameter of a custom ambisonic decoder effect that is attached to an AudioSource.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AudioSource.GetCustomCurve.html">GetCustomCurve</a></td><td class="desc"></td><td class="desc1">Get the current custom curve for the given AudioSourceCurveType.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AudioSource.GetOutputData.html">GetOutputData</a></td><td class="desc"></td><td class="desc1">Provides a block of the currently playing source's output data.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AudioSource.GetSpatializerFloat.html">GetSpatializerFloat</a></td><td class="desc"></td><td class="desc1">Reads a user-defined parameter of a custom spatializer effect that is attached to an AudioSource.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AudioSource.GetSpectrumData.html">GetSpectrumData</a></td><td class="desc"></td><td class="desc1">Provides a block of the currently playing audio source's spectrum data.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AudioSource.Pause.html">Pause</a></td><td class="desc"></td><td class="desc1">Pauses playing the clip.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AudioSource.Play.html">Play</a></td><td class="desc"></td><td class="desc1">Plays the clip.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AudioSource.PlayDelayed.html">PlayDelayed</a></td><td class="desc"></td><td class="desc1">Plays the clip with a delay specified in seconds. Users are advised to use this function instead of the old Play(delay) function that took a delay specified in samples relative to a reference rate of 44.1 kHz as an argument.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AudioSource.PlayOneShot.html">PlayOneShot</a></td><td class="desc"></td><td class="desc1">Plays an AudioClip, and scales the AudioSource volume by volumeScale.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AudioSource.PlayScheduled.html">PlayScheduled</a></td><td class="desc"></td><td class="desc1">Plays the clip at a specific time on the absolute time-line that AudioSettings.dspTime reads from.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AudioSource.SetAmbisonicDecoderFloat.html">SetAmbisonicDecoderFloat</a></td><td class="desc"></td><td class="desc1">Sets a user-defined parameter of a custom ambisonic decoder effect that is attached to an AudioSource.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AudioSource.SetCustomCurve.html">SetCustomCurve</a></td><td class="desc"></td><td class="desc1">Set the custom curve for the given AudioSourceCurveType.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AudioSource.SetScheduledEndTime.html">SetScheduledEndTime</a></td><td class="desc"></td><td class="desc1">Changes the time at which a sound that has already been scheduled to play will end. Notice that depending on the timing not all rescheduling requests can be fulfilled.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AudioSource.SetScheduledStartTime.html">SetScheduledStartTime</a></td><td class="desc"></td><td class="desc1">Changes the time at which a sound that has already been scheduled to play will start.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AudioSource.SetSpatializerFloat.html">SetSpatializerFloat</a></td><td class="desc"></td><td class="desc1">Sets a user-defined parameter of a custom spatializer effect that is attached to an AudioSource.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AudioSource.Stop.html">Stop</a></td><td class="desc"></td><td class="desc1">Stops playing the clip.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AudioSource.UnPause.html">UnPause</a></td><td class="desc"></td><td class="desc1">Unpause the paused playback of this AudioSource.</td></tr>
+    </table></div><div class="subsection"><h2>Static Methods 静态方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="AudioSource.PlayClipAtPoint.html">PlayClipAtPoint</a></td><td class="desc"></td><td class="desc1">Plays an AudioClip at a given position in world space.</td></tr>
+    </table></div><div class="subsection"><h2>Inherited Members 继承成员</h2>
+      
+      <div class="subsection"><h2>Properties 属性</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Behaviour-enabled.html">enabled</a></td><td class="desc"></td><td class="desc1">Enabled Behaviours are Updated, disabled Behaviours are not.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Behaviour-isActiveAndEnabled.html">isActiveAndEnabled</a></td><td class="desc"></td><td class="desc1">Has the Behaviour had active and enabled called?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component-gameObject.html">gameObject</a></td><td class="desc"></td><td class="desc1">The game object this component is attached to. A component is always attached to a game object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component-tag.html">tag</a></td><td class="desc"></td><td class="desc1">The tag of this game object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component-transform.html">transform</a></td><td class="desc"></td><td class="desc1">The Transform attached to this GameObject.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-hideFlags.html">hideFlags</a></td><td class="desc"></td><td class="desc1">Should the object be hidden, saved with the Scene or modifiable by the user?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-name.html">name</a></td><td class="desc"></td><td class="desc1">The name of the object.</td></tr>
+      </table></div>
+      
+      
+      
+      <div class="subsection"><h2>Public Methods 公共方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.BroadcastMessage.html">BroadcastMessage</a></td><td class="desc"></td><td class="desc1">Calls the method named methodName on every MonoBehaviour in this game object or any of its children.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.CompareTag.html">CompareTag</a></td><td class="desc"></td><td class="desc1">Is this game object tagged with tag ?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponent.html">GetComponent</a></td><td class="desc"></td><td class="desc1">Returns the component of Type type if the game object has one attached, null if it doesn't.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponentInChildren.html">GetComponentInChildren</a></td><td class="desc"></td><td class="desc1">Returns the component of Type type in the GameObject or any of its children using depth first search.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponentInParent.html">GetComponentInParent</a></td><td class="desc"></td><td class="desc1">Returns the component of Type type in the GameObject or any of its parents.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponents.html">GetComponents</a></td><td class="desc"></td><td class="desc1">Returns all components of Type type in the GameObject.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponentsInChildren.html">GetComponentsInChildren</a></td><td class="desc"></td><td class="desc1">Returns all components of Type type in the GameObject or any of its children.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponentsInParent.html">GetComponentsInParent</a></td><td class="desc"></td><td class="desc1">Returns all components of Type type in the GameObject or any of its parents.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.SendMessage.html">SendMessage</a></td><td class="desc"></td><td class="desc1">Calls the method named methodName on every MonoBehaviour in this game object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.SendMessageUpwards.html">SendMessageUpwards</a></td><td class="desc"></td><td class="desc1">Calls the method named methodName on every MonoBehaviour in this game object and on every ancestor of the behaviour.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.TryGetComponent.html">TryGetComponent</a></td><td class="desc"></td><td class="desc1">Gets the component of the specified type, if it exists.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.GetInstanceID.html">GetInstanceID</a></td><td class="desc"></td><td class="desc1">Returns the instance id of the object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.ToString.html">ToString</a></td><td class="desc"></td><td class="desc1">Returns the name of the object.</td></tr>
+      </table></div>
+      
+      <div class="subsection"><h2>Static Methods 静态方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.Destroy.html">Destroy</a></td><td class="desc"></td><td class="desc1">Removes a GameObject, component or asset.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.DestroyImmediate.html">DestroyImmediate</a></td><td class="desc"></td><td class="desc1">Destroys the object obj immediately. You are strongly recommended to use Destroy instead.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.DontDestroyOnLoad.html">DontDestroyOnLoad</a></td><td class="desc"></td><td class="desc1">Do not destroy the target Object when loading a new Scene.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectOfType.html">FindObjectOfType</a></td><td class="desc"></td><td class="desc1">Returns the first active loaded object of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectsOfType.html">FindObjectsOfType</a></td><td class="desc"></td><td class="desc1">Returns a list of all active loaded objects of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.Instantiate.html">Instantiate</a></td><td class="desc"></td><td class="desc1">Clones the object original and returns the clone.</td></tr>
+      </table></div>
+      <div class="subsection"><h2>Operators   运算符</h2>
+<h2>Operators   运算符</h2>
+
+<h2>Operators   运算符</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_Object.html">bool</a></td><td class="desc"></td><td class="desc1">Does the object exist?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_ne.html">operator !=</a></td><td class="desc"></td><td class="desc1">Compares if two objects refer to a different object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_eq.html">operator ==</a></td><td class="desc"></td><td class="desc1">Compares two object references to see if they refer to the same object.</td></tr>
+      </table></div>
+      
+      
+      
+    </div></div></div></div></body></html>

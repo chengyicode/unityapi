@@ -1,0 +1,77 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Sprite.Create</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Sprite.html">Sprite</a>.Create</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Sprite.html">Sprite</a> <span class="sig-kw">Create</span>(<a href="Texture2D.html">Texture2D</a> <span class="sig-kw">texture</span>,
+<a href="Rect.html">Rect</a> <span class="sig-kw">rect</span>,
+<a href="Vector2.html">Vector2</a> <span class="sig-kw">pivot</span>,
+float <span class="sig-kw">pixelsPerUnit</span>,
+uint <span class="sig-kw">extrude</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Sprite.html">Sprite</a> <span class="sig-kw">Create</span>(<a href="Texture2D.html">Texture2D</a> <span class="sig-kw">texture</span>,
+<a href="Rect.html">Rect</a> <span class="sig-kw">rect</span>,
+<a href="Vector2.html">Vector2</a> <span class="sig-kw">pivot</span>,
+float <span class="sig-kw">pixelsPerUnit</span>,
+uint <span class="sig-kw">extrude</span>,
+<a href="SpriteMeshType.html">SpriteMeshType</a> <span class="sig-kw">meshType</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Sprite.html">Sprite</a> <span class="sig-kw">Create</span>(<a href="Texture2D.html">Texture2D</a> <span class="sig-kw">texture</span>,
+<a href="Rect.html">Rect</a> <span class="sig-kw">rect</span>,
+<a href="Vector2.html">Vector2</a> <span class="sig-kw">pivot</span>,
+float <span class="sig-kw">pixelsPerUnit</span>,
+uint <span class="sig-kw">extrude</span>,
+<a href="SpriteMeshType.html">SpriteMeshType</a> <span class="sig-kw">meshType</span>,
+<a href="Vector4.html">Vector4</a> <span class="sig-kw">border</span>,
+bool <span class="sig-kw">generateFallbackPhysicsShape</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Sprite.html">Sprite</a> <span class="sig-kw">Create</span>(<a href="Texture2D.html">Texture2D</a> <span class="sig-kw">texture</span>,
+<a href="Rect.html">Rect</a> <span class="sig-kw">rect</span>,
+<a href="Vector2.html">Vector2</a> <span class="sig-kw">pivot</span>,
+float <span class="sig-kw">pixelsPerUnit</span>,
+uint <span class="sig-kw">extrude</span>,
+<a href="SpriteMeshType.html">SpriteMeshType</a> <span class="sig-kw">meshType</span>,
+<a href="Vector4.html">Vector4</a> <span class="sig-kw">border</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Sprite.html">Sprite</a> <span class="sig-kw">Create</span>(<a href="Texture2D.html">Texture2D</a> <span class="sig-kw">texture</span>,
+<a href="Rect.html">Rect</a> <span class="sig-kw">rect</span>,
+<a href="Vector2.html">Vector2</a> <span class="sig-kw">pivot</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Sprite.html">Sprite</a> <span class="sig-kw">Create</span>(<a href="Texture2D.html">Texture2D</a> <span class="sig-kw">texture</span>,
+<a href="Rect.html">Rect</a> <span class="sig-kw">rect</span>,
+<a href="Vector2.html">Vector2</a> <span class="sig-kw">pivot</span>,
+float <span class="sig-kw">pixelsPerUnit</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">texture</td><td class="desc"></td><td class="desc1">Texture from which to obtain the sprite graphic.</td></tr><tr><td class="name lbl">rect</td><td class="desc"></td><td class="desc1">Rectangular section of the texture to use for the sprite.</td></tr><tr><td class="name lbl">pivot</td><td class="desc"></td><td class="desc1">Sprite's pivot point relative to its graphic rectangle.</td></tr><tr><td class="name lbl">pixelsPerUnit</td><td class="desc"></td><td class="desc1">The number of pixels in the sprite that correspond to one unit in world space.</td></tr><tr><td class="name lbl">extrude</td><td class="desc"></td><td class="desc1">Amount by which the sprite mesh should be expanded outwards.</td></tr><tr><td class="name lbl">meshType</td><td class="desc"></td><td class="desc1">Controls the type of mesh generated for the sprite.</td></tr><tr><td class="name lbl">border</td><td class="desc"></td><td class="desc1">The border sizes of the sprite (X=left, Y=bottom, Z=right, W=top).</td></tr><tr><td class="name lbl">generateFallbackPhysicsShape</td><td class="desc"></td><td class="desc1">Generates a default physics shape for the sprite.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Create a new Sprite object.</p></div><div class="subsection"><p>
+        <a href="Sprite.Create.html">Sprite.Create</a> creates a new <a href="Sprite.html">Sprite</a> which can be used in game applications.
+            A texture needs to be loaded and assigned to <a href="Sprite.Create.html">Create</a> in order to control how the
+            new <a href="Sprite.html">Sprite</a> will look. In the script example below a new Sprite is displayed
+            when the button is pressed.  The new sprite is created in Start.<br />
+<br />
+The second argument <code class="varname">rect</code> defines the sub-texture used. The <code class="varname">rect</code> argument is defined in
+pixels of the texture.  A Rect(50.0f, 10.0f, 200.0f, 140.0f) would create a left to right
+range from 50.0f to 50.0f + 200.0f = 250.0f.  The bottom to top range would be 10.0f to
+10.0f + 140.0f = 150.0f.
+The third argument <code class="varname">pivot</code> determines what becomes the center
+of the <a href="Sprite.html">Sprite</a>.  This is a <code class="varname">Vector2</code> relative to the <code class="varname">rect</code> where Vector2(0.0f, 0.0f) is the bottom
+left and Vector2(1.0f, 1.0f) is the top right.  The <a href="Sprite-pixelsPerUnit.html">pixelsPerUnit</a> value controls
+the size of the sprite.  Reducing this below 100 pixels per world increases the size of
+the sprite.  The <code class="varname">extrude</code> value defines the number of pixels which surround the <code class="varname">Sprite</code>.
+This is useful if the <a href="Sprite.html">Sprite</a> is included in an atlas. <code class="varname">meshType</code> selects whether
+<code class="varname">FullRect</code> or <code class="varname">Tight</code> is used. Finally <code class="varname">border</code> determines the rectangle size of the
+<a href="Sprite.html">Sprite</a>. The <a href="Sprite.html">Sprite</a> can be provided spaces around it.<br />
+<br />
+See Also: <a href="SpriteRenderer.html">SpriteRenderer</a> class.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Create a <a href="Sprite.html">Sprite</a> at start-up.
+// Assign a texture to the sprite when the button is pressed.<br /><br />using UnityEngine;<br /><br />public class spriteCreate : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Texture2D.html">Texture2D</a> tex;
+    private <a href="Sprite.html">Sprite</a> mySprite;
+    private <a href="SpriteRenderer.html">SpriteRenderer</a> sr;<br /><br />    void Awake()
+    {
+        sr = gameObject.AddComponent&lt;<a href="SpriteRenderer.html">SpriteRenderer</a>&gt;() as <a href="SpriteRenderer.html">SpriteRenderer</a>;
+        sr.color = new <a href="Color.html">Color</a>(0.9f, 0.9f, 0.9f, 1.0f);<br /><br />        transform.position = new <a href="Vector3.html">Vector3</a>(1.5f, 1.5f, 0.0f);
+    }<br /><br />    void Start()
+    {
+        mySprite = <a href="Sprite.Create.html">Sprite.Create</a>(tex, new <a href="Rect.html">Rect</a>(0.0f, 0.0f, tex.width, tex.height), new <a href="Vector2.html">Vector2</a>(0.5f, 0.5f), 100.0f);
+    }<br /><br />    void OnGUI()
+    {
+        if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(10, 10, 100, 30), "Add sprite"))
+        {
+            sr.sprite = mySprite;
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorBuildSettings.AddConfigObject</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorBuildSettings.html">EditorBuildSettings</a>.AddConfigObject</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">AddConfigObject</span>(string <span class="sig-kw">name</span>,
+<a href="Object.html">Object</a> <span class="sig-kw">obj</span>,
+bool <span class="sig-kw">overwrite</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">name</td><td class="desc"></td><td class="desc1">The name of the object reference in string format. This string name must be unique within your project or the overwrite parameter must be set to true.</td></tr><tr><td class="name lbl">obj</td><td class="desc"></td><td class="desc1">Object reference to be stored.  This object must be persisted and not <code class="mono">null</code>.</td></tr><tr><td class="name lbl">overwrite</td><td class="desc"></td><td class="desc1">Boolean parameter used to specify that you want to overwrite an entry with the same name if one already exists.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>void</strong>
+        Throws an exception if the object is <code class="mono">null</code>, not persisted, or if there is a name conflict and the overwrite parameter is set to false.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Store a reference to a config object by name.  The object must be an asset in the project, otherwise it will not be saved when the editor is restarted or scripts are reloaded.  To avoid name conflicts with other packages, it is recommended that names are qualified by a namespace, i.e. "company.package.name".</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;
+using System.IO;<br /><br />public class MyConfigData : <a href="ScriptableObject.html">ScriptableObject</a>
+{
+    public static MyConfigData GetDefault()
+    {
+        //name of config data object
+        string stringName = "com.myproject.myconfigdata";
+        //path to Config Object and asset name
+        string stringPath = "Assets/myconfigdata.asset";
+        //used to hold config data
+        MyConfigData data = null;<br /><br />        //if a config data object exists with the same name, return its config data
+        if (<a href="EditorBuildSettings.TryGetConfigObject.html">EditorBuildSettings.TryGetConfigObject</a>&lt;MyConfigData&gt;(stringName, out data))
+            return data;<br /><br />        //If the asset file already exists, store existing config data
+        if (<a href="Windows.File.Exists.html">File.Exists</a>(stringPath))
+            data = <a href="AssetDatabase.LoadAssetAtPath.html">AssetDatabase.LoadAssetAtPath</a>&lt;MyConfigData&gt;(stringPath);
+        //if no previous config data exists
+        if (data == null)
+        {
+            //show save file dialog and return user selected path name
+            stringPath = <a href="EditorUtility.SaveFilePanelInProject.html">EditorUtility.SaveFilePanelInProject</a>("New Config <a href="Windows.File.html">File</a>", "myconfigdata", "asset", "Select Config <a href="Windows.File.html">File</a> <a href="VersionControl.Asset.html">Asset</a>", "Assets");
+            //initialise config data object
+            data = <a href="ScriptableObject.CreateInstance.html">ScriptableObject.CreateInstance</a>&lt;MyConfigData&gt;();
+            //create new asset from data at specified path
+            //asset MUST be saved with the <a href="AssetDatabase.html">AssetDatabase</a> before adding to <a href="EditorBuildSettings.html">EditorBuildSettings</a>
+            <a href="AssetDatabase.CreateAsset.html">AssetDatabase.CreateAsset</a>(data, stringPath);
+        }<br /><br />        //add the new or loaded config object to <a href="EditorBuildSettings.html">EditorBuildSettings</a>
+        <a href="EditorBuildSettings.AddConfigObject.html">EditorBuildSettings.AddConfigObject</a>(stringName, data, false);<br /><br />        return data;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

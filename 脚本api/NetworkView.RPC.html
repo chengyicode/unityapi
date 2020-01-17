@@ -1,0 +1,16 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: NetworkView.RPC</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Removed in version 2019.2.18</b><br /></div><h1 class="heading inherit"><a href="NetworkView.html">NetworkView</a>.RPC</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public void <span class="sig-kw">RPC</span>(string <span class="sig-kw">name</span>,
+<a href="RPCMode.html">RPCMode</a> <span class="sig-kw">mode</span>,
+params object[] <span class="sig-kw">args</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Call a RPC function on all connected peers.</p></div><div class="subsection"><p>The called function must have the @RPC tag set ([RPC] for C Sharp code).
+A NetworkView must be attached to the <a href="GameObject.html">GameObject</a> where the RPC function is being called. It doesn't matter if the NetworkView is being used for something else or just for the RPC function. If it is just for the RPC function, state synchronization should be turned off and the observed property can be set to none.
+RPC function names should be unique accross the Scene, if two RPC functions in different scripts
+have the same name only one of them is called when RPC is invoked.
+RPC calls are always guaranteed to be executed in the same order as they are sent.
+The communication group set for the network view, with NetworkView.group, is used for the RPC call.
+To get information on the RPC itelf, you can add a NetworkMessageInfo parameter to the function declaration
+which will automatically contain the information. You don't need to change the way you call the RPC
+function when you do this. For more information see the RPC section of the <a href="../Manual/net-RPCDetails.html">manual</a>.
+Valid RPC parameters are int, float, string, NetworkPlayer, NetworkViewID, <a href="Vector3.html">Vector3</a> and <a href="Quaternion.html">Quaternion</a>.<br /><br /></p></div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public void <span class="sig-kw">RPC</span>(string <span class="sig-kw">name</span>,
+<a href="NetworkPlayer.html">NetworkPlayer</a> <span class="sig-kw">target</span>,
+params object[] <span class="sig-kw">args</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Call a RPC function on a specific player.</p></div></div></div></div></body></html>

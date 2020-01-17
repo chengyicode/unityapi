@@ -1,0 +1,26 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Transform.parent</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Transform.html">Transform</a>.parent</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Transform.html' title='Go to Transform Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Transform.html">Transform</a> <span class="sig-kw">parent</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The parent of the transform.</p></div><div class="subsection"><p>Changing the parent will modify the parent-relative position, scale and rotation but keep the world space position, rotation and scale the same.<br /><br />See Also: <a href="Transform.SetParent.html">SetParent</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="GameObject.html">GameObject</a> player;<br /><br />    //Invoked when a button is pressed.
+    public void SetParent(<a href="GameObject.html">GameObject</a> newParent)
+    {
+        //Makes the <a href="GameObject.html">GameObject</a> "newParent" the parent of the <a href="GameObject.html">GameObject</a> "player".
+        player.transform.parent = newParent.transform;<br /><br />        //<a href="Display.html">Display</a> the parent's name in the console.
+        <a href="Debug.Log.html">Debug.Log</a>("Player's Parent: " + player.transform.parent.name);<br /><br />        // Check if the new parent has a parent <a href="GameObject.html">GameObject</a>.
+        if (newParent.transform.parent != null)
+        {
+            //<a href="Display.html">Display</a> the name of the grand parent of the player.
+            <a href="Debug.Log.html">Debug.Log</a>("Player's Grand parent: " + player.transform.parent.parent.name);
+        }
+    }<br /><br />    public void DetachFromParent()
+    {
+        // Detaches the transform from its parent.
+        transform.parent = null;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

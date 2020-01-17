@@ -1,0 +1,70 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: MenuItem</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">MenuItem</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEditor</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEditor.html" class="cl">UnityEditor</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>The MenuItem attribute allows you to add menu items to the main menu and inspector context menus.</p></div><div class="subsection"><p>The MenuItem attribute turns any static function into a menu command. Only static functions can use the MenuItem attribute.<br /><br />To create a hotkey you can use the following special characters: <strong>%</strong> (ctrl on Windows, cmd on macOS), <strong>#</strong> (shift), <strong>&amp;</strong> (alt). If no special modifier key combinations are required the key can be given after an underscore. For example to create a menu with hotkey shift-alt-g use <code class="tt">"MyMenu/Do Something #&amp;g"</code>. To create a menu with hotkey <strong>g</strong> and no key modifiers pressed use <code class="tt">"MyMenu/Do Something _g"</code>.<br /><br />Some special keyboard keys are supported as hotkeys, for example "#LEFT" would map to shift-left. The keys supported like this are: LEFT, RIGHT, UP, DOWN, F1 .. F12, HOME, END, PGUP, PGDN.<br /><br />A hotkey text must be preceded with a space character (<code class="tt">"MyMenu/Do_g"</code> won't be interpreted as hotkey, while <code class="tt">"MyMenu/Do _g"</code> will).<br /><br />When adding menu items to the "GameObject/" menu for creating custom game objects be sure to
+call <a href="GameObjectUtility.SetParentAndAlign.html">GameObjectUtility.SetParentAndAlign</a> to ensure that the new GameObject is reparented
+correctly in the case of a context click (see example below). Your function should also call
+<a href="Undo.RegisterCreatedObjectUndo.html">Undo.RegisterCreatedObjectUndo</a> to make the creation undoable and set <a href="Selection-activeObject.html">Selection.activeObject</a>
+to the newly created object. Also note that in order for a menu item in "GameObject/" to be
+propagated to the hierarchy Create dropdown and hierarchy context menu, it must be grouped
+with the other GameObject creation menu items. This can be achieved by setting its priority
+to 10 (see example below). Note that for legacy purposes MenuItems in "GameObject/Create Other"
+with no explicit priority set will receive a priority of 10 instead of the default 1000 -
+we encourage using a more descriptive category name than "Create Other" and explicitly
+setting the priority to 10.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;
+public class MenuTest : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Add a menu item named "Do Something" to MyMenu in the menu bar.
+    [<a href="MenuItem.html">MenuItem</a>("MyMenu/Do Something")]
+    static void DoSomething()
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("Doing Something...");
+    }<br /><br />    // Validated menu item.
+    // Add a menu item named "Log Selected <a href="Transform.html">Transform</a> Name" to MyMenu in the menu bar.
+    // We use a second function to validate the menu item
+    // so it will only be enabled if we have a transform selected.
+    [<a href="MenuItem.html">MenuItem</a>("MyMenu/Log Selected <a href="Transform.html">Transform</a> Name")]
+    static void LogSelectedTransformName()
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("Selected <a href="Transform.html">Transform</a> is on " + Selection.activeTransform.gameObject.name + ".");
+    }<br /><br />    // Validate the menu item defined by the function above.
+    // The menu item will be disabled if this function returns false.
+    [<a href="MenuItem.html">MenuItem</a>("MyMenu/Log Selected <a href="Transform.html">Transform</a> Name", true)]
+    static bool ValidateLogSelectedTransformName()
+    {
+        // Return false if no transform is selected.
+        return <a href="Selection-activeTransform.html">Selection.activeTransform</a> != null;
+    }<br /><br />    // Add a menu item named "Do Something with a Shortcut Key" to MyMenu in the menu bar
+    // and give it a shortcut (ctrl-g on Windows, cmd-g on macOS).
+    [<a href="MenuItem.html">MenuItem</a>("MyMenu/Do Something with a Shortcut Key %g")]
+    static void DoSomethingWithAShortcutKey()
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("Doing something with a Shortcut Key...");
+    }<br /><br />    // Add a menu item called "Double Mass" to a <a href="Rigidbody.html">Rigidbody</a>'s context menu.
+    [<a href="MenuItem.html">MenuItem</a>("CONTEXT/<a href="Rigidbody.html">Rigidbody</a>/Double Mass")]
+    static void DoubleMass(<a href="MenuCommand.html">MenuCommand</a> command)
+    {
+        <a href="Rigidbody.html">Rigidbody</a> body = (<a href="Rigidbody.html">Rigidbody</a>)command.context;
+        body.mass = body.mass * 2;
+        <a href="Debug.Log.html">Debug.Log</a>("Doubled <a href="Rigidbody.html">Rigidbody</a>'s Mass to " + body.mass + " from Context <a href="Menu.html">Menu</a>.");
+    }<br /><br />    // Add a menu item to create custom GameObjects.
+    // Priority 1 ensures it is grouped with the other menu items of the same kind
+    // and propagated to the hierarchy dropdown and hierarchy context menus.
+    [<a href="MenuItem.html">MenuItem</a>("<a href="GameObject.html">GameObject</a>/MyCategory/Custom Game Object", false, 10)]
+    static void CreateCustomGameObject(<a href="MenuCommand.html">MenuCommand</a> menuCommand)
+    {
+        // Create a custom game object
+        <a href="GameObject.html">GameObject</a> go = new <a href="GameObject.html">GameObject</a>("Custom Game Object");
+        // Ensure it gets reparented if this was a context click (otherwise does nothing)
+        <a href="GameObjectUtility.SetParentAndAlign.html">GameObjectUtility.SetParentAndAlign</a>(go, menuCommand.context as <a href="GameObject.html">GameObject</a>);
+        // Register the creation in the undo system
+        <a href="Undo.RegisterCreatedObjectUndo.html">Undo.RegisterCreatedObjectUndo</a>(go, "Create " + go.name);
+        <a href="Selection-activeObject.html">Selection.activeObject</a> = go;
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Constructors</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="MenuItem-ctor.html">MenuItem</a></td><td class="desc"></td><td class="desc1">Creates a menu item and invokes the static function following it, when the menu item is selected.</td></tr>
+    </table></div></div></div></div></body></html>

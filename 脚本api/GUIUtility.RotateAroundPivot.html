@@ -1,0 +1,20 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: GUIUtility.RotateAroundPivot</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="GUIUtility.html">GUIUtility</a>.RotateAroundPivot</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">RotateAroundPivot</span>(float <span class="sig-kw">angle</span>,
+<a href="Vector2.html">Vector2</a> <span class="sig-kw">pivotPoint</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Helper function to rotate the GUI around a point.</p></div><div class="subsection"><p>Modifies <a href="GUI-matrix.html">GUI.matrix</a> to rotate all GUI elements <code class="varname">angle</code> degrees around <code class="varname">pivotPoint</code>.<br /><br />See Also: <a href="GUI-matrix.html">GUI.matrix</a>, <a href="GUIUtility.ScaleAroundPivot.html">ScaleAroundPivot</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Rotate a button 10 degrees clockwise when presed.<br /><br />    float rotAngle = 0;
+    <a href="Vector2.html">Vector2</a> pivotPoint;<br /><br />    void OnGUI()
+    {
+        pivotPoint = new <a href="Vector2.html">Vector2</a>(<a href="Screen-width.html">Screen.width</a> / 2, <a href="Screen-height.html">Screen.height</a> / 2);
+        <a href="GUIUtility.RotateAroundPivot.html">GUIUtility.RotateAroundPivot</a>(rotAngle, pivotPoint);
+        if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(<a href="Screen-width.html">Screen.width</a> / 2 - 25, <a href="Screen-height.html">Screen.height</a> / 2 - 25, 50, 50), "Rotate"))
+        {
+            rotAngle += 10;
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

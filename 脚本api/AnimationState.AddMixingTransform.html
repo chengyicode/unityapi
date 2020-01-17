@@ -1,0 +1,36 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AnimationState.AddMixingTransform</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="AnimationState.html">AnimationState</a>.AddMixingTransform</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">AddMixingTransform</span>(<a href="Transform.html">Transform</a> <span class="sig-kw">mix</span>,
+bool <span class="sig-kw">recursive</span> = true);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">mix</td><td class="desc"></td><td class="desc1">The transform to animate.</td></tr><tr><td class="name lbl">recursive</td><td class="desc"></td><td class="desc1">Whether to also animate all children of the specified transform.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Adds a transform which should be animated. This allows you to reduce the number of animations you have to create.</p></div><div class="subsection"><p>For example you might have a handwaving animation.
+You might want to play the hand waving animation on a idle character or on a walking character.
+Either you have to create 2 hand waving animations one for idle, one for walking.
+By using mixing the hand waving animation will have full control of the shoulder. But the lower body will not be affected by it, and continue playing the idle or walk animation.
+Thus you only need one hand waving animation.<br /><br />If <code class="varname">recursive</code> is true all children of the <code class="varname">mix</code> transform will also be animated.
+If you don't call AddMixingTransform, all animation curves will be used.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Animation.html">Animation</a> anim;
+    public <a href="Transform.html">Transform</a> shoulder;<br /><br />    void Start()
+    {
+        // Add mixing transform
+        anim["wave_hand"].AddMixingTransform(shoulder);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Another example using a path:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Animation.html">Animation</a> anim;<br /><br />    void Start()
+    {
+        // Adds a mixing transform using a path instead
+        <a href="Transform.html">Transform</a> mixTransform = transform.Find("root/upper_body/left_shoulder");<br /><br />        // Add mixing transform
+        anim["wave_hand"].AddMixingTransform(mixTransform);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

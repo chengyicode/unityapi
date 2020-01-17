@@ -1,0 +1,35 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: RaycastHit.triangleIndex</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="RaycastHit.html">RaycastHit</a>.triangleIndex</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public int <span class="sig-kw">triangleIndex</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The index of the triangle that was hit.</p></div><div class="subsection"><p>Triangle index is only valid if the collider that was hit is a <a href="MeshCollider.html">MeshCollider</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// This script draws a debug line around mesh triangles
+// as you move the mouse over them.
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="Camera.html">Camera</a> cam;<br /><br />    void Start()
+    {
+        cam = GetComponent&lt;<a href="Camera.html">Camera</a>&gt;();
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        <a href="RaycastHit.html">RaycastHit</a> hit;
+        if (!<a href="Physics.Raycast.html">Physics.Raycast</a>(cam.ScreenPointToRay(<a href="Input-mousePosition.html">Input.mousePosition</a>), out hit))
+            return;<br /><br />        <a href="MeshCollider.html">MeshCollider</a> meshCollider = hit.collider as <a href="MeshCollider.html">MeshCollider</a>;
+        if (meshCollider == null || meshCollider.sharedMesh == null)
+            return;<br /><br />        <a href="Mesh.html">Mesh</a> mesh = meshCollider.sharedMesh;
+        <a href="Vector3.html">Vector3</a>[] vertices = mesh.vertices;
+        int[] triangles = mesh.triangles;
+        <a href="Vector3.html">Vector3</a> p0 = vertices[triangles[hit.triangleIndex * 3 + 0]];
+        <a href="Vector3.html">Vector3</a> p1 = vertices[triangles[hit.triangleIndex * 3 + 1]];
+        <a href="Vector3.html">Vector3</a> p2 = vertices[triangles[hit.triangleIndex * 3 + 2]];
+        <a href="Transform.html">Transform</a> hitTransform = hit.collider.transform;
+        p0 = hitTransform.TransformPoint(p0);
+        p1 = hitTransform.TransformPoint(p1);
+        p2 = hitTransform.TransformPoint(p2);
+        <a href="Debug.DrawLine.html">Debug.DrawLine</a>(p0, p1);
+        <a href="Debug.DrawLine.html">Debug.DrawLine</a>(p1, p2);
+        <a href="Debug.DrawLine.html">Debug.DrawLine</a>(p2, p0);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="Physics.Raycast.html">Physics.Raycast</a>, <a href="Physics.Linecast.html">Physics.Linecast</a>, <a href="Physics.RaycastAll.html">Physics.RaycastAll</a>.</p></div></div></div></div></body></html>

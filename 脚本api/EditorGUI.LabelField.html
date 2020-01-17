@@ -1,0 +1,40 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorGUI.LabelField</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorGUI.html">EditorGUI</a>.LabelField</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">LabelField</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+string <span class="sig-kw">label</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span> = EditorStyles.label);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">LabelField</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+<a href="GUIContent.html">GUIContent</a> <span class="sig-kw">label</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span> = EditorStyles.label);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">LabelField</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+string <span class="sig-kw">label</span>,
+string <span class="sig-kw">label2</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span> = EditorStyles.label);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">LabelField</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+<a href="GUIContent.html">GUIContent</a> <span class="sig-kw">label</span>,
+<a href="GUIContent.html">GUIContent</a> <span class="sig-kw">label2</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span> = EditorStyles.label);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">position</td><td class="desc"></td><td class="desc1">Rectangle on the screen to use for the label field.</td></tr><tr><td class="name lbl">label</td><td class="desc"></td><td class="desc1">Label in front of the label field.</td></tr><tr><td class="name lbl">label2</td><td class="desc"></td><td class="desc1">The label to show to the right.</td></tr><tr><td class="name lbl">style</td><td class="desc"></td><td class="desc1">Style information (color, etc) for displaying the label.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Makes a label field. (Useful for showing read-only info.)</p></div><div class="subsection"><p>
+        <img src="../StaticFiles/ScriptRefImages/EditorGUILabelField.png" />
+        <br />
+<em>Shows a label in an editor window with the seconds since the editor started.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Shows a label in the editor with the seconds since the editor started<br /><br />using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;
+using System.Collections;<br /><br />//Select the dependencies of the found <a href="GameObject.html">GameObject</a>
+public class EditorGUIObjectField : <a href="EditorWindow.html">EditorWindow</a>
+{
+    [<a href="MenuItem.html">MenuItem</a>("Examples/<a href="EditorGUI.html">EditorGUI</a> <a href="UIElements.Label.html">Label</a> Usage")]
+    static void Init()
+    {
+        UnityEditor.EditorWindow window = GetWindow(typeof(EditorGUIObjectField));
+        window.Show();
+    }<br /><br />    void OnGUI()
+    {
+        <a href="EditorGUI.LabelField.html">EditorGUI.LabelField</a>(new <a href="Rect.html">Rect</a>(3, 3, position.width, 20),
+            "<a href="Time.html">Time</a> since start: ",
+            EditorApplication.timeSinceStartup.ToString());
+        this.Repaint();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

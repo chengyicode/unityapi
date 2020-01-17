@@ -1,0 +1,34 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: DrawingScope</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">DrawingScope</h1><div class="clear"></div><p class="cl mb0 left mr10">struct in
+          UnityEditor</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEditor.html" class="cl">UnityEditor</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Disposable helper struct for automatically setting and reverting <a href="Handles-color.html">Handles.color</a> and/or <a href="Handles-matrix.html">Handles.matrix</a>.</p></div><div class="subsection"><p>This struct allows you to temporarily set the value of <a href="Handles-color.html">Handles.color</a> and/or <a href="Handles-matrix.html">Handles.matrix</a> inside of a block of code and automatically revert them to their previous values when the scope is exited.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;<br /><br />// a custom editor that draws a labeled circle around the selected <a href="MeshRenderer.html">MeshRenderer</a> in the scene view
+[<a href="CustomEditor.html">CustomEditor</a>(typeof(<a href="MeshRenderer.html">MeshRenderer</a>))]
+public class MeshRendererEditor : <a href="Editor.html">Editor</a>
+{
+    protected virtual void OnSceneGUI()
+    {
+        <a href="MeshRenderer.html">MeshRenderer</a> meshRenderer = (<a href="MeshRenderer.html">MeshRenderer</a>)target;<br /><br />        // get an orientation pointing from the selected object to the camera
+        <a href="Vector3.html">Vector3</a> cameraToTarget = Camera.current.transform.position - meshRenderer.transform.position;
+        <a href="Quaternion.html">Quaternion</a> billboardOrientation = <a href="Quaternion.LookRotation.html">Quaternion.LookRotation</a>(cameraToTarget, Camera.current.transform.up);<br /><br />        // set the handle matrix to the target's position, oriented facing the camera
+        <a href="Matrix4x4.html">Matrix4x4</a> matrix = <a href="Matrix4x4.TRS.html">Matrix4x4.TRS</a>(meshRenderer.transform.position, billboardOrientation, <a href="Vector3-one.html">Vector3.one</a>);
+        using (new <a href="Handles.DrawingScope.html">Handles.DrawingScope</a>(<a href="Color-magenta.html">Color.magenta</a>, matrix))
+        {
+            // draw a magenta circle around the selected object with a label at the top
+            <a href="Vector3.html">Vector3</a> size = meshRenderer.bounds.size;
+            float radius = <a href="Mathf.Max.html">Mathf.Max</a>(size.x, size.y, size.z);
+            <a href="Handles.DrawWireArc.html">Handles.DrawWireArc</a>(<a href="Vector3-zero.html">Vector3.zero</a>, <a href="Vector3-forward.html">Vector3.forward</a>, <a href="Vector3-right.html">Vector3.right</a>, 360f, radius);
+            <a href="Handles.Label.html">Handles.Label</a>(<a href="Vector3-up.html">Vector3.up</a> * radius, meshRenderer.name);
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Handles.DrawingScope-originalColor.html">originalColor</a></td><td class="desc"></td><td class="desc1">The value of Handles.color at the time this DrawingScope was created.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Handles.DrawingScope-originalMatrix.html">originalMatrix</a></td><td class="desc"></td><td class="desc1">The value of Handles.matrix at the time this DrawingScope was created.</td></tr>
+    </table></div><div class="subsection"><h2>Constructors</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Handles.DrawingScope-ctor.html">Handles.DrawingScope</a></td><td class="desc"></td><td class="desc1">Create a new DrawingScope and set Handles.color and/or Handles.matrix to the specified values.</td></tr>
+    </table></div><div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Handles.DrawingScope.Dispose.html">Dispose</a></td><td class="desc"></td><td class="desc1">Automatically reverts Handles.color and Handles.matrix to their values prior to entering the scope, when the scope is exited. You do not need to call this method manually.</td></tr>
+    </table></div></div></div></div></body></html>

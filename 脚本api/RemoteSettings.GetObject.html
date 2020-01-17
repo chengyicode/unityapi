@@ -1,0 +1,77 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: RemoteSettings.GetObject</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="RemoteSettings.html">RemoteSettings</a>.GetObject</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static T <span class="sig-kw">GetObject</span>(string <span class="sig-kw">key</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">key</td><td class="desc"></td><td class="desc1">The key identifying the setting.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>T</strong>
+        An instance of the object with fields assigned the corresponding remote values.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Gets the object corresponding to the remote setting identified by <strong>key</strong>, if it exists.</p></div><div class="subsection"><p>
+Remote Settings constructs an object of type <code class="mono">T</code> and sets its fields or properties to the corresponding remote value, matching field name to key name. The process ignores fields in the object that do not correspond to a remote value and, likewise, ignores remote values that do not correspond to a field or property in the type.<br /><br />If you do not specify a key when calling <code class="mono">GetObject()</code>, Remote Settings treats all of your remote settings as a single object. If you specify a key that does not exist, this function returns null.<br /><br />Remote Settings converts numbers and boolean types, but it does not convert string types. For example, if you map a float setting to an integer field, the float value is cast to an integer. However, if you attempt to map a numeric or boolean setting to a string field, the string field is left as null. If a remote setting contains an object, that object is converted according to the type of the field in the parent object struct or class.
+</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class HandleRemoteSettingsGetObject : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    [System.Serializable]
+    public struct MySettings
+    {
+        public bool enableBoss;
+        public int maxLevelDifficulty;
+        public string defaultPlayerName;
+        public float gameBaseAcceleration;
+    }<br /><br />    private void Start()
+    {
+        MySettings ms = <a href="RemoteSettings.GetObject.html">RemoteSettings.GetObject</a>&lt;MySettings&gt;("myGameSettings");
+        <a href="Debug.Log.html">Debug.Log</a>(ms.maxLevelDifficulty);
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static object <span class="sig-kw">GetObject</span>(Type <span class="sig-kw">type</span>,
+string <span class="sig-kw">key</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">key</td><td class="desc"></td><td class="desc1">The key identifying the setting.</td></tr><tr><td class="name lbl">type</td><td class="desc"></td><td class="desc1">The type of object represented in RemoteSettings.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>object</strong>
+        An instance of the object with fields assigned the corresponding remote values.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Gets the object corresponding to the remote setting identified by <strong>key</strong>, if it exists.</p></div><div class="subsection"><p>
+Remote Settings constructs an object of the type specified by the <code class="mono">type</code> parameter and sets its fields or properties to the corresponding remote value, matching field name to key name. The process ignores fields in the object that do not correspond to a remote value and, likewise, ignores remote values that do not correspond to a field or property in the type.<br /><br />If you do not specify a key when calling <code class="mono">GetObject()</code>, Remote Settings treats all of your remote settings as a single object. If you specify a key that does not exist, this function returns null.<br /><br />Remote Settings converts numbers and boolean types, but it does not convert string types. For example, if you map a float setting to an integer field, the float value is cast to an integer. However, if you attempt to map a numeric or boolean setting to a string field, the string field is left as null. If a remote setting contains an object, that object is converted according to the type of the field in the parent object struct or class.
+</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class HandleRemoteSettingsGetObjectWithType : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    [System.Serializable]
+    public struct MyCustomSettings
+    {
+        public bool enableBoss;
+        public int maxLevelDifficulty;
+        public string defaultPlayerName;
+        public float gameBaseAcceleration;
+    }<br /><br />    private void Start()
+    {
+        MyCustomSettings ms = (MyCustomSettings)<a href="RemoteSettings.GetObject.html">RemoteSettings.GetObject</a>(typeof(MyCustomSettings), "myGameSettings");
+        <a href="Debug.Log.html">Debug.Log</a>(ms.maxLevelDifficulty);
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static object <span class="sig-kw">GetObject</span>(string <span class="sig-kw">key</span>,
+object <span class="sig-kw">defaultValue</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">defaultValue</td><td class="desc"></td><td class="desc1">The object that should be for default values.</td></tr><tr><td class="name lbl">key</td><td class="desc"></td><td class="desc1">The key identifying the setting.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>object</strong>
+        An instance of the object with fields assigned the corresponding remote values.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Gets the object corresponding to the remote setting identified by <strong>key</strong>, if it exists.</p></div><div class="subsection"><p>
+Remote Settings constructs an object of the type specified by the <code class="mono">type</code> parameter and sets its fields or properties to the corresponding remote value, matching field name to key name. The process ignores fields in the object that do not correspond to a remote value and, likewise, ignores remote values that do not correspond to a field or property in the type.<br /><br />If you do not specify a key when calling <code class="mono">GetObject()</code>, Remote Settings treats all of your remote settings as a single object. If you specify a key that does not exist, this function returns null.<br /><br />Remote Settings converts numbers and boolean types, but it does not convert string types. For example, if you map a float setting to an integer field, the float value is cast to an integer. However, if you attempt to map a numeric or boolean setting to a string field, the string field is left as null. If a remote setting contains an object, that object is converted according to the type of the field in the parent object struct or class.
+</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class HandleRemoteSettingsGetObjectWithDefault : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    [System.Serializable]
+    public struct MySettingValues
+    {
+        public bool enableBoss;
+        public int maxLevelDifficulty;
+        public string defaultPlayerName;
+        public float gameBaseAcceleration;
+    }<br /><br />    private void Start()
+    {
+        MySettingValues defaultValue = new MySettingValues();
+        defaultValue.enableBoss = true;
+        MySettingValues ms = (MySettingValues)<a href="RemoteSettings.GetObject.html">RemoteSettings.GetObject</a>("myGameSettings", defaultValue);
+        <a href="Debug.Log.html">Debug.Log</a>(ms.maxLevelDifficulty);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

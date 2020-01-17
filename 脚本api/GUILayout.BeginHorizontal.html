@@ -1,0 +1,30 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: GUILayout.BeginHorizontal</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="GUILayout.html">GUILayout</a>.BeginHorizontal</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">BeginHorizontal</span>(params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">BeginHorizontal</span>(<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">BeginHorizontal</span>(string <span class="sig-kw">text</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">BeginHorizontal</span>(<a href="Texture.html">Texture</a> <span class="sig-kw">image</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">BeginHorizontal</span>(<a href="GUIContent.html">GUIContent</a> <span class="sig-kw">content</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">text</td><td class="desc"></td><td class="desc1">Text to display on group.</td></tr><tr><td class="name lbl">image</td><td class="desc"></td><td class="desc1">
+          <a href="Texture.html">Texture</a> to display on group.</td></tr><tr><td class="name lbl">content</td><td class="desc"></td><td class="desc1">Text, image, and tooltip for this group.</td></tr><tr><td class="name lbl">style</td><td class="desc"></td><td class="desc1">The style to use for background image and padding values. If left out, the background is transparent.</td></tr><tr><td class="name lbl">options</td><td class="desc"></td><td class="desc1">An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the <code class="varname">style</code>.<br />
+See Also: <a href="GUILayout.Width.html">GUILayout.Width</a>, <a href="GUILayout.Height.html">GUILayout.Height</a>, <a href="GUILayout.MinWidth.html">GUILayout.MinWidth</a>, <a href="GUILayout.MaxWidth.html">GUILayout.MaxWidth</a>, <a href="GUILayout.MinHeight.html">GUILayout.MinHeight</a>,
+<a href="GUILayout.MaxHeight.html">GUILayout.MaxHeight</a>, <a href="GUILayout.ExpandWidth.html">GUILayout.ExpandWidth</a>, <a href="GUILayout.ExpandHeight.html">GUILayout.ExpandHeight</a>.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Begin a Horizontal control group.</p></div><div class="subsection"><p>All controls rendered inside this element will be placed horizontally next to each other. The group must be closed with a call to EndHorizontal.<br /><br /><img src="../StaticFiles/ScriptRefImages/GUILayoutHorizontal.png" /><br />
+<em>Horizontal Layout.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void OnGUI()
+    {
+        // Starts a horizontal group
+        <a href="GUILayout.BeginHorizontal.html">GUILayout.BeginHorizontal</a>("box");<br /><br />        <a href="GUILayout.Button.html">GUILayout.Button</a>("I'm the first button");
+        <a href="GUILayout.Button.html">GUILayout.Button</a>("I'm to the right");<br /><br />        <a href="GUILayout.EndHorizontal.html">GUILayout.EndHorizontal</a>();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Color.linear</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Color.html">Color</a>.linear</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Color.html">Color</a> <span class="sig-kw">linear</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>A linear value of an sRGB color.</p></div><div class="subsection"><p>Colors are typically expressed in sRGB color space. This property returns "linearized" color value,
+i.e. with inverse of sRGB gamma curve applied.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        <a href="Color.html">Color</a> newColor = new <a href="Color.html">Color</a>(0.3f, 0.4f, 0.6f);
+        print(newColor.linear);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="../Manual/LinearLighting.html">Linear and Gamma rendering</a>, <a href="ColorSpace.html">ColorSpace</a>, <a href="Mathf.GammaToLinearSpace.html">Mathf.GammaToLinearSpace</a>, <a href="Mathf.LinearToGammaSpace.html">Mathf.LinearToGammaSpace</a>.</p></div></div></div></div></body></html>

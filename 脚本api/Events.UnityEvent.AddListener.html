@@ -1,0 +1,37 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Events.UnityEvent.AddListener</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Events.UnityEvent.html">UnityEvent</a>.AddListener</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">AddListener</span>(<a href="Events.UnityAction.html">Events.UnityAction</a> <span class="sig-kw">call</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">call</td><td class="desc"></td><td class="desc1">Callback function.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Add a non persistent listener to the UnityEvent.</p></div><div class="subsection"><p>Use this to add a runtime callback. Adding multiple identical listeners results in only a single call being made.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//Attach this script to a <a href="GameObject.html">GameObject</a>
+//This script creates a <a href="Events.UnityEvent.html">UnityEvent</a> that calls a method when a key is pressed
+//Note that 'q' exits this application.
+using UnityEngine;
+using UnityEngine.Events;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="Events.UnityEvent.html">UnityEvent</a> m_MyEvent = new <a href="Events.UnityEvent.html">UnityEvent</a>();<br /><br />    void Start()
+    {
+        //Add a listener to the new <a href="Event.html">Event</a>. Calls MyAction method when invoked
+        m_MyEvent.AddListener(MyAction);
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        // Press Q to close the Listener
+        if (<a href="Input.GetKeyDown.html">Input.GetKeyDown</a>("q") &amp;&amp; m_MyEvent != null)
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("Quitting");
+            m_MyEvent.RemoveListener(MyAction);<br /><br />            #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+            #endif<br /><br />            <a href="Application.Quit.html">Application.Quit</a>();
+        }<br /><br />        //Press any other key to begin the action if the <a href="Event.html">Event</a> exists
+        if (<a href="Input-anyKeyDown.html">Input.anyKeyDown</a> &amp;&amp; m_MyEvent != null)
+        {
+            //Begin the action
+            m_MyEvent.Invoke();
+        }
+    }<br /><br />    void MyAction()
+    {
+        //Output message to the console
+        <a href="Debug.Log.html">Debug.Log</a>("Do Stuff");
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="Events.UnityEventTools.AddPersistentListener.html">UnityEventTools.AddPersistentListener</a>.</p></div></div></div></div></body></html>

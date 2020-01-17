@@ -1,0 +1,55 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorGUILayout.InspectorTitlebar</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorGUILayout.html">EditorGUILayout</a>.InspectorTitlebar</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">InspectorTitlebar</span>(bool <span class="sig-kw">foldout</span>,
+<a href="Object.html">Object</a> <span class="sig-kw">targetObj</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">InspectorTitlebar</span>(bool <span class="sig-kw">foldout</span>,
+Object[] <span class="sig-kw">targetObjs</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">foldout</td><td class="desc"></td><td class="desc1">The foldout state shown with the arrow.</td></tr><tr><td class="name lbl">targetObj</td><td class="desc"></td><td class="desc1">The object (for example a component) or objects that the titlebar is for.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>bool</strong>
+        The foldout state selected by the user.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Make an inspector-window-like titlebar.</p></div><div class="subsection"><p>
+        <img src="../StaticFiles/ScriptRefImages/InspectorTitlebarUsage.png" />
+        <br />
+<em>Create a custom inspector that shows the X,Y,Z,W quaternion components on the rotation.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Create a custom transform inspector that shows the X,Y,Z,W
+// quaternion components instead of the rotation angles.<br /><br />using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;<br /><br />public class InspectorTitlebarExample : <a href="EditorWindow.html">EditorWindow</a>
+{
+    bool      fold = true;
+    <a href="Vector4.html">Vector4</a>   rotationComponents;
+    <a href="Transform.html">Transform</a> selectedTransform;<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Examples/Inspector Titlebar")]
+    static void Init()
+    {
+        var window = GetWindow(typeof(InspectorTitlebarExample));
+        window.Show();
+    }<br /><br />    void OnGUI()
+    {
+        if (<a href="Selection-activeGameObject.html">Selection.activeGameObject</a>)
+        {
+            selectedTransform = Selection.activeGameObject.transform;<br /><br />            fold = <a href="EditorGUILayout.InspectorTitlebar.html">EditorGUILayout.InspectorTitlebar</a>(fold, selectedTransform);
+            if (fold)
+            {
+                selectedTransform.position =
+                    <a href="EditorGUILayout.Vector3Field.html">EditorGUILayout.Vector3Field</a>("<a href="UIElements.Position.html">Position</a>", selectedTransform.position);
+                <a href="EditorGUILayout.Space.html">EditorGUILayout.Space</a>();
+                rotationComponents =
+                    <a href="EditorGUILayout.Vector4Field.html">EditorGUILayout.Vector4Field</a>("Detailed Rotation",
+                        QuaternionToVector4(selectedTransform.localRotation));
+                <a href="EditorGUILayout.Space.html">EditorGUILayout.Space</a>();
+                selectedTransform.localScale =
+                    <a href="EditorGUILayout.Vector3Field.html">EditorGUILayout.Vector3Field</a>("Scale", selectedTransform.localScale);
+            }<br /><br />            selectedTransform.localRotation = ConvertToQuaternion(rotationComponents);
+            <a href="EditorGUILayout.Space.html">EditorGUILayout.Space</a>();
+        }
+    }<br /><br />    <a href="Quaternion.html">Quaternion</a> ConvertToQuaternion(<a href="Vector4.html">Vector4</a> v4)
+    {
+        return new <a href="Quaternion.html">Quaternion</a>(v4.x, v4.y, v4.z, v4.w);
+    }<br /><br />    <a href="Vector4.html">Vector4</a> QuaternionToVector4(<a href="Quaternion.html">Quaternion</a> q)
+    {
+        return new <a href="Vector4.html">Vector4</a>(q.x, q.y, q.z, q.w);
+    }<br /><br />    void OnInspectorUpdate()
+    {
+        this.Repaint();
+    }
+}
+</pre>
+      </div><div class="subsection"><p>The titlebar has an arrow for folding out, a help icon, and a settings menu that depends on the type of the object supplied.</p></div></div></div></div></body></html>

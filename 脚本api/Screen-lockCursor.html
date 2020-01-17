@@ -1,0 +1,54 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Screen.lockCursor</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Method group is Obsolete</b><br /></div><h1 class="heading inherit"><a href="Screen.html">Screen</a>.lockCursor</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public static bool <span class="sig-kw">lockCursor</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Should the cursor be locked?</p></div><div class="subsection"><p>The cursor will automatically be hidden, centered on view and made to never leave the view.<br /><br />After the user presses escape or switches to another application the cursor will be automatically unlocked.
+The cursor lock will also be lost when exiting full screen mode.
+You can query if the cursor is currently locked by checking the lockCursor state.
+To provide a good user experience it is recommended to only lock the cursor as a result of pressing a button.
+Also you should check if the cursor got unlocked, in order to e.g. pause the game or bring up a game menu.
+In the Editor the cursor will automatically be unlocked when you press escape.
+In the Standalone Player you have full control over mouse locking thus it won't automatically lose mouse lock unless you switch applications.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    GUITexture gt;
+    bool wasLocked = false;<br /><br />    void Start()
+    {
+        gt = GetComponent&lt;GUITexture&gt;();
+    }<br /><br />    // Called when the cursor is actually being locked<br /><br />    void DidLockCursor()
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("Locking cursor");<br /><br />        // Disable the button
+        gt.enabled = false;
+    }<br /><br />    // Called when the cursor is being unlocked
+    // or by a script calling Screen.lockCursor = false;
+    void DidUnlockCursor()
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("Unlocking cursor");<br /><br />        // Show the button again
+        gt.enabled = true;
+    }<br /><br />    void OnMouseDown()
+    {
+        // Lock the cursor
+        Screen.lockCursor = true;
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        // In standalone player we have to provide our own key
+        // input for unlocking the cursor
+        if (<a href="Input.GetKeyDown.html">Input.GetKeyDown</a>("escape"))
+            Screen.lockCursor = false;<br /><br />        // Did we lose cursor locking?
+        // eg. because the user pressed escape
+        // or because they switched to another application
+        // or because some script set Screen.lockCursor = false;
+        if (!Screen.lockCursor &amp;&amp; wasLocked)
+        {
+            wasLocked = false;
+            DidUnlockCursor();
+        }
+        // Did we gain cursor locking?
+        else if (Screen.lockCursor &amp;&amp; !wasLocked)
+        {
+            wasLocked = true;
+            DidLockCursor();
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: TypeCache.GetTypesDerivedFrom</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="TypeCache.html">TypeCache</a>.GetTypesDerivedFrom</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="TypeCache.TypeCollection.html">TypeCache.TypeCollection</a> <span class="sig-kw">GetTypesDerivedFrom</span>();
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="TypeCache.TypeCollection.html">TypeCache.TypeCollection</a> <span class="sig-kw">GetTypesDerivedFrom</span>(Type <span class="sig-kw">parentType</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">parentType</td><td class="desc"></td><td class="desc1">Type of a class or interface.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>TypeCollection</strong>
+        Returns a collection of derived types.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Retrieves a collection of types derived from the <strong>T</strong> type.</p></div><div class="subsection"><p>This method provides fast access to all classes loaded in Unity domain assemblies that are derived from a specific class or implement a specific interface.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class Example
+{
+    static void ScanAssetPostprocessors()
+    {
+        var extractedTypes = <a href="TypeCache.GetTypesDerivedFrom.html">TypeCache.GetTypesDerivedFrom</a>&lt;<a href="AssetPostprocessor.html">AssetPostprocessor</a>&gt;();
+        foreach (var editors in extractedTypes)
+        {
+            //...
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Or classes which implement a specific interface.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public interface IExampleInterface {}<br /><br />public class Example
+{
+    static void ScanInterfaceImplementers()
+    {
+        var extractedTypes = <a href="TypeCache.GetTypesDerivedFrom.html">TypeCache.GetTypesDerivedFrom</a>&lt;IExampleInterface&gt;();
+        foreach (var editors in extractedTypes)
+        {
+            //...
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>
+        <strong>Note:</strong> The returned <a href="TypeCache.TypeCollection.html">TypeCollection</a> is read-only and thread-safe.</p></div></div></div></div></body></html>

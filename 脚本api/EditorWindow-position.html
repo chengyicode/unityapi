@@ -1,0 +1,30 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorWindow.position</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorWindow.html">EditorWindow</a>.position</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Rect.html">Rect</a> <span class="sig-kw">position</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The desired position of the window in screen space.</p></div><div class="subsection"><p>Setting this value will undock the window if it is docked.<br /><br /><img src="../StaticFiles/ScriptRefImages/EditorWindowPosition.png" /><br />
+<em>Create an undocked editor window with position.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// The position of the window is displayed when it is
+// external from Unity.<br /><br />using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class PositionExample : <a href="EditorWindow.html">EditorWindow</a>
+{
+    <a href="Vector2Int.html">Vector2Int</a> p1;
+    bool showBtn = true;<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Examples/position")]
+    static void Init()
+    {
+        GetWindow&lt;PositionExample&gt;("position");
+    }<br /><br />    void OnGUI()
+    {
+        <a href="Rect.html">Rect</a> r = position;
+        <a href="GUILayout.Label.html">GUILayout.Label</a>("<a href="UIElements.Position.html">Position</a>: " + r.x + "x" + r.y);<br /><br />        p1 = <a href="EditorGUILayout.Vector2IntField.html">EditorGUILayout.Vector2IntField</a>("Set the position:", p1);
+        if (showBtn)
+        {
+            if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Accept new position"))
+            {
+                r.x = p1.x;
+                r.y = p1.y;<br /><br />                position = r;
+            }
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

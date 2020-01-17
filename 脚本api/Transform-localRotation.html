@@ -1,0 +1,53 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Transform.localRotation</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Transform.html">Transform</a>.localRotation</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Transform.html' title='Go to Transform Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Quaternion.html">Quaternion</a> <span class="sig-kw">localRotation</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The rotation of the transform relative to the transform rotation of the parent.</p></div><div class="subsection"><p>Unity stores rotations as Quaternions internally. To rotate an object, use <a href="Transform.Rotate.html">Transform.Rotate</a>.
+Use <a href="Transform-localEulerAngles.html">Transform.localEulerAngles</a> for modifying the rotation as euler angles.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Example()
+    {
+        transform.localRotation = <a href="Quaternion-identity.html">Quaternion.identity</a>;
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Another example:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;<br /><br />// Rotate a cylinder around the x and z axes. <a href="PlayerSettings.Switch.html">Switch</a> from one to the other
+// when the rotation in the current axis reaches 360 degrees.<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private float x;
+    private float z;
+    private bool rotateX;
+    private float rotationSpeed;<br /><br />    void Start()
+    {
+        x = 0.0f;
+        z = 0.0f;
+        rotateX = true;
+        rotationSpeed = 75.0f;
+    }<br /><br />    void <a href="Experimental.PlayerLoop.FixedUpdate.html">FixedUpdate</a>()
+    {
+        if (rotateX == true)
+        {
+            x += <a href="Time-deltaTime.html">Time.deltaTime</a> * rotationSpeed;<br /><br />            if (x &gt; 360.0f)
+            {
+                x = 0.0f;
+                rotateX = false;
+            }
+        }
+        else
+        {
+            z += <a href="Time-deltaTime.html">Time.deltaTime</a> * rotationSpeed;<br /><br />            if (z &gt; 360.0f)
+            {
+                z = 0.0f;
+                rotateX = true;
+            }
+        }<br /><br />        transform.localRotation = <a href="Quaternion.Euler.html">Quaternion.Euler</a>(x, 0, z);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

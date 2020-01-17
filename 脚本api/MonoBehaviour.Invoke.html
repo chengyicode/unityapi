@@ -1,0 +1,19 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: MonoBehaviour.Invoke</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="MonoBehaviour.html">MonoBehaviour</a>.Invoke</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">Invoke</span>(string <span class="sig-kw">methodName</span>,
+float <span class="sig-kw">time</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Invokes the method <code class="varname">methodName</code> in time seconds.</p></div><div class="subsection"><p>If time is set to 0, the method is invoked at the next Update cycle. In this case, it's better to call the function directly.<br /><br />For better performance and maintability, use <a href="../Manual/BestPracticeUnderstandingPerformanceInUnity3.html">Coroutines</a> instead.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections.Generic;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Launches a projectile in 2 seconds<br /><br />    <a href="Rigidbody.html">Rigidbody</a> projectile;<br /><br />    void Start()
+    {
+        Invoke("LaunchProjectile", 2.0f);
+    }<br /><br />    void LaunchProjectile()
+    {
+        <a href="Rigidbody.html">Rigidbody</a> instance = Instantiate(projectile);
+        instance.velocity = <a href="Random-insideUnitSphere.html">Random.insideUnitSphere</a> * 5.0f;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

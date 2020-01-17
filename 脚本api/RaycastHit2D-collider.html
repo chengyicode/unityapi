@@ -1,0 +1,26 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: RaycastHit2D.collider</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="RaycastHit2D.html">RaycastHit2D</a>.collider</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Collider2D.html">Collider2D</a> <span class="sig-kw">collider</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The collider hit by the ray.</p></div><div class="subsection"><p>This can be useful if the hit object has more than one collider - this property can be used to determine the specific collider rather than just the object.<br /><br />Note that some functions that return a single RaycastHit2D will leave the collider as NULL which indicates nothing hit.  RaycastHit2D implements an implicit conversion operator converting to bool which checks this property allowing it to be used as a simple condition check for whether a hit occurred or not.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />//Attach this script to an empty gameobject.
+//When you click on a sprite with a collider it will tell you it's name.
+public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        //If the left mouse button is clicked.
+        if (<a href="Input.GetMouseButtonDown.html">Input.GetMouseButtonDown</a>(0))
+        {
+            //Get the mouse position on the screen and send a raycast into the game world from that position.
+            <a href="Vector2.html">Vector2</a> worldPoint = Camera.main.ScreenToWorldPoint(<a href="Input-mousePosition.html">Input.mousePosition</a>);
+            <a href="RaycastHit2D.html">RaycastHit2D</a> hit = <a href="Physics2D.Raycast.html">Physics2D.Raycast</a>(worldPoint, <a href="Vector2-zero.html">Vector2.zero</a>);<br /><br />            //If something was hit, the <a href="RaycastHit2D-collider.html">RaycastHit2D.collider</a> will not be null.
+            if (hit.collider != null)
+            {
+                <a href="Debug.Log.html">Debug.Log</a>(hit.collider.name);
+            }
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

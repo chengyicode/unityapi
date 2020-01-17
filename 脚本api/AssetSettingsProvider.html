@@ -1,0 +1,100 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AssetSettingsProvider</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">AssetSettingsProvider</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEditor</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Inherits from:<a href="SettingsProvider.html" class="cl">SettingsProvider</a></p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEditor.html" class="cl">UnityEditor</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>AssetSettingsProvider is a specialization of the <a href="SettingsProvider.html">SettingsProvider</a> class that converts legacy settings to Unified Settings. Legacy settings include any settings that used the Inspector to modify themselves, such as the *.asset files under the ProjectSettings folder. Under the hood, AssetSettingsProvider creates an <a href="Editor.html">Editor</a> for specific Assets and builds the UI for the Settings window by wrapping the <a href="Editor.OnInspectorGUI.html">Editor.OnInspectorGUI</a> function.<br /><br />Internally we use this class to wrap our existing settings.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;<br /><br />// Create a new type of <a href="CameraEditor.Settings.html">Settings</a> <a href="VersionControl.Asset.html">Asset</a>.
+class MyCustomSettings : <a href="ScriptableObject.html">ScriptableObject</a>
+{
+    public const string k_MyCustomSettingsPath = "Assets/<a href="Editor.html">Editor</a>/MyCustomSettings.asset";<br /><br />    [<a href="SerializeField.html">SerializeField</a>]
+    private int m_Number;<br /><br />    [<a href="SerializeField.html">SerializeField</a>]
+    private string m_SomeString;<br /><br />    internal static <a href="SerializedObject.html">SerializedObject</a> GetSettings()
+    {
+        var settings = <a href="AssetDatabase.LoadAssetAtPath.html">AssetDatabase.LoadAssetAtPath</a>&lt;MyCustomSettings&gt;(k_MyCustomSettingsPath);
+        if (settings == null)
+        {
+            settings = <a href="ScriptableObject.CreateInstance.html">ScriptableObject.CreateInstance</a>&lt;MyCustomSettings&gt;();
+            settings.m_Number = 42;
+            settings.m_SomeString = "The answer to the universe";
+            <a href="AssetDatabase.CreateAsset.html">AssetDatabase.CreateAsset</a>(settings, k_MyCustomSettingsPath);
+        }<br /><br />        return new <a href="SerializedObject.html">SerializedObject</a>(settings);
+    }
+}<br /><br />[<a href="CustomEditor.html">CustomEditor</a>(typeof(MyCustomSettings))]
+class MyCustomSettingsEditor : <a href="Editor.html">Editor</a>
+{
+    // Nothing to do, this uses the Generic <a href="Editor.html">Editor</a> to display MyCustomSettings properties
+}<br /><br />class AssetSettingsProviderRegister
+{
+    [<a href="SettingsProvider.html">SettingsProvider</a>]
+    public static <a href="SettingsProvider.html">SettingsProvider</a> CreateFromFilePath()
+    {
+        // Create an <a href="AssetSettingsProvider.html">AssetSettingsProvider</a> from a file path:
+        var provider = <a href="AssetSettingsProvider.CreateProviderFromAssetPath.html">AssetSettingsProvider.CreateProviderFromAssetPath</a>("Project/AssetSettings/FromFile", MyCustomSettings.k_MyCustomSettingsPath);<br /><br />        // Register keywords from the properties of MyCustomSettings
+        provider.keywords = <a href="SettingsProvider.GetSearchKeywordsFromSerializedObject.html">SettingsProvider.GetSearchKeywordsFromSerializedObject</a>(new <a href="SerializedObject.html">SerializedObject</a>(<a href="AssetDatabase.LoadAllAssetsAtPath.html">AssetDatabase.LoadAllAssetsAtPath</a>(MyCustomSettings.k_MyCustomSettingsPath)));
+        return provider;
+    }<br /><br />    [<a href="SettingsProvider.html">SettingsProvider</a>]
+    public static <a href="SettingsProvider.html">SettingsProvider</a> CreateFromSettingsObject()
+    {
+        // Create an <a href="AssetSettingsProvider.html">AssetSettingsProvider</a> from a settings object (UnityEngine.Object):
+        var settingsObj = <a href="AssetDatabase.LoadAssetAtPath.html">AssetDatabase.LoadAssetAtPath</a>&lt;UnityEngine.Object&gt;(MyCustomSettings.k_MyCustomSettingsPath);
+        var provider = <a href="AssetSettingsProvider.CreateProviderFromObject.html">AssetSettingsProvider.CreateProviderFromObject</a>("Project/AssetSettings/FromObject", settingsObj);<br /><br />        // Register keywords from the properties of MyCustomSettings
+        provider.keywords = <a href="SettingsProvider.GetSearchKeywordsFromSerializedObject.html">SettingsProvider.GetSearchKeywordsFromSerializedObject</a>(new <a href="SerializedObject.html">SerializedObject</a>(settingsObj));
+        return provider;
+    }<br /><br />    [<a href="SettingsProvider.html">SettingsProvider</a>]
+    public static <a href="SettingsProvider.html">SettingsProvider</a> CreateFromSettingsFromFunctor()
+    {
+        // Create an <a href="AssetSettingsProvider.html">AssetSettingsProvider</a> from a functor that must return a UnityEngine.Object:
+        var provider = new <a href="AssetSettingsProvider.html">AssetSettingsProvider</a>("Project/AssetSettings/FromFunctor", () =&gt; <a href="Editor.CreateEditor.html">Editor.CreateEditor</a>(<a href="AssetDatabase.LoadAssetAtPath.html">AssetDatabase.LoadAssetAtPath</a>&lt;UnityEngine.Object&gt;(MyCustomSettings.k_MyCustomSettingsPath)));<br /><br />        // Register keywords from the properties of MyCustomSettings
+        provider.keywords = <a href="SettingsProvider.GetSearchKeywordsFromSerializedObject.html">SettingsProvider.GetSearchKeywordsFromSerializedObject</a>(new <a href="SerializedObject.html">SerializedObject</a>(<a href="AssetDatabase.LoadAllAssetsAtPath.html">AssetDatabase.LoadAllAssetsAtPath</a>(MyCustomSettings.k_MyCustomSettingsPath)));
+        return provider;
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Properties 属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="AssetSettingsProvider-settingsEditor.html">settingsEditor</a></td><td class="desc"></td><td class="desc1">Editor providing UI to modify the settings.</td></tr>
+    </table></div><div class="subsection"><h2>Constructors</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="AssetSettingsProvider-ctor.html">AssetSettingsProvider</a></td><td class="desc"></td><td class="desc1">Creates a new AssetSettingsProvider so you can wrap legacy settings (that is, settings that previously appeared in the Inspector).</td></tr>
+    </table></div><div class="subsection"><h2>Public Methods 公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="AssetSettingsProvider.OnActivate.html">OnActivate</a></td><td class="desc"></td><td class="desc1">Overrides SettingsProvider.OnActivate for this AssetSettingsProvider.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AssetSettingsProvider.OnDeactivate.html">OnDeactivate</a></td><td class="desc"></td><td class="desc1">Overrides SettingsProvider.OnDeactivate for this AssetSettingsProvider.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AssetSettingsProvider.OnFooterBarGUI.html">OnFooterBarGUI</a></td><td class="desc"></td><td class="desc1">Overrides SettingsProvider.OnFooterBarGUI for this AssetSettingsProvider.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AssetSettingsProvider.OnGUI.html">OnGUI</a></td><td class="desc"></td><td class="desc1">Overrides SettingsProvider.OnGUI for this AssetSettingsProvider.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AssetSettingsProvider.OnTitleBarGUI.html">OnTitleBarGUI</a></td><td class="desc"></td><td class="desc1">Overrides SettingsProvider.OnTitleBarGUI for this AssetSettingsProvider. This draws the button bar that contains the "add to preset" and the "help" buttons.</td></tr>
+    </table></div><div class="subsection"><h2>Static Methods 静态方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="AssetSettingsProvider.CreateProviderFromAssetPath.html">CreateProviderFromAssetPath</a></td><td class="desc"></td><td class="desc1">Create an AssetSettingsProvider from an asset path.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AssetSettingsProvider.CreateProviderFromObject.html">CreateProviderFromObject</a></td><td class="desc"></td><td class="desc1">Create an AssetSettingsProvider from a settings object.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AssetSettingsProvider.CreateProviderFromResourcePath.html">CreateProviderFromResourcePath</a></td><td class="desc"></td><td class="desc1">Create an AssetSettingsProvider from an asset resource path.</td></tr>
+    </table></div><div class="subsection"><h2>Inherited Members 继承成员</h2>
+      
+      <div class="subsection"><h2>Properties 属性</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="SettingsProvider-activateHandler.html">activateHandler</a></td><td class="desc"></td><td class="desc1">Overrides SettingsProvider.OnActivate.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="SettingsProvider-deactivateHandler.html">deactivateHandler</a></td><td class="desc"></td><td class="desc1">Overrides SettingsProvider.OnDeactivate.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="SettingsProvider-footerBarGuiHandler.html">footerBarGuiHandler</a></td><td class="desc"></td><td class="desc1">Overrides SettingsProvider.OnFooterBarGUI.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="SettingsProvider-guiHandler.html">guiHandler</a></td><td class="desc"></td><td class="desc1">Overrides SettingsProvider.OnGUI.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="SettingsProvider-hasSearchInterestHandler.html">hasSearchInterestHandler</a></td><td class="desc"></td><td class="desc1">Overrides SettingsProvider.HasSearchInterest.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="SettingsProvider-inspectorUpdateHandler.html">inspectorUpdateHandler</a></td><td class="desc"></td><td class="desc1">Overrides SettingsProvider.OnInspectorUpdate.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="SettingsProvider-keywords.html">keywords</a></td><td class="desc"></td><td class="desc1">Gets or sets the list of keywords to compare against what the user is searching for. When the user enters values in the search box on the Settings window, SettingsProvider.HasSearchInterest tries to match those keywords to this list.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="SettingsProvider-label.html">label</a></td><td class="desc"></td><td class="desc1">Gets or sets the display name of the SettingsProvider as it appears in the Settings window. If not set, the Settings window uses last token of SettingsProvider.settingsPath instead.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="SettingsProvider-scope.html">scope</a></td><td class="desc"></td><td class="desc1">Gets the Scope of the SettingsProvider. The Scope determines whether the SettingsProvider appears in the Preferences window (SettingsScope.User) or the Settings window (SettingsScope.Project).</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="SettingsProvider-settingsPath.html">settingsPath</a></td><td class="desc"></td><td class="desc1">Gets Path used to place the SettingsProvider in the tree view of the Settings window. The path should be unique among all other settings paths and should use "/" as its separator.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="SettingsProvider-titleBarGuiHandler.html">titleBarGuiHandler</a></td><td class="desc"></td><td class="desc1">Overrides SettingsProvider.OnTitleBarGUI.</td></tr>
+      </table></div>
+      
+      
+      
+      <div class="subsection"><h2>Public Methods 公共方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="SettingsProvider.HasSearchInterest.html">HasSearchInterest</a></td><td class="desc"></td><td class="desc1">Checks whether the SettingsProvider should appear when the user types something in the Settings window search box. SettingsProvider tries to match the search terms (even partially) to any of the SettingsProvider.keywords. The search is case insensitive.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="SettingsProvider.OnInspectorUpdate.html">OnInspectorUpdate</a></td><td class="desc"></td><td class="desc1">OnInspectorUpdate is called at 10 frames per second to give the inspector a chance to update. See EditorWindow.OnInspectorUpdate for more details.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="SettingsProvider.Repaint.html">Repaint</a></td><td class="desc"></td><td class="desc1">Request the SettingsWindow for a repaint.</td></tr>
+      </table></div>
+      
+      <div class="subsection"><h2>Static Methods 静态方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="SettingsProvider.GetSearchKeywordsFromGUIContentProperties.html">GetSearchKeywordsFromGUIContentProperties</a></td><td class="desc"></td><td class="desc1">Extract search keywords from all public static memebers in a specific Type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="SettingsProvider.GetSearchKeywordsFromPath.html">GetSearchKeywordsFromPath</a></td><td class="desc"></td><td class="desc1">Extract search keywords from the serialized properties of an Asset at a specific path.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="SettingsProvider.GetSearchKeywordsFromSerializedObject.html">GetSearchKeywordsFromSerializedObject</a></td><td class="desc"></td><td class="desc1">Extract search keywords from from the serialized properties of a SerializedObject.</td></tr>
+      </table></div>
+      
+      
+      
+      
+    </div></div></div></div></body></html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Object.DontDestroyOnLoad</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Object.html">Object</a>.DontDestroyOnLoad</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">DontDestroyOnLoad</span>(<a href="Object.html">Object</a> <span class="sig-kw">target</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">target</td><td class="desc"></td><td class="desc1">An Object not destroyed on <a href="SceneManagement.Scene.html">Scene</a> change.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Do not destroy the target Object when loading a new <a href="SceneManagement.Scene.html">Scene</a>.</p></div><div class="subsection"><p>The load of a new <a href="SceneManagement.Scene.html">Scene</a> destroys all current <a href="SceneManagement.Scene.html">Scene</a> objects. Call <a href="Object.DontDestroyOnLoad.html">Object.DontDestroyOnLoad</a> to preserve an Object during level loading. If the target Object is a component or <a href="GameObject.html">GameObject</a>, Unity also preserves all of the <a href="Transform.html">Transform</a>’s children.
+<a href="Object.DontDestroyOnLoad.html">Object.DontDestroyOnLoad</a> does not return a value.<br /><br />The following example script uses <a href="Object.DontDestroyOnLoad.html">Object.DontDestroyOnLoad</a>. The example has <code class="varname">scene1</code> which starts playing background music from an <a href="AudioSource.html">AudioSource</a>. The music continues when <code class="varname">scene2</code> loads. Switch between scenes using a button.<br /><br />To implement this example, create two new <a href="SceneManagement.Scene.html">Scene</a>s, named <code class="varname">scene1</code> and <code class="varname">scene2</code>.  Open <code class="varname">scene1</code> and add the <code class="mono">SceneSwap.cs</code> script to an empty <a href="GameObject.html">GameObject</a> and name it <code class="varname">Menu</code>.  Next, add <code class="mono">DontDestroy.cs</code> to a new <a href="GameObject.html">GameObject</a> and name it <code class="varname">BackgroundMusic</code>. Add an <a href="AudioSource.html">AudioSource</a> to <code class="varname">BackgroundMusic</code> - <code class="mono">Add Component &gt; Audio &gt; Audio Source</code> - and import an <a href="AudioClip.html">AudioClip</a> into your Project. Assign the <a href="AudioClip.html">AudioClip</a> to the <a href="AudioSource.html">AudioSource</a>’s <a href="AudioClip.html">AudioClip</a> field.  Create a tag, call it <code class="varname">music</code>, and add it to <code class="varname">BackgroundMusic</code>. Switch to <code class="varname">scene2</code>. Again add <code class="mono">SceneSwap.cs</code> to a new <a href="GameObject.html">GameObject</a> and name it <code class="varname">Menu</code>.  Save the Project. Return to <code class="varname">scene1</code> and run the Project from the <code class="varname">Editor</code>.<br /><br /><code class="mono">SceneSwap.cs</code> script:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.SceneManagement;<br /><br />// <a href="Object.DontDestroyOnLoad.html">Object.DontDestroyOnLoad</a> example.
+//
+// Two scenes call each other. This happens when OnGUI button is clicked.
+// scene1 will load scene2; scene2 will load scene1. Both scenes have
+// the <a href="Menu.html">Menu</a> <a href="GameObject.html">GameObject</a> with the SceneSwap.cs script attached.
+//
+// <a href="AudioSource.html">AudioSource</a> plays an <a href="AudioClip.html">AudioClip</a> as the game runs. This is on the
+// BackgroundMusic <a href="GameObject.html">GameObject</a> which has a music tag.  The audio
+// starts in <a href="AudioSource-playOnAwake.html">AudioSource.playOnAwake</a>. The DontDestroy.cs script
+// is attached to BackgroundMusic.<br /><br />public class SceneSwap : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private void OnGUI()
+    {
+        int xCenter = (<a href="Screen-width.html">Screen.width</a> / 2);
+        int yCenter = (<a href="Screen-height.html">Screen.height</a> / 2);
+        int width = 400;
+        int height = 120;<br /><br />        <a href="GUIStyle.html">GUIStyle</a> fontSize = new <a href="GUIStyle.html">GUIStyle</a>(GUI.skin.GetStyle("button"));
+        fontSize.fontSize = 32;<br /><br />        <a href="SceneManagement.Scene.html">Scene</a> scene = <a href="SceneManagement.SceneManager.GetActiveScene.html">SceneManager.GetActiveScene</a>();<br /><br />        if (scene.name == "scene1")
+        {
+            // Show a button to allow scene2 to be switched to.
+            if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(xCenter - width / 2, yCenter - height / 2, width, height), "Load second scene", fontSize))
+            {
+                <a href="SceneManagement.SceneManager.LoadScene.html">SceneManager.LoadScene</a>("scene2");
+            }
+        }
+        else
+        {
+            // Show a button to allow scene1 to be returned to.
+            if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(xCenter - width / 2, yCenter - height / 2, width, height), "Return to first scene", fontSize))
+            {
+                <a href="SceneManagement.SceneManager.LoadScene.html">SceneManager.LoadScene</a>("scene1");
+            }
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>
+        <code class="mono">DontDestroy.cs</code> script:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;<br /><br />// <a href="Object.DontDestroyOnLoad.html">Object.DontDestroyOnLoad</a> example.
+//
+// This script example manages the playing audio. The <a href="GameObject.html">GameObject</a> with the
+// "music" tag is the BackgroundMusic <a href="GameObject.html">GameObject</a>. The <a href="AudioSource.html">AudioSource</a> has the
+// audio attached to the <a href="AudioClip.html">AudioClip</a>.<br /><br />public class DontDestroy : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Awake()
+    {
+        <a href="GameObject.html">GameObject</a>[] objs = <a href="GameObject.FindGameObjectsWithTag.html">GameObject.FindGameObjectsWithTag</a>("music");<br /><br />        if (objs.Length &gt; 1)
+        {
+            Destroy(this.gameObject);
+        }<br /><br />        DontDestroyOnLoad(this.gameObject);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

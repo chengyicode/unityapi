@@ -1,0 +1,33 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorUtility.CollectDependencies</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorUtility.html">EditorUtility</a>.CollectDependencies</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static Object[] <span class="sig-kw">CollectDependencies</span>(Object[] <span class="sig-kw">roots</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Calculates and returns a list of all assets the assets listed in <code class="varname">roots</code> depend on.</p></div><div class="subsection"><p>
+        <img src="../StaticFiles/ScriptRefImages/EditorUtilityCollectDependencies.png" />
+        <br />
+<em>Editor window that shows the next example.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class CollectDependenciesExample : <a href="EditorWindow.html">EditorWindow</a>
+{
+    static <a href="GameObject.html">GameObject</a> obj = null;<br /><br />
+    [<a href="MenuItem.html">MenuItem</a>("Example/Collect Dependencies")]
+    static void Init()
+    {
+        // Get existing open window or if none, make a new one:
+        CollectDependenciesExample window = (CollectDependenciesExample)<a href="EditorWindow.GetWindow.html">EditorWindow.GetWindow</a>(typeof(CollectDependenciesExample));
+        window.Show();
+    }<br /><br />    void OnGUI()
+    {
+        obj = <a href="EditorGUI.ObjectField.html">EditorGUI.ObjectField</a>(new <a href="Rect.html">Rect</a>(3, 3, position.width - 6, 20), "Find Dependency", obj, typeof(<a href="GameObject.html">GameObject</a>)) as <a href="GameObject.html">GameObject</a>;<br /><br />        if (obj)
+        {
+            Object[] roots = new Object[] { obj };<br /><br />            if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(3, 25, position.width - 6, 20), "Check Dependencies"))
+                <a href="Selection-objects.html">Selection.objects</a> = <a href="EditorUtility.CollectDependencies.html">EditorUtility.CollectDependencies</a>(roots);
+        }
+        else
+            <a href="EditorGUI.LabelField.html">EditorGUI.LabelField</a>(new <a href="Rect.html">Rect</a>(3, 25, position.width - 6, 20), "Missing:", "Select an object first");
+    }<br /><br />    void OnInspectorUpdate()
+    {
+        Repaint();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

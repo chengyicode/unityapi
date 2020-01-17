@@ -1,0 +1,40 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: TestTools.Coverage.ResetFor</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="TestTools.Coverage.html">Coverage</a>.ResetFor</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">ResetFor</span>(MethodBase <span class="sig-kw">method</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">method</td><td class="desc"></td><td class="desc1">The method.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Resets the coverage data for the specified method.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.TestTools;
+using System.Reflection;
+using System;<br /><br />// A simple test class to get coverage information for.
+public class CoverageClass
+{
+    public bool CoveredMethod1()
+    {
+        return true;
+    }<br /><br />    public bool CoveredMethod2()
+    {
+        return false;
+    }
+}
+public class CoverageExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        // Create an instance of the test class and call the test methods
+        // to make sure the class has had some coverage.
+        CoverageClass coverageClasss = new CoverageClass();
+        coverageClasss.CoveredMethod1();
+        coverageClasss.CoveredMethod2();<br /><br />        // Use reflection to get the MethodBase for CoverageClass.CoveredMethod2
+        MethodBase coveredMethodBase = typeof(CoverageClass).GetMethod("CoveredMethod2");<br /><br />        // Reset the coverage for CoveredMethod2
+        <a href="TestTools.Coverage.ResetFor.html">Coverage.ResetFor</a>(coveredMethodBase);<br /><br />        // Now get the coverage stats for the CoveredMethod2.
+        // Because coverage for CoveredMethod2 has been reset, the log
+        // will show that the none of the method's sequence points
+        // have been covered.
+        <a href="TestTools.CoveredMethodStats.html">CoveredMethodStats</a> stats = <a href="TestTools.Coverage.GetStatsFor.html">Coverage.GetStatsFor</a>(coveredMethodBase);<br /><br />        <a href="Debug.Log.html">Debug.Log</a>("Method Name: " + stats.method.ToString());
+        <a href="Debug.Log.html">Debug.Log</a>("Method has " + stats.totalSequencePoints + " sequence points");
+        int coveredSequencePoints = stats.totalSequencePoints - stats.uncoveredSequencePoints;
+        <a href="Debug.Log.html">Debug.Log</a>("of which " + coveredSequencePoints + " were covered.");
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

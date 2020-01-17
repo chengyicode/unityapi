@@ -1,0 +1,44 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: RenderSettings.customReflection</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="RenderSettings.html">RenderSettings</a>.customReflection</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Cubemap.html">Cubemap</a> <span class="sig-kw">customReflection</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Custom specular reflection cubemap.</p></div><div class="subsection"><p>Specifies a cubemap for use as a default specular reflection.<br /><br />See Also: <a href="RenderSettings-defaultReflectionMode.html">defaultReflectionMode</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />// This example creates and uses a real-time Reflection Probe to update a <a href="Cubemap.html">Cubemap</a>. The <a href="Cubemap.html">Cubemap</a> is then used as a default specular reflection.
+public class UpdateDefaultReflection : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private <a href="ReflectionProbe.html">ReflectionProbe</a> probeComponent = null;
+    private <a href="Cubemap.html">Cubemap</a> cubemap = null;
+    private int renderId = -1;<br /><br />    void Start()
+    {
+        <a href="GameObject.html">GameObject</a> probeGameObject = new <a href="GameObject.html">GameObject</a>("Default Reflection Probe");<br /><br />        // Use a location such that the new Reflection Probe will not interfere with other Reflection Probes in the <a href="SceneManagement.Scene.html">Scene</a>.
+        probeGameObject.transform.position = new <a href="Vector3.html">Vector3</a>(0, -1000, 0);<br /><br />        // Create a Reflection Probe that only contains the <a href="Skybox.html">Skybox</a>. The <a href="Experimental.PlayerLoop.Update.html">Update</a> function controls the Reflection Probe refresh.
+        probeComponent = probeGameObject.AddComponent&lt;<a href="ReflectionProbe.html">ReflectionProbe</a>&gt;() as <a href="ReflectionProbe.html">ReflectionProbe</a>;
+        probeComponent.resolution = 256;
+        probeComponent.size = new <a href="Vector3.html">Vector3</a>(1, 1, 1);
+        probeComponent.cullingMask = 0;
+        probeComponent.clearFlags = UnityEngine.Rendering.ReflectionProbeClearFlags.Skybox;
+        probeComponent.mode = UnityEngine.Rendering.ReflectionProbeMode.Realtime;
+        probeComponent.refreshMode = UnityEngine.Rendering.ReflectionProbeRefreshMode.ViaScripting;
+        probeComponent.timeSlicingMode = UnityEngine.Rendering.ReflectionProbeTimeSlicingMode.NoTimeSlicing;<br /><br />        // A cubemap is used as a default specular reflection.
+        cubemap = new <a href="Cubemap.html">Cubemap</a>(probeComponent.resolution, probeComponent.hdr ? <a href="TextureFormat.RGBAHalf.html">TextureFormat.RGBAHalf</a> : <a href="TextureFormat.RGBA32.html">TextureFormat.RGBA32</a>, true);
+    }<br /><br />    // The <a href="Experimental.PlayerLoop.Update.html">Update</a> function refreshes the Reflection Probe and copies the result to the default specular reflection <a href="Cubemap.html">Cubemap</a>.
+    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        // The texture associated with the real-time Reflection Probe is a render target and <a href="RenderSettings-customReflection.html">RenderSettings.customReflection</a> is a <a href="Cubemap.html">Cubemap</a>. We have to check the support if copying from render targets to Textures is supported.
+        if ((<a href="SystemInfo-copyTextureSupport.html">SystemInfo.copyTextureSupport</a> &amp; UnityEngine.Rendering.CopyTextureSupport.RTToTexture) != 0)
+        {
+            // Wait until previous RenderProbe is finished before we refresh the Reflection Probe again.
+            // renderId is a token used to figure out when the refresh of a Reflection Probe is finished. The refresh of a Reflection Probe can take mutiple frames when time-slicing is used.
+            if (renderId == -1 || probeComponent.IsFinishedRendering(renderId))
+            {
+                if (probeComponent.IsFinishedRendering(renderId))
+                {
+                    // After the previous RenderProbe is finished, we copy the probe's texture to the cubemap and set it as a custom reflection in <a href="RenderSettings.html">RenderSettings</a>.
+                    <a href="Graphics.CopyTexture.html">Graphics.CopyTexture</a>(probeComponent.texture, cubemap as <a href="Texture.html">Texture</a>);<br /><br />                    <a href="RenderSettings-customReflection.html">RenderSettings.customReflection</a> = cubemap;
+                    <a href="RenderSettings-defaultReflectionMode.html">RenderSettings.defaultReflectionMode</a> = UnityEngine.Rendering.DefaultReflectionMode.Custom;
+                }<br /><br />                renderId = probeComponent.RenderProbe();
+            }
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

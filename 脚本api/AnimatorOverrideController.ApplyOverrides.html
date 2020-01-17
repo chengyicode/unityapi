@@ -1,0 +1,48 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AnimatorOverrideController.ApplyOverrides</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="AnimatorOverrideController.html">AnimatorOverrideController</a>.ApplyOverrides</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">ApplyOverrides</span>(IList&lt;KeyValuePair&lt;AnimationClip,AnimationClip&gt;&gt; <span class="sig-kw">overrides</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">overrides</td><td class="desc"></td><td class="desc1">Overrides list to apply.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Applies the list of overrides on this Animator Override Controller.</p></div><div class="subsection"><p>This function should be used as soon as you need to override more than two Animation Clips in the same frame. The function will notify the Animator to update all the internal bindings after processing the whole list.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections.Generic;<br /><br />public class AnimationClipOverrides : List&lt;KeyValuePair&lt;<a href="AnimationClip.html">AnimationClip</a>, <a href="AnimationClip.html">AnimationClip</a>&gt;&gt;
+{
+    public AnimationClipOverrides(int capacity) : base(capacity) {}<br /><br />    public <a href="AnimationClip.html">AnimationClip</a> this[string name]
+    {
+        get { return this.Find(x =&gt; x.Key.name.Equals(name)).Value; }
+        set
+        {
+            int index = this.FindIndex(x =&gt; x.Key.name.Equals(name));
+            if (index != -1)
+                this[index] = new KeyValuePair&lt;<a href="AnimationClip.html">AnimationClip</a>, <a href="AnimationClip.html">AnimationClip</a>&gt;(this[index].Key, value);
+        }
+    }
+}<br /><br />public class Weapon
+{
+    public <a href="AnimationClip.html">AnimationClip</a> singleAttack;
+    public <a href="AnimationClip.html">AnimationClip</a> comboAttack;
+    public <a href="AnimationClip.html">AnimationClip</a> dashAttack;
+    public <a href="AnimationClip.html">AnimationClip</a> smashAttack;
+}<br /><br />public class SwapWeapon : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public Weapon[] weapons;<br /><br />    protected <a href="Animator.html">Animator</a> animator;
+    protected <a href="AnimatorOverrideController.html">AnimatorOverrideController</a> animatorOverrideController;<br /><br />    protected int weaponIndex;<br /><br />    protected AnimationClipOverrides clipOverrides;
+    public void Start()
+    {
+        animator = GetComponent&lt;<a href="Animator.html">Animator</a>&gt;();
+        weaponIndex = 0;<br /><br />        animatorOverrideController = new <a href="AnimatorOverrideController.html">AnimatorOverrideController</a>(animator.runtimeAnimatorController);
+        animator.runtimeAnimatorController = animatorOverrideController;<br /><br />        clipOverrides = new AnimationClipOverrides(animatorOverrideController.overridesCount);
+        animatorOverrideController.GetOverrides(clipOverrides);
+    }<br /><br />    public void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        if (<a href="Input.GetButtonDown.html">Input.GetButtonDown</a>("NextWeapon"))
+        {
+            weaponIndex = (weaponIndex + 1) % weapons.Length;
+            clipOverrides["SingleAttack"] = weapons[weaponIndex].singleAttack;
+            clipOverrides["ComboAttack"] = weapons[weaponIndex].comboAttack;
+            clipOverrides["DashAttack"] = weapons[weaponIndex].dashAttack;
+            clipOverrides["SmashAttack"] = weapons[weaponIndex].smashAttack;
+            animatorOverrideController.ApplyOverrides(clipOverrides);
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

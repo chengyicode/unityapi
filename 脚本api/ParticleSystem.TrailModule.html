@@ -1,0 +1,39 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: TrailModule</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">TrailModule</h1><div class="clear"></div><p class="cl mb0 left mr10">struct in
+          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.ParticleSystemModule.html" class="cl">UnityEngine.ParticleSystemModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-ParticleSystem.html' title='Go to ParticleSystem Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Access the Particle System trails module.</p></div><div class="subsection"><p>This module adds trails to your particles. Trails can either be left in the wake of particles as they move, or can connect each particle in the system together.<br /><br />See Also: <a href="ParticleSystem.html">ParticleSystem</a>, <a href="ParticleSystem-trails.html">ParticleSystem.trails</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        <a href="ParticleSystem.html">ParticleSystem</a> ps = GetComponent&lt;<a href="ParticleSystem.html">ParticleSystem</a>&gt;();
+        var trails = ps.trails;
+        trails.enabled = true;
+        trails.ratio = 0.5f;
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="ParticleSystem.TrailModule-attachRibbonsToTransform.html">attachRibbonsToTransform</a></td><td class="desc"></td><td class="desc1">Adds an extra position to each ribbon, connecting it to the location of the Transform Component.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ParticleSystem.TrailModule-colorOverLifetime.html">colorOverLifetime</a></td><td class="desc"></td><td class="desc1">The gradient controlling the trail colors during the lifetime of the attached particle.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ParticleSystem.TrailModule-colorOverTrail.html">colorOverTrail</a></td><td class="desc"></td><td class="desc1">The gradient controlling the trail colors over the length of the trail.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ParticleSystem.TrailModule-dieWithParticles.html">dieWithParticles</a></td><td class="desc"></td><td class="desc1">If enabled, Trails will disappear immediately when their owning particle dies. Otherwise, the trail will persist until all its points have naturally expired, based on its lifetime.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ParticleSystem.TrailModule-enabled.html">enabled</a></td><td class="desc"></td><td class="desc1">Enable/disable the Trail module.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ParticleSystem.TrailModule-generateLightingData.html">generateLightingData</a></td><td class="desc"></td><td class="desc1">Configures the trails to generate Normals and Tangents. With this data, Scene lighting can affect the trails via Normal Maps and the Unity Standard Shader, or your own custom-built Shaders.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ParticleSystem.TrailModule-inheritParticleColor.html">inheritParticleColor</a></td><td class="desc"></td><td class="desc1">Toggle whether the trail will inherit the particle color as its starting color.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ParticleSystem.TrailModule-lifetime.html">lifetime</a></td><td class="desc"></td><td class="desc1">The curve describing the trail lifetime, throughout the lifetime of the particle.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ParticleSystem.TrailModule-lifetimeMultiplier.html">lifetimeMultiplier</a></td><td class="desc"></td><td class="desc1">Change the lifetime multiplier.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ParticleSystem.TrailModule-minVertexDistance.html">minVertexDistance</a></td><td class="desc"></td><td class="desc1">Set the minimum distance each trail can travel before a new vertex is added to it.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ParticleSystem.TrailModule-mode.html">mode</a></td><td class="desc"></td><td class="desc1">Choose how particle trails are generated.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ParticleSystem.TrailModule-ratio.html">ratio</a></td><td class="desc"></td><td class="desc1">Choose what proportion of particles will receive a trail.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ParticleSystem.TrailModule-ribbonCount.html">ribbonCount</a></td><td class="desc"></td><td class="desc1">Select how many lines to create through the Particle System.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ParticleSystem.TrailModule-shadowBias.html">shadowBias</a></td><td class="desc"></td><td class="desc1">Apply a shadow bias to prevent self-shadowing artifacts. The specified value is the proportion of the trail width at each segment.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ParticleSystem.TrailModule-sizeAffectsLifetime.html">sizeAffectsLifetime</a></td><td class="desc"></td><td class="desc1">Set whether the particle size will act as a multiplier on top of the trail lifetime.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ParticleSystem.TrailModule-sizeAffectsWidth.html">sizeAffectsWidth</a></td><td class="desc"></td><td class="desc1">Set whether the particle size will act as a multiplier on top of the trail width.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ParticleSystem.TrailModule-splitSubEmitterRibbons.html">splitSubEmitterRibbons</a></td><td class="desc"></td><td class="desc1">When used on a sub emitter, ribbons will connect particles from each parent particle independently.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ParticleSystem.TrailModule-textureMode.html">textureMode</a></td><td class="desc"></td><td class="desc1">Choose whether the U coordinate of the trail texture is tiled or stretched.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ParticleSystem.TrailModule-widthOverTrail.html">widthOverTrail</a></td><td class="desc"></td><td class="desc1">The curve describing the width, of each trail point.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ParticleSystem.TrailModule-widthOverTrailMultiplier.html">widthOverTrailMultiplier</a></td><td class="desc"></td><td class="desc1">Change the width multiplier.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ParticleSystem.TrailModule-worldSpace.html">worldSpace</a></td><td class="desc"></td><td class="desc1">Drop new trail points in world space, regardless of Particle System Simulation Space.</td></tr>
+    </table></div></div></div></div></body></html>

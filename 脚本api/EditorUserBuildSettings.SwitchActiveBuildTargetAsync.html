@@ -1,0 +1,26 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorUserBuildSettings.SwitchActiveBuildTargetAsync</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorUserBuildSettings.html">EditorUserBuildSettings</a>.SwitchActiveBuildTargetAsync</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">SwitchActiveBuildTargetAsync</span>(<a href="BuildTargetGroup.html">BuildTargetGroup</a> <span class="sig-kw">targetGroup</span>,
+<a href="BuildTarget.html">BuildTarget</a> <span class="sig-kw">target</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">targetGroup</td><td class="desc"></td><td class="desc1">Target build platform.</td></tr><tr><td class="name lbl">target</td><td class="desc"></td><td class="desc1">Build target group.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>bool</strong>
+        True if the build target was successfully switched, false otherwise (for example, if license checks fail, files are missing, or if the user has cancelled the operation via the UI).
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Select a new build target to be active during the next Editor update.</p></div><div class="subsection"><p>This function switches to the passed build target as the active build during the next Editor update. It has the same effect as changing the build target via the Build Player dialog in the Editor.<br /><br />All script files and Assets that are affected by the current platform settings, are recompiled or reimported on the next Editor update when you change the currently active build target that this function returns. See <a href="EditorUserBuildSettings.SwitchActiveBuildTargetAsync.html">SwitchActiveBuildTarget</a> on how to immediately import Assets.<br /><br />
+If the given target is a standalone target, calling SwitchActiveBuildTarget will also affect <a href="EditorUserBuildSettings-selectedStandaloneTarget.html">EditorUserBuildSettings.selectedStandaloneTarget</a>.<br /><br />
+<strong><em>Note:</em></strong> This function is not available when running the Editor in <a href="../Manual/CommandLineArguments.html">batch mode</a> because changing the build target requires recompiling script code for the given target which cannot be done while your script code is executing. This is not a problem in in the Editor as the operation is deferred. However, batch mode will immediately exit after having executed the designated script code. Use the <a href="../Manual/CommandLineArguments.html">buildTarget</a> command-line switch to specify a build target from batch mode.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEditor.Build;<br /><br />public class SwitchPlatformExample : <a href="Build.IActiveBuildTargetChanged.html">IActiveBuildTargetChanged</a>
+{
+    [<a href="MenuItem.html">MenuItem</a>("Example/<a href="PlayerSettings.Switch.html">Switch</a> Platform")]
+    public static void PerformSwitch()
+    {
+        // <a href="PlayerSettings.Switch.html">Switch</a> to Windows standalone build.
+        <a href="EditorUserBuildSettings.SwitchActiveBuildTargetAsync.html">EditorUserBuildSettings.SwitchActiveBuildTargetAsync</a>(<a href="BuildTargetGroup.Standalone.html">BuildTargetGroup.Standalone</a>, <a href="BuildTarget.StandaloneWindows.html">BuildTarget.StandaloneWindows</a>);
+    }<br /><br />    public int callbackOrder { get { return 0; } }
+    public void OnActiveBuildTargetChanged(<a href="BuildTarget.html">BuildTarget</a> previousTarget, <a href="BuildTarget.html">BuildTarget</a> newTarget)
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("Active platform is now " + newTarget);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

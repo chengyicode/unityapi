@@ -1,0 +1,39 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Physics.IgnoreLayerCollision</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Physics.html">Physics</a>.IgnoreLayerCollision</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">IgnoreLayerCollision</span>(int <span class="sig-kw">layer1</span>,
+int <span class="sig-kw">layer2</span>,
+bool <span class="sig-kw">ignore</span> = true);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Makes the collision detection system ignore all collisions between any collider in <code class="varname">layer1</code> and any collider in <code class="varname">layer2</code>.<br /><br />Note that IgnoreLayerCollision will reset the trigger state of affected colliders, so you might receive OnTriggerExit and OnTriggerEnter messages in response to calling this.</p></div><div class="subsection"><p>You can set the default values for your project for any layer combinations in the Physics inspector.<br /><br />See Also: <a href="Physics.GetIgnoreLayerCollision.html">Physics.GetIgnoreLayerCollision</a>,<a href="Physics.IgnoreCollision.html">Physics.IgnoreCollision</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//Attach this script to a <a href="GameObject.html">GameObject</a> and make sure it has a <a href="Rigidbody.html">Rigidbody</a> component
+//Make a second <a href="GameObject.html">GameObject</a> with a <a href="Collider.html">Collider</a> to test collisions on. Make sure both GameObjects are the same on the y and z axes<br /><br />//This script stops collisions between two layers (in this case layers 0 and 8). Set up a new layer in the Inspector window by clicking the Layer option.
+//Next click “Add Layer”. Then, assign this layer to the second <a href="GameObject.html">GameObject</a>.<br /><br />//In Play <a href="Scripting.GarbageCollector.Mode.html">Mode</a>, press the left and right keys to move the <a href="Rigidbody.html">Rigidbody</a> to the left and right. If your first <a href="GameObject.html">GameObject</a> is in layer 0 and your second <a href="GameObject.html">GameObject</a> is in layer 8, the collision is ignored.<br /><br />
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    //Set the speed number in the Inspector window
+    public float m_Speed;
+    <a href="Rigidbody.html">Rigidbody</a> m_Rigidbody;<br /><br />    void Start()
+    {
+        //Fetch the <a href="Rigidbody.html">Rigidbody</a> component from the <a href="GameObject.html">GameObject</a>
+        m_Rigidbody = GetComponent&lt;<a href="Rigidbody.html">Rigidbody</a>&gt;();
+        //Ignore the collisions between layer 0 (default) and layer 8 (custom layer you set in Inspector window)
+        <a href="Physics.IgnoreLayerCollision.html">Physics.IgnoreLayerCollision</a>(0, 8);
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        //Press right to move the <a href="GameObject.html">GameObject</a> to the right. Make sure you set the speed high in the Inspector window.
+        if (<a href="Input.GetKey.html">Input.GetKey</a>(<a href="KeyCode.RightArrow.html">KeyCode.RightArrow</a>))
+        {
+            m_Rigidbody.AddForce(<a href="Vector3-right.html">Vector3.right</a> * m_Speed);
+        }<br /><br />        //Press the left arrow key to move the <a href="GameObject.html">GameObject</a> to the left
+        if (<a href="Input.GetKey.html">Input.GetKey</a>(<a href="KeyCode.LeftArrow.html">KeyCode.LeftArrow</a>))
+        {
+            m_Rigidbody.AddForce(<a href="Vector3-left.html">Vector3.left</a> * m_Speed);
+        }
+    }<br /><br />    //Detect when there is a collision
+    void OnCollisionStay(<a href="Collision.html">Collision</a> collide)
+    {
+        //Output the name of the <a href="GameObject.html">GameObject</a> you collide with
+        <a href="Debug.Log.html">Debug.Log</a>("I hit the <a href="GameObject.html">GameObject</a> : " + collide.gameObject.name);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

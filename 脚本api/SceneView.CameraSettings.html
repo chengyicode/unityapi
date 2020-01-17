@@ -1,0 +1,71 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: CameraSettings</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">CameraSettings</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEditor</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEditor.html" class="cl">UnityEditor</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Use this class to set <a href="SceneView.html">SceneView</a> Camera properties.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Create a folder (right click in the Assets directory, click <strong>Create</strong>&gt;<strong>Folder</strong>)
+// and name it <em>Editor</em> if one doesn't exist already. Create a new C# script called <em>CustomSettings</em>
+// and place it in that folder.<br /><br />// This script creates a new menu item <strong>Edit</strong>&gt;<strong>SceneView Settings</strong>&gt;<strong>Update Camera Settings</strong> in the main menu.
+// Use it to update the <a href="Camera.html">Camera</a> settings in the <a href="SceneManagement.Scene.html">Scene</a> view.<br /><br />using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class CustomSettings
+{
+    [<a href="MenuItem.html">MenuItem</a>("Edit/<a href="SceneView.html">SceneView</a> <a href="CameraEditor.Settings.html">Settings</a>/<a href="Experimental.PlayerLoop.Update.html">Update</a> <a href="Camera.html">Camera</a> <a href="CameraEditor.Settings.html">Settings</a>")]
+    static void UpdateCameraSettings()
+    {
+        <a href="SceneView.CameraSettings.html">SceneView.CameraSettings</a> settings = new <a href="SceneView.CameraSettings.html">SceneView.CameraSettings</a>();
+        settings.accelerationEnabled = false;
+        settings.speedMin = 1f;
+        settings.speedMax = 10f;
+        settings.speed = 5f;
+        settings.easingEnabled = true;
+        settings.easingDuration = 0.6f;
+        settings.dynamicClip = false;
+        settings.fieldOfView = 120f;
+        settings.nearClip = 0.01f;
+        settings.farClip = 1000f;
+        settings.occlusionCulling = true;
+        <a href="SceneView.html">SceneView</a> sceneView = <a href="SceneView-lastActiveSceneView.html">SceneView.lastActiveSceneView</a>;
+        sceneView.cameraSettings = settings;
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SceneView.CameraSettings-accelerationEnabled.html">accelerationEnabled</a></td><td class="desc"></td><td class="desc1">Enables Camera movement acceleration in the SceneView. This makes the Camera accelerate for the duration of movement.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SceneView.CameraSettings-dynamicClip.html">dynamicClip</a></td><td class="desc"></td><td class="desc1">When enabled, the SceneView Camera's near and far clipping planes are calculated relative to the viewport size of the Scene. When disabled, nearClip and farClip are used instead.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SceneView.CameraSettings-easingDuration.html">easingDuration</a></td><td class="desc"></td><td class="desc1">How long it takes for the speed of the SceneView Camera to accelerate to its initial full speed. Measured in seconds. Valid values are between [0.1, 2].</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SceneView.CameraSettings-easingEnabled.html">easingEnabled</a></td><td class="desc"></td><td class="desc1">Enables Camera movement easing in the SceneView. This makes the Camera ease in when it starts moving, and ease out when it stops.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SceneView.CameraSettings-farClip.html">farClip</a></td><td class="desc"></td><td class="desc1">The furthest point from the SceneView Camera that drawing occurs. The valid minimum value is 0.02.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SceneView.CameraSettings-fieldOfView.html">fieldOfView</a></td><td class="desc"></td><td class="desc1">The height of the SceneView Camera's view angle. Measured in degrees vertically, or along the local Y axis.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SceneView.CameraSettings-nearClip.html">nearClip</a></td><td class="desc"></td><td class="desc1">The closest point to the SceneView Camera where drawing occurs. The valid minimum value is 0.01.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SceneView.CameraSettings-occlusionCulling.html">occlusionCulling</a></td><td class="desc"></td><td class="desc1">Enables occlusion culling in the SceneView. This prevents Unity from rendering GameObjects that the Camera cannot see because they are hidden by other GameObjects.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SceneView.CameraSettings-speed.html">speed</a></td><td class="desc"></td><td class="desc1">The speed of the SceneView Camera.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SceneView.CameraSettings-speedMax.html">speedMax</a></td><td class="desc"></td><td class="desc1">The maximum speed of the SceneView Camera. Valid values are between [0.02, 99].</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SceneView.CameraSettings-speedMin.html">speedMin</a></td><td class="desc"></td><td class="desc1">The minimum speed of the SceneView Camera. Valid values are between [0.01, 98].</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SceneView.CameraSettings-speedNormalized.html">speedNormalized</a></td><td class="desc"></td><td class="desc1">The normalized speed of the SceneView Camera, relative to the current minimum/maximum range. Valid values are between [0, 1].</td></tr>
+    </table></div><div class="subsection"><h2>Constructors</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SceneView.CameraSettings-ctor.html">SceneView.CameraSettings</a></td><td class="desc"></td><td class="desc1">Create a new CameraSettings object.</td></tr>
+    </table></div></div></div></div></body></html>

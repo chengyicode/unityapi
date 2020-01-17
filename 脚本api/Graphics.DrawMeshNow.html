@@ -1,0 +1,30 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Graphics.DrawMeshNow</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Graphics.html">Graphics</a>.DrawMeshNow</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">DrawMeshNow</span>(<a href="Mesh.html">Mesh</a> <span class="sig-kw">mesh</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">position</span>,
+<a href="Quaternion.html">Quaternion</a> <span class="sig-kw">rotation</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">DrawMeshNow</span>(<a href="Mesh.html">Mesh</a> <span class="sig-kw">mesh</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">position</span>,
+<a href="Quaternion.html">Quaternion</a> <span class="sig-kw">rotation</span>,
+int <span class="sig-kw">materialIndex</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">DrawMeshNow</span>(<a href="Mesh.html">Mesh</a> <span class="sig-kw">mesh</span>,
+<a href="Matrix4x4.html">Matrix4x4</a> <span class="sig-kw">matrix</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">DrawMeshNow</span>(<a href="Mesh.html">Mesh</a> <span class="sig-kw">mesh</span>,
+<a href="Matrix4x4.html">Matrix4x4</a> <span class="sig-kw">matrix</span>,
+int <span class="sig-kw">materialIndex</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">mesh</td><td class="desc"></td><td class="desc1">The <a href="Mesh.html">Mesh</a> to draw.</td></tr><tr><td class="name lbl">position</td><td class="desc"></td><td class="desc1">Position of the mesh.</td></tr><tr><td class="name lbl">rotation</td><td class="desc"></td><td class="desc1">Rotation of the mesh.</td></tr><tr><td class="name lbl">matrix</td><td class="desc"></td><td class="desc1">Transformation matrix of the mesh (combines position, rotation and other transformations). Note that the mesh will not be displayed correctly if matrix has negative scale.</td></tr><tr><td class="name lbl">materialIndex</td><td class="desc"></td><td class="desc1">Subset of the mesh to draw.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Draw a mesh immediately.</p></div><div class="subsection"><p>This function will draw a given mesh immediately. Currently set shader and
+material (see <a href="Material.SetPass.html">Material.SetPass</a>) will be used.<br /><br />The mesh will be just drawn once,
+it won't be per-pixel lit and will not cast or receive realtime shadows. If you want
+full integration with lighting and shadowing, use <a href="Graphics.DrawMesh.html">Graphics.DrawMesh</a> instead.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">using UnityEngine;
+using System.Collections;<br /><br />// Attach this script to a <a href="Camera.html">Camera</a>
+public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a> {
+    public <a href="Mesh.html">Mesh</a> mesh;
+    public <a href="Material.html">Material</a> mat;
+    public void OnPostRender() {
+        // set first shader pass of the material
+        mat.SetPass(0);
+        // draw mesh at the origin
+        <a href="Graphics.DrawMeshNow.html">Graphics.DrawMeshNow</a>(mesh, <a href="Vector3-zero.html">Vector3.zero</a>, <a href="Quaternion-identity.html">Quaternion.identity</a>);
+    }
+}</pre>
+      </div><div class="subsection"><p>See Also: <a href="Graphics.DrawMesh.html">Graphics.DrawMesh</a>, <a href="Material.SetPass.html">Material.SetPass</a>.</p></div></div></div></div></body></html>

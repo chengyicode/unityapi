@@ -1,0 +1,18 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: QualitySettings.asyncUploadPersistentBuffer</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="QualitySettings.html">QualitySettings</a>.asyncUploadPersistentBuffer</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-QualitySettings.html' title='Go to QualitySettings Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">asyncUploadPersistentBuffer</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>This flag controls if the async upload pipeline's ring buffer remains allocated when there are no active loading operations.
+Set this to true, to make the ring buffer allocation persist after all upload operations have completed.
+If you have issues with excessive memory usage, you can set this to false. This means you reduce the runtime memory footprint, but memory fragmentation can occur.
+The default value is true.</p></div><div class="subsection"><p>See Also: <a href="../Manual/AsyncTextureUpload.html">Asynchronous Texture Upload</a>, <a href="../Manual/class-QualitySettings.html">Quality Settings</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+public class StartupExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        // The upload buffer will be deallocated when all uploads are complete.
+        <a href="QualitySettings-asyncUploadPersistentBuffer.html">QualitySettings.asyncUploadPersistentBuffer</a> = false;
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="../Manual/class-QualitySettings.html">Quality Settings</a>.</p></div></div></div></div></body></html>

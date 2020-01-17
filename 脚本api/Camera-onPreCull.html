@@ -1,0 +1,23 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Camera.onPreCull</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Camera.html">Camera</a>.onPreCull</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Camera.html' title='Go to Camera Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Camera.CameraCallback.html">Camera.CameraCallback</a> <span class="sig-kw">onPreCull</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Event that is fired before any camera starts culling.</p></div><div class="subsection"><p>See Also: <a href="Camera.CameraCallback.html">CameraCallback</a>, <a href="Camera-onPreRender.html">onPreRender</a>, <a href="Camera-onPostRender.html">onPostRender</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // callback to be called before any culling
+    public void MyPreCull(<a href="Camera.html">Camera</a> cam)
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("PreCull: " + cam.gameObject.name);
+    }<br /><br />    public void OnEnable()
+    {
+        // register the callback when enabling object
+        <a href="Camera-onPreCull.html">Camera.onPreCull</a> += MyPreCull;
+    }<br /><br />    public void OnDisable()
+    {
+        // remove the callback when disabling object
+        <a href="Camera-onPreCull.html">Camera.onPreCull</a> -= MyPreCull;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: SocialPlatforms.ILocalUser.Authenticate</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="SocialPlatforms.ILocalUser.html">ILocalUser</a>.Authenticate</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">Authenticate</span>(Action&lt;bool&gt; <span class="sig-kw">callback</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">Authenticate</span>(Action&lt;bool,string&gt; <span class="sig-kw">callback</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">callback</td><td class="desc"></td><td class="desc1">Callback that is called whenever the authentication operation is finished. The first parameter is a Boolean identifying whether the authentication operation was successful. The optional second argument contains a string identifying any errors (if available) if the operation was unsuccessful.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Authenticate the local user to the current active Social API implementation and fetch his profile data.</p></div><div class="subsection"><p>This should be done before any other calls into the API. Depending on the platform, this might trigger a potentially blocking dialog for providing login details.<br /><br />On certain platforms (including but not limited to iOS and tvOS), the callback is only invoked on the first call to Authenticate(). Subsequent calls to Authenticate() on such platforms results in no callback being triggered. This can occur if, for example, the user or the OS cancels the authentication operation before it has completed. Please ensure you test for this situation.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.SocialPlatforms;
+using System.Collections;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        Social.localUser.Authenticate(success =&gt; {
+            if (success)
+            {
+                <a href="Debug.Log.html">Debug.Log</a>("Authentication successful");
+                string userInfo = "Username: " + Social.localUser.userName +
+                    "\nUser ID: " + Social.localUser.id +
+                    "\nIsUnderage: " + Social.localUser.underage;
+                <a href="Debug.Log.html">Debug.Log</a>(userInfo);
+            }
+            else
+                <a href="Debug.Log.html">Debug.Log</a>("Authentication failed");
+        });
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

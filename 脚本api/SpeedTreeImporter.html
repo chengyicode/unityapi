@@ -1,0 +1,182 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: SpeedTreeImporter</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">SpeedTreeImporter</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEditor</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Inherits from:<a href="AssetImporter.html" class="cl">AssetImporter</a></p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEditor.html" class="cl">UnityEditor</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-SpeedTreeImporter.html' title='Go to SpeedTreeImporter Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>AssetImportor for importing SpeedTree model assets.</p></div><div class="subsection"><h2>Static Properties</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SpeedTreeImporter-windQualityNames.html">windQualityNames</a></td><td class="desc"></td><td class="desc1">Gets an array of name strings for wind quality value.</td></tr>
+    </table></div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SpeedTreeImporter-alphaTestRef.html">alphaTestRef</a></td><td class="desc"></td><td class="desc1">Gets and sets a default alpha test reference values.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SpeedTreeImporter-animateCrossFading.html">animateCrossFading</a></td><td class="desc"></td><td class="desc1">Indicates if the cross-fade LOD transition, applied to the last mesh LOD and the billboard, should be animated.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SpeedTreeImporter-bestWindQuality.html">bestWindQuality</a></td><td class="desc"></td><td class="desc1">Returns the best-possible wind quality on this asset (configured in SpeedTree modeler).</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SpeedTreeImporter-billboardTransitionCrossFadeWidth.html">billboardTransitionCrossFadeWidth</a></td><td class="desc"></td><td class="desc1">Proportion of the last 3D mesh LOD region width which is used for cross-fading to billboard tree.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SpeedTreeImporter-castShadows.html">castShadows</a></td><td class="desc"></td><td class="desc1">Gets and sets an array of booleans to enable shadow casting for each LOD.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SpeedTreeImporter-defaultBillboardShader.html">defaultBillboardShader</a></td><td class="desc"></td><td class="desc1">Returns the default SpeedTree billboard shader for the active render pipeline, or null if the asset is a SpeedTree v8 asset.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SpeedTreeImporter-defaultShader.html">defaultShader</a></td><td class="desc"></td><td class="desc1">Returns the default SpeedTree shader for the active render pipeline (either v7 or v8 according to the asset version).</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SpeedTreeImporter-enableBump.html">enableBump</a></td><td class="desc"></td><td class="desc1">Gets and sets an array of booleans to enable normal mapping for each LOD.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SpeedTreeImporter-enableHue.html">enableHue</a></td><td class="desc"></td><td class="desc1">Gets and sets an array of booleans to enable Hue variation effect for each LOD.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SpeedTreeImporter-enableSmoothLODTransition.html">enableSmoothLODTransition</a></td><td class="desc"></td><td class="desc1">Enables smooth LOD transitions.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SpeedTreeImporter-enableSubsurface.html">enableSubsurface</a></td><td class="desc"></td><td class="desc1">Gets and sets an array of booleans to enable Subsurface effect for each LOD (affects only SpeedTree v8 assets).</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SpeedTreeImporter-fadeOutWidth.html">fadeOutWidth</a></td><td class="desc"></td><td class="desc1">Proportion of the billboard LOD region width which is used for fading out the billboard.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SpeedTreeImporter-hasBillboard.html">hasBillboard</a></td><td class="desc"></td><td class="desc1">Tells if there is a billboard LOD.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SpeedTreeImporter-hasImported.html">hasImported</a></td><td class="desc"></td><td class="desc1">Tells if the SPM file has been previously imported.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SpeedTreeImporter-hueVariation.html">hueVariation</a></td><td class="desc"></td><td class="desc1">Gets and sets a default Hue variation color and amount (in alpha).</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SpeedTreeImporter-isV8.html">isV8</a></td><td class="desc"></td><td class="desc1">Returns true if the asset is a SpeedTree v8 asset.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SpeedTreeImporter.LODHeights.html">LODHeights</a></td><td class="desc"></td><td class="desc1">Gets and sets an array of floats of each LOD's screen height value.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SpeedTreeImporter-mainColor.html">mainColor</a></td><td class="desc"></td><td class="desc1">Gets and sets a default main color.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SpeedTreeImporter-materialFolderPath.html">materialFolderPath</a></td><td class="desc"></td><td class="desc1">Returns the folder path where generated materials will be placed in.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SpeedTreeImporter-materialLocation.html">materialLocation</a></td><td class="desc"></td><td class="desc1">Material import location options.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SpeedTreeImporter-receiveShadows.html">receiveShadows</a></td><td class="desc"></td><td class="desc1">Gets and sets an array of booleans to enable shadow receiving for each LOD.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SpeedTreeImporter-scaleFactor.html">scaleFactor</a></td><td class="desc"></td><td class="desc1">How much to scale the tree model compared to what is in the .spm file.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SpeedTreeImporter-useLightProbes.html">useLightProbes</a></td><td class="desc"></td><td class="desc1">Gets and sets an array of booleans to enable Light Probe lighting for each LOD.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SpeedTreeImporter-windQualities.html">windQualities</a></td><td class="desc"></td><td class="desc1">Gets and sets an array of integers of the wind qualities on each LOD. Values will be clampped by bestWindQuality internally.</td></tr>
+    </table></div><div class="subsection"><h2>Constructors</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SpeedTreeImporter-ctor.html">SpeedTreeImporter</a></td><td class="desc"></td><td class="desc1">Construct a new SpeedTreeImporter object.</td></tr>
+    </table></div><div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SpeedTreeImporter.GenerateMaterials.html">GenerateMaterials</a></td><td class="desc"></td><td class="desc1">Generates all necessary materials under materialFolderPath. If Version Control is enabled please first check out the folder.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SpeedTreeImporter.SearchAndRemapMaterials.html">SearchAndRemapMaterials</a></td><td class="desc"></td><td class="desc1">Search the project for matching materials and use them instead of the internal materials.</td></tr>
+    </table></div><div class="subsection"><h2>Inherited Members   继承成员</h2>
+      
+      <div class="subsection"><h2>Properties   属性</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="AssetImporter-assetBundleName.html">assetBundleName</a></td><td class="desc"></td><td class="desc1">Get or set the AssetBundle name.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="AssetImporter-assetBundleVariant.html">assetBundleVariant</a></td><td class="desc"></td><td class="desc1">Get or set the AssetBundle variant.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="AssetImporter-assetPath.html">assetPath</a></td><td class="desc"></td><td class="desc1">The path name of the asset for this importer. (Read Only)</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="AssetImporter-importSettingsMissing.html">importSettingsMissing</a></td><td class="desc"></td><td class="desc1">The value is true when no meta file is provided with the imported asset.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="AssetImporter-userData.html">userData</a></td><td class="desc"></td><td class="desc1">Get or set any user data.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Object-hideFlags.html">hideFlags</a></td><td class="desc"></td><td class="desc1">Should the object be hidden, saved with the Scene or modifiable by the user?</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Object-name.html">name</a></td><td class="desc"></td><td class="desc1">The name of the object.</td></tr>
+      </table></div>
+      
+      
+      
+      <div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="AssetImporter.AddRemap.html">AddRemap</a></td><td class="desc"></td><td class="desc1">Map a sub-asset from an imported asset (such as an FBX file) to an external Asset of the same type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="AssetImporter.GetExternalObjectMap.html">GetExternalObjectMap</a></td><td class="desc"></td><td class="desc1">Gets a copy of the external object map used by the AssetImporter.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="AssetImporter.RemoveRemap.html">RemoveRemap</a></td><td class="desc"></td><td class="desc1">Removes an item from the map of external objects.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="AssetImporter.SaveAndReimport.html">SaveAndReimport</a></td><td class="desc"></td><td class="desc1">Save asset importer settings if asset importer is dirty.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="AssetImporter.SetAssetBundleNameAndVariant.html">SetAssetBundleNameAndVariant</a></td><td class="desc"></td><td class="desc1">Set the AssetBundle name and variant.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="AssetImporter.SupportsRemappedAssetType.html">SupportsRemappedAssetType</a></td><td class="desc"></td><td class="desc1">Checks if the AssetImporter supports remapping the given asset type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Object.GetInstanceID.html">GetInstanceID</a></td><td class="desc"></td><td class="desc1">Returns the instance id of the object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Object.ToString.html">ToString</a></td><td class="desc"></td><td class="desc1">Returns the name of the object.</td></tr>
+      </table></div>
+      
+      <div class="subsection"><h2>Static Methods   静态方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="AssetImporter.GetAtPath.html">GetAtPath</a></td><td class="desc"></td><td class="desc1">Retrieves the asset importer for the asset at path.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Object.Destroy.html">Destroy</a></td><td class="desc"></td><td class="desc1">Removes a GameObject, component or asset.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Object.DestroyImmediate.html">DestroyImmediate</a></td><td class="desc"></td><td class="desc1">Destroys the object obj immediately. You are strongly recommended to use Destroy instead.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Object.DontDestroyOnLoad.html">DontDestroyOnLoad</a></td><td class="desc"></td><td class="desc1">Do not destroy the target Object when loading a new Scene.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectOfType.html">FindObjectOfType</a></td><td class="desc"></td><td class="desc1">Returns the first active loaded object of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectsOfType.html">FindObjectsOfType</a></td><td class="desc"></td><td class="desc1">Returns a list of all active loaded objects of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Object.Instantiate.html">Instantiate</a></td><td class="desc"></td><td class="desc1">Clones the object original and returns the clone.</td></tr>
+      </table></div>
+      <div class="subsection"><h2>Operators   运算符</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Object-operator_Object.html">bool</a></td><td class="desc"></td><td class="desc1">Does the object exist?</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Object-operator_ne.html">operator !=</a></td><td class="desc"></td><td class="desc1">Compares if two objects refer to a different object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Object-operator_eq.html">operator ==</a></td><td class="desc"></td><td class="desc1">Compares two object references to see if they refer to the same object.</td></tr>
+      </table></div>
+      
+      
+      
+    </div></div></div></div></body></html>

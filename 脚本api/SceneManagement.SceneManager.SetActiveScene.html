@@ -1,0 +1,56 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: SceneManagement.SceneManager.SetActiveScene</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="SceneManagement.SceneManager.html">SceneManager</a>.SetActiveScene</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">SetActiveScene</span>(<a href="SceneManagement.Scene.html">SceneManagement.Scene</a> <span class="sig-kw">scene</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">scene</td><td class="desc"></td><td class="desc1">The Scene to be set.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>bool</strong>
+        Returns false if the Scene is not loaded yet.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Set the Scene to be active.</p></div><div class="subsection"><p>The active Scene is the Scene which will be used as the target for new GameObjects instantiated by scripts and from what Scene the lighting settings are used. When you add a Scene additively (see <a href="SceneManagement.LoadSceneMode.Additive.html">LoadSceneMode.Additive</a>), the first Scene is still kept as the active Scene. Use this to switch the active Scene to the Scene you want as the target.<br /><br />There must always be one Scene marked as the active Scene. Note the active Scene has no impact on what Scenes are rendered.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Attach this script to a <a href="GameObject.html">GameObject</a>
+// Create 2 Buttons (<strong>Create</strong>&gt;<strong>UI</strong>&gt;<strong>Button</strong>)
+// Attach the 2 Buttons to your <a href="GameObject.html">GameObject</a>’s Inspector<br /><br />// This script allows you to load a second <a href="SceneManagement.Scene.html">Scene</a> as an Additive <a href="SceneManagement.Scene.html">Scene</a>. Click the first <a href="UIElements.Button.html">Button</a> (Load <a href="SceneManagement.Scene.html">Scene</a> <a href="UIElements.Button.html">Button</a>) to load the Additive <a href="SceneManagement.Scene.html">Scene</a>. Even though the second <a href="SceneManagement.Scene.html">Scene</a> loads, the first <a href="SceneManagement.Scene.html">Scene</a> remains the active <a href="SceneManagement.Scene.html">Scene</a>.
+// If you press the second <a href="UIElements.Button.html">Button</a> (Set Active <a href="UIElements.Button.html">Button</a>), it sets the second <a href="SceneManagement.Scene.html">Scene</a> as the active <a href="SceneManagement.Scene.html">Scene</a> (and outputs the current active <a href="SceneManagement.Scene.html">Scene</a> to the console)<br /><br />
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    bool m_SceneLoaded;
+    public <a href="UIElements.Button.html">Button</a> m_LoadSceneButton, m_SetActiveButton;<br /><br />    void Awake()
+    {
+        // Outputs the current active <a href="SceneManagement.Scene.html">Scene</a> to the console
+        <a href="Debug.Log.html">Debug.Log</a>("Active <a href="SceneManagement.Scene.html">Scene</a> : " + <a href="SceneManagement.SceneManager.GetActiveScene.html">SceneManager.GetActiveScene</a>().name);<br /><br />        // Check that this <a href="UIElements.Button.html">Button</a> exists
+        if (m_LoadSceneButton != null)
+        {
+            // Fetch the <a href="UIElements.Button.html">Button</a> from the Inspector. Make sure to set this in the Inspector window
+            <a href="UIElements.Button.html">Button</a> loadButton = m_LoadSceneButton.GetComponent&lt;<a href="UIElements.Button.html">Button</a>&gt;();<br /><br />            // Call the LoadScene2Button() function when this <a href="UIElements.Button.html">Button</a> is clicked
+            loadButton.onClick.AddListener(LoadSceneButton);
+        }<br /><br />        if (m_SetActiveButton != null)
+        {
+            <a href="UIElements.Button.html">Button</a> buttonTwo = m_SetActiveButton.GetComponent&lt;<a href="UIElements.Button.html">Button</a>&gt;();
+            buttonTwo.onClick.AddListener(SetActiveSceneButton);
+        }
+    }<br /><br />    // Load the <a href="SceneManagement.Scene.html">Scene</a> when this <a href="UIElements.Button.html">Button</a> is pressed
+    void LoadSceneButton()
+    {
+        // Check that the second <a href="SceneManagement.Scene.html">Scene</a> hasn't been added yet
+        if (m_SceneLoaded == false)
+        {
+            // Loads the second <a href="SceneManagement.Scene.html">Scene</a>
+            <a href="SceneManagement.SceneManager.LoadScene.html">SceneManager.LoadScene</a>("Scene2", <a href="SceneManagement.LoadSceneMode.Additive.html">LoadSceneMode.Additive</a>);<br /><br />            // Outputs the name of the current active <a href="SceneManagement.Scene.html">Scene</a>.
+            // Notice it still outputs the name of the first <a href="SceneManagement.Scene.html">Scene</a>
+            <a href="Debug.Log.html">Debug.Log</a>("Active <a href="SceneManagement.Scene.html">Scene</a> : " + <a href="SceneManagement.SceneManager.GetActiveScene.html">SceneManager.GetActiveScene</a>().name);<br /><br />            // The <a href="SceneManagement.Scene.html">Scene</a> has been loaded, exit this method
+            m_SceneLoaded = true;
+        }
+    }<br /><br />    // Change the newly loaded <a href="SceneManagement.Scene.html">Scene</a> to be the active <a href="SceneManagement.Scene.html">Scene</a> if it is loaded
+    void SetActiveSceneButton()
+    {
+        // Allow this other <a href="UIElements.Button.html">Button</a> to be pressed when the other <a href="UIElements.Button.html">Button</a> has been pressed (<a href="SceneManagement.Scene.html">Scene</a> 2 is loaded)
+        if (m_SceneLoaded == true)
+        {
+            // Set Scene2 as the active <a href="SceneManagement.Scene.html">Scene</a>
+            <a href="SceneManagement.SceneManager.SetActiveScene.html">SceneManager.SetActiveScene</a>(<a href="SceneManagement.SceneManager.GetSceneByName.html">SceneManager.GetSceneByName</a>("Scene2"));<br /><br />            // Ouput the name of the active <a href="SceneManagement.Scene.html">Scene</a>
+            // See now that the name is updated
+            <a href="Debug.Log.html">Debug.Log</a>("Active <a href="SceneManagement.Scene.html">Scene</a> : " + <a href="SceneManagement.SceneManager.GetActiveScene.html">SceneManager.GetActiveScene</a>().name);
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

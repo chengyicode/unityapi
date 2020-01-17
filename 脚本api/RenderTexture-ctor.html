@@ -1,0 +1,23 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: RenderTexture.RenderTexture</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">RenderTexture Constructor</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-RenderTexture.html' title='Go to RenderTexture Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <span class="sig-kw">RenderTexture</span>(int <span class="sig-kw">width</span>,
+int <span class="sig-kw">height</span>,
+int <span class="sig-kw">depth</span>,
+<a href="RenderTextureFormat.html">RenderTextureFormat</a> <span class="sig-kw">format</span> = RenderTextureFormat.Default,
+<a href="RenderTextureReadWrite.html">RenderTextureReadWrite</a> <span class="sig-kw">readWrite</span> = RenderTextureReadWrite.Default);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public <span class="sig-kw">RenderTexture</span>(<a href="RenderTexture.html">RenderTexture</a> <span class="sig-kw">textureToCopy</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public <span class="sig-kw">RenderTexture</span>(<a href="RenderTextureDescriptor.html">RenderTextureDescriptor</a> <span class="sig-kw">desc</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">width</td><td class="desc"></td><td class="desc1">Texture width in pixels.</td></tr><tr><td class="name lbl">height</td><td class="desc"></td><td class="desc1">Texture height in pixels.</td></tr><tr><td class="name lbl">depth</td><td class="desc"></td><td class="desc1">Number of bits in depth buffer (0, 16 or 24). Note that only 24 bit depth has stencil buffer.</td></tr><tr><td class="name lbl">format</td><td class="desc"></td><td class="desc1">Texture color format.</td></tr><tr><td class="name lbl">readWrite</td><td class="desc"></td><td class="desc1">How or if color space conversions should be done on texture read/write.</td></tr><tr><td class="name lbl">desc</td><td class="desc"></td><td class="desc1">Create the RenderTexture with the settings in the RenderTextureDescriptor.</td></tr><tr><td class="name lbl">textureToCopy</td><td class="desc"></td><td class="desc1">Copy the settings from another RenderTexture.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Creates a new RenderTexture object.</p></div><div class="subsection"><p>The render texture is created with <code class="varname">width</code> by <code class="varname">height</code> size, with a depth buffer
+of <code class="varname">depth</code> bits (depth can be 0, 16 or 24), and in <code class="varname">format</code> format and with sRGB read / write on or off.<br /><br />Note that constructing a RenderTexture object does not create the hardware representation immediately.
+The actual render texture is created upon first use or when <a href="RenderTexture.Create.html">Create</a> is called manually. So after
+constructing the render texture, it is possible to set additional variables, like <a href="RenderTexture-format.html">format</a>,
+<a href="RenderTexture-dimension.html">dimension</a> and so on.<br /><br />See Also: <a href="RenderTexture-format.html">format</a> variable, <a href="RenderTexture.GetTemporary.html">GetTemporary</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="RenderTexture.html">RenderTexture</a> rt;<br /><br />    void  Start()
+    {
+        rt = new <a href="RenderTexture.html">RenderTexture</a>(256, 256, 16, <a href="RenderTextureFormat.ARGB32.html">RenderTextureFormat.ARGB32</a>);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

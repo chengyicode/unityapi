@@ -1,0 +1,101 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Input.GetTouch</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Input.html">Input</a>.GetTouch</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Touch.html">Touch</a> <span class="sig-kw">GetTouch</span>(int <span class="sig-kw">index</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">index</td><td class="desc"></td><td class="desc1">The touch input on the device screen.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>Touch</strong>
+        Touch details in the struct.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Call <a href="Input.GetTouch.html">Input.GetTouch</a> to obtain a <a href="Touch.html">Touch</a> struct.</p></div><div class="subsection"><p>
+        <a href="Input.GetTouch.html">Input.GetTouch</a> returns <a href="Touch.html">Touch</a> for a selected screen touch (for example, from a finger or stylus). <a href="Touch.html">Touch</a> describes the screen touch. The <a href="Input-index.html">index</a> argument selects the screen touch.<br /><br /><a href="Input-touchCount.html">Input.touchCount</a> provides the current number of screen touches. If <a href="Input-touchCount.html">Input.touchCount</a> is greater than zero, the <a href="Input.GetTouch.html">GetTouch</a> <a href="Input-index.html">index</a> sets which screen touch to check. <a href="Touch.html">Touch</a> returns a <code class="varname">struct</code> with the screen touch details. Each extra screen touch uses an increasing <a href="Input-touchCount.html">Input.touchCount</a>.<br /><br /><a href="Input.GetTouch.html">GetTouch</a> returns a <a href="Touch.html">Touch</a> struct. Use zero to obtain the first screen touch. As an example, <a href="Touch.html">Touch</a> includes <a href="Input-position.html">position</a> in pixels.<br /><br />No temporary variables are allocated. </p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;
+using UnityEngine.iOS;<br /><br />// <a href="Input.GetTouch.html">Input.GetTouch</a> example.
+//
+// Attach to an origin based cube.
+// A screen touch moves the cube on an iPhone or iPad.
+// A second screen touch reduces the cube size.<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private <a href="Vector3.html">Vector3</a> position;
+    private float width;
+    private float height;<br /><br />    void Awake()
+    {
+        width = (float)<a href="Screen-width.html">Screen.width</a> / 2.0f;
+        height = (float)<a href="Screen-height.html">Screen.height</a> / 2.0f;<br /><br />        // <a href="UIElements.Position.html">Position</a> used for the cube.
+        position = new <a href="Vector3.html">Vector3</a>(0.0f, 0.0f, 0.0f);
+    }<br /><br />    void OnGUI()
+    {
+        // Compute a fontSize based on the size of the screen width.
+        GUI.skin.label.fontSize = (int)(<a href="Screen-width.html">Screen.width</a> / 25.0f);<br /><br />        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(20, 20, width, height * 0.25f),
+            "x = " + position.x.ToString("f2") +
+            ", y = " + position.y.ToString("f2"));
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        // Handle screen touches.
+        if (<a href="Input-touchCount.html">Input.touchCount</a> &gt; 0)
+        {
+            <a href="Touch.html">Touch</a> touch = <a href="Input.GetTouch.html">Input.GetTouch</a>(0);<br /><br />            // Move the cube if the screen has the finger moving.
+            if (touch.phase == <a href="TouchPhase.Moved.html">TouchPhase.Moved</a>)
+            {
+                <a href="Vector2.html">Vector2</a> pos = touch.position;
+                pos.x = (pos.x - width) / width;
+                pos.y = (pos.y - height) / height;
+                position = new <a href="Vector3.html">Vector3</a>(-pos.x, pos.y, 0.0f);<br /><br />                // <a href="UIElements.Position.html">Position</a> the cube.
+                transform.position = position;
+            }<br /><br />            if (<a href="Input-touchCount.html">Input.touchCount</a> == 2)
+            {
+                touch = <a href="Input.GetTouch.html">Input.GetTouch</a>(1);<br /><br />                if (touch.phase == <a href="TouchPhase.Began.html">TouchPhase.Began</a>)
+                {
+                    // Halve the size of the cube.
+                    transform.localScale = new <a href="Vector3.html">Vector3</a>(0.75f, 0.75f, 0.75f);
+                }<br /><br />                if (touch.phase == <a href="TouchPhase.Ended.html">TouchPhase.Ended</a>)
+                {
+                    // Restore the regular size of the cube.
+                    transform.localScale = new <a href="Vector3.html">Vector3</a>(1.0f, 1.0f, 1.0f);
+                }
+            }
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>A second example:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="GameObject.html">GameObject</a> projectile;
+    public <a href="GameObject.html">GameObject</a> clone;<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        for (int i = 0; i &lt; <a href="Input-touchCount.html">Input.touchCount</a>; ++i)
+        {
+            if (<a href="Input.GetTouch.html">Input.GetTouch</a>(i).phase == <a href="TouchPhase.Began.html">TouchPhase.Began</a>)
+            {
+                clone = Instantiate(projectile, transform.position, transform.rotation) as <a href="GameObject.html">GameObject</a>;
+            }
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>A third example:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="GameObject.html">GameObject</a> particle;
+    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        for (int i = 0; i &lt; <a href="Input-touchCount.html">Input.touchCount</a>; ++i)
+        {
+            if (<a href="Input.GetTouch.html">Input.GetTouch</a>(i).phase == <a href="TouchPhase.Began.html">TouchPhase.Began</a>)
+            {
+                // Construct a ray from the current touch coordinates
+                <a href="Ray.html">Ray</a> ray = Camera.main.ScreenPointToRay(<a href="Input.GetTouch.html">Input.GetTouch</a>(i).position);<br /><br />                // Create a particle if hit
+                if (<a href="Physics.Raycast.html">Physics.Raycast</a>(ray))
+                {
+                    Instantiate(particle, transform.position, transform.rotation);
+                }
+            }
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

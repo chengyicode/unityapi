@@ -1,0 +1,29 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: GL.Vertex</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="GL.html">GL</a>.Vertex</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">Vertex</span>(<a href="Vector3.html">Vector3</a> <span class="sig-kw">v</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Submit a vertex.</p></div><div class="subsection"><p>In OpenGL this matches <code class="mono">glVertex3f(v.x,v.y,v.z)</code>; on other graphics APIs the same
+functionality is emulated.<br /><br />This function can only be called between <a href="GL.Begin.html">GL.Begin</a> and <a href="GL.End.html">GL.End</a> functions.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Draws a line from the bottom right
+    // to the top left of the <a href="Screen.html">Screen</a>
+    // Using <a href="GL.Vertex.html">GL.Vertex</a>
+    <a href="Material.html">Material</a> mat;<br /><br />    void OnPostRender()
+    {
+        if (!mat)
+        {
+            <a href="Debug.LogError.html">Debug.LogError</a>("Please Assign a material on the inspector");
+            return;
+        }
+        <a href="GL.PushMatrix.html">GL.PushMatrix</a>();
+        mat.SetPass(0);
+        <a href="GL.LoadOrtho.html">GL.LoadOrtho</a>();
+        <a href="GL.Begin.html">GL.Begin</a>(<a href="GL.LINES.html">GL.LINES</a>);
+        <a href="GL.Vertex.html">GL.Vertex</a>(new <a href="Vector3.html">Vector3</a>(1, 0, 0));
+        <a href="GL.Vertex.html">GL.Vertex</a>(new <a href="Vector3.html">Vector3</a>(0, 1, 0));
+        <a href="GL.End.html">GL.End</a>();
+        <a href="GL.PopMatrix.html">GL.PopMatrix</a>();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

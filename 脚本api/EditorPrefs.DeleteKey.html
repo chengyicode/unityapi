@@ -1,0 +1,42 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorPrefs.DeleteKey</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorPrefs.html">EditorPrefs</a>.DeleteKey</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">DeleteKey</span>(string <span class="sig-kw">key</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Removes <code class="varname">key</code> and its corresponding value from the preferences.</p></div><div class="subsection"><p>
+        <img src="../StaticFiles/ScriptRefImages/RemoveSpecificEditorPrefs.png" />
+        <br />
+<em>Removes a user entered editor preference, if it doesnt exists it prints a message.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Removes a user entered editor preference.
+// If it does not exists it prints a message.<br /><br />using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class DeleteKeyExample : <a href="EditorWindow.html">EditorWindow</a>
+{
+    string editorPref = "";<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Examples/<a href="EditorPrefs.html">EditorPrefs</a>/Clear Key Preference")]
+    static void Init()
+    {
+        DeleteKeyExample window = GetWindowWithRect&lt;DeleteKeyExample&gt;(new <a href="Rect.html">Rect</a>(0, 0, 250, 50));
+        window.Show();
+    }<br /><br />    void OnGUI()
+    {
+        editorPref = <a href="EditorGUILayout.TextField.html">EditorGUILayout.TextField</a>("<a href="Editor.html">Editor</a> key name:", editorPref);
+        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Delete"))
+            if (<a href="EditorPrefs.HasKey.html">EditorPrefs.HasKey</a>(editorPref))
+            {
+                if (<a href="EditorUtility.DisplayDialog.html">EditorUtility.DisplayDialog</a>("Removing " + editorPref + "?",
+                    "Are you sure you want to " +
+                    "delete the editor key " +
+                    editorPref + "?, This action cant be undone",
+                    "Yes",
+                    "No"))
+                    <a href="EditorPrefs.DeleteKey.html">EditorPrefs.DeleteKey</a>(editorPref);
+            }
+            else
+            {
+                <a href="EditorUtility.DisplayDialog.html">EditorUtility.DisplayDialog</a>("Could not find " + editorPref,
+                    "Seems that " + editorPref +
+                    " does not exists or it has been deleted already, " +
+                    "check that you have typed correctly the name of the key.",
+                    "Ok");
+            }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

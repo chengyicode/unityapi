@@ -1,0 +1,28 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: QualitySettings.SetQualityLevel</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="QualitySettings.html">QualitySettings</a>.SetQualityLevel</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-QualitySettings.html' title='Go to QualitySettings Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">SetQualityLevel</span>(int <span class="sig-kw">index</span>,
+bool <span class="sig-kw">applyExpensiveChanges</span> = true);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">index</td><td class="desc"></td><td class="desc1">Quality index to set.</td></tr><tr><td class="name lbl">applyExpensiveChanges</td><td class="desc"></td><td class="desc1">Should expensive changes be applied (Anti-aliasing etc).</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Sets a new graphics quality level.</p></div><div class="subsection"><p>The list of quality levels can be found by going to <strong>Edit</strong> &gt; <strong>Project Settings</strong> &gt; <strong>Quality</strong>. You can add, remove or edit these.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void OnGUI()
+    {
+        string[] names = <a href="QualitySettings-names.html">QualitySettings.names</a>;
+        <a href="GUILayout.BeginVertical.html">GUILayout.BeginVertical</a>();
+        for (int i = 0; i &lt; names.Length; i++)
+        {
+            if (<a href="GUILayout.Button.html">GUILayout.Button</a>(names[i]))
+            {
+                <a href="QualitySettings.SetQualityLevel.html">QualitySettings.SetQualityLevel</a>(i, true);
+            }
+        }
+        <a href="GUILayout.EndVertical.html">GUILayout.EndVertical</a>();
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Note that changing the quality level can be an expensive operation if the new level
+has different anti-aliasing setting. It's fine to change the level when applying in-game
+quality options, but if you want to dynamically adjustquality level at runtime, pass
+false to applyExpensiveChanges so that expensive changes are not always applied.<br /><br />When building a player quality levels that are not used for that platform are stripped.
+You should not expect a given quality setting to be at a given index. It's best to query
+the available quality settings and use the returned index.<br /><br />See Also: <a href="QualitySettings.GetQualityLevel.html">GetQualityLevel</a>.</p></div></div></div></div></body></html>

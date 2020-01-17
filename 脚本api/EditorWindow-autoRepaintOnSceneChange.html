@@ -1,0 +1,45 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorWindow.autoRepaintOnSceneChange</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorWindow.html">EditorWindow</a>.autoRepaintOnSceneChange</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public bool <span class="sig-kw">autoRepaintOnSceneChange</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Does the window automatically repaint whenever the Scene has changed?</p></div><div class="subsection"><p>
+        <img src="../StaticFiles/ScriptRefImages/CameraViewer.png" />
+        <br />
+<em>Editor Window that renders what the main camera is "seeing".</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Simple script that lets you render the main camera in an editor Window.<br /><br />using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class CameraViewer : <a href="EditorWindow.html">EditorWindow</a>
+{
+    <a href="Camera.html">Camera</a> camera;
+    <a href="RenderTexture.html">RenderTexture</a> renderTexture;<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Example/<a href="Camera.html">Camera</a> viewer")]
+    static void Init()
+    {
+        <a href="EditorWindow.html">EditorWindow</a> editorWindow = GetWindow(typeof(CameraViewer));
+        editorWindow.autoRepaintOnSceneChange = true;
+        editorWindow.Show();
+    }<br /><br />    public void Awake()
+    {
+        renderTexture = new <a href="RenderTexture.html">RenderTexture</a>((int)position.width,
+            (int)position.height,
+            (int)<a href="RenderTextureFormat.ARGB32.html">RenderTextureFormat.ARGB32</a>);
+    }<br /><br />    public void OnEnable()
+    {
+        camera = <a href="Camera-main.html">Camera.main</a>;
+    }<br /><br />    public void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        if (camera != null)
+        {
+            camera.targetTexture = renderTexture;
+            camera.Render();
+            camera.targetTexture = null;
+        }
+        if (renderTexture.width != position.width ||
+            renderTexture.height != position.height)
+            renderTexture = new <a href="RenderTexture.html">RenderTexture</a>((int)position.width,
+                (int)position.height,
+                (int)<a href="RenderTextureFormat.ARGB32.html">RenderTextureFormat.ARGB32</a>);
+    }<br /><br />    void OnGUI()
+    {
+        <a href="GUI.DrawTexture.html">GUI.DrawTexture</a>(new <a href="Rect.html">Rect</a>(0.0f, 0.0f, position.width, position.height), renderTexture);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

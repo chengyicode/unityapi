@@ -1,0 +1,21 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorApplication.hierarchyChanged</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorApplication.html">EditorApplication</a>.hierarchyChanged</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Event that is raised when an object or group of objects in the hierarchy changes.</p></div><div class="subsection"><p>Actions that trigger this event include creating, renaming, reparenting, or destroying objects in the current hierarchy, as well as loading, unloading, renaming, or reordering loaded Scenes. Note that the event is not raised immediately in response to these actions, but rather during the next update of the editor application.<br /><br />Actions taken with objects that have <a href="HideFlags.HideInHierarchy.html">HideFlags.HideInHierarchy</a> set will not cause this event to be raised, but changing <a href="Object-hideFlags.html">Object.hideFlags</a> will.<br /><br />The following example script logs the number of objects to the console whenever the hierarchy changes. Copy it into a file called HierarchyMonitor.cs and put it in a folder called Editor.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.Linq;
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;<br /><br />[<a href="InitializeOnLoadAttribute.html">InitializeOnLoadAttribute</a>]
+public static class HierarchyMonitor
+{
+    static HierarchyMonitor()
+    {
+        <a href="EditorApplication-hierarchyChanged.html">EditorApplication.hierarchyChanged</a> += OnHierarchyChanged;
+    }<br /><br />    static void OnHierarchyChanged()
+    {
+        var all = <a href="Resources.FindObjectsOfTypeAll.html">Resources.FindObjectsOfTypeAll</a>(typeof(<a href="GameObject.html">GameObject</a>));
+        var numberVisible =
+            all.Where(obj =&gt; (obj.hideFlags &amp; <a href="HideFlags.HideInHierarchy.html">HideFlags.HideInHierarchy</a>) != <a href="HideFlags.HideInHierarchy.html">HideFlags.HideInHierarchy</a>).Count();
+        <a href="Debug.LogFormat.html">Debug.LogFormat</a>("There are currently {0} GameObjects visible in the hierarchy.", numberVisible);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="EditorWindow.OnHierarchyChange.html">EditorWindow.OnHierarchyChange</a>.</p></div></div></div></div></body></html>

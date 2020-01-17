@@ -1,0 +1,54 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Handles.FreeMoveHandle</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Handles.html">Handles</a>.FreeMoveHandle</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Vector3.html">Vector3</a> <span class="sig-kw">FreeMoveHandle</span>(<a href="Vector3.html">Vector3</a> <span class="sig-kw">position</span>,
+<a href="Quaternion.html">Quaternion</a> <span class="sig-kw">rotation</span>,
+float <span class="sig-kw">size</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">snap</span>,
+<a href="Handles.CapFunction.html">Handles.CapFunction</a> <span class="sig-kw">capFunction</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Vector3.html">Vector3</a> <span class="sig-kw">FreeMoveHandle</span>(int <span class="sig-kw">controlID</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">position</span>,
+<a href="Quaternion.html">Quaternion</a> <span class="sig-kw">rotation</span>,
+float <span class="sig-kw">size</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">snap</span>,
+<a href="Handles.CapFunction.html">Handles.CapFunction</a> <span class="sig-kw">capFunction</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">position</td><td class="desc"></td><td class="desc1">The position of the handle in the space of <a href="Handles-matrix.html">Handles.matrix</a>.</td></tr><tr><td class="name lbl">rotation</td><td class="desc"></td><td class="desc1">The rotation of the handle in the space of <a href="Handles-matrix.html">Handles.matrix</a>.</td></tr><tr><td class="name lbl">size</td><td class="desc"></td><td class="desc1">The size of the handle in the space of <a href="Handles-matrix.html">Handles.matrix</a>. Use <a href="HandleUtility.GetHandleSize.html">HandleUtility.GetHandleSize</a> if you want a constant screen-space size.</td></tr><tr><td class="name lbl">snap</td><td class="desc"></td><td class="desc1">The snap increment on all axes. See <a href="Handles.SnapValue.html">Handles.SnapValue</a>.</td></tr><tr><td class="name lbl">capFunction</td><td class="desc"></td><td class="desc1">The function to call for doing the actual drawing.</td></tr><tr><td class="name lbl">controlID</td><td class="desc"></td><td class="desc1">The control ID for the handle.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>Vector3</strong>
+        The new value modified by the user's interaction with the handle. If the user has not moved the handle, it will return the same value as you passed into the function.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Make an unconstrained movement handle.</p></div><div class="subsection"><p>This handle can move freely in all directions. Hold down Ctrl (Cmd on macOS) to snap to the grid (see <a href="../Manual/PositioningGameObjects.html">PositioningGameObjects</a>). Hold Ctrl-Shift (Cmd-Shift on macOS) to snap the object to any Collider surface under the mouse pointer.<br />
+<br />
+<img src="../StaticFiles/ScriptRefImages/FreeMoveHandle.png" /><br />
+<em>Free Move handle in the Scene View.</em><br />
+<br />
+Add the following script to your Assets folder as FreeMoveHandleExample.cs and add the FreeMoveHandleExample component to an object in a Scene.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />[<a href="ExecuteInEditMode.html">ExecuteInEditMode</a>]
+public class FreeMoveHandleExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Vector3.html">Vector3</a> targetPosition { get { return m_TargetPosition; } set { m_TargetPosition = value; } }
+    [<a href="SerializeField.html">SerializeField</a>]
+    private <a href="Vector3.html">Vector3</a> m_TargetPosition = new <a href="Vector3.html">Vector3</a>(1f, 0f, 2f);<br /><br />    public virtual void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        transform.LookAt(m_TargetPosition);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Add the following script to Assets/Editor as FreeMoveHandleExampleEditor.cs and select the object with the FreeMoveHandleExample component.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;<br /><br />[<a href="CustomEditor.html">CustomEditor</a>(typeof(FreeMoveHandleExample)), <a href="CanEditMultipleObjects.html">CanEditMultipleObjects</a>]
+public class FreeMoveHandleExampleEditor : <a href="Editor.html">Editor</a>
+{
+    protected virtual void OnSceneGUI()
+    {
+        FreeMoveHandleExample example = (FreeMoveHandleExample)target;<br /><br />        float size = <a href="HandleUtility.GetHandleSize.html">HandleUtility.GetHandleSize</a>(example.targetPosition) * 0.5f;
+        <a href="Vector3.html">Vector3</a> snap = <a href="Vector3-one.html">Vector3.one</a> * 0.5f;<br /><br />        <a href="EditorGUI.BeginChangeCheck.html">EditorGUI.BeginChangeCheck</a>();
+        <a href="Vector3.html">Vector3</a> newTargetPosition = <a href="Handles.FreeMoveHandle.html">Handles.FreeMoveHandle</a>(example.targetPosition, <a href="Quaternion-identity.html">Quaternion.identity</a>, size, snap, <a href="Handles.RectangleHandleCap.html">Handles.RectangleHandleCap</a>);
+        if (<a href="EditorGUI.EndChangeCheck.html">EditorGUI.EndChangeCheck</a>())
+        {
+            <a href="Undo.RecordObject.html">Undo.RecordObject</a>(example, "Change Look At <a href="GraphicsBuffer.Target.html">Target</a> <a href="UIElements.Position.html">Position</a>");
+            example.targetPosition = newTargetPosition;
+            example.Update();
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

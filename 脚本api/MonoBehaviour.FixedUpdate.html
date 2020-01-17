@@ -1,0 +1,50 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: MonoBehaviour.FixedUpdate()</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="MonoBehaviour.html">MonoBehaviour</a>.FixedUpdate()</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Frame-rate independent <a href="MonoBehaviour.FixedUpdate.html">MonoBehaviour.FixedUpdate</a> message for physics calculations.</p></div><div class="subsection"><p>
+        <a href="MonoBehaviour.FixedUpdate.html">MonoBehaviour.FixedUpdate</a> has the frequency of the physics system; it is called every fixed frame-rate frame. Compute <a href="Physics.html">Physics</a> system calculations after <a href="MonoBehaviour.FixedUpdate.html">FixedUpdate</a>. 0.02 seconds (50 calls per second) is the default time between calls. Use <a href="Time-fixedDeltaTime.html">Time.fixedDeltaTime</a> to access this value. Alter it by setting it to your preferred value within a script, or, navigate to <code class="mono">Edit &gt; Settings &gt; Time &gt; Fixed Timestep</code> and set it there. The <a href="MonoBehaviour.FixedUpdate.html">FixedUpdate</a> frequency is more or less than <a href="MonoBehaviour.Update.html">Update</a>. If the application runs at 25 frames per second (fps), Unity calls it approximately twice per frame, Alternatively, 100 fps causes approximately two rendering frames with one <a href="MonoBehaviour.FixedUpdate.html">FixedUpdate</a>. Control the required frame rate and <code class="varname">Fixed Timestep</code> rate from <code class="mono">Time</code> settings. Use <a href="Application-targetFrameRate.html">Application.targetFrameRate</a> to set the frame rate.<br /><br />Use <a href="MonoBehaviour.FixedUpdate.html">FixedUpdate</a> when using <a href="Rigidbody.html">Rigidbody</a>. Set a force to a <a href="Rigidbody.html">Rigidbody</a> and it applies each fixed frame. <a href="MonoBehaviour.FixedUpdate.html">FixedUpdate</a> occurs at a measured time step that typically does not coincide with <a href="MonoBehaviour.Update.html">MonoBehaviour.Update</a>.<br /><br />In the following example, the number of <a href="MonoBehaviour.Update.html">Update</a> calls is compared against the number of <a href="MonoBehaviour.FixedUpdate.html">FixedUpdate</a> calls.  <a href="MonoBehaviour.FixedUpdate.html">FixedUpdate</a> executes 50 times per second.  (The game code runs around 200 fps on a test machine.)
+</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;<br /><br />// GameObject.FixedUpdate example.
+//
+// Measure frame rate comparing <a href="Experimental.PlayerLoop.FixedUpdate.html">FixedUpdate</a> against <a href="Experimental.PlayerLoop.Update.html">Update</a>.
+// Show the rates every second.<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private float updateCount = 0;
+    private float fixedUpdateCount = 0;
+    private float updateUpdateCountPerSecond;
+    private float updateFixedUpdateCountPerSecond;<br /><br />    void Awake()
+    {
+        // Uncommenting this will cause framerate to drop to 10 frames per second.
+        // This will mean that <a href="Experimental.PlayerLoop.FixedUpdate.html">FixedUpdate</a> is called more often than <a href="Experimental.PlayerLoop.Update.html">Update</a>.
+        //<a href="Application-targetFrameRate.html">Application.targetFrameRate</a> = 10;
+        StartCoroutine(Loop());
+    }<br /><br />    // Increase the number of calls to <a href="Experimental.PlayerLoop.Update.html">Update</a>.
+    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        updateCount += 1;
+    }<br /><br />    // Increase the number of calls to <a href="Experimental.PlayerLoop.FixedUpdate.html">FixedUpdate</a>.
+    void <a href="Experimental.PlayerLoop.FixedUpdate.html">FixedUpdate</a>()
+    {
+        fixedUpdateCount += 1;
+    }<br /><br />    // Show the number of calls to both messages.
+    void OnGUI()
+    {
+        <a href="GUIStyle.html">GUIStyle</a> fontSize = new <a href="GUIStyle.html">GUIStyle</a>(GUI.skin.GetStyle("label"));
+        fontSize.fontSize = 24;
+        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(100, 100, 200, 50), "<a href="Experimental.PlayerLoop.Update.html">Update</a>: " + updateUpdateCountPerSecond.ToString(), fontSize);
+        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(100, 150, 200, 50), "<a href="Experimental.PlayerLoop.FixedUpdate.html">FixedUpdate</a>: " + updateFixedUpdateCountPerSecond.ToString(), fontSize);
+    }<br /><br />    // <a href="Experimental.PlayerLoop.Update.html">Update</a> both CountsPerSecond values every second.
+    IEnumerator Loop()
+    {
+        while (true)
+        {
+            yield return new <a href="WaitForSeconds.html">WaitForSeconds</a>(1);
+            updateUpdateCountPerSecond = updateCount;
+            updateFixedUpdateCountPerSecond = fixedUpdateCount;<br /><br />            updateCount = 0;
+            fixedUpdateCount = 0;
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

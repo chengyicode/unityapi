@@ -1,0 +1,34 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Input.GetKeyUp</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Input.html">Input</a>.GetKeyUp</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">GetKeyUp</span>(string <span class="sig-kw">name</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Returns true during the frame the user releases the key identified by <code class="varname">name</code>.</p></div><div class="subsection"><p>You need to call this function from the <a href="MonoBehaviour.Update.html">Update</a> function, since the state gets reset each frame.
+It will not return true until the user has pressed the key and released it again.<br /><br />For the list of key identifiers see <a href="../Manual/ConventionalGameInput.html">Conventional Game Input</a>.
+When dealing with input it is recommended to use <a href="Input.GetAxis.html">Input.GetAxis</a> and <a href="Input.GetButton.html">Input.GetButton</a> instead since it allows end-users to configure the keys.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        if (<a href="Input.GetKeyUp.html">Input.GetKeyUp</a>("space"))
+        {
+            print("<a href="Space.html">Space</a> key was released");
+        }
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">GetKeyUp</span>(<a href="KeyCode.html">KeyCode</a> <span class="sig-kw">key</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Returns true during the frame the user releases the key identified by the <code class="varname">key</code> <a href="KeyCode.html">KeyCode</a> enum parameter.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        if (<a href="Input.GetKeyUp.html">Input.GetKeyUp</a>(<a href="KeyCode.Space.html">KeyCode.Space</a>))
+        {
+            print("space key was released");
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Gyroscope</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">Gyroscope</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.InputLegacyModule.html" class="cl">UnityEngine.InputLegacyModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Interface into the Gyroscope.</p></div><div class="subsection"><p>Use this class to access the gyroscope. The example script below shows how the Gyroscope class can be used to view the orientation in space of the device.<br /><br />Underlying sensors used for data population:<br /><br /><strong>Android</strong>: Gravity, Linear Acceleration, Rotation Vector. <a href="https://developer.android.com/guide/topics/sensors/sensors_motion"> More information</a>.<br /><br /><strong>iOS</strong>: Gyroscope, Device-Motion. <a href="https://developer.apple.com/documentation/coremotion/cmmotionmanager"> More information</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Create a cube with camera vector names on the faces.
+// Allow the device to show named faces as it is oriented.<br /><br />using UnityEngine;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Faces for 6 sides of the cube
+    private <a href="GameObject.html">GameObject</a>[] quads = new <a href="GameObject.html">GameObject</a>[6];<br /><br />    // Textures for each quad, should be +X, +Y etc
+    // with appropriate colors, red, green, blue, etc
+    public <a href="Texture.html">Texture</a>[] labels;<br /><br />    void Start()
+    {
+        // make camera solid colour and based at the origin
+        GetComponent&lt;<a href="Camera.html">Camera</a>&gt;().backgroundColor = new <a href="Color.html">Color</a>(49.0f / 255.0f, 77.0f / 255.0f, 121.0f / 255.0f);
+        GetComponent&lt;<a href="Camera.html">Camera</a>&gt;().transform.position = new <a href="Vector3.html">Vector3</a>(0, 0, 0);
+        GetComponent&lt;<a href="Camera.html">Camera</a>&gt;().clearFlags = <a href="CameraClearFlags.SolidColor.html">CameraClearFlags.SolidColor</a>;<br /><br />        // create the six quads forming the sides of a cube
+        <a href="GameObject.html">GameObject</a> quad = <a href="GameObject.CreatePrimitive.html">GameObject.CreatePrimitive</a>(<a href="PrimitiveType.Quad.html">PrimitiveType.Quad</a>);<br /><br />        quads[0] = createQuad(quad, new <a href="Vector3.html">Vector3</a>(1,   0,   0), new <a href="Vector3.html">Vector3</a>(0,  90, 0), "plus x",
+            new <a href="Color.html">Color</a>(0.90f, 0.10f, 0.10f, 1), labels[0]);
+        quads[1] = createQuad(quad, new <a href="Vector3.html">Vector3</a>(0,   1,   0), new <a href="Vector3.html">Vector3</a>(-90,   0, 0), "plus y",
+            new <a href="Color.html">Color</a>(0.10f, 0.90f, 0.10f, 1), labels[1]);
+        quads[2] = createQuad(quad, new <a href="Vector3.html">Vector3</a>(0,   0,   1), new <a href="Vector3.html">Vector3</a>(0,   0, 0), "plus z",
+            new <a href="Color.html">Color</a>(0.10f, 0.10f, 0.90f, 1), labels[2]);
+        quads[3] = createQuad(quad, new <a href="Vector3.html">Vector3</a>(-1,   0,   0), new <a href="Vector3.html">Vector3</a>(0, -90, 0), "neg x",
+            new <a href="Color.html">Color</a>(0.90f, 0.50f, 0.50f, 1), labels[3]);
+        quads[4] = createQuad(quad, new <a href="Vector3.html">Vector3</a>(0,  -1,  0), new <a href="Vector3.html">Vector3</a>(90,   0,  0), "neg y",
+            new <a href="Color.html">Color</a>(0.50f, 0.90f, 0.50f, 1), labels[4]);
+        quads[5] = createQuad(quad, new <a href="Vector3.html">Vector3</a>(0,   0, -1), new <a href="Vector3.html">Vector3</a>(0, 180,  0), "neg z",
+            new <a href="Color.html">Color</a>(0.50f, 0.50f, 0.90f, 1), labels[5]);<br /><br />        GameObject.Destroy(quad);
+    }<br /><br />    // make a quad for one side of the cube
+    <a href="GameObject.html">GameObject</a> createQuad(<a href="GameObject.html">GameObject</a> quad, <a href="Vector3.html">Vector3</a> pos, <a href="Vector3.html">Vector3</a> rot, string name, <a href="Color.html">Color</a> col, <a href="Texture.html">Texture</a> t)
+    {
+        <a href="Quaternion.html">Quaternion</a> quat = <a href="Quaternion.Euler.html">Quaternion.Euler</a>(rot);
+        <a href="GameObject.html">GameObject</a> GO = Instantiate(quad, pos, quat);
+        GO.name = name;
+        GO.GetComponent&lt;<a href="Renderer.html">Renderer</a>&gt;().material.color = col;
+        GO.GetComponent&lt;<a href="Renderer.html">Renderer</a>&gt;().material.mainTexture = t;
+        GO.transform.localScale += new <a href="Vector3.html">Vector3</a>(0.25f, 0.25f, 0.25f);
+        return GO;
+    }<br /><br />    protected void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        GyroModifyCamera();
+    }<br /><br />    protected void OnGUI()
+    {
+        GUI.skin.label.fontSize = <a href="Screen-width.html">Screen.width</a> / 40;<br /><br />        <a href="GUILayout.Label.html">GUILayout.Label</a>("<a href="Tilemaps.Tilemap.Orientation.html">Orientation</a>: " + <a href="Screen-orientation.html">Screen.orientation</a>);
+        <a href="GUILayout.Label.html">GUILayout.Label</a>("input.gyro.attitude: " + Input.gyro.attitude);
+        <a href="GUILayout.Label.html">GUILayout.Label</a>("iphone width/font: " + <a href="Screen-width.html">Screen.width</a> + " : " + GUI.skin.label.fontSize);
+    }<br /><br />    /********************************************/<br /><br />    // The <a href="Gyroscope.html">Gyroscope</a> is right-handed.  Unity is left handed.
+    // Make the necessary change to the camera.
+    void GyroModifyCamera()
+    {
+        transform.rotation = GyroToUnity(Input.gyro.attitude);
+    }<br /><br />    private static <a href="Quaternion.html">Quaternion</a> GyroToUnity(<a href="Quaternion.html">Quaternion</a> q)
+    {
+        return new <a href="Quaternion.html">Quaternion</a>(q.x, q.y, -q.z, -q.w);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>
+        <img src="../StaticFiles/ScriptRefImages/iOSgyroscope.png" />
+        <br />
+<em>iOS Screen-shot showing +Z, +Y and -X.</em></p></div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Gyroscope-attitude.html">attitude</a></td><td class="desc"></td><td class="desc1">Returns the attitude (ie, orientation in space) of the device.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Gyroscope-enabled.html">enabled</a></td><td class="desc"></td><td class="desc1">Sets or retrieves the enabled status of this gyroscope.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Gyroscope-gravity.html">gravity</a></td><td class="desc"></td><td class="desc1">Returns the gravity acceleration vector expressed in the device's reference frame.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Gyroscope-rotationRate.html">rotationRate</a></td><td class="desc"></td><td class="desc1">Returns rotation rate as measured by the device's gyroscope.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Gyroscope-rotationRateUnbiased.html">rotationRateUnbiased</a></td><td class="desc"></td><td class="desc1">Returns unbiased rotation rate as measured by the device's gyroscope.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Gyroscope-updateInterval.html">updateInterval</a></td><td class="desc"></td><td class="desc1">Sets or retrieves gyroscope interval in seconds.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Gyroscope-userAcceleration.html">userAcceleration</a></td><td class="desc"></td><td class="desc1">Returns the acceleration that the user is giving to the device.</td></tr>
+    </table></div></div></div></div></body></html>

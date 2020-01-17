@@ -1,0 +1,49 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: RaycastHit.distance</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="RaycastHit.html">RaycastHit</a>.distance</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public float <span class="sig-kw">distance</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The distance from the ray's origin to the impact point.</p></div><div class="subsection"><p>In the case of a ray, the distance represents the magnitude of the vector from the ray's origin to the impact point.<br /><br />In the case of a swept volume or sphere cast, the distance represents the magnitude of the vector from the origin point to the translated point at which the volume contacts the other collider.<br /><br />Note that <a href="RaycastHit-point.html">RaycastHit.point</a> represents the point in space where the collision occurs.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Movable, levitating object.<br /><br />    // This works by measuring the distance to ground with a
+    // raycast then applying a force that decreases as the object
+    // reaches the desired levitation height.<br /><br />    // Vary the parameters below to
+    // get different control effects. For example, reducing the
+    // hover damping will tend to make the object bounce if it
+    // passes over an object underneath.<br /><br />    // Forward movement force.
+    float moveForce = 1.0f;<br /><br />    // Torque for left/right rotation.
+    float rotateTorque = 1.0f;<br /><br />    // Desired hovering height.
+    float hoverHeight = 4.0f;<br /><br />    // The force applied per unit of distance below the desired height.
+    float hoverForce = 5.0f;<br /><br />    // The amount that the lifting force is reduced per unit of upward speed.
+    // This damping tends to stop the object from bouncing after passing over
+    // something.
+    float hoverDamp = 0.5f;<br /><br />    // <a href="Rigidbody.html">Rigidbody</a> component.
+    <a href="Rigidbody.html">Rigidbody</a> rb;<br /><br />    void Start()
+    {
+        rb = GetComponent&lt;<a href="Rigidbody.html">Rigidbody</a>&gt;();<br /><br />        // Fairly high drag makes the object easier to control.
+        rb.drag = 0.5f;
+        rb.angularDrag = 0.5f;
+    }<br /><br />    void <a href="Experimental.PlayerLoop.FixedUpdate.html">FixedUpdate</a>()
+    {
+        // Push/turn the object based on arrow key input.
+        rb.AddForce(<a href="Input.GetAxis.html">Input.GetAxis</a>("Vertical") * moveForce * transform.forward);
+        rb.AddTorque(<a href="Input.GetAxis.html">Input.GetAxis</a>("Horizontal") * rotateTorque * <a href="Vector3-up.html">Vector3.up</a>);<br /><br />        <a href="RaycastHit.html">RaycastHit</a> hit;
+        <a href="Ray.html">Ray</a> downRay = new <a href="Ray.html">Ray</a>(transform.position, -<a href="Vector3-up.html">Vector3.up</a>);<br /><br />        // Cast a ray straight downwards.
+        if (<a href="Physics.Raycast.html">Physics.Raycast</a>(downRay, out hit))
+        {
+            // The "error" in height is the difference between the desired height
+            // and the height measured by the raycast distance.
+            float hoverError = hoverHeight - hit.distance;<br /><br />            // Only apply a lifting force if the object is too low (ie, let
+            // gravity pull it downward if it is too high).
+            if (hoverError &gt; 0)
+            {
+                // Subtract the damping from the lifting force and apply it to
+                // the rigidbody.
+                float upwardSpeed = rb.velocity.y;
+                float lift = hoverError * hoverForce - upwardSpeed * hoverDamp;
+                rb.AddForce(lift * <a href="Vector3-up.html">Vector3.up</a>);
+            }
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="Physics.Raycast.html">Physics.Raycast</a>, <a href="Physics.Linecast.html">Physics.Linecast</a>, <a href="Physics.RaycastAll.html">Physics.RaycastAll</a>.</p></div></div></div></div></body></html>

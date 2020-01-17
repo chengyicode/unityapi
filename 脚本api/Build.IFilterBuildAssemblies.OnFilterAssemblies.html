@@ -1,0 +1,22 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Build.IFilterBuildAssemblies.OnFilterAssemblies</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Build.IFilterBuildAssemblies.html">IFilterBuildAssemblies</a>.OnFilterAssemblies</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public string[] <span class="sig-kw">OnFilterAssemblies</span>(<a href="BuildOptions.html">BuildOptions</a> <span class="sig-kw">buildOptions</span>,
+string[] <span class="sig-kw">assemblies</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">buildOptions</td><td class="desc"></td><td class="desc1">The current build options.</td></tr><tr><td class="name lbl">assemblies</td><td class="desc"></td><td class="desc1">The list of assemblies that will be included.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>string[]</strong>
+        Returns the filtered list of assemblies that are included in the build.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Will be called after building script assemblies, but makes it possible to filter away unwanted scripts to be included.</p></div><div class="subsection"><p>Each implementation will be called in the order sorted by callbackOrder. The result of each invocation is piped through on the next call to OnFilterAssemblies.
+You are not allowed to add new assemblies.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEditor.Build;
+using UnityEditor.Build.Reporting;
+using UnityEngine;
+using System.Linq;<br /><br />class MyCustomFilter : <a href="Build.IFilterBuildAssemblies.html">IFilterBuildAssemblies</a>
+{
+    public int callbackOrder { get { return 0; } }
+    public string[] OnFilterAssemblies(<a href="BuildOptions.html">BuildOptions</a> buildOptions, string[] assemblies)
+    {
+        return assemblies.Where(x =&gt; x == "some.dll").ToArray();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

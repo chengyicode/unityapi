@@ -1,0 +1,44 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Input.GetKey</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Input.html">Input</a>.GetKey</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">GetKey</span>(string <span class="sig-kw">name</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Returns true while the user holds down the key identified by <code class="varname">name</code>.</p></div><div class="subsection"><p>
+        <a href="Input.GetKey.html">GetKey</a> will report the status of the named key.  This might be
+                used to confirm a key is used for auto fire.  For the list of key identifiers
+                see <a href="../Manual/ConventionalGameInput.html">Input Manager</a>.
+When dealing with input it is recommended to use Input.GetAxis and Input.GetButton instead
+since it allows end-users to configure the keys.<br /><br /><strong>iOS, tvOS</strong>: Due platform limitations,  <a href="Input.GetKeyUp.html">GetKeyUp</a> event for keyboard events is delayed by about half a second, see UnityView+Keyboard.mm in the generated Xcode project for more information.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        if (<a href="Input.GetKey.html">Input.GetKey</a>("up"))
+        {
+            print("up arrow key is held down");
+        }<br /><br />        if (<a href="Input.GetKey.html">Input.GetKey</a>("down"))
+        {
+            print("down arrow key is held down");
+        }
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">GetKey</span>(<a href="KeyCode.html">KeyCode</a> <span class="sig-kw">key</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Returns true while the user holds down the key identified by the <code class="varname">key</code> <a href="KeyCode.html">KeyCode</a> enum parameter.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        if (<a href="Input.GetKey.html">Input.GetKey</a>(<a href="KeyCode.UpArrow.html">KeyCode.UpArrow</a>))
+        {
+            print("up arrow key is held down");
+        }<br /><br />        if (<a href="Input.GetKey.html">Input.GetKey</a>(<a href="KeyCode.DownArrow.html">KeyCode.DownArrow</a>))
+        {
+            print("down arrow key is held down");
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

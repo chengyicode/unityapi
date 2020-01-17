@@ -1,0 +1,52 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Screen.SetResolution</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Screen.html">Screen</a>.SetResolution</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">SetResolution</span>(int <span class="sig-kw">width</span>,
+int <span class="sig-kw">height</span>,
+bool <span class="sig-kw">fullscreen</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">SetResolution</span>(int <span class="sig-kw">width</span>,
+int <span class="sig-kw">height</span>,
+bool <span class="sig-kw">fullscreen</span>,
+int <span class="sig-kw">preferredRefreshRate</span> = 0);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">SetResolution</span>(int <span class="sig-kw">width</span>,
+int <span class="sig-kw">height</span>,
+<a href="FullScreenMode.html">FullScreenMode</a> <span class="sig-kw">fullscreenMode</span>,
+int <span class="sig-kw">preferredRefreshRate</span> = 0);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Switches the screen resolution.</p></div><div class="subsection"><p>A <code class="varname">width</code> by <code class="varname">height</code> resolution will be used.
+If no matching resolution is supported, the closest one will be used.<br /><br />If <code class="varname">preferredRefreshRate</code> is 0 (default) Unity will switch to the highest refresh rate supported by the monitor.<br />
+If <code class="varname">preferredRefreshRate</code> is not 0 Unity will use it if the monitor supports it, otherwise will choose
+the highest supported one.<br /><br />On Android <code class="varname">fullscreen</code> controls the SYSTEM_UI_FLAG_LOW_PROFILE flag to View.setSystemUiVisibility(), on
+devices running Honeycomb (OS 3.0 / API 11) or later.<br /><br />On Windows Store Apps, switching to non-native resolution is only supported starting from Windows 8.1 and newer.<br /><br />To set a specific full-screen mode on a desktop platform, use the method overload tht accepts the FullScreenMode parameter.<br /><br />A resolution switch does not happen immediately; it will actually happen when the current frame is finished.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        // <a href="PlayerSettings.Switch.html">Switch</a> to 640 x 480 full-screen
+        <a href="Screen.SetResolution.html">Screen.SetResolution</a>(640, 480, true);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Another example:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        // <a href="PlayerSettings.Switch.html">Switch</a> to 640 x 480 full-screen at 60 hz
+        <a href="Screen.SetResolution.html">Screen.SetResolution</a>(640, 480, true, 60);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Another example:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        // <a href="PlayerSettings.Switch.html">Switch</a> to 800 x 600 windowed
+        <a href="Screen.SetResolution.html">Screen.SetResolution</a>(800, 600, false);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="Screen-resolutions.html">resolutions</a> property.</p></div></div></div></div></body></html>

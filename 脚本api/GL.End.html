@@ -1,0 +1,38 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: GL.End</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="GL.html">GL</a>.End</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">End</span>();
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>End drawing 3D primitives.</p></div><div class="subsection"><p>In OpenGL this matches <code class="mono">glEnd</code>; on other graphics APIs the same
+functionality is emulated.<br /><br />See Also: <a href="GL.Begin.html">GL.Begin</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Draws a Triangle, a Quad and a line
+    // with different colors<br /><br />    <a href="Material.html">Material</a> mat;
+    void  OnPostRender()
+    {
+        if (!mat)
+        {
+            <a href="Debug.LogError.html">Debug.LogError</a>("Please Assign a material on the inspector");
+            return;
+        }
+        <a href="GL.PushMatrix.html">GL.PushMatrix</a>();
+        mat.SetPass(0);
+        <a href="GL.LoadOrtho.html">GL.LoadOrtho</a>();<br /><br />        <a href="GL.Begin.html">GL.Begin</a>(<a href="GL.TRIANGLES.html">GL.TRIANGLES</a>); // Triangle
+        <a href="GL.Color.html">GL.Color</a>(new <a href="Color.html">Color</a>(1, 1, 1, 1));
+        <a href="GL.Vertex3.html">GL.Vertex3</a>(0.50f, 0.25f, 0);
+        <a href="GL.Vertex3.html">GL.Vertex3</a>(0.25f, 0.25f, 0);
+        <a href="GL.Vertex3.html">GL.Vertex3</a>(0.375f, 0.5f, 0);
+        <a href="GL.End.html">GL.End</a>(); // End drawing Triangle<br /><br />        <a href="GL.Begin.html">GL.Begin</a>(<a href="GL.QUADS.html">GL.QUADS</a>); // Quad
+        <a href="GL.Color.html">GL.Color</a>(new <a href="Color.html">Color</a>(0.5f, 0.5f, 0.5f, 1));
+        <a href="GL.Vertex3.html">GL.Vertex3</a>(0.5f, 0.5f, 0);
+        <a href="GL.Vertex3.html">GL.Vertex3</a>(0.5f, 0.75f, 0);
+        <a href="GL.Vertex3.html">GL.Vertex3</a>(0.75f, 0.75f, 0);
+        <a href="GL.Vertex3.html">GL.Vertex3</a>(0.75f, 0.5f, 0);
+        <a href="GL.End.html">GL.End</a>(); // End drawing quad<br /><br />        <a href="GL.Begin.html">GL.Begin</a>(<a href="GL.LINES.html">GL.LINES</a>); // Line
+        <a href="GL.Color.html">GL.Color</a>(new <a href="Color.html">Color</a>(0, 0, 0, 1));
+        <a href="GL.Vertex3.html">GL.Vertex3</a>(0, 0, 0);
+        <a href="GL.Vertex3.html">GL.Vertex3</a>(0.75f, 0.75f, 0);
+        <a href="GL.End.html">GL.End</a>(); // End drawing Line<br /><br />        <a href="GL.PopMatrix.html">GL.PopMatrix</a>();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

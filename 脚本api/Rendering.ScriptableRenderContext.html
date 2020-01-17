@@ -1,0 +1,61 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ScriptableRenderContext</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">ScriptableRenderContext</h1><div class="clear"></div><p class="cl mb0 left mr10">struct in
+          UnityEngine.Rendering</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.CoreModule.html" class="cl">UnityEngine.CoreModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Defines state and drawing commands used in a custom render pipelines.</p></div><div class="subsection"><p>When defining a custom <a href="Experimental.Rendering.RenderPipeline.html">RenderPipeline</a>, a ScriptableRenderContext is used to set state and drawing commands to be submitted to the GPU.<br /><br />A <a href="Rendering.RenderPipeline.Render.html">RenderPipeline.Render</a> method implementation typically culls objects that don't need to be rendered for all the Cameras (see <a href="Rendering.CullingResults.html">CullingResults</a>), and then makes a series of calls to <a href="Rendering.ScriptableRenderContext.DrawRenderers.html">ScriptableRenderContext.DrawRenderers</a> intermixed with <a href="Rendering.ScriptableRenderContext.ExecuteCommandBuffer.html">ScriptableRenderContext.ExecuteCommandBuffer</a> calls. These calls set up global Shader properties, change render targets, dispatch compute shaders, and other rendering tasks. Finally, <a href="Rendering.ScriptableRenderContext.Submit.html">ScriptableRenderContext.Submit</a> is called to execute the render loop.<br /><br />See Also: <a href="Experimental.Rendering.RenderPipeline.html">RenderPipeline</a>.</p></div><div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.ScriptableRenderContext.BeginRenderPass.html">BeginRenderPass</a></td><td class="desc"></td><td class="desc1">Begins a new render pass. Only one render pass can be active.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.ScriptableRenderContext.BeginScopedRenderPass.html">BeginScopedRenderPass</a></td><td class="desc"></td><td class="desc1">Begins a new render pass. Only one render pass can be active.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.ScriptableRenderContext.BeginScopedSubPass.html">BeginScopedSubPass</a></td><td class="desc"></td><td class="desc1">Begins a new sub pass within a render pass. Render passes can never be standalone, they must always contain at least one sub pass. Only one sub pass can be active.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.ScriptableRenderContext.BeginSubPass.html">BeginSubPass</a></td><td class="desc"></td><td class="desc1">Begins a new sub pass within a render pass. Render passes can never be standalone, they must always contain at least one sub pass. Only one sub pass can be active.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.ScriptableRenderContext.Cull.html">Cull</a></td><td class="desc"></td><td class="desc1">Perform culling.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.ScriptableRenderContext.DrawGizmos.html">DrawGizmos</a></td><td class="desc"></td><td class="desc1">Draw a subset of Gizmos (before or after postprocessing) for the given camera.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.ScriptableRenderContext.DrawRenderers.html">DrawRenderers</a></td><td class="desc"></td><td class="desc1">Draw subset of visible objects.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.ScriptableRenderContext.DrawShadows.html">DrawShadows</a></td><td class="desc"></td><td class="desc1">Draw shadow casters for a single light.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.ScriptableRenderContext.DrawSkybox.html">DrawSkybox</a></td><td class="desc"></td><td class="desc1">Draw skybox.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.ScriptableRenderContext.EndRenderPass.html">EndRenderPass</a></td><td class="desc"></td><td class="desc1">Ends the current render pass.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.ScriptableRenderContext.EndSubPass.html">EndSubPass</a></td><td class="desc"></td><td class="desc1">Ends the current sub pass.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.ScriptableRenderContext.ExecuteCommandBuffer.html">ExecuteCommandBuffer</a></td><td class="desc"></td><td class="desc1">Execute a custom graphics command buffer.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.ScriptableRenderContext.ExecuteCommandBufferAsync.html">ExecuteCommandBufferAsync</a></td><td class="desc"></td><td class="desc1">Executes a command buffer on an async compute queue with the queue selected based on the ComputeQueueType parameter passed.It is required that all of the commands within the command buffer be of a type suitable for execution on the async compute queues. If the buffer contains any commands that are not appropriate then an error will be logged and displayed in the editor window.  Specifically the following commands are permitted in a CommandBuffer intended for async execution:CommandBuffer.BeginSampleCommandBuffer.CopyCounterValueCommandBuffer.CopyTextureCommandBuffer.CreateGPUFenceCommandBuffer.DisableShaderKeywordCommandBuffer.DispatchComputeCommandBuffer.EnableShaderKeywordCommandBuffer.EndSampleCommandBuffer.GetTemporaryRTCommandBuffer.GetTemporaryRTArrayCommandBuffer.IssuePluginEventCommandBuffer.ReleaseTemporaryRTCommandBuffer.SetComputeBufferParamCommandBuffer.SetComputeFloatParamCommandBuffer.SetComputeFloatParamsCommandBuffer.SetComputeIntParamCommandBuffer.SetComputeIntParamsCommandBuffer.SetComputeMatrixArrayParamCommandBuffer.SetComputeMatrixParamCommandBuffer.SetComputeTextureParamCommandBuffer.SetComputeVectorParamCommandBuffer.SetComputeVectorArrayParamCommandBuffer.SetGlobalBufferCommandBuffer.SetGlobalColorCommandBuffer.SetGlobalFloatCommandBuffer.SetGlobalFloatArrayCommandBuffer.SetGlobalIntCommandBuffer.SetGlobalMatrixCommandBuffer.SetGlobalMatrixArrayCommandBuffer.SetGlobalTextureCommandBuffer.SetGlobalVectorCommandBuffer.SetGlobalVectorArrayCommandBuffer.WaitOnGPUFenceAll of the commands within the buffer are guaranteed to be executed on the same queue. If the target platform does not support async compute queues then the work is dispatched on the graphics queue.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.ScriptableRenderContext.SetupCameraProperties.html">SetupCameraProperties</a></td><td class="desc"></td><td class="desc1">Setup camera specific global shader variables.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.ScriptableRenderContext.StartMultiEye.html">StartMultiEye</a></td><td class="desc"></td><td class="desc1">Fine-grain control to begin stereo rendering on the scriptable render context.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.ScriptableRenderContext.StereoEndRender.html">StereoEndRender</a></td><td class="desc"></td><td class="desc1">Indicate completion of stereo rendering on a single frame.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.ScriptableRenderContext.StopMultiEye.html">StopMultiEye</a></td><td class="desc"></td><td class="desc1">Stop stereo rendering on the scriptable render context.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.ScriptableRenderContext.Submit.html">Submit</a></td><td class="desc"></td><td class="desc1">Submit rendering loop for execution.</td></tr>
+    </table></div><div class="subsection"><h2>Static Methods   静态方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.ScriptableRenderContext.EmitWorldGeometryForSceneView.html">EmitWorldGeometryForSceneView</a></td><td class="desc"></td><td class="desc1">Emit UI geometry into the Scene view for rendering.</td></tr>
+    </table></div></div></div></div></body></html>

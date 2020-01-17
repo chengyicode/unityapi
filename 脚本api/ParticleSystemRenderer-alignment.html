@@ -1,0 +1,18 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ParticleSystemRenderer.alignment</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="ParticleSystemRenderer.html">ParticleSystemRenderer</a>.alignment</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="ParticleSystemRenderSpace.html">ParticleSystemRenderSpace</a> <span class="sig-kw">alignment</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Control the direction that particles face.</p></div><div class="subsection"><p>For many applications, it is beneficial for particles to always face the Camera. This property allows you to change whether particles in the system face the Camera or not.<br /><br />Particles can face the Camera in two ways:<br /><br />1) Aligned to the Camera plane, so that all particles are aligned with the same facing direction.<br />
+2) Aligned individually to face the eye position, which can be more convincing for particles that approach the Camera in close proximity or for VR environments.<br /><br />Unaligned particles can be set to align to the world or to their local transform, as required.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a> {<br /><br />    private <a href="ParticleSystem.html">ParticleSystem</a> ps;
+    private <a href="ParticleSystemRenderer.html">ParticleSystemRenderer</a> psr;
+    public <a href="ParticleSystemRenderSpace.html">ParticleSystemRenderSpace</a> alignment = <a href="ParticleSystemRenderSpace.View.html">ParticleSystemRenderSpace.View</a>;<br /><br />    void Start() {<br /><br />        Camera.main.transform.rotation = <a href="Quaternion.Euler.html">Quaternion.Euler</a>(0.0f, 20.0f, 0.0f);   // rotate the camera so we can see the difference between view and world space<br /><br />        ps = GetComponent&lt;<a href="ParticleSystem.html">ParticleSystem</a>&gt;();
+        psr = GetComponent&lt;<a href="ParticleSystemRenderer.html">ParticleSystemRenderer</a>&gt;();<br /><br />        var main = ps.main;
+        main.startSpeed = 2.0f;<br /><br />        psr.material = new <a href="Material.html">Material</a>(<a href="Shader.Find.html">Shader.Find</a>("Sprites/Default"));
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>() {
+        psr.alignment = alignment;
+    }<br /><br />    void OnGUI() {
+        alignment = (<a href="ParticleSystemRenderSpace.html">ParticleSystemRenderSpace</a>)<a href="GUI.SelectionGrid.html">GUI.SelectionGrid</a>(new <a href="Rect.html">Rect</a>(25, 25, 300, 30), (int)alignment, new <a href="GUIContent.html">GUIContent</a>[] { new <a href="GUIContent.html">GUIContent</a>("View"), new <a href="GUIContent.html">GUIContent</a>("World"), new <a href="GUIContent.html">GUIContent</a>("Local"), new <a href="GUIContent.html">GUIContent</a>("Facing") }, 4);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

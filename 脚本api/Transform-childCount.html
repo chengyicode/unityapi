@@ -1,0 +1,32 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Transform.childCount</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Transform.html">Transform</a>.childCount</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Transform.html' title='Go to Transform Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public int <span class="sig-kw">childCount</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The number of children the parent Transform has.</p></div><div class="subsection"><p>
+        <strong>Note:</strong> The parent is not included in the count.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // generate a group of connected GameObjects
+    void Awake()
+    {
+        <a href="GameObject.html">GameObject</a> go = new <a href="GameObject.html">GameObject</a>("top");<br /><br />        <a href="Random.InitState.html">Random.InitState</a>(System.Environment.TickCount);<br /><br />        // add 3, 4 or 5 "middle" children that report to "top"
+        for (int i = 0; i &lt; <a href="Random.Range.html">Random.Range</a>(3, 6); i++)
+        {
+            <a href="GameObject.html">GameObject</a> go2 = new <a href="GameObject.html">GameObject</a>("middle" + i.ToString());
+            go2.transform.parent = go.transform;<br /><br />            // add between 1 to 8 "bottom" children that report to the above "middle"
+            for (int j = 0; j &lt; <a href="Random.Range.html">Random.Range</a>(1, 8); j++)
+            {
+                <a href="GameObject.html">GameObject</a> go3 = new <a href="GameObject.html">GameObject</a>("bottom" + j);
+                go3.transform.parent = go2.transform;
+            }
+        }
+    }<br /><br />    void Start()
+    {
+        // how many children does top have?
+        <a href="GameObject.html">GameObject</a> go = <a href="GameObject.Find.html">GameObject.Find</a>("top");
+        <a href="Debug.Log.html">Debug.Log</a>(go.name + " has " + go.transform.childCount + " children");<br /><br />        // pick a random middle group and pick a member of its children
+        go = <a href="GameObject.Find.html">GameObject.Find</a>("middle" + <a href="Random.Range.html">Random.Range</a>(0, go.transform.childCount));
+        <a href="Debug.Log.html">Debug.Log</a>(go.name + " has " + go.transform.childCount + " children");
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

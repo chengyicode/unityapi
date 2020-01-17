@@ -1,0 +1,44 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ParticleSystem.subEmitters</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="ParticleSystem.html">ParticleSystem</a>.subEmitters</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-ParticleSystem.html' title='Go to ParticleSystem Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="ParticleSystem.SubEmittersModule.html">ParticleSystem.SubEmittersModule</a> <span class="sig-kw">subEmitters</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Script interface for the Particle System Sub Emitters module.</p></div><div class="subsection"><p>The triggering of the child particle emission is linked to events such as the birth, death and collision of particles in the parent system.<br /><br />Particle System modules do not need to be reassigned back to the system; they are interfaces and not independent objects.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">using UnityEngine;
+using System.Collections;<br /><br />// A simple example showing access.
+public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a> {<br /><br />    public <a href="ParticleSystem.html">ParticleSystem</a> mySubEmitter;<br /><br />    void Start() {
+        <a href="ParticleSystem.html">ParticleSystem</a> ps = GetComponent&lt;<a href="ParticleSystem.html">ParticleSystem</a>&gt;();
+        var sub = ps.subEmitters;
+        sub.enabled = true;
+        sub.AddSubEmitter(mySubEmitter, <a href="ParticleSystemSubEmitterType.Death.html">ParticleSystemSubEmitterType.Death</a>, <a href="ParticleSystemSubEmitterProperties.InheritNothing.html">ParticleSystemSubEmitterProperties.InheritNothing</a>);
+    }
+}</pre>
+      </div><div class="subsection">
+        
+        <pre class="codeExampleCS">using UnityEngine;<br /><br />// An example showing how to create 2 <a href="ParticleSystem.Particle.html">Particle</a> Systems; one as a sub-emitter.
+public class SubEmitterDeathExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start ()
+    {
+        // A simple particle material with no texture.
+        <a href="Material.html">Material</a> particleMaterial = new <a href="Material.html">Material</a>(<a href="Shader.Find.html">Shader.Find</a>("Particles/Standard Unlit"));<br /><br />        // Create a green <a href="ParticleSystem.Particle.html">Particle</a> System.
+        var rootSystemGO = new <a href="GameObject.html">GameObject</a>("<a href="ParticleSystem.Particle.html">Particle</a> System");
+        rootSystemGO.transform.Rotate(-90, 0, 0); // Rotate so the system emits upwards.
+        var rootParticleSystem = rootSystemGO.AddComponent&lt;<a href="ParticleSystem.html">ParticleSystem</a>&gt;();
+        rootSystemGO.GetComponent&lt;<a href="ParticleSystemRenderer.html">ParticleSystemRenderer</a>&gt;().material = particleMaterial;
+        var mainModule = rootParticleSystem.main;
+        mainModule.startColor = <a href="Color-green.html">Color.green</a>;
+        mainModule.startSize = 0.5f;<br /><br />        // Create our sub-emitter and set up bursts.
+        var subSystemGO = new <a href="GameObject.html">GameObject</a>("<a href="ParticleSystem.Particle.html">Particle</a> System");
+        var subParticleSystem = subSystemGO.AddComponent&lt;<a href="ParticleSystem.html">ParticleSystem</a>&gt;();
+        subSystemGO.GetComponent&lt;<a href="ParticleSystemRenderer.html">ParticleSystemRenderer</a>&gt;().material = particleMaterial;
+        var subMainModule = subParticleSystem.main;
+        subMainModule.startColor = <a href="Color-red.html">Color.red</a>;
+        subMainModule.startSize = 0.25f;
+        var emissionModule = subParticleSystem.emission;
+        emissionModule.SetBursts(new <a href="ParticleSystem.Burst.html">ParticleSystem.Burst</a>[] { new <a href="ParticleSystem.Burst.html">ParticleSystem.Burst</a>(0.0f, 10) }); // We will emit 10 particles upon death.<br /><br />        // Set up the sub-emitter.
+        subSystemGO.transform.SetParent(rootSystemGO.transform);
+        var subEmittersModule = rootParticleSystem.subEmitters;
+        subEmittersModule.enabled = true;
+        subEmittersModule.AddSubEmitter(subParticleSystem, <a href="ParticleSystemSubEmitterType.Death.html">ParticleSystemSubEmitterType.Death</a>, <a href="ParticleSystemSubEmitterProperties.InheritNothing.html">ParticleSystemSubEmitterProperties.InheritNothing</a>);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

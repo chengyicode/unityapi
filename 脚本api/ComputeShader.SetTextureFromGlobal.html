@@ -1,0 +1,26 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ComputeShader.SetTextureFromGlobal</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="ComputeShader.html">ComputeShader</a>.SetTextureFromGlobal</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-ComputeShader.html' title='Go to ComputeShader Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">SetTextureFromGlobal</span>(int <span class="sig-kw">kernelIndex</span>,
+string <span class="sig-kw">name</span>,
+string <span class="sig-kw">globalTextureName</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">SetTextureFromGlobal</span>(int <span class="sig-kw">kernelIndex</span>,
+int <span class="sig-kw">nameID</span>,
+int <span class="sig-kw">globalTextureNameID</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">kernelIndex</td><td class="desc"></td><td class="desc1">For which kernel the texture is being set. See <a href="ComputeShader.FindKernel.html">FindKernel</a>.</td></tr><tr><td class="name lbl">nameID</td><td class="desc"></td><td class="desc1">Property name ID, use <a href="Shader.PropertyToID.html">Shader.PropertyToID</a> to get it.</td></tr><tr><td class="name lbl">name</td><td class="desc"></td><td class="desc1">Name of the buffer variable in shader code.</td></tr><tr><td class="name lbl">globalTextureName</td><td class="desc"></td><td class="desc1">Global texture property to assign to shader.</td></tr><tr><td class="name lbl">globalTextureNameID</td><td class="desc"></td><td class="desc1">Property name ID, use <a href="Shader.PropertyToID.html">Shader.PropertyToID</a> to get it.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Set a texture parameter from a global texture property.</p></div><div class="subsection"><p>This function can either set a regular texture that is read in the
+compute shader, or an output texture that is written into by the shader.
+For an output texture, it has to be a <a href="RenderTexture.html">RenderTexture</a> with random write
+flag enabled, see <a href="RenderTexture-enableRandomWrite.html">RenderTexture.enableRandomWrite</a>.<br /><br />Buffers and textures are set per-kernel. Use <a href="ComputeShader.FindKernel.html">FindKernel</a> to find kernel index by function name.<br /><br />See Also: <a href="ComputeShader.FindKernel.html">FindKernel</a>, <a href="ComputeShader.SetBuffer.html">SetBuffer</a>, <a href="ComputeShader.SetTexture.html">SetTexture</a>, <a href="Shader.SetGlobalTexture.html">Shader.SetGlobalTexture</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Assign the CameraMotionVectorsTexture global texture to a compute texture
+using System;
+using UnityEngine;<br /><br />public class SampleBehaviour : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public int renderTargetWidth;
+    public int renderTargetHeight;
+    <a href="ComputeShader.html">ComputeShader</a> myComputeShader;<br /><br />    void ComputeUsingMotionVector()
+    {
+        int kKernelIndex = 0;<br /><br />        myComputeShader.SetTextureFromGlobal(kKernelIndex, "computeTexture", "_CameraMotionVectorsTexture");
+        myComputeShader.Dispatch(kKernelIndex, renderTargetWidth, renderTargetHeight, 1);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

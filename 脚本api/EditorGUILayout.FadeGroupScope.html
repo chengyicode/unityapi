@@ -1,0 +1,46 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: FadeGroupScope</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">FadeGroupScope</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEditor</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEditor.html" class="cl">UnityEditor</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Begins a group that can be be hidden/shown and the transition will be animated.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEditor.AnimatedValues;
+using UnityEngine.Events;<br /><br />public class MyWindow : <a href="EditorWindow.html">EditorWindow</a>
+{
+    <a href="AnimatedValues.AnimBool.html">AnimBool</a> m_ShowExtraFields;
+    string m_String;
+    <a href="Color.html">Color</a> m_Color = <a href="Color-white.html">Color.white</a>;
+    int m_Number = 0;<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Window/My Window")]
+    static void Init()
+    {
+        MyWindow window = (MyWindow)<a href="EditorWindow.GetWindow.html">EditorWindow.GetWindow</a>(typeof(MyWindow));
+        window.Show();
+    }<br /><br />    void OnEnable()
+    {
+        m_ShowExtraFields = new <a href="AnimatedValues.AnimBool.html">AnimBool</a>(true);
+        m_ShowExtraFields.valueChanged.AddListener(new <a href="Events.UnityAction.html">UnityAction</a>(base.Repaint));
+    }<br /><br />    void OnGUI()
+    {
+        m_ShowExtraFields.target = <a href="EditorGUILayout.ToggleLeft.html">EditorGUILayout.ToggleLeft</a>("Show extra fields", m_ShowExtraFields.target);<br /><br />        //Extra block that can be toggled on and off.
+        using (var group = new <a href="EditorGUILayout.FadeGroupScope.html">EditorGUILayout.FadeGroupScope</a>(m_ShowExtraFields.faded))
+        {
+            if (group.visible)
+            {
+                <a href="EditorGUI-indentLevel.html">EditorGUI.indentLevel</a>++;
+                <a href="EditorGUILayout.PrefixLabel.html">EditorGUILayout.PrefixLabel</a>("<a href="Color.html">Color</a>");
+                m_Color = <a href="EditorGUILayout.ColorField.html">EditorGUILayout.ColorField</a>(m_Color);
+                <a href="EditorGUILayout.PrefixLabel.html">EditorGUILayout.PrefixLabel</a>("Text");
+                m_String = <a href="EditorGUILayout.TextField.html">EditorGUILayout.TextField</a>(m_String);
+                <a href="EditorGUILayout.PrefixLabel.html">EditorGUILayout.PrefixLabel</a>("Number");
+                m_Number = <a href="EditorGUILayout.IntSlider.html">EditorGUILayout.IntSlider</a>(m_Number, 0, 10);
+                <a href="EditorGUI-indentLevel.html">EditorGUI.indentLevel</a>--;
+            }
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="EditorGUILayout.FadeGroupScope-visible.html">visible</a></td><td class="desc"></td><td class="desc1">Whether the group is visible.</td></tr>
+    </table></div><div class="subsection"><h2>Constructors</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="EditorGUILayout.FadeGroupScope-ctor.html">EditorGUILayout.FadeGroupScope</a></td><td class="desc"></td><td class="desc1">Create a new FadeGroupScope and begin the corresponding group.</td></tr>
+    </table></div></div></div></div></body></html>

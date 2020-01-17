@@ -1,0 +1,34 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: NetworkReachability</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">NetworkReachability</h1><div class="clear"></div><p class="cl mb0 left mr10">enumeration</p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Describes network reachability options.</p></div><div class="subsection"><p>Describes which options are available for connecting to the Internet on the device if there are any.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//Attach this script to a <a href="GameObject.html">GameObject</a>
+//This script checks the device’s ability to reach the internet and outputs it to the console window<br /><br />using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    string m_ReachabilityText;<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+//Output the network reachability to the console window
+        <a href="Debug.Log.html">Debug.Log</a>("Internet : " + m_ReachabilityText);
+        //Check if the device cannot reach the internet
+        if (<a href="Application-internetReachability.html">Application.internetReachability</a> == <a href="NetworkReachability.NotReachable.html">NetworkReachability.NotReachable</a>)
+        {
+            //Change the Text
+            m_ReachabilityText = "Not Reachable.";
+        }
+        //Check if the device can reach the internet via a carrier data network
+        else if (<a href="Application-internetReachability.html">Application.internetReachability</a> == <a href="NetworkReachability.ReachableViaCarrierDataNetwork.html">NetworkReachability.ReachableViaCarrierDataNetwork</a>)
+        {
+            m_ReachabilityText = "Reachable via carrier data network.";
+        }
+        //Check if the device can reach the internet via a LAN
+        else if (<a href="Application-internetReachability.html">Application.internetReachability</a> == <a href="NetworkReachability.ReachableViaLocalAreaNetwork.html">NetworkReachability.ReachableViaLocalAreaNetwork</a>)
+        {
+            m_ReachabilityText = "Reachable via Local Area Network.";
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="NetworkReachability.NotReachable.html">NotReachable</a></td><td class="desc"></td><td class="desc1">Network is not reachable.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="NetworkReachability.ReachableViaCarrierDataNetwork.html">ReachableViaCarrierDataNetwork</a></td><td class="desc"></td><td class="desc1">Network is reachable via carrier data network.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="NetworkReachability.ReachableViaLocalAreaNetwork.html">ReachableViaLocalAreaNetwork</a></td><td class="desc"></td><td class="desc1">Network is reachable via WiFi or cable.</td></tr>
+    </table></div></div></div></div></body></html>

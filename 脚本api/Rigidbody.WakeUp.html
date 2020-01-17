@@ -1,0 +1,34 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Rigidbody.WakeUp</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Rigidbody.html">Rigidbody</a>.WakeUp</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Rigidbody.html' title='Go to Rigidbody Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">WakeUp</span>();
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Forces a rigidbody to wake up.</p></div><div class="subsection"><p>See the <a href="../Manual/RigidbodiesOverview.html">Rigidbody overview</a> page in the manual for more information about <a href="Rigidbody.html">Rigidbody</a> sleeping.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private float fallTime;
+    private <a href="Rigidbody.html">Rigidbody</a> rbGO;
+    private bool sleeping;<br /><br />    void Start()
+    {
+        rbGO = gameObject.AddComponent&lt;<a href="Rigidbody.html">Rigidbody</a>&gt;();
+        rbGO.mass = 10.0f;
+        <a href="Physics-gravity.html">Physics.gravity</a> = new <a href="Vector3.html">Vector3</a>(0, -2.0f, 0);
+        sleeping = false;
+        fallTime = 0.0f;
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        if (fallTime &gt; 1.0f)
+        {
+            if (sleeping)
+            {
+                rbGO.WakeUp();
+                <a href="Debug.Log.html">Debug.Log</a>("wakeup");
+            }
+            else
+            {
+                rbGO.Sleep();
+                <a href="Debug.Log.html">Debug.Log</a>("sleep");
+            }<br /><br />            sleeping = !sleeping;<br /><br />            fallTime = 0.0f;
+        }<br /><br />        fallTime += <a href="Time-deltaTime.html">Time.deltaTime</a>;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

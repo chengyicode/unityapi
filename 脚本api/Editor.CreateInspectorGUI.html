@@ -1,0 +1,18 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Editor.CreateInspectorGUI</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Editor.html">Editor</a>.CreateInspectorGUI</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="UIElements.VisualElement.html">UIElements.VisualElement</a> <span class="sig-kw">CreateInspectorGUI</span>();
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Implement this method to make a custom UIElements inspector.</p></div><div class="subsection"><p>Inside this method, you can create your own custom UIElements inspector for a specific object class.<br /><br /><strong>Note:</strong> This function has to be overridden in order to work.<br /><br />The example below shows how to use <code class="mono">override</code> to create a custom label.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">using UnityEngine;
+using System.Collections;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />// Creates a custom <a href="UIElements.Label.html">Label</a> on the inspector for all the scripts named ScriptName
+// Make sure you have a ScriptName script in your
+// project, else this will not work.
+[<a href="CustomEditor.html">CustomEditor</a>(typeof(ScriptName))]
+public class TestOnInspector : <a href="Editor.html">Editor</a>
+{
+    public override <a href="UIElements.VisualElement.html">VisualElement</a> CreateInspectorGUI()
+    {
+        return new <a href="UIElements.Label.html">Label</a>("This is a <a href="UIElements.Label.html">Label</a> in a Custom <a href="Editor.html">Editor</a>");
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ReadOnlyAttribute</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">ReadOnlyAttribute</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          Unity.Collections</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.CoreModule.html" class="cl">UnityEngine.CoreModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>The ReadOnly attribute lets you mark a member of a struct used in a job as read-only.</p></div><div class="subsection"><p>Native containers are read-write by default when used in a job. This means that you cannot schedule two jobs referencing the same containers simultaneously. By adding the ReadOnly attribute to the container field in the job struct the container is marked as read-only, which allows two jobs to run in parallel reading data from the same container.<br /><br />See Also: <a href="Unity.Jobs.IJob.html">IJob</a>, <a href="Unity.Jobs.IJobParallelFor.html">IJobParallelFor</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using Unity.Jobs;
+using Unity.Collections;
+using UnityEngine;<br /><br />public struct MyJob : <a href="Unity.Jobs.IJob.html">IJob</a>
+{
+    [ReadOnly]
+    public NativeArray&lt;int&gt; input;<br /><br />    public NativeArray&lt;int&gt; output;<br /><br />    public void Execute()
+    {
+        for (var i = 0; i &lt; output.Length; ++i)
+            output[i] = input[i];
+    }
+}<br /><br />public class ParallelReplicator : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public void OnUpdate()
+    {
+        const int n = 10000;
+        var original = new NativeArray&lt;int&gt;(n, <a href="Unity.Collections.Allocator.Persistent.html">Allocator.Persistent</a>);
+        var clone1 = new NativeArray&lt;int&gt;(n, <a href="Unity.Collections.Allocator.Persistent.html">Allocator.Persistent</a>);
+        var clone2 = new NativeArray&lt;int&gt;(n, <a href="Unity.Collections.Allocator.Persistent.html">Allocator.Persistent</a>);<br /><br />        var job1 = new MyJob
+        {
+            input = original,
+            output = clone1
+        };
+        var job2 = new MyJob
+        {
+            input = original,
+            output = clone2
+        };<br /><br />        var jobX = new MyJob
+        {
+            input = original,
+            output = clone2
+        };<br /><br />        // Run the jobs in parallel.
+        var jobs = <a href="Unity.Jobs.JobHandle.CombineDependencies.html">JobHandle.CombineDependencies</a>(job1.Schedule(), job2.Schedule());<br /><br />        // jobX.Schedule(); // Not allowed, throws exception because job2 is writing into copy2.<br /><br />        jobs.Complete();<br /><br />        jobX.Schedule().Complete(); // Allowed, because job2 has been completed by now.<br /><br />        original.Dispose();
+        clone1.Dispose();
+        clone2.Dispose();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

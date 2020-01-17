@@ -1,0 +1,24 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorGUIUtility.PingObject</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorGUIUtility.html">EditorGUIUtility</a>.PingObject</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">PingObject</span>(<a href="Object.html">Object</a> <span class="sig-kw">obj</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">PingObject</span>(int <span class="sig-kw">targetInstanceID</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">obj</td><td class="desc"></td><td class="desc1">The object to be pinged.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Ping an object in the Scene like clicking it in an inspector.</p></div><div class="subsection"><p>
+        <a href="EditorGUIUtility.PingObject.html">PingObject</a> will cause the Hierarchy to highlight the pinged object. The pinged
+          object does not have to selected.  For example <a href="GameObject.Find.html">GameObject.Find</a> can be used
+          to locate an object to ping.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Pings the currently selected Object
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;<br /><br />public class PingObjectExample
+{
+    [<a href="MenuItem.html">MenuItem</a>("Examples/<a href="Ping.html">Ping</a> Selected")]
+    static void <a href="Ping.html">Ping</a>()
+    {
+        if (!<a href="Selection-activeObject.html">Selection.activeObject</a>)
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("Select an object to ping");
+            return;
+        }<br /><br />        <a href="EditorGUIUtility.PingObject.html">EditorGUIUtility.PingObject</a>(<a href="Selection-activeObject.html">Selection.activeObject</a>);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

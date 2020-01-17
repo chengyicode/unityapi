@@ -1,0 +1,50 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorGUILayout.ToggleLeft</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorGUILayout.html">EditorGUILayout</a>.ToggleLeft</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">ToggleLeft</span>(string <span class="sig-kw">label</span>,
+bool <span class="sig-kw">value</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">ToggleLeft</span>(<a href="GUIContent.html">GUIContent</a> <span class="sig-kw">label</span>,
+bool <span class="sig-kw">value</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">ToggleLeft</span>(string <span class="sig-kw">label</span>,
+bool <span class="sig-kw">value</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">labelStyle</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">ToggleLeft</span>(<a href="GUIContent.html">GUIContent</a> <span class="sig-kw">label</span>,
+bool <span class="sig-kw">value</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">labelStyle</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">label</td><td class="desc"></td><td class="desc1">Label to display next to the toggle.</td></tr><tr><td class="name lbl">value</td><td class="desc"></td><td class="desc1">The value to edit.</td></tr><tr><td class="name lbl">labelStyle</td><td class="desc"></td><td class="desc1">Optional <a href="GUIStyle.html">GUIStyle</a> to use for the label.</td></tr><tr><td class="name lbl">options</td><td class="desc"></td><td class="desc1">An optional list of layout options that specify extra layout properties. Any values passed in here will override settings defined by the <code class="varname">style</code>.<br />
+See Also: <a href="GUILayout.Width.html">GUILayout.Width</a>, <a href="GUILayout.Height.html">GUILayout.Height</a>, <a href="GUILayout.MinWidth.html">GUILayout.MinWidth</a>, <a href="GUILayout.MaxWidth.html">GUILayout.MaxWidth</a>, <a href="GUILayout.MinHeight.html">GUILayout.MinHeight</a>,
+<a href="GUILayout.MaxHeight.html">GUILayout.MaxHeight</a>, <a href="GUILayout.ExpandWidth.html">GUILayout.ExpandWidth</a>, <a href="GUILayout.ExpandHeight.html">GUILayout.ExpandHeight</a>.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Make a toggle field where the toggle is to the left and the label immediately to the right of it.</p></div><div class="subsection"><p>
+        <a href="EditorGUILayout.ToggleLeft.html">EditorGUILayout.ToggleLeft</a> is similar to <a href="GUILayout.Toggle.html">GUILayout.Toggle</a> but
+                respects the <a href="EditorGUI-showMixedValue.html">EditorGUI.showMixedValue</a> property and handles keyboard focus
+                consistent with other Editor controls.  <a href="EditorGUILayout.ToggleLeft.html">EditorGUILayout.ToggleLeft</a> has
+                the label close and to the left of the toggle.  (The <a href="EditorGUILayout.Toggle.html">EditorGUILayout.Toggle</a> has the
+                opposite with the label at a distance from the toggle and to the right.)
+                </p></div><div class="subsection"><p>
+        <img src="../StaticFiles/ScriptRefImages/EditorGUILayoutToggleLeft.png" />
+        <br />
+<em>Show a button if the toggle control is selected.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Creates a new menu in the <a href="Editor.html">Editor</a> called "Examples" with a new menu item called "ToggleLeft example"<br /><br />using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class Example : <a href="EditorWindow.html">EditorWindow</a>
+{
+    bool showBtn = true;<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Examples/ToggleLeft example")]
+    static void Init()
+    {
+        Example window = (Example)<a href="EditorWindow.GetWindow.html">EditorWindow.GetWindow</a>(typeof(Example), true, "ToggleLeft example");
+        window.Show();
+    }<br /><br />    void OnGUI()
+    {
+        showBtn = <a href="EditorGUILayout.ToggleLeft.html">EditorGUILayout.ToggleLeft</a>("Show <a href="UIElements.Button.html">Button</a>", showBtn);
+        if (showBtn)
+        {
+            if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Close"))
+            {
+                this.Close();
+            }
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

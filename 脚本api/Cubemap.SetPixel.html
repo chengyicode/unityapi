@@ -1,0 +1,22 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Cubemap.SetPixel</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Cubemap.html">Cubemap</a>.SetPixel</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Cubemap.html' title='Go to Cubemap Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">SetPixel</span>(<a href="CubemapFace.html">CubemapFace</a> <span class="sig-kw">face</span>,
+int <span class="sig-kw">x</span>,
+int <span class="sig-kw">y</span>,
+<a href="Color.html">Color</a> <span class="sig-kw">color</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Sets pixel color at coordinates (face, x, y).</p></div><div class="subsection"><p>Call <a href="Cubemap.Apply.html">Apply</a> to actually upload the changed pixels to the graphics card.
+Uploading is an expensive operation, so you'll want to change as many pixels
+as possible between <code class="varname">Apply</code> calls.<br /><br />This method works only on <code class="varname">RGBA32</code>, <code class="varname">ARGB32</code>, <code class="varname">RGB24</code> and <code class="varname">Alpha8</code> texture formats.
+For other formats <code class="varname">SetPixel</code> is ignored.
+See Also: <a href="Cubemap.Apply.html">Apply</a> method.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Cubemap.html">Cubemap</a> cubeMap;<br /><br />    void Start()
+    {
+        // Set the pixel at (0,0) of the +X face red.
+        cubeMap.SetPixel(<a href="CubemapFace.PositiveX.html">CubemapFace.PositiveX</a>, 0, 0, <a href="Color-red.html">Color.red</a>);
+        cubeMap.Apply(); // Apply the stuff done to the <a href="Cubemap.html">Cubemap</a>.
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: MixedLightingMode</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">MixedLightingMode</h1><div class="clear"></div><p class="cl mb0 left mr10">enumeration</p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Enum describing what lighting mode to be used with Mixed lights.</p></div><div class="subsection"><p>Summary of the baked data associated with each mode:<br /><br /><strong>IndirectOnly</strong><br />
+Lightmaps<br />
+- direct: no<br />
+- occlusion: no<br />
+Light probes<br />
+- direct: no<br />
+- occlusion: no<br /><br /><strong>Shadowmask</strong><br />
+Lightmaps<br />
+- direct: no<br />
+- occlusion: yes<br />
+Light probes<br />
+- direct: no<br />
+- occlusion: yes<br /><br /><strong>Subtractive</strong><br />
+Lightmaps<br />
+- direct: yes<br />
+- occlusion: no<br />
+Light probes<br />
+- direct: no<br />
+- occlusion: yes.</p></div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="MixedLightingMode.IndirectOnly.html">IndirectOnly</a></td><td class="desc"></td><td class="desc1">Mixed lights provide realtime direct lighting while indirect light is baked into lightmaps and light probes.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="MixedLightingMode.Shadowmask.html">Shadowmask</a></td><td class="desc"></td><td class="desc1">Mixed lights provide realtime direct lighting. Indirect lighting gets baked into lightmaps and light probes. Shadowmasks and light probe occlusion get generated for baked shadows. The Shadowmask Mode used at run time can be set in the Quality Settings panel.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="MixedLightingMode.Subtractive.html">Subtractive</a></td><td class="desc"></td><td class="desc1">Mixed lights provide baked direct and indirect lighting for static objects. Dynamic objects receive realtime direct lighting and cast shadows on static objects using the main directional light in the Scene.</td></tr>
+    </table></div></div></div></div></body></html>

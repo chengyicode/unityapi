@@ -1,0 +1,19 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Assertions.Assert.IsNull</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Assertions.Assert.html">Assert</a>.IsNull</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">IsNull</span>(<a href="Object.html">Object</a> <span class="sig-kw">value</span>,
+string <span class="sig-kw">message</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">IsNull</span>(T <span class="sig-kw">value</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">IsNull</span>(T <span class="sig-kw">value</span>,
+string <span class="sig-kw">message</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">value</td><td class="desc"></td><td class="desc1">The <code class="varname">Object</code> or <code class="varname">type</code> being checked for.</td></tr><tr><td class="name lbl">message</td><td class="desc"></td><td class="desc1">The string used to describe the <a href="Assertions.Assert.html">Assert</a>.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Assert the value is null.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.Assertions;<br /><br />public class AssertionExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    MyClass myClassReference;<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        // Make sure the myClassReference reference is never set
+        <a href="Assertions.Assert.IsNull.html">Assert.IsNull</a>(myClassReference);
+    }
+}<br /><br />public class MyClass {}
+</pre>
+      </div></div></div></div></body></html>

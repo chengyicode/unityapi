@@ -1,0 +1,42 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: FilterMode.Trilinear</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="FilterMode.html">FilterMode</a>.Trilinear</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Trilinear filtering - texture samples are averaged and also blended between mipmap levels.</p></div><div class="subsection"><p>For textures without mipmaps, this setting is the same as <a href="FilterMode.Bilinear.html">Bilinear</a>.<br /><br />See Also: <a href="Texture-filterMode.html">Texture.filterMode</a>, <a href="../Manual/Textures.html">texture assets</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//This script changes the filter mode of your <a href="Texture.html">Texture</a> you attach when you press the space key in Play <a href="Scripting.GarbageCollector.Mode.html">Mode</a>. It switches between Point, Bilinear and Trilinear filter modes.
+//Attach this script to a <a href="GameObject.html">GameObject</a>
+//Click on the <a href="GameObject.html">GameObject</a> and attach a <a href="Texture.html">Texture</a> to the My <a href="Texture.html">Texture</a> field in the Inspector.
+//Apply the <a href="Texture.html">Texture</a> to GameObjects (click and drag the <a href="Texture.html">Texture</a> onto a <a href="GameObject.html">GameObject</a> in <a href="Editor.html">Editor</a> mode) in your <a href="SceneManagement.Scene.html">Scene</a> to see it change modes in-game.<br /><br />using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    //Remember to assign a <a href="Texture.html">Texture</a> in the Inspector window to ensure this works
+    public <a href="Texture.html">Texture</a> m_MyTexture;<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        //Press the space key to switch between Filter Modes
+        if (<a href="Input.GetKeyDown.html">Input.GetKeyDown</a>(<a href="KeyCode.Space.html">KeyCode.Space</a>))
+        {
+            //<a href="PlayerSettings.Switch.html">Switch</a> the <a href="Texture.html">Texture</a>'s Filter <a href="Scripting.GarbageCollector.Mode.html">Mode</a>
+            m_MyTexture.filterMode = SwitchFilterModes();
+            //Output the current Filter <a href="Scripting.GarbageCollector.Mode.html">Mode</a> to the console
+            <a href="Debug.Log.html">Debug.Log</a>("Filter mode : " + m_MyTexture.filterMode);
+        }
+    }<br /><br />    //<a href="PlayerSettings.Switch.html">Switch</a> between Filter Modes when the user clicks the <a href="UIElements.Button.html">Button</a>
+    <a href="FilterMode.html">FilterMode</a> SwitchFilterModes()
+    {
+        //<a href="PlayerSettings.Switch.html">Switch</a> the Filter <a href="Scripting.GarbageCollector.Mode.html">Mode</a> of the <a href="Texture.html">Texture</a> when user clicks the <a href="UIElements.Button.html">Button</a>
+        switch (m_MyTexture.filterMode)
+        {
+            //If the <a href="FilterMode.html">FilterMode</a> is currently Bilinear, switch it to Point on the <a href="UIElements.Button.html">Button</a> click
+            case <a href="FilterMode.Bilinear.html">FilterMode.Bilinear</a>:
+                m_MyTexture.filterMode = <a href="FilterMode.Point.html">FilterMode.Point</a>;
+                break;<br /><br />            //If the <a href="FilterMode.html">FilterMode</a> is currently Point, switch it to Trilinear on the <a href="UIElements.Button.html">Button</a> click
+            case <a href="FilterMode.Point.html">FilterMode.Point</a>:
+                m_MyTexture.filterMode = <a href="FilterMode.Trilinear.html">FilterMode.Trilinear</a>;
+                break;<br /><br />            //If the <a href="FilterMode.html">FilterMode</a> is currently Trilinear, switch it to Bilinear on the <a href="UIElements.Button.html">Button</a> click
+            case <a href="FilterMode.Trilinear.html">FilterMode.Trilinear</a>:
+                m_MyTexture.filterMode = <a href="FilterMode.Bilinear.html">FilterMode.Bilinear</a>;
+                break;
+        }
+        //Return the new <a href="Texture.html">Texture</a> <a href="FilterMode.html">FilterMode</a>
+        return m_MyTexture.filterMode;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

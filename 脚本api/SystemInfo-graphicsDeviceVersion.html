@@ -1,0 +1,21 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: SystemInfo.graphicsDeviceVersion</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="SystemInfo.html">SystemInfo</a>.graphicsDeviceVersion</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static string <span class="sig-kw">graphicsDeviceVersion</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The graphics API type and driver version used by the graphics device (Read Only).</p></div><div class="subsection"><p>Returns a string identifying low-level graphics API kind and driver version. In most
+cases when you need to detect which graphics API is being used it is much easier to
+use <a href="SystemInfo-graphicsDeviceType.html">SystemInfo.graphicsDeviceType</a>.<br /><br />In case of OpenGL API, the returned string will contain "<code class="mono">OpenGL</code>" followed by
+version in "<code class="mono">major.minor</code>" format, followed by full version string in square brackets.<br /><br />In case of Direct3D9 API, the returned string will contain "<code class="mono">Direct3D 9.0c</code>" followed
+by driver name and version in square brackets.<br /><br />In case of Direct3D11 API, the returned string will contain "<code class="mono">Direct3D 11.0</code>" followed
+by feature level in square brackets.<br /><br />See Also: <a href="SystemInfo-graphicsDeviceType.html">SystemInfo.graphicsDeviceType</a>, <a href="SystemInfo-graphicsDeviceName.html">SystemInfo.graphicsDeviceName</a>, <a href="SystemInfo-graphicsDeviceVendor.html">SystemInfo.graphicsDeviceVendor</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        // Prints "OpenGL 2.0 [2.0 ATI-1.4.40]" on MacBook Pro running Mac OS X 10.4.8
+        // Prints "Direct3D 9.0c [atiumdag.dll 7.14.10.471]" on MacBook Pro running Windows Vista
+        print(<a href="SystemInfo-graphicsDeviceVersion.html">SystemInfo.graphicsDeviceVersion</a>);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

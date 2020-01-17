@@ -1,0 +1,23 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: IScriptableRuntimeReflectionSystem</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Experimental</b>: this API is experimental and might be changed or removed in the future.</div><h1 class="heading inherit">IScriptableRuntimeReflectionSystem</h1><div class="clear"></div><p class="cl mb0 left mr10">interface in
+          UnityEngine.Experimental.Rendering</p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Defines the required members for a Runtime Reflection Systems.</p></div><div class="subsection"><p>You can use the empty implementation as base class, see <a href="Experimental.Rendering.ScriptableRuntimeReflectionSystem.html">ScriptableRuntimeReflectionSystem</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Experimental.Rendering;<br /><br />abstract class CustomRuntimeReflectionSystem : <a href="Experimental.Rendering.IScriptableRuntimeReflectionSystem.html">IScriptableRuntimeReflectionSystem</a>
+{
+    List&lt;<a href="ReflectionProbe.html">ReflectionProbe</a>&gt; m_RealtimeReflectionProbes = new List&lt;<a href="ReflectionProbe.html">ReflectionProbe</a>&gt;();
+    List&lt;<a href="RenderTexture.html">RenderTexture</a>&gt; m_RealtimeReflectionProbeTargets = new List&lt;<a href="RenderTexture.html">RenderTexture</a>&gt;();<br /><br />    public bool TickRealtimeProbes()
+    {
+        for (int i = 0, c = m_RealtimeReflectionProbes.Count; i &lt; c; ++i)
+        {
+            var probe = m_RealtimeReflectionProbes[i];
+            var target = m_RealtimeReflectionProbeTargets[i];<br /><br />            RenderProbe(probe, target);<br /><br />            probe.realtimeTexture = target;
+        }<br /><br />        return true;
+    }<br /><br />    protected abstract void RenderProbe(<a href="ReflectionProbe.html">ReflectionProbe</a> probe, <a href="RenderTexture.html">RenderTexture</a> target);
+    public abstract void Dispose();
+}
+</pre>
+      </div><div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.Rendering.IScriptableRuntimeReflectionSystem.TickRealtimeProbes.html">TickRealtimeProbes</a></td><td class="desc"></td><td class="desc1">Update the reflection probes.</td></tr>
+    </table></div></div></div></div></body></html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Animator.SetLookAtWeight</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Animator.html">Animator</a>.SetLookAtWeight</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Animator.html' title='Go to Animator Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">SetLookAtWeight</span>(float <span class="sig-kw">weight</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">SetLookAtWeight</span>(float <span class="sig-kw">weight</span>,
+float <span class="sig-kw">bodyWeight</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">SetLookAtWeight</span>(float <span class="sig-kw">weight</span>,
+float <span class="sig-kw">bodyWeight</span>,
+float <span class="sig-kw">headWeight</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">SetLookAtWeight</span>(float <span class="sig-kw">weight</span>,
+float <span class="sig-kw">bodyWeight</span>,
+float <span class="sig-kw">headWeight</span>,
+float <span class="sig-kw">eyesWeight</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">SetLookAtWeight</span>(float <span class="sig-kw">weight</span>,
+float <span class="sig-kw">bodyWeight</span> = 0.0f,
+float <span class="sig-kw">headWeight</span> = 1.0f,
+float <span class="sig-kw">eyesWeight</span> = 0.0f,
+float <span class="sig-kw">clampWeight</span> = 0.5f);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">weight</td><td class="desc"></td><td class="desc1">(0-1) the global weight of the LookAt, multiplier for other parameters.</td></tr><tr><td class="name lbl">bodyWeight</td><td class="desc"></td><td class="desc1">(0-1) determines how much the body is involved in the LookAt.</td></tr><tr><td class="name lbl">headWeight</td><td class="desc"></td><td class="desc1">(0-1) determines how much the head is involved in the LookAt.</td></tr><tr><td class="name lbl">eyesWeight</td><td class="desc"></td><td class="desc1">(0-1) determines how much the eyes are involved in the LookAt.</td></tr><tr><td class="name lbl">clampWeight</td><td class="desc"></td><td class="desc1">(0-1) 0.0 means the character is completely unrestrained in motion, 1.0 means he's completely clamped (look at becomes impossible), and 0.5 means he'll be able to move on half of the possible range (180 degrees).</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Set look at weights.</p></div></div></div></div></body></html>

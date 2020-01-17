@@ -1,0 +1,38 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: CapsulecastCommand</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">CapsulecastCommand</h1><div class="clear"></div><p class="cl mb0 left mr10">struct in
+          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.PhysicsModule.html" class="cl">UnityEngine.PhysicsModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Use this struct to set up a capsule cast command that is performed asynchronously during a job.</p></div><div class="subsection"><p>When you use this struct to schedule a batch of capsule casts, the capsule casts are performed asynchronously and in parallel. The results of each capsule cast is written to the results buffer. Since the results are written asynchronously, you cannot access the results buffer until the job is completed.<br /><br />The result for a command at index N in the command buffer is stored at index N in the results buffer.<br /><br />See Also: Physics.Capsulecast.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using Unity.Collections;
+using Unity.Jobs;
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private void CapsulecastExample()
+    {
+        // Perform a single capsule cast using <a href="CapsulecastCommand.html">CapsulecastCommand</a> and wait for it to complete
+        // Set up the command and result buffers
+        var results = new NativeArray&lt;<a href="RaycastHit.html">RaycastHit</a>&gt;(1, <a href="Unity.Collections.Allocator.Temp.html">Allocator.Temp</a>);
+        var commands = new NativeArray&lt;<a href="CapsulecastCommand.html">CapsulecastCommand</a>&gt;(1, <a href="Unity.Collections.Allocator.Temp.html">Allocator.Temp</a>);<br /><br />        // Set the data of the first command
+        <a href="Vector3.html">Vector3</a> point1 = <a href="Vector3-up.html">Vector3.up</a> * -0.5f;
+        <a href="Vector3.html">Vector3</a> point2 = <a href="Vector3-up.html">Vector3.up</a> * 0.5f;
+        <a href="Vector3.html">Vector3</a> direction = <a href="Vector3-forward.html">Vector3.forward</a>;
+        float radius = 0.5f;<br /><br />        commands[0] = new <a href="CapsulecastCommand.html">CapsulecastCommand</a>(point1, point2, radius, direction);<br /><br />        // Schedule the batch of capsulecasts
+        var handle = <a href="CapsulecastCommand.ScheduleBatch.html">CapsulecastCommand.ScheduleBatch</a>(commands, results, 1, default(<a href="Unity.Jobs.JobHandle.html">JobHandle</a>));<br /><br />        // Wait for the batch processing job to complete
+        handle.Complete();<br /><br />        // Copy the result. If batchedHit.collider is null, there was no hit
+        <a href="RaycastHit.html">RaycastHit</a> batchedHit = results[0];<br /><br />        // Dispose the buffers
+        results.Dispose();
+        commands.Dispose();
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="CapsulecastCommand-direction.html">direction</a></td><td class="desc"></td><td class="desc1">The direction of the capsule cast.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="CapsulecastCommand-distance.html">distance</a></td><td class="desc"></td><td class="desc1">The maximum distance the capsule cast checks for collision.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="CapsulecastCommand-layerMask.html">layerMask</a></td><td class="desc"></td><td class="desc1">A LayerMask that selectively ignores Colliders when casting a capsule.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="CapsulecastCommand-point1.html">point1</a></td><td class="desc"></td><td class="desc1">The center of the sphere at the start of the capsule.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="CapsulecastCommand-point2.html">point2</a></td><td class="desc"></td><td class="desc1">The center of the sphere at the end of the capsule.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="CapsulecastCommand-radius.html">radius</a></td><td class="desc"></td><td class="desc1">The radius of the capsule.</td></tr>
+    </table></div><div class="subsection"><h2>Constructors</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="CapsulecastCommand-ctor.html">CapsulecastCommand</a></td><td class="desc"></td><td class="desc1">Creates a CapsulecastCommand.</td></tr>
+    </table></div><div class="subsection"><h2>Static Methods   静态方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="CapsulecastCommand.ScheduleBatch.html">ScheduleBatch</a></td><td class="desc"></td><td class="desc1">Schedules a batch of capsule casts which are performed in a job.</td></tr>
+    </table></div></div></div></div></body></html>

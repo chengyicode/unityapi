@@ -1,0 +1,120 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: GL</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">GL</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.CoreModule.html" class="cl">UnityEngine.CoreModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Low-level graphics library.</p></div><div class="subsection"><p>Use this class to manipulate active transformation matrices,
+issue rendering commands similar to OpenGL's immediate mode and do other low-level
+graphics tasks. Note that in almost all cases using <a href="Graphics.DrawMesh.html">Graphics.DrawMesh</a> or <a href="Rendering.CommandBuffer.html">CommandBuffer</a>
+is more efficient than using immediate mode drawing.<br /><br />GL immediate drawing functions use whatever is the "current material" set up right now (see <a href="Material.SetPass.html">Material.SetPass</a>).
+The material controls how the rendering is done (blending, textures, etc.), so unless you explicitly
+set it to something before using GL draw functions, the material can happen to be anything.
+Also, if you call any other drawing commands from inside GL drawing code, they can set
+material to something else, so make sure it's under control as well.<br /><br />GL drawing commands execute immediately. That means if you call them in Update(), they will be executed
+before the camera is rendered (and the camera will most likely clear the screen, making the GL drawing
+not visible).<br /><br />The usual place to call GL drawing is most often in <a href="Camera.OnPostRender.html">OnPostRender</a>() from a script attached to a
+camera, or inside an image effect function (<a href="Camera.OnRenderImage.html">OnRenderImage</a>).</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // When added to an object, draws colored rays from the
+    // transform position.
+    public int lineCount = 100;
+    public float radius = 3.0f;<br /><br />    static <a href="Material.html">Material</a> lineMaterial;
+    static void CreateLineMaterial()
+    {
+        if (!lineMaterial)
+        {
+            // Unity has a built-in shader that is useful for drawing
+            // simple colored things.
+            <a href="Shader.html">Shader</a> shader = <a href="Shader.Find.html">Shader.Find</a>("Hidden/Internal-Colored");
+            lineMaterial = new <a href="Material.html">Material</a>(shader);
+            lineMaterial.hideFlags = <a href="HideFlags.HideAndDontSave.html">HideFlags.HideAndDontSave</a>;
+            // Turn on alpha blending
+            lineMaterial.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
+            lineMaterial.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+            // Turn backface culling off
+            lineMaterial.SetInt("_Cull", (int)UnityEngine.Rendering.CullMode.Off);
+            // Turn off depth writes
+            lineMaterial.SetInt("_ZWrite", 0);
+        }
+    }<br /><br />    // Will be called after all regular rendering is done
+    public void OnRenderObject()
+    {
+        CreateLineMaterial();
+        // Apply the line material
+        lineMaterial.SetPass(0);<br /><br />        <a href="GL.PushMatrix.html">GL.PushMatrix</a>();
+        // Set transformation matrix for drawing to
+        // match our transform
+        <a href="GL.MultMatrix.html">GL.MultMatrix</a>(transform.localToWorldMatrix);<br /><br />        // Draw lines
+        <a href="GL.Begin.html">GL.Begin</a>(<a href="GL.LINES.html">GL.LINES</a>);
+        for (int i = 0; i &lt; lineCount; ++i)
+        {
+            float a = i / (float)lineCount;
+            float angle = a * <a href="Mathf.PI.html">Mathf.PI</a> * 2;
+            // Vertex colors change from red to green
+            <a href="GL.Color.html">GL.Color</a>(new <a href="Color.html">Color</a>(a, 1 - a, 0, 0.8F));
+            // One vertex at transform position
+            <a href="GL.Vertex3.html">GL.Vertex3</a>(0, 0, 0);
+            // Another vertex at edge of circle
+            <a href="GL.Vertex3.html">GL.Vertex3</a>(<a href="Mathf.Cos.html">Mathf.Cos</a>(angle) * radius, <a href="Mathf.Sin.html">Mathf.Sin</a>(angle) * radius, 0);
+        }
+        <a href="GL.End.html">GL.End</a>();
+        <a href="GL.PopMatrix.html">GL.PopMatrix</a>();
+    }
+}
+</pre>
+      </div><div class="subsection"><p>
+        <strong>Note:</strong> This class is almost always used when you need to draw a couple of lines or triangles, and don't want to deal with meshes.
+If you want to avoid surprises the usage pattern is this:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void OnPostRender()
+    {
+        // Set your materials
+        <a href="GL.PushMatrix.html">GL.PushMatrix</a>();
+        // yourMaterial.SetPass( );
+        // Draw your stuff
+        <a href="GL.PopMatrix.html">GL.PopMatrix</a>();
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Where at the "// Draw your stuff" you should do SetPass() on some material previously declared, which will be used for drawing.
+If you dont call SetPass, then you'll get basically a random material (whatever was used before) which is not good. So do it.</p></div><div class="subsection"><h2>Static Properties</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="GL-invertCulling.html">invertCulling</a></td><td class="desc"></td><td class="desc1">Select whether to invert the backface culling (true) or not (false).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GL.LINE_STRIP.html">LINE_STRIP</a></td><td class="desc"></td><td class="desc1">Mode for Begin: draw line strip.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GL.LINES.html">LINES</a></td><td class="desc"></td><td class="desc1">Mode for Begin: draw lines.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GL-modelview.html">modelview</a></td><td class="desc"></td><td class="desc1">The current modelview matrix.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GL.QUADS.html">QUADS</a></td><td class="desc"></td><td class="desc1">Mode for Begin: draw quads.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GL-sRGBWrite.html">sRGBWrite</a></td><td class="desc"></td><td class="desc1">Controls whether Linear-to-sRGB color conversion is performed while rendering.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GL.TRIANGLE_STRIP.html">TRIANGLE_STRIP</a></td><td class="desc"></td><td class="desc1">Mode for Begin: draw triangle strip.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GL.TRIANGLES.html">TRIANGLES</a></td><td class="desc"></td><td class="desc1">Mode for Begin: draw triangles.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GL-wireframe.html">wireframe</a></td><td class="desc"></td><td class="desc1">Should rendering be done in wireframe?</td></tr>
+    </table></div><div class="subsection"><h2>Static Methods   静态方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="GL.Begin.html">Begin</a></td><td class="desc"></td><td class="desc1">Begin drawing 3D primitives.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GL.Clear.html">Clear</a></td><td class="desc"></td><td class="desc1">Clear the current render buffer.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GL.ClearWithSkybox.html">ClearWithSkybox</a></td><td class="desc"></td><td class="desc1">Clear the current render buffer with camera's skybox.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GL.Color.html">Color</a></td><td class="desc"></td><td class="desc1">Sets current vertex color.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GL.End.html">End</a></td><td class="desc"></td><td class="desc1">End drawing 3D primitives.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GL.Flush.html">Flush</a></td><td class="desc"></td><td class="desc1">Sends queued-up commands in the driver's command buffer to the GPU.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GL.GetGPUProjectionMatrix.html">GetGPUProjectionMatrix</a></td><td class="desc"></td><td class="desc1">Compute GPU projection matrix from camera's projection matrix.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GL.InvalidateState.html">InvalidateState</a></td><td class="desc"></td><td class="desc1">Invalidate the internally cached render state.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GL.IssuePluginEvent.html">IssuePluginEvent</a></td><td class="desc"></td><td class="desc1">Send a user-defined event to a native code plugin.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GL.LoadIdentity.html">LoadIdentity</a></td><td class="desc"></td><td class="desc1">Load the identity matrix to the current modelview matrix.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GL.LoadOrtho.html">LoadOrtho</a></td><td class="desc"></td><td class="desc1">Helper function to set up an ortho perspective transform.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GL.LoadPixelMatrix.html">LoadPixelMatrix</a></td><td class="desc"></td><td class="desc1">Setup a matrix for pixel-correct rendering.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GL.LoadProjectionMatrix.html">LoadProjectionMatrix</a></td><td class="desc"></td><td class="desc1">Load an arbitrary matrix to the current projection matrix.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GL.MultiTexCoord.html">MultiTexCoord</a></td><td class="desc"></td><td class="desc1">Sets current texture coordinate (v.x,v.y,v.z) to the actual texture unit.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GL.MultiTexCoord2.html">MultiTexCoord2</a></td><td class="desc"></td><td class="desc1">Sets current texture coordinate (x,y) for the actual texture unit.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GL.MultiTexCoord3.html">MultiTexCoord3</a></td><td class="desc"></td><td class="desc1">Sets current texture coordinate (x,y,z) to the actual texture unit.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GL.MultMatrix.html">MultMatrix</a></td><td class="desc"></td><td class="desc1">Sets the current modelview matrix to the one specified.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GL.PopMatrix.html">PopMatrix</a></td><td class="desc"></td><td class="desc1">Restores both projection and modelview matrices off the top of the matrix stack.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GL.PushMatrix.html">PushMatrix</a></td><td class="desc"></td><td class="desc1">Saves both projection and modelview matrices to the matrix stack.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GL.RenderTargetBarrier.html">RenderTargetBarrier</a></td><td class="desc"></td><td class="desc1">Resolves the render target for subsequent operations sampling from it.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GL.TexCoord.html">TexCoord</a></td><td class="desc"></td><td class="desc1">Sets current texture coordinate (v.x,v.y,v.z) for all texture units.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GL.TexCoord2.html">TexCoord2</a></td><td class="desc"></td><td class="desc1">Sets current texture coordinate (x,y) for all texture units.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GL.TexCoord3.html">TexCoord3</a></td><td class="desc"></td><td class="desc1">Sets current texture coordinate (x,y,z) for all texture units.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GL.Vertex.html">Vertex</a></td><td class="desc"></td><td class="desc1">Submit a vertex.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GL.Vertex3.html">Vertex3</a></td><td class="desc"></td><td class="desc1">Submit a vertex.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GL.Viewport.html">Viewport</a></td><td class="desc"></td><td class="desc1">Set the rendering viewport.</td></tr>
+    </table></div></div></div></div></body></html>

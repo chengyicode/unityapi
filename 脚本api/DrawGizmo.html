@@ -1,0 +1,24 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: DrawGizmo</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">DrawGizmo</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEditor</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEditor.html" class="cl">UnityEditor</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>The DrawGizmo attribute allows you to supply a gizmo renderer for any <a href="Component.html">Component</a>.</p></div><div class="subsection"><p>The renderer function must be static, and take two parameters: the object
+        for which the gizmo is being drawn, and a <a href="GizmoType.html">GizmoType</a> parameter which indicates the context in which the gizmo is being drawn.<br /><br />        The renderer function can be defined in any class, including editor scripts. This
+        allows you to keep your gizmo-drawing code out of your component scripts so that it
+        is not included in builds.<br /><br />See Also: <a href="GizmoType.html">GizmoType</a>.
+      </p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class MyScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+}<br /><br />// The icon has to be stored in Assets/<a href="Gizmos.html">Gizmos</a><br /><br />public class MyScriptGizmoDrawer
+{
+    [<a href="DrawGizmo.html">DrawGizmo</a>(<a href="GizmoType.Selected.html">GizmoType.Selected</a> | <a href="GizmoType.Active.html">GizmoType.Active</a>)]
+    static void DrawGizmoForMyScript(MyScript scr, <a href="GizmoType.html">GizmoType</a> gizmoType)
+    {
+        <a href="Vector3.html">Vector3</a> position = scr.transform.position;<br /><br />        if (<a href="Vector3.Distance.html">Vector3.Distance</a>(position, Camera.current.transform.position) &gt; 10f)
+            <a href="Gizmos.DrawIcon.html">Gizmos.DrawIcon</a>(position, "MyScript Gizmo.tiff");
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Constructors</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="DrawGizmo-ctor.html">DrawGizmo</a></td><td class="desc"></td><td class="desc1">Defines when the gizmo should be invoked for drawing.</td></tr>
+    </table></div></div></div></div></body></html>

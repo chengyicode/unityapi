@@ -1,0 +1,73 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: TouchScreenKeyboard.Open</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="TouchScreenKeyboard.html">TouchScreenKeyboard</a>.Open</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="TouchScreenKeyboard.html">TouchScreenKeyboard</a> <span class="sig-kw">Open</span>(string <span class="sig-kw">text</span>,
+<a href="TouchScreenKeyboardType.html">TouchScreenKeyboardType</a> <span class="sig-kw">keyboardType</span> = TouchScreenKeyboardType.Default,
+bool <span class="sig-kw">autocorrection</span> = true,
+bool <span class="sig-kw">multiline</span> = false,
+bool <span class="sig-kw">secure</span> = false,
+bool <span class="sig-kw">alert</span> = false,
+string <span class="sig-kw">textPlaceholder</span> = "",
+int <span class="sig-kw">characterLimit</span> = 0);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">text</td><td class="desc"></td><td class="desc1">Text to edit.</td></tr><tr><td class="name lbl">keyboardType</td><td class="desc"></td><td class="desc1">Type of keyboard (eg, any text, numbers only, etc).</td></tr><tr><td class="name lbl">autocorrection</td><td class="desc"></td><td class="desc1">Is autocorrection applied?</td></tr><tr><td class="name lbl">multiline</td><td class="desc"></td><td class="desc1">Can more than one line of text be entered?</td></tr><tr><td class="name lbl">secure</td><td class="desc"></td><td class="desc1">Is the text masked (for passwords, etc)?</td></tr><tr><td class="name lbl">alert</td><td class="desc"></td><td class="desc1">Is the keyboard opened in alert mode?</td></tr><tr><td class="name lbl">textPlaceholder</td><td class="desc"></td><td class="desc1">Text to be used if no other text is present.</td></tr><tr><td class="name lbl">characterLimit</td><td class="desc"></td><td class="desc1">How many characters the keyboard input field is limited to. 0 = infinite. (Android and iOS only)</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Opens the native keyboard provided by OS on the screen.</p></div><div class="subsection"><p>The <code class="varname">autocorrection</code> determines whether the input tracks unknown words
+and suggests a more suitable replacement candidate to the user,
+replacing the typed text automatically unless the user explicitly
+overrides the action.
+The <code class="varname">multiline</code> determines if user can input more than one line of
+text.
+The <code class="varname">secure</code> identifies whether the keyboard is used for password. Text
+in the input field will be hidden from the user except the recently
+typed character.
+The keyboard can be opened in the <code class="varname">alert</code> mode too.
+The <code class="varname">placeholder</code> string will be displayed when there is no other text
+in the input field of the keyboard.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public string stringToEdit = "Hello World";
+    private <a href="TouchScreenKeyboard.html">TouchScreenKeyboard</a> keyboard;<br /><br />    // Opens native keyboard
+    void OnGUI()
+    {
+        stringToEdit = <a href="GUI.TextField.html">GUI.TextField</a>(new <a href="Rect.html">Rect</a>(10, 10, 200, 30), stringToEdit, 30);<br /><br />        if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(10, 50, 200, 100), "Default"))
+        {
+            keyboard = <a href="TouchScreenKeyboard.Open.html">TouchScreenKeyboard.Open</a>("", <a href="TouchScreenKeyboardType.Default.html">TouchScreenKeyboardType.Default</a>);
+        }
+        if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(10, 150, 200, 100), "ASCIICapable"))
+        {
+            keyboard = <a href="TouchScreenKeyboard.Open.html">TouchScreenKeyboard.Open</a>("", <a href="TouchScreenKeyboardType.ASCIICapable.html">TouchScreenKeyboardType.ASCIICapable</a>);
+        }
+        if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(10, 250, 200, 100), "Numbers and Punctuation"))
+        {
+            keyboard = <a href="TouchScreenKeyboard.Open.html">TouchScreenKeyboard.Open</a>("", <a href="TouchScreenKeyboardType.NumbersAndPunctuation.html">TouchScreenKeyboardType.NumbersAndPunctuation</a>);
+        }
+        if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(10, 350, 200, 100), "URL"))
+        {
+            keyboard = <a href="TouchScreenKeyboard.Open.html">TouchScreenKeyboard.Open</a>("", <a href="TouchScreenKeyboardType.URL.html">TouchScreenKeyboardType.URL</a>);
+        }
+        if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(10, 450, 200, 100), "NumberPad"))
+        {
+            keyboard = <a href="TouchScreenKeyboard.Open.html">TouchScreenKeyboard.Open</a>("", <a href="TouchScreenKeyboardType.NumberPad.html">TouchScreenKeyboardType.NumberPad</a>);
+        }
+        if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(10, 550, 200, 100), "PhonePad"))
+        {
+            keyboard = <a href="TouchScreenKeyboard.Open.html">TouchScreenKeyboard.Open</a>("", <a href="TouchScreenKeyboardType.PhonePad.html">TouchScreenKeyboardType.PhonePad</a>);
+        }
+        if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(10, 650, 200, 100), "NamePhonePad"))
+        {
+            keyboard = <a href="TouchScreenKeyboard.Open.html">TouchScreenKeyboard.Open</a>("", <a href="TouchScreenKeyboardType.NamePhonePad.html">TouchScreenKeyboardType.NamePhonePad</a>);
+        }
+        if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(10, 750, 200, 100), "EmailAddress"))
+        {
+            keyboard = <a href="TouchScreenKeyboard.Open.html">TouchScreenKeyboard.Open</a>("", <a href="TouchScreenKeyboardType.EmailAddress.html">TouchScreenKeyboardType.EmailAddress</a>);
+        }
+        if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(10, 850, 200, 100), "<a href="Social.html">Social</a>"))
+        {
+            keyboard = <a href="TouchScreenKeyboard.Open.html">TouchScreenKeyboard.Open</a>("", <a href="TouchScreenKeyboardType.Social.html">TouchScreenKeyboardType.Social</a>);
+        }
+        if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(10, 950, 200, 100), "Search"))
+        {
+            keyboard = <a href="TouchScreenKeyboard.Open.html">TouchScreenKeyboard.Open</a>("", <a href="TouchScreenKeyboardType.Search.html">TouchScreenKeyboardType.Search</a>);
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

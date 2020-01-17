@@ -1,0 +1,20 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: WebCamTexture.deviceName</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="WebCamTexture.html">WebCamTexture</a>.deviceName</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public string <span class="sig-kw">deviceName</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Set this to specify the name of the device to use.</p></div><div class="subsection"><p>This only has an effect when set while the camera is not running.<br /><br />Note: if you want to use WebCamTexture to get the camera stream from device connected through Unity Remote, then you must initalize it through the constructor. It's not possible to change device using <a href="WebCamTexture-deviceName.html">WebCamTexture.deviceName</a> from regular devices to remote devices and vice versa.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Sets the device of the <a href="WebCamTexture.html">WebCamTexture</a> to the first one available and starts playing it
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        <a href="WebCamDevice.html">WebCamDevice</a>[] devices = <a href="WebCamTexture-devices.html">WebCamTexture.devices</a>;
+        <a href="WebCamTexture.html">WebCamTexture</a> webcamTexture = new <a href="WebCamTexture.html">WebCamTexture</a>();<br /><br />        if (devices.Length &gt; 0)
+        {
+            webcamTexture.deviceName = devices[0].name;
+            webcamTexture.Play();
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

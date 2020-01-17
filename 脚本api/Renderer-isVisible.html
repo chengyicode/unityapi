@@ -1,0 +1,26 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Renderer.isVisible</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Renderer.html">Renderer</a>.isVisible</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public bool <span class="sig-kw">isVisible</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Is this renderer visible in any camera? (Read Only)</p></div><div class="subsection"><p>Note that the object is considered visible when it needs to be rendered in the Scene. For example, it
+might not actually be visible by any camera but still need to be rendered for shadows.
+When running in the editor, the Scene view cameras will also cause this value to be true.<br /><br />See Also: <a href="Renderer.OnBecameVisible.html">OnBecameVisible</a>, <a href="Renderer.OnBecameInvisible.html">OnBecameInvisible</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//Attach this script to a <a href="GameObject.html">GameObject</a> with a <a href="Renderer.html">Renderer</a> component attached
+//If the <a href="GameObject.html">GameObject</a> is visible to the camera, the message is output to the console<br /><br />using UnityEngine;<br /><br />public class IsVisible : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="Renderer.html">Renderer</a> m_Renderer;
+    // Use this for initialization
+    void Start()
+    {
+        m_Renderer = GetComponent&lt;<a href="Renderer.html">Renderer</a>&gt;();
+    }<br /><br />    // <a href="Experimental.PlayerLoop.Update.html">Update</a> is called once per frame
+    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        if (m_Renderer.isVisible)
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("Object is visible");
+        }
+        else <a href="Debug.Log.html">Debug.Log</a>("Object is no longer visible");
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Mathf.RoundToInt</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Mathf.html">Mathf</a>.RoundToInt</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static int <span class="sig-kw">RoundToInt</span>(float <span class="sig-kw">f</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Returns <code class="varname">f</code> rounded to the nearest integer.</p></div><div class="subsection"><p>If the number ends in .5 so it is halfway between two integers, one of which is even and the other odd, the even number is returned.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        // Prints 10
+        <a href="Debug.Log.html">Debug.Log</a>(<a href="Mathf.RoundToInt.html">Mathf.RoundToInt</a>(10.0f));
+        // Prints 10
+        <a href="Debug.Log.html">Debug.Log</a>(<a href="Mathf.RoundToInt.html">Mathf.RoundToInt</a>(10.2f));
+        // Prints 11
+        <a href="Debug.Log.html">Debug.Log</a>(<a href="Mathf.RoundToInt.html">Mathf.RoundToInt</a>(10.7f));
+        // Prints 10
+        <a href="Debug.Log.html">Debug.Log</a>(<a href="Mathf.RoundToInt.html">Mathf.RoundToInt</a>(10.5f));
+        // Prints 12
+        <a href="Debug.Log.html">Debug.Log</a>(<a href="Mathf.RoundToInt.html">Mathf.RoundToInt</a>(11.5f));<br /><br />        // Prints -10
+        <a href="Debug.Log.html">Debug.Log</a>(<a href="Mathf.RoundToInt.html">Mathf.RoundToInt</a>(-10.0f));
+        // Prints -10
+        <a href="Debug.Log.html">Debug.Log</a>(<a href="Mathf.RoundToInt.html">Mathf.RoundToInt</a>(-10.2f));
+        // Prints -11
+        <a href="Debug.Log.html">Debug.Log</a>(<a href="Mathf.RoundToInt.html">Mathf.RoundToInt</a>(-10.7f));
+        // Prints -10
+        <a href="Debug.Log.html">Debug.Log</a>(<a href="Mathf.RoundToInt.html">Mathf.RoundToInt</a>(-10.5f));
+        // Prints -12
+        <a href="Debug.Log.html">Debug.Log</a>(<a href="Mathf.RoundToInt.html">Mathf.RoundToInt</a>(-11.5f));
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

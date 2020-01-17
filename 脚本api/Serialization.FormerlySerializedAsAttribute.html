@@ -1,0 +1,33 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: FormerlySerializedAsAttribute</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">FormerlySerializedAsAttribute</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine.Serialization</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.CoreModule.html" class="cl">UnityEngine.CoreModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Use this attribute to rename a field without losing its serialized value.</p></div><div class="subsection"><p>Suppose you have a class like this:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class MyClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public string myValue;
+}
+</pre>
+      </div><div class="subsection"><p>And you would like to create a property to encapsulate myValue without losing any data already assigned to instances of MyClass. You can achieve that by using this attribute:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.Serialization;<br /><br />public class MyClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    [FormerlySerializedAs("myValue")]
+    string m_MyValue;
+    public string myValue
+    {
+        get { return m_MyValue; }
+        set { m_MyValue = value; }
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Serialization.FormerlySerializedAsAttribute-oldName.html">oldName</a></td><td class="desc"></td><td class="desc1">The name of the field before the rename.</td></tr>
+    </table></div><div class="subsection"><h2>Constructors</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Serialization.FormerlySerializedAsAttribute-ctor.html">FormerlySerializedAsAttribute</a></td><td class="desc"></td><td class="desc1"></td></tr>
+    </table></div></div></div></div></body></html>

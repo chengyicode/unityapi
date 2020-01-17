@@ -1,0 +1,56 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorGUILayout.PropertyField</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorGUILayout.html">EditorGUILayout</a>.PropertyField</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">PropertyField</span>(<a href="SerializedProperty.html">SerializedProperty</a> <span class="sig-kw">property</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">PropertyField</span>(<a href="SerializedProperty.html">SerializedProperty</a> <span class="sig-kw">property</span>,
+<a href="GUIContent.html">GUIContent</a> <span class="sig-kw">label</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">PropertyField</span>(<a href="SerializedProperty.html">SerializedProperty</a> <span class="sig-kw">property</span>,
+bool <span class="sig-kw">includeChildren</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">PropertyField</span>(<a href="SerializedProperty.html">SerializedProperty</a> <span class="sig-kw">property</span>,
+<a href="GUIContent.html">GUIContent</a> <span class="sig-kw">label</span>,
+bool <span class="sig-kw">includeChildren</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">property</td><td class="desc"></td><td class="desc1">The SerializedProperty to make a field for.</td></tr><tr><td class="name lbl">label</td><td class="desc"></td><td class="desc1">Optional label to use. If not specified the label of the property itself is used. Use GUIContent.none to not display a label at all.</td></tr><tr><td class="name lbl">includeChildren</td><td class="desc"></td><td class="desc1">If <code class="varname">true</code> the property including children is drawn; otherwise only the control itself (such as only a foldout but nothing below it).</td></tr><tr><td class="name lbl">options</td><td class="desc"></td><td class="desc1">An optional list of layout options that specify extra layout properties. Any values passed in here will override settings defined by the <code class="varname">style</code>.<br />
+See Also: <a href="GUILayout.Width.html">GUILayout.Width</a>, <a href="GUILayout.Height.html">GUILayout.Height</a>, <a href="GUILayout.MinWidth.html">GUILayout.MinWidth</a>, <a href="GUILayout.MaxWidth.html">GUILayout.MaxWidth</a>, <a href="GUILayout.MinHeight.html">GUILayout.MinHeight</a>,
+<a href="GUILayout.MaxHeight.html">GUILayout.MaxHeight</a>, <a href="GUILayout.ExpandWidth.html">GUILayout.ExpandWidth</a>, <a href="GUILayout.ExpandHeight.html">GUILayout.ExpandHeight</a>.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>bool</strong>
+        True if the property has children and is expanded and includeChildren was set to false; otherwise false.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Make a field for <a href="SerializedProperty.html">SerializedProperty</a>.</p></div><div class="subsection"><p>Use this when you want to customise the look of the options for a GameObject in the Inspector. Use this to create fields for Serialized Properties. More information on changing the Editor is available in the <a href="Editor.html">Editor</a> section.<br /><br />See Also: <a href="SerializedProperty.html">SerializedProperty</a>, <a href="SerializedObject.html">SerializedObject</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//The scripts below show how to use a propertyField to change your editor.
+//Attach this first script to the <a href="GameObject.html">GameObject</a> that you would like to control. Add code in this script for any of the actions you require.<br /><br />using UnityEngine;<br /><br />public class MyGameObjectScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public int m_MyInt = 75;
+    public <a href="Vector3.html">Vector3</a> m_MyVector = new <a href="Vector3.html">Vector3</a>(20, 1, 0);
+    public <a href="GameObject.html">GameObject</a> m_MyGameObject;
+}
+</pre>
+      </div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//This next script shows how to call upon variables from the "MyGameObject" Script (the first script) to make custom fields in the Inspector for these variables.<br /><br />using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />// Custom <a href="Editor.html">Editor</a> using SerializedProperties.
+// Automatic handling of multi-object editing, undo, and Prefab overrides.
+[<a href="CustomEditor.html">CustomEditor</a>(typeof(MyGameObjectScript))]
+[<a href="CanEditMultipleObjects.html">CanEditMultipleObjects</a>]
+public class EditorGUILayoutPropertyField : <a href="Editor.html">Editor</a>
+{
+    <a href="SerializedProperty.html">SerializedProperty</a> m_IntProp;
+    <a href="SerializedProperty.html">SerializedProperty</a> m_VectorProp;
+    <a href="SerializedProperty.html">SerializedProperty</a> m_GameObjectProp;<br /><br />    void OnEnable()
+    {
+        // Fetch the objects from the <a href="GameObject.html">GameObject</a> script to display in the inspector
+        m_IntProp = serializedObject.FindProperty("m_MyInt");
+        m_VectorProp = serializedObject.FindProperty("m_MyVector");
+        m_GameObjectProp = serializedObject.FindProperty("m_MyGameObject");
+    }<br /><br />    public override void OnInspectorGUI()
+    {
+        //The variables and <a href="GameObject.html">GameObject</a> from the MyGameObject script are displayed in the Inspector with appropriate labels
+        <a href="EditorGUILayout.PropertyField.html">EditorGUILayout.PropertyField</a>(m_IntProp, new <a href="GUIContent.html">GUIContent</a>("Int Field"), <a href="GUILayout.Height.html">GUILayout.Height</a>(20));
+        <a href="EditorGUILayout.PropertyField.html">EditorGUILayout.PropertyField</a>(m_VectorProp, new <a href="GUIContent.html">GUIContent</a>("Vector Object"));
+        <a href="EditorGUILayout.PropertyField.html">EditorGUILayout.PropertyField</a>(m_GameObjectProp, new <a href="GUIContent.html">GUIContent</a>("Game Object"));<br /><br />        // Apply changes to the serializedProperty - always do this at the end of OnInspectorGUI.
+        serializedObject.ApplyModifiedProperties();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

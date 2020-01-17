@@ -1,0 +1,42 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Profiling.Profiler.EmitFrameMetaData</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Profiling.Profiler.html">Profiler</a>.EmitFrameMetaData</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">EmitFrameMetaData</span>(Guid <span class="sig-kw">id</span>,
+int <span class="sig-kw">tag</span>,
+<a href="Array.html">Array</a> <span class="sig-kw">data</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">EmitFrameMetaData</span>(Guid <span class="sig-kw">id</span>,
+int <span class="sig-kw">tag</span>,
+List&lt;T&gt; <span class="sig-kw">data</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">EmitFrameMetaData</span>(Guid <span class="sig-kw">id</span>,
+int <span class="sig-kw">tag</span>,
+NativeArray&lt;T&gt; <span class="sig-kw">data</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">id</td><td class="desc"></td><td class="desc1">Module identifier. Used to distinguish metadata streams between different plugins, packages or modules.</td></tr><tr><td class="name lbl">tag</td><td class="desc"></td><td class="desc1">Data stream index.</td></tr><tr><td class="name lbl">data</td><td class="desc"></td><td class="desc1">Binary data.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Write metadata associated with the current frame to the Profiler stream.</p></div><div class="subsection"><p>Use <em>EmitFrameMetaData</em> to write arbitrary binary data to the profiler stream. Data must contain only blittable types.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System;
+using System.Diagnostics;
+using Unity.Collections;
+using UnityEngine;
+using UnityEngine.Profiling;<br /><br />public class Example
+{
+    public struct TextureInfo
+    {
+        public int format;
+        public int w;
+        public int h;
+    }<br /><br />    public static readonly Guid kMyProjectId = new Guid("7E1DEA84-51F1-477A-82B5-B5C57AC1EBF7");
+    public static readonly int kTextureInfoTag = 0;
+    public static readonly int kTextureDataTag = 1;<br /><br />    [Conditional("ENABLE_PROFILER")]
+    public void EmitTextureToProfilerStream(<a href="Texture2D.html">Texture2D</a> t)
+    {
+        if (!<a href="Profiling.Profiler-enabled.html">Profiler.enabled</a>)
+            return;
+        TextureInfo textureInfo = new TextureInfo() { format = (int)t.format, w = t.width, h = t.height };
+        NativeArray&lt;byte&gt; textureData = t.GetRawTextureData&lt;byte&gt;();
+        <a href="Profiling.Profiler.EmitFrameMetaData.html">Profiler.EmitFrameMetaData</a>(kMyProjectId, kTextureInfoTag, new[] { textureInfo });
+        <a href="Profiling.Profiler.EmitFrameMetaData.html">Profiler.EmitFrameMetaData</a>(kMyProjectId, kTextureDataTag, textureData);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>
+        <strong>Note:</strong>
+        <br />
+Writing large chunks of data might increase profiler overhead and memory usage. Always check if Profiler is <a href="Profiling.Profiler-enabled.html">enabled</a> before generating data.
+When possible, write data in small chunks to reduce memory usage.<br /><br />See Also: <a href="Profiling.HierarchyFrameDataView.GetFrameMetaData.html">HierarchyFrameDataView.GetFrameMetaData</a>.</p></div></div></div></div></body></html>

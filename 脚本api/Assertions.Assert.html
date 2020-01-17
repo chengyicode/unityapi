@@ -1,0 +1,31 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Assert</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">Assert</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine.Assertions</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.CoreModule.html" class="cl">UnityEngine.CoreModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>The Assert class contains assertion methods for setting invariants in the code.</p></div><div class="subsection"><p>All method calls will be conditionally included only in a development
+      build, unless specified explicitly. See <a href="BuildOptions.ForceEnableAssertions.html">BuildOptions.ForceEnableAssertions</a>.
+      The inclusion of an assertion is controlled by the <code class="varname">UNITY_ASSERTIONS</code> define.<br /><br />      Assert throws exceptions by default whenever an assertion fails.
+      You can however set Assertions.Assert._raiseExceptions to false and Unity then logs a message using <a href="LogType.Assert.html">LogType.Assert</a> instead.<br /><br />      If a debugger is attached to the project (System.Diagnostics.Debugger.IsAttached is true),
+      <a href="Assertions.AssertionException.html">AssertionException</a> will be thrown in order to pause the excecution and
+      invoke the debugger.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.Assertions;<br /><br />public class AssertionExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public int health;
+    public <a href="GameObject.html">GameObject</a> go;<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        // You expect the health never to be equal to zero
+        <a href="Assertions.Assert.AreNotEqual.html">Assert.AreNotEqual</a>(0, health);<br /><br />        // The referenced <a href="GameObject.html">GameObject</a> should be always (in every frame) be active
+        <a href="Assertions.Assert.IsTrue.html">Assert.IsTrue</a>(go.activeInHierarchy);
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Static Methods 静态方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Assertions.Assert.AreApproximatelyEqual.html">AreApproximatelyEqual</a></td><td class="desc"></td><td class="desc1">Assert the values are approximately equal.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Assertions.Assert.AreEqual.html">AreEqual</a></td><td class="desc"></td><td class="desc1">Assert that the values are equal.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Assertions.Assert.AreNotApproximatelyEqual.html">AreNotApproximatelyEqual</a></td><td class="desc"></td><td class="desc1">Asserts that the values are approximately not equal.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Assertions.Assert.AreNotEqual.html">AreNotEqual</a></td><td class="desc"></td><td class="desc1">Assert that the values are not equal.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Assertions.Assert.IsFalse.html">IsFalse</a></td><td class="desc"></td><td class="desc1">Return true when the condition is false.  Otherwise return false.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Assertions.Assert.IsNotNull.html">IsNotNull</a></td><td class="desc"></td><td class="desc1">Assert that the value is not null.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Assertions.Assert.IsNull.html">IsNull</a></td><td class="desc"></td><td class="desc1">Assert the value is null.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Assertions.Assert.IsTrue.html">IsTrue</a></td><td class="desc"></td><td class="desc1">Asserts that the condition is true.</td></tr>
+    </table></div></div></div></div></body></html>

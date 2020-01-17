@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link href="./css/stylesheet.css" rel="stylesheet" type="text/css">
+		<title></title>
+	</head>
+	<body>
+		<div class="content">
+			<div class="section">
+				<div class="mb20 clear" id="">
+					<h1 class="heading inherit">TilemapRenderer 瓦片地图渲染器</h1>
+
+					<div class="clear"></div>
+					<p class="cl mb0 left mr10">class in
+						UnityEngine.Tilemaps</p>
+					<p class="cl mb0 left mr10">/</p>
+					<p class="cl mb0 left">Inherits from:<a href="Renderer.html" class="cl">Renderer</a></p>
+					<p class="cl mb0 left mr10">/</p>
+					<p class="cl mb0 left">Implemented in:<a href="UnityEngine.TilemapModule.html" class="cl">UnityEngine.TilemapModule</a></p>
+
+					<div class="clear"></div>
+					<p class="cl mb0 left mr10">
+						UnityEngine.Tilemaps中的类</p>
+					<p class="cl mb0 left mr10">/</p>
+					<p class="cl mb0 left">继承自：<a href="Renderer.html" class="cl">Renderer</a></p>
+					<p class="cl mb0 left mr10">/</p>
+					<p class="cl mb0 left">实现于：<a href="UnityEngine.TilemapModule.html" class="cl">UnityEngine.TilemapModule</a></p>
+
+					<div class="clear"></div>
+
+					<div class="suggest hide" style="display: none;"><a class="blue-btn sbtn">Suggest a change</a>
+						<div class="suggest-wrap rel hide">
+							<div class="loading hide">
+								<div></div>
+								<div></div>
+								<div></div>
+							</div>
+							<div class="suggest-success hide">
+								<h2>Success!</h2>
+								<p>Thank you for helping us improve the quality of Unity Documentation. Although we cannot accept all
+									submissions, we do read each suggested change from our users and will make updates where applicable.</p><a
+								 class="gray-btn sbtn close">Close</a>
+							</div>
+							<div class="suggest-failed hide">
+								<h2>Submission failed</h2>
+								<p>For some reason your suggested change could not be submitted. Please &lt;a&gt;try again&lt;/a&gt; in a few
+									minutes. And thank you for taking the time to help us improve the quality of Unity Documentation.</p><a class="gray-btn sbtn close">Close</a>
+							</div>
+							<div class="suggest-form clear"><label for="suggest_name">Your name</label><input id="suggest_name" type="text"><label
+								 for="suggest_email">Your email</label><input id="suggest_email" type="email"><label for="suggest_body" class="clear">Suggestion<span
+									 class="r">*</span></label><textarea id="suggest_body" class="req"></textarea><button id="suggest_submit"
+								 class="blue-btn mr10">Submit suggestion</button>
+								<p class="mb0"><a class="cancel left lh42 cn">Cancel</a></p>
+							</div>
+						</div>
+					</div><a href="" class="switch-link gray-btn sbtn left hide"></a>
+					<div class="clear"></div>
+				</div>
+				<div class="subsection">
+					<div class="signature">
+						<div class="signature-CS sig-block"><span style="color:red;"></span></div>
+					</div>
+				</div>
+				<div class="subsection">
+					<h2>Description 描述</h2>
+					<p>The tile map renderer is used to render the tile map marked out by a <a href="../Manual/Tilemap.html">tile map</a>
+						component and a <a href="../Manual/script-GridLayoutGroup.html">grid</a> component.</p>
+				</div>
+				<div class="subsection">
+					<p>This class is a script interface for a <a href="Tilemaps.TilemapRenderer.html">tile map renderer</a> component.</p>
+				</div>
+				<div class="subsection">
+
+					<p>瓦片地图渲染器用于渲染由<a href="../Manual/Tilemap.html">tile map</a>组件和<a href="../Manual/script-GridLayoutGroup.html">grid</a>组件标记的瓦片地图。</p>
+					<div class="subsection">
+						<p>此类是<a href="Tilemaps.TilemapRenderer.html">tile map renderer</a>组件的脚本接口。</p>
+					</div>
+					<h2>Properties 属性</h2>
+					<table class="list">
+						<tbody>
+							<tr>
+								<td class="descn">区块剔除边界</td>
+								<td class="lbl"><a href="Tilemaps.TilemapRenderer-chunkCullingBounds.html">chunkCullingBounds</a></td>
+								<td class="desc">用于剔除Tilemap区块的边界。</td>
+								<td class="desc1">Bounds used for culling of Tilemap chunks.</td>
+							</tr>
+							<tr>
+								<td class="descn">区块大小</td>
+								<td class="lbl"><a href="Tilemaps.TilemapRenderer-chunkSize.html">chunkSize</a></td>
+								<td class="desc">TilemapRenderer创建的每个块的切片数大小。</td>
+								<td class="desc1">Size in number of tiles of each chunk created by the TilemapRenderer.</td>
+							</tr>
+							<tr>
+								<td class="descn">检测区块剔除边界</td>
+								<td class="lbl"><a href="Tilemaps.TilemapRenderer-detectChunkCullingBounds.html">detectChunkCullingBounds</a></td>
+								<td class="desc">返回TilemapRenderer是否自动检测边界以扩展块剔除。</td>
+								<td class="desc1">Returns whether the TilemapRenderer automatically detects the bounds to extend chunk culling
+									by.</td>
+							</tr>
+							<tr>
+								<td class="descn">蒙版交互</td>
+								<td class="lbl"><a href="Tilemaps.TilemapRenderer-maskInteraction.html">maskInteraction</a></td>
+								<td class="desc">指定Tilemap与蒙版的交互方式。</td>
+								<td class="desc1">Specifies how the Tilemap interacts with the masks.</td>
+							</tr>
+							<tr>
+								<td class="descn">最大区块数量</td>
+								<td class="lbl"><a href="Tilemaps.TilemapRenderer-maxChunkCount.html">maxChunkCount</a></td>
+								<td class="desc">TilemapRenderer在内存中缓存的最大块数。</td>
+								<td class="desc1">Maximum number of chunks the TilemapRenderer caches in memory.</td>
+							</tr>
+							<tr>
+								<td class="descn">最大帧数</td>
+								<td class="lbl"><a href="Tilemaps.TilemapRenderer-maxFrameAge.html">maxFrameAge</a></td>
+								<td class="desc">TilemapRenderer将未使用的块保留在内存中的最大帧数。</td>
+								<td class="desc1">Maximum number of frames the TilemapRenderer keeps unused chunks in memory.</td>
+							</tr>
+							<tr>
+								<td class="descn">模式</td>
+								<td class="lbl"><a href="Tilemaps.TilemapRenderer-mode.html">mode</a></td>
+								<td class="desc">TileMapRenderer批处理图块以进行渲染的模式。</td>
+								<td class="desc1">The mode in which the TileMapRenderer batches the tiles for rendering.</td>
+							</tr>
+							<tr>
+								<td class="descn">排序</td>
+								<td class="lbl"><a href="Tilemaps.TilemapRenderer-sortOrder.html">sortOrder</a></td>
+								<td class="desc">TilemapRenderer的活动排序顺序。</td>
+								<td class="desc1">Active sort order for the TilemapRenderer.</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="subsection">
+					<h2>Inherited Members 基础成员</h2>
+
+					<div class="subsection">
+						<h2>Properties 属性</h2>
+						<table class="list">
+							<tbody>
+								<tr>
+									<td class="descn">游戏对象</td>
+									<td class="lbl"><a href="Component-gameObject.html">gameObject</a></td>
+									<td class="desc">该组件附加到的游戏对象。组件始终附加在游戏对象上。</td>
+									<td class="desc1">The game object this component is attached to. A component is always attached to a game
+										object.</td>
+								</tr>
+								<tr>
+									<td class="descn">标签</td>
+									<td class="lbl"><a href="Component-tag.html">tag</a></td>
+									<td class="desc">此游戏对象的标签。</td>
+									<td class="desc1">The tag of this game object.</td>
+								</tr>
+								<tr>
+									<td class="descn">转换</td>
+									<td class="lbl"><a href="Component-transform.html">transform</a></td>
+									<td class="desc">附加到此GameObject的Transform。/td>
+									<td class="desc1">The Transform attached to this GameObject.</td>
+								</tr>
+								<tr>
+									<td class="descn">隐藏标志</td>
+									<td class="lbl"><a href="Object-hideFlags.html">hideFlags</a></td>
+									<td class="desc">该对象是否应该隐藏，随场景保存或可由用户修改？</td>
+									<td class="desc1">Should the object be hidden, saved with the Scene or modifiable by the user?</td>
+								</tr>
+								<tr>
+									<td class="descn">名字</td>
+									<td class="lbl"><a href="Object-name.html">name</a></td>
+									<td class="desc">对象的名称。</td>
+									<td class="desc1">The name of the object.</td>
+								</tr>
+								<tr>
+									<td class="descn">允许动态遮挡</td>
+									<td class="lbl"><a href="Renderer-allowOcclusionWhenDynamic.html">allowOcclusionWhenDynamic</a></td>
+									<td class="desc">控制是否应对此渲染器执行动态遮挡剔除。</td>
+									<td class="desc1">Controls if dynamic occlusion culling should be performed for this renderer.</td>
+								</tr>
+								<tr>
+									<td class="descn">边界</td>
+									<td class="lbl"><a href="Renderer-bounds.html">bounds</a></td>
+									<td class="desc">渲染器的边界体积（只读）。</td>
+									<td class="desc1">The bounding volume of the renderer (Read Only).</td>
+								</tr>
+								<tr>
+									<td class="descn">启用</td>
+									<td class="lbl"><a href="Renderer-enabled.html">enabled</a></td>
+									<td class="desc">如果启用，则使渲染的3D对象可见。</td>
+									<td class="desc1">Makes the rendered 3D object visible if enabled.</td>
+								</tr>
+								<tr>
+									<td class="descn">是否为(部分)静态批处理</td>
+									<td class="lbl"><a href="Renderer-isPartOfStaticBatch.html">isPartOfStaticBatch</a></td>
+									<td class="desc">此渲染器是否已与其他任何渲染器一起进行了静态批处理？</td>
+									<td class="desc1">Has this renderer been statically batched with any other renderers?</td>
+								</tr>
+								<tr>
+									<td class="descn">是否可见</td>
+									<td class="lbl"><a href="Renderer-isVisible.html">isVisible</a></td>
+									<td class="desc">该渲染器在任何相机中都可见吗？（只读）</td>
+									<td class="desc1">Is this renderer visible in any camera? (Read Only)</td>
+								</tr>
+								<tr>
+									<td class="descn">光照贴图索引</td>
+									<td class="lbl"><a href="Renderer-lightmapIndex.html">lightmapIndex</a></td>
+									<td class="desc">应用于此渲染器的烘焙光照贴图的索引。</td>
+									<td class="desc1">The index of the baked lightmap applied to this renderer.</td>
+								</tr>
+								<tr>
+									<td class="descn">光照贴图的比例与偏移</td>
+									<td class="lbl"><a href="Renderer-lightmapScaleOffset.html">lightmapScaleOffset</a></td>
+									<td class="desc">用于光照贴图的UV比例和偏移量。</td>
+									<td class="desc1">The UV scale &amp; offset used for a lightmap.</td>
+								</tr>
+								<tr>
+									<td class="descn">光探针代理体积(重载)</td>
+									<td class="lbl"><a href="Renderer-lightProbeProxyVolumeOverride.html">lightProbeProxyVolumeOverride</a></td>
+									<td class="desc">如果设置，则渲染器将使用附加到源GameObject的“Light Probe Proxy Volume(光探针代理体积)”组件。</td>
+									<td class="desc1">If set, the Renderer will use the Light Probe Proxy Volume component attached to the source
+										GameObject.</td>
+								</tr>
+								<tr>
+									<td class="descn">光探测器的使用</td>
+									<td class="lbl"><a href="Renderer-lightProbeUsage.html">lightProbeUsage</a></td>
+									<td class="desc">光探头插补类型。</td>
+									<td class="desc1">The light probe interpolation type.</td>
+								</tr>
+								<tr>
+									<td class="descn">局部到世界矩阵</td>
+									<td class="lbl"><a href="Renderer-localToWorldMatrix.html">localToWorldMatrix</a></td>
+									<td class="desc">将点从局部空间转换为世界空间的矩阵（只读）。</td>
+									<td class="desc1">Matrix that transforms a point from local space into world space (Read Only).</td>
+								</tr>
+								<tr>
+									<td class="descn">材质</td>
+									<td class="lbl"><a href="Renderer-material.html">material</a></td>
+									<td class="desc">返回分配给渲染器的第一个实例化的Material。</td>
+									<td class="desc1">Returns the first instantiated Material assigned to the renderer.</td>
+								</tr>
+								<tr>
+									<td class="descn">材质(s)</td>
+									<td class="lbl"><a href="Renderer-materials.html">materials</a></td>
+									<td class="desc">返回此对象的所有实例化材料。</td>
+									<td class="desc1">Returns all the instantiated materials of this object.</td>
+								</tr>
+								<tr>
+									<td class="descn">运动矢量产生的模式</td>
+									<td class="lbl"><a href="Renderer-motionVectorGenerationMode.html">motionVectorGenerationMode</a></td>
+									<td class="desc">指定运动矢量渲染的模式。</td>
+									<td class="desc1">Specifies the mode for motion vector rendering.</td>
+								</tr>
+								<tr>
+									<td class="descn">探测锚点/td>
+									<td class="lbl"><a href="Renderer-probeAnchor.html">probeAnchor</a></td>
+									<td class="desc">如果设置，Renderer将使用此Transform的位置来查找光或反射探测。</td>
+									<td class="desc1">If set, Renderer will use this Transform's position to find the light or reflection probe.</td>
+								</tr>
+								<tr>
+									<td class="descn">实时光照贴图的索引</td>
+									<td class="lbl"><a href="Renderer-realtimeLightmapIndex.html">realtimeLightmapIndex</a></td>
+									<td class="desc">应用于此渲染器的实时光照贴图的索引。</td>
+									<td class="desc1">The index of the realtime lightmap applied to this renderer.</td>
+								</tr>
+								<tr>
+									<td class="descn">实时光照贴图比例与偏移</td>
+									<td class="lbl"><a href="Renderer-realtimeLightmapScaleOffset.html">realtimeLightmapScaleOffset</a></td>
+									<td class="desc">用于实时光照贴图的UV比例和偏移量。</td>
+									<td class="desc1">The UV scale &amp; offset used for a realtime lightmap.</td>
+								</tr>
+								<tr>
+									<td class="descn">接收阴影</td>
+									<td class="lbl"><a href="Renderer-receiveShadows.html">receiveShadows</a></td>
+									<td class="desc">这个物体会接收阴影吗？</td>
+									<td class="desc1">Does this object receive shadows?</td>
+								</tr>
+								<tr>
+									<td class="descn">反射探头的使用</td>
+									<td class="lbl"><a href="Renderer-reflectionProbeUsage.html">reflectionProbeUsage</a></td>
+									<td class="desc">该反射器是否应使用反射探针？</td>
+									<td class="desc1">Should reflection probes be used for this Renderer?</td>
+								</tr>
+								<tr>
+									<td class="descn">渲染器的优先级</td>
+									<td class="lbl"><a href="Renderer-rendererPriority.html">rendererPriority</a></td>
+									<td class="desc">此值按优先级对渲染器进行排序。较低的值首先呈现，较高的值最后呈现。</td>
+									<td class="desc1">This value sorts renderers by priority. Lower values are rendered first and higher values
+										are
+										rendered last.</td>
+								</tr>
+								<tr>
+									<td class="descn">渲染图层蒙版</td>
+									<td class="lbl"><a href="Renderer-renderingLayerMask.html">renderingLayerMask</a></td>
+									<td class="desc">确定此渲染器位于哪个渲染层上。</td>
+									<td class="desc1">Determines which rendering layer this renderer lives on.</td>
+								</tr>
+								<tr>
+									<td class="descn">投射阴影模式</td>
+									<td class="lbl"><a href="Renderer-shadowCastingMode.html">shadowCastingMode</a></td>
+									<td class="desc">这个物体会投射阴影吗？</td>
+									<td class="desc1">Does this object cast shadows?</td>
+								</tr>
+								<tr>
+									<td class="descn">共享材质</td>
+									<td class="lbl"><a href="Renderer-sharedMaterial.html">sharedMaterial</a></td>
+									<td class="desc">此对象的共享材质。</td>
+									<td class="desc1">The shared material of this object.</td>
+								</tr>
+								<tr>
+									<td class="descn">共享材质(s)</td>
+									<td class="lbl"><a href="Renderer-sharedMaterials.html">sharedMaterials</a></td>
+									<td class="desc">该对象的所有共享材质。</td>
+									<td class="desc1">All the shared materials of this object.</td>
+								</tr>
+								<tr>
+									<td class="descn">排序层ID</td>
+									<td class="lbl"><a href="Renderer-sortingLayerID.html">sortingLayerID</a></td>
+									<td class="desc">渲染器排序层的唯一ID。</td>
+									<td class="desc1">Unique ID of the Renderer's sorting layer.</td>
+								</tr>
+								<tr>
+									<td class="descn">排序层名称</td>
+									<td class="lbl"><a href="Renderer-sortingLayerName.html">sortingLayerName</a></td>
+									<td class="desc">渲染器排序层的名称。</td>
+									<td class="desc1">Name of the Renderer's sorting layer.</td>
+								</tr>
+								<tr>
+									<td class="descn">排序顺序</td>
+									<td class="lbl"><a href="Renderer-sortingOrder.html">sortingOrder</a></td>
+									<td class="desc">排序层中的渲染器顺序。</td>
+									<td class="desc1">Renderer's order within a sorting layer.</td>
+								</tr>
+								<tr>
+									<td class="descn">世界到局部矩阵</td>
+									<td class="lbl"><a href="Renderer-worldToLocalMatrix.html">worldToLocalMatrix</a></td>
+									<td class="desc">将点从世界空间转换为局部空间的矩阵（只读）。</td>
+									<td class="desc1">Matrix that transforms a point from world space into local space (Read Only).</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+
+
+					<div class="subsection">
+						<h2>Public Methods 公共方法</h2>
+						<table class="list">
+							<tbody>
+								<tr>
+									<td class="descn">广播消息</td>
+									<td class="lbl"><a href="Component.BroadcastMessage.html">BroadcastMessage</a></td>
+									<td class="desc">在此游戏对象或其任何子级中的每个MonoBehaviour上调用名为methodName的方法。</td>
+									<td class="desc1">Calls the method named methodName on every MonoBehaviour in this game object or any of its
+										children.</td>
+								</tr>
+								<tr>
+									<td class="descn">比较标签</td>
+									<td class="lbl"><a href="Component.CompareTag.html">CompareTag</a></td>
+									<td class="desc">这个游戏对象是否带有标签？</td>
+									<td class="desc1">Is this game object tagged with tag ?</td>
+								</tr>
+								<tr>
+									<td class="descn">获取组件</td>
+									<td class="lbl"><a href="Component.GetComponent.html">GetComponent</a></td>
+									<td class="desc">如果游戏对象附加了一个，则返回Type类型的组件；如果没有，则返回null。</td>
+									<td class="desc1">Returns the component of Type type if the game object has one attached, null if it doesn't.</td>
+								</tr>
+								<tr>
+									<td class="descn">获取子类组件</td>
+									<td class="lbl"><a href="Component.GetComponentInChildren.html">GetComponentInChildren</a></td>
+									<td class="desc">使用深度优先搜索返回GameObject或其任何子级中Type类型的组件。</td>
+									<td class="desc1">Returns the component of Type type in the GameObject or any of its children using depth
+										first
+										search.</td>
+								</tr>
+								<tr>
+									<td class="descn">获取父类组件</td>
+									<td class="lbl"><a href="Component.GetComponentInParent.html">GetComponentInParent</a></td>
+									<td class="desc">返回GameObject或其任何父代中Type类型的组件。</td>
+									<td class="desc1">Returns the component of Type type in the GameObject or any of its parents.</td>
+								</tr>
+								<tr>
+									<td class="descn">获取组件(s)</td>
+									<td class="lbl"><a href="Component.GetComponents.html">GetComponents</a></td>
+									<td class="desc">返回GameObject中Type类型的所有组件。</td>
+									<td class="desc1">Returns all components of Type type in the GameObject.</td>
+								</tr>
+								<tr>
+									<td class="descn">获取子类组件(s)</td>
+									<td class="lbl"><a href="Component.GetComponentsInChildren.html">GetComponentsInChildren</a></td>
+									<td class="desc">返回GameObject或其任何子级中Type类型的所有组件。</td>
+									<td class="desc1">Returns all components of Type type in the GameObject or any of its children.</td>
+								</tr>
+								<tr>
+									<td class="descn">获取父类组件(s)</td>
+									<td class="lbl"><a href="Component.GetComponentsInParent.html">GetComponentsInParent</a></td>
+									<td class="desc">返回GameObject或其任何父代中Type类型的所有组件。</td>
+									<td class="desc1">Returns all components of Type type in the GameObject or any of its parents.</td>
+								</tr>
+								<tr>
+									<td class="descn">发生消息</td>
+									<td class="lbl"><a href="Component.SendMessage.html">SendMessage</a></td>
+									<td class="desc">在此游戏对象中的每个MonoBehaviour上调用名为methodName的方法。</td>
+									<td class="desc1">Calls the method named methodName on every MonoBehaviour in this game object.</td>
+								</tr>
+								<tr>
+									<td class="descn">向上发生消息</td>
+									<td class="lbl"><a href="Component.SendMessageUpwards.html">SendMessageUpwards</a></td>
+									<td class="desc">在此游戏对象中的每个MonoBehaviour以及该行为的每个祖先上调用名为methodName的方法。</td>
+									<td class="desc1">Calls the method named methodName on every MonoBehaviour in this game object and on every
+										ancestor of the behaviour.</td>
+								</tr>
+								<tr>
+									<td class="descn">尝试获取组件</td>
+									<td class="lbl"><a href="Component.TryGetComponent.html">TryGetComponent</a></td>
+									<td class="desc">获取指定类型的组件（如果存在）。</td>
+									<td class="desc1">Gets the component of the specified type, if it exists.</td>
+								</tr>
+								<tr>
+									<td class="descn">获取实例ID</td>
+									<td class="lbl"><a href="Object.GetInstanceID.html">GetInstanceID</a></td>
+									<td class="desc">返回对象的实例ID。</td>
+									<td class="desc1">Returns the instance id of the object.</td>
+								</tr>
+								<tr>
+									<td class="descn">返回字符串</td>
+									<td class="lbl"><a href="Object.ToString.html">ToString</a></td>
+									<td class="desc">返回对象的名称。</td>
+									<td class="desc1">Returns the name of the object.</td>
+								</tr>
+								<tr>
+									<td class="descn">获取最近的反射探针</td>
+									<td class="lbl"><a href="Renderer.GetClosestReflectionProbes.html">GetClosestReflectionProbes</a></td>
+									<td class="desc">返回具有权重的最近反射探针的数组，权重显示探针对渲染器的影响程度，当反射探针之间发生混合时，也会使用此值。</td>
+									<td class="desc1">Returns an array of closest reflection probes with weights, weight shows how much influence
+										the probe has on the renderer, this value is also used when blending between reflection probes occur.</td>
+								</tr>
+								<tr>
+									<td class="descn">获取材质(s)</td>
+									<td class="lbl"><a href="Renderer.GetMaterials.html">GetMaterials</a></td>
+									<td class="desc">返回此对象的所有实例化材料。</td>
+									<td class="desc1">Returns all the instantiated materials of this object.</td>
+								</tr>
+								<tr>
+									<td class="descn">获取属性区块</td>
+									<td class="lbl"><a href="Renderer.GetPropertyBlock.html">GetPropertyBlock</a></td>
+									<td class="desc">获取每个渲染器或每个材质的属性块。</td>
+									<td class="desc1">Get per-Renderer or per-Material property block.</td>
+								</tr>
+								<tr>
+									<td class="descn">获取共享材质(s)</td>
+									<td class="lbl"><a href="Renderer.GetSharedMaterials.html">GetSharedMaterials</a></td>
+									<td class="desc">返回此对象的所有共享材料。</td>
+									<td class="desc1">Returns all the shared materials of this object.</td>
+								</tr>
+								<tr>
+									<td class="descn">s是否有属性区块</td>
+									<td class="lbl"><a href="Renderer.HasPropertyBlock.html">HasPropertyBlock</a></td>
+									<td class="desc">如果渲染器具有通过SetPropertyBlock附加的Material属性块，则返回true。</td>
+									<td class="desc1">Returns true if the Renderer has a material property block attached via SetPropertyBlock.</td>
+								</tr>
+								<tr>
+									<td class="descn">设置属性区块</td>
+									<td class="lbl"><a href="Renderer.SetPropertyBlock.html">SetPropertyBlock</a></td>
+									<td class="desc">使您可以设置或清除每个渲染器或每个材质的参数替代。</td>
+									<td class="desc1">Lets you set or clear per-renderer or per-material parameter overrides.</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+					<div class="subsection">
+						<h2>Static Methods 静态方法</h2>
+						<table class="list">
+							<tbody>
+								<tr>
+									<td class="descn">先销毁</td>
+									<td class="lbl"><a href="Object.Destroy.html">Destroy</a></td>
+									<td class="desc">移除GameObject，组件或资产。</td>
+									<td class="desc1">Removes a GameObject, component or asset.</td>
+								</tr>
+								<tr>
+									<td class="descn">立即销毁</td>
+									<td class="lbl"><a href="Object.DestroyImmediate.html">DestroyImmediate</a></td>
+									<td class="desc">立即销毁对象obj。强烈建议您改用销毁。</td>
+									<td class="desc1">Destroys the object obj immediately. You are strongly recommended to use Destroy instead.</td>
+								</tr>
+								<tr>
+									<td class="descn">不在加载时销毁</td>
+									<td class="lbl"><a href="Object.DontDestroyOnLoad.html">DontDestroyOnLoad</a></td>
+									<td class="desc"></td>
+									<td class="desc1">Do not destroy the target Object when loading a new Scene.</td>
+								</tr>
+								<tr>
+									<td class="descn">查找对象类型</td>
+									<td class="lbl"><a href="Object.FindObjectOfType.html">FindObjectOfType</a></td>
+									<td class="desc">返回第一个Type类型的活动加载对象。</td>
+									<td class="desc1">Returns the first active loaded object of Type type.</td>
+								</tr>
+								<tr>
+									<td class="descn">查找对象(s)类型</td>
+									<td class="lbl"><a href="Object.FindObjectsOfType.html">FindObjectsOfType</a></td>
+									<td class="desc">返回所有类型为Type的活动加载对象的列表。</td>
+									<td class="desc1">Returns a list of all active loaded objects of Type type.</td>
+								</tr>
+								<tr>
+									<td class="descn">实例化</td>
+									<td class="lbl"><a href="Object.Instantiate.html">Instantiate</a></td>
+									<td class="desc">克隆对象原始对象并返回克隆。。</td>
+									<td class="desc1">Clones the object original and returns the clone.</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="subsection">
+						<h2>Operators 运算符</h2>
+						<table class="list">
+							<tbody>
+								<tr>
+									<td class="descn">布尔</td>
+									<td class="lbl"><a href="Object-operator_Object.html">bool</a></td>
+									<td class="desc">该对象是否存在？</td>
+									<td class="desc1">Does the object exist?</td>
+								</tr>
+								<tr>
+									<td class="descn">运算符</td>
+									<td class="lbl"><a href="Object-operator_ne.html">operator !=</a></td>
+									<td class="desc">比较两个对象是否引用了另一个对象。</td>
+									<td class="desc1">Compares if two objects refer to a different object.</td>
+								</tr>
+								<tr>
+									<td class="descn">运算符</td>
+									<td class="lbl"><a href="Object-operator_eq.html">operator ==</a></td>
+									<td class="desc">比较两个对象引用以查看它们是否引用相同的对象。</td>
+									<td class="desc1">Compares two object references to see if they refer to the same object.</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="subsection">
+						<h2>Messages 消息</h2>
+						<table class="list">
+							<tbody>
+								<tr>
+									<td class="descn">当变成不可见时</td>
+									<td class="lbl"><a href="Renderer.OnBecameInvisible.html">OnBecameInvisible</a></td>
+									<td class="desc">当该对象不再由任何摄像机可见时，将调用OnBecameInvisible。</td>
+									<td class="desc1">
+										OnBecameInvisible is called when the object is no longer visible by any camera.</td>
+								</tr>
+								<tr>
+									<td class="descn">当变成可见时</td>
+									<td class="lbl"><a href="Renderer.OnBecameVisible.html">OnBecameVisible</a></td>
+									<td class="desc">当对象被任何摄像机可见时，将调用OnBecameVisible。</td>
+									<td class="desc1">
+										OnBecameVisible is called when the object became visible by any camera.</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+
+				</div>
+			</div>
+
+		</div>
+
+	</body>
+</html>

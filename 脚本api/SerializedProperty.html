@@ -1,0 +1,212 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: SerializedProperty</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">SerializedProperty</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEditor</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEditor.html" class="cl">UnityEditor</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>SerializedProperty and <a href="SerializedObject.html">SerializedObject</a> are classes for editing properties on objects in a completely generic way that automatically handles undo and styling UI for Prefabs.</p></div><div class="subsection"><p>SerializedProperty is used in conjunction with <a href="SerializedObject.html">SerializedObject</a> and <a href="Editor.html">Editor</a> classes.
+See Also: <a href="SerializedObject.html">SerializedObject</a> class, <a href="Editor.html">Editor</a> class.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class MyObject : <a href="ScriptableObject.html">ScriptableObject</a>
+{
+    public int myInt = 42;
+}<br /><br />public class SerializedPropertyTest : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        MyObject obj = <a href="ScriptableObject.CreateInstance.html">ScriptableObject.CreateInstance</a>&lt;MyObject&gt;();
+        <a href="SerializedObject.html">SerializedObject</a> serializedObject = new UnityEditor.SerializedObject(obj);<br /><br />        <a href="SerializedProperty.html">SerializedProperty</a> serializedPropertyMyInt = serializedObject.FindProperty("myInt");<br /><br />        <a href="Debug.Log.html">Debug.Log</a>("myInt " + serializedPropertyMyInt.intValue);
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedProperty-animationCurveValue.html">animationCurveValue</a></td><td class="desc"></td><td class="desc1">Value of a animation curve property.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedProperty-arrayElementType.html">arrayElementType</a></td><td class="desc"></td><td class="desc1">Type name of the element in an array property. (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedProperty-arraySize.html">arraySize</a></td><td class="desc"></td><td class="desc1">The number of elements in the array. If the SerializedObject contains multiple objects it will return the smallest number of elements. So it is always possible to iterate through the SerializedObject and only get properties found in all objects.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedProperty-boolValue.html">boolValue</a></td><td class="desc"></td><td class="desc1">Value of a boolean property.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedProperty-boundsIntValue.html">boundsIntValue</a></td><td class="desc"></td><td class="desc1">Value of bounds with integer values property.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedProperty-boundsValue.html">boundsValue</a></td><td class="desc"></td><td class="desc1">Value of bounds property.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedProperty-colorValue.html">colorValue</a></td><td class="desc"></td><td class="desc1">Value of a color property.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedProperty-depth.html">depth</a></td><td class="desc"></td><td class="desc1">Nesting depth of the property. (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedProperty-displayName.html">displayName</a></td><td class="desc"></td><td class="desc1">Nice display name of the property. (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedProperty-doubleValue.html">doubleValue</a></td><td class="desc"></td><td class="desc1">Value of a float property as a double.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedProperty-editable.html">editable</a></td><td class="desc"></td><td class="desc1">Is this property editable? (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedProperty-enumDisplayNames.html">enumDisplayNames</a></td><td class="desc"></td><td class="desc1">Display-friendly names of enumeration of an enum property.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedProperty-enumNames.html">enumNames</a></td><td class="desc"></td><td class="desc1">Names of enumeration of an enum property.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedProperty-enumValueIndex.html">enumValueIndex</a></td><td class="desc"></td><td class="desc1">Enum index of an enum property.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedProperty-exposedReferenceValue.html">exposedReferenceValue</a></td><td class="desc"></td><td class="desc1">A reference to another Object in the Scene. This reference is resolved in the context of the SerializedObject containing the SerializedProperty.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedProperty-fixedBufferSize.html">fixedBufferSize</a></td><td class="desc"></td><td class="desc1">The number of elements in the fixed buffer. (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedProperty-floatValue.html">floatValue</a></td><td class="desc"></td><td class="desc1">Value of a float property.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedProperty-hasChildren.html">hasChildren</a></td><td class="desc"></td><td class="desc1">Does it have child properties? (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedProperty-hasMultipleDifferentValues.html">hasMultipleDifferentValues</a></td><td class="desc"></td><td class="desc1">Does this property represent multiple different values due to multi-object editing? (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedProperty-hasVisibleChildren.html">hasVisibleChildren</a></td><td class="desc"></td><td class="desc1">Does it have visible child properties? (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedProperty-intValue.html">intValue</a></td><td class="desc"></td><td class="desc1">Value of an integer property.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedProperty-isArray.html">isArray</a></td><td class="desc"></td><td class="desc1">Is this property an array? (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedProperty-isDefaultOverride.html">isDefaultOverride</a></td><td class="desc"></td><td class="desc1">Allows you to check whether his property is a default override.Certain properties on Prefab instances are default overrides.See PrefabUtility.IsDefaultOverride for more information.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedProperty-isExpanded.html">isExpanded</a></td><td class="desc"></td><td class="desc1">Is this property expanded in the inspector?</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedProperty-isFixedBuffer.html">isFixedBuffer</a></td><td class="desc"></td><td class="desc1">Is this property a fixed buffer? (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedProperty-isInstantiatedPrefab.html">isInstantiatedPrefab</a></td><td class="desc"></td><td class="desc1">Is property part of a Prefab instance? (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedProperty-longValue.html">longValue</a></td><td class="desc"></td><td class="desc1">Value of a integer property as a long.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedProperty-name.html">name</a></td><td class="desc"></td><td class="desc1">Name of the property. (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedProperty-objectReferenceValue.html">objectReferenceValue</a></td><td class="desc"></td><td class="desc1">Value of an object reference property.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedProperty-prefabOverride.html">prefabOverride</a></td><td class="desc"></td><td class="desc1">Allows you to check whether a property's value is overriden (i.e. different to the Prefab it belongs to).</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedProperty-propertyPath.html">propertyPath</a></td><td class="desc"></td><td class="desc1">Full path of the property. (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedProperty-propertyType.html">propertyType</a></td><td class="desc"></td><td class="desc1">Type of this property (Read Only).</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedProperty-quaternionValue.html">quaternionValue</a></td><td class="desc"></td><td class="desc1">Value of a quaternion property.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedProperty-rectIntValue.html">rectIntValue</a></td><td class="desc"></td><td class="desc1">Value of a rectangle with integer values property.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedProperty-rectValue.html">rectValue</a></td><td class="desc"></td><td class="desc1">Value of a rectangle property.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedProperty-serializedObject.html">serializedObject</a></td><td class="desc"></td><td class="desc1">
+          SerializedObject this property belongs to (Read Only).</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedProperty-stringValue.html">stringValue</a></td><td class="desc"></td><td class="desc1">Value of a string property.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedProperty-tooltip.html">tooltip</a></td><td class="desc"></td><td class="desc1">Tooltip of the property. (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedProperty-type.html">type</a></td><td class="desc"></td><td class="desc1">Type name of the property. (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedProperty-vector2IntValue.html">vector2IntValue</a></td><td class="desc"></td><td class="desc1">Value of a 2D integer vector property.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedProperty-vector2Value.html">vector2Value</a></td><td class="desc"></td><td class="desc1">Value of a 2D vector property.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedProperty-vector3IntValue.html">vector3IntValue</a></td><td class="desc"></td><td class="desc1">Value of a 3D integer vector property.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedProperty-vector3Value.html">vector3Value</a></td><td class="desc"></td><td class="desc1">Value of a 3D vector property.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedProperty-vector4Value.html">vector4Value</a></td><td class="desc"></td><td class="desc1">Value of a 4D vector property.</td></tr>
+    </table></div><div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedProperty.ClearArray.html">ClearArray</a></td><td class="desc"></td><td class="desc1">Remove all elements from the array.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedProperty.Copy.html">Copy</a></td><td class="desc"></td><td class="desc1">Returns a copy of the SerializedProperty iterator in its current state. This is useful if you want to keep a reference to the current property but continue with the iteration.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedProperty.CountInProperty.html">CountInProperty</a></td><td class="desc"></td><td class="desc1">Count visible children of this property, including this property itself.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedProperty.CountRemaining.html">CountRemaining</a></td><td class="desc"></td><td class="desc1">Count remaining visible properties.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedProperty.DeleteArrayElementAtIndex.html">DeleteArrayElementAtIndex</a></td><td class="desc"></td><td class="desc1">Delete the element at the specified index in the array.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedProperty.DeleteCommand.html">DeleteCommand</a></td><td class="desc"></td><td class="desc1">Deletes the serialized property.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedProperty.DuplicateCommand.html">DuplicateCommand</a></td><td class="desc"></td><td class="desc1">Duplicates the serialized property.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedProperty.FindPropertyRelative.html">FindPropertyRelative</a></td><td class="desc"></td><td class="desc1">Retrieves the SerializedProperty at a relative path to the current property.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedProperty.GetArrayElementAtIndex.html">GetArrayElementAtIndex</a></td><td class="desc"></td><td class="desc1">Returns the element at the specified index in the array.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedProperty.GetEndProperty.html">GetEndProperty</a></td><td class="desc"></td><td class="desc1">Retrieves the SerializedProperty that defines the end range of this property.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedProperty.GetEnumerator.html">GetEnumerator</a></td><td class="desc"></td><td class="desc1">Retrieves an iterator that allows you to iterator over the current nexting of a serialized property.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedProperty.GetFixedBufferElementAtIndex.html">GetFixedBufferElementAtIndex</a></td><td class="desc"></td><td class="desc1">Returns the element at the specified index in the fixed buffer.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedProperty.InsertArrayElementAtIndex.html">InsertArrayElementAtIndex</a></td><td class="desc"></td><td class="desc1">Insert an empty element at the specified index in the array.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedProperty.MoveArrayElement.html">MoveArrayElement</a></td><td class="desc"></td><td class="desc1">Move an array element from srcIndex to dstIndex.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedProperty.Next.html">Next</a></td><td class="desc"></td><td class="desc1">Move to next property.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedProperty.NextVisible.html">NextVisible</a></td><td class="desc"></td><td class="desc1">Move to next visible property.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedProperty.Reset.html">Reset</a></td><td class="desc"></td><td class="desc1">Move to first property of the object.</td></tr>
+    </table></div><div class="subsection"><h2>Static Methods   静态方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedProperty.DataEquals.html">DataEquals</a></td><td class="desc"></td><td class="desc1">Compares the data for two SerializedProperties. This method ignores paths and SerializedObjects.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SerializedProperty.EqualContents.html">EqualContents</a></td><td class="desc"></td><td class="desc1">See if contained serialized properties are equal.</td></tr>
+    </table></div></div></div></div></body></html>

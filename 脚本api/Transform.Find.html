@@ -1,0 +1,53 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Transform.Find</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Transform.html">Transform</a>.Find</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Transform.html' title='Go to Transform Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Transform.html">Transform</a> <span class="sig-kw">Find</span>(string <span class="sig-kw">n</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">n</td><td class="desc"></td><td class="desc1">Name of child to be found.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>Transform</strong>
+        The returned child transform or null if no child is found.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Finds a child by <code class="varname">n</code> and returns it.</p></div><div class="subsection"><p>If no child with <code class="varname">n</code> can be found, null is returned.
+If <code class="varname">n</code> contains a '/' character it will access the Transform in the hierarchy like a path name.<br /><br /><strong>Note:</strong> <a href="Transform.Find.html">Find</a> does not perform a recursive descend down a Transform hierarchy.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="GameObject.html">GameObject</a> player;
+    public <a href="GameObject.html">GameObject</a> gun;
+    public <a href="Transform.html">Transform</a> ammo;<br /><br />    //Invoked when a button is clicked.
+    public void Example()
+    {
+        //Finds and assigns the child of the player named "Gun".
+        gun = player.transform.Find("Gun").gameObject;<br /><br />        //If the child was found.
+        if (gun != null)
+        {
+            //Find the child named "ammo" of the gameobject "magazine" (magazine is a child of "gun").
+            ammo = gun.transform.Find("magazine/ammo");
+        }
+        else <a href="Debug.Log.html">Debug.Log</a>("No child with the name 'Gun' attached to the player");
+    }
+}
+</pre>
+      </div><div class="subsection"><p>As described <a href="Transform.Find.html">Find</a> does not descend the <a href="Transform.html">Transform</a> heirarchy.  <a href="Transform.Find.html">Find</a> will only search the given list of children looking for a named <a href="Transform.html">Transform</a>.  The following example shows the result of <a href="Transform.Find.html">Find</a> searching for GameObjects.  The name of each GameObject is used in the <a href="Transform.Find.html">Find</a>.  This is why two GameObjects in the same level of the hierarchy are found and reported.<br /><br /><img src="../StaticFiles/ScriptRefImages/TransformFind.png" /><br />
+<em>A GameObject with three children.  Find() does not find the third child.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// ExampleClass has a <a href="GameObject.html">GameObject</a> with three spheres attached.
+// Two of these are children of the <a href="GameObject.html">GameObject</a>.  The third
+// transform, sphere3, is a child of sphere2.  Find() does
+// not find this child.<br /><br />using UnityEngine;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        <a href="Transform.html">Transform</a> result;<br /><br />        for (int i = 1; i &lt; 4; i++)
+        {
+            string sph;<br /><br />            sph = "sphere" + i.ToString();
+            result = gameObject.transform.Find(sph);<br /><br />            if (result)
+            {
+                <a href="Debug.Log.html">Debug.Log</a>("Found: " + sph);
+            }
+            else
+            {
+                <a href="Debug.Log.html">Debug.Log</a>("Did not find: " + sph);
+            }
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

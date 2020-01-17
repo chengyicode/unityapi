@@ -1,0 +1,12 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Material.CopyPropertiesFromMaterial</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Material.html">Material</a>.CopyPropertiesFromMaterial</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Material.html' title='Go to Material Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">CopyPropertiesFromMaterial</span>(<a href="Material.html">Material</a> <span class="sig-kw">mat</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Copy properties from other material into this material.</p></div><div class="subsection"><p>This function copies property values (both serialized and set at runtime), as well as shader keywords, render queue and global illumination flags from the other material. Material's shader is not changed.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Attach this to a gameObject that has a renderer.
+    // Copies any property mat has and assigns it to this transform material<br /><br />    <a href="Material.html">Material</a> mat;<br /><br />    void Start()
+    {
+        GetComponent&lt;<a href="Renderer.html">Renderer</a>&gt; ().material.CopyPropertiesFromMaterial(mat);
+    }
+}</pre>
+      </div></div></div></div></body></html>

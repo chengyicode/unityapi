@@ -1,0 +1,59 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Material.SetMatrix</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Material.html">Material</a>.SetMatrix</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Material.html' title='Go to Material Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">SetMatrix</span>(string <span class="sig-kw">name</span>,
+<a href="Matrix4x4.html">Matrix4x4</a> <span class="sig-kw">value</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">SetMatrix</span>(int <span class="sig-kw">nameID</span>,
+<a href="Matrix4x4.html">Matrix4x4</a> <span class="sig-kw">value</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">nameID</td><td class="desc"></td><td class="desc1">Property name ID, use <a href="Shader.PropertyToID.html">Shader.PropertyToID</a> to get it.</td></tr><tr><td class="name lbl">name</td><td class="desc"></td><td class="desc1">Property name, e.g. "_CubemapRotation".</td></tr><tr><td class="name lbl">value</td><td class="desc"></td><td class="desc1">Matrix value to set.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Sets a named matrix for the shader.</p></div><div class="subsection"><p>This is mostly used with custom shaders that need extra matrix
+parameters. Matrix parameters are not exposed in the material inspector,
+but can be set and queried with <code class="varname">SetMatrix</code> and <code class="varname">GetMatrix</code> from scripts.<br /><br />See Also: <a href="Material.GetMatrix.html">GetMatrix</a>, <a href="../Manual/Materials.html">Materials</a>, <a href="../Manual/Shaders.html">ShaderLab documentation</a>, <a href="Shader.PropertyToID.html">Shader.PropertyToID</a>, <a href="../Manual/SL-PropertiesInPrograms.html">Properties in Shader Programs</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Attach to an object that has a <a href="Renderer.html">Renderer</a> component,
+    // and use material with the shader below.
+    public float rotateSpeed = 30f;
+    public void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        // Construct a rotation matrix and set it for the shader
+        <a href="Quaternion.html">Quaternion</a> rot = <a href="Quaternion.Euler.html">Quaternion.Euler</a>(0, 0, <a href="Time-time.html">Time.time</a> * rotateSpeed);
+        <a href="Matrix4x4.html">Matrix4x4</a> m = <a href="Matrix4x4.TRS.html">Matrix4x4.TRS</a>(<a href="Vector3-zero.html">Vector3.zero</a>, rot, <a href="Vector3-one.html">Vector3.one</a>);
+        GetComponent&lt;<a href="Renderer.html">Renderer</a>&gt;().material.SetMatrix("_TextureRotation", m);
+    }
+}
+</pre>
+      </div><div class="subsection">
+        
+        <pre class="codeExampleCS">// Use this shader on an object together with the above example script.
+// The shader transforms texture coordinates with a matrix set from a script.
+<a href="Shader.html">Shader</a> "RotatingTexture"
+{
+    Properties
+    {
+        _MainTex ("Base (RGB)", 2D) = "white" {}
+    }
+    SubShader
+    {
+        <a href="ShaderData.Pass.html">Pass</a>
+        {
+            CGPROGRAM
+            #pragma vertex vert
+            #pragma fragment frag<br /><br />            struct v2f
+            {
+                float2 uv : TEXCOORD0;
+                float4 pos : SV_POSITION;
+            };<br /><br />            float4x4 _TextureRotation;<br /><br />            v2f vert (float4 pos : POSITION, float2 uv : TEXCOORD0)
+            {
+                v2f o;
+                o.pos = UnityObjectToClipPos(pos);
+                o.uv = mul(_TextureRotation, float4(uv,0,1)).xy;
+                return o;
+            }<br /><br />            sampler2D _MainTex;
+            fixed4 frag (v2f i) : SV_Target
+            {
+                return tex2D(_MainTex, i.uv);
+            }
+            ENDCG
+        }
+    }
+}</pre>
+      </div></div></div></div></body></html>

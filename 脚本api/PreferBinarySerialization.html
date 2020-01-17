@@ -1,0 +1,19 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: PreferBinarySerialization</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">PreferBinarySerialization</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.CoreModule.html" class="cl">UnityEngine.CoreModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Prefer ScriptableObject derived type to use binary serialization regardless of project's asset serialization mode.</p></div><div class="subsection"><p>This is useful for custom asset types that contain large amounts of data. Always keeping them stored as binary can both improve read/write performance, as well as produce more compact representations on disk. The major downsides are that binary asset files are no longer humanly readable, and that you can no longer merge them in your revision control software.<br /><br />Asset serialization in Unity always uses a consistent serialization mode throughout the entirety of each file. As a result, when an asset file contains multiple assets, it might not always be possible to respect the desire to force a specific asset to use binary serialization. The serialization mode of an asset file is controlled by the main asset at that path. As a result, care has to be taken when composing complex assets using AssetDabase.CreateAsset and <a href="AssetDatabase.AddObjectToAsset.html">AssetDatabase.AddObjectToAsset</a> to ensure that the main asset is the object with this attribute set. Scene files always follow the asset serialization mode configured in the project, thus PreferBinarySerialization is always ignored for assets embedded in Scenes.<br /><br />The attribute can only be applied to ScriptableObject derived classes, it will be ignored for all other types.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />// Custom asset type that prefers binary serialization.
+//
+// Create a new asset file by going to "<a href="VersionControl.Asset.html">Asset</a>/Create/Custom Data".
+// If you open this new asset in a text editor, you can see how it
+// is not affected by changing the project asset serialization mode.
+//
+[CreateAssetMenu]
+[<a href="PreferBinarySerialization.html">PreferBinarySerialization</a>]
+public class CustomData : <a href="ScriptableObject.html">ScriptableObject</a>
+{
+    public float[] lotsOfFloatData = new[] { 1f, 2f, 3f };
+    public byte[] lotsOfByteData = new byte[] { 4, 5, 6 };
+}
+</pre>
+      </div></div></div></div></body></html>

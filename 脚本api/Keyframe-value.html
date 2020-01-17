@@ -1,0 +1,15 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Keyframe.value</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Keyframe.html">Keyframe</a>.value</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public float <span class="sig-kw">value</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The value of the curve at keyframe.</p></div><div class="subsection"><p>In a 2D graph you could think of this as the y-value.<br /><br />See Also: <a href="Keyframe-time.html">time</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        <a href="AnimationCurve.html">AnimationCurve</a> curve = <a href="AnimationCurve.Linear.html">AnimationCurve.Linear</a>(0, 0, 5, 5);
+        // Extract the time from the first keyframe of a curve
+        <a href="Debug.Log.html">Debug.Log</a>(curve[0].value);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

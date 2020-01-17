@@ -1,0 +1,35 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Mathf.Clamp01</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Mathf.html">Mathf</a>.Clamp01</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static float <span class="sig-kw">Clamp01</span>(float <span class="sig-kw">value</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Clamps value between 0 and 1 and returns value.</p></div><div class="subsection"><p>If the value is negative then zero is returned.  If value is greater than one then one is returned.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Set the position of the transform to be that of the time
+    // but never less than 0 or more than 1<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        transform.position = new <a href="Vector3.html">Vector3</a>(<a href="Mathf.Clamp01.html">Mathf.Clamp01</a>(<a href="Time-time.html">Time.time</a>), 0, 0);
+    }
+}
+</pre>
+      </div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;<br /><br />// Print a random number every second.  This number is chosen over a
+// range from startValue to endValue.  The random number is clamped
+// to between zero and one by Clamp01().<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public float startValue = -0.5f;
+    public float endValue = 1.5f;<br /><br />    private float timeCount = 0.0f;<br /><br />    void <a href="Experimental.PlayerLoop.FixedUpdate.html">FixedUpdate</a>()
+    {
+        timeCount += <a href="Time-deltaTime.html">Time.deltaTime</a>;<br /><br />        if (timeCount &gt; 1.0f)
+        {
+            float result = <a href="Random-value.html">Random.value</a>;
+            result = result * (endValue - startValue);
+            result = result + startValue;<br /><br />            float clampValue = <a href="Mathf.Clamp01.html">Mathf.Clamp01</a>(result);<br /><br />            <a href="Debug.Log.html">Debug.Log</a>("value: " + result.ToString("F3") + " result: " + clampValue.ToString("F3"));<br /><br />            timeCount = 0.0f;
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ParticleSystemRenderer.maskInteraction</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="ParticleSystemRenderer.html">ParticleSystemRenderer</a>.maskInteraction</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="SpriteMaskInteraction.html">SpriteMaskInteraction</a> <span class="sig-kw">maskInteraction</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Specifies how the Particle System Renderer interacts with <a href="SpriteMask.html">SpriteMask</a>.</p></div><div class="subsection"><p>Particles by default do not interact with SpriteMasks and will be visible irrespective of any SpriteMask being present or not.
+Particle System Renderer can also be setup to be visible inside a mask by setting this value to VisibleInsideMask.
+The inverse can be achieved by seting the maskInteraction to VisibleOutsideMask.
+See Also: <a href="SpriteMaskInteraction.html">SpriteMaskInteraction</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private <a href="ParticleSystemRenderer.html">ParticleSystemRenderer</a> psr;
+    public <a href="SpriteMaskInteraction.html">SpriteMaskInteraction</a> maskInteraction;<br /><br />    void Start()
+    {
+        psr = GetComponent&lt;<a href="ParticleSystemRenderer.html">ParticleSystemRenderer</a>&gt;();
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        psr.maskInteraction = maskInteraction;
+    }<br /><br />    void OnGUI()
+    {
+        maskInteraction = (<a href="SpriteMaskInteraction.html">SpriteMaskInteraction</a>)<a href="GUI.SelectionGrid.html">GUI.SelectionGrid</a>(new <a href="Rect.html">Rect</a>(25, 25, 900, 30), (int)maskInteraction, new <a href="GUIContent.html">GUIContent</a>[] { new <a href="GUIContent.html">GUIContent</a>("No Masking"), new <a href="GUIContent.html">GUIContent</a>("Visible Inside Mask"), new <a href="GUIContent.html">GUIContent</a>("Visible Outside Mask") }, 3);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

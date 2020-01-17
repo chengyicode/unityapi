@@ -1,0 +1,16 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ModelImporter.clipAnimations</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="ModelImporter.html">ModelImporter</a>.clipAnimations</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public ModelImporterClipAnimation[] <span class="sig-kw">clipAnimations</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Animation clips to split animation into. See Also: <a href="ModelImporterClipAnimation.html">ModelImporterClipAnimation</a>.</p></div><div class="subsection"><p>When you import a file for the first time clipAnimations will be always empty.
+If you need to populate clipAnimations before the first import you can use an <a href="AssetPostprocessor.html">AssetPostprocessor</a> and override <a href="AssetPostprocessor.OnPreprocessAnimation.html">AssetPostprocessor.OnPreprocessAnimation</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;<br /><br />public class CreateAnimationClip : <a href="AssetPostprocessor.html">AssetPostprocessor</a>
+{
+    void OnPreprocessAnimation()
+    {
+        var modelImporter = assetImporter as <a href="ModelImporter.html">ModelImporter</a>;
+        modelImporter.clipAnimations = modelImporter.defaultClipAnimations;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

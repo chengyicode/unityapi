@@ -1,0 +1,10 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Renderer.materials</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Renderer.html">Renderer</a>.materials</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public Material[] <span class="sig-kw">materials</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Returns all the instantiated materials of this object.</p></div><div class="subsection"><p>This is an array of all materials used by the renderer. Unity supports a single object
+using multiple materials; in this case <code class="varname">materials</code> contains all the materials.
+<a href="Renderer-sharedMaterial.html">sharedMaterial</a> and <a href="Renderer-material.html">material</a> properties return the first used material if
+there is more than one.<br /><br />Modifying any material in <code class="varname">materials</code> will change the appearance of only that object.<br /><br />Note that like all arrays returned by Unity, this returns a copy of materials
+array. If you want to change some materials in it, get the value, change an entry and
+set materials back.<br /><br /><strong>Note:</strong><br />
+This function automatically instantiates the materials and makes them unique to this renderer.
+It is your responsibility to destroy the materials when the game object is being destroyed. <a href="Resources.UnloadUnusedAssets.html">Resources.UnloadUnusedAssets</a>
+also destroys the materials but it is usually only called when loading a new level.</p></div></div></div></div></body></html>

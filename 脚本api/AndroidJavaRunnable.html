@@ -1,0 +1,20 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: .AndroidJavaRunnable</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">AndroidJavaRunnable</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public delegate void <span class="sig-kw">AndroidJavaRunnable</span>();
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>AndroidJavaRunnable is the Unity representation of a java.lang.Runnable object.</p></div><div class="subsection"><p>Note that this is a delegate. As such, a new java.lang.reflect.Proxy object is created every time it is passed as an argument to Java. This means that passing a variable of AndroidJavaRunnable type to Java multiple times results in a new Java object each time with different hash code values. It also means that calling <code class="mono">equals()</code> on the Java object created as a representation of an AndroidJavaRunnable variable always returns false, even when compared to itself.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // <a href="ShaderData.Pass.html">Pass</a> execution context over to the Java UI thread.
+    void Start()
+    {
+        <a href="AndroidJavaClass.html">AndroidJavaClass</a> unityPlayer = new <a href="AndroidJavaClass.html">AndroidJavaClass</a>("com.unity3d.player.UnityPlayer");
+        <a href="AndroidJavaObject.html">AndroidJavaObject</a> activity = unityPlayer.GetStatic&lt;<a href="AndroidJavaObject.html">AndroidJavaObject</a>&gt;("currentActivity");
+        activity.Call("runOnUiThread", new <a href="AndroidJavaRunnable.html">AndroidJavaRunnable</a>(runOnUiThread));
+    }<br /><br />    void runOnUiThread()
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("I'm running on the Java UI thread!");
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

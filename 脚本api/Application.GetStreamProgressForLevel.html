@@ -1,0 +1,29 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Application.GetStreamProgressForLevel</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Method group is Obsolete</b><br /></div><h1 class="heading inherit"><a href="Application.html">Application</a>.GetStreamProgressForLevel</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public static float <span class="sig-kw">GetStreamProgressForLevel</span>(int <span class="sig-kw">levelIndex</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>How far has the download progressed? [0...1].</p></div><div class="subsection"><p>In the webplayer this returns the progress of this level.<br /><br />See Also: <a href="Application.CanStreamedLevelBeLoaded.html">CanStreamedLevelBeLoaded</a> function.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public float    percentageLoaded = 0;
+    public GUIText  progressText;<br /><br />    // Print on a guiText how much has been streamed level at index 1
+    // When finished streaming, print "Level 1 has been fully streamed!"
+    void Start()
+    {
+        progressText = GetComponent&lt;GUIText&gt;();
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        if (Application.GetStreamProgressForLevel(1) == 1)
+        {
+            progressText.text = "Level at index 1 has been fully streamed!";
+        }
+        else
+        {
+            percentageLoaded = Application.GetStreamProgressForLevel(1) * 100;
+            progressText.text = percentageLoaded.ToString();
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Webplayer support is not part of 5.4.0 and later.</p></div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public static float <span class="sig-kw">GetStreamProgressForLevel</span>(string <span class="sig-kw">levelName</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>How far has the download progressed? [0...1].</p></div><div class="subsection"><p>In the webplayer this returns the progress of this level.<br /><br />See Also: <a href="Application.CanStreamedLevelBeLoaded.html">CanStreamedLevelBeLoaded</a> function.<br /><br />Webplayer support is not part of 5.4.0 and later.</p></div></div></div></div></body></html>

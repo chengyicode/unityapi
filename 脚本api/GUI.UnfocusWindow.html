@@ -1,0 +1,28 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: GUI.UnfocusWindow</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="GUI.html">GUI</a>.UnfocusWindow</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">UnfocusWindow</span>();
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Remove focus from all windows.</p></div><div class="subsection"><p>See Also: <a href="GUI.FocusWindow.html">GUI.FocusWindow</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Draws 2 windows. When one button is clicked unfocus the window.<br /><br />using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private <a href="Rect.html">Rect</a> windowRect = new <a href="Rect.html">Rect</a>(20, 20, 120, 50);
+    private <a href="Rect.html">Rect</a> windowRect2 = new <a href="Rect.html">Rect</a>(20, 80, 120, 50);<br /><br />    void OnGUI()
+    {
+        windowRect = <a href="GUI.Window.html">GUI.Window</a>(0, windowRect, DoMyFirstWindow, "First");
+        windowRect2 = <a href="GUI.Window.html">GUI.Window</a>(1, windowRect2, DoMySecondWindow, "Second");
+    }<br /><br />    void DoMyFirstWindow(int windowID)
+    {
+        if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(10, 20, 100, 20), "UnFocus"))
+        {
+            <a href="GUI.UnfocusWindow.html">GUI.UnfocusWindow</a>();
+        }
+    }<br /><br />    void DoMySecondWindow(int windowID)
+    {
+        if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(10, 20, 100, 20), "UnFocus"))
+        {
+            <a href="GUI.UnfocusWindow.html">GUI.UnfocusWindow</a>();
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

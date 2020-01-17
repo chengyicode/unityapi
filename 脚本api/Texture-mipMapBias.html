@@ -1,0 +1,7 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Texture.mipMapBias</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Texture.html">Texture</a>.mipMapBias</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public float <span class="sig-kw">mipMapBias</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Mip map bias of the texture.</p></div><div class="subsection"><p>A positive bias makes a texture appear extra blurry, while a negative bias sharpens
+the texture. Note that using large negative bias can reduce performance, so it's not
+recommended to use more than -0.5 negative bias. In most cases better sharpening of the texture
+can be achieved by using anisotropic filtering. Also note that mip map bias does not work
+with MaterialPropertyBlocks, and some platforms, e.g., OpenGL ES based do not support it
+without custom shaders.<br /><br />See Also: <a href="Texture-anisoLevel.html">Texture.anisoLevel</a>, <a href="../Manual/Textures.html">texture assets</a>.</p></div></div></div></div></body></html>

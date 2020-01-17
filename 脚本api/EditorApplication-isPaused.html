@@ -1,0 +1,19 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorApplication.isPaused</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorApplication.html">EditorApplication</a>.isPaused</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">isPaused</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Is editor currently paused?</p></div><div class="subsection"><p>Lets you change pause state programmatically, like pressing the Pause button in the main toolbar.<br /><br />See Also: <a href="EditorApplication-isPlaying.html">isPlaying</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Simple editor Script that confirms the running
+// game is paused.<br /><br />using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;<br /><br />public class isPausedExample
+{
+    [<a href="MenuItem.html">MenuItem</a>("Examples/<a href="SceneManagement.Scene.html">Scene</a> paused in play mode")]
+    static void EditorPlaying()
+    {
+        if (<a href="EditorApplication-isPaused.html">EditorApplication.isPaused</a>)
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("Paused");
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

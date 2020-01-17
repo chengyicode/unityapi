@@ -1,0 +1,32 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Texture2D.PackTextures</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Texture2D.html">Texture2D</a>.PackTextures</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public Rect[] <span class="sig-kw">PackTextures</span>(Texture2D[] <span class="sig-kw">textures</span>,
+int <span class="sig-kw">padding</span>,
+int <span class="sig-kw">maximumAtlasSize</span>,
+bool <span class="sig-kw">makeNoLongerReadable</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">textures</td><td class="desc"></td><td class="desc1">Array of textures to pack into the atlas.</td></tr><tr><td class="name lbl">padding</td><td class="desc"></td><td class="desc1">Padding in pixels between the packed textures.</td></tr><tr><td class="name lbl">maximumAtlasSize</td><td class="desc"></td><td class="desc1">Maximum size of the resulting texture.</td></tr><tr><td class="name lbl">makeNoLongerReadable</td><td class="desc"></td><td class="desc1">Should the texture be marked as no longer readable?</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>Rect[]</strong>
+        An array of rectangles containing the UV coordinates in the atlas for each input texture, or null if packing fails.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Packs multiple Textures into a texture atlas.</p></div><div class="subsection"><p>This function will replace the current texture with the atlas made from the supplied textures.
+The size, format and mipmaps of any of the textures can change after packing.<br /><br />The resulting texture atlas will be as large as needed to fit all input textures but only up to <code class="varname">maximumAtlasSize</code> in
+each dimension. If the input textures can't all fit into a texture atlas of the desired size then they will be
+scaled down to fit.<br /><br />The atlas will have <a href="TextureFormat.DXT1.html">DXT1</a> format if all input textures are DXT1 compressed.
+If all input textures are compressed in <a href="TextureFormat.DXT1.html">DXT1</a> or <a href="TextureFormat.DXT5.html">DXT5</a> formats
+then the atlas will be in DXT5 format. If any input texture is not compressed then the atlas will
+be in <a href="TextureFormat.RGBA32.html">RGBA32</a> uncompressed format.<br /><br />If none of the input textures have mipmaps then the atlas will also have no mipmaps.<br /><br />If you use non-zero padding and the atlas is compressed and has mipmaps then the lower-level mipmaps might not be
+exactly the same as in the original texture due to compression restrictions.<br /><br />If <code class="varname">makeNoLongerReadable</code> is <code class="varname">true</code> then the texture will be marked as no longer readable
+and memory will be freed after uploading to the GPU.
+By default <code class="varname">makeNoLongerReadable</code> is set to <code class="varname">false</code>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Source textures.
+    <a href="Texture2D.html">Texture2D</a>[] atlasTextures;<br /><br />    // Rectangles for individual atlas textures.
+    <a href="Rect.html">Rect</a>[] rects;<br /><br />    void Start()
+    {
+        // Pack the individual textures into the smallest possible space,
+        // while leaving a two pixel gap between their edges.
+        <a href="Texture2D.html">Texture2D</a> atlas = new <a href="Texture2D.html">Texture2D</a>(8192, 8192);
+        rects = atlas.PackTextures(atlasTextures, 2, 8192);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

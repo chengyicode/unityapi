@@ -1,0 +1,56 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Networking.NetworkTransport.Connect</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Method group is Obsolete</b><br /></div><h1 class="heading inherit"><a href="Networking.NetworkTransport.html">NetworkTransport</a>.Connect</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public static int <span class="sig-kw">Connect</span>(int <span class="sig-kw">hostId</span>,
+string <span class="sig-kw">address</span>,
+int <span class="sig-kw">port</span>,
+int <span class="sig-kw">exeptionConnectionId</span>,
+out byte <span class="sig-kw">error</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">hostId</td><td class="desc"></td><td class="desc1">Host ID associated with this connection (retrieved when calling Networking.NetworkTransport.AddHost).</td></tr><tr><td class="name lbl">address</td><td class="desc"></td><td class="desc1">IPv4 address of the other peer.</td></tr><tr><td class="name lbl">port</td><td class="desc"></td><td class="desc1">Port of the other peer.</td></tr><tr><td class="name lbl">exceptionConnectionId</td><td class="desc"></td><td class="desc1">Set to 0 in the case of a default connection.</td></tr><tr><td class="name lbl">error</td><td class="desc"></td><td class="desc1">Error (can be cast to <a href="Networking.NetworkError.html">NetworkError</a> for more information).</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>int</strong>
+        A unique connection identifier on success (otherwise zero).
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Tries to establish a connection to another peer.</p></div><div class="subsection"><p>The error parameter will return a non-zero value if an error occurs, this value can be cast to a <a href="Networking.NetworkError.html">NetworkError</a> for more information.<br /><br />Networking.NetworkTransport.Connect can still fail despite returning a non-zero connection id, so make sure to poll Networking.NetworkTransport.Receive or Networking.NetworkTransport.ReceiveFromHost to listen for events. If everything is OK a <a href="Networking.NetworkEventType.ConnectEvent.html">NetworkEventType.ConnectEvent</a> will be returned.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.Networking;<br /><br />public class ConnectExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    int connectionId;
+    int channelId;
+    int hostId;<br /><br />    void Start()
+    {
+        // Init Transport using default values.
+        NetworkTransport.Init();<br /><br />        // Create a connection config and add a Channel.
+        ConnectionConfig config = new ConnectionConfig();
+        channelId = config.AddChannel(<a href="Networking.QosType.Reliable.html">QosType.Reliable</a>);<br /><br />        // Create a topology based on the connection config.
+        HostTopology topology = new HostTopology(config, 10);<br /><br />        // Create a host based on the topology we just created, and bind the socket to port 12345.
+        hostId = NetworkTransport.AddHost(topology, 12345);<br /><br />        // Connect to the host with IP 10.0.0.42 and port 54321
+        byte error;
+        connectionId = NetworkTransport.Connect(hostId, "10.0.0.42", 54321, 0, out error);
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        int outHostId;
+        int outConnectionId;
+        int outChannelId;
+        byte[] buffer = new byte[1024];
+        int bufferSize = 1024;
+        int receiveSize;
+        byte error;<br /><br />        <a href="Networking.NetworkEventType.html">NetworkEventType</a> evnt = NetworkTransport.Receive(out outHostId, out outConnectionId, out outChannelId, buffer, bufferSize, out receiveSize, out error);
+        switch (evnt)
+        {
+            case <a href="Networking.NetworkEventType.ConnectEvent.html">NetworkEventType.ConnectEvent</a>:
+                if (outHostId == hostId &amp;&amp;
+                    outConnectionId == connectionId &amp;&amp;
+                    (<a href="Networking.NetworkError.html">NetworkError</a>)error == <a href="Networking.NetworkError.Ok.html">NetworkError.Ok</a>)
+                {
+                    <a href="Debug.Log.html">Debug.Log</a>("Connected");
+                }
+                break;
+            case <a href="Networking.NetworkEventType.DisconnectEvent.html">NetworkEventType.DisconnectEvent</a>:
+                if (outHostId == hostId &amp;&amp;
+                    outConnectionId == connectionId)
+                {
+                    <a href="Debug.Log.html">Debug.Log</a>("Connected, error:" + error.ToString());
+                }
+                break;
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

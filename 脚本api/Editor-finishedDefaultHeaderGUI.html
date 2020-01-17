@@ -1,0 +1,22 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Editor.finishedDefaultHeaderGUI</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Editor.html">Editor</a>.finishedDefaultHeaderGUI</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>An event raised while drawing the header of the Inspector window, after the default header items have been drawn.</p></div><div class="subsection"><p>Add an event handler to this event in order to draw additional items in the header for the <a href="Editor.html">Editor</a> passed to the event handler method.<br /><br />The following example script displays an asset's GUID as a copyable label in the header, if the inspected object is a persistent asset and not a Scene object. Copy this example script into a file called EditorHeaderGUID.cs and put it in a folder called Editor.<br /><br /><img src="../StaticFiles/ScriptRefImages/FinishedDefaultHeaderGUI.png" />
+<em>The Inspector header with a custom GUID control added.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />[<a href="InitializeOnLoadAttribute.html">InitializeOnLoadAttribute</a>]
+static class EditorHeaderGUID
+{
+    static EditorHeaderGUID()
+    {
+        <a href="Editor-finishedDefaultHeaderGUI.html">Editor.finishedDefaultHeaderGUI</a> += DisplayGUIDIfPersistent;
+    }<br /><br />    static void DisplayGUIDIfPersistent(<a href="Editor.html">Editor</a> editor)
+    {
+        if (!<a href="EditorUtility.IsPersistent.html">EditorUtility.IsPersistent</a>(editor.target))
+            return;<br /><br />        var guid = <a href="AssetDatabase.AssetPathToGUID.html">AssetDatabase.AssetPathToGUID</a>(<a href="AssetDatabase.GetAssetPath.html">AssetDatabase.GetAssetPath</a>(editor.target));
+        var totalRect = <a href="EditorGUILayout.GetControlRect.html">EditorGUILayout.GetControlRect</a>();
+        var controlRect = <a href="EditorGUI.PrefixLabel.html">EditorGUI.PrefixLabel</a>(totalRect, EditorGUIUtility.TrTempContent("GUID"));
+        if (editor.targets.Length &gt; 1)
+            <a href="EditorGUI.LabelField.html">EditorGUI.LabelField</a>(controlRect, EditorGUIUtility.TrTempContent("[Multiple objects selected]"));
+        else
+            <a href="EditorGUI.SelectableLabel.html">EditorGUI.SelectableLabel</a>(controlRect, guid);
+    }
+}</pre>
+      </div></div></div></div></body></html>

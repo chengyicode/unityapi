@@ -1,0 +1,29 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Material.GetTag</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Material.html">Material</a>.GetTag</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Material.html' title='Go to Material Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public string <span class="sig-kw">GetTag</span>(string <span class="sig-kw">tag</span>,
+bool <span class="sig-kw">searchFallbacks</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public string <span class="sig-kw">GetTag</span>(string <span class="sig-kw">tag</span>,
+bool <span class="sig-kw">searchFallbacks</span>,
+string <span class="sig-kw">defaultValue</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Get the value of material's shader tag.</p></div><div class="subsection"><p>If the material's shader does not define the tag, <code class="varname">defaultValue</code> is returned.<br /><br />If <code class="varname">searchFallbacks</code> is <code class="varname">true</code> then this function will look for tag in all subshaders
+and all fallbacks. If <code class="varname">seachFallbacks</code> is <code class="varname">false</code> then only the currently used subshader
+will be queried for the tag.<br /><br />Using <code class="varname">GetTag</code> without searching through fallbacks makes it possible to detect which
+subshader is currently being used: add a custom tag to each subshader with different value,
+and query the value at run time. For example, Unity water uses this function to
+detect when the shader falls back to non-reflective one, and turns off reflection camera
+in that case.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Attach this to a gameObject that has a renderer.<br /><br />    string materialTag = "RenderType";<br /><br />    void Start()
+    {
+        <a href="Renderer.html">Renderer</a> rend = GetComponent&lt;<a href="Renderer.html">Renderer</a>&gt;();
+        string result = rend.material.GetTag(materialTag, true, "Nothing");<br /><br />        if (result == "Nothing")
+        {
+            <a href="Debug.LogError.html">Debug.LogError</a>(materialTag + " not found in " + rend.material.shader.name);
+        }
+        else
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("Tag found!, its value: " + result);
+        }
+    }
+}</pre>
+      </div></div></div></div></body></html>

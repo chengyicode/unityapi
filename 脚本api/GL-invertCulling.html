@@ -1,0 +1,23 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: GL.invertCulling</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="GL.html">GL</a>.invertCulling</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">invertCulling</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Select whether to invert the backface culling (true) or not (false).</p></div><div class="subsection"><p>This flag can "flip" the culling mode of all rendered objects. Major use case: rendering reflections for mirrors, water etc. Since virtual camera for rendering the reflection is mirrored, the culling order has to be inverted. You can see how the Water script in Effects standard package does that.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// When attached to the camera, this script
+// will make all rendering be flipped "inside out",
+// i.e. back faces of objects will be rendered instead
+// of front faces.
+using UnityEngine;<br /><br />[<a href="ExecuteInEditMode.html">ExecuteInEditMode</a>]
+public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private bool oldCulling;
+    public void OnPreRender()
+    {
+        oldCulling = <a href="GL-invertCulling.html">GL.invertCulling</a>;
+        <a href="GL-invertCulling.html">GL.invertCulling</a> = true;
+    }<br /><br />    public void OnPostRender()
+    {
+        <a href="GL-invertCulling.html">GL.invertCulling</a> = oldCulling;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

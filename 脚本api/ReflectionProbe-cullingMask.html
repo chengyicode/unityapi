@@ -1,0 +1,17 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ReflectionProbe.cullingMask</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="ReflectionProbe.html">ReflectionProbe</a>.cullingMask</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-ReflectionProbe.html' title='Go to ReflectionProbe Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public int <span class="sig-kw">cullingMask</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>This is used to render parts of the reflecion probe's surrounding selectively.</p></div><div class="subsection"><p>If the <a href="GameObject.html">GameObject</a>'s <code class="varname">layerMask</code> AND the probe's <code class="varname">cullingMask</code> is zero then the game object will be invisible from this probe.
+See <a href="../Manual/Layers.html">Layers</a> for more information.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        var probe = GetComponent&lt;<a href="ReflectionProbe.html">ReflectionProbe</a>&gt;();
+        // Only render objects in the first layer (Default layer) when capturing the probe's texture
+        probe.cullingMask = 1 &lt;&lt; 0;
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="Camera-cullingMask.html">Camera.cullingMask</a>.</p></div></div></div></div></body></html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ParticleSystem.VelocityOverLifetimeModule.radial</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="ParticleSystem.VelocityOverLifetimeModule.html">ParticleSystem.VelocityOverLifetimeModule</a>.radial</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-ParticleSystem.html' title='Go to ParticleSystem Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="ParticleSystem.MinMaxCurve.html">ParticleSystem.MinMaxCurve</a> <span class="sig-kw">radial</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Curve to control particle speed based on lifetime, away from a center position.</p></div><div class="subsection"><p>See Also: <a href="ParticleSystem.MinMaxCurve.html">MinMaxCurve</a>, <a href="ParticleSystem.VelocityOverLifetimeModule-orbitalOffsetX.html">ParticleSystem.VelocityOverLifetimeModule.orbitalOffsetX</a>, <a href="ParticleSystem.VelocityOverLifetimeModule-orbitalOffsetY.html">ParticleSystem.VelocityOverLifetimeModule.orbitalOffsetY</a>, <a href="ParticleSystem.VelocityOverLifetimeModule-orbitalOffsetZ.html">ParticleSystem.VelocityOverLifetimeModule.orbitalOffsetZ</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private <a href="ParticleSystem.html">ParticleSystem</a> ps;
+    public float hSliderValueX = 0.0f;
+    public float hSliderValueY = 0.0f;
+    public float hSliderValueZ = 0.0f;
+    public float hSliderValueRadial = 0.0f;
+    public float hSliderValueOffset = 0.0f;<br /><br />    void Start()
+    {
+        ps = GetComponent&lt;<a href="ParticleSystem.html">ParticleSystem</a>&gt;();
+        ps.transform.rotation = <a href="Quaternion-identity.html">Quaternion.identity</a>;<br /><br />        var main = ps.main;
+        main.startSpeedMultiplier = 0.0f;<br /><br />        var shape = ps.shape;
+        shape.shapeType = <a href="ParticleSystemShapeType.Circle.html">ParticleSystemShapeType.Circle</a>;
+        shape.radius = 5.0f;<br /><br />        var velocityOverLifetime = ps.velocityOverLifetime;
+        velocityOverLifetime.enabled = true;<br /><br />        var trails = ps.trails;
+        trails.enabled = true;
+        trails.widthOverTrailMultiplier = 0.1f;<br /><br />        var psr = GetComponent&lt;<a href="ParticleSystemRenderer.html">ParticleSystemRenderer</a>&gt;();
+        psr.trailMaterial = psr.material;
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        var velocityOverLifetime = ps.velocityOverLifetime;
+        velocityOverLifetime.orbitalXMultiplier = hSliderValueX;
+        velocityOverLifetime.orbitalYMultiplier = hSliderValueY;
+        velocityOverLifetime.orbitalZMultiplier = hSliderValueZ;
+        velocityOverLifetime.radialMultiplier = hSliderValueRadial;
+        velocityOverLifetime.orbitalOffsetX = hSliderValueOffset;
+    }<br /><br />    void OnGUI()
+    {
+        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, 40, 100, 30), "X");
+        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, 80, 100, 30), "Y");
+        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, 120, 100, 30), "Z");
+        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, 160, 100, 30), "Radial");
+        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, 200, 100, 30), "Offset");<br /><br />        hSliderValueX = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(85, 45, 100, 30), hSliderValueX, -5.0f, 5.0f);
+        hSliderValueY = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(85, 85, 100, 30), hSliderValueY, -5.0f, 5.0f);
+        hSliderValueZ = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(85, 125, 100, 30), hSliderValueZ, -5.0f, 5.0f);
+        hSliderValueRadial = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(85, 165, 100, 30), hSliderValueRadial, -2.0f, 2.0f);
+        hSliderValueOffset = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(85, 205, 100, 30), hSliderValueOffset, -5.0f, 5.0f);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

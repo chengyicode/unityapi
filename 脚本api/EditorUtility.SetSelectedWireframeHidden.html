@@ -1,0 +1,44 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorUtility.SetSelectedWireframeHidden</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Method group is Obsolete</b><br /></div><h1 class="heading inherit"><a href="EditorUtility.html">EditorUtility</a>.SetSelectedWireframeHidden</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public static void <span class="sig-kw">SetSelectedWireframeHidden</span>(<a href="Renderer.html">Renderer</a> <span class="sig-kw">renderer</span>,
+bool <span class="sig-kw">enabled</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Sets whether the selected Renderer's wireframe will be hidden when the GameObject it is attached to is selected.</p></div><div class="subsection"><p>
+        <img src="../StaticFiles/ScriptRefImages/EditorUtilitySetSelectedWireframeHidden.png" />
+        <br />
+<em>Cube with the wireframe hidden/shown.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />
+// Shows / hides the wireframe of the objects in the <a href="SceneManagement.Scene.html">Scene</a>.<br /><br />class ShowHideWireFrame : <a href="Editor.html">Editor</a>
+{
+    [<a href="MenuItem.html">MenuItem</a>("Examples/Show WireFrame %s")]
+    static void Show()
+    {
+        foreach (<a href="GameObject.html">GameObject</a> obj in <a href="Selection-gameObjects.html">Selection.gameObjects</a>)
+        {
+            <a href="Renderer.html">Renderer</a> rend = obj.GetComponent&lt;<a href="Renderer.html">Renderer</a>&gt;();<br /><br />            if (rend)
+            {
+                EditorUtility.SetSelectedWireframeHidden(rend, false);
+            }
+        }
+    }<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Examples/Show WireFrame %s", true)]
+    static bool CheckShow()
+    {
+        return <a href="Selection-activeGameObject.html">Selection.activeGameObject</a> != null;
+    }<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Examples/Hide WireFrame %h")]
+    static void Hide()
+    {
+        foreach (<a href="GameObject.html">GameObject</a> obj in <a href="Selection-gameObjects.html">Selection.gameObjects</a>)
+        {
+            var rend = obj.GetComponent&lt;<a href="Renderer.html">Renderer</a>&gt;();<br /><br />            if (rend)
+            {
+                EditorUtility.SetSelectedWireframeHidden(rend, true);
+            }
+        }
+    }<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Examples/Hide WireFrame %h", true)]
+    static bool CheckHide()
+    {
+        return <a href="Selection-activeGameObject.html">Selection.activeGameObject</a> != null;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ParticleSystem.ExternalForcesModule.influenceMask</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="ParticleSystem.ExternalForcesModule.html">ParticleSystem.ExternalForcesModule</a>.influenceMask</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-ParticleSystem.html' title='Go to ParticleSystem Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="LayerMask.html">LayerMask</a> <span class="sig-kw">influenceMask</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Particle System Force Field Components with a matching layer affect this Particle System.</p></div><div class="subsection"><p>See Also: <a href="LayerMask.html">LayerMask</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private <a href="ParticleSystem.html">ParticleSystem</a> ps;
+    public bool layerToggle;
+    private readonly int layer0 = 0;
+    private readonly int layer1 = 1;<br /><br />    void Start()
+    {
+        ps = GetComponent&lt;<a href="ParticleSystem.html">ParticleSystem</a>&gt;();<br /><br />        var main = ps.main;
+        main.startColor = <a href="Color-red.html">Color.red</a>;<br /><br />        var shape = ps.shape;
+        shape.enabled = false;<br /><br />        var externalForces = ps.externalForces;
+        externalForces.enabled = true;<br /><br />        var forceField1 = new <a href="GameObject.html">GameObject</a>("Force Field 1", typeof(<a href="ParticleSystemForceField.html">ParticleSystemForceField</a>)).GetComponent&lt;<a href="ParticleSystemForceField.html">ParticleSystemForceField</a>&gt;();
+        forceField1.transform.parent = ps.transform;
+        forceField1.transform.localPosition = new <a href="Vector3.html">Vector3</a>(-3.0f, 0.0f, 3.0f);
+        forceField1.transform.localRotation = <a href="Quaternion.Euler.html">Quaternion.Euler</a>(0.0f, 0.0f, 180.0f);
+        forceField1.transform.localScale = new <a href="Vector3.html">Vector3</a>(5.0f, 5.0f, 5.0f);
+        forceField1.gameObject.layer = layer0;<br /><br />        forceField1.gravity = 0.04f;
+        forceField1.rotationSpeed = 2.0f;
+        forceField1.rotationAttraction = 0.02f;<br /><br />        var forceField2 = new <a href="GameObject.html">GameObject</a>("Force Field 2", typeof(<a href="ParticleSystemForceField.html">ParticleSystemForceField</a>)).GetComponent&lt;<a href="ParticleSystemForceField.html">ParticleSystemForceField</a>&gt;();
+        forceField2.transform.parent = ps.transform;
+        forceField2.transform.localPosition = new <a href="Vector3.html">Vector3</a>(3.0f, 0.0f, 3.0f);
+        forceField2.transform.localRotation = <a href="Quaternion-identity.html">Quaternion.identity</a>;
+        forceField2.transform.localScale = new <a href="Vector3.html">Vector3</a>(5.0f, 5.0f, 5.0f);
+        forceField2.gameObject.layer = layer1;<br /><br />        forceField2.gravity = 0.04f;
+        forceField2.rotationSpeed = 2.0f;
+        forceField2.rotationAttraction = 0.02f;
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        var externalForces = ps.externalForces;
+        externalForces.influenceMask = layerToggle ? (1 &lt;&lt; layer0) : (1 &lt;&lt; layer1);
+    }<br /><br />    void OnGUI()
+    {
+        layerToggle = <a href="GUI.Toggle.html">GUI.Toggle</a>(new <a href="Rect.html">Rect</a>(25, 40, 100, 30), layerToggle, "<a href="UIElements.Toggle.html">Toggle</a> Layer");
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

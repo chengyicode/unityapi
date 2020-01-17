@@ -1,0 +1,49 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: SerializedProperty.DataEquals</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="SerializedProperty.html">SerializedProperty</a>.DataEquals</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">DataEquals</span>(<a href="SerializedProperty.html">SerializedProperty</a> <span class="sig-kw">x</span>,
+<a href="SerializedProperty.html">SerializedProperty</a> <span class="sig-kw">y</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Compares the data for two SerializedProperties. This method ignores paths and SerializedObjects.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System;
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class SerializedPropertyDataEqualsExample : <a href="ScriptableObject.html">ScriptableObject</a>
+{
+    [<a href="Serializable.html">Serializable</a>]
+    public struct SomeData
+    {
+        public string aStringValue;
+        public float aFloatValue;
+    }<br /><br />    [<a href="Serializable.html">Serializable</a>]
+    public struct SomeOtherData
+    {
+        public string anotherStringValue;
+        public float anotherFloatValue;
+    }<br /><br />    [<a href="SerializeField.html">SerializeField</a>]
+    SomeData someData;
+    [<a href="SerializeField.html">SerializeField</a>]
+    SomeOtherData[] otherDataArray;<br /><br />    static bool AreBothPropertiesEquals()
+    {
+        // Create an instance of the <a href="ScriptableObject.html">ScriptableObject</a>
+        var testObject = <a href="ScriptableObject.CreateInstance.html">ScriptableObject.CreateInstance</a>&lt;SerializedPropertyDataEqualsExample&gt;();
+        // Set the first class to some values
+        testObject.someData.aStringValue = "ThisValue";
+        testObject.someData.aFloatValue = 5.1f;
+        // Set the first array entry of the second class to the exact same values
+        testObject.otherDataArray = new SomeOtherData[1];
+        testObject.otherDataArray[0].anotherStringValue = "ThisValue";
+        testObject.otherDataArray[0].anotherFloatValue = 5.1f;<br /><br />        var serializedObject = new <a href="SerializedObject.html">SerializedObject</a>(testObject);
+        // Serialized property that refers to data from the first class
+        var propertyOne = serializedObject.FindProperty("someData");
+        // <a href="SerializedProperty.html">SerializedProperty</a> that refers to data from the first entry of the second class array
+        var propertyTwo = serializedObject.FindProperty("otherDataArray.Array.data[0]");
+        // Compare data from each <a href="SerializedProperty.html">SerializedProperty</a>.
+        bool result = <a href="SerializedProperty.DataEquals.html">SerializedProperty.DataEquals</a>(propertyOne, propertyTwo);<br /><br />        serializedObject.Dispose();
+        DestroyImmediate(testObject);
+        return result;
+    }<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Example/SerializedPropertyDataEqualsExample")]
+    static void TestMethod()
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("Are properties equals ? " + AreBothPropertiesEquals());
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

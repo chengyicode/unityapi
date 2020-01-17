@@ -1,0 +1,31 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Animator.GetCurrentAnimatorClipInfo</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Animator.html">Animator</a>.GetCurrentAnimatorClipInfo</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Animator.html' title='Go to Animator Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public AnimatorClipInfo[] <span class="sig-kw">GetCurrentAnimatorClipInfo</span>(int <span class="sig-kw">layerIndex</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">layerIndex</td><td class="desc"></td><td class="desc1">The layer index.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>AnimatorClipInfo[]</strong>
+        An array of all the <a href="AnimatorClipInfo.html">AnimatorClipInfo</a> in the current state.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Returns an array of all the <a href="AnimatorClipInfo.html">AnimatorClipInfo</a> in the current state of the given layer.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//This script outputs the name and length of the <a href="Animation.html">Animation</a> clip played at start-up.<br /><br />using UnityEngine;<br /><br />public class GetCurrentAnimatorClipInfoExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="Animator.html">Animator</a> m_Animator;
+    string m_ClipName;
+    <a href="AnimatorClipInfo.html">AnimatorClipInfo</a>[] m_CurrentClipInfo;<br /><br />    float m_CurrentClipLength;<br /><br />    void Start()
+    {
+        //Get them_Animator, which you attach to the <a href="GameObject.html">GameObject</a> you intend to animate.
+        m_Animator = gameObject.GetComponent&lt;<a href="Animator.html">Animator</a>&gt;();
+        //Fetch the current <a href="Animation.html">Animation</a> clip information for the base layer
+        m_CurrentClipInfo = this.m_Animator.GetCurrentAnimatorClipInfo(0);
+        //Access the current length of the clip
+        m_CurrentClipLength = m_CurrentClipInfo[0].clip.length;
+        //Access the <a href="Animation.html">Animation</a> clip name
+        m_ClipName = m_CurrentClipInfo[0].clip.name;
+    }<br /><br />    void OnGUI()
+    {
+        //Output the current <a href="Animation.html">Animation</a> name and length to the screen
+        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(0, 0, 200, 20),  "Clip Name : " + m_ClipName);
+        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(0, 30, 200, 20),  "Clip <a href="UIElements.Length.html">Length</a> : " + m_CurrentClipLength);
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">GetCurrentAnimatorClipInfo</span>(int <span class="sig-kw">layerIndex</span>,
+List&lt;AnimatorClipInfo&gt; <span class="sig-kw">clips</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">layerIndex</td><td class="desc"></td><td class="desc1">The layer index.</td></tr><tr><td class="name lbl">clips</td><td class="desc"></td><td class="desc1">The list of <a href="AnimatorClipInfo.html">AnimatorClipInfo</a> to fill.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Fills <code class="mono">clips</code> with the list of all the <a href="AnimatorClipInfo.html">AnimatorClipInfo</a> in the current state of the given layer.</p></div><div class="subsection"><p>See Also: <a href="Animator.GetCurrentAnimatorClipInfoCount.html">GetCurrentAnimatorClipInfoCount</a>.</p></div></div></div></div></body></html>

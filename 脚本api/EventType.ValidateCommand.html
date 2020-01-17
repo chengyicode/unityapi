@@ -1,0 +1,23 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EventType.ValidateCommand</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EventType.html">EventType</a>.ValidateCommand</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Validates a special command (e.g. copy &amp; paste).</p></div><div class="subsection"><p>"Copy", "Cut", "Paste", "Delete", "FrameSelected", "Duplicate", "SelectAll" and so on.
+Sent only in the editor.<br /><br />Example: Make pasting work in current window or control:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void OnGUI()
+    {
+        //implement frame selection
+        <a href="Event.html">Event</a> e = <a href="Event-current.html">Event.current</a>;
+        if (e.type == <a href="EventType.ValidateCommand.html">EventType.ValidateCommand</a> &amp;&amp; e.commandName == "Paste")
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("validate paste");
+            e.Use(); // without this line we won't get ExecuteCommand
+        }<br /><br />        if (e.type == <a href="EventType.ExecuteCommand.html">EventType.ExecuteCommand</a> &amp;&amp; e.commandName == "Paste")
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("Pasting: " + <a href="EditorGUIUtility-systemCopyBuffer.html">EditorGUIUtility.systemCopyBuffer</a>);
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="EventType.ExecuteCommand.html">EventType.ExecuteCommand</a>, <a href="Event-commandName.html">Event.commandName</a>.</p></div></div></div></div></body></html>

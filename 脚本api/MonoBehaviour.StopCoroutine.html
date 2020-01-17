@@ -1,0 +1,82 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: MonoBehaviour.StopCoroutine</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="MonoBehaviour.html">MonoBehaviour</a>.StopCoroutine</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">StopCoroutine</span>(string <span class="sig-kw">methodName</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">StopCoroutine</span>(IEnumerator <span class="sig-kw">routine</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">StopCoroutine</span>(<a href="Coroutine.html">Coroutine</a> <span class="sig-kw">routine</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">methodName</td><td class="desc"></td><td class="desc1">Name of coroutine.</td></tr><tr><td class="name lbl">routine</td><td class="desc"></td><td class="desc1">Name of the function in code, including coroutines.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Stops the first coroutine named <code class="varname">methodName</code>, or the coroutine stored in <code class="varname">routine</code> running on this behaviour.</p></div><div class="subsection"><p>StopCoroutine takes one of three arguments which specify which coroutine is stopped:<br /><br />- A string function naming the active coroutine<br />
+- The <code class="varname">IEnumerator</code> variable used earlier to create the coroutine.<br />
+- The <code class="varname">Coroutine</code> to stop the manually created <code class="varname">Coroutine</code>.<br /><br /><strong>Note:</strong> Do not mix the three arguments. If a string is used as
+the argument in <a href="MonoBehaviour.StartCoroutine.html">StartCoroutine</a>, use the string in StopCoroutine.
+Similarly, use the <code class="varname">IEnumerator</code> in both <a href="MonoBehaviour.StartCoroutine.html">StartCoroutine</a> and StopCoroutine.
+Finally, use <code class="varname">StopCoroutine</code> with the <code class="varname">Coroutine</code> used for creation.<br /><br />In the CS example, the <a href="https://msdn.microsoft.com/en-us/library/system.collections.ienumerator(v=vs.110).aspx">IEnumerator</a> type is used.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // keep a copy of the executing script
+    private IEnumerator coroutine;<br /><br />    // Use this for initialization
+    void Start()
+    {
+        print("Starting " + <a href="Time-time.html">Time.time</a>);
+        coroutine = WaitAndPrint(3.0f);
+        StartCoroutine(coroutine);
+        print("Done " + <a href="Time-time.html">Time.time</a>);
+    }<br /><br />    // print to the console every 3 seconds.
+    // yield is causing WaitAndPrint to pause every 3 seconds
+    public IEnumerator WaitAndPrint(float waitTime)
+    {
+        while (true)
+        {
+            yield return new <a href="WaitForSeconds.html">WaitForSeconds</a>(waitTime);
+            print("WaitAndPrint " + <a href="Time-time.html">Time.time</a>);
+        }
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        if (<a href="Input.GetKeyDown.html">Input.GetKeyDown</a>("space"))
+        {
+            StopCoroutine(coroutine);
+            print("Stopped " + <a href="Time-time.html">Time.time</a>);
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>
+                    The following cs example shows how StopCoroutine(Coroutine) can be used.
+                </p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        StartCoroutine(coroutineA());
+    }<br /><br />    IEnumerator coroutineA()
+    {
+        // wait for 1 second
+        yield return new <a href="WaitForSeconds.html">WaitForSeconds</a>(1.0f);
+        <a href="Debug.Log.html">Debug.Log</a>("coroutineA() started: " + <a href="Time-time.html">Time.time</a>);<br /><br />        // wait for another 1 second and then create b
+        yield return new <a href="WaitForSeconds.html">WaitForSeconds</a>(1.0f);
+        <a href="Coroutine.html">Coroutine</a> b = StartCoroutine(coroutineB());<br /><br />        yield return new <a href="WaitForSeconds.html">WaitForSeconds</a>(2.0f);
+        <a href="Debug.Log.html">Debug.Log</a>("coroutineA() finished " + <a href="Time-time.html">Time.time</a>);<br /><br />        // B() was expected to run for 10 seconds
+        // but was shut down here after 3.0f
+        StopCoroutine(b);
+        yield return null;
+    }<br /><br />    IEnumerator coroutineB()
+    {
+        float f = 0.0f;
+        float start = <a href="Time-time.html">Time.time</a>;<br /><br />        <a href="Debug.Log.html">Debug.Log</a>("coroutineB() started " + start);<br /><br />        while (f &lt; 10.0f)
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("coroutineB(): " + f);
+            yield return new <a href="WaitForSeconds.html">WaitForSeconds</a>(1.0f);
+            f = f + 1.0f;
+        }<br /><br />        // Intended to handling exit of the this coroutine.
+        // However coroutineA() shuts coroutineB() down. This
+        // means the following lines are not called.
+        float t = <a href="Time-time.html">Time.time</a> - start;
+        <a href="Debug.Log.html">Debug.Log</a>("coroutineB() finished " + t);
+        yield return null;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

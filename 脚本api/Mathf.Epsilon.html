@@ -1,0 +1,26 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Mathf.Epsilon</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Mathf.html">Mathf</a>.Epsilon</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static float <span class="sig-kw">Epsilon</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>A tiny floating point value (Read Only).</p></div><div class="subsection"><p>The smallest value that a float can have different from zero.<br /><br />With the following rules:<br /><br />- anyValue + Epsilon = anyValue<br />
+- anyValue - Epsilon = anyValue<br />
+- 0 + Epsilon = Epsilon<br />
+- 0 - Epsilon = -Epsilon<br /><br /><br />A value Between any number and Epsilon will result in an arbitrary number due to
+truncating errors.<br /><br />See Also: <a href="Mathf.Approximately.html">Mathf.Approximately</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Compares two floating point numbers and return true if they are the same number.
+    // See also <a href="Mathf.Approximately.html">Mathf.Approximately</a>, which compares floating point numbers so you dont have
+    // to create a function to compare them.<br /><br />    bool isEqual(float a, float b)
+    {
+        if (a &gt;= b - <a href="Mathf.Epsilon.html">Mathf.Epsilon</a> &amp;&amp; a &lt;= b + <a href="Mathf.Epsilon.html">Mathf.Epsilon</a>)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

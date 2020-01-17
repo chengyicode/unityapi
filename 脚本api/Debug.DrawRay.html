@@ -1,0 +1,31 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Debug.DrawRay</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Debug.html">Debug</a>.DrawRay</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">DrawRay</span>(<a href="Vector3.html">Vector3</a> <span class="sig-kw">start</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">dir</span>,
+<a href="Color.html">Color</a> <span class="sig-kw">color</span> = Color.white,
+float <span class="sig-kw">duration</span> = 0.0f,
+bool <span class="sig-kw">depthTest</span> = true);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">start</td><td class="desc"></td><td class="desc1">Point in world space where the ray should start.</td></tr><tr><td class="name lbl">dir</td><td class="desc"></td><td class="desc1">Direction and length of the ray.</td></tr><tr><td class="name lbl">color</td><td class="desc"></td><td class="desc1">Color of the drawn line.</td></tr><tr><td class="name lbl">duration</td><td class="desc"></td><td class="desc1">How long the line will be visible for (in seconds).</td></tr><tr><td class="name lbl">depthTest</td><td class="desc"></td><td class="desc1">Should the line be obscured by other objects closer to the camera?</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Draws a line from <code class="varname">start</code> to <code class="varname">start</code> + <code class="varname">dir</code> in world coordinates.</p></div><div class="subsection"><p>The <code class="varname">duration</code> parameter determines how long the line will be visible after the frame it is drawn. If duration is 0 (the default) then the line is rendered 1 frame.<br /><br />If <code class="varname">depthTest</code> is set to true then the line will be obscured by other objects in the Scene that are nearer to the camera.<br /><br />The line will be drawn in the Scene view of the editor. If gizmo drawing is enabled in the game view, the line will also be drawn there.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Frame update example: Draws a 10 meter long green line from the position for 1 frame.
+    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        <a href="Vector3.html">Vector3</a> forward = transform.TransformDirection(<a href="Vector3-forward.html">Vector3.forward</a>) * 10;
+        <a href="Debug.DrawRay.html">Debug.DrawRay</a>(transform.position, forward, <a href="Color-green.html">Color.green</a>);
+    }
+}
+</pre>
+      </div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // <a href="Event.html">Event</a> callback example: <a href="Debug.html">Debug</a>-draw all contact points and normals for 2 seconds.
+    void OnCollisionEnter(<a href="Collision.html">Collision</a> collision)
+    {
+        <a href="Debug.DrawRay.html">Debug.DrawRay</a>(collision.contacts[0].point, collision.contacts[0].normal, <a href="Color-green.html">Color.green</a>, 2, false);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

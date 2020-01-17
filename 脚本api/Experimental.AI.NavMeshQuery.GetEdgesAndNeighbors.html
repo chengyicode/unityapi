@@ -1,0 +1,72 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Experimental.AI.NavMeshQuery.GetEdgesAndNeighbors</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Experimental</b>: this API is experimental and might be changed or removed in the future.</div><h1 class="heading inherit"><a href="Experimental.AI.NavMeshQuery.html">NavMeshQuery</a>.GetEdgesAndNeighbors</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Experimental.AI.PathQueryStatus.html">Experimental.AI.PathQueryStatus</a> <span class="sig-kw">GetEdgesAndNeighbors</span>(<a href="Experimental.AI.PolygonId.html">Experimental.AI.PolygonId</a> <span class="sig-kw">node</span>,
+NativeSlice&lt;Vector3&gt; <span class="sig-kw">edgeVertices</span>,
+NativeSlice&lt;PolygonId&gt; <span class="sig-kw">neighbors</span>,
+NativeSlice&lt;byte&gt; <span class="sig-kw">edgeIndices</span>,
+out int <span class="sig-kw">verticesCount</span>,
+out int <span class="sig-kw">neighborsCount</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">node</td><td class="desc"></td><td class="desc1">Identifier of a node from a NavMesh surface, <a href="../Manual/class-NavMeshLink.html">NavMeshLink</a> or <a href="../Manual/nav-CreateOffMeshLink.html">Off-mesh Link</a> for which the vertices and neighbors need to be retrieved.</td></tr><tr><td class="name lbl">edgeVertices</td><td class="desc"></td><td class="desc1">The result buffer that contains the world positions describing the geometry of the input navigation <code class="mono">node</code>. It can have zero capacity.<br />
+<a href="Experimental.AI.NavMeshPolyTypes.Ground.html">Polygonal</a> nodes of the NavMesh have a minimum of 3 and a maximum of 6 vertices.<br />
+<a href="Experimental.AI.NavMeshPolyTypes.OffMeshConnection.html">OffMeshConnection</a> nodes are always represented by 4 vertices, regardless of their width.</td></tr><tr><td class="name lbl">neighbors</td><td class="desc"></td><td class="desc1">The result buffer that holds the identifiers of all the navigation nodes immediately reachable from the given <code class="mono">node</code>. It can have zero capacity.</td></tr><tr><td class="name lbl">edgeIndices</td><td class="desc"></td><td class="desc1">The helper result buffer that maps each neighbor node to an edge of the given <code class="mono">node</code>.  It can have zero capacity.<br />
+The index of an element in <code class="mono">edgeIndices</code> is also an index in the <code class="mono">neighbors</code> array and the value of that <code class="mono">edgeIndices</code> element is an index in the <code class="mono">edgeVertices</code> array.</td></tr><tr><td class="name lbl">verticesCount</td><td class="desc"></td><td class="desc1">The total number of vertices that describe the geometry of the input <code class="mono">node</code>. This is independent of the capacity of the <code class="mono">vertices</code> result buffer.</td></tr><tr><td class="name lbl">neighborsCount</td><td class="desc"></td><td class="desc1">The total number of navigation nodes the input <code class="mono">node</code> connects to. This is independent of the capacity of the result buffers (<code class="mono">neighbors</code> and <code class="mono">edgeIndices</code>).</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>PathQueryStatus</strong>
+        
+          <code class="varname">Success</code> if Unity can evaluate the neighbors and vertices of the specified node, regardless of the result. The <code class="mono">verticesCount</code> and <code class="mono">neighborsCount</code> are always valid in this case.<br />
+<code class="varname">Failure</code> if Unity can not use the <code class="mono">node</code> identifier to retrieve the neighbors or geometry information. Unity does not modify any of the five result parameters (<code class="mono">edgeVertices</code>, <code class="mono">neighbors</code>, <code class="mono">edgeIndices</code>, <code class="mono">verticesCount</code> or <code class="mono">neighborsCount</code>) in this case.<br />
+<code class="varname">InvalidParam</code> is part of the returned flags if the specified navigation node is not <a href="Experimental.AI.NavMeshQuery.IsValid.html">valid</a> in the query's NavMeshWorld.<br />
+<code class="varname">BufferTooSmall</code> is part of the PathQueryStatus flags, that Unity returns from this function, when any of the result buffers you provide are not large enough to hold all the neighbor nodes the input <code class="mono">node</code> connects to or all of its edge vertices.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Retrieves the vertices of a given <code class="mono">node</code> and the <a href="Experimental.AI.PolygonId.html">identifiers</a> of all the navigation nodes to which it connects.</p></div><div class="subsection"><p>A <a href="Experimental.AI.NavMeshPolyTypes.Ground.html">polygon</a> of a NavMesh surface connects to all other neighboring polygons with which it shares an edge as well as all the <a href="Experimental.AI.NavMeshPolyTypes.OffMeshConnection.html">OffMeshLinks or NavMeshLinks</a> that leave from anywhere on its surface. The polygon does not connect to other polygons with which it shares only a vertex.<br />
+Each point returned in the <code class="mono">edgeVertices</code> array represents the start of a <code class="mono">node</code>'s edge and the subsequent element in the array is the end point of that edge. All vertices form a closed polygonal line. The last and first elements define the last edge.<br />
+<br />
+An <a href="Experimental.AI.NavMeshPolyTypes.OffMeshConnection.html">off-mesh link</a> connects to all the NavMesh polygons that each end of the link intersects with, regardless of whether the link is unidirectional.<br />
+For link nodes the returned <code class="mono">edgeVertices</code> array contains two pairs of points at indices [0]-[1] and [2]-[3] that define the end points of the start and end edges of the link, in this order. These are the world positions established at the moment when the link is instantiated in the NavMesh world. For nodes added through <a href="../Manual/nav-CreateOffMeshLink.html">Off-mesh Link</a>  components the pairs contain the same value in both of their elements.<br />
+<br />
+A node from the <code class="mono">neighbors</code> array lies at the edge returned in <code class="mono">edgeIndices</code> at the same index.<br />
+If both the given <code class="mono">node</code> and its neighbor are NavMesh <a href="Experimental.AI.NavMeshPolyTypes.Ground.html">polygons</a>, then the corresponding <code class="mono">edgeIndices</code> value represents the index of the polygon edge that leads from <code class="mono">node</code> to the neighbor.  E.g. <code class="mono">edgeVertices[edgeIndices[2]]</code> represents the start point of the edge that is common between <code class="mono">node</code> and the <code class="mono">neighbors[2]</code> node, and <code class="mono">edgeVertices[edgeIndices[2] + 1]</code> is the end point of that edge.<br />
+A NavMesh polygon can have a maximum of 6 edges. This means the <code class="mono">edgeIndices</code> value corresponding to a polygon-polygon connection is between 0 and 5, inclusive. An edge usually connects only the two polygons that share it, but edges that sit at a tile border can connect one polygon in the first tile to multiple polygons in the second tile. In this case, <code class="mono">edgeIndices</code> report the same value for all of those neighbors.<br />
+If either the given <code class="mono">node</code> or the <code class="varname">neighbor</code> is a <a href="Experimental.AI.NavMeshPolyTypes.OffMeshConnection.html">link</a>, then the corresponding <code class="mono">edgeIndices</code> value represents the side on the link where the connection is made: 0 for <a href="AI.NavMeshLinkData-startPosition.html">start</a> and 2 for <a href="AI.NavMeshLinkData-endPosition.html">end</a>. When the <code class="mono">node</code> is a polygon and the <code class="varname">neighbor</code> is a link the value acts only as information about the side of the link where the two nodes connect and should not be used as an index in the <code class="mono">edgeVertices</code> array.<br />
+When the <code class="mono">neighbors</code> and <code class="mono">edgeIndices</code> buffers both have positive capacity, they must be the same size, otherwise you will encounter an <code class="mono">ArgumentException</code> when this method executes in the Editor.<br />
+<br />
+You can set any of the buffers to have zero capacity for the cases when you do not need the results.<br />
+<br />
+The returned <code class="mono">verticesCount</code> and <code class="mono">neighborsCount</code> values express the number of elements that comprise the result in the output buffers of sufficient size. Buffers that are not large enough are still filled with valid nodes up to their full capacity.<br />
+<br />
+The five result parameters (<code class="mono">edgeVertices</code>, <code class="mono">neighbors</code>, <code class="mono">edgeIndices</code>, <code class="mono">verticesCount</code> and <code class="mono">neighborsCount</code>) do not act as input and do not change the internal navigation data in any way. Unity only modifies them in the case when the operation returns a <code class="varname">Success</code> status.<br />
+<br />
+See Also: <a href="Experimental.AI.NavMeshQuery.GetPolygonType.html">NavMeshQuery.GetPolygonType</a>, <a href="Experimental.AI.NavMeshQuery.GetPortalPoints.html">NavMeshQuery.GetPortalPoints</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using Unity.Collections;
+using UnityEngine;
+using UnityEngine.Experimental.AI;<br /><br />public class NavMeshNodeEdgesDrawer : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        var query = new <a href="Experimental.AI.NavMeshQuery.html">NavMeshQuery</a>(<a href="Experimental.AI.NavMeshWorld.GetDefaultWorld.html">NavMeshWorld.GetDefaultWorld</a>(), <a href="Unity.Collections.Allocator.Temp.html">Allocator.Temp</a>);
+        var vertices = new NativeArray&lt;<a href="Vector3.html">Vector3</a>&gt;(6, <a href="Unity.Collections.Allocator.Temp.html">Allocator.Temp</a>);
+        var neighbors = new NativeArray&lt;<a href="Experimental.AI.PolygonId.html">PolygonId</a>&gt;(10, <a href="Unity.Collections.Allocator.Temp.html">Allocator.Temp</a>);
+        var edgeIndices = new NativeArray&lt;byte&gt;(neighbors.Length, <a href="Unity.Collections.Allocator.Temp.html">Allocator.Temp</a>);
+        int totalVertices;
+        int totalNeighbors;<br /><br />        var location = query.MapLocation(transform.position, <a href="Vector3-one.html">Vector3.one</a>, 0);<br /><br />        var queryStatus = query.GetEdgesAndNeighbors(
+            location.polygon, vertices, neighbors, edgeIndices,
+            out totalVertices, out totalNeighbors);<br /><br />        var color = (queryStatus &amp; <a href="Experimental.AI.PathQueryStatus.Success.html">PathQueryStatus.Success</a>) != 0 ? <a href="Color-green.html">Color.green</a> : <a href="Color-red.html">Color.red</a>;
+        <a href="Debug.DrawLine.html">Debug.DrawLine</a>(transform.position - <a href="Vector3-up.html">Vector3.up</a>, transform.position + <a href="Vector3-up.html">Vector3.up</a>, color);<br /><br />        for (int i = 0, j = totalVertices - 1; i &lt; totalVertices; j = i++)
+        {
+            <a href="Debug.DrawLine.html">Debug.DrawLine</a>(vertices[i], vertices[j], <a href="Color-grey.html">Color.grey</a>);
+        }<br /><br />        for (var i = 0; i &lt; totalNeighbors; i++)
+        {
+            if (query.GetPolygonType(neighbors[i]) == <a href="Experimental.AI.NavMeshPolyTypes.OffMeshConnection.html">NavMeshPolyTypes.OffMeshConnection</a>)
+            {
+                // The link neighbor is not connected through any of the polygon's edges.
+                // Call GetEdgesAndNeighbors() on this specific neighbor in order to retrieve its edges.
+                continue;
+            }<br /><br />            var start = edgeIndices[i];
+            var end = (start + 1) % totalVertices;
+            var neighborColor = <a href="Color.Lerp.html">Color.Lerp</a>(<a href="Color-yellow.html">Color.yellow</a>, <a href="Color-magenta.html">Color.magenta</a>, 1f * start / (totalVertices - 1));
+            <a href="Debug.DrawLine.html">Debug.DrawLine</a>(vertices[start], vertices[end], neighborColor);
+        }<br /><br />        query.Dispose();
+        vertices.Dispose();
+        neighbors.Dispose();
+        edgeIndices.Dispose();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

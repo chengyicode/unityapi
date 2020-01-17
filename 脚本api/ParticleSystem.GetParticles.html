@@ -1,0 +1,33 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ParticleSystem.GetParticles</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="ParticleSystem.html">ParticleSystem</a>.GetParticles</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-ParticleSystem.html' title='Go to ParticleSystem Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public int <span class="sig-kw">GetParticles</span>(out Particle[] <span class="sig-kw">particles</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public int <span class="sig-kw">GetParticles</span>(out Particle[] <span class="sig-kw">particles</span>,
+int <span class="sig-kw">size</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public int <span class="sig-kw">GetParticles</span>(out Particle[] <span class="sig-kw">particles</span>,
+int <span class="sig-kw">size</span>,
+int <span class="sig-kw">offset</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">particles</td><td class="desc"></td><td class="desc1">Output particle buffer, containing the current particle state.</td></tr><tr><td class="name lbl">size</td><td class="desc"></td><td class="desc1">The number of elements that are read from the Particle System.</td></tr><tr><td class="name lbl">offset</td><td class="desc"></td><td class="desc1">The offset into the active particle list, from which to copy the particles.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>int</strong>
+        The number of particles written to the input particle array (the number of particles currently alive).
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Gets the particles of this Particle System.</p></div><div class="subsection"><p>This method is allocation free as long the input "particles" array is preallocated once (see example below). The method only gets the particles that are currently alive in the Particle System when it is called, so it may only get a small part of the particles array.<br /><br />See Also: <a href="ParticleSystem.Particle.html">Particle</a>, <a href="ParticleSystem.SetParticles.html">SetParticles</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">using UnityEngine;<br /><br />[<a href="RequireComponent.html">RequireComponent</a>(typeof(<a href="ParticleSystem.html">ParticleSystem</a>))]
+public class ParticleFlow : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="ParticleSystem.html">ParticleSystem</a> m_System;
+    <a href="ParticleSystem.Particle.html">ParticleSystem.Particle</a>[] m_Particles;
+    public float m_Drift = 0.01f;<br /><br />    private void LateUpdate()
+    {
+        InitializeIfNeeded();<br /><br />        // GetParticles is allocation free because we reuse the m_Particles buffer between updates
+        int numParticlesAlive = m_System.GetParticles(m_Particles);<br /><br />        // Change only the particles that are alive
+        for (int i = 0; i &lt; numParticlesAlive; i++)
+        {
+            m_Particles[i].velocity += <a href="Vector3-up.html">Vector3.up</a> * m_Drift;
+        }<br /><br />        // Apply the particle changes to the <a href="ParticleSystem.Particle.html">Particle</a> System
+        m_System.SetParticles(m_Particles, numParticlesAlive);
+    }<br /><br />    void InitializeIfNeeded()
+    {
+        if (m_System == null)
+            m_System = GetComponent&lt;<a href="ParticleSystem.html">ParticleSystem</a>&gt;();<br /><br />        if (m_Particles == null || m_Particles.Length &lt; m_System.main.maxParticles)
+            m_Particles = new <a href="ParticleSystem.Particle.html">ParticleSystem.Particle</a>[m_System.main.maxParticles];
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

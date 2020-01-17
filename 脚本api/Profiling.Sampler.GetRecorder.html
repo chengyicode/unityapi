@@ -1,0 +1,27 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Profiling.Sampler.GetRecorder</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Profiling.Sampler.html">Sampler</a>.GetRecorder</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Profiling.Recorder.html">Profiling.Recorder</a> <span class="sig-kw">GetRecorder</span>();
+    </div></div></div><div class="subsection"><h2>Returns</h2><p><strong>Recorder</strong>
+        
+          <a href="Profiling.Recorder.html">Recorder</a> object associated with the Sampler.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Returns <a href="Profiling.Recorder.html">Recorder</a> associated with the Sampler.</p></div><div class="subsection"><p>Each Sampler has only one recorder. Multiple calls to <strong>GetRecorder</strong> return references that control the same native Recorder object.
+If Sampler object is invalid, it returns invalid Recorder object as well.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.Profiling;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="Profiling.Recorder.html">Recorder</a> behaviourUpdateRecorder;
+    void Start()
+    {
+        var sampler = <a href="Profiling.Sampler.Get.html">Sampler.Get</a>("BehaviourUpdate");
+        behaviourUpdateRecorder = sampler.GetRecorder();
+        if (behaviourUpdateRecorder.isValid)
+            behaviourUpdateRecorder.enabled = true;
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        if (behaviourUpdateRecorder.isValid)
+            <a href="Debug.Log.html">Debug.Log</a>("BehaviourUpdate time: " + behaviourUpdateRecorder.elapsedNanoseconds);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>
+        <strong>Note:</strong> At the moment Samplers are available only in the Editor and Development Players. Use <a href="Profiling.Sampler-isValid.html">Sampler.isValid</a> to verify if Sampler can be used to create a valid Recorder.<br /><br />See Also: <a href="Profiling.Sampler-isValid.html">Sampler.isValid</a>, <a href="Profiling.Recorder.html">Recorder</a>, <a href="Profiling.Recorder-isValid.html">Recorder.isValid</a>.</p></div></div></div></div></body></html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ScriptableWizard.isValid</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="ScriptableWizard.html">ScriptableWizard</a>.isValid</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public bool <span class="sig-kw">isValid</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Allows you to enable and disable the wizard create button, so that the user can not click it.</p></div><div class="subsection"><p>See Also: <a href="ScriptableWizard.OnWizardUpdate.html">ScriptableWizard.OnWizardUpdate</a><br /><br /><img src="../StaticFiles/ScriptRefImages/isValidScriptableWizard.png" /><br />
+<em>The finish button gets disabled until the user sets the number to 5.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Asks the user to set the var "Number" to 5, if is not set to 5
+// the "Finish" button will not be reachable<br /><br />using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class isValidScriptableWizard : <a href="ScriptableWizard.html">ScriptableWizard</a>
+{
+    public int number = 0;
+    [<a href="MenuItem.html">MenuItem</a>("Example/Show isValid Usage")]
+    static void CreateWindow()
+    {
+        <a href="ScriptableWizard.DisplayWizard.html">ScriptableWizard.DisplayWizard</a>(
+            "isValid boolean example",
+            typeof(isValidScriptableWizard),
+            "Finish");
+    }<br /><br />    void OnWizardUpdate()
+    {
+        helpString = "Set The number to 5 and press finish";
+        if (number != 5)
+        {
+            errorString = "The number has to be set to 5!";
+            isValid = false;
+        }
+        else
+        {
+            errorString = "";
+            isValid = true;
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

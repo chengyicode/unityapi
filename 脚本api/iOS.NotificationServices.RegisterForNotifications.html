@@ -1,0 +1,35 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: iOS.NotificationServices.RegisterForNotifications</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="iOS.NotificationServices.html">NotificationServices</a>.RegisterForNotifications</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">RegisterForNotifications</span>(<a href="iOS.NotificationType.html">iOS.NotificationType</a> <span class="sig-kw">notificationTypes</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">RegisterForNotifications</span>(<a href="iOS.NotificationType.html">iOS.NotificationType</a> <span class="sig-kw">notificationTypes</span>,
+bool <span class="sig-kw">registerForRemote</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">notificationTypes</td><td class="desc"></td><td class="desc1">Notification types to register for.</td></tr><tr><td class="name lbl">registerForRemote</td><td class="desc"></td><td class="desc1">Specify true to also register for remote notifications.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Register to receive local and remote notifications of the specified types from a provider via Apple Push Service.</p></div><div class="subsection"><p>After an application registers for the specified remote notification types, the device token is received from Apple Push Service and is available via <a href="iOS.NotificationServices-deviceToken.html">NotificationServices.deviceToken</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.Networking;
+using System.Collections;
+using <a href="iOS.NotificationServices.html">NotificationServices</a> = UnityEngine.iOS.NotificationServices;
+using <a href="iOS.NotificationType.html">NotificationType</a> = UnityEngine.iOS.NotificationType;<br /><br />public class NotificationRegistrationExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    bool tokenSent;<br /><br />    void Start()
+    {
+        tokenSent = false;<br /><br />        <a href="iOS.NotificationServices.RegisterForNotifications.html">NotificationServices.RegisterForNotifications</a>(
+            <a href="iOS.NotificationType.Alert.html">NotificationType.Alert</a> |
+            <a href="iOS.NotificationType.Badge.html">NotificationType.Badge</a> |
+            <a href="iOS.NotificationType.Sound.html">NotificationType.Sound</a>);
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        if (!tokenSent)
+        {
+            byte[] token = <a href="iOS.NotificationServices-deviceToken.html">NotificationServices.deviceToken</a>;
+            if (token != null)
+            {
+                // send token to a provider
+                string hexToken = "%" + System.BitConverter.ToString(token).Replace('-', '%');
+                <a href="Networking.UnityWebRequest.Get.html">UnityWebRequest.Get</a>("http:/<code class="varname">example.com</code>?token=" + hexToken).SendWebRequest();
+                tokenSent = true;
+            }
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

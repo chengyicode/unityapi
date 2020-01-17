@@ -1,0 +1,65 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorGUI.Vector3Field</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorGUI.html">EditorGUI</a>.Vector3Field</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Vector3.html">Vector3</a> <span class="sig-kw">Vector3Field</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+string <span class="sig-kw">label</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">value</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Vector3.html">Vector3</a> <span class="sig-kw">Vector3Field</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+<a href="GUIContent.html">GUIContent</a> <span class="sig-kw">label</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">value</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">position</td><td class="desc"></td><td class="desc1">Rectangle on the screen to use for the field.</td></tr><tr><td class="name lbl">label</td><td class="desc"></td><td class="desc1">Label to display above the field.</td></tr><tr><td class="name lbl">value</td><td class="desc"></td><td class="desc1">The value to edit.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>Vector3</strong>
+        The value entered by the user.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Makes an X, Y, and Z field for entering a <a href="Vector3.html">Vector3</a>.</p></div><div class="subsection"><p>
+        <img src="../StaticFiles/ScriptRefImages/EditorGUIVector3Field.png" />
+        <br />
+<em>Vector3 field in an Editor Window.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />// <a href="Editor.html">Editor</a> window that shows the detailed rotation (X,Y,Z and W components),
+// the position in 3D space and position in <a href="Screen.html">Screen</a> space of the selected
+// transform.<br /><br />class CustomTransformInspector : <a href="EditorWindow.html">EditorWindow</a>
+{
+    bool showing = true;
+    <a href="Vector4.html">Vector4</a> rotationComp;<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Examples/<a href="GameObject.html">GameObject</a> detailed inspector")]
+    static void Init()
+    {
+        CustomTransformInspector window = (CustomTransformInspector)<a href="EditorWindow.GetWindow.html">EditorWindow.GetWindow</a>(typeof(CustomTransformInspector));
+        window.Show();
+    }<br /><br />    void OnInspectorUpdate()
+    {
+        Repaint();
+    }<br /><br />    void OnGUI()
+    {
+        var currObj = <a href="Selection-activeTransform.html">Selection.activeTransform</a>;<br /><br />        showing = <a href="EditorGUI.InspectorTitlebar.html">EditorGUI.InspectorTitlebar</a>(new <a href="Rect.html">Rect</a>(0, 0, position.width, 20), showing, currObj, showing);
+        if (showing)
+        {
+            if (currObj)
+            {
+                currObj.position = <a href="EditorGUI.Vector3Field.html">EditorGUI.Vector3Field</a>(new <a href="Rect.html">Rect</a>(3, 15, position.width - 6, 20),
+                    "<a href="UIElements.Position.html">Position</a> in 3D <a href="Space.html">Space</a>:",
+                    currObj.position);<br /><br />                <a href="EditorGUI.Vector2Field.html">EditorGUI.Vector2Field</a>(new <a href="Rect.html">Rect</a>(3, 50, position.width - 6, 20),
+                    "<a href="UIElements.Position.html">Position</a> in <a href="Screen.html">Screen</a> <a href="Space.html">Space</a>:",
+                    Camera.main.WorldToScreenPoint(currObj.position));<br /><br />                rotationComp = <a href="EditorGUI.Vector4Field.html">EditorGUI.Vector4Field</a>(new <a href="Rect.html">Rect</a>(3, 85, position.width - 6, 20),
+                    "Detailed Rotation:",
+                    QuaternionToVector4(currObj.localRotation));
+                currObj.localRotation = ConvertToQuaternion(rotationComp);<br /><br />                currObj.localScale = <a href="EditorGUI.Vector3Field.html">EditorGUI.Vector3Field</a>(new <a href="Rect.html">Rect</a>(3, 120, position.width - 6, 20),
+                    "Scale:",
+                    currObj.localScale);
+            }
+            else
+            {
+                <a href="EditorGUI.DropShadowLabel.html">EditorGUI.DropShadowLabel</a>(
+                    new <a href="Rect.html">Rect</a>(3, 15, position.width, 20),
+                    "Select an Object to inspect");
+            }
+        }
+    }<br /><br />    <a href="Quaternion.html">Quaternion</a> ConvertToQuaternion(<a href="Vector4.html">Vector4</a> v4)
+    {
+        return new <a href="Quaternion.html">Quaternion</a>(v4.x, v4.y, v4.z, v4.w);
+    }<br /><br />    <a href="Vector4.html">Vector4</a> QuaternionToVector4(<a href="Quaternion.html">Quaternion</a> q)
+    {
+        return new <a href="Vector4.html">Vector4</a>(q.x, q.y, q.z, q.w);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

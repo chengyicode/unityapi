@@ -1,0 +1,58 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ParticleSystem.Burst.ParticleSystem.Burst</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">ParticleSystem.Burst Constructor</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-ParticleSystem.html' title='Go to ParticleSystem Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <span class="sig-kw">ParticleSystem.Burst</span>(float <span class="sig-kw">_time</span>,
+short <span class="sig-kw">_count</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public <span class="sig-kw">ParticleSystem.Burst</span>(float <span class="sig-kw">_time</span>,
+short <span class="sig-kw">_minCount</span>,
+short <span class="sig-kw">_maxCount</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public <span class="sig-kw">ParticleSystem.Burst</span>(float <span class="sig-kw">_time</span>,
+short <span class="sig-kw">_minCount</span>,
+short <span class="sig-kw">_maxCount</span>,
+int <span class="sig-kw">_cycleCount</span>,
+float <span class="sig-kw">_repeatInterval</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public <span class="sig-kw">ParticleSystem.Burst</span>(float <span class="sig-kw">_time</span>,
+<a href="ParticleSystem.MinMaxCurve.html">ParticleSystem.MinMaxCurve</a> <span class="sig-kw">_count</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public <span class="sig-kw">ParticleSystem.Burst</span>(float <span class="sig-kw">_time</span>,
+<a href="ParticleSystem.MinMaxCurve.html">ParticleSystem.MinMaxCurve</a> <span class="sig-kw">_count</span>,
+int <span class="sig-kw">_cycleCount</span>,
+float <span class="sig-kw">_repeatInterval</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">_time</td><td class="desc"></td><td class="desc1">Time to emit the burst.</td></tr><tr><td class="name lbl">_minCount</td><td class="desc"></td><td class="desc1">Minimum number of particles to emit.</td></tr><tr><td class="name lbl">_maxCount</td><td class="desc"></td><td class="desc1">Maximum number of particles to emit.</td></tr><tr><td class="name lbl">_count</td><td class="desc"></td><td class="desc1">Number of particles to emit.</td></tr><tr><td class="name lbl">_cycleCount</td><td class="desc"></td><td class="desc1">Number of times to play the burst. (0 means indefinitely).</td></tr><tr><td class="name lbl">_repeatInterval</td><td class="desc"></td><td class="desc1">How often to repeat the burst, in seconds.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Construct a new Burst with a time and count.</p></div><div class="subsection"><p>See Also: ParticleSystem.emissionModule.SetBursts, ParticleSystem.emissionModule.GetBursts.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />// Create a looping <a href="ParticleSystem.Particle.html">Particle</a> System.
+// At 0, 1 and 2 secs the number of particles in each loop
+// are changed from 10, to 50, then to 100.
+// The loops repeat after 3 seconds.<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Material.html">Material</a> part;<br /><br />    void Start()
+    {
+        // create a red ground plane
+        <a href="GameObject.html">GameObject</a> ground = <a href="GameObject.CreatePrimitive.html">GameObject.CreatePrimitive</a>(<a href="PrimitiveType.Quad.html">PrimitiveType.Quad</a>);
+        ground.transform.rotation = <a href="Quaternion.Euler.html">Quaternion.Euler</a>(90, 0, 0);
+        ground.transform.localScale = new <a href="Vector3.html">Vector3</a>(10, 10, 10);
+        ground.GetComponent&lt;<a href="Renderer.html">Renderer</a>&gt;().material.color = <a href="Color-red.html">Color.red</a>;<br /><br />        // rotate the <a href="GameObject.html">GameObject</a> so particles rise up in the y-axis
+        gameObject.transform.rotation = <a href="Quaternion.Euler.html">Quaternion.Euler</a>(-90, 0, 0);
+        gameObject.AddComponent&lt;<a href="ParticleSystem.html">ParticleSystem</a>&gt;();<br /><br />        // create the <a href="ParticleSystem.html">ParticleSystem</a>
+        <a href="ParticleSystem.html">ParticleSystem</a> ps;
+        ps = gameObject.GetComponent&lt;<a href="ParticleSystem.html">ParticleSystem</a>&gt;();<br /><br />        ps.Stop();<br /><br />        // set the <a href="ParticleSystem.MainModule.html">MainModule</a> default values
+        var main = ps.main;
+        main.startColor = <a href="Color-yellow.html">Color.yellow</a>;
+        main.duration = 3;<br /><br />        // create a cone and change it into a cylinder
+        var shape = ps.shape;
+        shape.shapeType = <a href="ParticleSystemShapeType.Cone.html">ParticleSystemShapeType.Cone</a>;
+        shape.angle = 0.0f;
+        shape.radius = 2.0f;
+        shape.radiusThickness = 0.0f;<br /><br />        // use the passed in material
+        gameObject.GetComponent&lt;<a href="ParticleSystemRenderer.html">ParticleSystemRenderer</a>&gt;().material = part;<br /><br />        // set up the emission to generate particles
+        var em = ps.emission;
+        em.enabled = true;
+        em.rateOverTime = 0;<br /><br />        em.SetBursts(
+            new <a href="ParticleSystem.Burst.html">ParticleSystem.Burst</a>[]
+            {
+                new <a href="ParticleSystem.Burst.html">ParticleSystem.Burst</a>(0.0f, 10),
+                new <a href="ParticleSystem.Burst.html">ParticleSystem.Burst</a>(1.0f, 50),
+                new <a href="ParticleSystem.Burst.html">ParticleSystem.Burst</a>(2.0f, 100)
+            });<br /><br />        ps.Play();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

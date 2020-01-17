@@ -1,0 +1,37 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Experimental.AssetImporters.ScriptedImporterAttribute.ScriptedImporterAttribute</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Experimental</b>: this API is experimental and might be changed or removed in the future.</div><h1 class="heading inherit">ScriptedImporterAttribute Constructor</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <span class="sig-kw">ScriptedImporterAttribute</span>(int <span class="sig-kw">version</span>,
+string[] <span class="sig-kw">exts</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public <span class="sig-kw">ScriptedImporterAttribute</span>(int <span class="sig-kw">version</span>,
+string <span class="sig-kw">ext</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public <span class="sig-kw">ScriptedImporterAttribute</span>(int <span class="sig-kw">version</span>,
+string[] <span class="sig-kw">exts</span>,
+int <span class="sig-kw">importQueueOffset</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public <span class="sig-kw">ScriptedImporterAttribute</span>(int <span class="sig-kw">version</span>,
+string <span class="sig-kw">ext</span>,
+int <span class="sig-kw">importQueueOffset</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">version</td><td class="desc"></td><td class="desc1">A number that is used by the import pipeline to detect new versions of the importer script. Changing this number will trigger a re-import of all assets matching the listed extensions.</td></tr><tr><td class="name lbl">exts</td><td class="desc"></td><td class="desc1">List of file extensions (without leading period character) that the scripted importer handles.</td></tr><tr><td class="name lbl">ext</td><td class="desc"></td><td class="desc1">Single file extension (without leading period character) that the scripted importer handles.</td></tr><tr><td class="name lbl">importQueueOffset</td><td class="desc"></td><td class="desc1">Gives control over ordering of asset import based on types. Positive values delay the processing of source asset files while negative values place them earlier in the import process.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Use the ScriptedImporter attribute to register a custom importer derived from <a href="Experimental.AssetImporters.ScriptedImporter.html">ScriptedImporter</a> with Unity's Asset import pipeline.<br /><br />It is best practice to always increment a scripted importer's version number whenever the script is changed. This forces assets imported with lower version numbers to be re-imported.<br /><br />If the Unity Editor setting "Auto-Update" is set to enabled, editing a script outside of the editor and saving it will trigger both a re-import of the script and all assets of the corresponding type.</p></div><div class="subsection"><p>The following example declares an importer that handles files with extension <code class="varname">cb</code> and <code class="varname">cube</code>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEditor.Experimental.AssetImporters;<br /><br />[<a href="Experimental.AssetImporters.ScriptedImporter.html">ScriptedImporter</a>(1, new[] {"cb", "cube"})]
+public class CubeImporter : <a href="Experimental.AssetImporters.ScriptedImporter.html">ScriptedImporter</a>
+{
+    public override void OnImportAsset(<a href="Experimental.AssetImporters.AssetImportContext.html">AssetImportContext</a> ctx)
+    {
+        // ...
+    }
+}
+</pre>
+      </div><div class="subsection"><p>The following example declares an importer that handles files with extension <code class="varname">sphere</code>.  Its <strong>importQueueOffset</strong> parameter is set to 10, forcing assets with extension <code class="varname">sphere</code> to be imported <strong>after</strong> all other scripted importers that have an <strong>importQueueOffset</strong> of less than 10.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEditor.Experimental.AssetImporters;<br /><br />[<a href="Experimental.AssetImporters.ScriptedImporter.html">ScriptedImporter</a>(1, "sphere", 10)]
+public class SphereImporter : <a href="Experimental.AssetImporters.ScriptedImporter.html">ScriptedImporter</a>
+{
+    public override void OnImportAsset(<a href="Experimental.AssetImporters.AssetImportContext.html">AssetImportContext</a> ctx)
+    {
+        // ...
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

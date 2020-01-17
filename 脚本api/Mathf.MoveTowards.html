@@ -1,0 +1,18 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Mathf.MoveTowards</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Mathf.html">Mathf</a>.MoveTowards</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static float <span class="sig-kw">MoveTowards</span>(float <span class="sig-kw">current</span>,
+float <span class="sig-kw">target</span>,
+float <span class="sig-kw">maxDelta</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">current</td><td class="desc"></td><td class="desc1">The current value.</td></tr><tr><td class="name lbl">target</td><td class="desc"></td><td class="desc1">The value to move towards.</td></tr><tr><td class="name lbl">maxDelta</td><td class="desc"></td><td class="desc1">The maximum change that should be applied to the value.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Moves a value <code class="varname">current</code> towards <code class="varname">target</code>.</p></div><div class="subsection"><p>This is essentially the same as <a href="Mathf.Lerp.html">Mathf.Lerp</a> but instead the function will ensure that the speed never exceeds <code class="varname">maxDelta</code>.
+Negative values of <code class="varname">maxDelta</code> pushes the value away from <code class="varname">target</code>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    float currStrength;
+    float maxStrength;
+    float recoveryRate;<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        currStrength = <a href="Mathf.MoveTowards.html">Mathf.MoveTowards</a>(currStrength, maxStrength, recoveryRate * <a href="Time-deltaTime.html">Time.deltaTime</a>);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

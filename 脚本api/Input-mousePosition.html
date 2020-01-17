@@ -1,0 +1,21 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Input.mousePosition</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Input.html">Input</a>.mousePosition</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Vector3.html">Vector3</a> <span class="sig-kw">mousePosition</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The current mouse position in pixel coordinates. (Read Only)</p></div><div class="subsection"><p>The bottom-left of the screen or window is at (0, 0).
+The top-right of the screen or window is at (<a href="Screen-width.html">Screen.width</a>, <a href="Screen-height.html">Screen.height</a>).<br /><br />Note: <a href="Input-mousePosition.html">Input.mousePosition</a> reports the position of the mouse even when it is not inside the Game View, such as when <a href="Cursor-lockState.html">Cursor.lockState</a> is set to <a href="CursorLockMode.None.html">CursorLockMode.None</a>. When running in windowed mode with an unconfined cursor, position values smaller than 0 or greater than the screen dimensions (<a href="Screen-width.html">Screen.width</a>,<a href="Screen-height.html">Screen.height</a>) indicate that the mouse cursor is outside of the game window.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="GameObject.html">GameObject</a> particle;
+    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        if (<a href="Input.GetButtonDown.html">Input.GetButtonDown</a>("Fire1"))
+        {
+            <a href="Ray.html">Ray</a> ray = Camera.main.ScreenPointToRay(<a href="Input-mousePosition.html">Input.mousePosition</a>);
+            if (<a href="Physics.Raycast.html">Physics.Raycast</a>(ray))
+                Instantiate(particle, transform.position, transform.rotation);
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: SystemInfo.operatingSystem</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="SystemInfo.html">SystemInfo</a>.operatingSystem</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static string <span class="sig-kw">operatingSystem</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Operating system name with version (Read Only).</p></div><div class="subsection"><p>Returns detailed information about the operating system of the device, including the version. For a simple platform detection, properties like <a href="Application-platform.html">Application.platform</a> or <a href="SystemInfo-deviceType.html">deviceType</a> might be more appropriate.<br /><br /><strong>Note:</strong> On Windows Store Apps, it's impossible to tell if the user is running the 32-bit or 64-bit version of Windows. In this situation, the CPU architecture is queried instead. If the CPU is 64-bit, <a href="SystemInfo-operatingSystem.html">SystemInfo.operatingSystem</a> will return <strong>'Windows &lt;version&gt; 64 bit'</strong>, and if the CPU is 32-bit - <strong>'Windows &lt;version&gt;'</strong>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        // Prints "Windows 7 (6.1.7601) 64bit" on 64 bit Windows 7
+        // Prints "Mac OS X 10.10.4" on Mac OS X Yosemite
+        // Prints "iPhone OS 8.4" on <a href="PlayerSettings.iOS.html">iOS</a> 8.4
+        // Prints "<a href="PlayerSettings.Android.html">Android</a> OS API-22" on <a href="PlayerSettings.Android.html">Android</a> 5.1
+        <a href="Debug.Log.html">Debug.Log</a>(<a href="SystemInfo-operatingSystem.html">SystemInfo.operatingSystem</a>);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="Application-platform.html">Application.platform</a>, <a href="SystemInfo-deviceType.html">deviceType</a>.</p></div></div></div></div></body></html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: MonoBehaviour.OnMouseUp()</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="MonoBehaviour.html">MonoBehaviour</a>.OnMouseUp()</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>OnMouseUp is called when the user has released the mouse button.</p></div><div class="subsection"><p>Note that OnMouseUp is called even if the mouse is not over the same <a href="GUIElement.html">GUIElement</a> or <a href="Collider.html">Collider</a> as the has mouse has been pressed down on.
+For button-like behavior see: <a href="MonoBehaviour.OnMouseUpAsButton.html">OnMouseUpAsButton</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Register when mouse dragging has ended. OnMouseUp is called
+// when the mouse button is released.<br /><br />using UnityEngine;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void OnMouseUp()
+    {
+        // If your mouse hovers over the <a href="GameObject.html">GameObject</a> with the script attached, output this message
+        <a href="Debug.Log.html">Debug.Log</a>("Drag ended!");
+    }
+}
+</pre>
+      </div><div class="subsection"><p>This function is not called on objects that belong to Ignore Raycast layer.<br /><br />This function is called on Colliders marked as Trigger if and only if <a href="Physics-queriesHitTriggers.html">Physics.queriesHitTriggers</a> is true.<br /><br /><a href="MonoBehaviour.OnMouseUp.html">OnMouseUp</a> can be a co-routine. Simply use the yield statement in the function.
+This event is sent to all scripts attached to the <a href="Collider.html">Collider</a> or <a href="GUIElement.html">GUIElement</a>.<br /><br />See Also: <a href="MonoBehaviour.OnMouseDown.html">OnMouseDown</a>, <a href="MonoBehaviour.OnMouseDrag.html">OnMouseDrag</a>.</p></div></div></div></div></body></html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorWindow.GetWindow</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorWindow.html">EditorWindow</a>.GetWindow</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="EditorWindow.html">EditorWindow</a> <span class="sig-kw">GetWindow</span>(Type <span class="sig-kw">t</span>,
+bool <span class="sig-kw">utility</span> = false,
+string <span class="sig-kw">title</span> = null,
+bool <span class="sig-kw">focus</span> = true);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">t</td><td class="desc"></td><td class="desc1">The type of the window. Must derive from EditorWindow.</td></tr><tr><td class="name lbl">utility</td><td class="desc"></td><td class="desc1">Set this to true, to create a floating utility window, false to create a normal window.</td></tr><tr><td class="name lbl">title</td><td class="desc"></td><td class="desc1">If GetWindow creates a new window, it will get this title. If this value is null, use the class name as title.</td></tr><tr><td class="name lbl">focus</td><td class="desc"></td><td class="desc1">Whether to give the window focus, if it already exists. (If GetWindow creates a new window, it will always get focus).</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Returns the first EditorWindow of type <code class="varname">t</code> which is currently on the screen.</p></div><div class="subsection"><p>If there is none, creates and shows new window and returns the instance of it.<br /><br /><img src="../StaticFiles/ScriptRefImages/GetWindowEx.png" /><br />
+<em>Simple Empty non-dockable window.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />// Simple script that creates a new non-dockable window
+public class EditorWindowTest : <a href="EditorWindow.html">EditorWindow</a>
+{
+    [<a href="MenuItem.html">MenuItem</a>("Example/<a href="Display.html">Display</a> simple Window")]
+    static void Initialize()
+    {
+        EditorWindowTest window  = (EditorWindowTest)<a href="EditorWindow.GetWindow.html">EditorWindow.GetWindow</a>(typeof(EditorWindowTest), true, "My Empty Window");
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static T <span class="sig-kw">GetWindow</span>();
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static T <span class="sig-kw">GetWindow</span>(bool <span class="sig-kw">utility</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static T <span class="sig-kw">GetWindow</span>(bool <span class="sig-kw">utility</span>,
+string <span class="sig-kw">title</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static T <span class="sig-kw">GetWindow</span>(string <span class="sig-kw">title</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static T <span class="sig-kw">GetWindow</span>(string <span class="sig-kw">title</span>,
+bool <span class="sig-kw">focus</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static T <span class="sig-kw">GetWindow</span>(bool <span class="sig-kw">utility</span>,
+string <span class="sig-kw">title</span>,
+bool <span class="sig-kw">focus</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">T</td><td class="desc"></td><td class="desc1">The type of the window. Must derive from EditorWindow.</td></tr><tr><td class="name lbl">utility</td><td class="desc"></td><td class="desc1">Set this to true, to create a floating utility window, false to create a normal window.</td></tr><tr><td class="name lbl">title</td><td class="desc"></td><td class="desc1">If GetWindow creates a new window, it will get this title. If this value is null, use the class name as title.</td></tr><tr><td class="name lbl">focus</td><td class="desc"></td><td class="desc1">Whether to give the window focus, if it already exists. (If GetWindow creates a new window, it will always get focus).</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Returns the first EditorWindow of type <code class="varname">T</code> which is currently on the screen.</p></div><div class="subsection"><p>If there is none, creates and shows new window and returns the instance of it.</p></div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static T <span class="sig-kw">GetWindow</span>(params Type[] <span class="sig-kw">desiredDockNextTo</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static T <span class="sig-kw">GetWindow</span>(string <span class="sig-kw">title</span>,
+params Type[] <span class="sig-kw">desiredDockNextTo</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static T <span class="sig-kw">GetWindow</span>(string <span class="sig-kw">title</span>,
+bool <span class="sig-kw">focus</span>,
+params Type[] <span class="sig-kw">desiredDockNextTo</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">T</td><td class="desc"></td><td class="desc1">The type of the window. Must derive from EditorWindow.</td></tr><tr><td class="name lbl">title</td><td class="desc"></td><td class="desc1">If GetWindow creates a new window, it will get this title. If this value is null, use the class name as title.</td></tr><tr><td class="name lbl">desiredDockNextTo</td><td class="desc"></td><td class="desc1">An array of EditorWindow types that the window will attempt to dock onto.</td></tr><tr><td class="name lbl">focus</td><td class="desc"></td><td class="desc1">Whether to give the window focus, if it already exists. (If GetWindow creates a new window, it will always get focus).</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Returns the first EditorWindow of type <code class="varname">T</code> which is currently on the screen.</p></div><div class="subsection"><p>If there is none, creates and shows new window and returns the instance of it.
+The created window will attempt to be docked next to the first founds specified window type.</p></div></div></div></div></body></html>

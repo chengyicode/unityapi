@@ -1,0 +1,76 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Physics.BoxCast</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Physics.html">Physics</a>.BoxCast</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">BoxCast</span>(<a href="Vector3.html">Vector3</a> <span class="sig-kw">center</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">halfExtents</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">direction</span>,
+<a href="Quaternion.html">Quaternion</a> <span class="sig-kw">orientation</span> = Quaternion.identity,
+float <span class="sig-kw">maxDistance</span> = Mathf.Infinity,
+int <span class="sig-kw">layerMask</span> = DefaultRaycastLayers,
+<a href="QueryTriggerInteraction.html">QueryTriggerInteraction</a> <span class="sig-kw">queryTriggerInteraction</span> = QueryTriggerInteraction.UseGlobal);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">center</td><td class="desc"></td><td class="desc1">Center of the box.</td></tr><tr><td class="name lbl">halfExtents</td><td class="desc"></td><td class="desc1">Half the size of the box in each dimension.</td></tr><tr><td class="name lbl">direction</td><td class="desc"></td><td class="desc1">The direction in which to cast the box.</td></tr><tr><td class="name lbl">orientation</td><td class="desc"></td><td class="desc1">Rotation of the box.</td></tr><tr><td class="name lbl">maxDistance</td><td class="desc"></td><td class="desc1">The max length of the cast.</td></tr><tr><td class="name lbl">layerMask</td><td class="desc"></td><td class="desc1">A <a href="../Manual/Layers.html">Layer mask</a> that is used to selectively ignore colliders when casting a capsule.</td></tr><tr><td class="name lbl">queryTriggerInteraction</td><td class="desc"></td><td class="desc1">Specifies whether this query should hit Triggers.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>bool</strong>
+        True, if any intersections were found.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Casts the box along a ray and returns detailed information on what was hit.</p></div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">BoxCast</span>(<a href="Vector3.html">Vector3</a> <span class="sig-kw">center</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">halfExtents</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">direction</span>,
+out <a href="RaycastHit.html">RaycastHit</a> <span class="sig-kw">hitInfo</span>,
+<a href="Quaternion.html">Quaternion</a> <span class="sig-kw">orientation</span> = Quaternion.identity,
+float <span class="sig-kw">maxDistance</span> = Mathf.Infinity,
+int <span class="sig-kw">layerMask</span> = DefaultRaycastLayers,
+<a href="QueryTriggerInteraction.html">QueryTriggerInteraction</a> <span class="sig-kw">queryTriggerInteraction</span> = QueryTriggerInteraction.UseGlobal);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">center</td><td class="desc"></td><td class="desc1">Center of the box.</td></tr><tr><td class="name lbl">halfExtents</td><td class="desc"></td><td class="desc1">Half the size of the box in each dimension.</td></tr><tr><td class="name lbl">direction</td><td class="desc"></td><td class="desc1">The direction in which to cast the box.</td></tr><tr><td class="name lbl">hitInfo</td><td class="desc"></td><td class="desc1">If true is returned, <code class="varname">hitInfo</code> will contain more information about where the collider was hit. (See Also: <a href="RaycastHit.html">RaycastHit</a>).</td></tr><tr><td class="name lbl">orientation</td><td class="desc"></td><td class="desc1">Rotation of the box.</td></tr><tr><td class="name lbl">maxDistance</td><td class="desc"></td><td class="desc1">The max length of the cast.</td></tr><tr><td class="name lbl">layerMask</td><td class="desc"></td><td class="desc1">A <a href="../Manual/Layers.html">Layer mask</a> that is used to selectively ignore colliders when casting a capsule.</td></tr><tr><td class="name lbl">queryTriggerInteraction</td><td class="desc"></td><td class="desc1">Specifies whether this query should hit Triggers.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>bool</strong>
+        True, if any intersections were found.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Casts the box along a ray and returns detailed information on what was hit.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//Attach this script to a <a href="GameObject.html">GameObject</a>. Make sure it has a <a href="Collider.html">Collider</a> component by clicking the <strong>Add Component</strong> button. Then click <strong>Physics</strong>&gt;<strong>Box Collider</strong> to attach a <a href="UIElements.Box.html">Box</a> <a href="Collider.html">Collider</a> component.
+//This script creates a BoxCast in front of the <a href="GameObject.html">GameObject</a> and outputs a message if another <a href="Collider.html">Collider</a> is hit with the <a href="Collider.html">Collider</a>’s name.
+//It also draws where the ray and BoxCast extends to. Just press the <a href="Gizmos.html">Gizmos</a> button to see it in Play <a href="Scripting.GarbageCollector.Mode.html">Mode</a>.
+//Make sure to have another <a href="GameObject.html">GameObject</a> with a <a href="Collider.html">Collider</a> component for the BoxCast to collide with.<br /><br />using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    float m_MaxDistance;
+    float m_Speed;
+    bool m_HitDetect;<br /><br />    <a href="Collider.html">Collider</a> m_Collider;
+    <a href="RaycastHit.html">RaycastHit</a> m_Hit;<br /><br />    void Start()
+    {
+        //Choose the distance the <a href="UIElements.Box.html">Box</a> can reach to
+        m_MaxDistance = 300.0f;
+        m_Speed = 20.0f;
+        m_Collider = GetComponent&lt;<a href="Collider.html">Collider</a>&gt;();
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        //Simple movement in x and z axes
+        float xAxis = <a href="Input.GetAxis.html">Input.GetAxis</a>("Horizontal") * m_Speed;
+        float zAxis = <a href="Input.GetAxis.html">Input.GetAxis</a>("Vertical") * m_Speed;
+        transform.Translate(new <a href="Vector3.html">Vector3</a>(xAxis, 0, zAxis));
+    }<br /><br />    void <a href="Experimental.PlayerLoop.FixedUpdate.html">FixedUpdate</a>()
+    {
+        //Test to see if there is a hit using a BoxCast
+        //Calculate using the center of the <a href="GameObject.html">GameObject</a>'s <a href="Collider.html">Collider</a>(could also just use the <a href="GameObject.html">GameObject</a>'s position), half the <a href="GameObject.html">GameObject</a>'s size, the direction, the <a href="GameObject.html">GameObject</a>'s rotation, and the maximum distance as variables.
+        //Also fetch the hit data
+        m_HitDetect = <a href="Physics.BoxCast.html">Physics.BoxCast</a>(m_Collider.bounds.center, transform.localScale, transform.forward, out m_Hit, transform.rotation, m_MaxDistance);
+        if (m_HitDetect)
+        {
+            //Output the name of the <a href="Collider.html">Collider</a> your <a href="UIElements.Box.html">Box</a> hit
+            <a href="Debug.Log.html">Debug.Log</a>("Hit : " + m_Hit.collider.name);
+        }
+    }<br /><br />    //Draw the BoxCast as a gizmo to show where it currently is testing. Click the <a href="Gizmos.html">Gizmos</a> button to see this
+    void OnDrawGizmos()
+    {
+        <a href="Gizmos-color.html">Gizmos.color</a> = <a href="Color-red.html">Color.red</a>;<br /><br />        //Check if there has been a hit yet
+        if (m_HitDetect)
+        {
+            //Draw a <a href="Ray.html">Ray</a> forward from <a href="GameObject.html">GameObject</a> toward the hit
+            <a href="Gizmos.DrawRay.html">Gizmos.DrawRay</a>(transform.position, transform.forward * m_Hit.distance);
+            //Draw a cube that extends to where the hit exists
+            <a href="Gizmos.DrawWireCube.html">Gizmos.DrawWireCube</a>(transform.position + transform.forward * m_Hit.distance, transform.localScale);
+        }
+        //If there hasn't been a hit yet, draw the ray at the maximum distance
+        else
+        {
+            //Draw a <a href="Ray.html">Ray</a> forward from <a href="GameObject.html">GameObject</a> toward the maximum distance
+            <a href="Gizmos.DrawRay.html">Gizmos.DrawRay</a>(transform.position, transform.forward * m_MaxDistance);
+            //Draw a cube at the maximum distance
+            <a href="Gizmos.DrawWireCube.html">Gizmos.DrawWireCube</a>(transform.position + transform.forward * m_MaxDistance, transform.localScale);
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: NativeDisableContainerSafetyRestrictionAttribute</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">NativeDisableContainerSafetyRestrictionAttribute</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          Unity.Collections.LowLevel.Unsafe</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.CoreModule.html" class="cl">UnityEngine.CoreModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>By default native containers are tracked by the safety system to avoid race conditions. The safety system encapsulates the best practices and catches many race condition bugs from the start.</p></div><div class="subsection"><p>But sometimes you need to express job &amp; data access that doesn't fit into the safety system. This attribute lets you explicitly disable the safety system for that specific container. This gives you full control but it also means that if you for example Dispose() a NativeArray while a job is running the safety system will not be able to give you any error messages at all. Unity will most likely crash in that situation.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using Unity.Collections;
+using Unity.Collections.LowLevel.Unsafe;
+using Unity.Jobs;<br /><br />struct MyJob : <a href="Unity.Jobs.IJob.html">IJob</a>
+{
+    [NativeDisableContainerSafetyRestriction]
+    NativeArray&lt;int&gt; unsafeArrayAccess;<br /><br />    public void Execute()
+    {
+        //...
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EventType</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">EventType</h1><div class="clear"></div><p class="cl mb0 left mr10">enumeration</p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Types of UnityGUI input and processing events.</p></div><div class="subsection"><p>Use this to tell which type of event has taken place in the GUI. Types of Events include mouse clicking, mouse dragging, button pressing, the mouse entering or exiting the window, and the scroll wheel as well as others mentioned below.<br /><br />See Also: <a href="Event-type.html">Event.type</a>, <a href="Event.html">Event</a>, <a href="../Manual/GUIScriptingGuide.html">GUI Scripting Guide</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//Attach this script to a <a href="GameObject.html">GameObject</a>
+//This script is a basic overview of some of the <a href="Event.html">Event</a> Types available. It outputs messages depending on the current <a href="Event.html">Event</a> Type.<br /><br />using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void OnGUI()
+    {
+        <a href="Event.html">Event</a> m_Event = <a href="Event-current.html">Event.current</a>;<br /><br />        if (m_Event.type == <a href="EventType.MouseDown.html">EventType.MouseDown</a>)
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("Mouse Down.");
+        }<br /><br />        if (m_Event.type == <a href="EventType.MouseDrag.html">EventType.MouseDrag</a>)
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("Mouse Dragged.");
+        }<br /><br />        if (m_Event.type == <a href="EventType.MouseUp.html">EventType.MouseUp</a>)
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("Mouse Up.");
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="EventType.MouseDown.html">MouseDown</a></td><td class="desc"></td><td class="desc1">Mouse button was pressed.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="EventType.MouseUp.html">MouseUp</a></td><td class="desc"></td><td class="desc1">Mouse button was released.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="EventType.MouseMove.html">MouseMove</a></td><td class="desc"></td><td class="desc1">Mouse was moved (Editor views only).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="EventType.MouseDrag.html">MouseDrag</a></td><td class="desc"></td><td class="desc1">Mouse was dragged.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="EventType.KeyDown.html">KeyDown</a></td><td class="desc"></td><td class="desc1">A keyboard key was pressed.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="EventType.KeyUp.html">KeyUp</a></td><td class="desc"></td><td class="desc1">A keyboard key was released.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="EventType.ScrollWheel.html">ScrollWheel</a></td><td class="desc"></td><td class="desc1">The scroll wheel was moved.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="EventType.Repaint.html">Repaint</a></td><td class="desc"></td><td class="desc1">A repaint event. One is sent every frame.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="EventType.Layout.html">Layout</a></td><td class="desc"></td><td class="desc1">A layout event.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="EventType.DragUpdated.html">DragUpdated</a></td><td class="desc"></td><td class="desc1">Editor only: drag &amp; drop operation updated.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="EventType.DragPerform.html">DragPerform</a></td><td class="desc"></td><td class="desc1">Editor only: drag &amp; drop operation performed.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="EventType.DragExited.html">DragExited</a></td><td class="desc"></td><td class="desc1">Editor only: drag &amp; drop operation exited.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="EventType.Ignore.html">Ignore</a></td><td class="desc"></td><td class="desc1">
+          Event should be ignored.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="EventType.Used.html">Used</a></td><td class="desc"></td><td class="desc1">Already processed event.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="EventType.ValidateCommand.html">ValidateCommand</a></td><td class="desc"></td><td class="desc1">Validates a special command (e.g. copy &amp; paste).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="EventType.ExecuteCommand.html">ExecuteCommand</a></td><td class="desc"></td><td class="desc1">Execute a special command (eg. copy &amp; paste).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="EventType.ContextClick.html">ContextClick</a></td><td class="desc"></td><td class="desc1">User has right-clicked (or control-clicked on the mac).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="EventType.MouseEnterWindow.html">MouseEnterWindow</a></td><td class="desc"></td><td class="desc1">Mouse entered a window (Editor views only).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="EventType.MouseLeaveWindow.html">MouseLeaveWindow</a></td><td class="desc"></td><td class="desc1">Mouse left a window (Editor views only).</td></tr>
+    </table></div></div></div></div></body></html>

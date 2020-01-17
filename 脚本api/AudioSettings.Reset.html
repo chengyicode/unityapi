@@ -1,0 +1,74 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AudioSettings.Reset</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="AudioSettings.html">AudioSettings</a>.Reset</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-AudioSettings.html' title='Go to AudioSettings Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">Reset</span>(<a href="AudioConfiguration.html">AudioConfiguration</a> <span class="sig-kw">config</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">config</td><td class="desc"></td><td class="desc1">The new configuration to be used.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>bool</strong>
+        True if all settings could be successfully applied.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Performs a change of the device configuration. In response to this the <a href="AudioSettings.OnAudioConfigurationChanged.html">AudioSettings.OnAudioConfigurationChanged</a> delegate is invoked with the argument deviceWasChanged=false. It cannot be guaranteed that the exact settings specified can be used, but the an attempt is made to use the closest match supported by the system.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class TestAudioConfiguration : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        <a href="AudioSettings.OnAudioConfigurationChanged.html">AudioSettings.OnAudioConfigurationChanged</a> += OnAudioConfigurationChanged;
+    }<br /><br />    void OnAudioConfigurationChanged(bool deviceWasChanged)
+    {
+        <a href="Debug.Log.html">Debug.Log</a>(deviceWasChanged ? "<a href="iOS.Device.html">Device</a> was changed" : "Reset was called");
+        if (deviceWasChanged)
+        {
+            <a href="AudioConfiguration.html">AudioConfiguration</a> config = <a href="AudioSettings.GetConfiguration.html">AudioSettings.GetConfiguration</a>();
+            config.dspBufferSize = 64;
+            <a href="AudioSettings.Reset.html">AudioSettings.Reset</a>(config);
+        }
+        GetComponent&lt;<a href="AudioSource.html">AudioSource</a>&gt;().Play();
+    }<br /><br />    static int[] validSpeakerModes =
+    {
+        (int)<a href="AudioSpeakerMode.Mono.html">AudioSpeakerMode.Mono</a>,
+        (int)<a href="AudioSpeakerMode.Stereo.html">AudioSpeakerMode.Stereo</a>,
+        (int)<a href="AudioSpeakerMode.Quad.html">AudioSpeakerMode.Quad</a>,
+        (int)<a href="AudioSpeakerMode.Surround.html">AudioSpeakerMode.Surround</a>,
+        (int)<a href="AudioSpeakerMode.Mode5point1.html">AudioSpeakerMode.Mode5point1</a>,
+        (int)<a href="AudioSpeakerMode.Mode7point1.html">AudioSpeakerMode.Mode7point1</a>
+    };<br /><br />    static int[] validDSPBufferSizes =
+    {
+        32, 64, 128, 256, 340, 480, 512, 1024, 2048, 4096, 8192
+    };<br /><br />    static int[] validSampleRates =
+    {
+        11025, 22050, 44100, 48000, 88200, 96000,
+    };<br /><br />    static int[] validNumRealVoices =
+    {
+        1, 2, 4, 8, 16, 32, 50, 64, 100, 128, 256, 512,
+    };<br /><br />    static int[] validNumVirtualVoices =
+    {
+        1, 2, 4, 8, 16, 32, 50, 64, 100, 128, 256, 512,
+    };<br /><br />    int GUIRow(string name, int[] valid, int value, ref bool modified)
+    {
+        <a href="GUILayout.BeginHorizontal.html">GUILayout.BeginHorizontal</a>();
+        <a href="GUILayout.Button.html">GUILayout.Button</a>(name + "=" + value);
+        for (int i = 0; i &lt; valid.Length; i++)
+        {
+            string s = valid[i].ToString();
+            if (valid[i] == value)
+                s = "[" + s + "]";
+            if (<a href="GUILayout.Button.html">GUILayout.Button</a>(s))
+            {
+                value = valid[i];
+                modified = true;
+            }
+        }
+        <a href="GUILayout.EndHorizontal.html">GUILayout.EndHorizontal</a>();
+        return value;
+    }<br /><br />    void OnGUI()
+    {
+        <a href="AudioSource.html">AudioSource</a> source = GetComponent&lt;<a href="AudioSource.html">AudioSource</a>&gt;();
+        bool modified = false;<br /><br />        <a href="AudioConfiguration.html">AudioConfiguration</a> config = <a href="AudioSettings.GetConfiguration.html">AudioSettings.GetConfiguration</a>();<br /><br />        config.speakerMode = (<a href="AudioSpeakerMode.html">AudioSpeakerMode</a>)GUIRow("speakerMode", validSpeakerModes, (int)config.speakerMode, ref modified);
+        config.dspBufferSize = GUIRow("dspBufferSize", validDSPBufferSizes, config.dspBufferSize, ref modified);
+        config.sampleRate = GUIRow("sampleRate", validSampleRates, config.sampleRate, ref modified);
+        config.numRealVoices = GUIRow("RealVoices", validNumRealVoices, config.numRealVoices, ref modified);
+        config.numVirtualVoices = GUIRow("numVirtualVoices", validNumVirtualVoices, config.numVirtualVoices, ref modified);<br /><br />        if (modified)
+            <a href="AudioSettings.Reset.html">AudioSettings.Reset</a>(config);<br /><br />        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Start"))
+            source.Play();<br /><br />        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Stop"))
+            source.Stop();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

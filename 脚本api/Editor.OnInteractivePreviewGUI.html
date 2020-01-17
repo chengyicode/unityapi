@@ -1,0 +1,28 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Editor.OnInteractivePreviewGUI</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Editor.html">Editor</a>.OnInteractivePreviewGUI</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">OnInteractivePreviewGUI</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">r</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">background</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">r</td><td class="desc"></td><td class="desc1">Rectangle in which to draw the preview.</td></tr><tr><td class="name lbl">background</td><td class="desc"></td><td class="desc1">Background image.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Implement to create your own interactive custom preview. Interactive custom previews are used in the preview area of the inspector and the object selector.</p></div><div class="subsection"><p>Implement this method, instead of <a href="Editor.OnPreviewGUI.html">OnPreviewGUI</a>, to display interactive custom previews. You can implement both methods when some previews are interactive and others are not.
+The overidden method should use the rectangle passed in and render a preview of the asset.
+The default implementation is a no-op.<br /><br /><strong>Note:</strong> Inspector previews are limited to the primary editor of persistent objects (assets). For example, GameObjectInspector, MaterialEditor, TextureInspector, and so on.
+This means that it is currently not possible for a component to have its own inspector preview.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />// Create an editor window which can display a chosen <a href="GameObject.html">GameObject</a>.
+// Use OnInteractivePreviewGUI to display the <a href="GameObject.html">GameObject</a> and
+// allow it to be interactive.<br /><br />public class ExampleClass: <a href="EditorWindow.html">EditorWindow</a>
+{
+    <a href="GameObject.html">GameObject</a> gameObject;
+    <a href="Editor.html">Editor</a> gameObjectEditor;<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Example/<a href="GameObject.html">GameObject</a> <a href="Editor.html">Editor</a>")]
+    static void ShowWindow()
+    {
+        GetWindowWithRect&lt;ExampleClass&gt;(new <a href="Rect.html">Rect</a>(0, 0, 256, 256));
+    }<br /><br />    void OnGUI()
+    {
+        gameObject = (<a href="GameObject.html">GameObject</a>) <a href="EditorGUILayout.ObjectField.html">EditorGUILayout.ObjectField</a>(gameObject, typeof(<a href="GameObject.html">GameObject</a>), true);<br /><br />        <a href="GUIStyle.html">GUIStyle</a> bgColor = new <a href="GUIStyle.html">GUIStyle</a>();
+        bgColor.normal.background = <a href="EditorGUIUtility-whiteTexture.html">EditorGUIUtility.whiteTexture</a>;<br /><br />        if (gameObject != null)
+        {
+            if (gameObjectEditor == null)
+                gameObjectEditor = <a href="Editor.CreateEditor.html">Editor.CreateEditor</a>(gameObject);<br /><br />            gameObjectEditor.OnInteractivePreviewGUI(<a href="GUILayoutUtility.GetRect.html">GUILayoutUtility.GetRect</a>(256, 256), bgColor);
+        }
+    }
+}</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Caching.ClearAllCachedVersions</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Caching.html">Caching</a>.ClearAllCachedVersions</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">ClearAllCachedVersions</span>(string <span class="sig-kw">assetBundleName</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">assetBundleName</td><td class="desc"></td><td class="desc1">The AssetBundle name.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>bool</strong>
+        Returns true when cache clearing succeeded.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Removes all the cached versions of the given AssetBundle from the cache.</p></div><div class="subsection"><p>Returns false if any cached bundle is in use.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.Collections;
+using UnityEngine.Networking;
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    IEnumerator ClearAllCachedVersionsExample(string uri)
+    {
+        //Download the bundle
+        <a href="Networking.UnityWebRequest.html">UnityWebRequest</a> request = <a href="Networking.UnityWebRequestAssetBundle.GetAssetBundle.html">UnityWebRequestAssetBundle.GetAssetBundle</a>(uri);
+        yield return request.SendWebRequest();
+        <a href="AssetBundle.html">AssetBundle</a> bundle = <a href="Networking.DownloadHandlerAssetBundle.GetContent.html">DownloadHandlerAssetBundle.GetContent</a>(request);<br /><br />        //Given the name of an asset bundle, this will clear every cached version across all caches
+        <a href="Caching.ClearAllCachedVersions.html">Caching.ClearAllCachedVersions</a>(bundle.name);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

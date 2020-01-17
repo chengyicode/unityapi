@@ -1,0 +1,19 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Application.Quit</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Application.html">Application</a>.Quit</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">Quit</span>();
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">exitCode</td><td class="desc"></td><td class="desc1">An optional exit code to return when the player application terminates on Windows, Mac and Linux. Defaults to 0.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Quits the player application.</p></div><div class="subsection"><p>Shut down the running application.  The Application.Quit call is ignored in the editor.<br /><br /><strong>Note:</strong> In most cases termination of application under iOS should be left at the user's discretion.
+Calling this method in iOS player might appear to the user that the application has crashed
+Consult <a href="https://developer.apple.com/library/ios/qa/qa1561/_index.html">Apple Technical Page qa1561</a> for further details.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />// Quits the player when the user hits escape<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        if (<a href="Input.GetKey.html">Input.GetKey</a>("escape"))
+        {
+            <a href="Application.Quit.html">Application.Quit</a>();
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

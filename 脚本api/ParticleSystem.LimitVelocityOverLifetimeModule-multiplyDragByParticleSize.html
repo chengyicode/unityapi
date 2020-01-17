@@ -1,0 +1,31 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ParticleSystem.LimitVelocityOverLifetimeModule.multiplyDragByParticleSize</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="ParticleSystem.LimitVelocityOverLifetimeModule.html">ParticleSystem.LimitVelocityOverLifetimeModule</a>.multiplyDragByParticleSize</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-ParticleSystem.html' title='Go to ParticleSystem Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public bool <span class="sig-kw">multiplyDragByParticleSize</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Adjust the amount of drag applied to particles, based on their sizes.</p></div><div class="subsection"><p>See Also: <a href="ParticleSystem.LimitVelocityOverLifetimeModule-drag.html">ParticleSystem.LimitVelocityOverLifetimeModule.drag</a>, <a href="ParticleSystem.LimitVelocityOverLifetimeModule-multiplyDragByParticleVelocity.html">ParticleSystem.LimitVelocityOverLifetimeModule.multiplyDragByParticleVelocity</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private <a href="ParticleSystem.html">ParticleSystem</a> ps;
+    public float hSliderValueDrag = 1.0f;
+    public bool hToggleUseSize = false;
+    public bool hToggleUseVelocity = false;<br /><br />    void Start()
+    {
+        ps = GetComponent&lt;<a href="ParticleSystem.html">ParticleSystem</a>&gt;();<br /><br />        var limitVelocityOverLifetime = ps.limitVelocityOverLifetime;
+        limitVelocityOverLifetime.enabled = true;<br /><br />        var main = ps.main;
+        main.startSize = new <a href="ParticleSystem.MinMaxCurve.html">ParticleSystem.MinMaxCurve</a>(0.1f, 1.5f);
+        main.startSpeed = new <a href="ParticleSystem.MinMaxCurve.html">ParticleSystem.MinMaxCurve</a>(0.5f, 5.0f);
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        var limitVelocityOverLifetime = ps.limitVelocityOverLifetime;
+        limitVelocityOverLifetime.dragMultiplier = hSliderValueDrag;
+        limitVelocityOverLifetime.multiplyDragByParticleSize = hToggleUseSize;
+        limitVelocityOverLifetime.multiplyDragByParticleVelocity = hToggleUseVelocity;
+    }<br /><br />    void OnGUI()
+    {
+        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, 40, 100, 30), "Drag");<br /><br />        hSliderValueDrag = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(135, 45, 100, 30), hSliderValueDrag, 0.0f, 3.0f);
+        hToggleUseSize = <a href="GUI.Toggle.html">GUI.Toggle</a>(new <a href="Rect.html">Rect</a>(25, 85, 200, 30), hToggleUseSize, "Multiply by Size");
+        hToggleUseVelocity = <a href="GUI.Toggle.html">GUI.Toggle</a>(new <a href="Rect.html">Rect</a>(25, 125, 200, 30), hToggleUseVelocity, "Multiply by Velocity");
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

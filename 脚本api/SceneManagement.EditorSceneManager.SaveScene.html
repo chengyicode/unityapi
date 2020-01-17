@@ -1,0 +1,40 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: SceneManagement.EditorSceneManager.SaveScene</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="SceneManagement.EditorSceneManager.html">EditorSceneManager</a>.SaveScene</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">SaveScene</span>(<a href="SceneManagement.Scene.html">SceneManagement.Scene</a> <span class="sig-kw">scene</span>,
+string <span class="sig-kw">dstScenePath</span> = "",
+bool <span class="sig-kw">saveAsCopy</span> = false);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">scene</td><td class="desc"></td><td class="desc1">The Scene to be saved.</td></tr><tr><td class="name lbl">dstScenePath</td><td class="desc"></td><td class="desc1">The file path to save the Scene to. If the path is empty, the current open Scene is overwritten. If it has not yet been saved at all, a save dialog is shown.</td></tr><tr><td class="name lbl">saveAsCopy</td><td class="desc"></td><td class="desc1">If set to true, the Scene is saved without changing the current Scene, and without clearing the unsaved changes marker.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>bool</strong>
+        True if the save succeeded, otherwise false.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Save a Scene.</p></div><div class="subsection"><p>All paths are relative to the project folder, such as: "Assets/MyScenes/MyScene.unity". Folders specified in the path must already exist before calling the function. If no path is specified, the path of the current open Scene is used, except if it was never saved before, in which case a save dialog is shown.<br /><br />The function returns false if the save failed. This can happen if the specified path is invalid or if the user cancels in the case of a save dialog.<br /><br />See Also: EditorSceneManager.GetActiveScene<br /><br />Example:
+<img src="../StaticFiles/ScriptRefImages/SimpleAutoSave.png" /><br />
+<em>Simple Editor Window that saves each 300 seconds the current Scene.</em><br /><br /><strong>Note:</strong> This saves the Scene whether it is marked dirty or not.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;
+using System.Collections;
+using UnityEditor.SceneManagement;<br /><br />public class SimpleAutoSave : <a href="EditorWindow.html">EditorWindow</a>
+{
+    public float saveTime = 300;
+    public float nextSave = 0;
+    [<a href="MenuItem.html">MenuItem</a>("Example/Simple autoSave")]
+    static void Init()
+    {
+        SimpleAutoSave window = (SimpleAutoSave)<a href="EditorWindow.GetWindowWithRect.html">EditorWindow.GetWindowWithRect</a>(typeof(SimpleAutoSave), new <a href="Rect.html">Rect</a>(0, 0, 200, 50));
+        window.Show();
+    }<br /><br />    void OnGUI()
+    {
+        <a href="EditorGUILayout.LabelField.html">EditorGUILayout.LabelField</a>("Save Each:", saveTime + " Secs");
+        float timeToSave = nextSave - (float)<a href="EditorApplication-timeSinceStartup.html">EditorApplication.timeSinceStartup</a>;
+        <a href="EditorGUILayout.LabelField.html">EditorGUILayout.LabelField</a>("Next Save:", timeToSave.ToString() + " Sec");
+        Repaint();
+        if (<a href="EditorApplication-timeSinceStartup.html">EditorApplication.timeSinceStartup</a> &gt; nextSave)
+        {
+            string[] path = EditorSceneManager.GetActiveScene().path.Split(char.Parse("/"));
+            path[path.Length - 1] = "AutoSave_" + path[path.Length - 1];
+            bool saveOK = <a href="SceneManagement.EditorSceneManager.SaveScene.html">EditorSceneManager.SaveScene</a>(EditorSceneManager.GetActiveScene(), string.Join("/", path));
+            <a href="Debug.Log.html">Debug.Log</a>("Saved <a href="SceneManagement.Scene.html">Scene</a> " + (saveOK ? "OK" : "<a href="PackageManager.Error.html">Error</a>!"));
+            nextSave = (float)<a href="EditorApplication-timeSinceStartup.html">EditorApplication.timeSinceStartup</a> + saveTime;
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

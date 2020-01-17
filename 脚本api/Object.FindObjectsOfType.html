@@ -1,0 +1,38 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Object.FindObjectsOfType</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Object.html">Object</a>.FindObjectsOfType</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static T[] <span class="sig-kw">FindObjectsOfType</span>();
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static Object[] <span class="sig-kw">FindObjectsOfType</span>(Type <span class="sig-kw">type</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span></div><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">type</td><td class="desc"></td><td class="desc1">The type of object to find.</td></tr><tr><td class="name lbl">includeInactive</td><td class="desc"></td><td class="desc1">If true, components attached to inactive GameObjects are also included.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>T[]</strong>
+        The array of objects found matching the type specified.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Returns a list of all active loaded objects of Type <code class="varname">type</code>.</p></div><div class="subsection"><p>This does not return assets (such as meshes, textures or prefabs), or objects with <a href="HideFlags.DontSave.html">HideFlags.DontSave</a> set.
+Objects attached to inactive GameObjects are only included if <code class="varname">inactiveObjects</code> is set to true.
+Use <a href="Resources.FindObjectsOfTypeAll.html">Resources.FindObjectsOfTypeAll</a> to avoid these limitations.<br /><br />In Editor, this searches the Scene view by default. If you want to find an object in the Prefab stage, see the <a href="SceneManagement.StageUtility.html">StageUtility</a> APIs.<br /><br /><strong>Note</strong>: This function is very slow. It is not recommended to use this function every frame.
+In most cases you can use the singleton pattern instead.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />// Ten GameObjects are created and have <a href="TextMesh.html">TextMesh</a> and
+// <a href="CanvasRenderer.html">CanvasRenderer</a> components added.
+// When the game runs press the <a href="Space.html">Space</a> key to display the
+// number of <a href="TextMesh.html">TextMesh</a> and <a href="CanvasRenderer.html">CanvasRenderer</a> components.<br /><br />public class ScriptExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private const int count = 10;<br /><br />    void Start()
+    {
+        var gameObjects = new <a href="GameObject.html">GameObject</a>[count];
+        var expectedTextMeshObjects = new <a href="TextMesh.html">TextMesh</a>[count];
+        var expectedCanvasObjects = new <a href="CanvasRenderer.html">CanvasRenderer</a>[count];<br /><br />        for (var i = 0; i &lt; count; ++i)
+        {
+            gameObjects[i] = new <a href="GameObject.html">GameObject</a>();
+            expectedTextMeshObjects[i] = gameObjects[i].AddComponent&lt;<a href="TextMesh.html">TextMesh</a>&gt;();
+            expectedCanvasObjects[i] = gameObjects[i].AddComponent&lt;<a href="CanvasRenderer.html">CanvasRenderer</a>&gt;();
+        }
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        if (<a href="Input.GetKeyDown.html">Input.GetKeyDown</a>(<a href="KeyCode.Space.html">KeyCode.Space</a>))
+        {
+            var foundCanvasObjects = FindObjectsOfType&lt;<a href="CanvasRenderer.html">CanvasRenderer</a>&gt;();
+            var foundTextMeshObjects = FindObjectsOfType(typeof(<a href="TextMesh.html">TextMesh</a>));
+            <a href="Debug.Log.html">Debug.Log</a>(foundCanvasObjects + " : " + foundCanvasObjects.Length);
+            <a href="Debug.Log.html">Debug.Log</a>(foundTextMeshObjects + " : " + foundTextMeshObjects.Length);
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

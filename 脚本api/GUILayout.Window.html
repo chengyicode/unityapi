@@ -1,0 +1,84 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: GUILayout.Window</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="GUILayout.html">GUILayout</a>.Window</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Rect.html">Rect</a> <span class="sig-kw">Window</span>(int <span class="sig-kw">id</span>,
+<a href="Rect.html">Rect</a> <span class="sig-kw">screenRect</span>,
+<a href="GUI.WindowFunction.html">GUI.WindowFunction</a> <span class="sig-kw">func</span>,
+string <span class="sig-kw">text</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Rect.html">Rect</a> <span class="sig-kw">Window</span>(int <span class="sig-kw">id</span>,
+<a href="Rect.html">Rect</a> <span class="sig-kw">screenRect</span>,
+<a href="GUI.WindowFunction.html">GUI.WindowFunction</a> <span class="sig-kw">func</span>,
+<a href="Texture.html">Texture</a> <span class="sig-kw">image</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Rect.html">Rect</a> <span class="sig-kw">Window</span>(int <span class="sig-kw">id</span>,
+<a href="Rect.html">Rect</a> <span class="sig-kw">screenRect</span>,
+<a href="GUI.WindowFunction.html">GUI.WindowFunction</a> <span class="sig-kw">func</span>,
+<a href="GUIContent.html">GUIContent</a> <span class="sig-kw">content</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Rect.html">Rect</a> <span class="sig-kw">Window</span>(int <span class="sig-kw">id</span>,
+<a href="Rect.html">Rect</a> <span class="sig-kw">screenRect</span>,
+<a href="GUI.WindowFunction.html">GUI.WindowFunction</a> <span class="sig-kw">func</span>,
+string <span class="sig-kw">text</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Rect.html">Rect</a> <span class="sig-kw">Window</span>(int <span class="sig-kw">id</span>,
+<a href="Rect.html">Rect</a> <span class="sig-kw">screenRect</span>,
+<a href="GUI.WindowFunction.html">GUI.WindowFunction</a> <span class="sig-kw">func</span>,
+<a href="Texture.html">Texture</a> <span class="sig-kw">image</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Rect.html">Rect</a> <span class="sig-kw">Window</span>(int <span class="sig-kw">id</span>,
+<a href="Rect.html">Rect</a> <span class="sig-kw">screenRect</span>,
+<a href="GUI.WindowFunction.html">GUI.WindowFunction</a> <span class="sig-kw">func</span>,
+<a href="GUIContent.html">GUIContent</a> <span class="sig-kw">content</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">id</td><td class="desc"></td><td class="desc1">A unique ID to use for each window. This is the ID you'll use to interface to it.</td></tr><tr><td class="name lbl">screenRect</td><td class="desc"></td><td class="desc1">Rectangle on the screen to use for the window. The layouting system will attempt to fit the window inside it - if that cannot be done, it will adjust the rectangle to fit.</td></tr><tr><td class="name lbl">func</td><td class="desc"></td><td class="desc1">The function that creates the GUI <code class="varname">inside</code> the window. This function must take one parameter - the <code class="varname">id</code> of the window it's currently making GUI for.</td></tr><tr><td class="name lbl">text</td><td class="desc"></td><td class="desc1">Text to display as a title for the window.</td></tr><tr><td class="name lbl">image</td><td class="desc"></td><td class="desc1">
+          <a href="Texture.html">Texture</a> to display an image in the titlebar.</td></tr><tr><td class="name lbl">content</td><td class="desc"></td><td class="desc1">Text, image and tooltip for this window.</td></tr><tr><td class="name lbl">style</td><td class="desc"></td><td class="desc1">An optional style to use for the window. If left out, the <code class="varname">window</code> style from the current <a href="GUISkin.html">GUISkin</a> is used.</td></tr><tr><td class="name lbl">options</td><td class="desc"></td><td class="desc1">An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the <code class="varname">style</code> or the <code class="varname">screenRect</code> you pass in.<br />
+See Also: <a href="GUILayout.Width.html">GUILayout.Width</a>, <a href="GUILayout.Height.html">GUILayout.Height</a>, <a href="GUILayout.MinWidth.html">GUILayout.MinWidth</a>, <a href="GUILayout.MaxWidth.html">GUILayout.MaxWidth</a>, <a href="GUILayout.MinHeight.html">GUILayout.MinHeight</a>,
+<a href="GUILayout.MaxHeight.html">GUILayout.MaxHeight</a>, <a href="GUILayout.ExpandWidth.html">GUILayout.ExpandWidth</a>, <a href="GUILayout.ExpandHeight.html">GUILayout.ExpandHeight</a>.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>Rect</strong>
+        The rectangle the window is at. This can be in a different position and have a different size than the one you passed in.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Make a popup window that layouts its contents automatically.</p></div><div class="subsection"><p>Windows float above normal GUI controls, feature click-to-focus and can optionally be dragged around by the end user.
+Unlike other controls, you need to pass them a separate function for the GUI controls to put inside the window. Here is a small example to get you started:<br /><br /><img src="../StaticFiles/ScriptRefImages/GUILayoutWindow.png" /><br />
+<em>Window in the Game View.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="Rect.html">Rect</a> windowRect = new <a href="Rect.html">Rect</a>(20, 20, 120, 50);<br /><br />    void OnGUI()
+    {
+        // Register the window. Notice the 3rd parameter
+        windowRect = <a href="GUILayout.Window.html">GUILayout.Window</a>(0, windowRect, DoMyWindow, "My Window");
+    }<br /><br />    // Make the contents of the window
+    void DoMyWindow(int windowID)
+    {
+        // This button will size to fit the window
+        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Hello World"))
+        {
+            print("Got a click");
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>The screen rectangle you pass in to the function only acts as a guide. To Apply extra limits to the window, pass in some extra layout options. The ones applied here will override the size calculated. Here is a small example:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="Rect.html">Rect</a> windowRect = new <a href="Rect.html">Rect</a>(20, 20, 120, 50);<br /><br />    void OnGUI()
+    {
+        // Register the window. Here we instruct the layout system to
+        // make the window 100 pixels wide no matter what.
+        windowRect = <a href="GUILayout.Window.html">GUILayout.Window</a>(0, windowRect, DoMyWindow, "My Window", <a href="GUILayout.Width.html">GUILayout.Width</a>(100));
+    }<br /><br />    // Make the contents of the window
+    void DoMyWindow(int windowID)
+    {
+        // This button is too large to fit the window
+        // Normally, the window would have been expanded to fit the button, but due to
+        // the <a href="GUILayout.Width.html">GUILayout.Width</a> call above the window will only ever be 100 pixels wide
+        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Please click me a lot"))
+        {
+            print("Got a click");
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

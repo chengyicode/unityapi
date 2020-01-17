@@ -1,0 +1,24 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Profiling.Profiler.logFile</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Profiling.Profiler.html">Profiler</a>.logFile</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static string <span class="sig-kw">logFile</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Specifies the file to use when writing profiling data.</p></div><div class="subsection"><p>In addition to specifying a valid file path, you must set both <a href="Profiling.Profiler-enabled.html">Profiler.enabled</a> and <a href="Profiling.Profiler-enableBinaryLog.html">Profiler.enableBinaryLog</a> to <code class="mono">true</code> in order to save profiling information. Specifying a new valid file path while <a href="Profiling.Profiler-enableBinaryLog.html">Profiler.enableBinaryLog</a> is <code class="mono">true</code> will save profiling information to that file instead. If a <code class="mono">null</code> or an empty path is passed <a href="Profiling.Profiler-enableBinaryLog.html">Profiler.enableBinaryLog</a> will automatically be set to <code class="mono">false</code>.<br /><br />If the buffer is too small to output the profiler data you will see a message in the debug log "Skipping profile frame. Receiver can not keep up with the amount of data sent".
+Use <a href="Profiling.Profiler-maxUsedMemory.html">Profiler.maxUsedMemory</a> to raise the buffer memory.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;
+using UnityEngine.Profiling;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        <a href="Profiling.Profiler-logFile.html">Profiler.logFile</a> = "mylog"; //Also supports passing "myLog.raw"
+        <a href="Profiling.Profiler-enableBinaryLog.html">Profiler.enableBinaryLog</a> = true;
+        <a href="Profiling.Profiler-enabled.html">Profiler.enabled</a> = true;<br /><br />        // Optional, if more memory is needed for the buffer
+        <a href="Profiling.Profiler-maxUsedMemory.html">Profiler.maxUsedMemory</a> = 256 * 1024 * 1024;<br /><br />        // ...<br /><br />        // Optional, to close the file when done
+        <a href="Profiling.Profiler-enabled.html">Profiler.enabled</a> = false;
+        <a href="Profiling.Profiler-logFile.html">Profiler.logFile</a> = "";<br /><br />        // To start writing to a new log file
+        <a href="Profiling.Profiler-logFile.html">Profiler.logFile</a> = "myOtherLog";
+        <a href="Profiling.Profiler-enabled.html">Profiler.enabled</a> = true;
+        // ...
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

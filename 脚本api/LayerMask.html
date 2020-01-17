@@ -1,0 +1,65 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: LayerMask</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">LayerMask</h1><div class="clear"></div><p class="cl mb0 left mr10">struct in
+          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.CoreModule.html" class="cl">UnityEngine.CoreModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Specifies Layers to use in a <a href="Physics.Raycast.html">Physics.Raycast</a>.</p></div><div class="subsection"><p>A <a href="GameObject.html">GameObject</a> can use up to 32 <a href="LayerMask.html">LayerMask</a>s supported by the Editor. The first 8 of these <code class="mono">Layers</code> are specified by Unity; the following 24 are controllable by the user.<br /><br />Bitmasks represent the 32 Layers and define them as <code class="mono">true</code> or <code class="mono">false</code>. Each bitmask describes whether the <code class="mono">Layer</code> is used. As an example, bit 5 can be set to 1 (<code class="mono">true</code>). This will allow the use of the built-in <code class="mono">Water</code> setting.<br /><br /><code class="mono">Edit-&gt;Settings-&gt;Tags and Layers</code> option shows the use of the 32 bitmasks. Each <code class="mono">Layer</code> is shown with a string setting. As an example <code class="mono">Built-in Layer 0</code> is set as <code class="mono">Default</code>; <code class="mono">Built-in Layer 1</code> is set as <code class="mono">TransparentFX</code>. New named <code class="mono">Layer</code>s are added above bitmask layer 8. A selected <code class="mono">GameObject</code> will show the chosen <code class="mono">Layer</code> at top right of the Inspector. The example below has <code class="mono">User Layer 13</code> set to "Wall". This causes the assigned <code class="mono">GameObject</code> to be treated as part of a building.<br /><br />In the following script example, <a href="Physics.Raycast.html">Physics.Raycast</a> sends a ray into the world. <a href="Camera-main.html">Camera.main</a> can be rotated around the y-axis and fire a ray. Three <a href="GameObject.html">GameObject</a>s represent walls that can be hit by the fired ray. Each <a href="GameObject.html">GameObject</a> has <a href="GameObject-label.html">GameObject.label</a> set to the "Wall" <a href="LayerMask-layerMask.html">layerMask</a>. </p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />// Fire a gun at 3 walls in the scene.
+//
+// The Raycast will be aimed in the range of -45 to 45 degrees. If the <a href="Ray.html">Ray</a> hits any of the
+// walls true will be returned . The three walls all have a Wall Layer attached.  The left
+// and right keys, and the space key, are all used to aim and fire.
+//
+// Quad floor based at (0, -0.5, 0), rotated in x by 90 degrees, scale (8, 8, 8).
+// ZCube wall at (0, 0.5, 6), scale (3, 2, 0.5).
+// LCube wall at (-3, 0, 3), scale (0.5, 1, 4).
+// RCube wall at (3, 1.5, 3), scale (1, 4, 4).<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private float cameraRotation;<br /><br />    void Start()
+    {
+        Camera.main.transform.position = new <a href="Vector3.html">Vector3</a>(0, 0.5f, 0);
+        cameraRotation = 0.0f;
+    }<br /><br />    // Rotate the camera based on what the user wants to look at.
+    // Avoid rotating more than +/-45 degrees.
+    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        if (<a href="Input.GetKey.html">Input.GetKey</a>("left"))
+        {
+            cameraRotation -= 1f;
+            if (cameraRotation &lt; -45.0f)
+            {
+                cameraRotation = -45.0f;
+            }
+        }<br /><br />        if (<a href="Input.GetKey.html">Input.GetKey</a>("right"))
+        {
+            cameraRotation += 1f;
+            if (cameraRotation &gt; 45.0f)
+            {
+                cameraRotation = 45.0f;
+            }
+        }<br /><br />        // Rotate the camera
+        Camera.main.transform.localEulerAngles = new <a href="Vector3.html">Vector3</a>(0.0f, cameraRotation, 0.0f);
+    }<br /><br />    void <a href="Experimental.PlayerLoop.FixedUpdate.html">FixedUpdate</a>()
+    {
+        <a href="Transform.html">Transform</a> transform = Camera.main.transform;<br /><br />        if (<a href="Input.GetKeyUp.html">Input.GetKeyUp</a>("space"))
+        {
+            // Check for a Wall.
+            <a href="LayerMask.html">LayerMask</a> mask = <a href="LayerMask.GetMask.html">LayerMask.GetMask</a>("Wall");<br /><br />            // Check if a Wall is hit.
+            if (<a href="Physics.Raycast.html">Physics.Raycast</a>(transform.position, transform.forward, 20.0f, mask))
+            {
+                <a href="Debug.Log.html">Debug.Log</a>("Fired and hit a wall");
+            }
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>
+<strong>Note:</strong> <a href="LayerMask.html">LayerMask</a> is a bitmask.  Use <a href="LayerMask.GetMask.html">LayerMask.GetMask</a> and <a href="LayerMask.LayerToName.html">LayerMask.LayerToName</a>
+to generate the bitmask.
+</p></div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="LayerMask-value.html">value</a></td><td class="desc"></td><td class="desc1">Converts a layer mask value to an integer value.</td></tr>
+    </table></div><div class="subsection"><h2>Static Methods   静态方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="LayerMask.GetMask.html">GetMask</a></td><td class="desc"></td><td class="desc1">Given a set of layer names as defined by either a Builtin or a User Layer in the Tags and Layers manager, returns the equivalent layer mask for all of them.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="LayerMask.LayerToName.html">LayerToName</a></td><td class="desc"></td><td class="desc1">Given a layer number, returns the name of the layer as defined in either a Builtin or a User Layer in the Tags and Layers manager.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="LayerMask.NameToLayer.html">NameToLayer</a></td><td class="desc"></td><td class="desc1">Given a layer name, returns the layer index as defined by either a Builtin or a User Layer in the Tags and Layers manager.</td></tr>
+    </table></div><div class="subsection"><h2>Operators   运算符</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="LayerMask-operator_int.html">LayerMask</a></td><td class="desc"></td><td class="desc1">Implicitly converts an integer to a LayerMask.</td></tr>
+    </table></div></div></div></div></body></html>

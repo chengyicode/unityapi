@@ -1,0 +1,20 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Rendering.CommandBuffer.DrawMeshInstancedIndirect</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Rendering.CommandBuffer.html">CommandBuffer</a>.DrawMeshInstancedIndirect</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">DrawMeshInstancedIndirect</span>(<a href="Mesh.html">Mesh</a> <span class="sig-kw">mesh</span>,
+int <span class="sig-kw">submeshIndex</span>,
+<a href="Material.html">Material</a> <span class="sig-kw">material</span>,
+int <span class="sig-kw">shaderPass</span>,
+<a href="ComputeBuffer.html">ComputeBuffer</a> <span class="sig-kw">bufferWithArgs</span>,
+int <span class="sig-kw">argsOffset</span>,
+<a href="MaterialPropertyBlock.html">MaterialPropertyBlock</a> <span class="sig-kw">properties</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">DrawMeshInstancedIndirect</span>(<a href="Mesh.html">Mesh</a> <span class="sig-kw">mesh</span>,
+int <span class="sig-kw">submeshIndex</span>,
+<a href="Material.html">Material</a> <span class="sig-kw">material</span>,
+int <span class="sig-kw">shaderPass</span>,
+<a href="ComputeBuffer.html">ComputeBuffer</a> <span class="sig-kw">bufferWithArgs</span>,
+int <span class="sig-kw">argsOffset</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">DrawMeshInstancedIndirect</span>(<a href="Mesh.html">Mesh</a> <span class="sig-kw">mesh</span>,
+int <span class="sig-kw">submeshIndex</span>,
+<a href="Material.html">Material</a> <span class="sig-kw">material</span>,
+int <span class="sig-kw">shaderPass</span>,
+<a href="ComputeBuffer.html">ComputeBuffer</a> <span class="sig-kw">bufferWithArgs</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">mesh</td><td class="desc"></td><td class="desc1">The <a href="Mesh.html">Mesh</a> to draw.</td></tr><tr><td class="name lbl">submeshIndex</td><td class="desc"></td><td class="desc1">Which subset of the mesh to draw. This applies only to meshes that are composed of several materials.</td></tr><tr><td class="name lbl">material</td><td class="desc"></td><td class="desc1">
+          <a href="Material.html">Material</a> to use.</td></tr><tr><td class="name lbl">shaderPass</td><td class="desc"></td><td class="desc1">Which pass of the shader to use, or -1 which renders all passes.</td></tr><tr><td class="name lbl">properties</td><td class="desc"></td><td class="desc1">Additional material properties to apply onto material just before this mesh will be drawn. See <a href="MaterialPropertyBlock.html">MaterialPropertyBlock</a>.</td></tr><tr><td class="name lbl">bufferWithArgs</td><td class="desc"></td><td class="desc1">The GPU buffer containing the arguments for how many instances of this mesh to draw.</td></tr><tr><td class="name lbl">argsOffset</td><td class="desc"></td><td class="desc1">The byte offset into the buffer, where the draw arguments start.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Add a "draw mesh with indirect instancing" command.</p></div><div class="subsection"><p>See Also: <a href="Rendering.CommandBuffer.DrawMesh.html">DrawMesh</a>, <a href="Graphics.DrawMeshInstancedIndirect.html">Graphics.DrawMeshInstancedIndirect</a>, <a href="MaterialPropertyBlock.html">MaterialPropertyBlock</a>.</p></div></div></div></div></body></html>

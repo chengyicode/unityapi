@@ -1,0 +1,24 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Selection.GetFiltered</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Selection.html">Selection</a>.GetFiltered</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static Object[] <span class="sig-kw">GetFiltered</span>(Type <span class="sig-kw">type</span>,
+<a href="SelectionMode.html">SelectionMode</a> <span class="sig-kw">mode</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">type</td><td class="desc"></td><td class="desc1">Only objects of this type will be retrieved.</td></tr><tr><td class="name lbl">mode</td><td class="desc"></td><td class="desc1">Further options to refine the selection.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Returns the current selection filtered by type and mode.</p></div><div class="subsection"><p>For a selected GameObject that has multiple Components of <code class="varname">type</code>, only the first one will be included in the results. <br />
+If <code class="varname">type</code> is a subclass of <a href="Component.html">Component</a> or <a href="GameObject.html">GameObject</a> the full SelectionMode is supported. <br />
+If <code class="varname">type</code> does not subclass from <a href="Component.html">Component</a> or <a href="GameObject.html">GameObject</a> (eg. <a href="Mesh.html">Mesh</a> or <a href="ScriptableObject.html">ScriptableObject</a>) only <a href="SelectionMode.ExcludePrefab.html">SelectionMode.ExcludePrefab</a> and <a href="SelectionMode.Editable.html">SelectionMode.Editable</a> are supported.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />class ToggleActive : <a href="ScriptableObject.html">ScriptableObject</a>
+{
+    [<a href="MenuItem.html">MenuItem</a>("Example/<a href="UIElements.Toggle.html">Toggle</a> Active of Selected %i")]
+    static void DoToggle()
+    {
+        Object[] activeGOs =
+            <a href="Selection.GetFiltered.html">Selection.GetFiltered</a>(
+                typeof(<a href="GameObject.html">GameObject</a>),
+                <a href="SelectionMode.Editable.html">SelectionMode.Editable</a> | <a href="SelectionMode.TopLevel.html">SelectionMode.TopLevel</a>);<br /><br />        foreach (<a href="GameObject.html">GameObject</a> obj in activeGOs)
+        {
+            obj.SetActive(!obj.activeSelf);
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

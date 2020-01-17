@@ -1,0 +1,18 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Networking.ConnectionConfig.AddChannel</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Method group is Obsolete</b><br /></div><h1 class="heading inherit"><a href="Networking.ConnectionConfig.html">ConnectionConfig</a>.AddChannel</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public byte <span class="sig-kw">AddChannel</span>(<a href="Networking.QosType.html">Networking.QosType</a> <span class="sig-kw">value</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">value</td><td class="desc"></td><td class="desc1">Add new channel to configuration.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>byte</strong>
+        Channel id, user can use this id to send message via this channel.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Adds a new channel to the configuration and returns the unique id of that channel.<br /><br />Channels are logical delimiters of traffic between peers. Every time you send data to a peer, you should use two ids: connection id and channel id. Channels are not only logically separate traffic but could each be configured with a different quality of service (QOS). In the example below, a configuration is created containing two channels with Unreliable and Reliable QOS types. This configuration is then used for sending data.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.Networking;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        ConnectionConfig myConfig = new ConnectionConfig();
+        int reliableChannelId = myConfig.AddChannel(<a href="Networking.QosType.Unreliable.html">QosType.Unreliable</a>);
+        int unreliableChannelId = myConfig.AddChannel(<a href="Networking.QosType.Reliable.html">QosType.Reliable</a>);<br /><br />        //......<br /><br />        //NetworkTransport.Send(hostId, connection, reliableChannelId, data, data.Length, out error);      //sends data via Reliable channel
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

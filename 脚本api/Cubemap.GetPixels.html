@@ -1,0 +1,26 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Cubemap.GetPixels</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Cubemap.html">Cubemap</a>.GetPixels</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Cubemap.html' title='Go to Cubemap Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public Color[] <span class="sig-kw">GetPixels</span>(<a href="CubemapFace.html">CubemapFace</a> <span class="sig-kw">face</span>,
+int <span class="sig-kw">miplevel</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">face</td><td class="desc"></td><td class="desc1">The face from which pixel data is taken.</td></tr><tr><td class="name lbl">miplevel</td><td class="desc"></td><td class="desc1">Mipmap level for the chosen face.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Returns pixel colors of a cubemap face.</p></div><div class="subsection"><p>This method returns an array of pixel colors of the whole
+mip level of a cubemap face.<br /><br />The returned array is a flattened 2D array, where pixels are laid out right to left,
+top to bottom (i.e. row after row). Array size is width by height of the mip level used.
+The default mip level is zero (the base texture) in which case the size is just the size of the texture.
+In general case, mip level size is <code class="mono">mipSize=max(1,width&gt;&gt;miplevel)</code>.<br /><br />The texture must have the <strong>Is Readable</strong> flag set in the import settings, otherwise this method will fail. GetPixels is not available on Textures using Crunch texture compression.<br /><br />Using <code class="varname">GetPixels</code> can be faster than calling <a href="Cubemap.GetPixel.html">GetPixel</a> repeatedly, especially
+for large textures. In addition, <code class="varname">GetPixels</code> can access individual mipmap levels.<br /><br /><strong>Note:</strong> It is assumed that the six sides of each Cubemap are visible from the outside.  This
+means pixels are laid out left to right, top to bottom (i.e. row after row).  If the Cubemap
+surrounds the world then pixels appear right to left.<br /><br />See Also: <a href="Cubemap.SetPixels.html">SetPixels</a>, <a href="Texture2D-mipmapCount.html">mipmapCount</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// copy the +X face of a cubemap to a texture.<br /><br />using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Cubemap.html">Cubemap</a> c;
+    public <a href="Texture2D.html">Texture2D</a> t;
+    private <a href="Color.html">Color</a>[] CubeMapColors;<br /><br />    void Example()
+    {
+        CubeMapColors = c.GetPixels(<a href="CubemapFace.PositiveX.html">CubemapFace.PositiveX</a>);
+        t.SetPixels(CubeMapColors);
+        t.Apply();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

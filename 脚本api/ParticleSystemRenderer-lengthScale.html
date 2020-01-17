@@ -1,0 +1,30 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ParticleSystemRenderer.lengthScale</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="ParticleSystemRenderer.html">ParticleSystemRenderer</a>.lengthScale</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public float <span class="sig-kw">lengthScale</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>How much are the particles stretched in their direction of motion.</p></div><div class="subsection"><p>Use this to make particles always be longer than they are wide.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a> {<br /><br />    private <a href="ParticleSystem.html">ParticleSystem</a> ps;
+    private <a href="ParticleSystemRenderer.html">ParticleSystemRenderer</a> psr;
+    public <a href="ParticleSystemRenderMode.html">ParticleSystemRenderMode</a> renderMode = <a href="ParticleSystemRenderMode.Billboard.html">ParticleSystemRenderMode.Billboard</a>;
+    public float cameraScale = 0.0f;
+    public float lengthScale = 0.0f;
+    public float velocityScale = 1.0f;<br /><br />    void Start() {<br /><br />        ps = GetComponent&lt;<a href="ParticleSystem.html">ParticleSystem</a>&gt;();
+        psr = GetComponent&lt;<a href="ParticleSystemRenderer.html">ParticleSystemRenderer</a>&gt;();<br /><br />        psr.mesh = Resources.GetBuiltinResource&lt;<a href="Mesh.html">Mesh</a>&gt;("Capsule.fbx");<br /><br />        var main = ps.main;
+        main.startSpeed = new <a href="ParticleSystem.MinMaxCurve.html">ParticleSystem.MinMaxCurve</a>(0.5f, 1.5f);
+        main.startSize = new <a href="ParticleSystem.MinMaxCurve.html">ParticleSystem.MinMaxCurve</a>(0.1f, 0.8f);
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>() {
+        psr.renderMode = renderMode;
+        psr.cameraVelocityScale = cameraScale;
+        psr.lengthScale = lengthScale;
+        psr.velocityScale = velocityScale;<br /><br />        if (renderMode == <a href="ParticleSystemRenderMode.Stretch.html">ParticleSystemRenderMode.Stretch</a>)
+            Camera.main.transform.position = new <a href="Vector3.html">Vector3</a>(<a href="Mathf.Sin.html">Mathf.Sin</a>(<a href="Time-time.html">Time.time</a>) * 4.0f, 0.0f, -10.0f);    // move the camera so we can see the effect on stretch camera velocity
+    }<br /><br />    void OnGUI() {
+        renderMode = (<a href="ParticleSystemRenderMode.html">ParticleSystemRenderMode</a>)<a href="GUI.SelectionGrid.html">GUI.SelectionGrid</a>(new <a href="Rect.html">Rect</a>(25, 25, 900, 30), (int)renderMode, new <a href="GUIContent.html">GUIContent</a>[] { new <a href="GUIContent.html">GUIContent</a>("Billboard"), new <a href="GUIContent.html">GUIContent</a>("Stretch"), new <a href="GUIContent.html">GUIContent</a>("HorizontalBillboard"), new <a href="GUIContent.html">GUIContent</a>("VerticalBillboard"), new <a href="GUIContent.html">GUIContent</a>("<a href="Mesh.html">Mesh</a>"), new <a href="GUIContent.html">GUIContent</a>("None") }, 6);<br /><br />        if (renderMode == <a href="ParticleSystemRenderMode.Stretch.html">ParticleSystemRenderMode.Stretch</a>) {<br /><br />            <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, 80, 100, 30), "<a href="Camera.html">Camera</a> Scale");
+            <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, 120, 100, 30), "<a href="UIElements.Length.html">Length</a> Scale");
+            <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, 160, 100, 30), "Velocity Scale");<br /><br />            cameraScale = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(125, 85, 100, 30), cameraScale, 0.0f, 10.0f);
+            lengthScale = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(125, 125, 100, 30), lengthScale, 0.0f, 10.0f);
+            velocityScale = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(125, 165, 100, 30), velocityScale, 0.0f, 10.0f);
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

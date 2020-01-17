@@ -1,0 +1,22 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: WWW.textureNonReadable</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Method group is Obsolete</b><br /></div><h1 class="heading inherit"><a href="WWW.html">WWW</a>.textureNonReadable</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public <a href="Texture2D.html">Texture2D</a> <span class="sig-kw">textureNonReadable</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Returns a non-readable <a href="Texture2D.html">Texture2D</a> generated from the downloaded data (Read Only).</p></div><div class="subsection"><p>Same as texture, but marks texture as non-readable, effectively freeing system memory.<br /><br />SA <a href="TextureImporter-isReadable.html">TextureImporter.isReadable</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Get the latest webcam shot from outside "Friday's" in Times Square<br /><br />using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public string url = "http://images.earthcam.com/ec_metros/ourcams/fridays.jpg";
+    IEnumerator Start()
+    {
+        // Start a download of the given URL
+        using (WWW www = new WWW(url))
+        {
+            // Wait for download to complete
+            yield return www;<br /><br />            // assign texture
+            <a href="Renderer.html">Renderer</a> renderer = GetComponent&lt;<a href="Renderer.html">Renderer</a>&gt;();
+            renderer.material.mainTexture = www.textureNonReadable;
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

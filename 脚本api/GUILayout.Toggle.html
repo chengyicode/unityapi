@@ -1,0 +1,49 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: GUILayout.Toggle</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="GUILayout.html">GUILayout</a>.Toggle</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">Toggle</span>(bool <span class="sig-kw">value</span>,
+<a href="Texture.html">Texture</a> <span class="sig-kw">image</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">Toggle</span>(bool <span class="sig-kw">value</span>,
+string <span class="sig-kw">text</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">Toggle</span>(bool <span class="sig-kw">value</span>,
+<a href="GUIContent.html">GUIContent</a> <span class="sig-kw">content</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">Toggle</span>(bool <span class="sig-kw">value</span>,
+<a href="Texture.html">Texture</a> <span class="sig-kw">image</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">Toggle</span>(bool <span class="sig-kw">value</span>,
+string <span class="sig-kw">text</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">Toggle</span>(bool <span class="sig-kw">value</span>,
+<a href="GUIContent.html">GUIContent</a> <span class="sig-kw">content</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">value</td><td class="desc"></td><td class="desc1">Is the button on or off?</td></tr><tr><td class="name lbl">text</td><td class="desc"></td><td class="desc1">Text to display on the button.</td></tr><tr><td class="name lbl">image</td><td class="desc"></td><td class="desc1">
+          <a href="Texture.html">Texture</a> to display on the button.</td></tr><tr><td class="name lbl">content</td><td class="desc"></td><td class="desc1">Text, image and tooltip for this button.</td></tr><tr><td class="name lbl">style</td><td class="desc"></td><td class="desc1">The style to use. If left out, the <code class="varname">button</code> style from the current <a href="GUISkin.html">GUISkin</a> is used.</td></tr><tr><td class="name lbl">options</td><td class="desc"></td><td class="desc1">An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the <code class="varname">style</code>.<br />
+See Also: <a href="GUILayout.Width.html">GUILayout.Width</a>, <a href="GUILayout.Height.html">GUILayout.Height</a>, <a href="GUILayout.MinWidth.html">GUILayout.MinWidth</a>, <a href="GUILayout.MaxWidth.html">GUILayout.MaxWidth</a>, <a href="GUILayout.MinHeight.html">GUILayout.MinHeight</a>,
+<a href="GUILayout.MaxHeight.html">GUILayout.MaxHeight</a>, <a href="GUILayout.ExpandWidth.html">GUILayout.ExpandWidth</a>, <a href="GUILayout.ExpandHeight.html">GUILayout.ExpandHeight</a>.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>bool</strong>
+        The new value of the button.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Make an on/off toggle button.</p></div><div class="subsection"><p>
+        <img src="../StaticFiles/ScriptRefImages/GUILayoutToggle.png" />
+        <br />
+<em>Toggle button in the Game View.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Draws 2 toggle controls, one with a text, the other with an image.
+    <a href="Texture.html">Texture</a> aTexture;<br /><br />    bool toggleTxt = false;
+    bool toggleImg = false;<br /><br />    void OnGUI()
+    {
+        if (!aTexture)
+        {
+            <a href="Debug.LogError.html">Debug.LogError</a>("Please assign a texture in the inspector.");
+            return;
+        }
+        toggleTxt = <a href="GUILayout.Toggle.html">GUILayout.Toggle</a>(toggleTxt, "A <a href="UIElements.Toggle.html">Toggle</a> text");
+        toggleImg = <a href="GUILayout.Toggle.html">GUILayout.Toggle</a>(toggleImg, aTexture);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: GameObject.GetComponentsInParent</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="GameObject.html">GameObject</a>.GetComponentsInParent</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-GameObject.html' title='Go to GameObject Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public Component[] <span class="sig-kw">GetComponentsInParent</span>(Type <span class="sig-kw">type</span>,
+bool <span class="sig-kw">includeInactive</span> = false);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">type</td><td class="desc"></td><td class="desc1">The type of Component to retrieve.</td></tr><tr><td class="name lbl">includeInactive</td><td class="desc"></td><td class="desc1">Should inactive Components be included in the found set?</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Returns all components of Type <code class="varname">type</code> in the GameObject or any of its parents.</p></div><div class="subsection"><p>The search for components is carried out recursively on parent objects, so it includes parents of parents, and so on.<br />
+<strong>Note:</strong> If the type you request is a derivative of <a href="MonoBehaviour.html">MonoBehaviour</a> and the <strong>associated script can not be loaded</strong> then this function will return `null` for that component.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class GetComponentsInParentExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        <a href="Component.html">Component</a>[] hingeJoints;<br /><br />        hingeJoints = GetComponentsInParent(typeof(<a href="HingeJoint.html">HingeJoint</a>));<br /><br />        if (hingeJoints != null)
+        {
+            foreach (<a href="HingeJoint.html">HingeJoint</a> joint in hingeJoints)
+                joint.useSpring = false;
+        }
+        else
+        {
+            // Try again, looking for inactive GameObjects
+            <a href="Component.html">Component</a>[] hingesInactive = GetComponentsInParent(typeof(<a href="HingeJoint.html">HingeJoint</a>), true);<br /><br />            foreach (<a href="HingeJoint.html">HingeJoint</a> joint in hingesInactive)
+                joint.useSpring = false;
+        }
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public T[] <span class="sig-kw">GetComponentsInParent</span>();
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public T[] <span class="sig-kw">GetComponentsInParent</span>(bool <span class="sig-kw">includeInactive</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">includeInactive</td><td class="desc"></td><td class="desc1">Determines whether to include inactive components in the found set.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Generic version. See the <a href="../Manual/GenericFunctions.html">Generic Functions</a> page for more details.</p></div><div class="subsection"><p>
+        <strong>Note:</strong> If the type you request is a derivative of <a href="MonoBehaviour.html">MonoBehaviour</a> and the <strong>associated script can not be loaded</strong> then this function will return `null` for that component.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class GetComponentsInParentExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        <a href="HingeJoint.html">HingeJoint</a>[] hingeJoints;<br /><br />        hingeJoints = GetComponentsInParent&lt;<a href="HingeJoint.html">HingeJoint</a>&gt;();<br /><br />        if (hingeJoints != null)
+        {
+            foreach (<a href="HingeJoint.html">HingeJoint</a> joint in hingeJoints)
+                joint.useSpring = false;
+        }
+        else
+        {
+            // Try again, looking for inactive GameObjects
+            <a href="HingeJoint.html">HingeJoint</a>[] hingesInactive = GetComponentsInParent&lt;<a href="HingeJoint.html">HingeJoint</a>&gt;(true);<br /><br />            foreach (<a href="HingeJoint.html">HingeJoint</a> joint in hingesInactive)
+                joint.useSpring = false;
+        }
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">GetComponentsInParent</span>(bool <span class="sig-kw">includeInactive</span>,
+List&lt;T&gt; <span class="sig-kw">results</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">includeInactive</td><td class="desc"></td><td class="desc1">Should inactive Components be included in the found set?</td></tr><tr><td class="name lbl">results</td><td class="desc"></td><td class="desc1">List holding the found Components.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Find Components in GameObject or parents, and return them in List <code class="varname">results</code>.</p></div><div class="subsection"><p>
+        <strong>Note:</strong> If the type you request is a derivative of <a href="MonoBehaviour.html">MonoBehaviour</a> and the <strong>associated script can not be loaded</strong> then this function will return `null` for that component.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections.Generic;<br /><br />public class GetComponentsInParentExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        List&lt;<a href="HingeJoint.html">HingeJoint</a>&gt; hingeJoints = new List&lt;<a href="HingeJoint.html">HingeJoint</a>&gt;();<br /><br />        GetComponentsInParent&lt;<a href="HingeJoint.html">HingeJoint</a>&gt;(false, hingeJoints);<br /><br />        if (hingeJoints != null)
+        {
+            foreach (<a href="HingeJoint.html">HingeJoint</a> joint in hingeJoints)
+                joint.useSpring = false;
+        }
+        else
+        {
+            // Try again, looking for inactive GameObjects
+            List&lt;<a href="HingeJoint.html">HingeJoint</a>&gt; hingesInactive = new List&lt;<a href="HingeJoint.html">HingeJoint</a>&gt;();<br /><br />            GetComponentsInParent&lt;<a href="HingeJoint.html">HingeJoint</a>&gt;(true, hingesInactive);<br /><br />            foreach (<a href="HingeJoint.html">HingeJoint</a> joint in hingesInactive)
+                joint.useSpring = false;
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

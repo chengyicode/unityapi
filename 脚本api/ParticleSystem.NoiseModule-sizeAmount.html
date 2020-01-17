@@ -1,0 +1,33 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ParticleSystem.NoiseModule.sizeAmount</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="ParticleSystem.NoiseModule.html">ParticleSystem.NoiseModule</a>.sizeAmount</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-ParticleSystem.html' title='Go to ParticleSystem Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="ParticleSystem.MinMaxCurve.html">ParticleSystem.MinMaxCurve</a> <span class="sig-kw">sizeAmount</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>How much the noise affects the particle sizes, applied as a multiplier on the size of each particle.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private <a href="ParticleSystem.html">ParticleSystem</a> ps;
+    public float hSliderValuePositionAmount = 0.0f;
+    public float hSliderValueRotationAmount = 0.0f;
+    public float hSliderValueSizeAmount = 0.5f;<br /><br />    void Start()
+    {
+        ps = GetComponent&lt;<a href="ParticleSystem.html">ParticleSystem</a>&gt;();<br /><br />        var noise = ps.noise;
+        noise.enabled = true;<br /><br />        var psr = GetComponent&lt;<a href="ParticleSystemRenderer.html">ParticleSystemRenderer</a>&gt;();
+        psr.material = new <a href="Material.html">Material</a>(<a href="Shader.Find.html">Shader.Find</a>("Sprites/Default"));    // this material renders a square billboard, so we can see the rotation
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        var noise = ps.noise;
+        noise.enabled = enabled;
+        noise.positionAmount = hSliderValuePositionAmount;
+        noise.rotationAmount = hSliderValueRotationAmount;
+        noise.sizeAmount = hSliderValueSizeAmount;
+    }<br /><br />    void OnGUI()
+    {
+        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, 80, 100, 30), "<a href="UIElements.Position.html">Position</a> Amount");
+        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, 120, 100, 30), "Rotation Amount");
+        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, 160, 100, 30), "Size Amount");<br /><br />        hSliderValuePositionAmount = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(135, 85, 100, 30), hSliderValuePositionAmount, 0.0f, 5.0f);
+        hSliderValueRotationAmount = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(135, 125, 100, 30), hSliderValueRotationAmount, 0.0f, 180.0f);
+        hSliderValueSizeAmount = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(135, 165, 100, 30), hSliderValueSizeAmount, 0.0f, 1.0f);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

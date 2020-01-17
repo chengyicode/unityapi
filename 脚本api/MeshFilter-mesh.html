@@ -1,0 +1,46 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: MeshFilter.mesh</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="MeshFilter.html">MeshFilter</a>.mesh</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-MeshFilter.html' title='Go to MeshFilter Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Mesh.html">Mesh</a> <span class="sig-kw">mesh</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Returns the instantiated <a href="Mesh.html">Mesh</a> assigned to the mesh filter.</p></div><div class="subsection"><p>If no mesh is assigned to the mesh filter a new mesh will be created and assigned.<br /><br />If a mesh is assigned to the mesh filter already, then first query of <code class="varname">mesh</code> property will create a duplicate of it, and this copy
+will be returned. Further queries of <code class="varname">mesh</code> property will return this duplicated mesh instance.
+Once <code class="varname">mesh</code> property is queried, link to the original shared mesh is lost and <a href="MeshFilter-sharedMesh.html">MeshFilter.sharedMesh</a> property becomes an alias to <code class="varname">mesh</code>.
+If you want to avoid this automatic mesh duplication, use <a href="MeshFilter-sharedMesh.html">MeshFilter.sharedMesh</a> instead.<br /><br />By using <code class="varname">mesh</code> property you can modify the mesh for a single object only. The
+other objects that used the same mesh will not be modified.<br /><br />It is your responsibility to destroy the automatically instantiated mesh when the game object is being destroyed. <a href="Resources.UnloadUnusedAssets.html">Resources.UnloadUnusedAssets</a>
+also destroys the mesh but it is usually only called when loading a new level.<br /><br />Consider <code class="varname">mesh</code> property as a shortcut for the following code:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        <a href="Mesh.html">Mesh</a> mesh = GetComponent&lt;<a href="MeshFilter.html">MeshFilter</a>&gt;().sharedMesh;
+        <a href="Mesh.html">Mesh</a> mesh2 = Instantiate(mesh);
+        GetComponent&lt;<a href="MeshFilter.html">MeshFilter</a>&gt;().sharedMesh = mesh2;
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Which is called on first query of <code class="varname">mesh</code> property.<br /><br /><strong>Note:</strong><br />
+If <a href="MeshFilter.html">MeshFilter</a> is a part of an asset object, quering <code class="varname">mesh</code> property is not allowed and only asset mesh can be assigned.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Distorts the mesh vertically.
+    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        // Get instantiated mesh
+        <a href="Mesh.html">Mesh</a> mesh = GetComponent&lt;<a href="MeshFilter.html">MeshFilter</a>&gt;().mesh;
+        // Randomly change vertices
+        <a href="Vector3.html">Vector3</a>[] vertices = mesh.vertices;
+        int p = 0;
+        while (p &lt; vertices.Length)
+        {
+            vertices[p] += new <a href="Vector3.html">Vector3</a>(0, <a href="Random.Range.html">Random.Range</a>(-0.3F, 0.3F), 0);
+            p++;
+        }
+        mesh.vertices = vertices;
+        mesh.RecalculateNormals();
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="Mesh.html">Mesh</a> class.</p></div></div></div></div></body></html>

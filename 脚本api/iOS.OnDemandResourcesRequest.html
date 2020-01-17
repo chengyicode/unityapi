@@ -1,0 +1,50 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: OnDemandResourcesRequest</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">OnDemandResourcesRequest</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine.iOS</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Inherits from:<a href="AsyncOperation.html" class="cl">AsyncOperation</a></p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.CoreModule.html" class="cl">UnityEngine.CoreModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Represents a request for On Demand Resources (ODR). It's an <a href="AsyncOperation.html">AsyncOperation</a> and can be yielded in a coroutine.</p></div><div class="subsection"><p>
+        <strong>NOTE:</strong> only available on iOS.<br /><br />Creating an <a href="iOS.OnDemandResourcesRequest.html">OnDemandResourcesRequest</a> is equivalent to calling <a href="https://developer.apple.com/reference/foundation/nsbundleresourcerequest/1614840-beginaccessingresources"> NSBundleResourceRequest.beginAccessingResourcesWithCompletionHandler </a>. The request will keep the on demand resource alive until either <a href="iOS.OnDemandResourcesRequest.Dispose.html">Dispose</a>() is called or the request object is collected by a garbage collector, which is the equivalent of calling <a href="https://developer.apple.com/reference/foundation/nsbundleresourcerequest/1614843-endaccessingresources">NSBundleResourceRequest.endAccessingResources </a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.iOS;
+using System;
+using System.Collections;<br /><br />public static class Loader
+{
+    public static IEnumerator LoadAsset(string resourceName)
+    {
+        // Create the request
+        var request = <a href="iOS.OnDemandResources.PreloadAsync.html">OnDemandResources.PreloadAsync</a>(new string[] { "<a href="VersionControl.Asset.html">Asset</a>'s ODR tag" });<br /><br />        // Wait until request is completed
+        yield return request;<br /><br />        // Check for errors
+        if (request.error != null)
+            throw new Exception("ODR request failed: " + request.error);<br /><br />        // Get path to the resource and use it
+        var path = request.GetResourcePath(resourceName);
+        <a href="Debug.Log.html">Debug.Log</a>(path);<br /><br />        // Call Dispose() when resource is no longer needed.
+        request.Dispose();
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="iOS.OnDemandResourcesRequest-error.html">error</a></td><td class="desc"></td><td class="desc1">Returns an error after operation is complete.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="iOS.OnDemandResourcesRequest-loadingPriority.html">loadingPriority</a></td><td class="desc"></td><td class="desc1">Sets the priority for request.</td></tr>
+    </table></div><div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="iOS.OnDemandResourcesRequest.Dispose.html">Dispose</a></td><td class="desc"></td><td class="desc1">Release all resources kept alive by On Demand Resources (ODR) request.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="iOS.OnDemandResourcesRequest.GetResourcePath.html">GetResourcePath</a></td><td class="desc"></td><td class="desc1">Gets file system's path to the resource available in On Demand Resources (ODR) request.</td></tr>
+    </table></div><div class="subsection"><h2>Inherited Members   继承成员</h2>
+      
+      <div class="subsection"><h2>Properties   属性</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="AsyncOperation-allowSceneActivation.html">allowSceneActivation</a></td><td class="desc"></td><td class="desc1">Allow Scenes to be activated as soon as it is ready.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="AsyncOperation-isDone.html">isDone</a></td><td class="desc"></td><td class="desc1">Has the operation finished? (Read Only)</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="AsyncOperation-priority.html">priority</a></td><td class="desc"></td><td class="desc1">Priority lets you tweak in which order async operation calls will be performed.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="AsyncOperation-progress.html">progress</a></td><td class="desc"></td><td class="desc1">What's the operation's progress. (Read Only)</td></tr>
+      </table></div>
+      
+      
+      
+      
+      
+      
+      
+      
+      <div class="subsection"><h2>Events</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="AsyncOperation-completed.html">completed</a></td><td class="desc"></td><td class="desc1">Event that is invoked upon operation completion.  An event handler that is registered in the same frame as the call that creates it will be invoked next frame, even if the operation is able to complete synchronously.  If a handler is registered after the operation has completed and has already invoked the complete event, the handler will be called synchronously.</td></tr>
+      </table></div>
+      
+    </div></div></div></div></body></html>

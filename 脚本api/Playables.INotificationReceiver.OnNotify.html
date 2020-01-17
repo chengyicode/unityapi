@@ -1,0 +1,18 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Playables.INotificationReceiver.OnNotify</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Playables.INotificationReceiver.html">INotificationReceiver</a>.OnNotify</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">OnNotify</span>(<a href="Playables.Playable.html">Playables.Playable</a> <span class="sig-kw">origin</span>,
+<a href="Playables.INotification.html">Playables.INotification</a> <span class="sig-kw">notification</span>,
+object <span class="sig-kw">context</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">origin</td><td class="desc"></td><td class="desc1">The playable that sent the notification.</td></tr><tr><td class="name lbl">notification</td><td class="desc"></td><td class="desc1">The received notification.</td></tr><tr><td class="name lbl">context</td><td class="desc"></td><td class="desc1">User defined data that depends on the type of notification. Uses this to pass necessary information that can change with each invocation.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>The method called when a notification is raised.</p></div><div class="subsection"><p>
+        <a href="Playables.PlayableOutputExtensions.PushNotification.html">PlayableOutputExtensions.PushNotification</a> contains an example on how to send a notification.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.Playables;
+class NotificationLogger : <a href="MonoBehaviour.html">MonoBehaviour</a>, <a href="Playables.INotificationReceiver.html">INotificationReceiver</a>
+{
+    public void OnNotify(<a href="Playables.Playable.html">Playable</a> origin, <a href="Playables.INotification.html">INotification</a> notification, object context)
+    {
+        <a href="Debug.Log.html">Debug.Log</a>(notification.id);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

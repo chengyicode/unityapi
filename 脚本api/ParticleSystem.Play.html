@@ -1,0 +1,47 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ParticleSystem.Play</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="ParticleSystem.html">ParticleSystem</a>.Play</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-ParticleSystem.html' title='Go to ParticleSystem Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">Play</span>();
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">Play</span>(bool <span class="sig-kw">withChildren</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">withChildren</td><td class="desc"></td><td class="desc1">Play all child Particle Systems as well.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Starts the Particle System.</p></div><div class="subsection"><p>Sets the Particle Systems into play mode and enables emitting (if it has been disabled).<br /><br />If the Particle System has been <strong>paused</strong>, then this resumes playing from the previous time.<br />
+If the Particle System has <strong>stopped</strong>, then the system starts from time 0, and, if it is relevant, the <a href="ParticleSystem-startDelay.html">startDelay</a> is applied.<br /><br />See Also: <a href="ParticleSystem.Stop.html">Stop</a>, <a href="ParticleSystem.Pause.html">Pause</a>, <a href="ParticleSystem-isEmitting.html">isEmitting</a> functions.<br /><br />The following example creates a GUI window for manipulating a Particle System.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">using UnityEngine;<br /><br />public class ParticleSystemControllerWindow : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="ParticleSystem.html">ParticleSystem</a> system
+    {
+        get
+        {
+            if (_CachedSystem == null)
+                _CachedSystem = GetComponent&lt;<a href="ParticleSystem.html">ParticleSystem</a>&gt;();
+            return _CachedSystem;
+        }
+    }
+    private <a href="ParticleSystem.html">ParticleSystem</a> _CachedSystem;<br /><br />    public <a href="Rect.html">Rect</a> windowRect = new <a href="Rect.html">Rect</a>(0, 0, 300, 120);<br /><br />    public bool includeChildren = true;<br /><br />    void OnGUI()
+    {
+        windowRect = <a href="GUI.Window.html">GUI.Window</a>("ParticleController".GetHashCode(), windowRect, DrawWindowContents, system.name);
+    }<br /><br />    void DrawWindowContents(int windowId)
+    {
+        if (system)
+        {
+            <a href="GUILayout.BeginHorizontal.html">GUILayout.BeginHorizontal</a>();
+            <a href="GUILayout.Toggle.html">GUILayout.Toggle</a>(system.isPlaying, "Playing");
+            <a href="GUILayout.Toggle.html">GUILayout.Toggle</a>(system.isEmitting, "Emitting");
+            <a href="GUILayout.Toggle.html">GUILayout.Toggle</a>(system.isPaused, "Paused");
+            <a href="GUILayout.EndHorizontal.html">GUILayout.EndHorizontal</a>();<br /><br />            <a href="GUILayout.BeginHorizontal.html">GUILayout.BeginHorizontal</a>();
+            if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Play"))
+                system.Play(includeChildren);
+            if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Pause"))
+                system.Pause(includeChildren);
+            if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Stop Emitting"))
+                system.Stop(includeChildren, <a href="ParticleSystemStopBehavior.StopEmitting.html">ParticleSystemStopBehavior.StopEmitting</a>);
+            if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Stop &amp; Clear"))
+                system.Stop(includeChildren, <a href="ParticleSystemStopBehavior.StopEmittingAndClear.html">ParticleSystemStopBehavior.StopEmittingAndClear</a>);
+            <a href="GUILayout.EndHorizontal.html">GUILayout.EndHorizontal</a>();<br /><br />            includeChildren = <a href="GUILayout.Toggle.html">GUILayout.Toggle</a>(includeChildren, "Include Children");<br /><br />            <a href="GUILayout.BeginHorizontal.html">GUILayout.BeginHorizontal</a>();
+            <a href="GUILayout.Label.html">GUILayout.Label</a>("<a href="Time.html">Time</a>(" + system.time + ")");
+            <a href="GUILayout.Label.html">GUILayout.Label</a>("<a href="ParticleSystem.Particle.html">Particle</a> Count(" + system.particleCount + ")");
+            <a href="GUILayout.EndHorizontal.html">GUILayout.EndHorizontal</a>();
+        }
+        else
+            <a href="GUILayout.Label.html">GUILayout.Label</a>("No <a href="ParticleSystem.Particle.html">Particle</a> System found");<br /><br />        <a href="GUI.DragWindow.html">GUI.DragWindow</a>();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

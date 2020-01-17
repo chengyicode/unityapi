@@ -1,0 +1,39 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: RigidbodyConstraints.FreezeRotation</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="RigidbodyConstraints.html">RigidbodyConstraints</a>.FreezeRotation</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Freeze rotation along all axes.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//Attach this script to a <a href="GameObject.html">GameObject</a> with a <a href="Rigidbody.html">Rigidbody</a>. Press the up and down keys to move the <a href="Rigidbody.html">Rigidbody</a> up and down.
+//Press the space key to freeze all rotations, but notice the positions still change.<br /><br />using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="Rigidbody.html">Rigidbody</a> m_Rigidbody;
+    <a href="Vector3.html">Vector3</a> m_YAxis;
+    float m_Speed;<br /><br />    void Start()
+    {
+        m_Rigidbody = GetComponent&lt;<a href="Rigidbody.html">Rigidbody</a>&gt;();
+        //Set up vector for moving the <a href="Rigidbody.html">Rigidbody</a> in the y axis
+        m_YAxis = new <a href="Vector3.html">Vector3</a>(0, 5, 0);
+        m_Speed = 20.0f;
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        //Press space to add constraints on the RigidBody (freeze all rotations)
+        if (<a href="Input.GetKeyDown.html">Input.GetKeyDown</a>(<a href="KeyCode.Space.html">KeyCode.Space</a>))
+        {
+            //Freeze all rotations
+            m_Rigidbody.constraints = <a href="RigidbodyConstraints.FreezeRotation.html">RigidbodyConstraints.FreezeRotation</a>;
+        }<br /><br />        //Press the up arrow key to move positively in the y axis
+        if (<a href="Input.GetKeyDown.html">Input.GetKeyDown</a>(<a href="KeyCode.UpArrow.html">KeyCode.UpArrow</a>))
+        {
+            //The <a href="Rigidbody.html">Rigidbody</a> moves along the y axis
+            m_Rigidbody.velocity = m_YAxis;
+        }<br /><br />        //Press the down arrow key to move negatively in the y axis
+        if (<a href="Input.GetKeyDown.html">Input.GetKeyDown</a>(<a href="KeyCode.DownArrow.html">KeyCode.DownArrow</a>))
+        {
+            m_Rigidbody.velocity = -m_YAxis;
+        }<br /><br />        //Press the A key to rotate the <a href="GameObject.html">GameObject</a> (if there are no rotation constraints)
+        if (<a href="Input.GetKey.html">Input.GetKey</a>(<a href="KeyCode.A.html">KeyCode.A</a>))
+        {
+            m_Rigidbody.angularVelocity = <a href="Vector3-right.html">Vector3.right</a> * m_Speed * <a href="Time-deltaTime.html">Time.deltaTime</a>;
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

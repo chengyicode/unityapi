@@ -1,0 +1,19 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: RealtimeGICPUUsage</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">RealtimeGICPUUsage</h1><div class="clear"></div><p class="cl mb0 left mr10">enumeration</p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>How much CPU usage to assign to the final lighting calculations at runtime.</p></div><div class="subsection"><p>How many CPU worker threads to create for Realtime Global Illumination lighting calculations in the Player. Increasing this makes the system react faster to changes in lighting at a cost of using more CPU time. The higher the CPU Usage value, the more worker threads are created for solving Realtime GI.<br />
+<br />
+<strong>Please note</strong> that some platforms will allow all CPUs to be occupied by worker threads whilst some have a max limit:<br />
+<strong>Xbox One:</strong> 4 CPU cores.<br />
+<strong>PS4:</strong> 4 CPU cores.<br />
+<strong>Android:</strong> If the device is a bigLittle architecture, only the little CPUs will be used, otherwise it is CPUs - 1.<br /></p></div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.RealtimeGICPUUsage.Low.html">Low</a></td><td class="desc"></td><td class="desc1">25% of the allowed CPU threads are used as worker threads.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.RealtimeGICPUUsage.Medium.html">Medium</a></td><td class="desc"></td><td class="desc1">50% of the allowed CPU threads are used as worker threads.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.RealtimeGICPUUsage.High.html">High</a></td><td class="desc"></td><td class="desc1">75% of the allowed CPU threads are used as worker threads.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.RealtimeGICPUUsage.Unlimited.html">Unlimited</a></td><td class="desc"></td><td class="desc1">100% of the allowed CPU threads are used as worker threads.</td></tr>
+    </table></div></div></div></div></body></html>

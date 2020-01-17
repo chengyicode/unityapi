@@ -1,0 +1,75 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AnimationMode.IsPropertyAnimated</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="AnimationMode.html">AnimationMode</a>.IsPropertyAnimated</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">IsPropertyAnimated</span>(<a href="Object.html">Object</a> <span class="sig-kw">target</span>,
+string <span class="sig-kw">propertyPath</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">target</td><td class="desc"></td><td class="desc1">The object to determine if it contained the animation.</td></tr><tr><td class="name lbl">propertyPath</td><td class="desc"></td><td class="desc1">The name of the animation to search for.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>bool</strong>
+        Whether the property search is found or not.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Is the specified property currently in animation mode and being animated?</p></div><div class="subsection"><p>
+          <a href="AnimationMode.IsPropertyAnimated.html">IsPropertyAnimated</a> checks whether a property is being animated.  This
+          check requires also the object where the property can be found.<br />
+<br /><code class="varname">color</code> is searched for in the following script example .  It is part of the <code class="varname">Renderer</code> object.
+Note that the example uses a sphere GameObject and an animation file, color.anim.  The color
+animation in color.anim has the color varying from yellow to blue.
+        </p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Demo showing how IsPropertyAnimated() can be used to determine if a property
+// on an object is being animated. In this example the color in a <a href="Renderer.html">Renderer</a> is
+// animated.<br /><br />using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class ExampleClass : <a href="EditorWindow.html">EditorWindow</a>
+{
+    protected <a href="GameObject.html">GameObject</a> go;
+    protected <a href="AnimationClip.html">AnimationClip</a> animationClip;
+    protected float time = 0.0f;
+    protected bool showColor = false;<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Examples/<a href="AnimationMode.html">AnimationMode</a> demo")]
+    public static void DoWindow()
+    {
+        var window = GetWindow&lt;ExampleClass&gt;();
+        window.Show();
+    }<br /><br />    void OnGUI()
+    {
+        if (go == null)
+        {
+            <a href="EditorGUILayout.HelpBox.html">EditorGUILayout.HelpBox</a>("Select a GO", <a href="MessageType.Info.html">MessageType.Info</a>);
+            return;
+        }<br /><br />        <a href="EditorGUILayout.LabelField.html">EditorGUILayout.LabelField</a>("<a href="Color.html">Color</a> slider");<br /><br />        if (animationClip == null)
+        {
+            <a href="AnimationMode.StartAnimationMode.html">AnimationMode.StartAnimationMode</a>();
+            animationClip = <a href="AssetDatabase.LoadAssetAtPath.html">AssetDatabase.LoadAssetAtPath</a>&lt;<a href="AnimationClip.html">AnimationClip</a>&gt;("Assets/color.anim");
+        }<br /><br />        if (animationClip != null)
+        {
+            float startTime = 0.0f;
+            float stopTime  = animationClip.length;
+            time = <a href="EditorGUILayout.Slider.html">EditorGUILayout.Slider</a>(time, startTime, stopTime);
+        }<br /><br />        if (showColor)
+        {
+            <a href="EditorGUILayout.LabelField.html">EditorGUILayout.LabelField</a>("Red color being animated");
+        }
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        if (go == null)
+            return;<br /><br />        if (animationClip == null)
+            return;<br /><br />        if (<a href="AnimationMode.InAnimationMode.html">AnimationMode.InAnimationMode</a>())
+        {
+            <a href="Renderer.html">Renderer</a> rend = go.GetComponent&lt;<a href="Renderer.html">Renderer</a>&gt;();<br /><br />            if (<a href="AnimationMode.IsPropertyAnimated.html">AnimationMode.IsPropertyAnimated</a>(rend, "material._Color.r"))
+            {
+                showColor = true;
+            }
+            else
+            {
+                showColor = false;
+            }<br /><br />            <a href="AnimationMode.BeginSampling.html">AnimationMode.BeginSampling</a>();
+            <a href="AnimationMode.SampleAnimationClip.html">AnimationMode.SampleAnimationClip</a>(go, animationClip, time);
+            <a href="AnimationMode.EndSampling.html">AnimationMode.EndSampling</a>();<br /><br />            <a href="SceneView.RepaintAll.html">SceneView.RepaintAll</a>();
+        }
+    }<br /><br />    // Has a <a href="GameObject.html">GameObject</a> been selection?
+    public void OnSelectionChange()
+    {
+        go = <a href="Selection-activeGameObject.html">Selection.activeGameObject</a>;
+        Repaint();
+    }<br /><br />    public void OnDestroy()
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("Shutting down");
+        <a href="AnimationMode.StopAnimationMode.html">AnimationMode.StopAnimationMode</a>();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

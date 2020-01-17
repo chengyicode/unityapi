@@ -1,0 +1,16 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: FingerDof.LastFingerDof</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="FingerDof.html">FingerDof</a>.LastFingerDof</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>The last value of the <a href="FingerDof.html">FingerDof</a> enum.</p></div><div class="subsection"><p>This value can be used in <code class="mono">for</code> loops.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />using UnityEngine.Experimental.Animations;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        for (int i = 0; i &lt; (int)<a href="FingerDof.LastFingerDof.html">FingerDof.LastFingerDof</a>; ++i)
+        {
+            var handle = new <a href="Experimental.Animations.MuscleHandle.html">MuscleHandle</a>(<a href="HumanPartDof.LeftThumb.html">HumanPartDof.LeftThumb</a>, (<a href="FingerDof.html">FingerDof</a>)i);
+            <a href="Debug.Log.html">Debug.Log</a>(handle.name);
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

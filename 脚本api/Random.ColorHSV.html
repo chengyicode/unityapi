@@ -1,0 +1,36 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Random.ColorHSV</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Random.html">Random</a>.ColorHSV</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Color.html">Color</a> <span class="sig-kw">ColorHSV</span>();
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Color.html">Color</a> <span class="sig-kw">ColorHSV</span>(float <span class="sig-kw">hueMin</span>,
+float <span class="sig-kw">hueMax</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Color.html">Color</a> <span class="sig-kw">ColorHSV</span>(float <span class="sig-kw">hueMin</span>,
+float <span class="sig-kw">hueMax</span>,
+float <span class="sig-kw">saturationMin</span>,
+float <span class="sig-kw">saturationMax</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Color.html">Color</a> <span class="sig-kw">ColorHSV</span>(float <span class="sig-kw">hueMin</span>,
+float <span class="sig-kw">hueMax</span>,
+float <span class="sig-kw">saturationMin</span>,
+float <span class="sig-kw">saturationMax</span>,
+float <span class="sig-kw">valueMin</span>,
+float <span class="sig-kw">valueMax</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Color.html">Color</a> <span class="sig-kw">ColorHSV</span>(float <span class="sig-kw">hueMin</span>,
+float <span class="sig-kw">hueMax</span>,
+float <span class="sig-kw">saturationMin</span>,
+float <span class="sig-kw">saturationMax</span>,
+float <span class="sig-kw">valueMin</span>,
+float <span class="sig-kw">valueMax</span>,
+float <span class="sig-kw">alphaMin</span>,
+float <span class="sig-kw">alphaMax</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">hueMin</td><td class="desc"></td><td class="desc1">Minimum hue [0..1].</td></tr><tr><td class="name lbl">hueMax</td><td class="desc"></td><td class="desc1">Maximum hue [0..1].</td></tr><tr><td class="name lbl">saturationMin</td><td class="desc"></td><td class="desc1">Minimum saturation [0..1].</td></tr><tr><td class="name lbl">saturationMax</td><td class="desc"></td><td class="desc1">Maximum saturation[0..1].</td></tr><tr><td class="name lbl">valueMin</td><td class="desc"></td><td class="desc1">Minimum value [0..1].</td></tr><tr><td class="name lbl">valueMax</td><td class="desc"></td><td class="desc1">Maximum value [0..1].</td></tr><tr><td class="name lbl">alphaMin</td><td class="desc"></td><td class="desc1">Minimum alpha [0..1].</td></tr><tr><td class="name lbl">alphaMax</td><td class="desc"></td><td class="desc1">Maximum alpha [0..1].</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>Color</strong>
+        A random color with HSV and alpha values in the input ranges.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Generates a random color from HSV and alpha ranges.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class ColorOnClick : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void OnMouseDown()
+    {
+        // Pick a random, saturated and not-too-dark color
+        GetComponent&lt;<a href="Renderer.html">Renderer</a>&gt;().material.color = <a href="Random.ColorHSV.html">Random.ColorHSV</a>(0f, 1f, 1f, 1f, 0.5f, 1f);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

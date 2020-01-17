@@ -1,0 +1,17 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: MonoBehaviour.OnMouseDrag()</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="MonoBehaviour.html">MonoBehaviour</a>.OnMouseDrag()</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>OnMouseDrag is called when the user has clicked on a <a href="GUIElement.html">GUIElement</a> or <a href="Collider.html">Collider</a> and is still holding down the mouse.</p></div><div class="subsection"><p>OnMouseDrag is called every frame while the mouse is down.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Renderer.html">Renderer</a> rend;<br /><br />    void Start()
+    {
+        rend = GetComponent&lt;<a href="Renderer.html">Renderer</a>&gt;();
+    }<br /><br />    void OnMouseDrag()
+    {
+        rend.material.color -= <a href="Color-white.html">Color.white</a> * <a href="Time-deltaTime.html">Time.deltaTime</a>;
+    }
+}
+</pre>
+      </div><div class="subsection"><p>This function is not called on objects that belong to Ignore Raycast layer.<br /><br />This function is called on Colliders marked as Trigger if and only if <a href="Physics-queriesHitTriggers.html">Physics.queriesHitTriggers</a> is true.<br /><br />OnMouseDrag can be a co-routine, simply use the yield statement in the function.
+This event is sent to all scripts attached to the <a href="Collider.html">Collider</a> or <a href="GUIElement.html">GUIElement</a>.</p></div></div></div></div></body></html>

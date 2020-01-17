@@ -1,0 +1,12 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ScreenOrientation.AutoRotation</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="ScreenOrientation.html">ScreenOrientation</a>.AutoRotation</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Auto-rotates the screen as necessary toward any of the enabled orientations.</p></div><div class="subsection"><p>When this option is assigned to the <a href="Screen-orientation.html">Screen.orientation</a> property, the screen will auto-rotate so that the bottom of the screen image points downwards. The orientations that can be used are set by the <a href="Screen-autorotateToLandscapeLeft.html">Screen.autorotateToLandscapeLeft</a>, <a href="Screen-autorotateToLandscapeRight.html">Screen.autorotateToLandscapeRight</a>, <a href="Screen-autorotateToPortrait.html">Screen.autorotateToPortrait</a> and Screen::autorotateToPortraitUpsideDown properties. For example, if <a href="Screen-autorotateToPortrait.html">Screen.autorotateToPortrait</a> and Screen::autorotateToPortraitUpsideDown are both true but the others are false then the auto-rotation will never choose either of the landscape options even when the device is held with the long side of the screen pointing downwards.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        <a href="Screen-autorotateToPortrait.html">Screen.autorotateToPortrait</a> = true;<br /><br />        <a href="Screen-autorotateToPortraitUpsideDown.html">Screen.autorotateToPortraitUpsideDown</a> = true;<br /><br />        <a href="Screen-orientation.html">Screen.orientation</a> = <a href="ScreenOrientation.AutoRotation.html">ScreenOrientation.AutoRotation</a>;
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="Screen-orientation.html">Screen.orientation</a>.</p></div></div></div></div></body></html>

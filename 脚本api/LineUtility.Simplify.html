@@ -1,0 +1,122 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: LineUtility.Simplify</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="LineUtility.html">LineUtility</a>.Simplify</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">Simplify</span>(List&lt;Vector3&gt; <span class="sig-kw">points</span>,
+float <span class="sig-kw">tolerance</span>,
+List&lt;int&gt; <span class="sig-kw">pointsToKeep</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">Simplify</span>(List&lt;Vector3&gt; <span class="sig-kw">points</span>,
+float <span class="sig-kw">tolerance</span>,
+List&lt;Vector3&gt; <span class="sig-kw">simplifiedPoints</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">Simplify</span>(List&lt;Vector2&gt; <span class="sig-kw">points</span>,
+float <span class="sig-kw">tolerance</span>,
+List&lt;int&gt; <span class="sig-kw">pointsToKeep</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">Simplify</span>(List&lt;Vector2&gt; <span class="sig-kw">points</span>,
+float <span class="sig-kw">tolerance</span>,
+List&lt;Vector2&gt; <span class="sig-kw">simplifiedPoints</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">points</td><td class="desc"></td><td class="desc1">The points that make up the original line.</td></tr><tr><td class="name lbl">tolerance</td><td class="desc"></td><td class="desc1">This value is used to evaluate which points should be removed from the line. A higher value results in a simpler line (less points). A positive value close to zero results in a line with little to no reduction. A value of zero or less has no effect.</td></tr><tr><td class="name lbl">pointsToKeep</td><td class="desc"></td><td class="desc1">Populated by this function. Contains the indexes of the points that should be generate a simplified version..</td></tr><tr><td class="name lbl">simplifiedPoints</td><td class="desc"></td><td class="desc1">Populated by this function. Contains the points that form the simplified line.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Generates a simplified version of the original line by removing points that fall within the specified tolerance.</p></div><div class="subsection"><p>As an example, you can use this function for reducing a complex line made up of thousands of points. The line can be reduced to hundreds or even less points and still maintain a form closely matching the original. You can generate multiple versions of the same line with varying detail levels by adjusting the tolerance (higher tolerance values results in less points in the generated line). The generated line can then be displayed using the LODGroup system.<br /><br />The Simplify algorithm is based on the <a href="https://en.wikipedia.org/wiki/Ramer-Douglas-Peucker_algorithm">Ramer Douglas Peucker algorithm</a> ; it creates a line that closely represents the provided line but with fewer points(determined by tolerance).<br /><br /><strong>Note:</strong> This function can handle a large number of points as it is non-recursive.  The 2D version of this function performs better than this function as it uses a simpler way to evaluate the points.<br /><br />See Also: <a href="LineRenderer.Simplify.html">LineRenderer.Simplify</a>.<br /><br /><strong>The following example shows how to apply line simplification to an existing line.</strong></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;<br /><br />// This example shows how to apply line simplification to a line that already contains points.
+[<a href="RequireComponent.html">RequireComponent</a>(typeof(<a href="LineRenderer.html">LineRenderer</a>))]
+public class SimpleExampleLineUtility : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public float tolerance = 1;
+    void Start()
+    {
+        // Get the points.
+        var lineRenderer = GetComponent&lt;<a href="LineRenderer.html">LineRenderer</a>&gt;();
+        int pointsBefore = lineRenderer.positionCount;
+        var points = new <a href="Vector3.html">Vector3</a>[pointsBefore];
+        lineRenderer.GetPositions(points);<br /><br />        // Simplify.
+        var simplifiedPoints = new List&lt;<a href="Vector3.html">Vector3</a>&gt;();
+        <a href="LineUtility.Simplify.html">LineUtility.Simplify</a>(points.ToList(), tolerance, simplifiedPoints);<br /><br />        // Assign back to the line renderer.
+        lineRenderer.positionCount = simplifiedPoints.Count;
+        lineRenderer.SetPositions(simplifiedPoints.ToArray());<br /><br />        <a href="Debug.Log.html">Debug.Log</a>("Line reduced from " + pointsBefore + " to " + lineRenderer.positionCount);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>The following example shows how the pointsToKeep parameter can be used to return a list of indices. The list can then be used to simplify a line that retains points in that list. Additional points can still be added on to the resulting simplified line.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;<br /><br />// This example shows how to use the pointsToKeep parameter to generate a new simplified version of the line.
+[<a href="RequireComponent.html">RequireComponent</a>(typeof(<a href="LineRenderer.html">LineRenderer</a>))]
+public class SimpleExampleLineUtilityPointsToKeep : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public float tolerance = 1;
+    void Start()
+    {
+        // Get the points.
+        var lineRenderer = GetComponent&lt;<a href="LineRenderer.html">LineRenderer</a>&gt;();
+        int pointsBefore = lineRenderer.positionCount;
+        var points = new <a href="Vector3.html">Vector3</a>[pointsBefore];
+        lineRenderer.GetPositions(points);<br /><br />        // Simplify.
+        var pointsToKeep = new List&lt;int&gt;();
+        <a href="LineUtility.Simplify.html">LineUtility.Simplify</a>(points.ToList(), tolerance, pointsToKeep);<br /><br />        var simplifiedPoints = new <a href="Vector3.html">Vector3</a>[pointsToKeep.Count];
+        for (int i = 0; i &lt; simplifiedPoints.Length; ++i)
+        {
+            simplifiedPoints[i] = points[pointsToKeep[i]];
+        }<br /><br />        // Assign back to the line renderer.
+        lineRenderer.positionCount = simplifiedPoints.Length;
+        lineRenderer.SetPositions(simplifiedPoints);<br /><br />        <a href="Debug.Log.html">Debug.Log</a>("Line reduced from " + pointsBefore + " to " + lineRenderer.positionCount);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>This example generates a line in the shape of a sine wave and provides a GUI for customizing the line generation and simplification parameters.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.Collections.Generic;
+using UnityEngine;<br /><br />// This example creates a sine wave and then simplifies it using the <a href="LineUtility.html">LineUtility</a>.
+// The parameters can be adjusted through an in game <a href="GUI.html">GUI</a> to allow for experimentation.
+[<a href="RequireComponent.html">RequireComponent</a>(typeof(<a href="LineRenderer.html">LineRenderer</a>))]
+public class LineUtilityExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public int numberOfPoints = 1000;
+    public float length = 50;
+    public float waveHeight = 10;
+    public float tolerance = 0.1f;<br /><br />    private <a href="LineRenderer.html">LineRenderer</a> lineRenderer;
+    private List&lt;<a href="Vector3.html">Vector3</a>&gt; points = new List&lt;<a href="Vector3.html">Vector3</a>&gt;(); // Generated points before LineOptimizer is used.
+    private List&lt;<a href="Vector3.html">Vector3</a>&gt; simplifiedPoints = new List&lt;<a href="Vector3.html">Vector3</a>&gt;(); // Simplified points after LineOptimizer is used.<br /><br />    public void Start()
+    {
+        lineRenderer = GetComponent&lt;<a href="LineRenderer.html">LineRenderer</a>&gt;();
+    }<br /><br />    // Generates the sine wave points.
+    public void GeneratePoints()
+    {
+        points.Clear();
+        float halfWaveHeight = waveHeight * 0.5f;
+        float step = length / numberOfPoints;
+        for (int i = 0; i &lt; numberOfPoints; ++i)
+        {
+            points.Add(new <a href="Vector3.html">Vector3</a>(i * step, <a href="Mathf.Sin.html">Mathf.Sin</a>(i * step) * halfWaveHeight, 0));
+        }
+    }<br /><br />    // Simplify the line using the LineOptimizer.
+    public void SimplifyLine()
+    {
+        simplifiedPoints.Clear();
+        <a href="LineUtility.Simplify.html">LineUtility.Simplify</a>(points, tolerance, simplifiedPoints);
+        lineRenderer.positionCount = simplifiedPoints.Count;
+        lineRenderer.SetPositions(simplifiedPoints.ToArray());
+    }<br /><br />    // Draw a simple <a href="GUI.html">GUI</a> slider with a label.
+    private static float GUISlider(string label, float value, float min, float max)
+    {
+        <a href="GUILayout.BeginHorizontal.html">GUILayout.BeginHorizontal</a>(<a href="GUILayout.Width.html">GUILayout.Width</a>(<a href="Screen-width.html">Screen.width</a> / 2.0f));
+        <a href="GUILayout.Label.html">GUILayout.Label</a>(label + "(" + value + ") :", <a href="GUILayout.Width.html">GUILayout.Width</a>(150));
+        var val = <a href="GUILayout.HorizontalSlider.html">GUILayout.HorizontalSlider</a>(value, min, max);
+        <a href="GUILayout.EndHorizontal.html">GUILayout.EndHorizontal</a>();
+        return val;
+    }<br /><br />    public void OnGUI()
+    {
+        <a href="GUILayout.Label.html">GUILayout.Label</a>("<a href="LineUtility.Simplify.html">LineUtility.Simplify</a>", GUI.skin.box);<br /><br />        // We use <a href="GUI-changed.html">GUI.changed</a> to detect if a value was changed via the <a href="GUI.html">GUI</a>, if it has we can then re-generate the points and simplify the line again.
+        <a href="GUI-changed.html">GUI.changed</a> = false;<br /><br />        numberOfPoints = (int)GUISlider("Number of Points", numberOfPoints, 0, 1000);
+        length = GUISlider("<a href="UIElements.Length.html">Length</a>", length, 0, 100);
+        waveHeight = GUISlider("Wave Height", waveHeight, 0, 100);
+        if (<a href="GUI-changed.html">GUI.changed</a>)
+            GeneratePoints();<br /><br />        tolerance = GUISlider("Simplify Tolerance", tolerance, 0, 2);
+        if (<a href="GUI-changed.html">GUI.changed</a>)
+            SimplifyLine();<br /><br />        float percentRemoved = 100.0f - ((float)lineRenderer.positionCount / numberOfPoints) * 100.0f;
+        if (tolerance &gt; 0.0f)
+            <a href="GUILayout.Label.html">GUILayout.Label</a>("Points after simplification: " + lineRenderer.positionCount + "(Removed " + percentRemoved.ToString("##.##") + "%)");
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

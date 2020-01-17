@@ -1,0 +1,39 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: WaitForSecondsRealtime</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">WaitForSecondsRealtime</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Inherits from:<a href="CustomYieldInstruction.html" class="cl">CustomYieldInstruction</a></p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.CoreModule.html" class="cl">UnityEngine.CoreModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Suspends the coroutine execution for the given amount of seconds using unscaled time.</p></div><div class="subsection"><p>See <a href="WaitForSeconds.html">WaitForSeconds</a> if you wish to wait using scaled time.<br />
+WaitForSecondsRealtime can only be used with a <code class="varname">yield</code> statement in coroutines.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class WaitForSecondsExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        StartCoroutine(Example());
+    }<br /><br />    IEnumerator Example()
+    {
+        print(<a href="Time-time.html">Time.time</a>);
+        yield return new <a href="WaitForSecondsRealtime.html">WaitForSecondsRealtime</a>(5);
+        print(<a href="Time-time.html">Time.time</a>);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also <a href="MonoBehaviour.StartCoroutine.html">MonoBehaviour.StartCoroutine</a>.</p></div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="WaitForSecondsRealtime-waitTime.html">waitTime</a></td><td class="desc"></td><td class="desc1">The given amount of seconds that the yield instruction will wait for.</td></tr>
+    </table></div><div class="subsection"><h2>Constructors</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="WaitForSecondsRealtime-ctor.html">WaitForSecondsRealtime</a></td><td class="desc"></td><td class="desc1">Creates a yield instruction to wait for a given number of seconds using unscaled time.</td></tr>
+    </table></div><div class="subsection"><h2>Inherited Members   继承成员</h2>
+      
+      <div class="subsection"><h2>Properties   属性</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="CustomYieldInstruction-keepWaiting.html">keepWaiting</a></td><td class="desc"></td><td class="desc1">Indicates if coroutine should be kept suspended.</td></tr>
+      </table></div>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </div></div></div></div></body></html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Physics.IgnoreCollision</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Physics.html">Physics</a>.IgnoreCollision</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">IgnoreCollision</span>(<a href="Collider.html">Collider</a> <span class="sig-kw">collider1</span>,
+<a href="Collider.html">Collider</a> <span class="sig-kw">collider2</span>,
+bool <span class="sig-kw">ignore</span> = true);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">collider1</td><td class="desc"></td><td class="desc1">Any collider.</td></tr><tr><td class="name lbl">collider2</td><td class="desc"></td><td class="desc1">Another collider you want to have <code class="varname">collider1</code> to start or stop ignoring collisions with.</td></tr><tr><td class="name lbl">ignore</td><td class="desc"></td><td class="desc1">Whether or not the collisions between the two colliders should be ignored or not.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Makes the collision detection system ignore all collisions between <code class="varname">collider1</code> and <code class="varname">collider2</code>.</p></div><div class="subsection"><p>This is useful, say, for preventing projectiles from colliding
+                with the object that fires them.<br /><br />Note that <a href="Physics.IgnoreCollision.html">IgnoreCollision</a> is not persitent. This means ignore collision state will not be stored in the editor when saving a scene.<br /><br />See Also: <a href="Physics.IgnoreLayerCollision.html">Physics.IgnoreLayerCollision</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Transform.html">Transform</a> bulletPrefab;<br /><br />    void Start()
+    {
+        <a href="Transform.html">Transform</a> bullet = Instantiate(bulletPrefab) as <a href="Transform.html">Transform</a>;
+        <a href="Physics.IgnoreCollision.html">Physics.IgnoreCollision</a>(bullet.GetComponent&lt;<a href="Collider.html">Collider</a>&gt;(), GetComponent&lt;<a href="Collider.html">Collider</a>&gt;());
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

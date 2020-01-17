@@ -1,0 +1,26 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AudioSource.volume</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="AudioSource.html">AudioSource</a>.volume</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-AudioSource.html' title='Go to AudioSource Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public float <span class="sig-kw">volume</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The volume of the audio source (0.0 to 1.0).</p></div><div class="subsection"><p>The AudioSource’s volume property controls the level of sound coming from an AudioClip. The highest volume level is 1 and the lowest is 0 where no sound is heard.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="AudioSource.html">AudioSource</a> m_MyAudioSource;
+    //Value from the slider, and it converts to volume level
+    float m_MySliderValue;<br /><br />    void Start()
+    {
+        //Initiate the <a href="UIElements.Slider.html">Slider</a> value to half way
+        m_MySliderValue = 0.5f;
+        //Fetch the <a href="AudioSource.html">AudioSource</a> from the <a href="GameObject.html">GameObject</a>
+        m_MyAudioSource = GetComponent&lt;<a href="AudioSource.html">AudioSource</a>&gt;();
+        //Play the <a href="AudioClip.html">AudioClip</a> attached to the <a href="AudioSource.html">AudioSource</a> on startup
+        m_MyAudioSource.Play();
+    }<br /><br />    void OnGUI()
+    {
+        //Create a horizontal <a href="UIElements.Slider.html">Slider</a> that controls volume levels. Its highest value is 1 and lowest is 0
+        m_MySliderValue = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(25, 25, 200, 60), m_MySliderValue, 0.0F, 1.0F);
+        //Makes the volume of the Audio match the <a href="UIElements.Slider.html">Slider</a> value
+        m_MyAudioSource.volume = m_MySliderValue;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Vector4</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">Vector4</h1><div class="clear"></div><p class="cl mb0 left mr10">struct in
+          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.CoreModule.html" class="cl">UnityEngine.CoreModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Representation of four-dimensional vectors.</p></div><div class="subsection"><p>This structure is used in some places to represent four component vectors (e.g. mesh tangents,
+parameters for shaders). In the majority of other cases a <a href="Vector3.html">Vector3</a> is used.</p></div><div class="subsection"><h2>Static Properties</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector4-negativeInfinity.html">negativeInfinity</a></td><td class="desc"></td><td class="desc1">Shorthand for writing Vector4(float.NegativeInfinity, float.NegativeInfinity, float.NegativeInfinity, float.NegativeInfinity).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector4-one.html">one</a></td><td class="desc"></td><td class="desc1">Shorthand for writing Vector4(1,1,1,1).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector4-positiveInfinity.html">positiveInfinity</a></td><td class="desc"></td><td class="desc1">Shorthand for writing Vector4(float.PositiveInfinity, float.PositiveInfinity, float.PositiveInfinity, float.PositiveInfinity).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector4-zero.html">zero</a></td><td class="desc"></td><td class="desc1">Shorthand for writing Vector4(0,0,0,0).</td></tr>
+    </table></div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector4-magnitude.html">magnitude</a></td><td class="desc"></td><td class="desc1">Returns the length of this vector (Read Only).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector4-normalized.html">normalized</a></td><td class="desc"></td><td class="desc1">Returns this vector with a magnitude of 1 (Read Only).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector4-sqrMagnitude.html">sqrMagnitude</a></td><td class="desc"></td><td class="desc1">Returns the squared length of this vector (Read Only).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector4.Index_operator.html">this[int]</a></td><td class="desc"></td><td class="desc1">Access the x, y, z, w components using [0], [1], [2], [3] respectively.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector4-w.html">w</a></td><td class="desc"></td><td class="desc1">W component of the vector.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector4-x.html">x</a></td><td class="desc"></td><td class="desc1">X component of the vector.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector4-y.html">y</a></td><td class="desc"></td><td class="desc1">Y component of the vector.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector4-z.html">z</a></td><td class="desc"></td><td class="desc1">Z component of the vector.</td></tr>
+    </table></div><div class="subsection"><h2>Constructors</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector4-ctor.html">Vector4</a></td><td class="desc"></td><td class="desc1">Creates a new vector with given x, y, z, w components.</td></tr>
+    </table></div><div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector4.Equals.html">Equals</a></td><td class="desc"></td><td class="desc1">Returns true if the given vector is exactly equal to this vector.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector4.Set.html">Set</a></td><td class="desc"></td><td class="desc1">Set x, y, z and w components of an existing Vector4.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector4.ToString.html">ToString</a></td><td class="desc"></td><td class="desc1">Returns a nicely formatted string for this vector.</td></tr>
+    </table></div><div class="subsection"><h2>Static Methods   静态方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector4.Distance.html">Distance</a></td><td class="desc"></td><td class="desc1">Returns the distance between a and b.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector4.Dot.html">Dot</a></td><td class="desc"></td><td class="desc1">Dot Product of two vectors.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector4.Lerp.html">Lerp</a></td><td class="desc"></td><td class="desc1">Linearly interpolates between two vectors.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector4.LerpUnclamped.html">LerpUnclamped</a></td><td class="desc"></td><td class="desc1">Linearly interpolates between two vectors.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector4.Max.html">Max</a></td><td class="desc"></td><td class="desc1">Returns a vector that is made from the largest components of two vectors.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector4.Min.html">Min</a></td><td class="desc"></td><td class="desc1">Returns a vector that is made from the smallest components of two vectors.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector4.MoveTowards.html">MoveTowards</a></td><td class="desc"></td><td class="desc1">Moves a point current towards target.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector4.Normalize.html">Normalize</a></td><td class="desc"></td><td class="desc1"></td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector4.Project.html">Project</a></td><td class="desc"></td><td class="desc1">Projects a vector onto another vector.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector4.Scale.html">Scale</a></td><td class="desc"></td><td class="desc1">Multiplies two vectors component-wise.</td></tr>
+    </table></div><div class="subsection"><h2>Operators   运算符</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector4-operator_subtract.html">operator -</a></td><td class="desc"></td><td class="desc1">Subtracts one vector from another.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector4-operator_multiply.html">operator *</a></td><td class="desc"></td><td class="desc1">Multiplies a vector by a number.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector4-operator_divide.html">operator /</a></td><td class="desc"></td><td class="desc1">Divides a vector by a number.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector4-operator_add.html">operator +</a></td><td class="desc"></td><td class="desc1">Adds two vectors.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector4-operator_eq.html">operator ==</a></td><td class="desc"></td><td class="desc1">Returns true if two vectors are approximately equal.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector4-operator_Vector4.html">Vector2</a></td><td class="desc"></td><td class="desc1">Converts a Vector4 to a Vector2.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector4-operator_Vector4.html">Vector3</a></td><td class="desc"></td><td class="desc1">Converts a Vector4 to a Vector3.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector4-operator_Vector3.html">Vector4</a></td><td class="desc"></td><td class="desc1">Converts a Vector3 to a Vector4.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector4-operator_Vector2.html">Vector4</a></td><td class="desc"></td><td class="desc1">Converts a Vector2 to a Vector4.</td></tr>
+    </table></div></div></div></div></body></html>

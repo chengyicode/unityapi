@@ -1,0 +1,57 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AssetSettingsProvider.CreateProviderFromObject</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="AssetSettingsProvider.html">AssetSettingsProvider</a>.CreateProviderFromObject</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="AssetSettingsProvider.html">AssetSettingsProvider</a> <span class="sig-kw">CreateProviderFromObject</span>(string <span class="sig-kw">settingsWindowPath</span>,
+<a href="Object.html">Object</a> <span class="sig-kw">settingsObj</span>,
+IEnumerable&lt;string&gt; <span class="sig-kw">keywords</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">settingsWindowPath</td><td class="desc"></td><td class="desc1">Path of the settings in the Settings window. Uses "/" as separator. The last token becomes the settings label if none is provided.</td></tr><tr><td class="name lbl">settingsObj</td><td class="desc"></td><td class="desc1">Settings object to display</td></tr><tr><td class="name lbl">keywords</td><td class="desc"></td><td class="desc1">List of keywords to compare against what the user is searching for. When the user enters values in the search box on the Settings window, <a href="SettingsProvider.HasSearchInterest.html">SettingsProvider.HasSearchInterest</a> tries to match those keywords to this list.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>AssetSettingsProvider</strong>
+        Returns an AssetSettingsProvider that will create an <a href="Editor.html">Editor</a> for this particular asset.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Create an <a href="AssetSettingsProvider.html">AssetSettingsProvider</a> from a settings object.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />class MyCustomSettings : <a href="ScriptableObject.html">ScriptableObject</a>
+{
+    public const string k_MyCustomSettingsPath = "Assets/<a href="Editor.html">Editor</a>/MyCustomSettings.asset";<br /><br />    [<a href="SerializeField.html">SerializeField</a>]
+    private int m_Number;<br /><br />    [<a href="SerializeField.html">SerializeField</a>]
+    private string m_SomeString;<br /><br />    internal static MyCustomSettings GetOrCreateSettings()
+    {
+        var settings = <a href="AssetDatabase.LoadAssetAtPath.html">AssetDatabase.LoadAssetAtPath</a>&lt;MyCustomSettings&gt;(k_MyCustomSettingsPath);
+        if (settings == null)
+        {
+            settings = <a href="ScriptableObject.CreateInstance.html">ScriptableObject.CreateInstance</a>&lt;MyCustomSettings&gt;();
+            settings.m_Number = 42;
+            settings.m_SomeString = "The answer to the universe";
+            <a href="AssetDatabase.CreateAsset.html">AssetDatabase.CreateAsset</a>(settings, k_MyCustomSettingsPath);
+            <a href="AssetDatabase.SaveAssets.html">AssetDatabase.SaveAssets</a>();
+        }
+        return settings;
+    }<br /><br />    internal static <a href="SerializedObject.html">SerializedObject</a> GetSerializedSettings()
+    {
+        return new <a href="SerializedObject.html">SerializedObject</a>(GetOrCreateSettings());
+    }
+}<br /><br />class AssetSettingsProviderRegister
+{
+    [<a href="SettingsProvider.html">SettingsProvider</a>]
+    public static <a href="SettingsProvider.html">SettingsProvider</a> CreateFromFilePath()
+    {
+        // Create an <a href="AssetSettingsProvider.html">AssetSettingsProvider</a> from a file path:
+        var provider = <a href="AssetSettingsProvider.CreateProviderFromAssetPath.html">AssetSettingsProvider.CreateProviderFromAssetPath</a>("Project/AssetSettings/FromFile", MyCustomSettings.k_MyCustomSettingsPath);<br /><br />        // Register keywords from the properties of MyCustomSettings
+        provider.keywords = <a href="SettingsProvider.GetSearchKeywordsFromSerializedObject.html">SettingsProvider.GetSearchKeywordsFromSerializedObject</a>(new <a href="SerializedObject.html">SerializedObject</a>(<a href="AssetDatabase.LoadAllAssetsAtPath.html">AssetDatabase.LoadAllAssetsAtPath</a>(MyCustomSettings.k_MyCustomSettingsPath)));
+        return provider;
+    }<br /><br />    [<a href="SettingsProvider.html">SettingsProvider</a>]
+    public static <a href="SettingsProvider.html">SettingsProvider</a> CreateFromSettingsObject()
+    {
+        // Create an <a href="AssetSettingsProvider.html">AssetSettingsProvider</a> from a settings object (UnityEngine.Object):
+        var settingsObj = <a href="AssetDatabase.LoadAssetAtPath.html">AssetDatabase.LoadAssetAtPath</a>&lt;UnityEngine.Object&gt;(MyCustomSettings.k_MyCustomSettingsPath);
+        var provider = <a href="AssetSettingsProvider.CreateProviderFromObject.html">AssetSettingsProvider.CreateProviderFromObject</a>("Project/AssetSettings/FromObject", settingsObj);<br /><br />        // Register keywords from the properties of MyCustomSettings
+        provider.keywords = <a href="SettingsProvider.GetSearchKeywordsFromSerializedObject.html">SettingsProvider.GetSearchKeywordsFromSerializedObject</a>(new <a href="SerializedObject.html">SerializedObject</a>(settingsObj));
+        return provider;
+    }<br /><br />    [<a href="SettingsProvider.html">SettingsProvider</a>]
+    public static <a href="SettingsProvider.html">SettingsProvider</a> CreateFromSettingsFromFunctor()
+    {
+        // Create an <a href="AssetSettingsProvider.html">AssetSettingsProvider</a> from a functor that must returns a UnityEngine.Object:
+        var provider = new <a href="AssetSettingsProvider.html">AssetSettingsProvider</a>("Project/AssetSettings/FromFunctor", () =&gt; <a href="Editor.CreateEditor.html">Editor.CreateEditor</a>(<a href="AssetDatabase.LoadAssetAtPath.html">AssetDatabase.LoadAssetAtPath</a>&lt;UnityEngine.Object&gt;(MyCustomSettings.k_MyCustomSettingsPath)));<br /><br />        // Register keywords from the properties of MyCustomSettings
+        provider.keywords = <a href="SettingsProvider.GetSearchKeywordsFromSerializedObject.html">SettingsProvider.GetSearchKeywordsFromSerializedObject</a>(new <a href="SerializedObject.html">SerializedObject</a>(<a href="AssetDatabase.LoadAllAssetsAtPath.html">AssetDatabase.LoadAllAssetsAtPath</a>(MyCustomSettings.k_MyCustomSettingsPath)));
+        return provider;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

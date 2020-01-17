@@ -1,0 +1,28 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorWindow.OnDestroy()</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorWindow.html">EditorWindow</a>.OnDestroy()</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>OnDestroy is called to close the EditorWindow window.</p></div><div class="subsection"><p>
+        <img src="../StaticFiles/ScriptRefImages/EditorWindowOnDestroy.png" />
+        <br />
+<em>A simple example of OnDestroy()</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// OnDestroy example.
+// Close the window when the <a href="UIElements.Button.html">Button</a> is pressed.  The window
+// will receive an OnDestroy() call.<br /><br />using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class OnDestroyExample : <a href="EditorWindow.html">EditorWindow</a>
+{
+    [<a href="MenuItem.html">MenuItem</a>("Examples/OnDestroyExample")]
+    static void Init()
+    {
+        GetWindow&lt;OnDestroyExample&gt;("OnDestroy");
+    }<br /><br />    void OnGUI()
+    {
+        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Close"))
+        {
+            this.Close();
+        }
+    }<br /><br />    void OnDestroy()
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("Destroyed...");
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

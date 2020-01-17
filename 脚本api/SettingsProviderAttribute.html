@@ -1,0 +1,29 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: SettingsProviderAttribute</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">SettingsProviderAttribute</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEditor</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEditor.html" class="cl">UnityEditor</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Attribute used to register a new <a href="SettingsProvider.html">SettingsProvider</a>. Use this attribute to decorate a function that returns an instance of a <a href="SettingsProvider.html">SettingsProvider</a>. If the function returns null, no SettingsProvider appears in the Settings window.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.IO;
+using System.Linq;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />class MyCustomSettingsProvider : <a href="SettingsProvider.html">SettingsProvider</a>
+{
+    const string k_MyCustomSettingsPath = "<a href="Resources.html">Resources</a>/MyCustomSettings.asset";
+    public MyCustomSettingsProvider(string path, <a href="SettingsScope.html">SettingsScope</a> scope)
+        : base(path, scope) {}<br /><br />    public static bool IsSettingsAvailable()
+    {
+        return <a href="Windows.File.Exists.html">File.Exists</a>(k_MyCustomSettingsPath);
+    }<br /><br />    [<a href="SettingsProvider.html">SettingsProvider</a>]
+    public static <a href="SettingsProvider.html">SettingsProvider</a> CreateMyCustomSettingsProvider()
+    {
+        if (IsSettingsAvailable())
+        {
+            return new MyCustomSettingsProvider("MyCustomSettings", <a href="SettingsScope.Project.html">SettingsScope.Project</a>);
+        }<br /><br />        // <a href="CameraEditor.Settings.html">Settings</a> <a href="VersionControl.Asset.html">Asset</a> doesn't exist yet. No need to display anything in the <a href="CameraEditor.Settings.html">Settings</a> window.
+        return null;
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Constructors</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SettingsProviderAttribute-ctor.html">SettingsProviderAttribute</a></td><td class="desc"></td><td class="desc1">Creates a new SettingsProviderAttribute used to register new SettingsProvider. </td></tr>
+    </table></div></div></div></div></body></html>

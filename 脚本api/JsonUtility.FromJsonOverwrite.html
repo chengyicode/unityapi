@@ -1,0 +1,20 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: JsonUtility.FromJsonOverwrite</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="JsonUtility.html">JsonUtility</a>.FromJsonOverwrite</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">FromJsonOverwrite</span>(string <span class="sig-kw">json</span>,
+object <span class="sig-kw">objectToOverwrite</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">json</td><td class="desc"></td><td class="desc1">The JSON representation of the object.</td></tr><tr><td class="name lbl">objectToOverwrite</td><td class="desc"></td><td class="desc1">The object that should be overwritten.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Overwrite data in an object by reading from its JSON representation.</p></div><div class="subsection"><p>This method is very similar to <a href="JsonUtility.FromJson.html">JsonUtility.FromJson</a>, except that instead of creating a new object and loading the JSON data into it, it loads the JSON data into an existing object. This allows you to update the values stored in classes or objects without any allocations.<br /><br />Internally, this method uses the Unity serializer; therefore the object you pass in must be supported by the serializer: it must be a MonoBehaviour, ScriptableObject, or plain class/struct with the Serializable attribute applied. The types of fields that you want to be overwritten must be supported by the serializer; unsupported fields will be ignored, as will private fields, static fields, and fields with the NonSerialized attribute applied.<br /><br />Any plain class or structure is supported, along with classes derived from MonoBehaviour or ScriptableObject. Other engine types are not supported. In the Editor only, you can use <a href="EditorJsonUtility.FromJsonOverwrite.html">EditorJsonUtility.FromJsonOverwrite</a> to overwrite other engine objects.<br /><br />If a field of the object is not present in the JSON representation, that field will be left unchanged.<br /><br />The version of this method that takes a string can be called from background threads. You should not alter the object that is being overwritten while the function is running. The version of this method that takes a TextAsset cannot be called from a background thread.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class PlayerState : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public string playerName;
+    public int lives;
+    public float health;<br /><br />    public void Load(string savedData)
+    {
+        <a href="JsonUtility.FromJsonOverwrite.html">JsonUtility.FromJsonOverwrite</a>(savedData, this);
+    }<br /><br />    // Given JSON input:
+    // {"lives":3, "health":0.8}
+    // the Load function will change the object on which it is called such that
+    // lives == 3 and health == 0.8
+    // the 'playerName' field will be left unchanged
+}
+</pre>
+      </div></div></div></div></body></html>

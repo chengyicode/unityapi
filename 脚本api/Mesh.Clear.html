@@ -1,0 +1,30 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Mesh.Clear</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Mesh.html">Mesh</a>.Clear</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Mesh.html' title='Go to Mesh Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">Clear</span>(bool <span class="sig-kw">keepVertexLayout</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Clears all vertex data and all triangle indices.</p></div><div class="subsection"><p>You should call this function before rebuilding <a href="Mesh-triangles.html">triangles</a> array.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Convert any <a href="GameObject.html">GameObject</a> into a single triangle<br /><br />using UnityEngine;<br /><br />public class meshClear : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private bool once = false;<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        if (<a href="Time-time.html">Time.time</a> &gt; 2.0f)
+        {
+            convertMesh();
+        }
+    }<br /><br />    void convertMesh()
+    {
+        if (once)
+            return;<br /><br />        <a href="Mesh.html">Mesh</a> mesh = GetComponent&lt;<a href="MeshFilter.html">MeshFilter</a>&gt;().mesh;<br /><br />        // Clears all the data that the mesh currently has
+        mesh.Clear();<br /><br />        // create 3 vertices for the triangle
+        mesh.vertices = new <a href="Vector3.html">Vector3</a>[] {new <a href="Vector3.html">Vector3</a>(0, 0, 0), new <a href="Vector3.html">Vector3</a>(0, 1, 0), new <a href="Vector3.html">Vector3</a>(1, 1, 0)};
+        mesh.uv = new <a href="Vector2.html">Vector2</a>[] {new <a href="Vector2.html">Vector2</a>(0, 0), new <a href="Vector2.html">Vector2</a>(0, 1), new <a href="Vector2.html">Vector2</a>(1, 1)};
+        mesh.triangles = new int[] {0, 1, 2};<br /><br />        once = true;
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Default behaviour of this function keeps the existing vertex layout:
+if the mesh had tangent vectors and vertex colors, for example, then
+the tangents and colors will be part of mesh data once you fill in
+new vertex data. If you want to completely clear the mesh and start
+with an empty vertex layout, pass false for <code class="varname">keepVertexLayout</code> parameter.
+Alternatively, assigning an empty array to any mesh component will also
+remove it from the vertex layout.</p></div></div></div></div></body></html>

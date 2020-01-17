@@ -1,0 +1,94 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ArcHandle</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">ArcHandle</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEditor.IMGUI.Controls</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEditor.html" class="cl">UnityEditor</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>A class for a compound handle to edit an angle and a radius in the Scene view.</p></div><div class="subsection"><p>
+        <img src="../StaticFiles/ScriptRefImages/ArcHandle.png" />
+<em>ArcHandle in the Scene View.</em><br />
+<br />
+This class allows you to display control handles for editing the angle and radius of an arc. The arc originates at <a href="Vector3-forward.html">Vector3.forward</a> multiplied by the <a href="IMGUI.Controls.ArcHandle-radius.html">radius</a> and rotates around <a href="Vector3-up.html">Vector3.up</a>. The handle rendered by this class's <a href="IMGUI.Controls.ArcHandle.DrawHandle.html">DrawHandle</a> method is affected by global state in the <a href="Handles.html">Handles</a> class, such as <a href="Handles-matrix.html">Handles.matrix</a> and <a href="Handles-color.html">Handles.color</a>.<br />
+<br />
+The following component defines an object with an angle and force property.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class ProjectileExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public float elevationAngle { get { return m_ElevationAngle; } set { m_ElevationAngle = value; } }
+    [<a href="SerializeField.html">SerializeField</a>]
+    float m_ElevationAngle = 45f;<br /><br />    public float impulse { get { return m_Impulse; } set { m_Impulse = value; } }
+    [<a href="SerializeField.html">SerializeField</a>]
+    float m_Impulse = 20f;<br /><br />    public <a href="Vector3.html">Vector3</a> facingDirection
+    {
+        get
+        {
+            <a href="Vector3.html">Vector3</a> result = transform.forward;
+            result.y = 0f;
+            return result.sqrMagnitude == 0f ? <a href="Vector3-forward.html">Vector3.forward</a> : result.normalized;
+        }
+    }<br /><br />    protected virtual void Start()
+    {
+        <a href="GameObject.html">GameObject</a> ball = <a href="GameObject.CreatePrimitive.html">GameObject.CreatePrimitive</a>(<a href="PrimitiveType.Sphere.html">PrimitiveType.Sphere</a>);<br /><br />        <a href="Vector3.html">Vector3</a> direction = facingDirection;
+        direction = <a href="Quaternion.AngleAxis.html">Quaternion.AngleAxis</a>(elevationAngle, <a href="Vector3.Cross.html">Vector3.Cross</a>(direction, <a href="Vector3-up.html">Vector3.up</a>)) * direction;
+        ball.AddComponent&lt;<a href="Rigidbody.html">Rigidbody</a>&gt;().AddForce(direction  * impulse, <a href="ForceMode.Impulse.html">ForceMode.Impulse</a>);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>The following Custom Editor example allows you to edit the elevation angle and force properties for this component in the Scene view, where the force is represented by the radius of the handle.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEditor.IMGUI.Controls;
+using UnityEngine;<br /><br />[<a href="CustomEditor.html">CustomEditor</a>(typeof(ProjectileExample))]
+public class ProjectileExampleEditor : <a href="Editor.html">Editor</a>
+{
+    <a href="IMGUI.Controls.ArcHandle.html">ArcHandle</a> m_ArcHandle = new <a href="IMGUI.Controls.ArcHandle.html">ArcHandle</a>();<br /><br />    protected virtual void OnEnable()
+    {
+        // arc handle has no radius handle by default
+        m_ArcHandle.SetColorWithRadiusHandle(<a href="Color-white.html">Color.white</a>, 0.1f);
+    }<br /><br />    // the OnSceneGUI callback uses the <a href="SceneManagement.Scene.html">Scene</a> view camera for drawing handles by default
+    protected virtual void OnSceneGUI()
+    {
+        ProjectileExample projectileExample = (ProjectileExample)target;<br /><br />        // copy the target object's data to the handle
+        m_ArcHandle.angle = projectileExample.elevationAngle;
+        m_ArcHandle.radius = projectileExample.impulse;<br /><br />        // set the handle matrix so that angle extends upward from target's facing direction along ground
+        <a href="Vector3.html">Vector3</a> handleDirection = projectileExample.facingDirection;
+        <a href="Vector3.html">Vector3</a> handleNormal = <a href="Vector3.Cross.html">Vector3.Cross</a>(handleDirection, <a href="Vector3-up.html">Vector3.up</a>);
+        <a href="Matrix4x4.html">Matrix4x4</a> handleMatrix = <a href="Matrix4x4.TRS.html">Matrix4x4.TRS</a>(
+            projectileExample.transform.position,
+            <a href="Quaternion.LookRotation.html">Quaternion.LookRotation</a>(handleDirection, handleNormal),
+            <a href="Vector3-one.html">Vector3.one</a>
+        );<br /><br />        using (new <a href="Handles.DrawingScope.html">Handles.DrawingScope</a>(handleMatrix))
+        {
+            // draw the handle
+            <a href="EditorGUI.BeginChangeCheck.html">EditorGUI.BeginChangeCheck</a>();
+            m_ArcHandle.DrawHandle();
+            if (<a href="EditorGUI.EndChangeCheck.html">EditorGUI.EndChangeCheck</a>())
+            {
+                // record the target object before setting new values so changes can be undone/redone
+                <a href="Undo.RecordObject.html">Undo.RecordObject</a>(projectileExample, "Change Projectile Properties");<br /><br />                // copy the handle's updated data back to the target object
+                projectileExample.elevationAngle = m_ArcHandle.angle;
+                projectileExample.impulse = m_ArcHandle.radius;
+            }
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="Editor.OnSceneGUI.html">Editor.OnSceneGUI</a>, <a href="Handles.SetCamera.html">Handles.SetCamera</a>.</p></div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="IMGUI.Controls.ArcHandle-angle.html">angle</a></td><td class="desc"></td><td class="desc1">Returns or specifies the angle of the arc for the handle.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="IMGUI.Controls.ArcHandle-angleHandleColor.html">angleHandleColor</a></td><td class="desc"></td><td class="desc1">Returns or specifies the color of the angle control handle.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="IMGUI.Controls.ArcHandle-angleHandleDrawFunction.html">angleHandleDrawFunction</a></td><td class="desc"></td><td class="desc1">The CapFunction to use when displaying the angle control handle.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="IMGUI.Controls.ArcHandle-angleHandleSizeFunction.html">angleHandleSizeFunction</a></td><td class="desc"></td><td class="desc1">The SizeFunction to specify how large the angle control handle should be.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="IMGUI.Controls.ArcHandle-fillColor.html">fillColor</a></td><td class="desc"></td><td class="desc1">Returns or specifies the color of the arc shape.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="IMGUI.Controls.ArcHandle-radius.html">radius</a></td><td class="desc"></td><td class="desc1">Returns or specifies the radius of the arc for the handle.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="IMGUI.Controls.ArcHandle-radiusHandleColor.html">radiusHandleColor</a></td><td class="desc"></td><td class="desc1">Returns or specifies the color of the radius control handle.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="IMGUI.Controls.ArcHandle-radiusHandleDrawFunction.html">radiusHandleDrawFunction</a></td><td class="desc"></td><td class="desc1">The CapFunction to use when displaying the radius control handle.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="IMGUI.Controls.ArcHandle-radiusHandleSizeFunction.html">radiusHandleSizeFunction</a></td><td class="desc"></td><td class="desc1">The SizeFunction to specify how large the angle control handle should be.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="IMGUI.Controls.ArcHandle-wireframeColor.html">wireframeColor</a></td><td class="desc"></td><td class="desc1">Returns or specifies the color of the curved line along the outside of the arc.</td></tr>
+    </table></div><div class="subsection"><h2>Constructors</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="IMGUI.Controls.ArcHandle-ctor.html">ArcHandle</a></td><td class="desc"></td><td class="desc1">Creates a new instance of the ArcHandle class.</td></tr>
+    </table></div><div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="IMGUI.Controls.ArcHandle.DrawHandle.html">DrawHandle</a></td><td class="desc"></td><td class="desc1">A function to display this instance in the current handle camera using its current configuration.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="IMGUI.Controls.ArcHandle.SetColorWithoutRadiusHandle.html">SetColorWithoutRadiusHandle</a></td><td class="desc"></td><td class="desc1">Sets angleHandleColor, wireframeColor, and fillColor to the same value, where fillColor will have the specified alpha value. radiusHandleColor will be set to Color.clear and the radius handle will be disabled.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="IMGUI.Controls.ArcHandle.SetColorWithRadiusHandle.html">SetColorWithRadiusHandle</a></td><td class="desc"></td><td class="desc1">Sets angleHandleColor, radiusHandleColor, wireframeColor, and fillColor to the same value, where fillColor will have the specified alpha value.</td></tr>
+    </table></div><div class="subsection"><h2>Static Methods   静态方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="IMGUI.Controls.ArcHandle.DefaultAngleHandleDrawFunction.html">DefaultAngleHandleDrawFunction</a></td><td class="desc"></td><td class="desc1">A CapFunction that draws a line terminated with Handles.CylinderHandleCap.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="IMGUI.Controls.ArcHandle.DefaultAngleHandleSizeFunction.html">DefaultAngleHandleSizeFunction</a></td><td class="desc"></td><td class="desc1">A SizeFunction that returns a fixed screen-space size.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="IMGUI.Controls.ArcHandle.DefaultRadiusHandleSizeFunction.html">DefaultRadiusHandleSizeFunction</a></td><td class="desc"></td><td class="desc1">A SizeFunction that returns a fixed screen-space size.</td></tr>
+    </table></div></div></div></div></body></html>

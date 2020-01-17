@@ -1,0 +1,16 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: GameObject.renderer</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Removed in version 2019.2.18</b><br /></div><h1 class="heading inherit"><a href="GameObject.html">GameObject</a>.renderer</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-GameObject.html' title='Go to GameObject Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public <a href="Component.html">Component</a> <span class="sig-kw">renderer</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The <a href="Renderer.html">Renderer</a> attached to this GameObject (Read Only). (Null if there is none attached).</p></div><div class="subsection"><p>GameObject.renderer is obsolete. Instead you should use GetComponent&lt;Renderer&gt;() to access the Renderer component of a GameObject.<br /><br />Access the Renderer component of a GameObject to read or manipulate the GameObject’s Material, visibility, shadow reception and perform various other useful effects to the GameObject’s appearance.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="Renderer.html">Renderer</a> m_ObjectRenderer;<br /><br />    void Start()
+    {
+        //Fetch the <a href="GameObject.html">GameObject</a>'s <a href="Renderer.html">Renderer</a> component
+        m_ObjectRenderer = GetComponent&lt;<a href="Renderer.html">Renderer</a>&gt;();
+        //Change the <a href="GameObject.html">GameObject</a>'s <a href="Material.html">Material</a> <a href="Color.html">Color</a> to red
+        m_ObjectRenderer.material.color = <a href="Color-red.html">Color.red</a>;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

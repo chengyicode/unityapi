@@ -1,0 +1,52 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: LODGroup.SetLODs</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="LODGroup.html">LODGroup</a>.SetLODs</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-LODGroup.html' title='Go to LODGroup Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">SetLODs</span>(LOD[] <span class="sig-kw">lods</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">lods</td><td class="desc"></td><td class="desc1">The LODs to use for this group.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Set the LODs for the LOD group. This will remove any existing LODs configured on the LODGroup.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="LODGroup.html">LODGroup</a> group;<br /><br />    void Start()
+    {
+        // Programmatically create a <a href="LOD.html">LOD</a> group and add <a href="LOD.html">LOD</a> levels.
+        // Create a <a href="GUI.html">GUI</a> that allows for forcing a specific <a href="LOD.html">LOD</a> level.
+        group = gameObject.AddComponent&lt;<a href="LODGroup.html">LODGroup</a>&gt;();<br /><br />        // Add 4 <a href="LOD.html">LOD</a> levels
+        <a href="LOD.html">LOD</a>[] lods = new <a href="LOD.html">LOD</a>[4];
+        for (int i = 0; i &lt; 4; i++)
+        {
+            <a href="PrimitiveType.html">PrimitiveType</a> primType = <a href="PrimitiveType.Cube.html">PrimitiveType.Cube</a>;
+            switch (i)
+            {
+                case 1:
+                    primType = <a href="PrimitiveType.Capsule.html">PrimitiveType.Capsule</a>;
+                    break;
+                case 2:
+                    primType = <a href="PrimitiveType.Sphere.html">PrimitiveType.Sphere</a>;
+                    break;
+                case 3:
+                    primType = <a href="PrimitiveType.Cylinder.html">PrimitiveType.Cylinder</a>;
+                    break;
+            }
+            <a href="GameObject.html">GameObject</a> go = <a href="GameObject.CreatePrimitive.html">GameObject.CreatePrimitive</a>(primType);
+            go.transform.parent = gameObject.transform;
+            <a href="Renderer.html">Renderer</a>[] renderers = new <a href="Renderer.html">Renderer</a>[1];
+            renderers[0] = go.GetComponent&lt;<a href="Renderer.html">Renderer</a>&gt;();
+            lods[i] = new <a href="LOD.html">LOD</a>(1.0F / (i + 1), renderers);
+        }
+        group.SetLODs(lods);
+        group.RecalculateBounds();
+    }<br /><br />    void OnGUI()
+    {
+        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Enable / Disable"))
+            group.enabled = !group.enabled;<br /><br />        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Default"))
+            group.ForceLOD(-1);<br /><br />        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Force 0"))
+            group.ForceLOD(0);<br /><br />        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Force 1"))
+            group.ForceLOD(1);<br /><br />        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Force 2"))
+            group.ForceLOD(2);<br /><br />        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Force 3"))
+            group.ForceLOD(3);<br /><br />        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Force 4"))
+            group.ForceLOD(4);<br /><br />        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Force 5"))
+            group.ForceLOD(5);<br /><br />        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Force 6"))
+            group.ForceLOD(6);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

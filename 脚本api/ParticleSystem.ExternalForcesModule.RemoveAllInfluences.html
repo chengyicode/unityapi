@@ -1,0 +1,29 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ParticleSystem.ExternalForcesModule.RemoveAllInfluences</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="ParticleSystem.ExternalForcesModule.html">ParticleSystem.ExternalForcesModule</a>.RemoveAllInfluences</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-ParticleSystem.html' title='Go to ParticleSystem Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">RemoveAllInfluences</span>();
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Removes all Force Fields from the influencers list.</p></div><div class="subsection"><p>When <a href="ParticleSystem.ExternalForcesModule-influenceFilter.html">influenceFilter</a> is set to <a href="ParticleSystemGameObjectFilter.List.html">ParticleSystemGameObjectFilter.List</a> then only Force Fields in the influencers list will affect the Particle System.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="ParticleSystem.ExternalForcesModule.html">ParticleSystem.ExternalForcesModule</a> externalForcesModule;<br /><br />    void Start()
+    {
+        // Create a default particle system
+        var particleSystemGameObject = new <a href="GameObject.html">GameObject</a>("<a href="ParticleSystem.Particle.html">Particle</a> System");
+        var system = particleSystemGameObject.AddComponent&lt;<a href="ParticleSystem.html">ParticleSystem</a>&gt;();<br /><br />        // Create a force field to influence the particle system
+        var forceFieldGameObject = new <a href="GameObject.html">GameObject</a>("Force Field");
+        var forceField = forceFieldGameObject.AddComponent&lt;<a href="ParticleSystemForceField.html">ParticleSystemForceField</a>&gt;();
+        forceField.endRange = 5;
+        forceFieldGameObject.transform.position = new <a href="Vector3.html">Vector3</a>(0, 0, 10);<br /><br />        // Add the force to the particle systems external forces influencers.
+        externalForcesModule = system.externalForces;
+        externalForcesModule.enabled = true;
+        externalForcesModule.influenceFilter = <a href="ParticleSystemGameObjectFilter.List.html">ParticleSystemGameObjectFilter.List</a>;
+        externalForcesModule.AddInfluence(forceField);
+    }<br /><br />    void OnGUI()
+    {
+        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Remove All"))
+        {
+            externalForcesModule.RemoveAllInfluences();
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

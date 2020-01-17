@@ -1,0 +1,20 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: TextMesh.richText</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="TextMesh.html">TextMesh</a>.richText</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-TextMesh.html' title='Go to TextMesh Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public bool <span class="sig-kw">richText</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Enable HTML-style tags for Text Formatting Markup.</p></div><div class="subsection"><p>Supported tags are:<br />
+&lt;color="htmlcolor"&gt;colored text&lt;/color&gt;, where "htmlcolor" is a html color string, like "#ff0000" or "red".<br />
+&lt;b&gt;bold text&lt;/b&gt;<br />
+&lt;i&gt;italic text&lt;/i&gt;<br />
+&lt;size=20&gt;sized text&lt;/size&gt;<br />
+&lt;material=1&gt;render using custom material index&lt;/material&gt;<br />
+&lt;quad material=1 size=20 x=0.1 y=0.1 width=0.5 height=0.5/&gt;, to render a single quad using the given material and UVs, used for embedding images in text.<br />
+These are only supported for fonts set to use dynamic font rendering, except for the 'color', 'material' and 'quad' tags.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        GetComponent&lt;<a href="TextMesh.html">TextMesh</a>&gt;().richText = true;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

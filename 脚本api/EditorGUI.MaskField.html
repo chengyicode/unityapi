@@ -1,0 +1,37 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorGUI.MaskField</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorGUI.html">EditorGUI</a>.MaskField</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static int <span class="sig-kw">MaskField</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+<a href="GUIContent.html">GUIContent</a> <span class="sig-kw">label</span>,
+int <span class="sig-kw">mask</span>,
+string[] <span class="sig-kw">displayedOptions</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span> = EditorStyles.popup);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static int <span class="sig-kw">MaskField</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+string <span class="sig-kw">label</span>,
+int <span class="sig-kw">mask</span>,
+string[] <span class="sig-kw">displayedOptions</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span> = EditorStyles.popup);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static int <span class="sig-kw">MaskField</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+int <span class="sig-kw">mask</span>,
+string[] <span class="sig-kw">displayedOptions</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span> = EditorStyles.popup);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">position</td><td class="desc"></td><td class="desc1">Rectangle on the screen to use for this control.</td></tr><tr><td class="name lbl">label</td><td class="desc"></td><td class="desc1">Label for the field.</td></tr><tr><td class="name lbl">mask</td><td class="desc"></td><td class="desc1">The current mask to display.</td></tr><tr><td class="name lbl">displayedOption</td><td class="desc"></td><td class="desc1">A string array containing the labels for each flag.</td></tr><tr><td class="name lbl">style</td><td class="desc"></td><td class="desc1">Optional <a href="GUIStyle.html">GUIStyle</a>.</td></tr><tr><td class="name lbl">displayedOptions</td><td class="desc"></td><td class="desc1">A string array containing the labels for each flag.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>int</strong>
+        The value modified by the user.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Makes a field for masks.</p></div><div class="subsection"><p>
+        <strong>Note:</strong> The mask values for the flags associated with each option in the menu will be consecutive powers of 2 starting with 1, i.e. 1, 2, 4, 8, 16, and so on.<br /><br /><img src="../StaticFiles/ScriptRefImages/MaskField.png" /><br />
+<em>Simple window that shows the mask field.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />class SimpleMaskUsage : <a href="EditorWindow.html">EditorWindow</a>
+{
+    int flags = 0;
+    string[] options = { "CanJump", "CanShoot", "CanSwim" };<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Examples/Mask Field Usage")]
+    static void Init()
+    {
+        var window = GetWindow&lt;SimpleMaskUsage&gt;();
+        window.Show();
+    }<br /><br />    void OnGUI()
+    {
+        flags = <a href="EditorGUI.MaskField.html">EditorGUI.MaskField</a>(new <a href="Rect.html">Rect</a>(0, 0, 300, 20), "Player Flags", flags, options);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

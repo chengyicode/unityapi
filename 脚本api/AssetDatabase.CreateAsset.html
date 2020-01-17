@@ -1,0 +1,24 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AssetDatabase.CreateAsset</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="AssetDatabase.html">AssetDatabase</a>.CreateAsset</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">CreateAsset</span>(<a href="Object.html">Object</a> <span class="sig-kw">asset</span>,
+string <span class="sig-kw">path</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">asset</td><td class="desc"></td><td class="desc1">Object to use in creating the asset.</td></tr><tr><td class="name lbl">path</td><td class="desc"></td><td class="desc1">Filesystem path for the new asset.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Creates a new asset at path.</p></div><div class="subsection"><p>You must ensure that the path uses a supported extension ('.mat' for materials, '.cubemap' for cubemaps,
+'.GUISkin' for skins, '.anim' for animations and '.asset' for arbitrary other assets.)<br /><br />You can add more assets to the file using <a href="AssetDatabase.AddObjectToAsset.html">AssetDatabase.AddObjectToAsset</a> after the asset has been created.
+If an asset already exists at <code class="varname">path</code> it will be deleted prior to creating a new asset.
+All paths are relative to the project folder, for example: "Assets/MyStuff/hello.mat".<br /><br />Be aware that if adding multiple objects to an asset, the order in which the objects are added does not
+really matter.  In other words, <code class="varname">asset</code> will not be special within the asset and not be any form of "root"
+to objects added later.  The object displayed as the asset's main object in the project view is the one
+that is considered most important (decided based on type) within the collection of objects.<br /><br /><strong>Note:</strong><br /><br />You can not create an asset from GameObject, use the PrefabUtility class instead.<br /><br /></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class CreateMaterialExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    [<a href="MenuItem.html">MenuItem</a>("<a href="GameObject.html">GameObject</a>/Create <a href="Material.html">Material</a>")]
+    static void CreateMaterial()
+    {
+        // Create a simple material asset<br /><br />        <a href="Material.html">Material</a> material = new <a href="Material.html">Material</a>(<a href="Shader.Find.html">Shader.Find</a>("Specular"));
+        <a href="AssetDatabase.CreateAsset.html">AssetDatabase.CreateAsset</a>(material, "Assets/MyMaterial.mat");<br /><br />        // Print the path of the created asset
+        <a href="Debug.Log.html">Debug.Log</a>(<a href="AssetDatabase.GetAssetPath.html">AssetDatabase.GetAssetPath</a>(material));
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

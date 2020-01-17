@@ -1,0 +1,29 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Rigidbody2D.MoveRotation</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Rigidbody2D.html">Rigidbody2D</a>.MoveRotation</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Rigidbody2D.html' title='Go to Rigidbody2D Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">MoveRotation</span>(float <span class="sig-kw">angle</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">angle</td><td class="desc"></td><td class="desc1">The new rotation angle for the Rigidbody object.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Rotates the Rigidbody to <code class="varname">angle</code> (given in degrees).</p></div><div class="subsection"><p>Rotates the Rigidbody to the specified <code class="varname">angle</code> by calculating the appropriate angular velocity required to rotate the Rigidbody to that angle during the next physics update.  During the move, angular drag won't affect the body.  This causes the object to rapidly move from the existing angle to the specified <code class="varname">angle</code>.<br /><br />Because this feature allows a Rigidbody to be rotated rapidly to the specified <code class="varname">angle</code>, any colliders attached to the Rigidbody will react as expected i.e. they will produce collisions and/or triggers.  This also means that if the colliders produce a collision then it will affect the Rigidbody movement and potentially stop it from reaching the specified <code class="varname">angle</code> during the next physics update.  If the Rigidbody is kinematic then any collisions won't affect the Rigidbody itself and will only affect any other dynamic colliders.<br /><br /><a href="Rigidbody2D.html">Rigidbody2D</a> components have a fixed limit on how fast they can rotate therefore attempting to rotate large angles over short time-scales can result in the Rigidbody not reaching the specified <code class="varname">angle</code> during the next physics update.  It is recommended that you use this for relatively small rotational movements only.<br /><br />It is important to understand that the actual rotation change will only occur during the next physics update therefore calling this method repeatedly without waiting for the next physics update will result in the last call being used.  For this reason, it is recommended that it is called during the FixedUpdate callback.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// MoveRotation
+// The sprite is set a rotation speed.<br /><br />using UnityEngine;
+using System.Collections;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Texture2D.html">Texture2D</a> tex;<br /><br />    private <a href="Rigidbody2D.html">Rigidbody2D</a> rb2D;
+    private <a href="Sprite.html">Sprite</a> mySprite;
+    private <a href="SpriteRenderer.html">SpriteRenderer</a> sr;
+    private float revSpeed = 50.0f;<br /><br />    void Awake()
+    {
+        sr = gameObject.AddComponent&lt;<a href="SpriteRenderer.html">SpriteRenderer</a>&gt;();
+        rb2D = gameObject.AddComponent&lt;<a href="Rigidbody2D.html">Rigidbody2D</a>&gt;();
+    }<br /><br />    void Start()
+    {
+        mySprite = <a href="Sprite.Create.html">Sprite.Create</a>(tex, new <a href="Rect.html">Rect</a>(0.0f, 0.0f, tex.width, tex.height), new <a href="Vector2.html">Vector2</a>(0.5f, 0.5f), 100.0f);
+        transform.localScale = new <a href="Vector3.html">Vector3</a>(3.0f, 3.0f, 3.0f);
+        rb2D.gravityScale = 0.0f;
+        sr.sprite = mySprite;
+    }<br /><br />    void <a href="Experimental.PlayerLoop.FixedUpdate.html">FixedUpdate</a>()
+    {
+        rb2D.MoveRotation(rb2D.rotation + revSpeed * <a href="Time-fixedDeltaTime.html">Time.fixedDeltaTime</a>);
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">MoveRotation</span>(<a href="Quaternion.html">Quaternion</a> <span class="sig-kw">rotation</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">rotation</td><td class="desc"></td><td class="desc1">Full 3D rotation used to extract only the z-axis rotation.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>An overload of MoveRotation that allows a full 3D rotation as an argument.</p></div><div class="subsection"><p>The z-axis rotation is extracted from the given <a href="Quaternion.html">Quaternion</a> <code class="varname">rotation</code> and used as a target angle to move the <a href="Rigidbody2D.html">Rigidbody2D</a> to. It is important to understand that the full 3D rotation isn't used because the <a href="Rigidbody2D.html">Rigidbody2D</a> only has a single degree of rotational freedom around the z-axis.</p></div></div></div></div></body></html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ScriptableWizard.helpString</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="ScriptableWizard.html">ScriptableWizard</a>.helpString</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public string <span class="sig-kw">helpString</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Allows you to set the help text of the wizard.</p></div><div class="subsection"><p>See Also: <a href="ScriptableWizard.OnWizardUpdate.html">ScriptableWizard.OnWizardUpdate</a><br /><br /><img src="../StaticFiles/ScriptRefImages/HelpString.png" /><br />
+<em>Help string on a ScriptableWizard window.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Creates a simple Wizard window and prints the HelpString
+// in the Wizard window.<br /><br />using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class HelpString : <a href="ScriptableWizard.html">ScriptableWizard</a>
+{
+    [<a href="MenuItem.html">MenuItem</a>("Example/Show <a href="Help.html">Help</a> String")]
+    static void CreateWindow()
+    {
+        <a href="ScriptableWizard.DisplayWizard.html">ScriptableWizard.DisplayWizard</a>("", typeof(HelpString), "Finish");
+    }<br /><br />    void OnWizardUpdate()
+    {
+        helpString = "This string describes what the Scriptable Wizard does.";
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

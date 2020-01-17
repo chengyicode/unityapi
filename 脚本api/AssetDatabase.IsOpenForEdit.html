@@ -1,0 +1,23 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AssetDatabase.IsOpenForEdit</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="AssetDatabase.html">AssetDatabase</a>.IsOpenForEdit</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">IsOpenForEdit</span>(<a href="Object.html">Object</a> <span class="sig-kw">assetObject</span>,
+<a href="StatusQueryOptions.html">StatusQueryOptions</a> <span class="sig-kw">StatusQueryOptions</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">IsOpenForEdit</span>(string <span class="sig-kw">assetOrMetaFilePath</span>,
+<a href="StatusQueryOptions.html">StatusQueryOptions</a> <span class="sig-kw">StatusQueryOptions</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">IsOpenForEdit</span>(<a href="Object.html">Object</a> <span class="sig-kw">assetObject</span>,
+out string <span class="sig-kw">message</span>,
+<a href="StatusQueryOptions.html">StatusQueryOptions</a> <span class="sig-kw">statusOptions</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">IsOpenForEdit</span>(string <span class="sig-kw">assetOrMetaFilePath</span>,
+out string <span class="sig-kw">message</span>,
+<a href="StatusQueryOptions.html">StatusQueryOptions</a> <span class="sig-kw">statusOptions</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public static bool <span class="sig-kw">IsOpenForEdit</span>(<a href="Object.html">Object</a> <span class="sig-kw">assetObject</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public static bool <span class="sig-kw">IsOpenForEdit</span>(string <span class="sig-kw">assetOrMetaFilePath</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public static bool <span class="sig-kw">IsOpenForEdit</span>(<a href="Object.html">Object</a> <span class="sig-kw">assetObject</span>,
+out string <span class="sig-kw">message</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public static bool <span class="sig-kw">IsOpenForEdit</span>(string <span class="sig-kw">assetOrMetaFilePath</span>,
+out string <span class="sig-kw">message</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">assetObject</td><td class="desc"></td><td class="desc1">Object representing the asset whose status you wish to query.</td></tr><tr><td class="name lbl">assetOrMetaFilePath</td><td class="desc"></td><td class="desc1">Path to the asset file or its .meta file on disk, relative to project folder.</td></tr><tr><td class="name lbl">message</td><td class="desc"></td><td class="desc1">Returns a reason for the asset not being open for edit.</td></tr><tr><td class="name lbl">StatusQueryOptions</td><td class="desc"></td><td class="desc1">Options for how the version control system should be queried. These options can effect the speed and accuracy of the query.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>bool</strong>
+        True if the asset is considered open for edit by the selected version control system.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Query whether an asset file is open for edit in version control.</p></div><div class="subsection"><p>Your version control system may be configured to only allow a single user at a time to edit certain types of file, to avoid conflicts that arise when multiple users edit a file at the same time.<br />
+In this case a user must 'open' that file for editing (also known as 'checking out') to ensure that they have permission to edit the file.<br />
+Use this function to query the 'open for edit' status of a file in a version control system that supports it.<br />
+See Also: <a href="AssetDatabase.IsMetaFileOpenForEdit.html">AssetDatabase.IsMetaFileOpenForEdit</a><br />
+See Also: <a href="StatusQueryOptions.html">StatusQueryOptions</a></p></div></div></div></div></body></html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: XR.WSA.SurfaceObserver.Update</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="XR.WSA.SurfaceObserver.html">SurfaceObserver</a>.Update</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">Update</span>(<a href="XR.WSA.SurfaceObserver.SurfaceChangedDelegate.html">XR.WSA.SurfaceObserver.SurfaceChangedDelegate</a> <span class="sig-kw">onSurfaceChanged</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">onSurfaceChanged</td><td class="desc"></td><td class="desc1">Callback called when SurfaceChanged events are detected.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Update generates SurfaceChanged events which are propagated through the specified callback.  If no callback is specified, the system will throw an ArgumentNullException.  Generated callbacks are synchronous with this call.  Scenes containing multiple SurfaceObservers should consider using different callbacks so that events can be properly routed.</p></div><div class="subsection"><p>Update is a very expensive call.  Its expense scales with the number of observable Surfaces.  Thus, constraining your observation volume can help improve performance if you expect to call Update regularly.  The engine provides the SpatialMapping.ObserverUpdate profiling tag to allow you to monitor spatial mapping performance.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;
+using UnityEngine.XR.WSA;
+using System;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="XR.WSA.SurfaceObserver.html">SurfaceObserver</a> m_Observer;<br /><br />    void UpdateSurfaceObserver()
+    {
+        // <a href="Experimental.PlayerLoop.Update.html">Update</a> your surface observer to generate onSurfaceChanged callbacks
+        m_Observer.Update(SurfaceChangedHandler);
+        // all <a href="Experimental.PlayerLoop.Update.html">Update</a> callbacks are now complete
+    }<br /><br />    void SurfaceChangedHandler(<a href="XR.WSA.SurfaceId.html">SurfaceId</a> id, <a href="XR.WSA.SurfaceChange.html">SurfaceChange</a> changeType, <a href="Bounds.html">Bounds</a> bounds, DateTime updateTime)
+    {
+        switch (changeType)
+        {
+            case <a href="XR.WSA.SurfaceChange.Added.html">SurfaceChange.Added</a>:
+                // handle Surface adds here
+                break;
+            case <a href="XR.WSA.SurfaceChange.Updated.html">SurfaceChange.Updated</a>:
+                // handle Surface updates here
+                break;
+            case <a href="XR.WSA.SurfaceChange.Removed.html">SurfaceChange.Removed</a>:
+                // handle Surface removal here
+                break;
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

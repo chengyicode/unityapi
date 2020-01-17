@@ -1,0 +1,51 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: TextGenerator</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">TextGenerator</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.TextRenderingModule.html" class="cl">UnityEngine.TextRenderingModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Class that can be used to generate text for rendering.</p></div><div class="subsection"><p>Caches vertices, character info, and line info for memory friendlyness.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Font.html">Font</a> font;
+    void Start()
+    {
+        <a href="TextGenerationSettings.html">TextGenerationSettings</a> settings = new <a href="TextGenerationSettings.html">TextGenerationSettings</a>();
+        settings.textAnchor = <a href="TextAnchor.MiddleCenter.html">TextAnchor.MiddleCenter</a>;
+        settings.color = <a href="Color-red.html">Color.red</a>;
+        settings.generationExtents = new <a href="Vector2.html">Vector2</a>(500.0F, 200.0F);
+        settings.pivot = <a href="Vector2-zero.html">Vector2.zero</a>;
+        settings.richText = true;
+        settings.font = font;
+        settings.fontSize = 32;
+        settings.fontStyle = <a href="FontStyle.Normal.html">FontStyle.Normal</a>;
+        settings.verticalOverflow = <a href="VerticalWrapMode.Overflow.html">VerticalWrapMode.Overflow</a>;
+        <a href="TextGenerator.html">TextGenerator</a> generator = new <a href="TextGenerator.html">TextGenerator</a>();
+        generator.Populate("I am a string", settings);
+        <a href="Debug.Log.html">Debug.Log</a>("I generated: " + generator.vertexCount + " verts!");
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="TextGenerator-characterCount.html">characterCount</a></td><td class="desc"></td><td class="desc1">The number of characters that have been generated.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="TextGenerator-characterCountVisible.html">characterCountVisible</a></td><td class="desc"></td><td class="desc1">The number of characters that have been generated and are included in the visible lines.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="TextGenerator-characters.html">characters</a></td><td class="desc"></td><td class="desc1">Array of generated characters.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="TextGenerator-fontSizeUsedForBestFit.html">fontSizeUsedForBestFit</a></td><td class="desc"></td><td class="desc1">The size of the font that was found if using best fit mode.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="TextGenerator-lineCount.html">lineCount</a></td><td class="desc"></td><td class="desc1">Number of text lines generated.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="TextGenerator-lines.html">lines</a></td><td class="desc"></td><td class="desc1">Information about each generated text line.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="TextGenerator-rectExtents.html">rectExtents</a></td><td class="desc"></td><td class="desc1">Extents of the generated text in rect format.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="TextGenerator-vertexCount.html">vertexCount</a></td><td class="desc"></td><td class="desc1">Number of vertices generated.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="TextGenerator-verts.html">verts</a></td><td class="desc"></td><td class="desc1">Array of generated vertices.</td></tr>
+    </table></div><div class="subsection"><h2>Constructors</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="TextGenerator-ctor.html">TextGenerator</a></td><td class="desc"></td><td class="desc1">Create a TextGenerator.</td></tr>
+    </table></div><div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="TextGenerator.GetCharacters.html">GetCharacters</a></td><td class="desc"></td><td class="desc1">Populate the given List with UICharInfo.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="TextGenerator.GetCharactersArray.html">GetCharactersArray</a></td><td class="desc"></td><td class="desc1">Returns the current UICharInfo.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="TextGenerator.GetLines.html">GetLines</a></td><td class="desc"></td><td class="desc1">Populate the given list with UILineInfo.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="TextGenerator.GetLinesArray.html">GetLinesArray</a></td><td class="desc"></td><td class="desc1">Returns the current UILineInfo.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="TextGenerator.GetPreferredHeight.html">GetPreferredHeight</a></td><td class="desc"></td><td class="desc1">Given a string and settings, returns the preferred height for a container that would hold this text.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="TextGenerator.GetPreferredWidth.html">GetPreferredWidth</a></td><td class="desc"></td><td class="desc1">Given a string and settings, returns the preferred width for a container that would hold this text.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="TextGenerator.GetVertices.html">GetVertices</a></td><td class="desc"></td><td class="desc1">Populate the given list with generated Vertices.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="TextGenerator.GetVerticesArray.html">GetVerticesArray</a></td><td class="desc"></td><td class="desc1">Returns the current UIVertex array.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="TextGenerator.Invalidate.html">Invalidate</a></td><td class="desc"></td><td class="desc1">Mark the text generator as invalid. This will force a full text generation the next time Populate is called.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="TextGenerator.Populate.html">Populate</a></td><td class="desc"></td><td class="desc1">Will generate the vertices and other data for the given string with the given settings.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="TextGenerator.PopulateWithErrors.html">PopulateWithErrors</a></td><td class="desc"></td><td class="desc1">Will generate the vertices and other data for the given string with the given settings.</td></tr>
+    </table></div></div></div></div></body></html>

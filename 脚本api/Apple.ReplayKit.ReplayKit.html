@@ -1,0 +1,93 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ReplayKit</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">ReplayKit</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine.Apple.ReplayKit</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.CoreModule.html" class="cl">UnityEngine.CoreModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>ReplayKit is only available on certain iPhone, iPad and iPod Touch devices running iOS 9.0 or later.</p></div><div class="subsection"><p>ReplayKit allows you to record the audio and video of your game, along
+          with user commentary through the microphone. Start a recording with the
+          <a href="Apple.ReplayKit.ReplayKit.StartRecording.html">StartRecording</a>() function, and stop it with <a href="Apple.ReplayKit.ReplayKit.StopRecording.html">StopRecording</a>(). You can
+          preview the recording with the <a href="Apple.ReplayKit.ReplayKit.Preview.html">Preview</a>() function, which launches a separate video viewer.<br /><br /><strong>Note:</strong> The exact Apple devices which have support for ReplayKit are:<br />
+1. iPhone 5S or later<br />
+2. iPad mini 2 or later<br />
+3. iPod Touch 6th generation<br />
+4. iPad Air or later.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System;
+using UnityEngine;
+#if PLATFORM_IOS
+using UnityEngine.iOS;
+using UnityEngine.Apple.ReplayKit;<br /><br />public class Replay : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    string lastError = "";
+    void OnGUI()
+    {
+        if (!<a href="Apple.ReplayKit.ReplayKit.APIAvailable.html">ReplayKit.APIAvailable</a>)
+        {
+            return;
+        }
+        var recording = <a href="Apple.ReplayKit.ReplayKit-isRecording.html">ReplayKit.isRecording</a>;
+        string caption = recording ? "Stop Recording" : "Start Recording";
+        if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(10, 10, 500, 200), caption))
+        {
+            try
+            {
+                recording = !recording;
+                if (recording)
+                {
+                    <a href="Apple.ReplayKit.ReplayKit.StartRecording.html">ReplayKit.StartRecording</a>();
+                }
+                else
+                {
+                    <a href="Apple.ReplayKit.ReplayKit.StopRecording.html">ReplayKit.StopRecording</a>();
+                }
+            }
+            catch (Exception e)
+            {
+                lastError = e.ToString();
+            }
+        }<br /><br />        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(10, 220, 500, 50), "Last error: " + <a href="Apple.ReplayKit.ReplayKit-lastError.html">ReplayKit.lastError</a>);
+        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(10, 280, 500, 50), "Last exception: " + lastError);<br /><br />        if (<a href="Apple.ReplayKit.ReplayKit-recordingAvailable.html">ReplayKit.recordingAvailable</a>)
+        {
+            if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(10, 350, 500, 200), "Preview"))
+            {
+                <a href="Apple.ReplayKit.ReplayKit.Preview.html">ReplayKit.Preview</a>();
+            }
+            if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(10, 560, 500, 200), "Discard"))
+            {
+                <a href="Apple.ReplayKit.ReplayKit.Discard.html">ReplayKit.Discard</a>();
+            }
+        }
+    }
+}
+#endif
+</pre>
+      </div><div class="subsection"><h2>Static Properties</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Apple.ReplayKit.ReplayKit.APIAvailable.html">APIAvailable</a></td><td class="desc"></td><td class="desc1">A boolean that indicates whether the ReplayKit API is available (where True means available). (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Apple.ReplayKit.ReplayKit-broadcastingAPIAvailable.html">broadcastingAPIAvailable</a></td><td class="desc"></td><td class="desc1">A Boolean that indicates whether ReplayKit broadcasting API is available (true means available) (Read Only).
+Check the value of this property before making ReplayKit broadcasting API calls. On iOS versions prior to iOS 10, this property will have a value of false.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Apple.ReplayKit.ReplayKit-broadcastURL.html">broadcastURL</a></td><td class="desc"></td><td class="desc1">A string property that contains an URL used to redirect the user to an on-going or completed broadcast (Read Only).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Apple.ReplayKit.ReplayKit-cameraEnabled.html">cameraEnabled</a></td><td class="desc"></td><td class="desc1">Camera enabled status. True, if camera enabled; false otherwise.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Apple.ReplayKit.ReplayKit-isBroadcasting.html">isBroadcasting</a></td><td class="desc"></td><td class="desc1">Boolean property that indicates whether a broadcast is currently in progress (Read Only).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Apple.ReplayKit.ReplayKit-isBroadcastingPaused.html">isBroadcastingPaused</a></td><td class="desc"></td><td class="desc1">Boolean property that indicates whether a broadcast is currently paused (Read Only).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Apple.ReplayKit.ReplayKit-isPreviewControllerActive.html">isPreviewControllerActive</a></td><td class="desc"></td><td class="desc1">A boolean that indicates whether ReplayKit is currently displaying a preview controller. (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Apple.ReplayKit.ReplayKit-isRecording.html">isRecording</a></td><td class="desc"></td><td class="desc1">A boolean that indicates whether ReplayKit is making a recording (where True means a recording is in progress). (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Apple.ReplayKit.ReplayKit-lastError.html">lastError</a></td><td class="desc"></td><td class="desc1">A string value of the last error incurred by the ReplayKit: Either 'Failed to get Screen Recorder' or 'No recording available'. (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Apple.ReplayKit.ReplayKit-microphoneEnabled.html">microphoneEnabled</a></td><td class="desc"></td><td class="desc1">Microphone enabled status. True, if microphone enabled; false otherwise.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Apple.ReplayKit.ReplayKit-recordingAvailable.html">recordingAvailable</a></td><td class="desc"></td><td class="desc1">A boolean value that indicates that a new recording is available for preview (where True means available). (Read Only)</td></tr>
+    </table></div><div class="subsection"><h2>Static Methods 静态方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Apple.ReplayKit.ReplayKit.Discard.html">Discard</a></td><td class="desc"></td><td class="desc1">Discard the current recording.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Apple.ReplayKit.ReplayKit.HideCameraPreview.html">HideCameraPreview</a></td><td class="desc"></td><td class="desc1">Hide the camera preview view.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Apple.ReplayKit.ReplayKit.PauseBroadcasting.html">PauseBroadcasting</a></td><td class="desc"></td><td class="desc1">Pauses current broadcast.
+Will pause currently on-going broadcast. If no broadcast is in progress, does nothing.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Apple.ReplayKit.ReplayKit.Preview.html">Preview</a></td><td class="desc"></td><td class="desc1">Preview the current recording</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Apple.ReplayKit.ReplayKit.ResumeBroadcasting.html">ResumeBroadcasting</a></td><td class="desc"></td><td class="desc1">Resumes current broadcast.
+Will resume currently on-going broadcast. If no broadcast is in progress, does nothing.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Apple.ReplayKit.ReplayKit.ShowCameraPreviewAt.html">ShowCameraPreviewAt</a></td><td class="desc"></td><td class="desc1">Shows camera preview at coordinates posX and posY. The preview is width by height in size.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Apple.ReplayKit.ReplayKit.StartBroadcasting.html">StartBroadcasting</a></td><td class="desc"></td><td class="desc1">Initiates and starts a new broadcast
+When StartBroadcast is called, user is presented with a broadcast provider selection screen, and then a broadcast setup screen. Once it is finished, a broadcast will be started, and the callback will be invoked.
+It will also be invoked in case of any error.
+        </td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Apple.ReplayKit.ReplayKit.StartRecording.html">StartRecording</a></td><td class="desc"></td><td class="desc1">Start a new recording.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Apple.ReplayKit.ReplayKit.StopBroadcasting.html">StopBroadcasting</a></td><td class="desc"></td><td class="desc1">Stops current broadcast.
+Will terminate currently on-going broadcast. If no broadcast is in progress, does nothing.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Apple.ReplayKit.ReplayKit.StopRecording.html">StopRecording</a></td><td class="desc"></td><td class="desc1">Stop the current recording.</td></tr>
+    </table></div><div class="subsection"><h2>Delegates</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Apple.ReplayKit.ReplayKit.BroadcastStatusCallback.html">BroadcastStatusCallback</a></td><td class="desc"></td><td class="desc1">Function called at the completion of broadcast startup.</td></tr>
+    </table></div></div></div></div></body></html>

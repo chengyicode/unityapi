@@ -1,0 +1,50 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorGUILayout.Vector3Field</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorGUILayout.html">EditorGUILayout</a>.Vector3Field</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Vector3.html">Vector3</a> <span class="sig-kw">Vector3Field</span>(string <span class="sig-kw">label</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">value</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Vector3.html">Vector3</a> <span class="sig-kw">Vector3Field</span>(<a href="GUIContent.html">GUIContent</a> <span class="sig-kw">label</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">value</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">label</td><td class="desc"></td><td class="desc1">Label to display above the field.</td></tr><tr><td class="name lbl">value</td><td class="desc"></td><td class="desc1">The value to edit.</td></tr><tr><td class="name lbl">options</td><td class="desc"></td><td class="desc1">An optional list of layout options that specify extra layout
+        properties. Any values passed in here will override settings defined by the <code class="varname">style</code>.<br />
+See Also: <a href="GUILayout.Width.html">GUILayout.Width</a>, <a href="GUILayout.Height.html">GUILayout.Height</a>, <a href="GUILayout.MinWidth.html">GUILayout.MinWidth</a>, <a href="GUILayout.MaxWidth.html">GUILayout.MaxWidth</a>, <a href="GUILayout.MinHeight.html">GUILayout.MinHeight</a>,
+<a href="GUILayout.MaxHeight.html">GUILayout.MaxHeight</a>, <a href="GUILayout.ExpandWidth.html">GUILayout.ExpandWidth</a>, <a href="GUILayout.ExpandHeight.html">GUILayout.ExpandHeight</a>.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>Vector3</strong>
+        The value entered by the user.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Make an X, Y &amp; Z field for entering a <a href="Vector3.html">Vector3</a>.</p></div><div class="subsection"><p>
+        <img src="../StaticFiles/ScriptRefImages/EditorGUILayoutVector3Field.png" />
+        <br />
+<em>Measure the distance between 2 GameObjects or 2 positions in 3D space.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;<br /><br />public class EditorGUILayoutVector3Field : UnityEditor.EditorWindow
+{
+    float distance = 0f;
+    <a href="Vector3.html">Vector3</a> obj1;
+    <a href="Vector3.html">Vector3</a> obj2;<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Examples/Measure Distance between 2 objects")]
+    static void Init()
+    {
+        EditorGUILayoutVector3Field window = (EditorGUILayoutVector3Field)<a href="EditorWindow.GetWindow.html">EditorWindow.GetWindow</a>(typeof(EditorGUILayoutVector3Field), true, "My Empty Window");
+        window.Show();
+    }<br /><br />    void OnGUI()
+    {
+        <a href="GUILayout.Label.html">GUILayout.Label</a>("Select an object in the <a href="UIElements.VisualElement.Hierarchy.html">Hierarchy</a> view and click 'Capture <a href="UIElements.Position.html">Position</a>'");
+        <a href="EditorGUILayout.BeginHorizontal.html">EditorGUILayout.BeginHorizontal</a>();
+        obj1 = <a href="EditorGUILayout.Vector3Field.html">EditorGUILayout.Vector3Field</a>("<a href="GameObject.html">GameObject</a> 1:", obj1);
+        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Capture <a href="UIElements.Position.html">Position</a>"))
+            obj1 = Selection.activeTransform.position;
+        <a href="EditorGUILayout.EndHorizontal.html">EditorGUILayout.EndHorizontal</a>();<br /><br />        <a href="EditorGUILayout.BeginHorizontal.html">EditorGUILayout.BeginHorizontal</a>();
+        obj2 = <a href="EditorGUILayout.Vector3Field.html">EditorGUILayout.Vector3Field</a>("<a href="GameObject.html">GameObject</a> 2:", obj2);
+        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Capture <a href="UIElements.Position.html">Position</a>"))
+            obj2 = Selection.activeTransform.position;
+        <a href="EditorGUILayout.EndHorizontal.html">EditorGUILayout.EndHorizontal</a>();
+        <a href="EditorGUILayout.LabelField.html">EditorGUILayout.LabelField</a>("Distance:", distance.ToString());
+        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Close"))
+            this.Close();
+    }<br /><br />    void OnInspectorUpdate()
+    {
+        distance = <a href="Vector3.Distance.html">Vector3.Distance</a>(obj1, obj2);
+        this.Repaint();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

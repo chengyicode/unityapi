@@ -1,0 +1,17 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Input.GetAxisRaw</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Input.html">Input</a>.GetAxisRaw</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static float <span class="sig-kw">GetAxisRaw</span>(string <span class="sig-kw">axisName</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Returns the value of the virtual axis identified by <code class="varname">axisName</code> with no smoothing filtering applied.</p></div><div class="subsection"><p>The value will be in the range -1...1 for keyboard and joystick input.
+Since input is not smoothed, keyboard input will always be either -1, 0 or 1.
+This is useful if you want to do all smoothing of keyboard input processing yourself.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        float speed = <a href="Input.GetAxisRaw.html">Input.GetAxisRaw</a>("Horizontal") * <a href="Time-deltaTime.html">Time.deltaTime</a>;
+        transform.Rotate(0, speed, 0);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>The <a href="Input.GetAxis.html">GetAxis</a> page describes in detail what the <code class="varname">axisName</code> for <a href="Input.GetAxisRaw.html">GetAxisRaw</a> means.  For example the <code class="varname">Horizontal</code> axis is managed by <code class="varname">Left</code> and <code class="varname">Right</code>, and <code class="varname">a</code> and <code class="varname">d</code> keys.  Other Input Axes can be seen in the <code class="mono">Edit-&gt;Settings-&gt;Input</code> window.</p></div></div></div></div></body></html>

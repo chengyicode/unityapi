@@ -1,0 +1,153 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Experimental.ParticleSystemJobs.IParticleSystemJob.ProcessParticleSystem</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Experimental</b>: this API is experimental and might be changed or removed in the future.</div><h1 class="heading inherit"><a href="Experimental.ParticleSystemJobs.IParticleSystemJob.html">IParticleSystemJob</a>.ProcessParticleSystem</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">ProcessParticleSystem</span>(<a href="Experimental.ParticleSystemJobs.ParticleSystemJobData.html">Experimental.ParticleSystemJobs.ParticleSystemJobData</a> <span class="sig-kw">jobData</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">jobData</td><td class="desc"></td><td class="desc1">Contains the particle properties.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Implement this method to access and modify particle properties.</p></div><div class="subsection"><p>Below is an example of a script that can be used to attract particles to a supplied position.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System;
+using Unity.Collections;
+using UnityEngine;
+using UnityEngine.Experimental.ParticleSystemJobs;<br /><br />public class ParticleJob : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public float effectRange = 2.0f;
+    public float effectStrength = 1.0f;
+    public float oscillationSpeed = 12.0f;
+    public bool useJobSystem = false;<br /><br />    private float oscillationPhase;<br /><br />    private <a href="ParticleSystem.html">ParticleSystem</a> ps;
+    private UpdateParticlesJob job = new UpdateParticlesJob();
+    private <a href="ParticleSystem.Particle.html">ParticleSystem.Particle</a>[] mainThreadParticles;<br /><br />    private static float Remap(float x, float x1, float x2, float y1, float y2)
+    {
+        var m = (y2 - y1) / (x2 - x1);
+        var c = y1 - m * x1;<br /><br />        return m * x + c;
+    }<br /><br />    private static <a href="Vector3.html">Vector3</a> CalculateVelocity(ref UpdateParticlesJob job, <a href="Vector3.html">Vector3</a> delta)
+    {
+        float attraction = job.effectStrength / job.effectRangeSqr;
+        return delta.normalized * attraction;
+    }<br /><br />    private static <a href="Color32.html">Color32</a> CalculateColor(ref UpdateParticlesJob job, <a href="Vector3.html">Vector3</a> delta, <a href="Color32.html">Color32</a> srcColor, UInt32 seed)
+    {
+        var targetColor = new <a href="Color32.html">Color32</a>((byte)(seed &gt;&gt; 24), (byte)(seed &gt;&gt; 16), (byte)(seed &gt;&gt; 8), srcColor.a);
+        float lerpAmount = delta.magnitude * job.inverseEffectRange;
+        lerpAmount = lerpAmount * 0.25f + 0.75f;
+        return <a href="Color32.Lerp.html">Color32.Lerp</a>(targetColor, srcColor, lerpAmount);
+    }<br /><br />    void Start()
+    {
+        ps = GetComponent&lt;<a href="ParticleSystem.html">ParticleSystem</a>&gt;();
+        oscillationPhase = UnityEngine.Random.Range(0.0f, <a href="Mathf.PI.html">Mathf.PI</a> * 2.0f);
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        <a href="Vector2.html">Vector2</a> mouse = <a href="Input-mousePosition.html">Input.mousePosition</a>;
+        job.effectPosition = Camera.main.ScreenToWorldPoint(new <a href="Vector3.html">Vector3</a>(mouse.x, mouse.y, -Camera.main.transform.position.z));
+        job.effectRangeSqr = effectRange * effectRange;
+        job.effectStrength = effectStrength * Remap(<a href="Mathf.Sin.html">Mathf.Sin</a>(oscillationPhase + <a href="Time-time.html">Time.time</a> * oscillationSpeed), -1, 1, -1, 0.5f);
+        job.inverseEffectRange = (1.0f / effectRange);<br /><br />        if (useJobSystem)
+        {
+            ps.SetJob(job);
+        }
+        else
+        {
+            ps.ClearJob();<br /><br />            if (mainThreadParticles == null)
+                mainThreadParticles = new <a href="ParticleSystem.Particle.html">ParticleSystem.Particle</a>[ps.main.maxParticles];<br /><br />            var count = ps.GetParticles(mainThreadParticles);
+            for (int i = 0; i &lt; count; i++)
+            {
+                <a href="Vector3.html">Vector3</a> position = mainThreadParticles[i].position;
+                <a href="Vector3.html">Vector3</a> delta = position - job.effectPosition;
+                if (delta.sqrMagnitude &lt; job.effectRangeSqr)
+                {
+                    mainThreadParticles[i].velocity += CalculateVelocity(ref job, delta);
+                    mainThreadParticles[i].startColor = CalculateColor(ref job, delta, mainThreadParticles[i].startColor, mainThreadParticles[i].randomSeed);
+                }
+            }
+            ps.SetParticles(mainThreadParticles, count);
+        }
+    }<br /><br />    struct UpdateParticlesJob : <a href="Experimental.ParticleSystemJobs.IParticleSystemJob.html">IParticleSystemJob</a>
+    {
+        [ReadOnly]
+        public <a href="Vector3.html">Vector3</a> effectPosition;<br /><br />        [ReadOnly]
+        public float effectRangeSqr;<br /><br />        [ReadOnly]
+        public float effectStrength;<br /><br />        [ReadOnly]
+        public float inverseEffectRange;<br /><br />        public void ProcessParticleSystem(<a href="Experimental.ParticleSystemJobs.ParticleSystemJobData.html">ParticleSystemJobData</a> particles)
+        {
+            var positionsX = particles.positions.x;
+            var positionsY = particles.positions.y;
+            var positionsZ = particles.positions.z;<br /><br />            var velocitiesX = particles.velocities.x;
+            var velocitiesY = particles.velocities.y;
+            var velocitiesZ = particles.velocities.z;<br /><br />            var colors = particles.startColors;<br /><br />            var randomSeeds = particles.randomSeeds;<br /><br />            for (int i = 0; i &lt; particles.count; i++)
+            {
+                <a href="Vector3.html">Vector3</a> position = new <a href="Vector3.html">Vector3</a>(positionsX[i], positionsY[i], positionsZ[i]);
+                <a href="Vector3.html">Vector3</a> delta = (position - effectPosition);
+                if (delta.sqrMagnitude &lt; effectRangeSqr)
+                {
+                    <a href="Vector3.html">Vector3</a> velocity = CalculateVelocity(ref this, delta);<br /><br />                    velocitiesX[i] += velocity.x;
+                    velocitiesY[i] += velocity.y;
+                    velocitiesZ[i] += velocity.z;<br /><br />                    colors[i] = CalculateColor(ref this, delta, colors[i], randomSeeds[i]);
+                }
+            }
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Here is a script that can be used with the above example, to supply the mouse position as the point to attract particles towards.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;<br /><br />public class ParticleSpawner : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="ParticleSystem.html">ParticleSystem</a> prefab;
+    public int systemCount = 128;
+    public int particleEmissionRatePerSystem = 400;
+    public float particleSystemShapeRadius = 1.0f;
+    public float totalRadius = 5.0f;
+    public float effectRange = 3.0f;
+    public float effectStrength = 1.0f;
+    public float oscillationSpeed = 10.0f;
+    public bool hasTrails = true;
+    public bool useJobSystem = false;<br /><br />    void Start()
+    {
+        var material = new <a href="Material.html">Material</a>(<a href="Shader.Find.html">Shader.Find</a>("Legacy Shaders/Particles/Additive"));
+        material.SetTexture("_MainTex", AssetDatabase.GetBuiltinExtraResource&lt;<a href="Texture2D.html">Texture2D</a>&gt;("Default-Particle.psd"));<br /><br />        for (int i = 0; i &lt; systemCount; i++)
+        {
+            var go = GameObject.Instantiate(prefab);
+            var ps = go.GetComponent&lt;<a href="ParticleSystem.html">ParticleSystem</a>&gt;();<br /><br />            go.GetComponent&lt;<a href="ParticleSystemRenderer.html">ParticleSystemRenderer</a>&gt;().sharedMaterial = material;<br /><br />            float x = (float)i / systemCount;
+            float theta = x * <a href="Mathf.PI.html">Mathf.PI</a> * 2;<br /><br />            var transform = go.GetComponent&lt;<a href="Transform.html">Transform</a>&gt;();
+            transform.position = new <a href="Vector3.html">Vector3</a>(<a href="Mathf.Sin.html">Mathf.Sin</a>(theta), <a href="Mathf.Cos.html">Mathf.Cos</a>(theta), 0.0f) * totalRadius;<br /><br />            var main = ps.main;
+            main.startColor = <a href="Color.HSVToRGB.html">Color.HSVToRGB</a>(x, <a href="Random.Range.html">Random.Range</a>(0.5f, 1.0f), <a href="Random.Range.html">Random.Range</a>(0.5f, 1.0f));<br /><br />            var emission = ps.emission;
+            emission.rateOverTime = particleEmissionRatePerSystem;<br /><br />            var shape = ps.shape;
+            shape.radius = particleSystemShapeRadius;<br /><br />            var trails = ps.trails;
+            trails.enabled = hasTrails;<br /><br />            var updateJob = go.GetComponent&lt;ParticleJob&gt;();
+            updateJob.effectRange = effectRange;
+            updateJob.effectStrength = effectStrength;
+            updateJob.oscillationSpeed = oscillationSpeed;
+            updateJob.useJobSystem = useJobSystem;
+        }
+    }<br /><br />    // UI
+    void OnGUI()
+    {
+        float x = 25.0f;
+        float y = 60.0f;
+        float spacing = 40.0f;<br /><br />        <a href="EditorGUI.BeginChangeCheck.html">EditorGUI.BeginChangeCheck</a>();<br /><br />        <a href="GUIStyle.html">GUIStyle</a> backgroundStyle = new <a href="GUIStyle.html">GUIStyle</a>(GUI.skin.box);
+        backgroundStyle.normal.background = <a href="Texture2D-whiteTexture.html">Texture2D.whiteTexture</a>;
+        var oldColor = <a href="GUI-backgroundColor.html">GUI.backgroundColor</a>;
+        <a href="GUI-backgroundColor.html">GUI.backgroundColor</a> = new <a href="Color.html">Color</a>(0.5f, 0.5f, 0.5f, 0.5f);
+        <a href="GUI.Box.html">GUI.Box</a>(new <a href="Rect.html">Rect</a>(x - 10, y - 35, 260, 230), "Options", backgroundStyle);
+        <a href="GUI-backgroundColor.html">GUI.backgroundColor</a> = oldColor;<br /><br />        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(x, y, 140, 30), "Effect <a href="SocialPlatforms.Range.html">Range</a>");
+        effectRange = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(x + 140, y + 5, 100, 30), effectRange, 0.0f, 10.0f);
+        y += spacing;<br /><br />        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(x, y, 140, 30), "Effect Strength");
+        effectStrength = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(x + 140, y + 5, 100, 30), effectStrength, 0.0f, 10.0f);
+        y += spacing;<br /><br />        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(x, y, 140, 30), "Oscillation Speed");
+        oscillationSpeed = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(x + 140, y + 5, 100, 30), oscillationSpeed, 0.0f, 20.0f);
+        y += spacing;<br /><br />        hasTrails = <a href="GUI.Toggle.html">GUI.Toggle</a>(new <a href="Rect.html">Rect</a>(x, y + 5, 140, 30), hasTrails, "Trails");
+        y += spacing;<br /><br />        useJobSystem = <a href="GUI.Toggle.html">GUI.Toggle</a>(new <a href="Rect.html">Rect</a>(x, y + 5, 140, 30), useJobSystem, "Use C# Job System");
+        y += spacing;<br /><br />        if (<a href="EditorGUI.EndChangeCheck.html">EditorGUI.EndChangeCheck</a>())
+        {
+            ParticleJob[] updateJobs = GameObject.FindObjectsOfType&lt;ParticleJob&gt;();
+            for (int i = 0; i &lt; updateJobs.Length; i++)
+            {
+                var updateJob = updateJobs[i];
+                updateJob.effectRange = effectRange;
+                updateJob.effectStrength = effectStrength;
+                updateJob.oscillationSpeed = oscillationSpeed;
+                updateJob.useJobSystem = useJobSystem;<br /><br />                var ps = updateJob.GetComponent&lt;<a href="ParticleSystem.html">ParticleSystem</a>&gt;();<br /><br />                var trails = ps.trails;
+                trails.enabled = hasTrails;
+            }
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

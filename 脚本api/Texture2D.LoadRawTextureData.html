@@ -1,0 +1,38 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Texture2D.LoadRawTextureData</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Texture2D.html">Texture2D</a>.LoadRawTextureData</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">LoadRawTextureData</span>(byte[] <span class="sig-kw">data</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">LoadRawTextureData</span>(NativeArray&lt;T&gt; <span class="sig-kw">data</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">LoadRawTextureData</span>(IntPtr <span class="sig-kw">data</span>,
+int <span class="sig-kw">size</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">data</td><td class="desc"></td><td class="desc1">Raw data array to initialize texture pixels with.</td></tr><tr><td class="name lbl">size</td><td class="desc"></td><td class="desc1">Size of data in bytes.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Fills texture pixels with raw preformatted data.</p></div><div class="subsection"><p>This function fills texture pixel memory with raw data. This is mostly useful for loading compressed texture format data into a texture.<br /><br />Passed data should be of required size to fill the whole texture according to its width, height, data <a href="Texture2D-format.html">format</a> and <a href="Texture2D-mipmapCount.html">mipmapCount</a>; otherwise a UnityException is thrown. Mipmaps are laid out in memory starting from largest, with smaller mip level data immediately following. For example, a 16x8 texture of <a href="TextureFormat.RGBA32.html">RGBA32</a> format with no mipmaps can be filled with a 512-byte array (16x8x4).<br /><br />For runtime texture generation, it is also possible to directly write into texture data via <a href="Texture2D.GetRawTextureData.html">GetRawTextureData</a> that returns a <code class="mono">Unity.Collections.NativeArray</code>. This can be faster since it avoids a memory copy that LoadRawTextureData would do.<br /><br />Call <a href="Texture2D.Apply.html">Apply</a> after setting image data to actually upload it to the GPU.<br /><br />See Also: <a href="Texture2D.SetPixels.html">SetPixels</a>, <a href="Texture2D.SetPixels32.html">SetPixels32</a>, <a href="Texture2D.LoadImage.html">LoadImage</a>, <a href="Texture2D.Apply.html">Apply</a>, <a href="Texture2D.GetRawTextureData.html">GetRawTextureData</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public void Start()
+    {
+        // Create a 16x16 texture with PVRTC RGBA4 format
+        // and fill it with raw PVRTC bytes.
+        <a href="Texture2D.html">Texture2D</a> tex = new <a href="Texture2D.html">Texture2D</a>(16, 16, <a href="TextureFormat.PVRTC_RGBA4.html">TextureFormat.PVRTC_RGBA4</a>, false);
+        // Raw PVRTC4 data for a 16x16 texture. This format is four bits
+        // per pixel, so data should be 16*16/2=128 bytes in size.
+        // <a href="Texture.html">Texture</a> that is encoded here is mostly green with some angular
+        // blue and red lines.
+        byte[] pvrtcBytes = new byte[]
+        {
+            0x30, 0x32, 0x32, 0x32, 0xe7, 0x30, 0xaa, 0x7f, 0x32, 0x32, 0x32, 0x32, 0xf9, 0x40, 0xbc, 0x7f,
+            0x03, 0x03, 0x03, 0x03, 0xf6, 0x30, 0x02, 0x05, 0x03, 0x03, 0x03, 0x03, 0xf4, 0x30, 0x03, 0x06,
+            0x32, 0x32, 0x32, 0x32, 0xf7, 0x40, 0xaa, 0x7f, 0x32, 0xf2, 0x02, 0xa8, 0xe7, 0x30, 0xff, 0xff,
+            0x03, 0x03, 0x03, 0xff, 0xe6, 0x40, 0x00, 0x0f, 0x00, 0xff, 0x00, 0xaa, 0xe9, 0x40, 0x9f, 0xff,
+            0x5b, 0x03, 0x03, 0x03, 0xca, 0x6a, 0x0f, 0x30, 0x03, 0x03, 0x03, 0xff, 0xca, 0x68, 0x0f, 0x30,
+            0xaa, 0x94, 0x90, 0x40, 0xba, 0x5b, 0xaf, 0x68, 0x40, 0x00, 0x00, 0xff, 0xca, 0x58, 0x0f, 0x20,
+            0x00, 0x00, 0x00, 0xff, 0xe6, 0x40, 0x01, 0x2c, 0x00, 0xff, 0x00, 0xaa, 0xdb, 0x41, 0xff, 0xff,
+            0x00, 0x00, 0x00, 0xff, 0xe8, 0x40, 0x01, 0x1c, 0x00, 0xff, 0x00, 0xaa, 0xbb, 0x40, 0xff, 0xff,
+        };
+        // Load data into the texture and upload it to the GPU.
+        tex.LoadRawTextureData(pvrtcBytes);
+        tex.Apply();
+        // Assign texture to renderer's material.
+        GetComponent&lt;<a href="Renderer.html">Renderer</a>&gt;().material.mainTexture = tex;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AnimationState.weight</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="AnimationState.html">AnimationState</a>.weight</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public float <span class="sig-kw">weight</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The weight of animation.</p></div><div class="subsection"><p>This calculates the blend weights for one curve.<br /><br />Weights are distributed so that the top layer gets everything.
+If it doesn't use the full weight then the next layer gets to distribute the remaining
+weights and so on. Once all weights are used by the top layers,
+no weights will be available for lower layers anymore
+Unity uses fair weighting, which means if a lower layer wants 80% and 50% have already been used up, the layer will NOT use up all weights.
+instead it will take up 80% of the 50%.<br /><br /><strong>Example:</strong>
+a upper body which is affected by wave, walk and idle
+a lower body which is affected by only walk and idle.<br /><br />- Blend weights can change per animated value because of mixing.
+Even without mixing, sometimes a curve is just not defined. Still you want the blend weights to add up to 1.
+Most of the time weights are similar between curves.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Animation.html">Animation</a> anim;<br /><br />    void Start()
+    {
+        // Set the blend weight of the walk animation to 0.5
+        anim["Walk"].weight = 0.5f;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

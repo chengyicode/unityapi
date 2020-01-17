@@ -1,0 +1,20 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Rect.Contains</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Rect.html">Rect</a>.Contains</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public bool <span class="sig-kw">Contains</span>(<a href="Vector2.html">Vector2</a> <span class="sig-kw">point</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public bool <span class="sig-kw">Contains</span>(<a href="Vector3.html">Vector3</a> <span class="sig-kw">point</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public bool <span class="sig-kw">Contains</span>(<a href="Vector3.html">Vector3</a> <span class="sig-kw">point</span>,
+bool <span class="sig-kw">allowInverse</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">point</td><td class="desc"></td><td class="desc1">Point to test.</td></tr><tr><td class="name lbl">allowInverse</td><td class="desc"></td><td class="desc1">Does the test allow the Rect's width and height to be negative?</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>bool</strong>
+        True if the point lies within the specified rectangle.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Returns true if the <code class="varname">x</code> and <code class="varname">y</code> components of <code class="varname">point</code> is a point inside this rectangle. If <code class="varname">allowInverse</code> is present and true, the width and height of the Rect are allowed to take negative values (ie, the min value is greater than the max), and the test will still work.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class RectExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        <a href="Rect.html">Rect</a> rect = new <a href="Rect.html">Rect</a>(0, 0, 150, 150);
+        if (rect.Contains(<a href="Input-mousePosition.html">Input.mousePosition</a>))
+            <a href="Debug.Log.html">Debug.Log</a>("Inside");
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

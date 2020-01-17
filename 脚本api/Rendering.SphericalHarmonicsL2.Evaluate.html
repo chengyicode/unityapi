@@ -1,0 +1,21 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Rendering.SphericalHarmonicsL2.Evaluate</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Rendering.SphericalHarmonicsL2.html">SphericalHarmonicsL2</a>.Evaluate</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">Evaluate</span>(Vector3[] <span class="sig-kw">directions</span>,
+Color[] <span class="sig-kw">results</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">directions</td><td class="desc"></td><td class="desc1">Normalized directions for which the spherical harmonics are to be evaluated.</td></tr><tr><td class="name lbl">results</td><td class="desc"></td><td class="desc1">Output array for the evaluated values of the corresponding directions.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Evaluates the Spherical Harmonics for each of the given directions. The result from the first direction is written into the first element of <code class="varname">results</code>, the result from the second direction is written into the second element of <code class="varname">results</code>, and so on. The array size of <code class="varname">directions</code> and <code class="varname">results</code> must match and <code class="varname">directions</code> must be normalized.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.Collections;
+using UnityEngine;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        UnityEngine.Rendering.SphericalHarmonicsL2 sh2;
+        <a href="LightProbes.GetInterpolatedProbe.html">LightProbes.GetInterpolatedProbe</a>(new <a href="Vector3.html">Vector3</a>(0.0f, 0.0f, 0.0f), null, out sh2);<br /><br />        <a href="Vector3.html">Vector3</a>[] directions = new <a href="Vector3.html">Vector3</a>[]
+        {
+            new <a href="Vector3.html">Vector3</a>(0.0f, 1.0f, 0.0f),
+            new <a href="Vector3.html">Vector3</a>(0.0f, -1.0f, 0.0f)
+        };
+        <a href="Color.html">Color</a>[] results = new <a href="Color.html">Color</a>[2];<br /><br />        sh2.Evaluate(directions, results);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

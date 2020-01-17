@@ -1,0 +1,21 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorWindow.Close</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorWindow.html">EditorWindow</a>.Close</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">Close</span>();
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Close the editor window.</p></div><div class="subsection"><p>This will destroy the editor window.<br /><br /><img src="../StaticFiles/ScriptRefImages/EditorWindowClose.png" /><br />
+<em>Simple example to show Close()</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class ScriptExample : <a href="EditorWindow.html">EditorWindow</a>
+{
+    [<a href="MenuItem.html">MenuItem</a>("Example/Close() Example")]
+    static void Init()
+    {
+        ScriptExample window = (ScriptExample)<a href="EditorWindow.GetWindowWithRect.html">EditorWindow.GetWindowWithRect</a>(typeof(ScriptExample), new <a href="Rect.html">Rect</a>(0, 0, 200, 100));
+        window.Show();
+    }<br /><br />    void OnGUI()
+    {
+        <a href="EditorGUILayout.LabelField.html">EditorGUILayout.LabelField</a>("<a href="EditorWindow.Close.html">EditorWindow.Close</a> example", <a href="EditorStyles-wordWrappedLabel.html">EditorStyles.wordWrappedLabel</a>);<br /><br />        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Close!"))
+            this.Close();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

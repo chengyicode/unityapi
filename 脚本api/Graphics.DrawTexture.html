@@ -1,0 +1,47 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Graphics.DrawTexture</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Graphics.html">Graphics</a>.DrawTexture</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">DrawTexture</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">screenRect</span>,
+<a href="Texture.html">Texture</a> <span class="sig-kw">texture</span>,
+<a href="Material.html">Material</a> <span class="sig-kw">mat</span> = null,
+int <span class="sig-kw">pass</span> = -1);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">DrawTexture</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">screenRect</span>,
+<a href="Texture.html">Texture</a> <span class="sig-kw">texture</span>,
+int <span class="sig-kw">leftBorder</span>,
+int <span class="sig-kw">rightBorder</span>,
+int <span class="sig-kw">topBorder</span>,
+int <span class="sig-kw">bottomBorder</span>,
+<a href="Material.html">Material</a> <span class="sig-kw">mat</span> = null,
+int <span class="sig-kw">pass</span> = -1);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">DrawTexture</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">screenRect</span>,
+<a href="Texture.html">Texture</a> <span class="sig-kw">texture</span>,
+<a href="Rect.html">Rect</a> <span class="sig-kw">sourceRect</span>,
+int <span class="sig-kw">leftBorder</span>,
+int <span class="sig-kw">rightBorder</span>,
+int <span class="sig-kw">topBorder</span>,
+int <span class="sig-kw">bottomBorder</span>,
+<a href="Material.html">Material</a> <span class="sig-kw">mat</span> = null,
+int <span class="sig-kw">pass</span> = -1);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">DrawTexture</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">screenRect</span>,
+<a href="Texture.html">Texture</a> <span class="sig-kw">texture</span>,
+<a href="Rect.html">Rect</a> <span class="sig-kw">sourceRect</span>,
+int <span class="sig-kw">leftBorder</span>,
+int <span class="sig-kw">rightBorder</span>,
+int <span class="sig-kw">topBorder</span>,
+int <span class="sig-kw">bottomBorder</span>,
+<a href="Color.html">Color</a> <span class="sig-kw">color</span>,
+<a href="Material.html">Material</a> <span class="sig-kw">mat</span> = null,
+int <span class="sig-kw">pass</span> = -1);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">screenRect</td><td class="desc"></td><td class="desc1">Rectangle on the screen to use for the texture. In pixel coordinates with (0,0) in the upper-left corner.</td></tr><tr><td class="name lbl">texture</td><td class="desc"></td><td class="desc1">
+          <a href="Texture.html">Texture</a> to draw.</td></tr><tr><td class="name lbl">sourceRect</td><td class="desc"></td><td class="desc1">Region of the texture to use. In normalized coordinates with (0,0) in the bottom-left corner.</td></tr><tr><td class="name lbl">leftBorder</td><td class="desc"></td><td class="desc1">Number of pixels from the left that are not affected by scale.</td></tr><tr><td class="name lbl">rightBorder</td><td class="desc"></td><td class="desc1">Number of pixels from the right that are not affected by scale.</td></tr><tr><td class="name lbl">topBorder</td><td class="desc"></td><td class="desc1">Number of pixels from the top that are not affected by scale.</td></tr><tr><td class="name lbl">bottomBorder</td><td class="desc"></td><td class="desc1">Number of pixels from the bottom that are not affected by scale.</td></tr><tr><td class="name lbl">color</td><td class="desc"></td><td class="desc1">
+          <a href="Color.html">Color</a> that modulates the output. The neutral value is (0.5, 0.5, 0.5, 0.5). Set as vertex color for the shader.</td></tr><tr><td class="name lbl">mat</td><td class="desc"></td><td class="desc1">Custom <a href="Material.html">Material</a> that can be used to draw the texture. If null is passed, a default material with the Internal-GUITexture.shader is used.</td></tr><tr><td class="name lbl">pass</td><td class="desc"></td><td class="desc1">If -1 (default), draws all passes in the material. Otherwise, draws given pass only.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Draw a texture in screen coordinates.</p></div><div class="subsection"><p>If you want to draw a texture from inside of OnGUI code, you should only do that from <a href="EventType.Repaint.html">EventType.Repaint</a>
+events. It's probably better to use <a href="GUI.DrawTexture.html">GUI.DrawTexture</a> for GUI code.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Draws a texture on the screen at 10, 10 with 100 width, 100 height.<br /><br />    <a href="Texture.html">Texture</a> aTexture;<br /><br />    void OnGUI()
+    {
+        if (Event.current.type.Equals(<a href="EventType.Repaint.html">EventType.Repaint</a>))
+        {
+            <a href="Graphics.DrawTexture.html">Graphics.DrawTexture</a>(new <a href="Rect.html">Rect</a>(10, 10, 100, 100), aTexture);
+        }
+    }
+}</pre>
+      </div></div></div></div></body></html>

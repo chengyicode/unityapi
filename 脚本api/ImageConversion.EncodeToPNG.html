@@ -1,0 +1,47 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ImageConversion.EncodeToPNG</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="ImageConversion.html">ImageConversion</a>.EncodeToPNG</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static byte[] <span class="sig-kw">EncodeToPNG</span>(<a href="Texture2D.html">Texture2D</a> <span class="sig-kw">tex</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">tex</td><td class="desc"></td><td class="desc1">The texture to convert.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Encodes this texture into PNG format.</p></div><div class="subsection"><p>The returned byte array is the PNG "file". You can write them to disk to get the PNG file,
+send them over the network, etc.<br /><br />This function works only on uncompressed, non-HDR texture formats.
+You must enable the texture's <a href="TextureImporter-isReadable.html">Read/Write Enabled</a> flag in the <a href="../Manual/class-TextureImporter.html">Texture Import Settings</a>.<br /><br />The encoded PNG data will
+contain alpha channel for <code class="varname">RGBA32</code>, <code class="varname">ARGB32</code> textures, and no alpha channel for <code class="varname">RGB24</code> textures.
+PNG data will not contain gamma correction or color profile information.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Saves screenshot as PNG file.
+using UnityEngine;
+using UnityEngine.Networking;
+using System.Collections;
+using System.IO;<br /><br />public class PNGUploader : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Take a shot immediately
+    IEnumerator Start()
+    {
+        yield return UploadPNG();
+    }<br /><br />    IEnumerator UploadPNG()
+    {
+        // We should only read the screen buffer after rendering is complete
+        yield return new <a href="WaitForEndOfFrame.html">WaitForEndOfFrame</a>();<br /><br />        // Create a texture the size of the screen, RGB24 format
+        int width = <a href="Screen-width.html">Screen.width</a>;
+        int height = <a href="Screen-height.html">Screen.height</a>;
+        <a href="Texture2D.html">Texture2D</a> tex = new <a href="Texture2D.html">Texture2D</a>(width, height, <a href="TextureFormat.RGB24.html">TextureFormat.RGB24</a>, false);<br /><br />        // Read screen contents into the texture
+        tex.ReadPixels(new <a href="Rect.html">Rect</a>(0, 0, width, height), 0, 0);
+        tex.Apply();<br /><br />        // Encode texture into PNG
+        byte[] bytes = tex.EncodeToPNG();
+        <a href="Object.Destroy.html">Object.Destroy</a>(tex);<br /><br />        // For testing purposes, also write to a file in the project folder
+        // <a href="Windows.File.WriteAllBytes.html">File.WriteAllBytes</a>(<a href="Application-dataPath.html">Application.dataPath</a> + "/../SavedScreen.png", bytes);<br /><br />
+        // Create a Web Form
+        <a href="WWWForm.html">WWWForm</a> form = new <a href="WWWForm.html">WWWForm</a>();
+        form.AddField("frameCount", Time.frameCount.ToString());
+        form.AddBinaryData("fileUpload", bytes);<br /><br />        // Upload to a cgi script
+        var w = <a href="Networking.UnityWebRequest.Post.html">UnityWebRequest.Post</a>("http://localhost/cgi-bin/env.cgi?post", form);
+        yield return w.SendWebRequest();<br /><br />        if (w.isNetworkError || w.isHttpError)
+        {
+            <a href="Debug.Log.html">Debug.Log</a>(w.error);
+        }
+        else
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("Finished Uploading Screenshot");
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="Texture2D.ReadPixels.html">ReadPixels</a>, <a href="WaitForEndOfFrame.html">WaitForEndOfFrame</a>, <a href="ImageConversion.LoadImage.html">LoadImage</a>, <a href="ImageConversion.EncodeToJPG.html">EncodeToJPG</a>.</p></div></div></div></div></body></html>

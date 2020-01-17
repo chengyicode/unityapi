@@ -1,0 +1,15 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Application.version</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Application.html">Application</a>.version</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static string <span class="sig-kw">version</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Returns application version number  (Read Only).</p></div><div class="subsection"><p>This function returns the current version of the Application. This is read-only. To set the version number in Unity, go to <strong>Edit</strong>&gt;<strong>Project Settings</strong>&gt;<strong>Player</strong> and open the <strong>Other Settings</strong> tab.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class ApplicationVersionExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Use this for initialization
+    void Start()
+    {
+        //Ouput the current <a href="Application.html">Application</a> version into the Console
+        <a href="Debug.Log.html">Debug.Log</a>("<a href="Application.html">Application</a> Version : " + <a href="Application-version.html">Application.version</a>);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

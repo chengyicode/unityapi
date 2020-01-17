@@ -1,0 +1,16 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorApplication.applicationPath</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorApplication.html">EditorApplication</a>.applicationPath</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static string <span class="sig-kw">applicationPath</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Returns the path to the Unity editor application. (Read Only)</p></div><div class="subsection"><p>See Also: <a href="EditorApplication-applicationContentsPath.html">applicationContentsPath</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// <a href="Display.html">Display</a> file system location where the Unity
+// executable is stored.<br /><br />using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;<br /><br />public class applicationPathExample
+{
+    [<a href="MenuItem.html">MenuItem</a>("Examples/Location of Unity application")]
+    static void appPath()
+    {
+        <a href="Debug.Log.html">Debug.Log</a>(<a href="EditorApplication-applicationPath.html">EditorApplication.applicationPath</a>);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

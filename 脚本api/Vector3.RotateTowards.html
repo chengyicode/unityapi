@@ -1,0 +1,33 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Vector3.RotateTowards</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Vector3.html">Vector3</a>.RotateTowards</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Vector3.html">Vector3</a> <span class="sig-kw">RotateTowards</span>(<a href="Vector3.html">Vector3</a> <span class="sig-kw">current</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">target</span>,
+float <span class="sig-kw">maxRadiansDelta</span>,
+float <span class="sig-kw">maxMagnitudeDelta</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">current</td><td class="desc"></td><td class="desc1">The vector being managed.</td></tr><tr><td class="name lbl">target</td><td class="desc"></td><td class="desc1">The vector.</td></tr><tr><td class="name lbl">maxRadiansDelta</td><td class="desc"></td><td class="desc1">The maximum angle in radians allowed for this rotation.</td></tr><tr><td class="name lbl">maxMagnitudeDelta</td><td class="desc"></td><td class="desc1">The maximum allowed change in vector magnitude for this rotation.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>Vector3</strong>
+        The location that RotateTowards generates.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Rotates a vector <code class="varname">current</code> towards <code class="varname">target</code>.</p></div><div class="subsection"><p>This function is similar to <a href="Vector3.MoveTowards.html">MoveTowards</a> except that the vector is treated as a direction rather
+than a position. The <code class="varname">current</code> vector will be rotated round toward the <code class="varname">target</code> direction by an angle
+of <code class="varname">maxRadiansDelta</code>, although it will land exactly on the target rather than overshoot. If the magnitudes
+of <code class="varname">current</code> and <code class="varname">target</code> are different, then the magnitude of the result will be linearly interpolated during
+the rotation. If a negative value is used for <code class="varname">maxRadiansDelta</code>, the vector will rotate away from  <code class="varname">target/</code>
+until it is pointing in exactly the opposite direction, then stops.<br /><br /><br />See Also: <a href="Quaternion.RotateTowards.html">Quaternion.RotateTowards</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />// To use this script, attach it to the <a href="GameObject.html">GameObject</a> that you would like to rotate towards another game object.
+// After attaching it, go to the inspector and drag the <a href="GameObject.html">GameObject</a> you would like to rotate towards into the target field.
+// Move the target around in the scene view to see the <a href="GameObject.html">GameObject</a> continuously rotate towards it.
+public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // The target marker.
+    public <a href="Transform.html">Transform</a> target;<br /><br />    // Angular speed in radians per sec.
+    public float speed = 1.0f;<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        // Determine which direction to rotate towards
+        <a href="Vector3.html">Vector3</a> targetDirection = target.position - transform.position;<br /><br />        // The step size is equal to speed times frame time.
+        float singleStep = speed * <a href="Time-deltaTime.html">Time.deltaTime</a>;<br /><br />        // Rotate the forward vector towards the target direction by one step
+        <a href="Vector3.html">Vector3</a> newDirection = <a href="Vector3.RotateTowards.html">Vector3.RotateTowards</a>(transform.forward, targetDirection, singleStep, 0.0f);<br /><br />        // Draw a ray pointing at our target in
+        <a href="Debug.DrawRay.html">Debug.DrawRay</a>(transform.position, newDirection, <a href="Color-red.html">Color.red</a>);<br /><br />        // Calculate a rotation a step closer to the target and applies rotation to this object
+        transform.rotation = <a href="Quaternion.LookRotation.html">Quaternion.LookRotation</a>(newDirection);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Transform.GetChild</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Transform.html">Transform</a>.GetChild</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Transform.html' title='Go to Transform Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Transform.html">Transform</a> <span class="sig-kw">GetChild</span>(int <span class="sig-kw">index</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">index</td><td class="desc"></td><td class="desc1">Index of the child transform to return. Must be smaller than Transform.childCount.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>Transform</strong>
+        Transform child by index.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Returns a transform child by index.</p></div><div class="subsection"><p>If the transform has no child, or the index argument has a value greater than the number of children then an error will be generated. In this case "Transform child out of bounds" error will be given.  The number of children can be provided by <a href="Transform-childCount.html">childCount</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Transform.html">Transform</a> meeple;
+    public <a href="GameObject.html">GameObject</a> grandChild;<br /><br />    public void Example()
+    {
+        //Assigns the transform of the first child of the Game Object this script is attached to.
+        meeple = this.gameObject.transform.GetChild(0);<br /><br />        //Assigns the first child of the first child of the Game Object this script is attached to.
+        grandChild = this.gameObject.transform.GetChild(0).GetChild(0).gameObject;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

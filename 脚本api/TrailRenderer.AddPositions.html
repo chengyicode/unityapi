@@ -1,0 +1,40 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: TrailRenderer.AddPositions</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="TrailRenderer.html">TrailRenderer</a>.AddPositions</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-TrailRenderer.html' title='Go to TrailRenderer Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">AddPositions</span>(Vector3[] <span class="sig-kw">positions</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">positions</td><td class="desc"></td><td class="desc1">The positions to add to the trail.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Add an array of positions to the trail.</p></div><div class="subsection"><p>All points inside a TrailRenderer store a timestamp when they are born. This, together with the <a href="time.html">TrailRenderer.time</a> property, is used to determine when they will be removed. For trails to disappear smoothly, each position must have a unique, increasing timestamp. When positions are supplied from script and the current time is identical for multiple points, position timestamps are adjusted to interpolate smoothly between the timestamp of the newest existing point in the trail and the current time.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public int numExtraPositions = 0;
+    public float speed = 20.0f;
+    public float radius = 4.0f;<br /><br />    private <a href="TrailRenderer.html">TrailRenderer</a> tr;<br /><br />    void Start()
+    {
+        tr = GetComponent&lt;<a href="TrailRenderer.html">TrailRenderer</a>&gt;();
+        tr.material = new <a href="Material.html">Material</a>(<a href="Shader.Find.html">Shader.Find</a>("Sprites/Default"));
+        tr.time = 0.2f;
+        tr.widthMultiplier = 0.3f;
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        float time = <a href="Time-time.html">Time.time</a>;
+        tr.transform.position = CalculatePosition(time);<br /><br />        if (numExtraPositions &gt; 0)
+        {
+            float prevTime = time - <a href="Time-deltaTime.html">Time.deltaTime</a>;
+            List&lt;<a href="Vector3.html">Vector3</a>&gt; extraPositions = new List&lt;<a href="Vector3.html">Vector3</a>&gt;(numExtraPositions);<br /><br />            for (int i = 0; i &lt; numExtraPositions; i++)
+            {
+                float percentage = (float)(i + 1) / (numExtraPositions + 1);
+                float blendedTime = <a href="Mathf.LerpUnclamped.html">Mathf.LerpUnclamped</a>(prevTime, time, percentage);
+                extraPositions.Add(CalculatePosition(blendedTime));
+            }<br /><br />            tr.AddPositions(extraPositions.ToArray());
+        }
+    }<br /><br />    void OnGUI()
+    {
+        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, 20, 200, 30), "Extra Positions");
+        numExtraPositions = (int)<a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(165, 25, 200, 30), (float)numExtraPositions, 0, 5);
+    }<br /><br />    private <a href="Vector3.html">Vector3</a> CalculatePosition(float time)
+    {
+        return new <a href="Vector3.html">Vector3</a>(<a href="Mathf.Sin.html">Mathf.Sin</a>(time * speed) * radius, <a href="Mathf.Cos.html">Mathf.Cos</a>(time * speed) * radius, 0.0f);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

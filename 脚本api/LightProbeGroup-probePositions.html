@@ -1,0 +1,38 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: LightProbeGroup.probePositions</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="LightProbeGroup.html">LightProbeGroup</a>.probePositions</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-LightProbeGroup.html' title='Go to LightProbeGroup Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public Vector3[] <span class="sig-kw">probePositions</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Editor only function to access and modify probe positions.</p></div><div class="subsection"><p>Probe positions are specified in local space relative to the parent object.<br /><br />At runtime this function will return an empty Vector3 array and setting it will have no effect.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class ExampleScript : <a href="EditorWindow.html">EditorWindow</a>
+{
+    private <a href="LightProbeGroup.html">LightProbeGroup</a> lightProbes = null;<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Example/Set Probe Positions")]
+    static void Init()
+    {
+        var window = GetWindowWithRect&lt;ExampleScript&gt;(new <a href="Rect.html">Rect</a>(0, 0, 350, 50));
+        window.Show();
+    }<br /><br />    void OnGUI()
+    {
+        lightProbes = (<a href="LightProbeGroup.html">LightProbeGroup</a>)<a href="EditorGUILayout.ObjectField.html">EditorGUILayout.ObjectField</a>(
+            "Find Dependency",     // string
+            lightProbes,       // Object
+            typeof(<a href="LightProbeGroup.html">LightProbeGroup</a>),     // Type
+            true);<br /><br />        if (lightProbes)
+        {
+            if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Set Probe Positions"))
+            {
+                <a href="Vector3.html">Vector3</a>[] positions = new <a href="Vector3.html">Vector3</a>[4];
+                positions[0] = new <a href="Vector3.html">Vector3</a>(0.0f, 0.0f, 0.0f);
+                positions[1] = new <a href="Vector3.html">Vector3</a>(1.0f, 0.0f, 0.0f);
+                positions[2] = new <a href="Vector3.html">Vector3</a>(0.0f, 1.0f, 0.0f);
+                positions[3] = new <a href="Vector3.html">Vector3</a>(1.0f, 1.0f, 1.0f);
+                lightProbes.probePositions = positions;
+            }
+        }
+        else
+        {
+            <a href="EditorGUILayout.LabelField.html">EditorGUILayout.LabelField</a>("Missing:", "Please select an object first!");
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

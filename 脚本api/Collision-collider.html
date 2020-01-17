@@ -1,0 +1,26 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Collision.collider</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Collision.html">Collision</a>.collider</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Collider.html">Collider</a> <span class="sig-kw">collider</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The <a href="Collider.html">Collider</a> we hit (Read Only).</p></div><div class="subsection"><p>Fetch the Collider of the GameObject your GameObject hits.
+To find all colliders that were hit in detail you have to iterate the contact points (<a href="Collision-contacts.html">contacts</a> property).</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//In this example, the name of the <a href="GameObject.html">GameObject</a> that collides with your <a href="GameObject.html">GameObject</a> is output to the console. Then this checks the name of the <a href="Collider.html">Collider</a> and if it matches with the one you specify, it outputs another message.<br /><br />//Create a <a href="GameObject.html">GameObject</a> and make sure it has a <a href="Collider.html">Collider</a> component. Attach this script to it.
+//Create a second <a href="GameObject.html">GameObject</a> with a <a href="Collider.html">Collider</a> and place it on top of the other <a href="GameObject.html">GameObject</a> to output that there was a collision. You can add movement to the <a href="GameObject.html">GameObject</a> to test more.<br /><br />using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    //If your <a href="GameObject.html">GameObject</a> starts to collide with another <a href="GameObject.html">GameObject</a> with a <a href="Collider.html">Collider</a>
+    void OnCollisionEnter(<a href="Collision.html">Collision</a> collision)
+    {
+        //Output the <a href="Collider.html">Collider</a>'s <a href="GameObject.html">GameObject</a>'s name
+        <a href="Debug.Log.html">Debug.Log</a>(collision.collider.name);
+    }<br /><br />    //If your <a href="GameObject.html">GameObject</a> keeps colliding with another <a href="GameObject.html">GameObject</a> with a <a href="Collider.html">Collider</a>, do something
+    void OnCollisionStay(<a href="Collision.html">Collision</a> collision)
+    {
+        //Check to see if the <a href="Collider.html">Collider</a>'s name is "Chest"
+        if (collision.collider.name == "Chest")
+        {
+            //Output the message
+            <a href="Debug.Log.html">Debug.Log</a>("Chest is here!");
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

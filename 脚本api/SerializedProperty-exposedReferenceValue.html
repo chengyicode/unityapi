@@ -1,0 +1,18 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: SerializedProperty.exposedReferenceValue</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="SerializedProperty.html">SerializedProperty</a>.exposedReferenceValue</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public Object <span class="sig-kw">exposedReferenceValue</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>A reference to another Object in the Scene. This reference is resolved in the context of the SerializedObject containing the SerializedProperty.</p></div><div class="subsection"><p>See Also: <a href="SerializedProperty-propertyType.html">propertyType</a>, <a href="SerializedPropertyType.ObjectReference.html">SerializedPropertyType.ObjectReference</a>, <a href="SerializedObject-context.html">SerializedObject.context</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class SerializedPropertyTest : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public Object mComponent1;
+    public Object mComponent2;<br /><br />    void Start()
+    {
+        var timeline = <a href="Resources.Load.html">Resources.Load</a>("myTimeline");
+        var so1 = new <a href="SerializedObject.html">SerializedObject</a>(timeline, mComponent1);
+        var so2 = new <a href="SerializedObject.html">SerializedObject</a>(timeline, mComponent2);<br /><br />        var theCamera = so1.FindProperty("sceneCamera").exposedReferenceValue;
+        var anotherCamera = so2.FindProperty("sceneCamera").exposedReferenceValue;
+    }
+}
+</pre>
+      </div><div class="subsection"><p>In this example, the same asset is loaded into two different contexts, `mComponent1` and `mComponent2`. The same object (called “sceneCamera”) in each context resolves to a different reference to a different Camera Object.</p></div></div></div></div></body></html>

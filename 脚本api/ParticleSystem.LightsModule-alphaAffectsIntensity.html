@@ -1,0 +1,40 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ParticleSystem.LightsModule.alphaAffectsIntensity</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="ParticleSystem.LightsModule.html">ParticleSystem.LightsModule</a>.alphaAffectsIntensity</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-ParticleSystem.html' title='Go to ParticleSystem Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public bool <span class="sig-kw">alphaAffectsIntensity</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Toggle whether the particle alpha gets multiplied by the light intensity, when computing the final light intensity.</p></div><div class="subsection"><p>Useful for fading the lights out at the same time as the particles, to avoid popping.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />// For best results, use Deferred Rendering (see <a href="Camera.html">Camera</a> settings)
+public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private <a href="ParticleSystem.html">ParticleSystem</a> ps;
+    public <a href="Light.html">Light</a> lightPrefab;     // Provide a light Prefab in the inspector (eg a default Point <a href="Light.html">Light</a>)
+    public float hSliderValueA = 1.0f;
+    public bool alphaAffectsIntensity = true;<br /><br />    void Start()
+    {
+        ps = GetComponent&lt;<a href="ParticleSystem.html">ParticleSystem</a>&gt;();
+        ps.transform.localRotation = <a href="Quaternion.Euler.html">Quaternion.Euler</a>(0.0f, 0.0f, 45.0f);<br /><br />        var shape = ps.shape;
+        shape.shapeType = <a href="ParticleSystemShapeType.Circle.html">ParticleSystemShapeType.Circle</a>;<br /><br />        var lights = ps.lights;
+        lights.enabled = true;
+        lights.light = lightPrefab;
+        lights.ratio = 1.0f;
+        lights.maxLights = 1000;<br /><br />        // plane to receive lights
+        var plane = <a href="GameObject.CreatePrimitive.html">GameObject.CreatePrimitive</a>(<a href="PrimitiveType.Plane.html">PrimitiveType.Plane</a>);
+        plane.transform.parent = ps.transform;
+        plane.transform.localPosition = new <a href="Vector3.html">Vector3</a>(0.0f, 0.0f, 3.0f);
+        plane.transform.localScale = new <a href="Vector3.html">Vector3</a>(20.0f, 20.0f, 20.0f);
+        plane.transform.localRotation = <a href="Quaternion.Euler.html">Quaternion.Euler</a>(-90.0f, 0.0f, 0.0f);<br /><br />        var material = new <a href="Material.html">Material</a>(<a href="Shader.Find.html">Shader.Find</a>("Standard"));
+        material.color = new <a href="Color.html">Color</a>(0.1f, 0.1f, 0.1f, 1.0f);
+        plane.GetComponent&lt;<a href="MeshRenderer.html">MeshRenderer</a>&gt;().material = material;
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        var lights = ps.lights;
+        lights.alphaAffectsIntensity = alphaAffectsIntensity;<br /><br />        var main = ps.main;
+        main.startColor = new <a href="Color.html">Color</a>(1.0f, 1.0f, 1.0f, hSliderValueA);
+    }<br /><br />    void OnGUI()
+    {
+        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, 40, 100, 30), "Alpha");<br /><br />        hSliderValueA = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(95, 45, 100, 30), hSliderValueA, 0.0f, 1.0f);
+        alphaAffectsIntensity = <a href="GUI.Toggle.html">GUI.Toggle</a>(new <a href="Rect.html">Rect</a>(25, 85, 200, 30), alphaAffectsIntensity, "<a href="ParticleSystem.Particle.html">Particle</a> Alpha Affects <a href="Light.html">Light</a> Intensity");
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

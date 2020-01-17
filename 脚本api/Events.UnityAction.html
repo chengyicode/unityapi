@@ -1,0 +1,39 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: .UnityAction</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">UnityAction</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public delegate void <span class="sig-kw">UnityAction</span>();
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Zero argument delegate used by UnityEvents.</p></div><div class="subsection"><p>Use this to create some dynamic functionality in your scripts. Unity Actions allow you to dynamically call multiple functions. Since Unity Actions have no arguments, functions they call must also have no arguments. See <a href="https://unity3d.com/learn/tutorials/topics/scripting/delegates">Delegates </a> for more information.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//Attach this script to a <a href="GameObject.html">GameObject</a>. Attach a <a href="Renderer.html">Renderer</a> and <a href="UIElements.Button.html">Button</a> component to the same <a href="GameObject.html">GameObject</a> for this example.
+//This script will change the <a href="Color.html">Color</a> of the <a href="GameObject.html">GameObject</a> as well as output messages to the Console saying which function was run by the <a href="Events.UnityAction.html">UnityAction</a>.<br /><br />using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.Events;<br /><br />public class UnityActionExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    //This is the <a href="UIElements.Button.html">Button</a> you attach to the <a href="GameObject.html">GameObject</a> in the Inspector
+    <a href="UIElements.Button.html">Button</a> m_AddButton;
+    <a href="Renderer.html">Renderer</a> m_Renderer;<br /><br />    private <a href="Events.UnityAction.html">UnityAction</a> m_MyFirstAction;
+    //This is the number that the script updates
+    float m_MyNumber;<br /><br />    void Start()
+    {
+        //Fetch the <a href="UIElements.Button.html">Button</a> and <a href="Renderer.html">Renderer</a> components from the <a href="GameObject.html">GameObject</a>
+        m_AddButton = GetComponent&lt;<a href="UIElements.Button.html">Button</a>&gt;();
+        m_Renderer = GetComponent&lt;<a href="Renderer.html">Renderer</a>&gt;();<br /><br />        //Make a Unity Action that calls your function
+        m_MyFirstAction += MyFunction;
+        //Make the Unity Action also call your second function
+        m_MyFirstAction += MySecondFunction;
+        //Register the <a href="UIElements.Button.html">Button</a> to detect clicks and call your Unity Action
+        m_AddButton.onClick.AddListener(m_MyFirstAction);
+    }<br /><br />    void MyFunction()
+    {
+        //Add to the number
+        m_MyNumber++;
+        //<a href="Display.html">Display</a> the number so far with the message
+        <a href="Debug.Log.html">Debug.Log</a>("First Added : " + m_MyNumber);
+    }<br /><br />    void MySecondFunction()
+    {
+        //Change the <a href="Color.html">Color</a> of the <a href="GameObject.html">GameObject</a>
+        m_Renderer.material.color = <a href="Color-blue.html">Color.blue</a>;
+        //Ouput the message that the second function was played
+        <a href="Debug.Log.html">Debug.Log</a>("Second Added");
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

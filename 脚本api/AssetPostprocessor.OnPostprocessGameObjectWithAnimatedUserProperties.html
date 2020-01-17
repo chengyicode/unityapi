@@ -1,0 +1,25 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AssetPostprocessor.OnPostprocessGameObjectWithAnimatedUserProperties(GameObject, EditorCurveBinding[])</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="AssetPostprocessor.html">AssetPostprocessor</a>.OnPostprocessGameObjectWithAnimatedUserProperties(GameObject, EditorCurveBinding[])</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">gameObject</td><td class="desc"></td><td class="desc1">The GameObject with animated custom properties.</td></tr><tr><td class="name lbl">bindings</td><td class="desc"></td><td class="desc1">The animation curves bound to the custom properties.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>This function is called when the animation curves for a custom property are finished importing.</p></div><div class="subsection"><p>It is called for every GameObject with an animated custom property. Each animated property has an animation curve that is represented by an <a href="EditorCurveBinding.html">EditorCurveBinding</a>. This lets you dynamically add components to a GameObject and retarget the EditorCurveBindings to any animatable property.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />class MyAllPostprocessor : <a href="AssetPostprocessor.html">AssetPostprocessor</a>
+{
+    void OnPostprocessGameObjectWithAnimatedUserProperties(<a href="GameObject.html">GameObject</a> go, <a href="EditorCurveBinding.html">EditorCurveBinding</a>[] bindings)
+    {
+        // add a particle emitter to every game object that has a custom property called "particleAmount"
+        // then map the animation to the emission rate
+        for (int i = 0; i &lt; bindings.Length; i++)
+        {
+            if (bindings[i].propertyName == "particlesAmount")
+            {
+                <a href="ParticleSystem.html">ParticleSystem</a> emitter = go.AddComponent&lt;<a href="ParticleSystem.html">ParticleSystem</a>&gt;();
+                var emission = emitter.emission;
+                emission.rateOverTimeMultiplier = 0;<br /><br />                bindings[i].propertyName = "EmissionModule.rateOverTime.scalar";
+                bindings[i].path = <a href="AnimationUtility.CalculateTransformPath.html">AnimationUtility.CalculateTransformPath</a>(go.transform, go.transform.root);
+                bindings[i].type = typeof(<a href="ParticleSystem.html">ParticleSystem</a>);
+            }
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

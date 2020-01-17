@@ -1,0 +1,47 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: IAnimationWindowPreview</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Experimental</b>: this API is experimental and might be changed or removed in the future.</div><h1 class="heading inherit">IAnimationWindowPreview</h1><div class="clear"></div><p class="cl mb0 left mr10">interface in
+          UnityEngine.Experimental.Animations</p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Allows a class to modify how an <a href="AnimationClip.html">AnimationClip</a> is sampled in the Animation window by providing its own <a href="Playables.Playable.html">Playable</a> nodes to the Animation window <a href="Playables.PlayableGraph.html">PlayableGraph</a>. The class must also inherit from <a href="MonoBehaviour.html">MonoBehaviour</a>.</p></div><div class="subsection"><p>See Also: <a href="Experimental.Animations.AnimationScriptPlayable.html">AnimationScriptPlayable</a></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.Experimental.Animations;
+using UnityEngine.Playables;<br /><br />[<a href="RequireComponent.html">RequireComponent</a>(typeof(<a href="Animator.html">Animator</a>))]
+public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>, <a href="Experimental.Animations.IAnimationWindowPreview.html">IAnimationWindowPreview</a>
+{
+    public <a href="Vector3.html">Vector3</a> offset = <a href="Vector3-zero.html">Vector3.zero</a>;<br /><br />    private <a href="Experimental.Animations.AnimationScriptPlayable.html">AnimationScriptPlayable</a> m_Playable;
+    private AnimationJob m_Job;
+    private <a href="Vector3.html">Vector3</a> m_CurrentOffset;<br /><br />    struct AnimationJob : <a href="Experimental.Animations.IAnimationJob.html">IAnimationJob</a>
+    {
+        public <a href="Experimental.Animations.TransformStreamHandle.html">TransformStreamHandle</a> transform;
+        public <a href="Vector3.html">Vector3</a> offset;<br /><br />        public void ProcessRootMotion(<a href="Experimental.Animations.AnimationStream.html">AnimationStream</a> stream)
+        {
+            <a href="Vector3.html">Vector3</a> position = transform.GetLocalPosition(stream);
+            position += offset;<br /><br />            transform.SetLocalPosition(stream, position);
+        }<br /><br />        public void ProcessAnimation(<a href="Experimental.Animations.AnimationStream.html">AnimationStream</a> stream)
+        {
+        }
+    }<br /><br />    public void StartPreview()
+    {
+        m_CurrentOffset = offset;
+    }<br /><br />    public void StopPreview()
+    {
+    }<br /><br />    public void UpdatePreviewGraph(<a href="Playables.PlayableGraph.html">PlayableGraph</a> graph)
+    {
+        if (m_CurrentOffset != offset)
+        {
+            m_Job.offset = offset;
+            m_Playable.SetJobData(m_Job);<br /><br />            m_CurrentOffset = offset;
+        }
+    }<br /><br />    public <a href="Playables.Playable.html">Playable</a> BuildPreviewGraph(<a href="Playables.PlayableGraph.html">PlayableGraph</a> graph, <a href="Playables.Playable.html">Playable</a> input)
+    {
+        <a href="Animator.html">Animator</a> animator = GetComponent&lt;<a href="Animator.html">Animator</a>&gt;();<br /><br />        m_Job = new AnimationJob();
+        m_Job.transform = animator.BindStreamTransform(transform);
+        m_Job.offset = offset;<br /><br />        m_Playable = <a href="Experimental.Animations.AnimationScriptPlayable.Create.html">AnimationScriptPlayable.Create</a>(graph, m_Job, 1);<br /><br />        graph.Connect(input, 0, m_Playable, 0);<br /><br />        return m_Playable;
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.Animations.IAnimationWindowPreview.BuildPreviewGraph.html">BuildPreviewGraph</a></td><td class="desc"></td><td class="desc1">Appends custom Playable nodes to the Animation window PlayableGraph.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.Animations.IAnimationWindowPreview.StartPreview.html">StartPreview</a></td><td class="desc"></td><td class="desc1">Notification callback when the Animation window starts previewing an AnimationClip.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.Animations.IAnimationWindowPreview.StopPreview.html">StopPreview</a></td><td class="desc"></td><td class="desc1">Notification callback when the Animation window stops previewing an AnimationClip.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.Animations.IAnimationWindowPreview.UpdatePreviewGraph.html">UpdatePreviewGraph</a></td><td class="desc"></td><td class="desc1">Notification callback when the Animation Window updates its PlayableGraph before sampling an AnimationClip.</td></tr>
+    </table></div></div></div></div></body></html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: SystemInfo.graphicsDeviceName</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="SystemInfo.html">SystemInfo</a>.graphicsDeviceName</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static string <span class="sig-kw">graphicsDeviceName</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The name of the graphics device (Read Only).</p></div><div class="subsection"><p>This is the name of user's graphics card, as reported by the graphics driver.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        // Prints using the following format - "ATI Radeon X1600 OpenGL Engine" on MacBook Pro running Mac OS X 10.4.8
+        print(<a href="SystemInfo-graphicsDeviceName.html">SystemInfo.graphicsDeviceName</a>);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Note that the same graphics card can be reported by different names depending on the operating system,
+driver and so on. If you want to reliably identify some specific card, use <a href="SystemInfo-graphicsDeviceID.html">SystemInfo.graphicsDeviceID</a>
+<a href="SystemInfo-graphicsDeviceVendorID.html">SystemInfo.graphicsDeviceVendorID</a>.<br /><br />See Also: <a href="SystemInfo-graphicsDeviceID.html">SystemInfo.graphicsDeviceID</a>, <a href="SystemInfo-graphicsDeviceVendor.html">SystemInfo.graphicsDeviceVendor</a>, <a href="SystemInfo-graphicsDeviceVersion.html">SystemInfo.graphicsDeviceVersion</a>.</p></div></div></div></div></body></html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: WheelHit.forwardSlip</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="WheelHit.html">WheelHit</a>.forwardSlip</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public float <span class="sig-kw">forwardSlip</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Tire slip in the rolling direction. Acceleration slip is negative, braking slip is positive.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Prints "braking slip!" when tire slips badly.
+    void <a href="Experimental.PlayerLoop.FixedUpdate.html">FixedUpdate</a>()
+    {
+        <a href="WheelHit.html">WheelHit</a> hit = new <a href="WheelHit.html">WheelHit</a>();
+        <a href="WheelCollider.html">WheelCollider</a> wheel = GetComponent&lt;<a href="WheelCollider.html">WheelCollider</a>&gt;();
+        if (wheel.GetGroundHit(out hit))
+        {
+            if (hit.forwardSlip &gt; 0.5)
+                print("braking slip!");
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

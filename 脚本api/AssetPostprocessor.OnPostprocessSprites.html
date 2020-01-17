@@ -1,0 +1,16 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AssetPostprocessor.OnPostprocessSprites(Texture2D, Sprite[])</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="AssetPostprocessor.html">AssetPostprocessor</a>.OnPostprocessSprites(Texture2D, Sprite[])</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Add this function to a subclass to get a notification when an texture of sprite(s)  has completed importing.</p></div><div class="subsection"><p>For Multiple sprite-mode assets each sprite will be passed in the second argument as an array of sprites.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class Example : <a href="AssetPostprocessor.html">AssetPostprocessor</a>
+{
+    void OnPostProcessSprites(<a href="Texture2D.html">Texture2D</a> texture, <a href="Sprite.html">Sprite</a>[] sprites)
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("Sprites: " + sprites.Length);
+    }<br /><br />    void OnPostProcessTexture(<a href="Texture2D.html">Texture2D</a> texture)
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("<a href="Texture2D.html">Texture2D</a>: (" + texture.width + "x" + texture.height + ")");
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

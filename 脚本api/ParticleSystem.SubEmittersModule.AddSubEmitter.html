@@ -1,0 +1,167 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ParticleSystem.SubEmittersModule.AddSubEmitter</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="ParticleSystem.SubEmittersModule.html">ParticleSystem.SubEmittersModule</a>.AddSubEmitter</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-ParticleSystem.html' title='Go to ParticleSystem Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">AddSubEmitter</span>(<a href="ParticleSystem.html">ParticleSystem</a> <span class="sig-kw">subEmitter</span>,
+<a href="ParticleSystemSubEmitterType.html">ParticleSystemSubEmitterType</a> <span class="sig-kw">type</span>,
+<a href="ParticleSystemSubEmitterProperties.html">ParticleSystemSubEmitterProperties</a> <span class="sig-kw">properties</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">AddSubEmitter</span>(<a href="ParticleSystem.html">ParticleSystem</a> <span class="sig-kw">subEmitter</span>,
+<a href="ParticleSystemSubEmitterType.html">ParticleSystemSubEmitterType</a> <span class="sig-kw">type</span>,
+<a href="ParticleSystemSubEmitterProperties.html">ParticleSystemSubEmitterProperties</a> <span class="sig-kw">properties</span>,
+float <span class="sig-kw">emitProbability</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">subEmitter</td><td class="desc"></td><td class="desc1">The sub-emitter to be added.</td></tr><tr><td class="name lbl">type</td><td class="desc"></td><td class="desc1">The event that creates new particles.</td></tr><tr><td class="name lbl">properties</td><td class="desc"></td><td class="desc1">The properties of the new particles.</td></tr><tr><td class="name lbl">emitProbability</td><td class="desc"></td><td class="desc1">The probability that the sub-emitter emits particles. Accepts values from 0 to 1, where 0 is never and 1 is always.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Add a new sub-emitter.</p></div><div class="subsection"><p>See Also: <a href="ParticleSystem.SubEmittersModule.RemoveSubEmitter.html">ParticleSystem.SubEmittersModule.RemoveSubEmitter</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />// Add a birth sub-emitter
+public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        // A simple particle material with no texture.
+        <a href="Material.html">Material</a> particleMaterial = new <a href="Material.html">Material</a>(<a href="Shader.Find.html">Shader.Find</a>("Particles/Standard Surface"));<br /><br />        // Create a green <a href="ParticleSystem.Particle.html">Particle</a> System.
+        var rootSystemGO = new <a href="GameObject.html">GameObject</a>("<a href="ParticleSystem.Particle.html">Particle</a> System");
+        rootSystemGO.transform.Rotate(-90, 0, 0); // Rotate so the system emits upwards.
+        var rootParticleSystem = rootSystemGO.AddComponent&lt;<a href="ParticleSystem.html">ParticleSystem</a>&gt;();
+        rootSystemGO.GetComponent&lt;<a href="ParticleSystemRenderer.html">ParticleSystemRenderer</a>&gt;().material = particleMaterial;
+        var mainModule = rootParticleSystem.main;
+        mainModule.startColor = <a href="Color-green.html">Color.green</a>;
+        mainModule.startSize = 0.5f;<br /><br />        // Spread the particles out more so the sub-emitter effect is more obvious.
+        var shapeModule = rootParticleSystem.shape;
+        shapeModule.radius = 100;<br /><br />        // Create our sub-emitter and set up bursts.
+        var subSystemGO = new <a href="GameObject.html">GameObject</a>("<a href="ParticleSystem.Particle.html">Particle</a> System");
+        var subParticleSystem = subSystemGO.AddComponent&lt;<a href="ParticleSystem.html">ParticleSystem</a>&gt;();
+        subSystemGO.GetComponent&lt;<a href="ParticleSystemRenderer.html">ParticleSystemRenderer</a>&gt;().material = particleMaterial;
+        var subMainModule = subParticleSystem.main;
+        subMainModule.startColor = <a href="Color-red.html">Color.red</a>;
+        subMainModule.startSize = 0.25f;
+        subMainModule.startLifetime = 0.5f; // very short life particles.
+        var emissionModule = subParticleSystem.emission;
+        emissionModule.rate = 2; // 1 particle will emit every 0.5 sec.
+        emissionModule.SetBursts(new <a href="ParticleSystem.Burst.html">ParticleSystem.Burst</a>[] // A burst will emit at 1 and 3 secs.
+        {
+            new <a href="ParticleSystem.Burst.html">ParticleSystem.Burst</a>(1.0f, 10),
+            new <a href="ParticleSystem.Burst.html">ParticleSystem.Burst</a>(3.0f, 10)
+        });<br /><br />        // Set up the sub particles so they fade over time.
+        var colorModule = subParticleSystem.colorOverLifetime;
+        colorModule.enabled = true;
+        var gradient = new <a href="Gradient.html">Gradient</a>();
+        gradient.SetKeys(
+            new <a href="GradientColorKey.html">GradientColorKey</a>[] { new <a href="GradientColorKey.html">GradientColorKey</a>(<a href="Color-white.html">Color.white</a>, 0.0f), new <a href="GradientColorKey.html">GradientColorKey</a>(<a href="Color-white.html">Color.white</a>, 1.0f) }, // <a href="Color.html">Color</a> remains untouched.
+            new <a href="GradientAlphaKey.html">GradientAlphaKey</a>[] { new <a href="GradientAlphaKey.html">GradientAlphaKey</a>(1.0f, 0.0f), new <a href="GradientAlphaKey.html">GradientAlphaKey</a>(0.0f, 1.0f) }); // Alpha fades
+        colorModule.color = gradient;<br /><br />        // Setup the sub-emitter.
+        subSystemGO.transform.SetParent(rootSystemGO.transform);
+        var subEmittersModule = rootParticleSystem.subEmitters;
+        subEmittersModule.enabled = true;
+        subEmittersModule.AddSubEmitter(subParticleSystem, <a href="ParticleSystemSubEmitterType.Birth.html">ParticleSystemSubEmitterType.Birth</a>, <a href="ParticleSystemSubEmitterProperties.InheritNothing.html">ParticleSystemSubEmitterProperties.InheritNothing</a>);
+    }
+}
+</pre>
+      </div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />// Add a collision sub-emitter
+public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        // For this example we will need something to collide with in the world.
+        var cube = <a href="GameObject.CreatePrimitive.html">GameObject.CreatePrimitive</a>(<a href="PrimitiveType.Cube.html">PrimitiveType.Cube</a>);
+        cube.transform.position = new <a href="Vector3.html">Vector3</a>(0, 10, 0); // <a href="UIElements.Position.html">Position</a> above the <a href="ParticleSystem.Particle.html">Particle</a> System.
+        cube.transform.localScale = new <a href="Vector3.html">Vector3</a>(10, 10, 10);<br /><br />        // A simple particle material with no texture.
+        <a href="Material.html">Material</a> particleMaterial = new <a href="Material.html">Material</a>(<a href="Shader.Find.html">Shader.Find</a>("Particles/Standard Surface"));<br /><br />        // Create a green <a href="ParticleSystem.Particle.html">Particle</a> System.
+        var rootSystemGO = new <a href="GameObject.html">GameObject</a>("<a href="ParticleSystem.Particle.html">Particle</a> System");
+        rootSystemGO.transform.Rotate(-90, 0, 0); // Rotate so the system emits upwards.
+        var rootParticleSystem = rootSystemGO.AddComponent&lt;<a href="ParticleSystem.html">ParticleSystem</a>&gt;();
+        rootSystemGO.GetComponent&lt;<a href="ParticleSystemRenderer.html">ParticleSystemRenderer</a>&gt;().material = particleMaterial;
+        var mainModule = rootParticleSystem.main;
+        mainModule.startColor = <a href="Color-green.html">Color.green</a>;
+        mainModule.startSize = 0.5f;<br /><br />        // Enable and setup the collisions module.
+        var collisionModule = rootParticleSystem.collision;
+        collisionModule.enabled = true;
+        collisionModule.type = <a href="ParticleSystemCollisionType.World.html">ParticleSystemCollisionType.World</a>;<br /><br />        // Create our sub-emitter and setup bursts.
+        var subSystemGO = new <a href="GameObject.html">GameObject</a>("<a href="ParticleSystem.Particle.html">Particle</a> System");
+        var subParticleSystem = subSystemGO.AddComponent&lt;<a href="ParticleSystem.html">ParticleSystem</a>&gt;();
+        subSystemGO.GetComponent&lt;<a href="ParticleSystemRenderer.html">ParticleSystemRenderer</a>&gt;().material = particleMaterial;
+        var subMainModule = subParticleSystem.main;
+        subMainModule.startColor = <a href="Color-red.html">Color.red</a>;
+        subMainModule.startSize = 0.25f;
+        var emissionModule = subParticleSystem.emission;
+        emissionModule.SetBursts(new <a href="ParticleSystem.Burst.html">ParticleSystem.Burst</a>[] { new <a href="ParticleSystem.Burst.html">ParticleSystem.Burst</a>(0.0f, 10) }); // We will emit 10 particles upon collision.<br /><br />        // Set up the sub-emitter.
+        subSystemGO.transform.SetParent(rootSystemGO.transform);
+        var subEmittersModule = rootParticleSystem.subEmitters;
+        subEmittersModule.enabled = true;
+        subEmittersModule.AddSubEmitter(subParticleSystem, <a href="ParticleSystemSubEmitterType.Collision.html">ParticleSystemSubEmitterType.Collision</a>, <a href="ParticleSystemSubEmitterProperties.InheritNothing.html">ParticleSystemSubEmitterProperties.InheritNothing</a>);
+    }
+}
+</pre>
+      </div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />// Add a death sub-emitter
+public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        // A simple particle material with no texture.
+        <a href="Material.html">Material</a> particleMaterial = new <a href="Material.html">Material</a>(<a href="Shader.Find.html">Shader.Find</a>("Particles/Standard Surface"));<br /><br />        // Create a green <a href="ParticleSystem.Particle.html">Particle</a> System.
+        var rootSystemGO = new <a href="GameObject.html">GameObject</a>("<a href="ParticleSystem.Particle.html">Particle</a> System");
+        rootSystemGO.transform.Rotate(-90, 0, 0); // Rotate so the system emits upwards.
+        var rootParticleSystem = rootSystemGO.AddComponent&lt;<a href="ParticleSystem.html">ParticleSystem</a>&gt;();
+        rootSystemGO.GetComponent&lt;<a href="ParticleSystemRenderer.html">ParticleSystemRenderer</a>&gt;().material = particleMaterial;
+        var mainModule = rootParticleSystem.main;
+        mainModule.startColor = <a href="Color-green.html">Color.green</a>;
+        mainModule.startSize = 0.5f;<br /><br />        // Create our sub-emitter and setup bursts.
+        var subSystemGO = new <a href="GameObject.html">GameObject</a>("<a href="ParticleSystem.Particle.html">Particle</a> System");
+        var subParticleSystem = subSystemGO.AddComponent&lt;<a href="ParticleSystem.html">ParticleSystem</a>&gt;();
+        subSystemGO.GetComponent&lt;<a href="ParticleSystemRenderer.html">ParticleSystemRenderer</a>&gt;().material = particleMaterial;
+        var subMainModule = subParticleSystem.main;
+        subMainModule.startColor = <a href="Color-red.html">Color.red</a>;
+        subMainModule.startSize = 0.25f;
+        var emissionModule = subParticleSystem.emission;
+        emissionModule.SetBursts(new <a href="ParticleSystem.Burst.html">ParticleSystem.Burst</a>[] { new <a href="ParticleSystem.Burst.html">ParticleSystem.Burst</a>(0.0f, 10) }); // We will emit 10 particles upon death.<br /><br />        // Set up the sub-emitter.
+        subSystemGO.transform.SetParent(rootSystemGO.transform);
+        var subEmittersModule = rootParticleSystem.subEmitters;
+        subEmittersModule.enabled = true;
+        subEmittersModule.AddSubEmitter(subParticleSystem, <a href="ParticleSystemSubEmitterType.Death.html">ParticleSystemSubEmitterType.Death</a>, <a href="ParticleSystemSubEmitterProperties.InheritNothing.html">ParticleSystemSubEmitterProperties.InheritNothing</a>);
+    }
+}
+</pre>
+      </div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />// Add a manual sub-emitter
+public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private <a href="ParticleSystem.html">ParticleSystem</a> ps;
+    private float m_Timer = 0.0f;
+    public float m_Interval = 2.0f;<br /><br />    void Start()
+    {
+        // A simple particle material with no texture.
+        <a href="Material.html">Material</a> particleMaterial = new <a href="Material.html">Material</a>(<a href="Shader.Find.html">Shader.Find</a>("Particles/Standard Surface"));<br /><br />        // Create a green <a href="ParticleSystem.Particle.html">Particle</a> System.
+        var rootSystemGO = new <a href="GameObject.html">GameObject</a>("<a href="ParticleSystem.Particle.html">Particle</a> System");
+        rootSystemGO.transform.Rotate(-90, 0, 0); // Rotate so the system emits upwards.
+        ps = rootSystemGO.AddComponent&lt;<a href="ParticleSystem.html">ParticleSystem</a>&gt;();
+        rootSystemGO.GetComponent&lt;<a href="ParticleSystemRenderer.html">ParticleSystemRenderer</a>&gt;().material = particleMaterial;
+        var mainModule = ps.main;
+        mainModule.startColor = <a href="Color-green.html">Color.green</a>;
+        mainModule.startSize = 0.5f;<br /><br />        // Create our sub-emitter and setup bursts.
+        var subSystemGO = new <a href="GameObject.html">GameObject</a>("<a href="ParticleSystem.Particle.html">Particle</a> System");
+        var subParticleSystem = subSystemGO.AddComponent&lt;<a href="ParticleSystem.html">ParticleSystem</a>&gt;();
+        subSystemGO.GetComponent&lt;<a href="ParticleSystemRenderer.html">ParticleSystemRenderer</a>&gt;().material = particleMaterial;
+        var subMainModule = subParticleSystem.main;
+        subMainModule.startColor = <a href="Color-red.html">Color.red</a>;
+        subMainModule.startSize = 0.25f;
+        var emissionModule = subParticleSystem.emission;
+        emissionModule.SetBursts(new <a href="ParticleSystem.Burst.html">ParticleSystem.Burst</a>[] { new <a href="ParticleSystem.Burst.html">ParticleSystem.Burst</a>(0.0f, 4) }); // We will emit 10 particles when triggered.<br /><br />        // Set up the sub-emitter.
+        subSystemGO.transform.SetParent(rootSystemGO.transform);
+        var subEmittersModule = ps.subEmitters;
+        subEmittersModule.enabled = true;
+        subEmittersModule.AddSubEmitter(subParticleSystem, <a href="ParticleSystemSubEmitterType.Manual.html">ParticleSystemSubEmitterType.Manual</a>, <a href="ParticleSystemSubEmitterProperties.InheritNothing.html">ParticleSystemSubEmitterProperties.InheritNothing</a>);
+    }<br /><br />    private void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        m_Timer += <a href="Time-deltaTime.html">Time.deltaTime</a>;
+        while (m_Timer &gt;= m_Interval)
+        {
+            ps.TriggerSubEmitter(0);
+            m_Timer -= m_Interval;
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

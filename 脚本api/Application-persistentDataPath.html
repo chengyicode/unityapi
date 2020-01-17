@@ -1,0 +1,18 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Application.persistentDataPath</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Application.html">Application</a>.persistentDataPath</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static string <span class="sig-kw">persistentDataPath</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Contains the path to a persistent data directory (Read Only).</p></div><div class="subsection"><p>This value is a directory path where you can store data that you want to be kept between runs. When you publish on iOS and Android, persistentDataPath points to a public directory on the device. Files in this location are not erased by app updates. The files can still be erased by users directly.<br /><br />When you build the Unity application, a GUID is generated that is based on the Bundle Identifier. This GUID is part of persistentDataPath. If you keep the same Bundle Identifier in future versions, the application keeps accessing the same location on every update.<br /><br /><strong>Windows Store Apps</strong>: <a href="Application-persistentDataPath.html">Application.persistentDataPath</a> points to %userprofile%\AppData\Local\Packages\&lt;productname&gt;\LocalState.<br /><br /><strong>iOS</strong>: <a href="Application-persistentDataPath.html">Application.persistentDataPath</a> points to /var/mobile/Containers/Data/Application/&lt;guid&gt;/Documents.<br /><br /><strong>Android</strong>: <a href="Application-persistentDataPath.html">Application.persistentDataPath</a> points to /storage/emulated/0/Android/data/&lt;packagename&gt;/files on most devices (some older phones might point to location on SD card if present), the path is resolved using <a href="https://developer.android.com/reference/android/content/Context#getExternalFilesDir(java.lang.String).">android.content.Context.getExternalFilesDir</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Info : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        <a href="Debug.Log.html">Debug.Log</a>(<a href="Application-persistentDataPath.html">Application.persistentDataPath</a>);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>
+        <strong>Note:</strong> The <a href="Application-persistentDataPath.html">persistentDataPath</a> on a Mac is written into the user Library folder.  (This folder
+is often hidden.) In recent Unity releases user data is written into
+<code class="mono">~/Library/Application Support/company name/product name</code>.  Older versions of Unity wrote into the
+<code class="mono">~/Library/Caches</code> folder, or <code class="mono">~/Library/Application Support/unity.company name.product name</code>.
+These folders are all searched for by Unity.  The application finds and uses the oldest folder with the required data on your system.</p></div></div></div></div></body></html>

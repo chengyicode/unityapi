@@ -1,0 +1,199 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: SystemInfo</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">SystemInfo</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.CoreModule.html" class="cl">UnityEngine.CoreModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Access system and hardware information.</p></div><div class="subsection"><p>Use this class to figure out capabilities of the underlying platform and hardware. For example, you can check which <a href="RenderTexture.html">RenderTexture</a> formats are supported (<a href="SystemInfo.SupportsRenderTextureFormat.html">SupportsRenderTextureFormat</a>), how many CPU threads are available (<a href="SystemInfo-processorCount.html">processorCount</a>), and so on.</p></div><div class="subsection"><h2>Static Properties</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SystemInfo-batteryLevel.html">batteryLevel</a></td><td class="desc"></td><td class="desc1">The current battery level (Read Only).</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SystemInfo-batteryStatus.html">batteryStatus</a></td><td class="desc"></td><td class="desc1">Returns the current status of the device's battery (Read Only).</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SystemInfo-copyTextureSupport.html">copyTextureSupport</a></td><td class="desc"></td><td class="desc1">Support for various Graphics.CopyTexture cases (Read Only).</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SystemInfo-deviceModel.html">deviceModel</a></td><td class="desc"></td><td class="desc1">The model of the device (Read Only).</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SystemInfo-deviceName.html">deviceName</a></td><td class="desc"></td><td class="desc1">The user defined name of the device (Read Only).</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SystemInfo-deviceType.html">deviceType</a></td><td class="desc"></td><td class="desc1">Returns the kind of device the application is running on (Read Only).</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SystemInfo-deviceUniqueIdentifier.html">deviceUniqueIdentifier</a></td><td class="desc"></td><td class="desc1">A unique device identifier. It is guaranteed to be unique for every device (Read Only).</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SystemInfo-graphicsDeviceID.html">graphicsDeviceID</a></td><td class="desc"></td><td class="desc1">The identifier code of the graphics device (Read Only).</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SystemInfo-graphicsDeviceName.html">graphicsDeviceName</a></td><td class="desc"></td><td class="desc1">The name of the graphics device (Read Only).</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SystemInfo-graphicsDeviceType.html">graphicsDeviceType</a></td><td class="desc"></td><td class="desc1">The graphics API type used by the graphics device (Read Only).</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SystemInfo-graphicsDeviceVendor.html">graphicsDeviceVendor</a></td><td class="desc"></td><td class="desc1">The vendor of the graphics device (Read Only).</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SystemInfo-graphicsDeviceVendorID.html">graphicsDeviceVendorID</a></td><td class="desc"></td><td class="desc1">The identifier code of the graphics device vendor (Read Only).</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SystemInfo-graphicsDeviceVersion.html">graphicsDeviceVersion</a></td><td class="desc"></td><td class="desc1">The graphics API type and driver version used by the graphics device (Read Only).</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SystemInfo-graphicsMemorySize.html">graphicsMemorySize</a></td><td class="desc"></td><td class="desc1">Amount of video memory present (Read Only).</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SystemInfo-graphicsMultiThreaded.html">graphicsMultiThreaded</a></td><td class="desc"></td><td class="desc1">Is graphics device using multi-threaded rendering (Read Only)?</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SystemInfo-graphicsShaderLevel.html">graphicsShaderLevel</a></td><td class="desc"></td><td class="desc1">Graphics device shader capability level (Read Only).</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SystemInfo-graphicsUVStartsAtTop.html">graphicsUVStartsAtTop</a></td><td class="desc"></td><td class="desc1">Returns true if the texture UV coordinate convention for this platform has Y starting at the top of the image.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SystemInfo-hasDynamicUniformArrayIndexingInFragmentShaders.html">hasDynamicUniformArrayIndexingInFragmentShaders</a></td><td class="desc"></td><td class="desc1">Returns true when the GPU has native support for indexing uniform arrays in fragment shaders without restrictions.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SystemInfo-hasHiddenSurfaceRemovalOnGPU.html">hasHiddenSurfaceRemovalOnGPU</a></td><td class="desc"></td><td class="desc1">True if the GPU supports hidden surface removal.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SystemInfo-hasMipMaxLevel.html">hasMipMaxLevel</a></td><td class="desc"></td><td class="desc1">Returns true if the GPU supports partial mipmap chains (Read Only).</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SystemInfo-maxCubemapSize.html">maxCubemapSize</a></td><td class="desc"></td><td class="desc1">Maximum Cubemap texture size (Read Only).</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SystemInfo-maxTextureSize.html">maxTextureSize</a></td><td class="desc"></td><td class="desc1">Maximum texture size (Read Only).</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SystemInfo-minConstantBufferOffsetAlignment.html">minConstantBufferOffsetAlignment</a></td><td class="desc"></td><td class="desc1">Minimum buffer offset (in bytes) when binding a constant buffer using Shader.SetConstantBuffer or Material.SetConstantBuffer.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SystemInfo-npotSupport.html">npotSupport</a></td><td class="desc"></td><td class="desc1">What NPOT (non-power of two size) texture support does the GPU provide? (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SystemInfo-operatingSystem.html">operatingSystem</a></td><td class="desc"></td><td class="desc1">Operating system name with version (Read Only).</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SystemInfo-operatingSystemFamily.html">operatingSystemFamily</a></td><td class="desc"></td><td class="desc1">Returns the operating system family the game is running on (Read Only).</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SystemInfo-processorCount.html">processorCount</a></td><td class="desc"></td><td class="desc1">Number of processors present (Read Only).</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SystemInfo-processorFrequency.html">processorFrequency</a></td><td class="desc"></td><td class="desc1">Processor frequency in MHz (Read Only).</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SystemInfo-processorType.html">processorType</a></td><td class="desc"></td><td class="desc1">Processor name (Read Only).</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SystemInfo-supportedRenderTargetCount.html">supportedRenderTargetCount</a></td><td class="desc"></td><td class="desc1">How many simultaneous render targets (MRTs) are supported? (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SystemInfo-supports2DArrayTextures.html">supports2DArrayTextures</a></td><td class="desc"></td><td class="desc1">Are 2D Array textures supported? (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SystemInfo-supports32bitsIndexBuffer.html">supports32bitsIndexBuffer</a></td><td class="desc"></td><td class="desc1">Are 32-bit index buffers supported? (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SystemInfo-supports3DRenderTextures.html">supports3DRenderTextures</a></td><td class="desc"></td><td class="desc1">Are 3D (volume) RenderTextures supported? (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SystemInfo-supports3DTextures.html">supports3DTextures</a></td><td class="desc"></td><td class="desc1">Are 3D (volume) textures supported? (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SystemInfo-supportsAccelerometer.html">supportsAccelerometer</a></td><td class="desc"></td><td class="desc1">Is an accelerometer available on the device?</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SystemInfo-supportsAsyncCompute.html">supportsAsyncCompute</a></td><td class="desc"></td><td class="desc1">Returns true when the platform supports asynchronous compute queues and false if otherwise.Note that asynchronous compute queues are only supported on PS4.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SystemInfo-supportsAsyncGPUReadback.html">supportsAsyncGPUReadback</a></td><td class="desc"></td><td class="desc1">Returns true if asynchronous readback of GPU data is available for this device and false otherwise.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SystemInfo-supportsAudio.html">supportsAudio</a></td><td class="desc"></td><td class="desc1">Is there an Audio device available for playback? (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SystemInfo-supportsComputeShaders.html">supportsComputeShaders</a></td><td class="desc"></td><td class="desc1">Are compute shaders supported? (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SystemInfo-supportsCubemapArrayTextures.html">supportsCubemapArrayTextures</a></td><td class="desc"></td><td class="desc1">Are Cubemap Array textures supported? (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SystemInfo-supportsGraphicsFence.html">supportsGraphicsFence</a></td><td class="desc"></td><td class="desc1">Returns true when the platform supports GraphicsFences, and false if otherwise.Note that GraphicsFences are only supported on PS4.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SystemInfo-supportsGyroscope.html">supportsGyroscope</a></td><td class="desc"></td><td class="desc1">Is a gyroscope available on the device?</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SystemInfo-supportsHardwareQuadTopology.html">supportsHardwareQuadTopology</a></td><td class="desc"></td><td class="desc1">Does the hardware support quad topology? (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SystemInfo-supportsInstancing.html">supportsInstancing</a></td><td class="desc"></td><td class="desc1">Is GPU draw call instancing supported? (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SystemInfo-supportsLocationService.html">supportsLocationService</a></td><td class="desc"></td><td class="desc1">Is the device capable of reporting its location?</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SystemInfo-supportsMipStreaming.html">supportsMipStreaming</a></td><td class="desc"></td><td class="desc1">Is streaming of texture mip maps supported? (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SystemInfo-supportsMotionVectors.html">supportsMotionVectors</a></td><td class="desc"></td><td class="desc1">Whether motion vectors are supported on this platform.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SystemInfo-supportsMultisampleAutoResolve.html">supportsMultisampleAutoResolve</a></td><td class="desc"></td><td class="desc1">Returns true if multisampled textures are resolved automatically</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SystemInfo-supportsMultisampledTextures.html">supportsMultisampledTextures</a></td><td class="desc"></td><td class="desc1">Are multisampled textures supported? (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SystemInfo-supportsRawShadowDepthSampling.html">supportsRawShadowDepthSampling</a></td><td class="desc"></td><td class="desc1">Is sampling raw depth from shadowmaps supported? (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SystemInfo-supportsSeparatedRenderTargetsBlend.html">supportsSeparatedRenderTargetsBlend</a></td><td class="desc"></td><td class="desc1">Returns true when the platform supports different blend modes when rendering to multiple render targets, or false otherwise.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SystemInfo-supportsSetConstantBuffer.html">supportsSetConstantBuffer</a></td><td class="desc"></td><td class="desc1">Does the current renderer support binding constant buffers directly? (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SystemInfo-supportsShadows.html">supportsShadows</a></td><td class="desc"></td><td class="desc1">Are built-in shadows supported? (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SystemInfo-supportsSparseTextures.html">supportsSparseTextures</a></td><td class="desc"></td><td class="desc1">Are sparse textures supported? (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SystemInfo-supportsTextureWrapMirrorOnce.html">supportsTextureWrapMirrorOnce</a></td><td class="desc"></td><td class="desc1">Returns true if the 'Mirror Once' texture wrap mode is supported. (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SystemInfo-supportsVibration.html">supportsVibration</a></td><td class="desc"></td><td class="desc1">Is the device capable of providing the user haptic feedback by vibration?</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SystemInfo-systemMemorySize.html">systemMemorySize</a></td><td class="desc"></td><td class="desc1">Amount of system memory present (Read Only).</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SystemInfo-unsupportedIdentifier.html">unsupportedIdentifier</a></td><td class="desc"></td><td class="desc1">Value returned by SystemInfo string properties which are not supported on the current platform.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SystemInfo-usesReversedZBuffer.html">usesReversedZBuffer</a></td><td class="desc"></td><td class="desc1">This property is true if the current platform uses a reversed depth buffer (where values range from 1 at the near plane and 0 at far plane), and false if the depth buffer is normal (0 is near, 1 is far). (Read Only)</td></tr>
+    </table></div><div class="subsection"><h2>Static Methods   静态方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SystemInfo.GetCompatibleFormat.html">GetCompatibleFormat</a></td><td class="desc"></td><td class="desc1">Returns a format supported by the platform for the specified usage.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SystemInfo.GetGraphicsFormat.html">GetGraphicsFormat</a></td><td class="desc"></td><td class="desc1">Returns the platform-specific GraphicsFormat that is associated with the DefaultFormat.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SystemInfo.IsFormatSupported.html">IsFormatSupported</a></td><td class="desc"></td><td class="desc1">Verifies that the specified graphics format is supported for the specified usage.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SystemInfo.SupportsBlendingOnRenderTextureFormat.html">SupportsBlendingOnRenderTextureFormat</a></td><td class="desc"></td><td class="desc1">Is blending supported on render texture format?</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SystemInfo.SupportsRenderTextureFormat.html">SupportsRenderTextureFormat</a></td><td class="desc"></td><td class="desc1">Is render texture format supported?</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SystemInfo.SupportsTextureFormat.html">SupportsTextureFormat</a></td><td class="desc"></td><td class="desc1">Is texture format supported on this device?</td></tr>
+    </table></div></div></div></div></body></html>

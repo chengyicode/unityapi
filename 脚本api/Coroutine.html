@@ -1,0 +1,57 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Coroutine</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">Coroutine</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Inherits from:<a href="YieldInstruction.html" class="cl">YieldInstruction</a></p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.CoreModule.html" class="cl">UnityEngine.CoreModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>
+        <a href="MonoBehaviour.StartCoroutine.html">MonoBehaviour.StartCoroutine</a> returns a Coroutine. Instances of this class are only used to reference these coroutines, and do not hold any exposed properties or functions.</p></div><div class="subsection"><p>A coroutine is a function that can suspend its execution (yield) until the given
+<a href="YieldInstruction.html">YieldInstruction</a> finishes.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    IEnumerator WaitAndPrint()
+    {
+        // suspend execution for 5 seconds
+        yield return new <a href="WaitForSeconds.html">WaitForSeconds</a>(5);
+        print("WaitAndPrint " + <a href="Time-time.html">Time.time</a>);
+    }<br /><br />    IEnumerator Start()
+    {
+        print("Starting " + <a href="Time-time.html">Time.time</a>);<br /><br />        // Start function WaitAndPrint as a coroutine
+        yield return StartCoroutine("WaitAndPrint");
+        print("Done " + <a href="Time-time.html">Time.time</a>);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>This example shows a normal Start:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />// In this example we show how to invoke a coroutine and execute
+// the function in parallel.  Start does not need IEnumerator.<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private IEnumerator coroutine;<br /><br />    void Start()
+    {
+        // - After 0 seconds, prints "Starting 0.0 seconds"
+        // - After 0 seconds, prints "<a href="Coroutine.html">Coroutine</a> started"
+        // - After 2 seconds, prints "<a href="Coroutine.html">Coroutine</a> ended: 2.0 seconds"
+        print("Starting " + <a href="Time-time.html">Time.time</a> + " seconds");<br /><br />        // Start function WaitAndPrint as a coroutine.<br /><br />        coroutine = WaitAndPrint(2.0f);
+        StartCoroutine(coroutine);<br /><br />        print("<a href="Coroutine.html">Coroutine</a> started");
+    }<br /><br />    private IEnumerator WaitAndPrint(float waitTime)
+    {
+        yield return new <a href="WaitForSeconds.html">WaitForSeconds</a>(waitTime);
+        print("<a href="Coroutine.html">Coroutine</a> ended: " + <a href="Time-time.html">Time.time</a> + " seconds");
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Inherited Members   继承成员</h2>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </div></div></div></div></body></html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ScriptableWizard.DisplayWizard</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="ScriptableWizard.html">ScriptableWizard</a>.DisplayWizard</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static T <span class="sig-kw">DisplayWizard</span>(string <span class="sig-kw">title</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">title</td><td class="desc"></td><td class="desc1">The title shown at the top of the wizard window.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>T</strong>
+        The wizard.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Creates a wizard.</p></div><div class="subsection"><p>When the user hits the Create button <a href="ScriptableWizard.OnWizardCreate.html">OnWizardCreate</a> function will be called.
+DisplayWizard will only show one wizard for every wizard class.<br /><br /><img src="../StaticFiles/ScriptRefImages/ScriptableWizardDisplayWizard.png" /><br />
+<em>Simple Wizard window that copies a GameObject several times.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Simple Wizard that clones an object.<br /><br />using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;
+using System.Collections;<br /><br />public class ScriptableWizardDisplayWizard : <a href="ScriptableWizard.html">ScriptableWizard</a>
+{
+    public <a href="GameObject.html">GameObject</a> objectToCopy = null;
+    public int numberOfCopies = 2;
+    [<a href="MenuItem.html">MenuItem</a>("Example/Show DisplayWizard usage")]
+    static void CreateWindow()
+    {
+        // Creates the wizard for display
+        <a href="ScriptableWizard.DisplayWizard.html">ScriptableWizard.DisplayWizard</a>("Copy an object.",
+            typeof(ScriptableWizardDisplayWizard),
+            "Copy!");
+    }<br /><br />    void OnWizardUpdate()
+    {
+        helpString = "Clones an object a number of times";
+        if (!objectToCopy)
+        {
+            errorString = "Please assign an object";
+            isValid = false;
+        }
+        else
+        {
+            errorString = "";
+            isValid = true;
+        }
+    }<br /><br />    void OnWizardCreate()
+    {
+        for (int i = 0; i &lt; numberOfCopies; i++)
+            Instantiate(objectToCopy, <a href="Vector3-zero.html">Vector3.zero</a>, <a href="Quaternion-identity.html">Quaternion.identity</a>);
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static T <span class="sig-kw">DisplayWizard</span>(string <span class="sig-kw">title</span>,
+string <span class="sig-kw">createButtonName</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static T <span class="sig-kw">DisplayWizard</span>(string <span class="sig-kw">title</span>,
+string <span class="sig-kw">createButtonName</span>,
+string <span class="sig-kw">otherButtonName</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">title</td><td class="desc"></td><td class="desc1">The title shown at the top of the wizard window.</td></tr><tr><td class="name lbl">createButtonName</td><td class="desc"></td><td class="desc1">The text shown on the create button.</td></tr><tr><td class="name lbl">otherButtonName</td><td class="desc"></td><td class="desc1">The text shown on the optional other button. Leave this parameter out to leave the button out.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>T</strong>
+        The wizard.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Creates a wizard.</p></div><div class="subsection"><p>When the user hits the Create button <a href="ScriptableWizard.OnWizardCreate.html">OnWizardCreate</a> function will be called.
+DisplayWizard will only show one wizard for every wizard class.</p></div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="ScriptableWizard.html">ScriptableWizard</a> <span class="sig-kw">DisplayWizard</span>(string <span class="sig-kw">title</span>,
+Type <span class="sig-kw">klass</span>,
+string <span class="sig-kw">createButtonName</span> = "Create",
+string <span class="sig-kw">otherButtonName</span> = "");
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">title</td><td class="desc"></td><td class="desc1">The title shown at the top of the wizard window.</td></tr><tr><td class="name lbl">klass</td><td class="desc"></td><td class="desc1">The class implementing the wizard. It has to derive from <a href="ScriptableWizard.html">ScriptableWizard</a>.</td></tr><tr><td class="name lbl">createButtonName</td><td class="desc"></td><td class="desc1">The text shown on the create button.</td></tr><tr><td class="name lbl">otherButtonName</td><td class="desc"></td><td class="desc1">The text shown on the optional other button. Leave this parameter out to leave the button out.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>ScriptableWizard</strong>
+        The wizard.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Creates a wizard.</p></div><div class="subsection"><p>When the user hits the Create button <a href="ScriptableWizard.OnWizardCreate.html">OnWizardCreate</a> function will be called.
+DisplayWizard will only show one wizard for every wizard class.</p></div></div></div></div></body></html>

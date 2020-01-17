@@ -1,0 +1,103 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: MonoBehaviour.StartCoroutine</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="MonoBehaviour.html">MonoBehaviour</a>.StartCoroutine</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Coroutine.html">Coroutine</a> <span class="sig-kw">StartCoroutine</span>(IEnumerator <span class="sig-kw">routine</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Starts a Coroutine.</p></div><div class="subsection"><p>The execution of a coroutine can be paused at any point using the yield statement. When a yield statement is used, the coroutine pauses execution and automatically resumes at the next frame. See the <a href="../Manual/Coroutines.html"> Coroutines</a> documentation for more details.<br /><br />Coroutines are excellent when modeling behavior over several frames. The StartCoroutine method returns upon the first yield return, however you can yield the result, which waits until the coroutine has finished execution. There is no guarantee coroutines end in the same order they started, even if they finish in the same frame.<br /><br />Yielding of any type, including null, results in the execution coming back on a later frame, unless the coroutine is stopped or has completed.<br /><br />Note: You can stop a coroutine using MonoBehaviour.StopCoroutine and MonoBehaviour.StopAllCoroutines. Coroutines are also stopped when the MonoBehaviour is destroyed or if the GameObject the MonoBehaviour is attached to is disabled.
+ Coroutines are not stopped when a MonoBehaviour is disabled.<br /><br />See also: <a href="Coroutine.html">Coroutine</a>, <a href="YieldInstruction.html">YieldInstruction</a><br /><br />An example of <a href="MonoBehaviour.StartCoroutine.html">StartCoroutine</a>:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />// In this example we show how to invoke a coroutine and
+// continue executing the function in parallel.<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // In this example we show how to invoke a coroutine and
+    // continue executing the function in parallel.<br /><br />    private IEnumerator coroutine;<br /><br />    void Start()
+    {
+        // - After 0 seconds, prints "Starting 0.0"
+        // - After 0 seconds, prints "Before WaitAndPrint Finishes 0.0"
+        // - After 2 seconds, prints "WaitAndPrint 2.0"
+        print("Starting " + <a href="Time-time.html">Time.time</a>);<br /><br />        // Start function WaitAndPrint as a coroutine.<br /><br />        coroutine = WaitAndPrint(2.0f);
+        StartCoroutine(coroutine);<br /><br />        print("Before WaitAndPrint Finishes " + <a href="Time-time.html">Time.time</a>);
+    }<br /><br />    // every 2 seconds perform the print()
+    private IEnumerator WaitAndPrint(float waitTime)
+    {
+        while (true)
+        {
+            yield return new <a href="WaitForSeconds.html">WaitForSeconds</a>(waitTime);
+            print("WaitAndPrint " + <a href="Time-time.html">Time.time</a>);
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Another example:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// In this example we show how to invoke a coroutine and wait until it
+// is completed<br /><br />using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    IEnumerator Start()
+    {
+        // - After 0 seconds, prints "Starting 0.0"
+        // - After 2 seconds, prints "WaitAndPrint 2.0"
+        // - After 2 seconds, prints "Done 2.0"
+        print("Starting " + <a href="Time-time.html">Time.time</a>);<br /><br />        // Start function WaitAndPrint as a coroutine. And wait until it is completed.
+        // the same as yield return WaitAndPrint(2.0f);
+        yield return StartCoroutine(WaitAndPrint(2.0f));
+        print("Done " + <a href="Time-time.html">Time.time</a>);
+    }<br /><br />    // suspend execution for waitTime seconds
+    IEnumerator WaitAndPrint(float waitTime)
+    {
+        yield return new <a href="WaitForSeconds.html">WaitForSeconds</a>(waitTime);
+        print("WaitAndPrint " + <a href="Time-time.html">Time.time</a>);
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Coroutine.html">Coroutine</a> <span class="sig-kw">StartCoroutine</span>(string <span class="sig-kw">methodName</span>,
+object <span class="sig-kw">value</span> = null);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Starts a coroutine named <code class="varname">methodName</code>.</p></div><div class="subsection"><p>In most cases you want to use the StartCoroutine variation above.
+However StartCoroutine using a string method name lets you use <a href="MonoBehaviour.StopCoroutine.html">StopCoroutine</a> with a specific method name.
+The downside is that the string version has a higher runtime overhead to start the coroutine and you can pass only one parameter.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// In this example we show how to invoke a coroutine using a string name and stop it.<br /><br />using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    IEnumerator Start()
+    {
+        StartCoroutine("DoSomething", 2.0f);
+        yield return new <a href="WaitForSeconds.html">WaitForSeconds</a>(1);
+        StopCoroutine("DoSomething");
+    }<br /><br />    IEnumerator DoSomething(float someParameter)
+    {
+        while (true)
+        {
+            print("DoSomething Loop");<br /><br />            // Yield execution of this coroutine and return to the main loop until next frame
+            yield return null;
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>A created coroutine can start another coroutine. These two coroutines can operate together in many ways. This includes both coroutines running in parallel.  Alternatively one coroutine can stop the other while it continues itself.  The example below shows one coroutine pausing as it starts another one. When the second coroutine finishes it restarts the first one.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        StartCoroutine(coroutineA());
+    }<br /><br />    IEnumerator coroutineA()
+    {
+        // wait for 1 second
+        <a href="Debug.Log.html">Debug.Log</a>("coroutineA created");
+        yield return new <a href="WaitForSeconds.html">WaitForSeconds</a>(1.0f);
+        yield return StartCoroutine(coroutineB());
+        <a href="Debug.Log.html">Debug.Log</a>("coroutineA running again");
+    }<br /><br />    IEnumerator coroutineB()
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("coroutineB created");
+        yield return new <a href="WaitForSeconds.html">WaitForSeconds</a>(2.5f);
+        <a href="Debug.Log.html">Debug.Log</a>("coroutineB enables coroutineA to run");
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

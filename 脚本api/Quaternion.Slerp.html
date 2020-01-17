@@ -1,0 +1,20 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Quaternion.Slerp</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Quaternion.html">Quaternion</a>.Slerp</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Quaternion.html">Quaternion</a> <span class="sig-kw">Slerp</span>(<a href="Quaternion.html">Quaternion</a> <span class="sig-kw">a</span>,
+<a href="Quaternion.html">Quaternion</a> <span class="sig-kw">b</span>,
+float <span class="sig-kw">t</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Spherically interpolates between <code class="varname">a</code> and <code class="varname">b</code> by <code class="varname">t</code>. The parameter <code class="varname">t</code> is clamped to the range [0, 1].</p></div><div class="subsection"><p>Use this to create a rotation which smoothly interpolates between the first quaternion (<code class="varname">a</code>) to the second quaternion (<code class="varname">a</code>), based on the value of the parameter (<code class="varname">a</code>). If the value of the parameter is close to 0, the output will be close to <code class="varname">a</code>, if it is close to 1, the output will be close to <code class="varname">b</code>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Interpolates rotation between the rotations "from" and "to"
+// (Choose from and to not to be the same as
+// the object you attach this script to)<br /><br />using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Transform.html">Transform</a> from;
+    public <a href="Transform.html">Transform</a> to;<br /><br />    private float timeCount = 0.0f;<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        transform.rotation = <a href="Quaternion.Slerp.html">Quaternion.Slerp</a>(from.rotation, to.rotation, timeCount);
+        timeCount = timeCount + <a href="Time-deltaTime.html">Time.deltaTime</a>;
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="Quaternion.Lerp.html">Lerp</a>, <a href="Quaternion.SlerpUnclamped.html">SlerpUnclamped</a>.</p></div></div></div></div></body></html>

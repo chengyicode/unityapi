@@ -1,0 +1,32 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: SphericalHarmonicsL2</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">SphericalHarmonicsL2</h1><div class="clear"></div><p class="cl mb0 left mr10">struct in
+          UnityEngine.Rendering</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.CoreModule.html" class="cl">UnityEngine.CoreModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Spherical harmonics up to the second order (3 bands, 9 coefficients).</p></div><div class="subsection"><p>Spherical harmonics (SH) represent a function or signal over directions, and are commonly used in computer graphics to efficiently evaluate smooth lighting. Unity uses them for <a href="LightProbes.html">LightProbes</a> and environment lighting.<br /><br />L2 spherical harmonics is composed of 9 coefficients for each color channel.<br /><br />See Also: <a href="RenderSettings-ambientMode.html">RenderSettings.ambientMode</a>, <a href="RenderSettings-ambientProbe.html">RenderSettings.ambientProbe</a>, <a href="LightProbes.html">LightProbes</a>.</p></div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.SphericalHarmonicsL2.Index_operator.html">this[int,int]</a></td><td class="desc"></td><td class="desc1">Access individual SH coefficients.</td></tr>
+    </table></div><div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.SphericalHarmonicsL2.AddAmbientLight.html">AddAmbientLight</a></td><td class="desc"></td><td class="desc1">Add ambient lighting to probe data.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.SphericalHarmonicsL2.AddDirectionalLight.html">AddDirectionalLight</a></td><td class="desc"></td><td class="desc1">Add directional light to probe data.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.SphericalHarmonicsL2.Clear.html">Clear</a></td><td class="desc"></td><td class="desc1">Clears SH probe to zero.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.SphericalHarmonicsL2.Evaluate.html">Evaluate</a></td><td class="desc"></td><td class="desc1">Evaluates the Spherical Harmonics for each of the given directions. The result from the first direction is written into the first element of results, the result from the second direction is written into the second element of results, and so on. The array size of directions and results must match and directions must be normalized.</td></tr>
+    </table></div><div class="subsection"><h2>Operators   运算符</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.SphericalHarmonicsL2-operator_ne.html">operator !=</a></td><td class="desc"></td><td class="desc1">Returns true if SH probes are different.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.SphericalHarmonicsL2-operator_multiply.html">operator *</a></td><td class="desc"></td><td class="desc1">Scales SH by a given factor.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.SphericalHarmonicsL2-operator_add.html">operator +</a></td><td class="desc"></td><td class="desc1">Adds two SH probes.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.SphericalHarmonicsL2-operator_eq.html">operator ==</a></td><td class="desc"></td><td class="desc1">Returns true if SH probes are equal.</td></tr>
+    </table></div></div></div></div></body></html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Tilemaps.TileBase.GetTileData</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Tilemaps.TileBase.html">TileBase</a>.GetTileData</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">GetTileData</span>(<a href="Vector3Int.html">Vector3Int</a> <span class="sig-kw">position</span>,
+<a href="Tilemaps.ITilemap.html">Tilemaps.ITilemap</a> <span class="sig-kw">tilemap</span>,
+ref <a href="Tilemaps.TileData.html">Tilemaps.TileData</a> <span class="sig-kw">tileData</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">position</td><td class="desc"></td><td class="desc1">Position of the Tile on the <a href="Tilemaps.Tilemap.html">Tilemap</a>.</td></tr><tr><td class="name lbl">tilemap</td><td class="desc"></td><td class="desc1">The <a href="Tilemaps.Tilemap.html">Tilemap</a> the tile is present on.</td></tr><tr><td class="name lbl">tileData</td><td class="desc"></td><td class="desc1">Data to render the tile.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>void</strong>
+        Whether the call was successful.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Retrieves any tile rendering data from the scripted tile.</p></div><div class="subsection"><p>Implement this and fill in the <a href="Tilemaps.TileData.html">TileData</a> to have the <a href="Tilemaps.Tilemap.html">Tilemap</a> to render the tile.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.Tilemaps;<br /><br />// <a href="Tilemaps.Tile.html">Tile</a> that repeats two sprites in checkerboard pattern
+[CreateAssetMenu]
+public class CheckerboardTile : <a href="Tilemaps.TileBase.html">TileBase</a>
+{
+    public <a href="Sprite.html">Sprite</a> spriteA;
+    public <a href="Sprite.html">Sprite</a> spriteB;<br /><br />    public override void GetTileData(<a href="Vector3Int.html">Vector3Int</a> position, <a href="Tilemaps.ITilemap.html">ITilemap</a> tilemap, ref <a href="Tilemaps.TileData.html">TileData</a> tileData)
+    {
+        bool evenCell = <a href="Mathf.Abs.html">Mathf.Abs</a>(position.y + position.x) % 2 &gt; 0;
+        tileData.sprite = evenCell ? spriteA : spriteB;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

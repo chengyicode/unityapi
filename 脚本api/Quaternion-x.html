@@ -1,0 +1,48 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Quaternion.x</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Quaternion.html">Quaternion</a>.x</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public float <span class="sig-kw">x</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>X component of the Quaternion. Don't modify this directly unless you know quaternions inside out.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//Create three Sliders (<strong>Create</strong>&gt;<strong>UI</strong>&gt;<strong>Slider</strong>) and three Text GameObjects (<strong>Create</strong>&gt;<strong>UI</strong>&gt;<strong>Text</strong>). These are for manipulating the x, y, and z values of the <a href="Quaternion.html">Quaternion</a>. The text will act as a label for each <a href="UIElements.Slider.html">Slider</a>, so position them appropriately.
+//Attach this script to a <a href="GameObject.html">GameObject</a>.
+//Click on the <a href="GameObject.html">GameObject</a> and attach each of the Sliders and Texts to the fields in the Inspector.<br /><br />//This script shows how the numbers placed into the x, y, and z components of a <a href="Quaternion.html">Quaternion</a> effect the <a href="GameObject.html">GameObject</a> when the w component is left at 1.
+//Use the Sliders to see the effects.<br /><br />using UnityEngine;
+using UnityEngine.UI;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    //These are the floats for the x, y, and z components of the quaternion
+    float m_MyX, m_MyY, m_MyZ;
+    //These are the Sliders that set the rotation. Remember to assign these in the Inspector
+    public <a href="UIElements.Slider.html">Slider</a> m_SliderX, m_SliderY, m_SliderZ;
+    //These are the Texts that output the current value of the rotations. Remember to assign these in the Inspector
+    public Text m_TextX, m_TextY, m_TextZ;<br /><br />    // Use this for initialization
+    void Start()
+    {
+        //Initialise the x, y, and z components of the future <a href="Quaternion.html">Quaternion</a>
+        m_MyX = 0;
+        m_MyY = 0;
+        m_MyZ = 0;<br /><br />        //Set all the sliders max values to 1 so the <a href="Quaternion.html">Quaternion</a> values don't go over 1
+        m_SliderX.maxValue = 1;
+        m_SliderY.maxValue = 1;
+        m_SliderZ.maxValue = 1;<br /><br />        //Set all the sliders min values to -1 so the <a href="Quaternion.html">Quaternion</a> values don't go under 1
+        m_SliderX.minValue = -1;
+        m_SliderY.minValue = -1;
+        m_SliderZ.minValue = -1;
+    }<br /><br />    //Change the <a href="Quaternion.html">Quaternion</a> values depending on the values of the Sliders
+    private static <a href="Quaternion.html">Quaternion</a> Change(float x, float y, float z)
+    {
+        //Return the new <a href="Quaternion.html">Quaternion</a>
+        return new <a href="Quaternion.html">Quaternion</a>(x, y , z, 1);
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        //<a href="Experimental.PlayerLoop.Update.html">Update</a> the x, y and z values to that of the sliders
+        m_MyX = m_SliderX.value;
+        m_MyY = m_SliderY.value;
+        m_MyZ = m_SliderZ.value;
+        //Output the current values of x, y, and z
+        m_TextX.text = " X : " + m_MyX;
+        m_TextY.text = " Y : " + m_MyY;
+        m_TextZ.text = " Z : " + m_MyZ;<br /><br />        //Rotate the <a href="GameObject.html">GameObject</a> by the new <a href="Quaternion.html">Quaternion</a>
+        transform.rotation = Change(m_MyX, m_MyY, m_MyZ);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

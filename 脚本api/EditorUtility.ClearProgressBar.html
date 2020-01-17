@@ -1,0 +1,44 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorUtility.ClearProgressBar</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorUtility.html">EditorUtility</a>.ClearProgressBar</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">ClearProgressBar</span>();
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Removes progress bar.</p></div><div class="subsection"><p>Will remove any progress bar previously shown using <a href="EditorUtility.DisplayProgressBar.html">EditorUtility.DisplayProgressBar</a>.<br /><br />See Also: <a href="EditorUtility.DisplayProgressBar.html">DisplayProgressBar</a>, <a href="EditorUtility.DisplayCancelableProgressBar.html">DisplayCancelableProgressBar</a> functions.<br /><br /></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class CancelableProgressBarExample : <a href="EditorWindow.html">EditorWindow</a>
+{
+    static int secs = 0;
+    static double startVal = 0;
+    static double progress = 0;<br /><br />
+    [<a href="MenuItem.html">MenuItem</a>("Example/Cancelable Progress Bar")]
+    static void Init()
+    {
+        // Get existing open window or if none, make a new one:
+        CancelableProgressBarExample window = (CancelableProgressBarExample)<a href="EditorWindow.GetWindow.html">EditorWindow.GetWindow</a>(typeof(CancelableProgressBarExample));
+        window.Show();
+    }<br /><br />    void OnGUI()
+    {
+        if (secs &gt; 0)
+        {
+            if (<a href="GUILayout.Button.html">GUILayout.Button</a>("<a href="Display.html">Display</a> bar"))
+                startVal = <a href="EditorApplication-timeSinceStartup.html">EditorApplication.timeSinceStartup</a>;<br /><br />            progress = <a href="EditorApplication-timeSinceStartup.html">EditorApplication.timeSinceStartup</a> - startVal;<br /><br />            if (progress &lt; secs)
+            {
+                if (<a href="EditorUtility.DisplayCancelableProgressBar.html">EditorUtility.DisplayCancelableProgressBar</a>(
+                    "Simple Progress Bar",
+                    "Shows a progress bar for the given seconds",
+                    (float)(progress / secs)))
+                {
+                    <a href="Debug.Log.html">Debug.Log</a>("Progress bar canceled by the user");
+                    startVal = 0;
+                }
+            }
+            else
+                <a href="EditorUtility.ClearProgressBar.html">EditorUtility.ClearProgressBar</a>();
+        }
+        else
+            secs = <a href="EditorGUILayout.IntField.html">EditorGUILayout.IntField</a>("<a href="Time.html">Time</a> to wait:", secs);
+    }<br /><br />    void OnInspectorUpdate()
+    {
+        Repaint();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Windows.LicenseInformation.PurchaseApp</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Windows.LicenseInformation.html">LicenseInformation</a>.PurchaseApp</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static string <span class="sig-kw">PurchaseApp</span>();
+    </div></div></div><div class="subsection"><h2>Returns</h2><p><strong>string</strong>
+        Purchase receipt.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Attempts to purchase the app if it is in installed in trial mode.</p></div><div class="subsection"><p>Calling this pops up a dialog for the user asking whether they want to buy the application. If the user buys the application, returns a valid purchase receipt string. Otherwise, returns an empty string.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.Windows;<br /><br />class MyMonoBehaviour : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    string m_Receipt;<br /><br />    void OnGUI()
+    {
+        if (<a href="Windows.LicenseInformation-isOnAppTrial.html">LicenseInformation.isOnAppTrial</a>)
+        {
+            if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(10, 10, 100, 40), "Buy full version"))
+            {
+                m_Receipt = <a href="Windows.LicenseInformation.PurchaseApp.html">LicenseInformation.PurchaseApp</a>();
+            }
+        }
+        else
+        {
+            <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(10, 10, 100, 40), "You have full application version installed");
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

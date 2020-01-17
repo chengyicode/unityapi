@@ -1,0 +1,38 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ShaderCompilerPlatform</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">ShaderCompilerPlatform</h1><div class="clear"></div><p class="cl mb0 left mr10">enumeration</p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Shader compiler used to generate player data shader variants.</p></div><div class="subsection"><p>
+                In Unity, <a href="../Manual/SL-ShaderPrograms.html">shader programs</a> are written in a variant of <a href="../Manual/SL-ShadingLanguage.html">HLSL</a> language.<br /><br />                Each [[wiki:PlatformSpecific|platform] supports one or multiple graphics APIs. For example, Vulkan and Direct3D 12 are both supported in Windows.
+                When building a standalone player, for each supported graphics API, Unity runs a corresponding shader compiler which generates the shader variants and cross-compiles the shader snippet into the shading language natively supported by the graphics API.<br /><br />                See Also: <a href="Build.IPreprocessShaders.OnProcessShader.html">IPreprocessShaders.OnProcessShader</a>, <a href="../Manual/SL-ShadingLanguage.html">Shader language</a>.
+            </p></div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.ShaderCompilerPlatform.None.html">None</a></td><td class="desc"></td><td class="desc1">Provide a reasonable value for non initialized variables.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.ShaderCompilerPlatform.D3D.html">D3D</a></td><td class="desc"></td><td class="desc1">Compiler used with Direct3D 11 and Direct3D 12 graphics API on Windows platforms.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.ShaderCompilerPlatform.GLES20.html">GLES20</a></td><td class="desc"></td><td class="desc1">Compiler used with OpenGL ES 2.0 and WebGL 1.0 graphics APIs on Android, iOS, Windows and WebGL platforms.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.ShaderCompilerPlatform.GLES3x.html">GLES3x</a></td><td class="desc"></td><td class="desc1">Compiler used with OpenGL ES 3.x and WebGL 2.0 graphics APIs on Android, iOS, Windows and WebGL platforms.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.ShaderCompilerPlatform.PS4.html">PS4</a></td><td class="desc"></td><td class="desc1">Compiler used on PlayStation 4.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.ShaderCompilerPlatform.XboxOneD3D11.html">XboxOneD3D11</a></td><td class="desc"></td><td class="desc1">Compiler used with Direct3D 11 graphics API on XBox One.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.ShaderCompilerPlatform.Metal.html">Metal</a></td><td class="desc"></td><td class="desc1">Compiler used with Metal graphics API on macOS, iOS and tvOS platforms.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.ShaderCompilerPlatform.OpenGLCore.html">OpenGLCore</a></td><td class="desc"></td><td class="desc1">Compiler used with OpenGL core graphics API on macOS, Linux and Windows platforms.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.ShaderCompilerPlatform.Vulkan.html">Vulkan</a></td><td class="desc"></td><td class="desc1">Compiler used with Vulkan graphics API on Android, Linux and Windows platforms.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.ShaderCompilerPlatform.Switch.html">Switch</a></td><td class="desc"></td><td class="desc1">Compiler used on Nintendo Switch.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.ShaderCompilerPlatform.XboxOneD3D12.html">XboxOneD3D12</a></td><td class="desc"></td><td class="desc1">Compiler used with Direct3D 12 graphics API on XBox One.</td></tr>
+    </table></div></div></div></div></body></html>

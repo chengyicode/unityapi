@@ -1,0 +1,29 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorGUILayout.EndBuildTargetSelectionGrouping</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorGUILayout.html">EditorGUILayout</a>.EndBuildTargetSelectionGrouping</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">EndBuildTargetSelectionGrouping</span>();
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Close a group started with BeginBuildTargetSelectionGrouping.</p></div><div class="subsection"><p>See Also: <a href="EditorGUILayout.BeginBuildTargetSelectionGrouping.html">EditorGUILayout.BeginBuildTargetSelectionGrouping</a>.<br /><br />
+<img src="../StaticFiles/ScriptRefImages/BuildTargetGroupExampleExtended.png" /><br />
+<em>Build Target Selection Group</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class BuildTargetGroupExample : <a href="EditorWindow.html">EditorWindow</a>
+{
+    [<a href="MenuItem.html">MenuItem</a>("Examples/Begin-End <a href="BuildTarget.html">BuildTarget</a> Grouping")]
+    static void Init()
+    {
+        BuildTargetGroupExample window =
+            (BuildTargetGroupExample)<a href="EditorWindow.GetWindow.html">EditorWindow.GetWindow</a>(typeof(BuildTargetGroupExample), true,
+                "My Custom <a href="Editor.html">Editor</a> Window");
+        window.Show();
+    }<br /><br />    void OnGUI()
+    {
+        <a href="BuildTargetGroup.html">BuildTargetGroup</a> selectedBuildTargetGroup = <a href="EditorGUILayout.BeginBuildTargetSelectionGrouping.html">EditorGUILayout.BeginBuildTargetSelectionGrouping</a>();
+        if (selectedBuildTargetGroup == <a href="BuildTargetGroup.Android.html">BuildTargetGroup.Android</a>)
+        {
+            <a href="EditorGUILayout.LabelField.html">EditorGUILayout.LabelField</a>("<a href="PlayerSettings.Android.html">Android</a> specific things");
+        }<br /><br />        if (selectedBuildTargetGroup == <a href="BuildTargetGroup.Standalone.html">BuildTargetGroup.Standalone</a>)
+        {
+            <a href="EditorGUILayout.LabelField.html">EditorGUILayout.LabelField</a>("Standalone specific things");
+        }<br /><br />        <a href="EditorGUILayout.EndBuildTargetSelectionGrouping.html">EditorGUILayout.EndBuildTargetSelectionGrouping</a>();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

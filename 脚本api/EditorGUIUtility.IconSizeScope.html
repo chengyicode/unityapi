@@ -1,0 +1,23 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: IconSizeScope</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">IconSizeScope</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEditor</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEditor.html" class="cl">UnityEditor</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Disposable scope helper for <a href="EditorGUIUtility.GetIconSize.html">GetIconSize</a> / <a href="EditorGUIUtility.SetIconSize.html">SetIconSize</a>.</p></div><div class="subsection"><p>Set icons rendered within this scope as part of <a href="GUIContent.html">GUIContent</a> to be rendered at a specific size.<br /><br />See Also: <a href="EditorGUIUtility.GetIconSize.html">GetIconSize</a>.
+See Also: <a href="EditorGUIUtility.SetIconSize.html">SetIconSize</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void ExampleMethod()
+    {
+        var myIconSize = new <a href="Vector2.html">Vector2</a>(16, 16);
+        using (new <a href="EditorGUIUtility.IconSizeScope.html">EditorGUIUtility.IconSizeScope</a>(myIconSize))
+        {
+            // Block of code that may render icons as part of <a href="GUIContent.html">GUIContent</a>
+            // Icons rendered here will use myIconSize
+        }
+        // Code here now reverts to original icon size
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Constructors</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="EditorGUIUtility.IconSizeScope-ctor.html">EditorGUIUtility.IconSizeScope</a></td><td class="desc"></td><td class="desc1">Begin an IconSizeScope.</td></tr>
+    </table></div></div></div></div></body></html>

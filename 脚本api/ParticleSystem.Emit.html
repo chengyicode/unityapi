@@ -1,0 +1,33 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ParticleSystem.Emit</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="ParticleSystem.html">ParticleSystem</a>.Emit</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-ParticleSystem.html' title='Go to ParticleSystem Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">Emit</span>(int <span class="sig-kw">count</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">count</td><td class="desc"></td><td class="desc1">Number of particles to emit.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Emit <code class="varname">count</code> particles immediately.</p></div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">Emit</span>(<a href="ParticleSystem.EmitParams.html">ParticleSystem.EmitParams</a> <span class="sig-kw">emitParams</span>,
+int <span class="sig-kw">count</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">emitParams</td><td class="desc"></td><td class="desc1">Overidden particle properties.</td></tr><tr><td class="name lbl">count</td><td class="desc"></td><td class="desc1">Number of particles to emit.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Emit a number of particles from script.</p></div><div class="subsection"><p>Setting properties in the emitParams will override those properties in the emitted particles. Any properties not modified will inherit the behavior specified in the inspector.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">using UnityEngine;<br /><br />// In this example, we have a <a href="ParticleSystem.Particle.html">Particle</a> System emitting green particles; we then emit and override some properties every 2 seconds.
+public class EmitExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="ParticleSystem.html">ParticleSystem</a> system;<br /><br />    void Start()
+    {
+        // A simple particle material with no texture.
+        <a href="Material.html">Material</a> particleMaterial = new <a href="Material.html">Material</a>(<a href="Shader.Find.html">Shader.Find</a>("Particles/Standard Unlit"));<br /><br />        // Create a green <a href="ParticleSystem.Particle.html">Particle</a> System.
+        var go = new <a href="GameObject.html">GameObject</a>("<a href="ParticleSystem.Particle.html">Particle</a> System");
+        go.transform.Rotate(-90, 0, 0); // Rotate so the system emits upwards.
+        system = go.AddComponent&lt;<a href="ParticleSystem.html">ParticleSystem</a>&gt;();
+        go.GetComponent&lt;<a href="ParticleSystemRenderer.html">ParticleSystemRenderer</a>&gt;().material = particleMaterial;
+        var mainModule = system.main;
+        mainModule.startColor = <a href="Color-green.html">Color.green</a>;
+        mainModule.startSize = 0.5f;<br /><br />        // Every 2 secs we will emit.
+        InvokeRepeating("DoEmit", 2.0f, 2.0f);
+    }<br /><br />    void DoEmit()
+    {
+        // Any parameters we assign in emitParams will override the current system's when we call Emit.
+        // Here we will override the start color and size.
+        var emitParams = new <a href="ParticleSystem.EmitParams.html">ParticleSystem.EmitParams</a>();
+        emitParams.startColor = <a href="Color-red.html">Color.red</a>;
+        emitParams.startSize = 0.2f;
+        system.Emit(emitParams, 10);
+        system.Play(); // Continue normal emissions
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

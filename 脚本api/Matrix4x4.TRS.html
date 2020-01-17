@@ -1,0 +1,39 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Matrix4x4.TRS</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Matrix4x4.html">Matrix4x4</a>.TRS</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Matrix4x4.html">Matrix4x4</a> <span class="sig-kw">TRS</span>(<a href="Vector3.html">Vector3</a> <span class="sig-kw">pos</span>,
+<a href="Quaternion.html">Quaternion</a> <span class="sig-kw">q</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">s</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Creates a translation, rotation and scaling matrix.</p></div><div class="subsection"><p>The returned matrix is such that it places objects at position <code class="varname">pos</code>,
+oriented in rotation <code class="varname">q</code> and scaled by <code class="varname">s</code>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">using UnityEngine;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Translate, rotate and scale a mesh. Try altering
+    // the parameters in the inspector while running
+    // to see the effect they have.<br /><br />    public <a href="Vector3.html">Vector3</a> translation;
+    public <a href="Vector3.html">Vector3</a> eulerAngles;
+    public <a href="Vector3.html">Vector3</a> scale = new <a href="Vector3.html">Vector3</a>(1, 1, 1);<br /><br />
+    <a href="MeshFilter.html">MeshFilter</a> mf;
+    <a href="Vector3.html">Vector3</a>[] origVerts;
+    <a href="Vector3.html">Vector3</a>[] newVerts;<br /><br />
+    void Start()
+    {
+        // Get the <a href="Mesh.html">Mesh</a> Filter component, save its original vertices
+        // and make a new vertex array for processing.
+        mf = GetComponent&lt;<a href="MeshFilter.html">MeshFilter</a>&gt; ();
+        origVerts = mf.mesh.vertices;
+        newVerts = new <a href="Vector3.html">Vector3</a>[origVerts.Length];
+    }<br /><br />
+    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        // Set a <a href="Quaternion.html">Quaternion</a> from the specified Euler angles.
+        <a href="Quaternion.html">Quaternion</a> rotation = <a href="Quaternion.Euler.html">Quaternion.Euler</a>(eulerAngles.x, eulerAngles.y, eulerAngles.z);<br /><br />        // Set the translation, rotation and scale parameters.
+        <a href="Matrix4x4.html">Matrix4x4</a> m = <a href="Matrix4x4.TRS.html">Matrix4x4.TRS</a>(translation, rotation, scale);<br /><br />        // For each vertex...
+        for (int i = 0; i &lt; origVerts.Length; i++)
+        {
+            // Apply the matrix to the vertex.
+            newVerts[i] = m.MultiplyPoint3x4(origVerts[i]);
+        }<br /><br />        // Copy the transformed vertices back to the mesh.
+        mf.mesh.vertices = newVerts;
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="Matrix4x4.TRS.html">TRS</a>, <a href="Matrix4x4.Rotate.html">Rotate</a>, <a href="Matrix4x4.Scale.html">Scale</a>, <a href="Matrix4x4.Translate.html">Translate</a>, <a href="Matrix4x4.SetTRS.html">SetTRS</a> functions.</p></div></div></div></div></body></html>

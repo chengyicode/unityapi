@@ -1,0 +1,21 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Mathf.InverseLerp</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Mathf.html">Mathf</a>.InverseLerp</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static float <span class="sig-kw">InverseLerp</span>(float <span class="sig-kw">a</span>,
+float <span class="sig-kw">b</span>,
+float <span class="sig-kw">value</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">a</td><td class="desc"></td><td class="desc1">Start value.</td></tr><tr><td class="name lbl">b</td><td class="desc"></td><td class="desc1">End value.</td></tr><tr><td class="name lbl">value</td><td class="desc"></td><td class="desc1">Value between start and end.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>float</strong>
+        Percentage of value between start and end.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Calculates the linear parameter t that produces the interpolant <code class="varname">value</code> within the range [a, b].</p></div><div class="subsection"><p>The a and b values define the start and end of the line.  Value is a location between a and b.  Subtract a from both a and b and value to make a', b' and value'.  This makes a' to be zero and b' and value' to be reduced.  Finally divide value' by b'. This gives the InverseLerp amount.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public float walkSpeed = 5.0f;
+    public float runSpeed = 10.0f;
+    public float speed = 8.0f;<br /><br />    void Start()
+    {
+        float parameter = <a href="Mathf.InverseLerp.html">Mathf.InverseLerp</a>(walkSpeed, runSpeed, speed);
+        <a href="Debug.Log.html">Debug.Log</a>("InverseLerp: 5, 10, 8 = " + parameter);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="Mathf.Lerp.html">Lerp</a>.</p></div></div></div></div></body></html>

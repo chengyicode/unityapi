@@ -1,0 +1,19 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorApplication.pauseStateChanged</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorApplication.html">EditorApplication</a>.pauseStateChanged</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Event that is raised whenever the Editor's pause state changes.</p></div><div class="subsection"><p>Add an event handler to this event to receive a notification that the pause state has changed, as well as information about the state it has changed into.<br /><br />Note that the Editor may be paused or unpaused in both edit mode and play mode, so you should test <a href="EditorApplication-isPlaying.html">isPlaying</a> inside your event handler if you need to discriminate between these two conditions.<br /><br />The following example script logs the Editor's pause state to the console whenever if changes. Copy it into a file called PauseStateChangedExample.cs and put it in a folder called Editor.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />// ensure class initializer is called whenever scripts recompile
+[<a href="InitializeOnLoadAttribute.html">InitializeOnLoadAttribute</a>]
+public static class PauseStateChangedExample
+{
+    // register an event handler when the class is initialized
+    static PauseStateChangedExample()
+    {
+        <a href="EditorApplication-pauseStateChanged.html">EditorApplication.pauseStateChanged</a> += LogPauseState;
+    }<br /><br />    private static void LogPauseState(<a href="PauseState.html">PauseState</a> state)
+    {
+        <a href="Debug.Log.html">Debug.Log</a>(state);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="PauseState.html">PauseState</a>, <a href="EditorApplication-isPaused.html">EditorApplication.isPaused</a>, <a href="EditorApplication-playModeStateChanged.html">EditorApplication.playModeStateChanged</a>.</p></div></div></div></div></body></html>

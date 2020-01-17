@@ -1,0 +1,37 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Networking.GlobalConfig.ConnectionReadyForSend</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Method group is Obsolete</b><br /></div><h1 class="heading inherit"><a href="Networking.GlobalConfig.html">GlobalConfig</a>.ConnectionReadyForSend</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public Action&lt;int,int&gt; <span class="sig-kw">ConnectionReadyForSend</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Defines the callback delegate which you can use to get a notification when a connection is ready to send data.</p></div><div class="subsection"><p>The callback will be only be called if you specifically indicate that you want this notification, by calling NetworkTransport.NotifyWhenConnectionReadyForSend.<br /><br />This callback will be called from the IO thread. If you execute a long operation from this callback it will affect your IO operation performance, therefore you should return from these operations as soon as possible.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System;
+using UnityEngine;
+using UnityEngine.Networking;<br /><br />public class Test : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    static bool isSend = true;
+    //...<br /><br />    public static void SendCallback(int hostId, int connectionId)
+    {
+        isSend = true;  //we can send again
+    }<br /><br />    void Start()
+    {
+        GlobalConfig config = new GlobalConfig();
+        config.ConnectionReadyForSend = SendCallback;  //set up callback for send notification<br /><br />        NetworkTransport.Init(config);<br /><br />
+        //....
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        int testHostId = 1;
+        int testConnectionId = 1;
+        int testChannelId = 1;
+        var testArray = new byte[] { 0x20, 0x20, 0x20, 0x20, 0x20, 0x20, 0x20 };
+        byte error;
+        while (isSend)
+        {
+            isSend = NetworkTransport.Send(testHostId, testConnectionId, testChannelId, testArray, testArray.Length, out error);
+            if (isSend == false)
+            {
+                NetworkTransport.NotifyWhenConnectionReadyForSend(testHostId, testConnectionId, 2, out error);  //ask lib to call SendCallback() when connection will be ready again and we will be able to send as minimum 2 messages
+                break;
+            }
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

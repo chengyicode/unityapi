@@ -1,0 +1,56 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Physics2D.gravity</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Physics2D.html">Physics2D</a>.gravity</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Vector2.html">Vector2</a> <span class="sig-kw">gravity</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Acceleration due to gravity.</p></div><div class="subsection"><p>Set this vector to change all 2D gravity in your Scene. The default is (0, -9.8).</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//Attach this script to a 2D <a href="GameObject.html">GameObject</a> (for example a <a href="Sprite.html">Sprite</a>).
+//Attach a <a href="Rigidbody.html">Rigidbody</a> component to the <a href="GameObject.html">GameObject</a> (Click the <strong>Add Component</strong> button and go to <strong>Physics 2D</strong>&gt;<strong>Rigidbody 2D</strong>)<br /><br />//This script allows you to change the direction of gravity in your <a href="SceneManagement.Scene.html">Scene</a> by pressing the space key in Play <a href="Scripting.GarbageCollector.Mode.html">Mode</a>.<br /><br />using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    enum GravityDirection { Down, Left, Up, Right };
+    GravityDirection m_GravityDirection;<br /><br />    void Start()
+    {
+        m_GravityDirection = GravityDirection.Down;
+    }<br /><br />    void <a href="Experimental.PlayerLoop.FixedUpdate.html">FixedUpdate</a>()
+    {
+        switch (m_GravityDirection)
+        {
+            case GravityDirection.Down:
+                //Change the gravity to be in a downward direction (default)
+                <a href="Physics2D-gravity.html">Physics2D.gravity</a> = new <a href="Vector2.html">Vector2</a>(0, -9.8f);
+                //Press the space key to switch to the left direction
+                if (<a href="Input.GetKeyDown.html">Input.GetKeyDown</a>(<a href="KeyCode.Space.html">KeyCode.Space</a>))
+                {
+                    m_GravityDirection = GravityDirection.Left;
+                    <a href="Debug.Log.html">Debug.Log</a>("Left");
+                }
+                break;<br /><br />            case GravityDirection.Left:
+                //Change the gravity to go to the left
+                <a href="Physics2D-gravity.html">Physics2D.gravity</a> = new <a href="Vector2.html">Vector2</a>(-9.8f, 0);
+                //Press the space key to change the direction of gravity
+                if (<a href="Input.GetKeyDown.html">Input.GetKeyDown</a>(<a href="KeyCode.Space.html">KeyCode.Space</a>))
+                {
+                    m_GravityDirection = GravityDirection.Up;
+                    <a href="Debug.Log.html">Debug.Log</a>("Up");
+                }
+                break;<br /><br />            case GravityDirection.Up:
+                //Change the gravity to be in a upward direction
+                <a href="Physics2D-gravity.html">Physics2D.gravity</a> = new <a href="Vector2.html">Vector2</a>(0, 9.8f);
+                //Press the space key to change the direction
+                if (<a href="Input.GetKeyDown.html">Input.GetKeyDown</a>(<a href="KeyCode.Space.html">KeyCode.Space</a>))
+                {
+                    m_GravityDirection = GravityDirection.Right;
+                    <a href="Debug.Log.html">Debug.Log</a>("Right");
+                }
+                break;<br /><br />            case GravityDirection.Right:
+                //Change the gravity to go in the right direction
+                <a href="Physics2D-gravity.html">Physics2D.gravity</a> = new <a href="Vector2.html">Vector2</a>(9.8f, 0);
+                //Press the space key to change the direction
+                if (<a href="Input.GetKeyDown.html">Input.GetKeyDown</a>(<a href="KeyCode.Space.html">KeyCode.Space</a>))
+                {
+                    m_GravityDirection = GravityDirection.Down;
+                    <a href="Debug.Log.html">Debug.Log</a>("Down");
+                }<br /><br />                break;
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

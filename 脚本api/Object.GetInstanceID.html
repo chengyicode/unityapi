@@ -1,0 +1,24 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Object.GetInstanceID</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Object.html">Object</a>.GetInstanceID</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public int <span class="sig-kw">GetInstanceID</span>();
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Returns the instance id of the object.</p></div><div class="subsection"><p>The instance id of an object is always guaranteed to be unique.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Create 10 game objects, which will have random Instance IDs
+    void Awake()
+    {
+        for (int i = 0; i &lt; 10; i++)
+        {
+            <a href="GameObject.html">GameObject</a> g = new <a href="GameObject.html">GameObject</a>("abc" + i.ToString("D3"));
+        }
+    }<br /><br />    // Find all the game objects and display their Instance IDs
+    void Start()
+    {
+        Object[] allObjects = <a href="Object.FindObjectsOfType.html">Object.FindObjectsOfType</a>&lt;<a href="GameObject.html">GameObject</a>&gt;();<br /><br />        foreach (<a href="GameObject.html">GameObject</a> go in allObjects)
+        {
+            <a href="Debug.Log.html">Debug.Log</a>(go + " is an active object " + go.GetInstanceID());
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

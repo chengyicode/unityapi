@@ -1,0 +1,24 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Input.gyro</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Input.html">Input</a>.gyro</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Gyroscope.html">Gyroscope</a> <span class="sig-kw">gyro</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Returns default gyroscope.</p></div><div class="subsection"><p>Use this to return the gyroscope details of your device. Ensure first that your device has a gyroscope. Use Input.gyro.enabled to check this.<br /><br />Knowing the gyroscope details of a device enables you the ability to include features that need to know a device’s orientation. Common uses include changing camera angles or GameObject’s positions when a user rotates and moves their device.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//Attach this script to a <a href="GameObject.html">GameObject</a> in your <a href="SceneManagement.Scene.html">Scene</a>.
+using UnityEngine;
+using UnityEngine.UI;<br /><br />public class InputGyroExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="Gyroscope.html">Gyroscope</a> m_Gyro;<br /><br />    void Start()
+    {
+        //Set up and enable the gyroscope (check your device has one)
+        m_Gyro = <a href="Input-gyro.html">Input.gyro</a>;
+        m_Gyro.enabled = true;
+    }<br /><br />//This is a legacy function, check out the UI section for other ways to create your UI
+    void OnGUI()
+    {
+        //Output the rotation rate, attitude and the enabled state of the gyroscope as a <a href="UIElements.Label.html">Label</a>
+        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(500, 300, 200, 40), "Gyro rotation rate " + m_Gyro.rotationRate);
+        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(500, 350, 200, 40), "Gyro attitude" + m_Gyro.attitude);
+        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(500, 400, 200, 40), "Gyro enabled : " + m_Gyro.enabled);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

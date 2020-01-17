@@ -1,0 +1,63 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: GenericMenu</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">GenericMenu</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEditor</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEditor.html" class="cl">UnityEditor</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>GenericMenu lets you create custom context menus and dropdown menus.</p></div><div class="subsection"><p>The example below opens an Editor window with a button. Clicking the button displays a context menu, which lets you change the color to apply to the GUI in the window. Copy the example's contents into a script called GenericMenuExample.cs and put it into a folder in your project called Editor.<br /><br /><img src="../StaticFiles/ScriptRefImages/GenericMenu.png" />.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class GenericMenuExample : <a href="EditorWindow.html">EditorWindow</a>
+{
+    // open the window from the menu item Example -&gt; <a href="GUI.html">GUI</a> <a href="Color.html">Color</a>
+    [<a href="MenuItem.html">MenuItem</a>("Example/<a href="GUI.html">GUI</a> <a href="Color.html">Color</a>")]
+    static void Init()
+    {
+        <a href="EditorWindow.html">EditorWindow</a> window = GetWindow&lt;GenericMenuExample&gt;();
+        window.position = new <a href="Rect.html">Rect</a>(50f, 50f, 200f, 24f);
+        window.Show();
+    }<br /><br />    // serialize field on window so its value will be saved when Unity recompiles
+    [<a href="SerializeField.html">SerializeField</a>]
+    <a href="Color.html">Color</a> m_Color = <a href="Color-white.html">Color.white</a>;<br /><br />    void OnEnable()
+    {
+        titleContent = new <a href="GUIContent.html">GUIContent</a>("<a href="GUI.html">GUI</a> <a href="Color.html">Color</a>");
+    }<br /><br />    // a method to simplify adding menu items
+    void AddMenuItemForColor(<a href="GenericMenu.html">GenericMenu</a> menu, string menuPath, <a href="Color.html">Color</a> color)
+    {
+        // the menu item is marked as selected if it matches the current value of m_Color
+        menu.AddItem(new <a href="GUIContent.html">GUIContent</a>(menuPath), m_Color.Equals(color), OnColorSelected, color);
+    }<br /><br />    // the <a href="GenericMenu.MenuFunction2.html">GenericMenu.MenuFunction2</a> event handler for when a menu item is selected
+    void OnColorSelected(object color)
+    {
+        m_Color = (<a href="Color.html">Color</a>)color;
+    }<br /><br />    void OnGUI()
+    {
+        // set the <a href="GUI.html">GUI</a> to use the color stored in m_Color
+        <a href="GUI-color.html">GUI.color</a> = m_Color;<br /><br />        // display the <a href="GenericMenu.html">GenericMenu</a> when pressing a button
+        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Select <a href="GUI.html">GUI</a> <a href="Color.html">Color</a>"))
+        {
+            // create the menu and add items to it
+            <a href="GenericMenu.html">GenericMenu</a> menu = new <a href="GenericMenu.html">GenericMenu</a>();<br /><br />            // forward slashes nest menu items under submenus
+            AddMenuItemForColor(menu, "RGB/Red", <a href="Color-red.html">Color.red</a>);
+            AddMenuItemForColor(menu, "RGB/Green", <a href="Color-green.html">Color.green</a>);
+            AddMenuItemForColor(menu, "RGB/Blue", <a href="Color-blue.html">Color.blue</a>);<br /><br />            // an empty string will create a separator at the top level
+            menu.AddSeparator("");<br /><br />            AddMenuItemForColor(menu, "CMYK/Cyan", <a href="Color-cyan.html">Color.cyan</a>);
+            AddMenuItemForColor(menu, "CMYK/Yellow", <a href="Color-yellow.html">Color.yellow</a>);
+            AddMenuItemForColor(menu, "CMYK/Magenta", <a href="Color-magenta.html">Color.magenta</a>);
+            // a trailing slash will nest a separator in a submenu
+            menu.AddSeparator("CMYK/");
+            AddMenuItemForColor(menu, "CMYK/Black", <a href="Color-black.html">Color.black</a>);<br /><br />            menu.AddSeparator("");<br /><br />            AddMenuItemForColor(menu, "White", <a href="Color-white.html">Color.white</a>);<br /><br />            // display the menu
+            menu.ShowAsContext();
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="GenericMenu-allowDuplicateNames.html">allowDuplicateNames</a></td><td class="desc"></td><td class="desc1">Allow the menu to have multiple items with the same name.</td></tr>
+    </table></div><div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="GenericMenu.AddDisabledItem.html">AddDisabledItem</a></td><td class="desc"></td><td class="desc1">Add a disabled item to the menu.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GenericMenu.AddItem.html">AddItem</a></td><td class="desc"></td><td class="desc1">Add an item to the menu.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GenericMenu.AddSeparator.html">AddSeparator</a></td><td class="desc"></td><td class="desc1">Add a seperator item to the menu.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GenericMenu.DropDown.html">DropDown</a></td><td class="desc"></td><td class="desc1">Show the menu at the given screen rect.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GenericMenu.GetItemCount.html">GetItemCount</a></td><td class="desc"></td><td class="desc1">Get number of items in the menu.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GenericMenu.ShowAsContext.html">ShowAsContext</a></td><td class="desc"></td><td class="desc1">Show the menu under the mouse when right-clicked.</td></tr>
+    </table></div><div class="subsection"><h2>Delegates</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="GenericMenu.MenuFunction.html">MenuFunction</a></td><td class="desc"></td><td class="desc1">Callback function, called when a menu item is selected.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GenericMenu.MenuFunction2.html">MenuFunction2</a></td><td class="desc"></td><td class="desc1">Callback function with user data, called when a menu item is selected.</td></tr>
+    </table></div></div></div></div></body></html>

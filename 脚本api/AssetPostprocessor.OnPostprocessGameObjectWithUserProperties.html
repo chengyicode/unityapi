@@ -1,0 +1,30 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AssetPostprocessor.OnPostprocessGameObjectWithUserProperties(GameObject,string[],object[])</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="AssetPostprocessor.html">AssetPostprocessor</a>.OnPostprocessGameObjectWithUserProperties(GameObject,string[],object[])</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Gets called for each GameObject that had at least one user property attached to it in the imported file.</p></div><div class="subsection"><p>The second argument string array (propNames) contains all the names of the properties found.
+The System.Object array (values) contains all the actual values. These can be of type string, Vector4, bool, Color, float, int.<br /><br />A typical use case for this feature is reading out "userdata" stored on objects in 3dmax/maya. Depending on what is written in the text userdata for an object, you could decide to postprocess your GameObject in different ways.<br /><br />For a detailed description of the stage when the function is invoked see <a href="AssetPostprocessor.html">AssetPostprocessor</a>.<br /><br />Please note that the GameObjects and Meshes only exist during the import and will be destroyed immediately afterwards.
+This function is called before the final Prefab is created and before it is written to disk, thus you have full control over the generated game objects and components.
+Any references to game objects or meshes will become invalid after the import has been completed. Thus it is not possible to create a new Prefab in a different file from OnPostprocessGameObjectWithUserProperties that references meshes in the imported fbx file.
+The sample JS example below adds a simple BoxCollider component if the userdata string contains "addboxcollider".  The c# version is similar.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;
+using System;
+using System.Collections;<br /><br />public class ExampleClass : <a href="AssetPostprocessor.html">AssetPostprocessor</a>
+{
+    void OnPostprocessGameObjectWithUserProperties(
+        <a href="GameObject.html">GameObject</a> go,
+        string[] propNames,
+        System.Object[] values)
+    {
+        for (int i = 0; i &lt; propNames.Length; i++)
+        {
+            string propName = propNames[i];
+            System.Object value = (System.Object)values[i];<br /><br />            <a href="Debug.Log.html">Debug.Log</a>("Propname: " + propName + " value: " + values[i]);<br /><br />            if (value.GetType().ToString() == "System.Int32")
+            {
+                int myInt = (int)value;
+                // do something useful
+            }<br /><br />            // etc...
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

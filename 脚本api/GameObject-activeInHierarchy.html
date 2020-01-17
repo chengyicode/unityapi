@@ -1,0 +1,84 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: GameObject.activeInHierarchy</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="GameObject.html">GameObject</a>.activeInHierarchy</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-GameObject.html' title='Go to GameObject Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public bool <span class="sig-kw">activeInHierarchy</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Defines whether the GameObject is active in the Scene.</p></div><div class="subsection"><p>This lets you know whether a GameObject is active in the game. That is the case if its
+<a href="GameObject-activeSelf.html">GameObject.activeSelf</a> property is enabled, as well as that of all its parents.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//This script shows how the activeInHierarchy state changes depending on the active state of the <a href="GameObject.html">GameObject</a>’s parent<br /><br />using UnityEngine;<br /><br />public class ActiveInHierarchyExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    //Attach these in the Inspector
+    public <a href="GameObject.html">GameObject</a> m_ParentObject, m_ChildObject;
+    //Use this for getting the toggle data
+    bool m_Activate;<br /><br />    void Start()
+    {
+        //Deactivate parent <a href="GameObject.html">GameObject</a> and toggle
+        m_Activate = false;
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        //Activate the <a href="GameObject.html">GameObject</a> you attach depending on the toggle output
+        m_ParentObject.SetActive(m_Activate);
+    }<br /><br />    void OnGUI()
+    {
+        //<a href="PlayerSettings.Switch.html">Switch</a> this toggle to activate and deactivate the parent <a href="GameObject.html">GameObject</a>
+        m_Activate = <a href="GUI.Toggle.html">GUI.Toggle</a>(new <a href="Rect.html">Rect</a>(10, 10, 100, 30), m_Activate, "Activate Parent <a href="GameObject.html">GameObject</a>");<br /><br />        if (<a href="GUI-changed.html">GUI.changed</a>)
+        {
+            //Output the status of the <a href="GameObject.html">GameObject</a>'s active state in the console
+            <a href="Debug.Log.html">Debug.Log</a>("Child <a href="GameObject.html">GameObject</a> Active : " + m_ChildObject.activeInHierarchy);
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Unlike <a href="GameObject-activeSelf.html">GameObject.activeSelf</a>, this also checks if any parent GameObjects affect the GameObject’s currently active state.<br /><br />When a parent GameObject is deactivated, its children are usually marked as active even though they are not visible, so they are still active according to <a href="GameObject-activeSelf.html">GameObject.activeSelf</a>. However, <a href="GameObject-activeInHierarchy.html">GameObject.activeInHierarchy</a> ensures this doesn’t happen by instead checking that the GameObject hasn’t been deactivated by a member in its hierarchy.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//This script shows how activeInHierarchy differs from activeSelf. Use the toggle  to alter the parent and child <a href="GameObject.html">GameObject</a>’s active states. This makes it output the child <a href="GameObject.html">GameObject</a>’s state in the console.
+//It also shows how activeSelf outputs that the child <a href="GameObject.html">GameObject</a> is active when the parent is not, while the activeInHierarchy lists the child <a href="GameObject.html">GameObject</a> as inactive.<br /><br />
+using UnityEngine;<br /><br />public class ActiveInHierarchyExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="GameObject.html">GameObject</a> m_ParentObject, m_ChildObject;
+    //Use this for getting the toggle data
+    bool m_ActivateParent, m_ActivateChild;
+    //Use these for deciding if console is needing updated
+    bool m_HierarchyOutput, m_SelfOutput;<br /><br />    void Start()
+    {
+        //Deactivate parent and child GameObjects and toggles
+        m_ActivateParent = false;
+        m_ActivateChild = false;
+        //Ables script to output current state of <a href="GameObject.html">GameObject</a> to console
+        m_HierarchyOutput = false;
+        m_SelfOutput = false;
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        //Activates the <a href="GameObject.html">GameObject</a> you attach depending on the toggle output
+        m_ParentObject.SetActive(m_ActivateParent);
+        m_ChildObject.SetActive(m_ActivateChild);<br /><br />        //Find out if the <a href="GameObject.html">GameObject</a> is active in the Game and checks if this state has been output to the console
+        if (m_HierarchyOutput == false)
+        {
+            //Output the state of the <a href="GameObject.html">GameObject</a>’s activity if it hasn't already been output
+            <a href="Debug.Log.html">Debug.Log</a>("Object Active : " + m_ChildObject.activeInHierarchy);
+            //The state of the <a href="GameObject.html">GameObject</a> is output already, so no need to do it again
+            m_HierarchyOutput = true;
+        }
+        //Check to see if the assigned <a href="GameObject.html">GameObject</a> is active despite parent <a href="GameObject.html">GameObject</a>'s status
+        if (m_ChildObject.activeSelf &amp;&amp; m_SelfOutput == false)
+        {
+            //Output the message if the <a href="GameObject.html">GameObject</a> is still active
+            <a href="Debug.Log.html">Debug.Log</a>("Child Active, parent might not be");
+            //You no longer need to output the message
+            m_SelfOutput = true;
+        }
+    }<br /><br />    void OnGUI()
+    {
+        //<a href="PlayerSettings.Switch.html">Switch</a> this toggle to activate and deactivate the parent <a href="GameObject.html">GameObject</a>
+        m_ActivateParent = <a href="GUI.Toggle.html">GUI.Toggle</a>(new <a href="Rect.html">Rect</a>(10, 10, 100, 30), m_ActivateParent, "Activate Parent <a href="GameObject.html">GameObject</a>");
+        //<a href="PlayerSettings.Switch.html">Switch</a> this toggle to activate and deactivate the child <a href="GameObject.html">GameObject</a>
+        m_ActivateChild = <a href="GUI.Toggle.html">GUI.Toggle</a>(new <a href="Rect.html">Rect</a>(10, 40, 100, 30), m_ActivateChild, "Activate Child <a href="GameObject.html">GameObject</a>");<br /><br />
+        //If a change is detected with the toggle, the console outputs updates
+        if (<a href="GUI-changed.html">GUI.changed</a>)
+        {
+            m_SelfOutput = false;
+            m_HierarchyOutput = false;
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

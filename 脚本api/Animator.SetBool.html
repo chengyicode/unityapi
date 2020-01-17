@@ -1,0 +1,36 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Animator.SetBool</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Animator.html">Animator</a>.SetBool</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Animator.html' title='Go to Animator Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">SetBool</span>(string <span class="sig-kw">name</span>,
+bool <span class="sig-kw">value</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">SetBool</span>(int <span class="sig-kw">id</span>,
+bool <span class="sig-kw">value</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">name</td><td class="desc"></td><td class="desc1">The parameter name.</td></tr><tr><td class="name lbl">id</td><td class="desc"></td><td class="desc1">The parameter ID.</td></tr><tr><td class="name lbl">value</td><td class="desc"></td><td class="desc1">The new parameter value.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Sets the value of the given boolean parameter.</p></div><div class="subsection"><p>Use Animator.SetBool to pass Boolean values to an <a href="../Manual/class-AnimatorController.html">Animator Controller</a>
+via script.<br /><br />Use this to trigger transitions between Animator states. For example, triggering a death animation by setting an “alive” boolean to false. See documentation on <a href="../Manual/AnimatorControllerCreation.html">Animation</a> for more information on setting up Animators.<br /><br />Note: You can identify the parameter by name or by ID number, but the name or ID number must be the same as the parameter you want to change in the Animator.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//Set up a new Boolean parameter in the Unity <a href="Animator.html">Animator</a> and name it, in this case “Jump”.
+//Set up transitions between each state that the animation could follow. For example, the player could be running or idle before they jump, so both would need transitions into the animation.
+//If the “Jump” boolean is set to true at any point, the m_Animator plays the animation. However, if it is ever set to false, the animation would return to the appropriate state (“Idle”).
+//This script enables and disables this boolean in this case by listening for the mouse click or a tap of the screen.<br /><br />using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    //Fetch the <a href="Animator.html">Animator</a>
+    <a href="Animator.html">Animator</a> m_Animator;
+    // Use this for deciding if the <a href="GameObject.html">GameObject</a> can jump or not
+    bool m_Jump;<br /><br />    void Start()
+    {
+        //This gets the <a href="Animator.html">Animator</a>, which should be attached to the <a href="GameObject.html">GameObject</a> you are intending to animate.
+        m_Animator = gameObject.GetComponent&lt;<a href="Animator.html">Animator</a>&gt;();
+        // The <a href="GameObject.html">GameObject</a> cannot jump
+        m_Jump = false;
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        //Click the mouse or tap the screen to change the animation
+        if (<a href="Input.GetMouseButtonDown.html">Input.GetMouseButtonDown</a>(0))
+            m_Jump = true;<br /><br />        //Otherwise the <a href="GameObject.html">GameObject</a> cannot jump.
+        else m_Jump = false;<br /><br />        //If the <a href="GameObject.html">GameObject</a> is not jumping, send that the Boolean “Jump” is false to the <a href="Animator.html">Animator</a>. The jump animation does not play.
+        if (m_Jump == false)
+            m_Animator.SetBool("Jump", false);<br /><br />        //The <a href="GameObject.html">GameObject</a> is jumping, so send the Boolean as enabled to the <a href="Animator.html">Animator</a>. The jump animation plays.
+        if (m_Jump == true)
+            m_Animator.SetBool("Jump", true);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

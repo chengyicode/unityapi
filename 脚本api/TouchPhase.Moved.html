@@ -1,0 +1,40 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: TouchPhase.Moved</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="TouchPhase.html">TouchPhase</a>.Moved</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>A finger moved on the screen.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//Attach this script to an empty <a href="GameObject.html">GameObject</a>
+//Create some UI Text by going to Create&gt;UI&gt;Text.
+//Drag this <a href="GameObject.html">GameObject</a> into the Text field of your <a href="GameObject.html">GameObject</a>’s Inspector window.<br /><br />using UnityEngine;
+using System.Collections;
+using UnityEngine.UI;<br /><br />public class TouchPhaseExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Vector2.html">Vector2</a> startPos;
+    public <a href="Vector2.html">Vector2</a> direction;<br /><br />    public Text m_Text;
+    string message;<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        //<a href="Experimental.PlayerLoop.Update.html">Update</a> the Text on the screen depending on current <a href="TouchPhase.html">TouchPhase</a>, and the current direction vector
+        m_Text.text = "<a href="Touch.html">Touch</a> : " + message + "in direction" + direction;<br /><br />        // Track a single touch as a direction control.
+        if (<a href="Input-touchCount.html">Input.touchCount</a> &gt; 0)
+        {
+            <a href="Touch.html">Touch</a> touch = <a href="Input.GetTouch.html">Input.GetTouch</a>(0);<br /><br />            // Handle finger movements based on <a href="TouchPhase.html">TouchPhase</a>
+            switch (touch.phase)
+            {
+                //When a touch has first been detected, change the message and record the starting position
+                case <a href="TouchPhase.Began.html">TouchPhase.Began</a>:
+                    // Record initial touch position.
+                    startPos = touch.position;
+                    message = "Begun ";
+                    break;<br /><br />                //Determine if the touch is a moving touch
+                case <a href="TouchPhase.Moved.html">TouchPhase.Moved</a>:
+                    // Determine direction by comparing the current touch position with the initial one
+                    direction = touch.position - startPos;
+                    message = "Moving ";
+                    break;<br /><br />                case <a href="TouchPhase.Ended.html">TouchPhase.Ended</a>:
+                    // Report that the touch has ended when it ends
+                    message = "Ending ";
+                    break;
+            }
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

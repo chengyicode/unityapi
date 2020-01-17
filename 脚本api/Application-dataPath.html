@@ -1,0 +1,18 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Application.dataPath</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Application.html">Application</a>.dataPath</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static string <span class="sig-kw">dataPath</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Contains the path to the game data folder on the target device (Read Only).</p></div><div class="subsection"><p>The value depends on which platform you are running on:<br /><br /><strong>Unity Editor:</strong> &lt;<em>path to project folder</em>&gt;/Assets<br /><br /><strong>Mac player:</strong> &lt;<em>path to player app bundle</em>&gt;/Contents<br /><br /><strong>iOS player:</strong> &lt;<em>path to player app bundle</em>&gt;/&lt;<em>AppName.app</em>&gt;/Data (this folder is read only, use <a href="Application-persistentDataPath.html">Application.persistentDataPath</a> to save data).<br /><br /><strong>Win/Linux player:</strong> &lt;<em>path to executablename_Data folder</em>&gt; (note that most Linux installations will be case-sensitive!)<br /><br /><strong>WebGL:</strong> The absolute url to the player data file folder (without the actual data file name)<br /><br /><strong>Android:</strong> Normally it points directly to the APK. If you are running a split binary build, it points to the OBB instead.<br /><br /><strong>Windows Store Apps:</strong> The absolute path to the player data folder (this folder is read only, use <a href="Application-persistentDataPath.html">Application.persistentDataPath</a> to save data)<br /><br />Note that the string returned on a PC will use a forward slash as a folder separator.<br /><br />For any unlisted platform, run the example script on the target platform to find the dataPath location in the debug log.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//Attach this script to a <a href="GameObject.html">GameObject</a>
+//This script outputs the <a href="Application.html">Application</a>’s path to the Console
+//Run this on the target device to find the application data path for the platform
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    string m_Path;<br /><br />    void Start()
+    {
+        //Get the path of the Game data folder
+        m_Path = <a href="Application-dataPath.html">Application.dataPath</a>;<br /><br />        //Output the Game data path to the console
+        <a href="Debug.Log.html">Debug.Log</a>("dataPath : " + m_Path);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

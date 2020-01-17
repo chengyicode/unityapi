@@ -1,0 +1,19 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Touch.position</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Touch.html">Touch</a>.position</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Vector2.html">Vector2</a> <span class="sig-kw">position</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The position of the touch in pixel coordinates.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//This script outputs the current position of a touch<br /><br />//Attach this script to a <a href="GameObject.html">GameObject</a>
+//Create a Text <a href="GameObject.html">GameObject</a> (<strong>Create</strong>&gt;<strong>UI</strong>&gt;<strong>Text</strong>)
+//Attach the Text to the Text field in the Inspector window of your <a href="GameObject.html">GameObject</a><br /><br />
+using UnityEngine;
+using System.Collections;
+using UnityEngine.UI;<br /><br />public class TouchPositionExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public Text m_Text;<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        <a href="Touch.html">Touch</a> touch = <a href="Input.GetTouch.html">Input.GetTouch</a>(0);<br /><br />        //<a href="Experimental.PlayerLoop.Update.html">Update</a> the Text on the screen depending on current position of the touch each frame
+        m_Text.text = "<a href="Touch.html">Touch</a> <a href="UIElements.Position.html">Position</a> : " + touch.position;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Quaternion.eulerAngles</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Quaternion.html">Quaternion</a>.eulerAngles</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Vector3.html">Vector3</a> <span class="sig-kw">eulerAngles</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Returns or sets the euler angle representation of the rotation.</p></div><div class="subsection"><p>Euler angles can represent a three dimensional rotation by performing three separate rotations around individual axes. In Unity these rotations are performed around the Z axis, the X axis, and the Y axis, in that order. <br /> <br />You can set the rotation of a Quaternion by setting this property, and you can read the Euler angle values by reading this property. <br /> <br /> When using the .eulerAngles property to set a rotation, it is important to understand that although you are providing X, Y, and Z rotation values to describe your rotation, those values are not stored in the rotation. Instead, the X, Y &amp; Z values are converted to the Quaternion's internal format.<br /> <br />When you read the .eulerAngles property, Unity converts the Quaternion's internal representation of the rotation to Euler angles. Because, there is more than one way to represent any given rotation using Euler angles, the values you read back out may be quite different from the values you assigned. This can cause confusion if you are trying to gradually increment the values to produce animation. See bottom scripting example for more information. <br /> <br /> To avoid these kinds of problems, the recommended way to work with rotations is to avoid relying on consistent results when reading .eulerAngles particularly when attempting to gradually increment a rotation to produce animation. For better ways to achieve this, see the <a href="Quaternion-operator_multiply.html">Quaternion * operator</a>. <br /> <br /> The following example demonstrates the rotation of a GameObject using eulerAngles based on the Input of the user. The example shows that we never rely on reading the Quanternion.eulerAngles to increment the rotation, instead we set it using our Vector3 currentEulerAngles. All rotational changes happen in the currentEulerAngles variable, which are then applied to the Quaternion avoiding the problem mentioned above.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    float rotationSpeed = 45;
+    <a href="Vector3.html">Vector3</a> currentEulerAngles;
+    <a href="Quaternion.html">Quaternion</a> currentRotation;
+    float x;
+    float y;
+    float z;<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        if (<a href="Input.GetKeyDown.html">Input.GetKeyDown</a>(<a href="KeyCode.X.html">KeyCode.X</a>)) x = 1 - x;
+        if (<a href="Input.GetKeyDown.html">Input.GetKeyDown</a>(<a href="KeyCode.Y.html">KeyCode.Y</a>)) y = 1 - y;
+        if (<a href="Input.GetKeyDown.html">Input.GetKeyDown</a>(<a href="KeyCode.Z.html">KeyCode.Z</a>)) z = 1 - z;<br /><br />        //modifying the <a href="Vector3.html">Vector3</a>, based on input multiplied by speed and time
+        currentEulerAngles += new <a href="Vector3.html">Vector3</a>(x, y, z) * <a href="Time-deltaTime.html">Time.deltaTime</a> * rotationSpeed;<br /><br />        //moving the value of the <a href="Vector3.html">Vector3</a> into Quanternion.eulerAngle format
+        currentRotation.eulerAngles = currentEulerAngles;<br /><br />        //apply the <a href="Quaternion-eulerAngles.html">Quaternion.eulerAngles</a> change to the gameObject
+        transform.rotation = currentRotation;
+    }<br /><br />    void OnGUI()
+    {
+        <a href="GUIStyle.html">GUIStyle</a> style = new <a href="GUIStyle.html">GUIStyle</a>();
+        style.fontSize = 24;
+        // Use eulerAngles to show the euler angles of the quaternion stored in Transform.Rotation
+        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(10, 0, 0, 0), "Rotating on X:" + x + " Y:" + y + " Z:" + z, style);<br /><br />        //outputs the Quanternion.eulerAngles value
+        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(10, 25, 0, 0), "CurrentEulerAngles: " + currentEulerAngles, style);<br /><br />        //outputs the transform.eulerAngles of the <a href="GameObject.html">GameObject</a>
+        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(10, 50, 0, 0), "<a href="GameObject.html">GameObject</a> World Euler Angles: " + transform.eulerAngles, style);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>The following example demonstrates how the values you read out of .eulerAngles may be quite different from the values you assign, even though they represent the same rotation.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />// demonstration of eulerAngles not returning the same values as assigned
+public class EulerAnglesProblemExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private void Start()
+    {
+        <a href="Quaternion.html">Quaternion</a> myRotation = <a href="Quaternion-identity.html">Quaternion.identity</a>;
+        myRotation.eulerAngles = new <a href="Vector3.html">Vector3</a>(150, 35, 45);<br /><br />        <a href="Debug.Log.html">Debug.Log</a>(myRotation.eulerAngles);<br /><br />        // output is: (30.0, 215.0, 225.0)
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Grid.GetCellCenterWorld</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Grid.html">Grid</a>.GetCellCenterWorld</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Grid.html' title='Go to Grid Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Vector3.html">Vector3</a> <span class="sig-kw">GetCellCenterWorld</span>(<a href="Vector3Int.html">Vector3Int</a> <span class="sig-kw">position</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">position</td><td class="desc"></td><td class="desc1">Grid cell position.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>Vector3</strong>
+        Center of the cell transformed into world space coordinates.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Get the logical center coordinate of a grid cell in world space.</p></div><div class="subsection"><p>In a rectangular grid layout, a call to <a href="GridLayout.CellToWorld.html">GridLayout.CellToWorld</a> with <a href="Vector3Int.html">Vector3Int</a> parameter, returns a <a href="Vector3.html">Vector3</a> coordinate that represents the bottom-left of the cell. This is mathematically correct, but when for example instantiating a GameObject into the grid, you often prefer the center of the cell instead.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Snap the <a href="GameObject.html">GameObject</a> to parent <a href="Grid.html">Grid</a> center of cell
+using UnityEngine;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        <a href="Grid.html">Grid</a> grid = transform.parent.GetComponent&lt;<a href="Grid.html">Grid</a>&gt;();
+        <a href="Vector3Int.html">Vector3Int</a> cellPosition = grid.WorldToCell(transform.position);
+        transform.position = grid.GetCellCenterWorld(cellPosition);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

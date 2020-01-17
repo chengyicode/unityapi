@@ -1,0 +1,19 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Mathf.FloorToInt</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Mathf.html">Mathf</a>.FloorToInt</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static int <span class="sig-kw">FloorToInt</span>(float <span class="sig-kw">f</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Returns the largest integer smaller to or equal to <code class="varname">f</code>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Example()
+    {
+        <a href="Debug.Log.html">Debug.Log</a>(<a href="Mathf.FloorToInt.html">Mathf.FloorToInt</a>(10.0F));  // Prints  10
+        <a href="Debug.Log.html">Debug.Log</a>(<a href="Mathf.FloorToInt.html">Mathf.FloorToInt</a>(10.2F));  // Prints  10
+        <a href="Debug.Log.html">Debug.Log</a>(<a href="Mathf.FloorToInt.html">Mathf.FloorToInt</a>(10.7F));  // Prints  10
+        <a href="Debug.Log.html">Debug.Log</a>(<a href="Mathf.FloorToInt.html">Mathf.FloorToInt</a>(-10.0F)); // Prints -10
+        <a href="Debug.Log.html">Debug.Log</a>(<a href="Mathf.FloorToInt.html">Mathf.FloorToInt</a>(-10.2F)); // Prints -11
+        <a href="Debug.Log.html">Debug.Log</a>(<a href="Mathf.FloorToInt.html">Mathf.FloorToInt</a>(-10.7F)); // Prints -11
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Vector3.Set</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Vector3.html">Vector3</a>.Set</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">Set</span>(float <span class="sig-kw">newX</span>,
+float <span class="sig-kw">newY</span>,
+float <span class="sig-kw">newZ</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Set x, y and z components of an existing Vector3.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Attach this script to a <a href="GameObject.html">GameObject</a>. Create an empty <a href="GameObject.html">GameObject</a> that will act as your "New <a href="Transform.html">Transform</a>". Assign this in the Inspector.
+// Press the "Set" button in the game to set the <a href="GameObject.html">GameObject</a>'s position to the "New <a href="Transform.html">Transform</a>" position.<br /><br />using UnityEngine;
+using UnityEngine.EventSystems;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Use this to set the new position of the <a href="GameObject.html">GameObject</a>
+    <a href="Vector3.html">Vector3</a> m_MyPosition;<br /><br />    // Set an external <a href="Transform.html">Transform</a> in the Inspector which is the <a href="GameObject.html">GameObject</a>’s starting point
+    public <a href="Transform.html">Transform</a> m_NewTransform;<br /><br />    void Start()
+    {
+        // Set the new Vector to be that of the <a href="Transform.html">Transform</a> you attach in the Inspector
+        m_MyPosition.Set(m_NewTransform.position.x, m_NewTransform.position.y, 0);
+    }<br /><br />    void OnGUI()
+    {
+        // Press the <a href="UIElements.Button.html">Button</a> to set the <a href="GameObject.html">GameObject</a> to this new position
+        if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(0, 0, 100, 40), "Set"))
+        {
+            transform.position = m_MyPosition;
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

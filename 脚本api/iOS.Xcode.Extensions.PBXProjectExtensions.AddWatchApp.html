@@ -1,0 +1,62 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: iOS.Xcode.Extensions.PBXProjectExtensions.AddWatchApp</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="iOS.Xcode.Extensions.PBXProjectExtensions.html">PBXProjectExtensions</a>.AddWatchApp</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static string <span class="sig-kw">AddWatchApp</span>(<a href="iOS.Xcode.PBXProject.html">iOS.Xcode.PBXProject</a> <span class="sig-kw">proj</span>,
+string <span class="sig-kw">mainTargetGuid</span>,
+string <span class="sig-kw">watchExtensionTargetGuid</span>,
+string <span class="sig-kw">name</span>,
+string <span class="sig-kw">bundleId</span>,
+string <span class="sig-kw">infoPlistPath</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">proj</td><td class="desc"></td><td class="desc1">The implicit <code class="mono">this</code> parameter for the extension method.</td></tr><tr><td class="name lbl">mainTargetGuid</td><td class="desc"></td><td class="desc1">The GUID of the main target to link the watch extension to.</td></tr><tr><td class="name lbl">watchExtensionTargetGuid</td><td class="desc"></td><td class="desc1">The GUID of watch extension as returned by [[AddWatchExtension()]].</td></tr><tr><td class="name lbl">name</td><td class="desc"></td><td class="desc1">The name of the watch app. It must the same as the name of the watch extension.</td></tr><tr><td class="name lbl">bundleId</td><td class="desc"></td><td class="desc1">The bundle ID of the watch app.</td></tr><tr><td class="name lbl">infoPlistPath</td><td class="desc"></td><td class="desc1">Path to the watch app Info.plist document.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>string</strong>
+        The GUID of the new target.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Creates a watch application.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.Collections.Generic;
+using System.IO;
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEditor.Callbacks;
+using UnityEditor.iOS.Xcode;
+using UnityEditor.iOS.Xcode.Extensions;
+using UnityEngine;<br /><br />public class SetupWatchExtension
+{
+    [PostProcessBuild]
+    private static void PostProcessBuild_iOS(<a href="BuildTarget.html">BuildTarget</a> target, string buildPath)
+    {
+        <a href="iOS.Xcode.PBXProject.html">PBXProject</a> proj = new <a href="iOS.Xcode.PBXProject.html">PBXProject</a>();
+        string projPath = <a href="iOS.Xcode.PBXProject.GetPBXProjectPath.html">PBXProject.GetPBXProjectPath</a>(buildPath);
+        proj.ReadFromFile(projPath);
+        string mainTarget = proj.TargetGuidByName(<a href="iOS.Xcode.PBXProject.GetUnityTargetName.html">PBXProject.GetUnityTargetName</a>());
+        string watchExtensionTargetGuid = <a href="iOS.Xcode.Extensions.PBXProjectExtensions.AddWatchExtension.html">PBXProjectExtensions.AddWatchExtension</a>(proj, mainTarget, "watchtest Extension",
+            "com.unity3d.watchtest.watchkitapp.watchkitextension",
+            "watchtest Extension/Info.plist");
+        string watchAppTargetGuid = <a href="iOS.Xcode.Extensions.PBXProjectExtensions.AddWatchApp.html">PBXProjectExtensions.AddWatchApp</a>(proj, mainTarget, watchExtensionTargetGuid,
+            "watchtest", "com.unity3d.watchtest.watchkitapp", "watchtest/Info.plist");<br /><br />        <a href="FileUtil.CopyFileOrDirectory.html">FileUtil.CopyFileOrDirectory</a>("Assets/Plugins/iOSWatchAppFiles/watchtest", <a href="Path.Combine.html">Path.Combine</a>(buildPath, "watchtest"));
+        <a href="FileUtil.CopyFileOrDirectory.html">FileUtil.CopyFileOrDirectory</a>("Assets/Plugins/iOSWatchAppFiles/watchtest Extension", <a href="Path.Combine.html">Path.Combine</a>(buildPath, "watchtest Extension"));<br /><br />        var filesToBuild = new List&lt;string&gt;
+        {
+            "watchtest/Interface.storyboard",
+            "watchtest/Assets.xcassets",
+        };<br /><br />        foreach (var path in filesToBuild)
+        {
+            var fileGuid = proj.AddFile(path, path);
+            proj.AddFileToBuild(watchAppTargetGuid, fileGuid);
+        }<br /><br />        filesToBuild = new List&lt;string&gt;
+        {
+            "watchtest Extension/Assets.xcassets",<br /><br />            "watchtest Extension/ExtensionDelegate.h",
+            "watchtest Extension/ExtensionDelegate.m",
+            "watchtest Extension/InterfaceController.h",
+            "watchtest Extension/InterfaceController.m",
+            "watchtest Extension/NotificationController.h",
+            "watchtest Extension/NotificationController.m",
+        };<br /><br />        foreach (var path in filesToBuild)
+        {
+            var fileGuid = proj.AddFile(path, path);
+            proj.AddFileToBuild(watchExtensionTargetGuid, fileGuid);
+        }<br /><br />        var filesToAdd = new List&lt;string&gt;
+        {
+            "watchtest/Info.plist",
+            "watchtest Extension/PushNotificationPayload.apns",
+            "watchtest Extension/Info.plist",
+        };<br /><br />        foreach (var path in filesToAdd)
+            proj.AddFile(path, path);<br /><br />        proj.WriteToFile(projPath);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: GUILayoutUtility.GetRect</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="GUILayoutUtility.html">GUILayoutUtility</a>.GetRect</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Rect.html">Rect</a> <span class="sig-kw">GetRect</span>(<a href="GUIContent.html">GUIContent</a> <span class="sig-kw">content</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Rect.html">Rect</a> <span class="sig-kw">GetRect</span>(<a href="GUIContent.html">GUIContent</a> <span class="sig-kw">content</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">content</td><td class="desc"></td><td class="desc1">The content to make room for displaying.</td></tr><tr><td class="name lbl">style</td><td class="desc"></td><td class="desc1">The <a href="GUIStyle.html">GUIStyle</a> to layout for.</td></tr><tr><td class="name lbl">options</td><td class="desc"></td><td class="desc1">An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the <code class="varname">style</code>.<br />
+See Also: <a href="GUILayout.Width.html">GUILayout.Width</a>, <a href="GUILayout.Height.html">GUILayout.Height</a>, <a href="GUILayout.MinWidth.html">GUILayout.MinWidth</a>, <a href="GUILayout.MaxWidth.html">GUILayout.MaxWidth</a>, <a href="GUILayout.MinHeight.html">GUILayout.MinHeight</a>,
+<a href="GUILayout.MaxHeight.html">GUILayout.MaxHeight</a>, <a href="GUILayout.ExpandWidth.html">GUILayout.ExpandWidth</a>, <a href="GUILayout.ExpandHeight.html">GUILayout.ExpandHeight</a>.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>Rect</strong>
+        A rectangle that is large enough to contain content when rendered in style.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Reserve layout space for a rectangle for displaying some contents with a specific style.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Shows the button rect properties in a label when the mouse is over it
+    <a href="GUIContent.html">GUIContent</a> buttonText = new <a href="GUIContent.html">GUIContent</a>("some button");
+    <a href="GUIStyle.html">GUIStyle</a> buttonStyle = <a href="GUIStyle-none.html">GUIStyle.none</a>;<br /><br />    void OnGUI()
+    {
+        <a href="Rect.html">Rect</a> rt = <a href="GUILayoutUtility.GetRect.html">GUILayoutUtility.GetRect</a>(buttonText, buttonStyle);
+        if (rt.Contains(Event.current.mousePosition))
+        {
+            <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(0, 20, 200, 70), "PosX: " + rt.x + "\nPosY: " + rt.y +
+                "\nWidth: " + rt.width + "\nHeight: " + rt.height);
+        }
+        <a href="GUI.Button.html">GUI.Button</a>(rt, buttonText, buttonStyle);
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Rect.html">Rect</a> <span class="sig-kw">GetRect</span>(float <span class="sig-kw">width</span>,
+float <span class="sig-kw">height</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Rect.html">Rect</a> <span class="sig-kw">GetRect</span>(float <span class="sig-kw">width</span>,
+float <span class="sig-kw">height</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Rect.html">Rect</a> <span class="sig-kw">GetRect</span>(float <span class="sig-kw">width</span>,
+float <span class="sig-kw">height</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Rect.html">Rect</a> <span class="sig-kw">GetRect</span>(float <span class="sig-kw">width</span>,
+float <span class="sig-kw">height</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">width</td><td class="desc"></td><td class="desc1">The width of the area you want.</td></tr><tr><td class="name lbl">height</td><td class="desc"></td><td class="desc1">The height of the area you want.</td></tr><tr><td class="name lbl">style</td><td class="desc"></td><td class="desc1">An optional <a href="GUIStyle.html">GUIStyle</a> to layout for. If specified, the style's <code class="varname">padding</code> value will be added to your sizes &amp; its <code class="varname">margin</code> value will be used for spacing.</td></tr><tr><td class="name lbl">options</td><td class="desc"></td><td class="desc1">An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the <code class="varname">style</code>.<br />
+See Also: <a href="GUILayout.Width.html">GUILayout.Width</a>, <a href="GUILayout.Height.html">GUILayout.Height</a>, <a href="GUILayout.MinWidth.html">GUILayout.MinWidth</a>, <a href="GUILayout.MaxWidth.html">GUILayout.MaxWidth</a>, <a href="GUILayout.MinHeight.html">GUILayout.MinHeight</a>,
+<a href="GUILayout.MaxHeight.html">GUILayout.MaxHeight</a>, <a href="GUILayout.ExpandWidth.html">GUILayout.ExpandWidth</a>, <a href="GUILayout.ExpandHeight.html">GUILayout.ExpandHeight</a>.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>Rect</strong>
+        The rectanlge to put your control in.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Reserve layout space for a rectangle with a fixed content area.</p></div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Rect.html">Rect</a> <span class="sig-kw">GetRect</span>(float <span class="sig-kw">minWidth</span>,
+float <span class="sig-kw">maxWidth</span>,
+float <span class="sig-kw">minHeight</span>,
+float <span class="sig-kw">maxHeight</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Rect.html">Rect</a> <span class="sig-kw">GetRect</span>(float <span class="sig-kw">minWidth</span>,
+float <span class="sig-kw">maxWidth</span>,
+float <span class="sig-kw">minHeight</span>,
+float <span class="sig-kw">maxHeight</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Rect.html">Rect</a> <span class="sig-kw">GetRect</span>(float <span class="sig-kw">minWidth</span>,
+float <span class="sig-kw">maxWidth</span>,
+float <span class="sig-kw">minHeight</span>,
+float <span class="sig-kw">maxHeight</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Rect.html">Rect</a> <span class="sig-kw">GetRect</span>(float <span class="sig-kw">minWidth</span>,
+float <span class="sig-kw">maxWidth</span>,
+float <span class="sig-kw">minHeight</span>,
+float <span class="sig-kw">maxHeight</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">minWidth</td><td class="desc"></td><td class="desc1">The minimum width of the area passed back.</td></tr><tr><td class="name lbl">maxWidth</td><td class="desc"></td><td class="desc1">The maximum width of the area passed back.</td></tr><tr><td class="name lbl">minHeight</td><td class="desc"></td><td class="desc1">The minimum width of the area passed back.</td></tr><tr><td class="name lbl">maxHeight</td><td class="desc"></td><td class="desc1">The maximum width of the area passed back.</td></tr><tr><td class="name lbl">style</td><td class="desc"></td><td class="desc1">An optional style. If specified, the style's <code class="varname">padding</code> value will be added to the sizes requested &amp; the style's <code class="varname">margin</code> values will be used for spacing.</td></tr><tr><td class="name lbl">options</td><td class="desc"></td><td class="desc1">An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the <code class="varname">style</code>.<br />
+See Also: <a href="GUILayout.Width.html">GUILayout.Width</a>, <a href="GUILayout.Height.html">GUILayout.Height</a>, <a href="GUILayout.MinWidth.html">GUILayout.MinWidth</a>, <a href="GUILayout.MaxWidth.html">GUILayout.MaxWidth</a>, <a href="GUILayout.MinHeight.html">GUILayout.MinHeight</a>,
+<a href="GUILayout.MaxHeight.html">GUILayout.MaxHeight</a>, <a href="GUILayout.ExpandWidth.html">GUILayout.ExpandWidth</a>, <a href="GUILayout.ExpandHeight.html">GUILayout.ExpandHeight</a>.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>Rect</strong>
+        A rectangle with size between minWidth &amp; maxWidth on both axes.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Reserve layout space for a flexible rect.</p></div><div class="subsection"><p>The rectangle's size will be between the min &amp; max values.</p></div></div></div></div></body></html>

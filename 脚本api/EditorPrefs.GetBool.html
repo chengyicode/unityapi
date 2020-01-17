@@ -1,0 +1,57 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorPrefs.GetBool</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorPrefs.html">EditorPrefs</a>.GetBool</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">GetBool</span>(string <span class="sig-kw">key</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">GetBool</span>(string <span class="sig-kw">key</span>,
+bool <span class="sig-kw">defaultValue</span> = false);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Returns the value corresponding to <code class="varname">key</code> in the preference file if it exists.</p></div><div class="subsection"><p>If it doesn't exist, it will return <code class="varname">defaultValue</code>.<br /><br /><img src="../StaticFiles/ScriptRefImages/EditorPrefsBool.png" /><br />
+<em>Round rotations/positions and remember the active option.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class EditorPrefsBoolExample : <a href="EditorWindow.html">EditorWindow</a>
+{
+    bool showRoundPosition = true;
+    bool showRoundRotation = true;<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Examples/Round positions-rotations")]
+    static void Init()
+    {
+        EditorPrefsBoolExample window = (EditorPrefsBoolExample)<a href="EditorWindow.GetWindow.html">EditorWindow.GetWindow</a>(typeof(EditorPrefsBoolExample), true, "My Empty Window");
+        window.Show();
+    }<br /><br />    void OnGUI()
+    {
+        showRoundPosition = <a href="EditorGUILayout.BeginToggleGroup.html">EditorGUILayout.BeginToggleGroup</a>("Round <a href="UIElements.Position.html">Position</a>", showRoundPosition);
+        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Round <a href="UIElements.Position.html">Position</a>!"))
+            DoRoundPosition();
+        <a href="EditorGUILayout.EndToggleGroup.html">EditorGUILayout.EndToggleGroup</a>();
+        showRoundRotation = <a href="EditorGUILayout.BeginToggleGroup.html">EditorGUILayout.BeginToggleGroup</a>("Round Rotation", showRoundRotation);
+        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Round Rotation!"))
+            DoRoundRotation();
+        <a href="EditorGUILayout.EndToggleGroup.html">EditorGUILayout.EndToggleGroup</a>();
+    }<br /><br />    void DoRoundPosition()
+    {
+        foreach (<a href="Transform.html">Transform</a> t in <a href="Selection-transforms.html">Selection.transforms</a>)
+            t.localPosition = new <a href="Vector3.html">Vector3</a>(<a href="Mathf.Round.html">Mathf.Round</a>(t.localPosition.x),
+                <a href="Mathf.Round.html">Mathf.Round</a>(t.localPosition.z),
+                <a href="Mathf.Round.html">Mathf.Round</a>(t.localPosition.y));
+    }<br /><br />    void DoRoundRotation()
+    {
+        foreach (<a href="Transform.html">Transform</a> t in <a href="Selection-transforms.html">Selection.transforms</a>)
+            t.rotation = <a href="Quaternion.Euler.html">Quaternion.Euler</a>(
+                new <a href="Vector3.html">Vector3</a>(<a href="Mathf.Round.html">Mathf.Round</a>(t.eulerAngles.x / 45f) * 45f,
+                    <a href="Mathf.Round.html">Mathf.Round</a>(t.eulerAngles.y / 45f) * 45f,
+                    <a href="Mathf.Round.html">Mathf.Round</a>(t.eulerAngles.z / 45f) * 45f));
+    }<br /><br />    void OnFocus()
+    {
+        if (<a href="EditorPrefs.HasKey.html">EditorPrefs.HasKey</a>("ShowRoundPosition"))
+            showRoundPosition = <a href="EditorPrefs.GetBool.html">EditorPrefs.GetBool</a>("ShowRoundPosition");
+        if (<a href="EditorPrefs.HasKey.html">EditorPrefs.HasKey</a>("ShowRoundRotation"))
+            showRoundPosition = <a href="EditorPrefs.GetBool.html">EditorPrefs.GetBool</a>("ShowRoundRotation");
+    }<br /><br />    void OnLostFocus()
+    {
+        <a href="EditorPrefs.SetBool.html">EditorPrefs.SetBool</a>("ShowRoundPosition", showRoundPosition);
+        <a href="EditorPrefs.SetBool.html">EditorPrefs.SetBool</a>("ShowRoundRotation", showRoundRotation);
+    }<br /><br />    void OnDestroy()
+    {
+        <a href="EditorPrefs.SetBool.html">EditorPrefs.SetBool</a>("ShowRoundPosition", showRoundPosition);
+        <a href="EditorPrefs.SetBool.html">EditorPrefs.SetBool</a>("ShowRoundRotation", showRoundRotation);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

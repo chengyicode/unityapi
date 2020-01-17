@@ -1,0 +1,60 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AnimatorState</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">AnimatorState</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEditor.Animations</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Inherits from:<a href="Object.html" class="cl">Object</a></p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEditor.html" class="cl">UnityEditor</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>States are the basic building blocks of a state machine. Each state contains a Motion ( AnimationClip or BlendTree) which will play while the character is in that state. When an event in the game triggers a state transition, the character will be left in a new state whose animation sequence will then take over.</p></div><div class="subsection"><h2>Properties 属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorState-behaviours.html">behaviours</a></td><td class="desc"></td><td class="desc1">The Behaviour list assigned to this state.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorState-cycleOffset.html">cycleOffset</a></td><td class="desc"></td><td class="desc1">Offset at which the animation loop starts. Useful for synchronizing looped animations.
+Units is normalized time.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorState-cycleOffsetParameter.html">cycleOffsetParameter</a></td><td class="desc"></td><td class="desc1">The animator controller parameter that drives the cycle offset value.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorState-cycleOffsetParameterActive.html">cycleOffsetParameterActive</a></td><td class="desc"></td><td class="desc1">Define if the cycle offset value is driven by an Animator controller parameter or by the value set in the editor.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorState-iKOnFeet.html">iKOnFeet</a></td><td class="desc"></td><td class="desc1">Should Foot IK be respected for this state.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorState-mirror.html">mirror</a></td><td class="desc"></td><td class="desc1">Should the state be mirrored.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorState-mirrorParameter.html">mirrorParameter</a></td><td class="desc"></td><td class="desc1">The animator controller parameter that drives the mirror value.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorState-mirrorParameterActive.html">mirrorParameterActive</a></td><td class="desc"></td><td class="desc1">Define if the mirror value is driven by an Animator controller parameter or by the value set in the editor.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorState-motion.html">motion</a></td><td class="desc"></td><td class="desc1">The motion assigned to this state.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorState-nameHash.html">nameHash</a></td><td class="desc"></td><td class="desc1">The hashed name of the state.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorState-speed.html">speed</a></td><td class="desc"></td><td class="desc1">The default speed of the motion.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorState-speedParameter.html">speedParameter</a></td><td class="desc"></td><td class="desc1">The animator controller parameter that drives the speed value.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorState-speedParameterActive.html">speedParameterActive</a></td><td class="desc"></td><td class="desc1">Define if the speed value is driven by an Animator controller parameter or by the value set in the editor.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorState-tag.html">tag</a></td><td class="desc"></td><td class="desc1">A tag can be used to identify a state.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorState-timeParameter.html">timeParameter</a></td><td class="desc"></td><td class="desc1">If timeParameterActive is true, the value of this Parameter will be used instead of normalized time.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorState-timeParameterActive.html">timeParameterActive</a></td><td class="desc"></td><td class="desc1">If true, use value of given Parameter as normalized time.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorState-transitions.html">transitions</a></td><td class="desc"></td><td class="desc1">The transitions that are going out of the state.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorState-writeDefaultValues.html">writeDefaultValues</a></td><td class="desc"></td><td class="desc1">Whether or not the AnimatorStates writes back the default values for properties that are not animated by its Motion.</td></tr>
+    </table></div><div class="subsection"><h2>Public Methods 公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorState.AddExitTransition.html">AddExitTransition</a></td><td class="desc"></td><td class="desc1">Utility function to add an outgoing transition to the exit of the state's parent state machine.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorState.AddStateMachineBehaviour.html">AddStateMachineBehaviour</a></td><td class="desc"></td><td class="desc1">Adds a state machine behaviour class of type stateMachineBehaviourType to the AnimatorState. C# Users can use a generic version.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorState.AddTransition.html">AddTransition</a></td><td class="desc"></td><td class="desc1">Utility function to add an outgoing transition to the destination state.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorState.RemoveTransition.html">RemoveTransition</a></td><td class="desc"></td><td class="desc1">Utility function to remove a transition from the state.</td></tr>
+    </table></div><div class="subsection"><h2>Inherited Members 继承成员</h2>
+      
+      <div class="subsection"><h2>Properties 属性</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-hideFlags.html">hideFlags</a></td><td class="desc"></td><td class="desc1">Should the object be hidden, saved with the Scene or modifiable by the user?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-name.html">name</a></td><td class="desc"></td><td class="desc1">The name of the object.</td></tr>
+      </table></div>
+      
+      
+      
+      <div class="subsection"><h2>Public Methods 公共方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.GetInstanceID.html">GetInstanceID</a></td><td class="desc"></td><td class="desc1">Returns the instance id of the object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.ToString.html">ToString</a></td><td class="desc"></td><td class="desc1">Returns the name of the object.</td></tr>
+      </table></div>
+      
+      <div class="subsection"><h2>Static Methods 静态方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.Destroy.html">Destroy</a></td><td class="desc"></td><td class="desc1">Removes a GameObject, component or asset.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.DestroyImmediate.html">DestroyImmediate</a></td><td class="desc"></td><td class="desc1">Destroys the object obj immediately. You are strongly recommended to use Destroy instead.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.DontDestroyOnLoad.html">DontDestroyOnLoad</a></td><td class="desc"></td><td class="desc1">Do not destroy the target Object when loading a new Scene.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectOfType.html">FindObjectOfType</a></td><td class="desc"></td><td class="desc1">Returns the first active loaded object of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectsOfType.html">FindObjectsOfType</a></td><td class="desc"></td><td class="desc1">Returns a list of all active loaded objects of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.Instantiate.html">Instantiate</a></td><td class="desc"></td><td class="desc1">Clones the object original and returns the clone.</td></tr>
+      </table></div>
+      <div class="subsection"><h2>Operators   运算符</h2>
+<h2>Operators   运算符</h2>
+
+<h2>Operators   运算符</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_Object.html">bool</a></td><td class="desc"></td><td class="desc1">Does the object exist?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_ne.html">operator !=</a></td><td class="desc"></td><td class="desc1">Compares if two objects refer to a different object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_eq.html">operator ==</a></td><td class="desc"></td><td class="desc1">Compares two object references to see if they refer to the same object.</td></tr>
+      </table></div>
+      
+      
+      
+    </div></div></div></div></body></html>

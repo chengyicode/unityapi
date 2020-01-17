@@ -1,0 +1,42 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorGUIUtility.GetFlowLayoutedRects</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorGUIUtility.html">EditorGUIUtility</a>.GetFlowLayoutedRects</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static List&lt;Rect&gt; <span class="sig-kw">GetFlowLayoutedRects</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">rect</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span>,
+float <span class="sig-kw">horizontalSpacing</span>,
+float <span class="sig-kw">verticalSpacing</span>,
+List&lt;string&gt; <span class="sig-kw">items</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">rect</td><td class="desc"></td><td class="desc1">Area where to layout the items.</td></tr><tr><td class="name lbl">style</td><td class="desc"></td><td class="desc1">Style for the items.</td></tr><tr><td class="name lbl">horizontalSpacing</td><td class="desc"></td><td class="desc1">Extra horizontal spacing between successive items.</td></tr><tr><td class="name lbl">verticalSpacing</td><td class="desc"></td><td class="desc1">Extra vertical spacing between item rows.</td></tr><tr><td class="name lbl">items</td><td class="desc"></td><td class="desc1">Strings to layout.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>List&lt;Rect&gt;</strong>
+        List of rectangles for the passed items.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Layout list of string items left to right, top to bottom in the given area.</p></div><div class="subsection"><p>
+        <img src="../StaticFiles/ScriptRefImages/EditorGUIUtilityGetFlowLayoutedRects.png" />
+        <br />
+<em>Example of buttons positioned with GetFlowLayoutedRects.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;
+using System.Collections.Generic;<br /><br />public class MyWindow : <a href="EditorWindow.html">EditorWindow</a>
+{
+    [<a href="MenuItem.html">MenuItem</a>("Window/My Window")]
+    static void OpenMyWindow()
+    {
+        <a href="EditorWindow.GetWindow.html">EditorWindow.GetWindow</a>&lt;MyWindow&gt;(true);
+    }<br /><br />    void OnGUI()
+    {
+        // area to layout our items in
+        var rect = new <a href="Rect.html">Rect</a>(10, 10, position.width - 20, position.height - 20);
+        // items to layout
+        var items = new List&lt;string&gt;
+        {
+            "One button", "Another button", "Yet another", "Hey there's more", "More!"
+        };
+        // get resulting rectangles of items
+        var style = <a href="EditorStyles-miniButton.html">EditorStyles.miniButton</a>;
+        var boxes = <a href="EditorGUIUtility.GetFlowLayoutedRects.html">EditorGUIUtility.GetFlowLayoutedRects</a>(rect, style, 4, 4, items);
+        // do actual UI for them
+        for (var i = 0; i &lt; boxes.Count; ++i)
+        {
+            <a href="GUI.Button.html">GUI.Button</a>(boxes[i], items[i], style);
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

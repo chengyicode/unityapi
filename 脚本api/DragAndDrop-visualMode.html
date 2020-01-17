@@ -1,0 +1,24 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: DragAndDrop.visualMode</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="DragAndDrop.html">DragAndDrop</a>.visualMode</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="DragAndDropVisualMode.html">DragAndDropVisualMode</a> <span class="sig-kw">visualMode</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The visual indication of the drag.</p></div><div class="subsection"><p>Default is <a href="DragAndDropVisualMode.Link.html">DragAndDropVisualMode.Link</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void OnGUI()
+    {
+        <a href="EventType.html">EventType</a> eventType = Event.current.type;
+        if (eventType == <a href="EventType.DragUpdated.html">EventType.DragUpdated</a> ||
+            eventType == <a href="EventType.DragPerform.html">EventType.DragPerform</a>)
+        {
+            // Show a copy icon on the drag
+            <a href="DragAndDrop-visualMode.html">DragAndDrop.visualMode</a> = <a href="DragAndDropVisualMode.Copy.html">DragAndDropVisualMode.Copy</a>;<br /><br />            if (eventType == <a href="EventType.DragPerform.html">EventType.DragPerform</a>)
+            {
+                <a href="DragAndDrop.AcceptDrag.html">DragAndDrop.AcceptDrag</a>();
+            }
+            Event.current.Use();
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

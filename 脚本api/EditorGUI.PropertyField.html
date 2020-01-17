@@ -1,0 +1,41 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorGUI.PropertyField</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorGUI.html">EditorGUI</a>.PropertyField</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">PropertyField</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+<a href="SerializedProperty.html">SerializedProperty</a> <span class="sig-kw">property</span>,
+bool <span class="sig-kw">includeChildren</span> = false);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">PropertyField</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+<a href="SerializedProperty.html">SerializedProperty</a> <span class="sig-kw">property</span>,
+<a href="GUIContent.html">GUIContent</a> <span class="sig-kw">label</span>,
+bool <span class="sig-kw">includeChildren</span> = false);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">position</td><td class="desc"></td><td class="desc1">Rectangle on the screen to use for the property field.</td></tr><tr><td class="name lbl">property</td><td class="desc"></td><td class="desc1">The SerializedProperty to make a field for.</td></tr><tr><td class="name lbl">label</td><td class="desc"></td><td class="desc1">Optional label to use. If not specified the label of the property itself is used. Use GUIContent.none to not display a label at all.</td></tr><tr><td class="name lbl">includeChildren</td><td class="desc"></td><td class="desc1">If <code class="varname">true</code> the property including children is drawn; otherwise only the control itself (such as only a foldout but nothing below it).</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>bool</strong>
+        True if the property has children and is expanded and includeChildren was set to false; otherwise false.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Use this to make a field for a <a href="SerializedProperty.html">SerializedProperty</a> in the Editor.</p></div><div class="subsection"><p>See Also: <a href="SerializedProperty.html">SerializedProperty</a>, <a href="SerializedObject.html">SerializedObject</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//Attach a script like this to the <a href="GameObject.html">GameObject</a> you would like to have a custom <a href="Editor.html">Editor</a> window.<br /><br />using UnityEngine;<br /><br />public class MyScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public int myInt = 90;
+}
+</pre>
+      </div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//Create a folder and name it “<a href="Editor.html">Editor</a>” and place this second script within it. To do this right click within the Assets directory and go to Create&gt;<a href="WSA.Folder.html">Folder</a>
+//Ensure you insert your first script’s name as a parameter in the <a href="CustomEditor.html">CustomEditor</a> e.g. [<a href="CustomEditor.html">CustomEditor</a>(typeof(MyScript))]<br /><br />using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />// Custom <a href="Editor.html">Editor</a> using SerializedProperties.
+// Make sure to put the name of the script on your <a href="GameObject.html">GameObject</a> in here
+[<a href="CustomEditor.html">CustomEditor</a>(typeof(MyScript))]
+// Automatic handling of multi-object editing, undo, and Prefab overrides.
+[<a href="CanEditMultipleObjects.html">CanEditMultipleObjects</a>]<br /><br />public class EditorGUIPropertyField : <a href="Editor.html">Editor</a>
+{
+    <a href="SerializedProperty.html">SerializedProperty</a> m_IntProperty;<br /><br />    void OnEnable()
+    {
+        // Fetch the objects from the MyScript script to display in the inspector
+        m_IntProperty = serializedObject.FindProperty("myInt");
+    }<br /><br />    public override void OnInspectorGUI()
+    {
+        //The variables and <a href="GameObject.html">GameObject</a> from the <a href="GameObject.html">GameObject</a> script are displayed in the Inspector and have the appropriate label
+        <a href="EditorGUI.PropertyField.html">EditorGUI.PropertyField</a>(new <a href="Rect.html">Rect</a>(0, 300, 500, 30), m_IntProperty, new <a href="GUIContent.html">GUIContent</a>("Int : "));<br /><br />        // Apply changes to the serializedProperty - always do this in the end of OnInspectorGUI.
+        serializedObject.ApplyModifiedProperties();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

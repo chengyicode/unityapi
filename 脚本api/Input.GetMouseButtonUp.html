@@ -1,0 +1,27 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Input.GetMouseButtonUp</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Input.html">Input</a>.GetMouseButtonUp</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">GetMouseButtonUp</span>(int <span class="sig-kw">button</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Returns true during the frame the user releases the given mouse button.</p></div><div class="subsection"><p>You need to call this function from the <a href="MonoBehaviour.Update.html">Update</a> function, since the state gets reset each frame.
+It will not return true until the user has pressed the mouse button and released it again.
+<em>button</em> values are 0 for left button, 1 for right button, 2 for the middle button.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Detects clicks from the mouse and prints a message
+    // depending on the click detected.<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        if (<a href="Input.GetMouseButtonUp.html">Input.GetMouseButtonUp</a>(0))
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("Pressed left click.");
+        }
+        if (<a href="Input.GetMouseButtonUp.html">Input.GetMouseButtonUp</a>(1))
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("Pressed right click.");
+        }
+        if (<a href="Input.GetMouseButtonUp.html">Input.GetMouseButtonUp</a>(2))
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("Pressed middle click.");
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

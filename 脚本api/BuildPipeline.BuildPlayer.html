@@ -1,0 +1,40 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: BuildPipeline.BuildPlayer</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="BuildPipeline.html">BuildPipeline</a>.BuildPlayer</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Build.Reporting.BuildReport.html">Build.Reporting.BuildReport</a> <span class="sig-kw">BuildPlayer</span>(<a href="BuildPlayerOptions.html">BuildPlayerOptions</a> <span class="sig-kw">buildPlayerOptions</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">buildPlayerOptions</td><td class="desc"></td><td class="desc1">Provide various options to control the behavior of <a href="BuildPipeline.BuildPlayer.html">BuildPipeline.BuildPlayer</a>.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>BuildReport</strong>
+        A BuildReport giving build process information.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Builds a player.</p></div><div class="subsection"><p>Use this function to programatically create a build of your project.
+Note that any references to GameObjects acquired in the editor script <code class="varname">before</code> the BuildPlayer call will be invalid after it and will need to be reacquired.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;
+using UnityEditor.Build.Reporting;<br /><br />// Output the build size or a failure depending on BuildPlayer.<br /><br />public class BuildPlayerExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    [<a href="MenuItem.html">MenuItem</a>("Build/Build <a href="PlayerSettings.iOS.html">iOS</a>")]
+    public static void MyBuild()
+    {
+        <a href="BuildPlayerOptions.html">BuildPlayerOptions</a> buildPlayerOptions = new <a href="BuildPlayerOptions.html">BuildPlayerOptions</a>();
+        buildPlayerOptions.scenes = new[] { "Assets/Scene1.unity", "Assets/Scene2.unity" };
+        buildPlayerOptions.locationPathName = "iOSBuild";
+        buildPlayerOptions.target = <a href="BuildTarget.iOS.html">BuildTarget.iOS</a>;
+        buildPlayerOptions.options = <a href="BuildOptions.None.html">BuildOptions.None</a>;<br /><br />        <a href="Build.Reporting.BuildReport.html">BuildReport</a> report = <a href="BuildPipeline.BuildPlayer.html">BuildPipeline.BuildPlayer</a>(buildPlayerOptions);
+        <a href="Build.Reporting.BuildSummary.html">BuildSummary</a> summary = report.summary;<br /><br />        if (summary.result == <a href="Build.Reporting.BuildResult.Succeeded.html">BuildResult.Succeeded</a>)
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("Build succeeded: " + summary.totalSize + " bytes");
+        }<br /><br />        if (summary.result == <a href="Build.Reporting.BuildResult.Failed.html">BuildResult.Failed</a>)
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("Build failed");
+        }
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Build.Reporting.BuildReport.html">Build.Reporting.BuildReport</a> <span class="sig-kw">BuildPlayer</span>(string[] <span class="sig-kw">levels</span>,
+string <span class="sig-kw">locationPathName</span>,
+<a href="BuildTarget.html">BuildTarget</a> <span class="sig-kw">target</span>,
+<a href="BuildOptions.html">BuildOptions</a> <span class="sig-kw">options</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Build.Reporting.BuildReport.html">Build.Reporting.BuildReport</a> <span class="sig-kw">BuildPlayer</span>(EditorBuildSettingsScene[] <span class="sig-kw">levels</span>,
+string <span class="sig-kw">locationPathName</span>,
+<a href="BuildTarget.html">BuildTarget</a> <span class="sig-kw">target</span>,
+<a href="BuildOptions.html">BuildOptions</a> <span class="sig-kw">options</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">levels</td><td class="desc"></td><td class="desc1">The Scenes to be included in the build. If empty, the currently open Scene will be built. Paths are relative to the project folder (Assets/MyLevels/MyScene.unity).</td></tr><tr><td class="name lbl">locationPathName</td><td class="desc"></td><td class="desc1">The path where the application will be built.</td></tr><tr><td class="name lbl">target</td><td class="desc"></td><td class="desc1">The <a href="BuildTarget.html">BuildTarget</a> to build.</td></tr><tr><td class="name lbl">options</td><td class="desc"></td><td class="desc1">Additional <a href="BuildOptions.html">BuildOptions</a>, like whether to run the built player.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>BuildReport</strong>
+        An error message if an error occurred.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Builds a player. These overloads are still supported, but will be replaced. Please use BuildPlayer (BuildPlayerOptions buildPlayerOptions)  instead.</p></div></div></div></div></body></html>

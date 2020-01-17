@@ -1,0 +1,21 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorUtility.OpenFolderPanel</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorUtility.html">EditorUtility</a>.OpenFolderPanel</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static string <span class="sig-kw">OpenFolderPanel</span>(string <span class="sig-kw">title</span>,
+string <span class="sig-kw">folder</span>,
+string <span class="sig-kw">defaultName</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Displays the "open folder" dialog and returns the selected path name.</p></div><div class="subsection"><p>See Also: <a href="EditorUtility.OpenFilePanel.html">OpenFilePanel</a>, <a href="EditorUtility.SaveFolderPanel.html">SaveFolderPanel</a> functions.<br /><br /><img src="../StaticFiles/ScriptRefImages/EditorUtilityOpenFolderPanel.png" /><br />
+<em>Open Folder Panel.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;
+using System.IO;<br /><br />public class OpenFolderPanelExample : <a href="EditorWindow.html">EditorWindow</a>
+{
+    [<a href="MenuItem.html">MenuItem</a>("Example/Load Textures To <a href="WSA.Folder.html">Folder</a>")]
+    static void Apply()
+    {
+        string path = <a href="EditorUtility.OpenFolderPanel.html">EditorUtility.OpenFolderPanel</a>("Load png Textures", "", "");
+        string[] files = Directory.GetFiles(path);<br /><br />        foreach (string file in files)
+            if (file.EndsWith(".png"))
+                File.Copy(file, EditorApplication.currentScene);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Microphone.devices</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Microphone.html">Microphone</a>.devices</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Microphone.html' title='Go to Microphone Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static string[] <span class="sig-kw">devices</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>A list of available microphone devices, identified by name.</p></div><div class="subsection"><p>You can use the name with the <a href="Microphone.Start.html">Start</a> and <a href="Microphone.End.html">End</a> functions to specify which microphone you wish to start/stop recording.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Get list of <a href="Microphone.html">Microphone</a> devices and print the names to the log
+    void Start()
+    {
+        foreach (var device in <a href="Microphone-devices.html">Microphone.devices</a>)
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("Name: " + device);
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="Microphone.Start.html">Start</a>, <a href="Microphone.End.html">End</a>, <a href="Microphone.IsRecording.html">IsRecording</a>.</p></div></div></div></div></body></html>

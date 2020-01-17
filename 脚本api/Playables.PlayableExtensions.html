@@ -1,0 +1,52 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: PlayableExtensions</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">PlayableExtensions</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine.Playables</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.CoreModule.html" class="cl">UnityEngine.CoreModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Extensions for all the types that implements <a href="Playables.IPlayable.html">IPlayable</a>.</p></div><div class="subsection"><p>Extension methods are static methods that can be called as if they were instance methods on the extended type.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.Animations;
+using UnityEngine.Playables;<br /><br />public class ExamplePlayableBehaviour : <a href="Playables.PlayableBehaviour.html">PlayableBehaviour</a>
+{
+    void Start()
+    {
+        <a href="Playables.PlayableGraph.html">PlayableGraph</a> graph = <a href="Playables.PlayableGraph.Create.html">PlayableGraph.Create</a>();
+        <a href="Animations.AnimationMixerPlayable.html">AnimationMixerPlayable</a> mixer = <a href="Animations.AnimationMixerPlayable.Create.html">AnimationMixerPlayable.Create</a>(graph, 1);<br /><br />        // Calling method <a href="Playables.PlayableExtensions.SetDuration.html">PlayableExtensions.SetDuration</a> on <a href="Animations.AnimationMixerPlayable.html">AnimationMixerPlayable</a> as if it was an instance method.
+        mixer.SetDuration(10);<br /><br />        // The line above is the same as calling directly <a href="Playables.PlayableExtensions.SetDuration.html">PlayableExtensions.SetDuration</a>, but it is more compact and readable.
+        <a href="Playables.PlayableExtensions.SetDuration.html">PlayableExtensions.SetDuration</a>(mixer, 10);
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Static Methods   静态方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableExtensions.AddInput.html">AddInput</a></td><td class="desc"></td><td class="desc1">Create a new input port and connect it to the output port of the given Playable.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableExtensions.ConnectInput.html">ConnectInput</a></td><td class="desc"></td><td class="desc1">Connect the output port of a Playable to one of the input ports.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableExtensions.Destroy.html">Destroy</a></td><td class="desc"></td><td class="desc1">Destroys the current Playable.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableExtensions.DisconnectInput.html">DisconnectInput</a></td><td class="desc"></td><td class="desc1">Disconnect the input port of a Playable.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableExtensions.GetDuration.html">GetDuration</a></td><td class="desc"></td><td class="desc1">Returns the duration of the Playable.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableExtensions.GetGraph.html">GetGraph</a></td><td class="desc"></td><td class="desc1">Returns the PlayableGraph that owns this Playable.  A Playable can only be used in the graph that was used to create it.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableExtensions.GetInput.html">GetInput</a></td><td class="desc"></td><td class="desc1">Returns the Playable connected at the given input port index.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableExtensions.GetInputCount.html">GetInputCount</a></td><td class="desc"></td><td class="desc1">Returns the number of inputs supported by the Playable.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableExtensions.GetInputWeight.html">GetInputWeight</a></td><td class="desc"></td><td class="desc1">Returns the weight of the Playable connected at the given input port index.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableExtensions.GetLeadTime.html">GetLeadTime</a></td><td class="desc"></td><td class="desc1">Returns the Playable lead time in seconds.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableExtensions.GetOutput.html">GetOutput</a></td><td class="desc"></td><td class="desc1">Returns the Playable connected at the given output port index.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableExtensions.GetOutputCount.html">GetOutputCount</a></td><td class="desc"></td><td class="desc1">Returns the number of outputs supported by the Playable.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableExtensions.GetPlayState.html">GetPlayState</a></td><td class="desc"></td><td class="desc1">Returns the current PlayState of the Playable.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableExtensions.GetPreviousTime.html">GetPreviousTime</a></td><td class="desc"></td><td class="desc1">Returns the previous local time of the Playable.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableExtensions.GetPropagateSetTime.html">GetPropagateSetTime</a></td><td class="desc"></td><td class="desc1">Returns the time propagation behavior of this Playable.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableExtensions.GetSpeed.html">GetSpeed</a></td><td class="desc"></td><td class="desc1">Returns the speed multiplier that is applied to the the current Playable.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableExtensions.GetTime.html">GetTime</a></td><td class="desc"></td><td class="desc1">Returns the current local time of the Playable.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableExtensions.GetTraversalMode.html">GetTraversalMode</a></td><td class="desc"></td><td class="desc1">Returns the propagation mode for the multi-output playable.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableExtensions.IsDone.html">IsDone</a></td><td class="desc"></td><td class="desc1">Returns a flag indicating that a playable has completed its operation.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableExtensions.IsNull.html">IsNull</a></td><td class="desc"></td><td class="desc1">Returns true if the Playable is null, false otherwise.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableExtensions.IsValid.html">IsValid</a></td><td class="desc"></td><td class="desc1">Returns the vality of the current Playable.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableExtensions.Pause.html">Pause</a></td><td class="desc"></td><td class="desc1">Tells to pause the Playable.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableExtensions.Play.html">Play</a></td><td class="desc"></td><td class="desc1">Starts to play the Playable.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableExtensions.SetDone.html">SetDone</a></td><td class="desc"></td><td class="desc1">Changes a flag indicating that a playable has completed its operation.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableExtensions.SetDuration.html">SetDuration</a></td><td class="desc"></td><td class="desc1">Changes the duration of the Playable.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableExtensions.SetInputCount.html">SetInputCount</a></td><td class="desc"></td><td class="desc1">Changes the number of inputs supported by the Playable.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableExtensions.SetInputWeight.html">SetInputWeight</a></td><td class="desc"></td><td class="desc1">Changes the weight of the Playable connected to the current Playable.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableExtensions.SetLeadTime.html">SetLeadTime</a></td><td class="desc"></td><td class="desc1">Sets the Playable lead time in seconds.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableExtensions.SetOutputCount.html">SetOutputCount</a></td><td class="desc"></td><td class="desc1">Changes the number of outputs supported by the Playable.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableExtensions.SetPropagateSetTime.html">SetPropagateSetTime</a></td><td class="desc"></td><td class="desc1">Changes the time propagation behavior of this Playable.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableExtensions.SetSpeed.html">SetSpeed</a></td><td class="desc"></td><td class="desc1">Changes the speed multiplier that is applied to the the current Playable.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableExtensions.SetTime.html">SetTime</a></td><td class="desc"></td><td class="desc1">Changes the current local time of the Playable.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableExtensions.SetTraversalMode.html">SetTraversalMode</a></td><td class="desc"></td><td class="desc1">Sets the propagation mode of PrepareFrame and ProcessFrame for the multi-output playable.</td></tr>
+    </table></div></div></div></div></body></html>

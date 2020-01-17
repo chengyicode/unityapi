@@ -1,0 +1,44 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Material.SetPass</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Material.html">Material</a>.SetPass</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Material.html' title='Go to Material Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public bool <span class="sig-kw">SetPass</span>(int <span class="sig-kw">pass</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">pass</td><td class="desc"></td><td class="desc1">Shader pass number to setup.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>bool</strong>
+        If false is returned, no rendering should be done.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Activate the given <code class="varname">pass</code> for rendering.</p></div><div class="subsection"><p>Pass indices start from zero and go up to (but not including) <a href="Material-passCount.html">passCount</a>.<br /><br />This is mostly used in direct drawing code.
+For example, drawing 3D primitives with <a href="GL.Begin.html">GL.Begin</a>, <a href="GL.End.html">GL.End</a>, and also drawing meshes using <a href="Graphics.DrawMeshNow.html">Graphics.DrawMeshNow</a>.<br /><br />If SetPass returns false, you should not render anything. This is typically the case for
+special pass types that aren't meant for rendering, like <a href="../Manual/SL-GrabPass.html">GrabPass</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />// A script that when attached to the camera, makes the resulting
+// colors inverted. See its effect in play mode.
+public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private <a href="Material.html">Material</a> mat;<br /><br />    // Will be called from camera after regular rendering is done.
+    public void OnPostRender()
+    {
+        if (!mat)
+        {
+            // Unity has a built-in shader that is useful for drawing
+            // simple colored things. In this case, we just want to use
+            // a blend mode that inverts destination colors.
+            <a href="Shader.html">Shader</a> shader = <a href="Shader.Find.html">Shader.Find</a>("Hidden/Internal-Colored");
+            mat = new <a href="Material.html">Material</a>(shader);
+            mat.hideFlags = <a href="HideFlags.HideAndDontSave.html">HideFlags.HideAndDontSave</a>;
+            // Set blend mode to invert destination colors.
+            mat.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusDstColor);
+            mat.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.Zero);
+            // Turn off backface culling, depth writes, depth test.
+            mat.SetInt("_Cull", (int)UnityEngine.Rendering.CullMode.Off);
+            mat.SetInt("_ZWrite", 0);
+            mat.SetInt("_ZTest", (int)UnityEngine.Rendering.CompareFunction.Always);
+        }<br /><br />        <a href="GL.PushMatrix.html">GL.PushMatrix</a>();
+        <a href="GL.LoadOrtho.html">GL.LoadOrtho</a>();<br /><br />        // activate the first shader pass (in this case we know it is the only pass)
+        mat.SetPass(0);
+        // draw a quad over whole screen
+        <a href="GL.Begin.html">GL.Begin</a>(<a href="GL.QUADS.html">GL.QUADS</a>);
+        <a href="GL.Vertex3.html">GL.Vertex3</a>(0, 0, 0);
+        <a href="GL.Vertex3.html">GL.Vertex3</a>(1, 0, 0);
+        <a href="GL.Vertex3.html">GL.Vertex3</a>(1, 1, 0);
+        <a href="GL.Vertex3.html">GL.Vertex3</a>(0, 1, 0);
+        <a href="GL.End.html">GL.End</a>();<br /><br />        <a href="GL.PopMatrix.html">GL.PopMatrix</a>();
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="Material-passCount.html">passCount</a> property, <a href="GL.html">GL</a> class, <a href="../Manual/Shaders.html">ShaderLab documentation</a>.</p></div></div></div></div></body></html>

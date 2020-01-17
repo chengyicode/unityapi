@@ -1,0 +1,33 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ParticleSystem.MainModule.scalingMode</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="ParticleSystem.MainModule.html">ParticleSystem.MainModule</a>.scalingMode</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-ParticleSystem.html' title='Go to ParticleSystem Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="ParticleSystemScalingMode.html">ParticleSystemScalingMode</a> <span class="sig-kw">scalingMode</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Control how the Particle System's Transform Component is applied to the Particle System.</p></div><div class="subsection"><p>Hierarchy: Scale according to its Transform and all its parents.
+Local: Scale using only its own Transform, ignoring all parents.
+Shape: Only apply scale to the source positions of the particles, but not their size. The source positions are defined by the Shape module.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />// add this to a <a href="ParticleSystem.Particle.html">Particle</a> System which has a parent game object, to see how each scaling mode works
+public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private <a href="ParticleSystem.html">ParticleSystem</a> ps;
+    public float sliderValue = 1.0F;
+    public float parentSliderValue = 1.0F;
+    public <a href="ParticleSystemScalingMode.html">ParticleSystemScalingMode</a> scaleMode;<br /><br />    void Start()
+    {
+        ps = GetComponent&lt;<a href="ParticleSystem.html">ParticleSystem</a>&gt;();
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        ps.transform.localScale = new <a href="Vector3.html">Vector3</a>(sliderValue, sliderValue, sliderValue);
+        if (ps.transform.parent != null)
+            ps.transform.parent.localScale = new <a href="Vector3.html">Vector3</a>(parentSliderValue, parentSliderValue, parentSliderValue);<br /><br />        var main = ps.main;
+        main.scalingMode = scaleMode;
+    }<br /><br />    void OnGUI()
+    {
+        scaleMode = (<a href="ParticleSystemScalingMode.html">ParticleSystemScalingMode</a>)<a href="GUI.SelectionGrid.html">GUI.SelectionGrid</a>(new <a href="Rect.html">Rect</a>(25, 25, 300, 30), (int)scaleMode, new <a href="GUIContent.html">GUIContent</a>[] { new <a href="GUIContent.html">GUIContent</a>("<a href="UIElements.VisualElement.Hierarchy.html">Hierarchy</a>"), new <a href="GUIContent.html">GUIContent</a>("Local"), new <a href="GUIContent.html">GUIContent</a>("Shape") }, 3);
+        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, 80, 100, 30), "Scale");
+        sliderValue = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(125, 85, 100, 30), sliderValue, 0.0F, 5.0F);
+        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, 120, 100, 30), "Parent Scale");
+        parentSliderValue = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(125, 125, 100, 30), parentSliderValue, 0.0F, 5.0F);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

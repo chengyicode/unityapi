@@ -1,0 +1,23 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Application.LoadLevel</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Method group is Obsolete</b><br /></div><h1 class="heading inherit"><a href="Application.html">Application</a>.LoadLevel</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public static void <span class="sig-kw">LoadLevel</span>(int <span class="sig-kw">index</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public static void <span class="sig-kw">LoadLevel</span>(string <span class="sig-kw">name</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">index</td><td class="desc"></td><td class="desc1">The level to load.</td></tr><tr><td class="name lbl">name</td><td class="desc"></td><td class="desc1">The name of the level to load.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>
+        <strong>Note</strong>: This is now obsolete. Use <a href="SceneManagement.SceneManager.LoadScene.html">SceneManager.LoadScene</a> instead.</p></div><div class="subsection"><p>Before you can load a level you have to add it to the list of levels used in the game.
+Use <code class="mono">File-&gt;Build Settings...</code> in Unity and add the levels you need to the level list there.
+MonoBehaviour.OnLevelWasLoaded is called on all active game objects after the level has been loaded.
+See  <a href="../Manual/ExecutionOrder.html">Execution Order of Event Functions</a> for more information regarding the calling sequence once a level is loaded.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void LoadHighScoreLevel()
+    {
+        // Load the level named "HighScore".
+        Application.LoadLevel("HighScore");
+    }
+}
+</pre>
+      </div><div class="subsection"><p>When loading a new level all game objects that have been loaded before are destroyed.
+If you want to let an object survive when loading a new level, use <a href="Object.DontDestroyOnLoad.html">Object.DontDestroyOnLoad</a>.
+Calling LoadLevel will update  Application.loadedLevel and Application.loadedLevelName.<br /><br /><strong>Note:</strong> Actual level change happens in the beginning of the next frame at the Inititialization stage prior to the first <a href="MonoBehaviour.FixedUpdate.html">FixedUpdate</a> call (see <a href="../Manual/ExecutionOrder.html">Execution Order of Event Functions</a>):<br />
+- All game objects are being destroyed starting from root objects. OnDisable (if enabled) and OnDestroy callbacks are called for scripts.<br />
+- New objects are being initialized. <code class="varname">Awake</code>, <code class="varname">OnEnable</code>, <code class="varname">Start</code> callbacks are called for scripts.<br /><br />See Also: Application.LoadLevelAsync, Application.LoadLevelAdditive, Application.LoadLevelAdditiveAsync.</p></div></div></div></div></body></html>

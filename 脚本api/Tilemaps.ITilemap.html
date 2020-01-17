@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+		<link href="./css/stylesheet.css" rel="stylesheet" type="text/css">
+
+		<title></title>
+
+
+
+	</head>
+	<body>
+<div class="content">
+		<div class="section">
+			<div class="mb20 clear" id="">
+				<h1 class="heading inherit">ITilemap   瓦片地图信息</h1>
+
+				<div class="clear"></div>
+				<p class="cl mb0 left mr10">class in
+					UnityEngine.Tilemaps</p>
+				<p class="cl mb0 left mr10">/</p>
+				<p class="cl mb0 left">Implemented in:<a href="UnityEngine.TilemapModule.html" class="cl">UnityEngine.TilemapModule</a></p>
+
+				<div class="clear"></div>
+				<p class="cl mb0 left mr10">UnityEngine.Tilemaps中的类</p>
+				<p class="cl mb0 left mr10">/</p>
+				<p class="cl mb0 left">基础自:<a href="UnityEngine.TilemapModule.html" class="cl">UnityEngine.TilemapModule</a></p>
+
+
+				<div class="clear"></div>
+				<div class="suggest hide" style="display: none;"><a class="blue-btn sbtn">Suggest a change</a>
+					<div class="suggest-wrap rel hide">
+						<div class="loading hide">
+							<div></div>
+							<div></div>
+							<div></div>
+						</div>
+						<div class="suggest-success hide">
+							<h2>Success!</h2>
+							<p>Thank you for helping us improve the quality of Unity Documentation. Although we cannot accept all
+								submissions, we do read each suggested change from our users and will make updates where applicable.</p><a
+							 class="gray-btn sbtn close">Close</a>
+						</div>
+						<div class="suggest-failed hide">
+							<h2>Submission failed</h2>
+							<p>For some reason your suggested change could not be submitted. Please &lt;a&gt;try again&lt;/a&gt; in a few
+								minutes. And thank you for taking the time to help us improve the quality of Unity Documentation.</p><a class="gray-btn sbtn close">Close</a>
+						</div>
+						<div class="suggest-form clear"><label for="suggest_name">Your name</label><input id="suggest_name" type="text"><label
+							 for="suggest_email">Your email</label><input id="suggest_email" type="email"><label for="suggest_body" class="clear">Suggestion<span
+								 class="r">*</span></label><textarea id="suggest_body" class="req"></textarea><button id="suggest_submit" class="blue-btn mr10">Submit
+								suggestion</button>
+							<p class="mb0"><a class="cancel left lh42 cn">Cancel</a></p>
+						</div>
+					</div>
+				</div><a href="" class="switch-link gray-btn sbtn left hide"></a>
+				<div class="clear"></div>
+			</div>
+			<div class="subsection">
+				<div class="signature">
+					<div class="signature-CS sig-block"><span style="color:red;"></span></div>
+				</div>
+			</div>
+			<div class="subsection">
+				<h2>Description   描述</h2>
+				<p>Class passed onto Tiles when information is queried from the Tiles.</p>
+			</div>
+			<div class="subsection">
+				<p>This handles editor preview <a href="../Manual/Tilemap-ScriptableTiles-TileBase.html">tiles</a> when painting on
+					a <a href="Tilemaps.Tilemap.html">Tilemap</a> in Editor mode.</p>
+			</div>
+
+			<p>从Tiles查询信息时，将类传递给Tiles</p>
+			<div class="subsection">
+				<p>在“编辑器”模式下在<a href="Tilemaps.Tilemap.html">Tilemap</a>上进行绘制</a>时，此功能可处理编辑器预览<a href="../Manual/Tilemap-ScriptableTiles-TileBase.html">tiles</a>。<a
+					 href="Tilemaps.Tilemap.html"></a></p>
+			</div>
+
+
+			<div class="subsection">
+				<h2>Properties   属性</h2>
+				<table class="list">
+					<tbody>
+						<tr>
+							<td class="descn">单元格边界</td>
+							<td class="lbl"><a href="Tilemaps.ITilemap-cellBounds.html">cellBounds</a></td>
+							<td class="desc">返回单元格大小中TileMap的边界</td>
+							<td class="desc1">Returns the boundaries of the Tilemap in cell size.</td>
+						</tr>
+						<tr>
+							<td class="descn">局部边界</td>
+							<td class="lbl"><a href="Tilemaps.ITilemap-localBounds.html">localBounds</a></td>
+							<td class="desc">以本地空间大小返回Tilemap的边界</td>
+							<td class="desc1">Returns the boundaries of the Tilemap in local space size.</td>
+						</tr>
+						<tr>
+							<td class="descn">原点</td>
+							<td class="lbl"><a href="Tilemaps.ITilemap-origin.html">origin</a></td>
+							<td class="desc">Tilemap在单元格位置的原点</td>
+							<td class="desc1">The origin of the Tilemap in cell position.</td>
+						</tr>
+						<tr>
+							<td class="descn">大小</td>
+							<td class="lbl"><a href="Tilemaps.ITilemap-size.html">size</a></td>
+							<td class="desc">	Tilemap的大小（以单元格为单位）</td>
+							<td class="desc1">The size of the Tilemap in cells.</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="subsection">
+				<h2>Public Methods   公共方法</h2>
+				<table class="list">
+					<tbody>
+						<tr>
+							<td class="descn">获取颜色</td>
+							<td class="lbl"><a href="Tilemaps.ITilemap.GetColor.html">GetColor</a></td>
+							<td class="desc">	给定TileMap中单元格的XYZ坐标，获取Tile的颜色</td>
+							<td class="desc1">Gets the color of a Tile given the XYZ coordinates of a cell in the Tilemap.</td>
+						</tr>
+						<tr>
+							<td class="descn">获取组件</td>
+							<td class="lbl"><a href="Tilemaps.ITilemap.GetComponent.html">GetComponent</a></td>
+							<td class="desc">	如果贴图的GameObject附加了一个，则返回类型T的组件；如果没有，则返回null</td>
+								<td class="desc1">Returns the component of type T if the GameObject of the tile map has one attached, null if it doesn't.</td>
+						</tr>
+						<tr>
+							<td class="descn">获取脚本</td>
+							<td class="lbl"><a href="Tilemaps.ITilemap.GetSprite.html">GetSprite</a></td>
+							<td class="desc">给定TileMap中单元格的XYZ坐标，获取在Tile中使用的Sprite</td>
+							<td class="desc1">Gets the Sprite used in a Tile given the XYZ coordinates of a cell in the Tilemap.</td>
+						</tr>
+						<tr>
+							<td class="descn">获取瓦片</td>
+							<td class="lbl"><a href="Tilemaps.ITilemap.GetTile.html">GetTile</a></td>
+							<td class="desc">在Tilemap中的单元格的给定XYZ坐标处获取Tile</td>
+							<td class="desc1">Gets the Tile at the given XYZ coordinates of a cell in the|Tilemap.</td>
+						</tr>
+						<tr>
+							<td class="descn">获取瓦片标志</td>
+							<td class="lbl"><a href="Tilemaps.ITilemap.GetTileFlags.html">GetTileFlags</a></td>
+							<td class="desc">	获取给定位置的Tile的Tile Flags</td>
+							<td class="desc1">Gets the Tile Flags of the Tile at the given position.</td>
+						</tr>
+						<tr>
+							<td class="descn">获取变换矩阵</td>
+							<td class="lbl"><a href="Tilemaps.ITilemap.GetTransformMatrix.html">GetTransformMatrix</a></td>
+							<td class="desc">给定TileMap中单元格的XYZ坐标，获取Tile的变换矩阵</td>
+							<td class="desc1">Gets the transform matrix of a Tile given the XYZ coordinates of a cell in the Tilemap.</td>
+						</tr>
+						<tr>
+							<td class="descn">刷新瓦片</td>
+							<td class="lbl"><a href="Tilemaps.ITilemap.RefreshTile.html">RefreshTile</a></td>
+							<td class="desc">在Tilemap中的单元格的给定XYZ坐标处刷新Tile.</td>
+							<td class="desc1">Refreshes a Tile at the given XYZ coordinates of a cell in the :Tilemap.</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+</div>
+
+	</body>
+</html>

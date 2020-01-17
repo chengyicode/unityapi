@@ -1,0 +1,100 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: NavMeshAgent</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">NavMeshAgent</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine.AI</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Inherits from:<a href="Behaviour.html" class="cl">Behaviour</a></p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.AIModule.html" class="cl">UnityEngine.AIModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Navigation mesh agent.</p></div><div class="subsection"><p>This component is attached to a mobile character in the game to allow it to navigate the Scene using the NavMesh. See the <a href="../Manual/Navigation.html">Navigation</a> section of the manual for further details.</p></div><div class="subsection"><h2>Properties 属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="AI.NavMeshAgent-acceleration.html">acceleration</a></td><td class="desc"></td><td class="desc1">The maximum acceleration of an agent as it follows a path, given in units / sec^2.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AI.NavMeshAgent-agentTypeID.html">agentTypeID</a></td><td class="desc"></td><td class="desc1">The type ID for the agent.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AI.NavMeshAgent-angularSpeed.html">angularSpeed</a></td><td class="desc"></td><td class="desc1">Maximum turning speed in (deg/s) while following a path.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AI.NavMeshAgent-areaMask.html">areaMask</a></td><td class="desc"></td><td class="desc1">Specifies which NavMesh areas are passable. Changing areaMask will make the path stale (see isPathStale).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AI.NavMeshAgent-autoBraking.html">autoBraking</a></td><td class="desc"></td><td class="desc1">Should the agent brake automatically to avoid overshooting the destination point?</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AI.NavMeshAgent-autoRepath.html">autoRepath</a></td><td class="desc"></td><td class="desc1">Should the agent attempt to acquire a new path if the existing path becomes invalid?</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AI.NavMeshAgent-autoTraverseOffMeshLink.html">autoTraverseOffMeshLink</a></td><td class="desc"></td><td class="desc1">Should the agent move across OffMeshLinks automatically?</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AI.NavMeshAgent-avoidancePriority.html">avoidancePriority</a></td><td class="desc"></td><td class="desc1">The avoidance priority level.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AI.NavMeshAgent-baseOffset.html">baseOffset</a></td><td class="desc"></td><td class="desc1">The relative vertical displacement of the owning GameObject.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AI.NavMeshAgent-currentOffMeshLinkData.html">currentOffMeshLinkData</a></td><td class="desc"></td><td class="desc1">The current OffMeshLinkData.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AI.NavMeshAgent-desiredVelocity.html">desiredVelocity</a></td><td class="desc"></td><td class="desc1">The desired velocity of the agent including any potential contribution from avoidance. (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AI.NavMeshAgent-destination.html">destination</a></td><td class="desc"></td><td class="desc1">Gets or attempts to set the destination of the agent in world-space units.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AI.NavMeshAgent-hasPath.html">hasPath</a></td><td class="desc"></td><td class="desc1">Does the agent currently have a path? (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AI.NavMeshAgent-height.html">height</a></td><td class="desc"></td><td class="desc1">The height of the agent for purposes of passing under obstacles, etc.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AI.NavMeshAgent-isOnNavMesh.html">isOnNavMesh</a></td><td class="desc"></td><td class="desc1">Is the agent currently bound to the navmesh? (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AI.NavMeshAgent-isOnOffMeshLink.html">isOnOffMeshLink</a></td><td class="desc"></td><td class="desc1">Is the agent currently positioned on an OffMeshLink? (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AI.NavMeshAgent-isPathStale.html">isPathStale</a></td><td class="desc"></td><td class="desc1">Is the current path stale. (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AI.NavMeshAgent-isStopped.html">isStopped</a></td><td class="desc"></td><td class="desc1">This property holds the stop or resume condition of the NavMesh agent.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AI.NavMeshAgent-navMeshOwner.html">navMeshOwner</a></td><td class="desc"></td><td class="desc1">Returns the owning object of the NavMesh the agent is currently placed on (Read Only).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AI.NavMeshAgent-nextOffMeshLinkData.html">nextOffMeshLinkData</a></td><td class="desc"></td><td class="desc1">The next OffMeshLinkData on the current path.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AI.NavMeshAgent-nextPosition.html">nextPosition</a></td><td class="desc"></td><td class="desc1">Gets or sets the simulation position of the navmesh agent.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AI.NavMeshAgent-obstacleAvoidanceType.html">obstacleAvoidanceType</a></td><td class="desc"></td><td class="desc1">The level of quality of avoidance.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AI.NavMeshAgent-path.html">path</a></td><td class="desc"></td><td class="desc1">Property to get and set the current path.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AI.NavMeshAgent-pathPending.html">pathPending</a></td><td class="desc"></td><td class="desc1">Is a path in the process of being computed but not yet ready? (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AI.NavMeshAgent-pathStatus.html">pathStatus</a></td><td class="desc"></td><td class="desc1">The status of the current path (complete, partial or invalid).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AI.NavMeshAgent-radius.html">radius</a></td><td class="desc"></td><td class="desc1">The avoidance radius for the agent.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AI.NavMeshAgent-remainingDistance.html">remainingDistance</a></td><td class="desc"></td><td class="desc1">The distance between the agent's position and the destination on the current path. (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AI.NavMeshAgent-speed.html">speed</a></td><td class="desc"></td><td class="desc1">Maximum movement speed when following a path.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AI.NavMeshAgent-steeringTarget.html">steeringTarget</a></td><td class="desc"></td><td class="desc1">Get the current steering target along the path. (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AI.NavMeshAgent-stoppingDistance.html">stoppingDistance</a></td><td class="desc"></td><td class="desc1">Stop within this distance from the target position.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AI.NavMeshAgent-updatePosition.html">updatePosition</a></td><td class="desc"></td><td class="desc1">Gets or sets whether the transform position is synchronized with the simulated agent position. The default value is true.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AI.NavMeshAgent-updateRotation.html">updateRotation</a></td><td class="desc"></td><td class="desc1">Should the agent update the transform orientation?</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AI.NavMeshAgent-updateUpAxis.html">updateUpAxis</a></td><td class="desc"></td><td class="desc1">Allows you to specify whether the agent should be aligned to the up-axis of the NavMesh or link that it is placed on.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AI.NavMeshAgent-velocity.html">velocity</a></td><td class="desc"></td><td class="desc1">Access the current velocity of the NavMeshAgent component, or set a velocity to control the agent manually.</td></tr>
+    </table></div><div class="subsection"><h2>Public Methods 公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="AI.NavMeshAgent.ActivateCurrentOffMeshLink.html">ActivateCurrentOffMeshLink</a></td><td class="desc"></td><td class="desc1">Enables or disables the current off-mesh link.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AI.NavMeshAgent.CalculatePath.html">CalculatePath</a></td><td class="desc"></td><td class="desc1">Calculate a path to a specified point and store the resulting path.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AI.NavMeshAgent.CompleteOffMeshLink.html">CompleteOffMeshLink</a></td><td class="desc"></td><td class="desc1">Completes the movement on the current OffMeshLink.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AI.NavMeshAgent.FindClosestEdge.html">FindClosestEdge</a></td><td class="desc"></td><td class="desc1">Locate the closest NavMesh edge.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AI.NavMeshAgent.GetAreaCost.html">GetAreaCost</a></td><td class="desc"></td><td class="desc1">Gets the cost for path calculation when crossing area of a particular type.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AI.NavMeshAgent.Move.html">Move</a></td><td class="desc"></td><td class="desc1">Apply relative movement to current position.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AI.NavMeshAgent.Raycast.html">Raycast</a></td><td class="desc"></td><td class="desc1">Trace a straight path towards a target postion in the NavMesh without moving the agent.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AI.NavMeshAgent.ResetPath.html">ResetPath</a></td><td class="desc"></td><td class="desc1">Clears the current path.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AI.NavMeshAgent.SamplePathPosition.html">SamplePathPosition</a></td><td class="desc"></td><td class="desc1">Sample a position along the current path.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AI.NavMeshAgent.SetAreaCost.html">SetAreaCost</a></td><td class="desc"></td><td class="desc1">Sets the cost for traversing over areas of the area type.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AI.NavMeshAgent.SetDestination.html">SetDestination</a></td><td class="desc"></td><td class="desc1">Sets or updates the destination thus triggering the calculation for a new path.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AI.NavMeshAgent.SetPath.html">SetPath</a></td><td class="desc"></td><td class="desc1">Assign a new path to this agent.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AI.NavMeshAgent.Warp.html">Warp</a></td><td class="desc"></td><td class="desc1">Warps agent to the provided position.</td></tr>
+    </table></div><div class="subsection"><h2>Inherited Members 继承成员</h2>
+      
+      <div class="subsection"><h2>Properties 属性</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Behaviour-enabled.html">enabled</a></td><td class="desc"></td><td class="desc1">Enabled Behaviours are Updated, disabled Behaviours are not.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Behaviour-isActiveAndEnabled.html">isActiveAndEnabled</a></td><td class="desc"></td><td class="desc1">Has the Behaviour had active and enabled called?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component-gameObject.html">gameObject</a></td><td class="desc"></td><td class="desc1">The game object this component is attached to. A component is always attached to a game object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component-tag.html">tag</a></td><td class="desc"></td><td class="desc1">The tag of this game object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component-transform.html">transform</a></td><td class="desc"></td><td class="desc1">The Transform attached to this GameObject.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-hideFlags.html">hideFlags</a></td><td class="desc"></td><td class="desc1">Should the object be hidden, saved with the Scene or modifiable by the user?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-name.html">name</a></td><td class="desc"></td><td class="desc1">The name of the object.</td></tr>
+      </table></div>
+      
+      
+      
+      <div class="subsection"><h2>Public Methods 公共方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.BroadcastMessage.html">BroadcastMessage</a></td><td class="desc"></td><td class="desc1">Calls the method named methodName on every MonoBehaviour in this game object or any of its children.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.CompareTag.html">CompareTag</a></td><td class="desc"></td><td class="desc1">Is this game object tagged with tag ?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponent.html">GetComponent</a></td><td class="desc"></td><td class="desc1">Returns the component of Type type if the game object has one attached, null if it doesn't.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponentInChildren.html">GetComponentInChildren</a></td><td class="desc"></td><td class="desc1">Returns the component of Type type in the GameObject or any of its children using depth first search.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponentInParent.html">GetComponentInParent</a></td><td class="desc"></td><td class="desc1">Returns the component of Type type in the GameObject or any of its parents.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponents.html">GetComponents</a></td><td class="desc"></td><td class="desc1">Returns all components of Type type in the GameObject.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponentsInChildren.html">GetComponentsInChildren</a></td><td class="desc"></td><td class="desc1">Returns all components of Type type in the GameObject or any of its children.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponentsInParent.html">GetComponentsInParent</a></td><td class="desc"></td><td class="desc1">Returns all components of Type type in the GameObject or any of its parents.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.SendMessage.html">SendMessage</a></td><td class="desc"></td><td class="desc1">Calls the method named methodName on every MonoBehaviour in this game object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.SendMessageUpwards.html">SendMessageUpwards</a></td><td class="desc"></td><td class="desc1">Calls the method named methodName on every MonoBehaviour in this game object and on every ancestor of the behaviour.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.TryGetComponent.html">TryGetComponent</a></td><td class="desc"></td><td class="desc1">Gets the component of the specified type, if it exists.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.GetInstanceID.html">GetInstanceID</a></td><td class="desc"></td><td class="desc1">Returns the instance id of the object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.ToString.html">ToString</a></td><td class="desc"></td><td class="desc1">Returns the name of the object.</td></tr>
+      </table></div>
+      
+      <div class="subsection"><h2>Static Methods 静态方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.Destroy.html">Destroy</a></td><td class="desc"></td><td class="desc1">Removes a GameObject, component or asset.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.DestroyImmediate.html">DestroyImmediate</a></td><td class="desc"></td><td class="desc1">Destroys the object obj immediately. You are strongly recommended to use Destroy instead.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.DontDestroyOnLoad.html">DontDestroyOnLoad</a></td><td class="desc"></td><td class="desc1">Do not destroy the target Object when loading a new Scene.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectOfType.html">FindObjectOfType</a></td><td class="desc"></td><td class="desc1">Returns the first active loaded object of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectsOfType.html">FindObjectsOfType</a></td><td class="desc"></td><td class="desc1">Returns a list of all active loaded objects of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.Instantiate.html">Instantiate</a></td><td class="desc"></td><td class="desc1">Clones the object original and returns the clone.</td></tr>
+      </table></div>
+      <div class="subsection"><h2>Operators   运算符</h2>
+<h2>Operators   运算符</h2>
+
+<h2>Operators   运算符</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_Object.html">bool</a></td><td class="desc"></td><td class="desc1">Does the object exist?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_ne.html">operator !=</a></td><td class="desc"></td><td class="desc1">Compares if two objects refer to a different object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_eq.html">operator ==</a></td><td class="desc"></td><td class="desc1">Compares two object references to see if they refer to the same object.</td></tr>
+      </table></div>
+      
+      
+      
+    </div></div></div></div></body></html>

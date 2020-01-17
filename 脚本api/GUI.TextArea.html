@@ -1,0 +1,28 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: GUI.TextArea</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="GUI.html">GUI</a>.TextArea</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static string <span class="sig-kw">TextArea</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+string <span class="sig-kw">text</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static string <span class="sig-kw">TextArea</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+string <span class="sig-kw">text</span>,
+int <span class="sig-kw">maxLength</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static string <span class="sig-kw">TextArea</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+string <span class="sig-kw">text</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static string <span class="sig-kw">TextArea</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+string <span class="sig-kw">text</span>,
+int <span class="sig-kw">maxLength</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">position</td><td class="desc"></td><td class="desc1">Rectangle on the screen to use for the text field.</td></tr><tr><td class="name lbl">text</td><td class="desc"></td><td class="desc1">Text to edit. The return value of this function should be assigned back to the string as shown in the example.</td></tr><tr><td class="name lbl">maxLength</td><td class="desc"></td><td class="desc1">The maximum length of the string. If left out, the user can type for ever and ever.</td></tr><tr><td class="name lbl">style</td><td class="desc"></td><td class="desc1">The style to use. If left out, the <code class="varname">textArea</code> style from the current <a href="GUISkin.html">GUISkin</a> is used.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>string</strong>
+        The edited string.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Make a Multi-line text area where the user can edit a string.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public string stringToEdit = "Hello World\nI've got 2 lines...";<br /><br />    void OnGUI()
+    {
+        // Make a multiline text area that modifies stringToEdit.
+        stringToEdit = <a href="GUI.TextArea.html">GUI.TextArea</a>(new <a href="Rect.html">Rect</a>(10, 10, 200, 100), stringToEdit, 200);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

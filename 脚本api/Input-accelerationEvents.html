@@ -1,0 +1,19 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Input.accelerationEvents</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Input.html">Input</a>.accelerationEvents</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static AccelerationEvent[] <span class="sig-kw">accelerationEvents</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Returns list of acceleration measurements which occurred during the last frame. (Read Only) (Allocates temporary variables).</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Calculates weighted sum of acceleration measurements which occurred during the last frame
+    // Might be handy if you want to get more precise measurements<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        <a href="Vector3.html">Vector3</a> acceleration = <a href="Vector3-zero.html">Vector3.zero</a>;
+        foreach (<a href="AccelerationEvent.html">AccelerationEvent</a> accEvent in <a href="Input-accelerationEvents.html">Input.accelerationEvents</a>)
+        {
+            acceleration += accEvent.acceleration * accEvent.deltaTime;
+        }
+        print(acceleration);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

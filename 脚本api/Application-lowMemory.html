@@ -1,0 +1,26 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Application.lowMemory</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Application.html">Application</a>.lowMemory</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>This event occurs when an iOS or Android device notifies of low memory while the app is running in the foreground. You can release non-critical assets from memory (such as, textures or audio clips) in response to this in order to avoid the app being terminated. You can also load smaller versions of such assets.  Furthermore, you should serialize any transient data to permanent storage to avoid data loss if the app is terminated.<br /><br />This event corresponds to the following callbacks on the different platforms:<br />
+- <strong>iOS</strong>: [UIApplicationDelegate applicationDidReceiveMemoryWarning]<br />
+- <strong>Android</strong>: onLowMemory() and onTrimMemory(level == TRIM_MEMORY_RUNNING_CRITICAL)<br /><br />Here is an example of handling the callback:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;<br /><br />class LowMemoryTrigger : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    List&lt;<a href="Texture2D.html">Texture2D</a>&gt; _textures;<br /><br />    private void Start()
+    {
+        _textures = new List&lt;<a href="Texture2D.html">Texture2D</a>&gt;();
+        <a href="Application-lowMemory.html">Application.lowMemory</a> += OnLowMemory;
+    }<br /><br />    private void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        // allocate textures until we run out of memory
+        _textures.Add(new <a href="Texture2D.html">Texture2D</a>(256, 256));
+    }<br /><br />    private void OnLowMemory()
+    {
+        // release all cached textures
+        _textures = new List&lt;<a href="Texture2D.html">Texture2D</a>&gt;();
+        <a href="Resources.UnloadUnusedAssets.html">Resources.UnloadUnusedAssets</a>();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

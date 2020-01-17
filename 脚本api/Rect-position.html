@@ -1,0 +1,23 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Rect.position</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Rect.html">Rect</a>.position</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Vector2.html">Vector2</a> <span class="sig-kw">position</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The X and Y position of the rectangle.</p></div><div class="subsection"><p>This is the same as <a href="Rect-min.html">min</a>, except that setting it will move the rectangle rather than resize it.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />// Show <a href="Rect.html">Rect</a>, the position selected randomly.<br /><br />public class RectExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private <a href="Rect.html">Rect</a> rect;<br /><br />    void Start()
+    {
+        rect = new <a href="Rect.html">Rect</a>(600 * <a href="Random-value.html">Random.value</a>, 450 * <a href="Random-value.html">Random.value</a>, 200, 150);
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        if (<a href="Input.GetKeyDown.html">Input.GetKeyDown</a>("space"))
+        {
+            rect.position = new <a href="Vector2.html">Vector2</a>(600 * <a href="Random-value.html">Random.value</a>, 450 * <a href="Random-value.html">Random.value</a>);
+        }
+    }<br /><br />    // display a rectangle
+    void OnGUI()
+    {
+        <a href="GUI.Box.html">GUI.Box</a>(rect, "");
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

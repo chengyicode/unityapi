@@ -1,0 +1,89 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Renderer</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">Renderer</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Inherits from:<a href="Component.html" class="cl">Component</a></p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.CoreModule.html" class="cl">UnityEngine.CoreModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>General functionality for all renderers.</p></div><div class="subsection"><p>A renderer is what makes an object appear on the screen. Use this class to access the renderer of any object, mesh or Particle System.
+Renderers can be disabled to make objects invisible (see <a href="Renderer-enabled.html">enabled</a>), and the materials can be accessed
+and modified through them (see <a href="Renderer-material.html">material</a>).<br /><br />See Also: Renderer components for <a href="../Manual/class-MeshRenderer.html">meshes</a>, <a href="../Manual/class-ParticleRenderer.html">particles</a>,
+<a href="../Manual/class-LineRenderer.html">lines</a> and <a href="../Manual/class-TrailRenderer.html">trails</a>.</p></div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Renderer-allowOcclusionWhenDynamic.html">allowOcclusionWhenDynamic</a></td><td class="desc"></td><td class="desc1">Controls if dynamic occlusion culling should be performed for this renderer.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Renderer-bounds.html">bounds</a></td><td class="desc"></td><td class="desc1">The bounding volume of the renderer (Read Only).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Renderer-enabled.html">enabled</a></td><td class="desc"></td><td class="desc1">Makes the rendered 3D object visible if enabled.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Renderer-isPartOfStaticBatch.html">isPartOfStaticBatch</a></td><td class="desc"></td><td class="desc1">Has this renderer been statically batched with any other renderers?</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Renderer-isVisible.html">isVisible</a></td><td class="desc"></td><td class="desc1">Is this renderer visible in any camera? (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Renderer-lightmapIndex.html">lightmapIndex</a></td><td class="desc"></td><td class="desc1">The index of the baked lightmap applied to this renderer.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Renderer-lightmapScaleOffset.html">lightmapScaleOffset</a></td><td class="desc"></td><td class="desc1">The UV scale &amp; offset used for a lightmap.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Renderer-lightProbeProxyVolumeOverride.html">lightProbeProxyVolumeOverride</a></td><td class="desc"></td><td class="desc1">If set, the Renderer will use the Light Probe Proxy Volume component attached to the source GameObject.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Renderer-lightProbeUsage.html">lightProbeUsage</a></td><td class="desc"></td><td class="desc1">The light probe interpolation type.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Renderer-localToWorldMatrix.html">localToWorldMatrix</a></td><td class="desc"></td><td class="desc1">Matrix that transforms a point from local space into world space (Read Only).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Renderer-material.html">material</a></td><td class="desc"></td><td class="desc1">Returns the first instantiated Material assigned to the renderer.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Renderer-materials.html">materials</a></td><td class="desc"></td><td class="desc1">Returns all the instantiated materials of this object.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Renderer-motionVectorGenerationMode.html">motionVectorGenerationMode</a></td><td class="desc"></td><td class="desc1">Specifies the mode for motion vector rendering.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Renderer-probeAnchor.html">probeAnchor</a></td><td class="desc"></td><td class="desc1">If set, Renderer will use this Transform's position to find the light or reflection probe.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Renderer-realtimeLightmapIndex.html">realtimeLightmapIndex</a></td><td class="desc"></td><td class="desc1">The index of the realtime lightmap applied to this renderer.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Renderer-realtimeLightmapScaleOffset.html">realtimeLightmapScaleOffset</a></td><td class="desc"></td><td class="desc1">The UV scale &amp; offset used for a realtime lightmap.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Renderer-receiveShadows.html">receiveShadows</a></td><td class="desc"></td><td class="desc1">Does this object receive shadows?</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Renderer-reflectionProbeUsage.html">reflectionProbeUsage</a></td><td class="desc"></td><td class="desc1">Should reflection probes be used for this Renderer?</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Renderer-rendererPriority.html">rendererPriority</a></td><td class="desc"></td><td class="desc1">This value sorts renderers by priority. Lower values are rendered first and higher values are rendered last.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Renderer-renderingLayerMask.html">renderingLayerMask</a></td><td class="desc"></td><td class="desc1">Determines which rendering layer this renderer lives on.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Renderer-shadowCastingMode.html">shadowCastingMode</a></td><td class="desc"></td><td class="desc1">Does this object cast shadows?</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Renderer-sharedMaterial.html">sharedMaterial</a></td><td class="desc"></td><td class="desc1">The shared material of this object.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Renderer-sharedMaterials.html">sharedMaterials</a></td><td class="desc"></td><td class="desc1">All the shared materials of this object.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Renderer-sortingLayerID.html">sortingLayerID</a></td><td class="desc"></td><td class="desc1">Unique ID of the Renderer's sorting layer.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Renderer-sortingLayerName.html">sortingLayerName</a></td><td class="desc"></td><td class="desc1">Name of the Renderer's sorting layer.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Renderer-sortingOrder.html">sortingOrder</a></td><td class="desc"></td><td class="desc1">Renderer's order within a sorting layer.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Renderer-worldToLocalMatrix.html">worldToLocalMatrix</a></td><td class="desc"></td><td class="desc1">Matrix that transforms a point from world space into local space (Read Only).</td></tr>
+    </table></div><div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Renderer.GetClosestReflectionProbes.html">GetClosestReflectionProbes</a></td><td class="desc"></td><td class="desc1">Returns an array of closest reflection probes with weights, weight shows how much influence the probe has on the renderer, this value is also used when blending between reflection probes occur.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Renderer.GetMaterials.html">GetMaterials</a></td><td class="desc"></td><td class="desc1">Returns all the instantiated materials of this object.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Renderer.GetPropertyBlock.html">GetPropertyBlock</a></td><td class="desc"></td><td class="desc1">Get per-Renderer or per-Material property block.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Renderer.GetSharedMaterials.html">GetSharedMaterials</a></td><td class="desc"></td><td class="desc1">Returns all the shared materials of this object.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Renderer.HasPropertyBlock.html">HasPropertyBlock</a></td><td class="desc"></td><td class="desc1">Returns true if the Renderer has a material property block attached via SetPropertyBlock.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Renderer.SetPropertyBlock.html">SetPropertyBlock</a></td><td class="desc"></td><td class="desc1">Lets you set or clear per-renderer or per-material parameter overrides.</td></tr>
+    </table></div><div class="subsection"><h2>Messages   消息</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Renderer.OnBecameInvisible.html">OnBecameInvisible</a></td><td class="desc"></td><td class="desc1">
+          OnBecameInvisible is called when the object is no longer visible by any camera.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Renderer.OnBecameVisible.html">OnBecameVisible</a></td><td class="desc"></td><td class="desc1">
+          OnBecameVisible is called when the object became visible by any camera.</td></tr>
+    </table></div><div class="subsection"><h2>Inherited Members   继承成员</h2>
+      
+      <div class="subsection"><h2>Properties   属性</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Component-gameObject.html">gameObject</a></td><td class="desc"></td><td class="desc1">The game object this component is attached to. A component is always attached to a game object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component-tag.html">tag</a></td><td class="desc"></td><td class="desc1">The tag of this game object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component-transform.html">transform</a></td><td class="desc"></td><td class="desc1">The Transform attached to this GameObject.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-hideFlags.html">hideFlags</a></td><td class="desc"></td><td class="desc1">Should the object be hidden, saved with the Scene or modifiable by the user?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-name.html">name</a></td><td class="desc"></td><td class="desc1">The name of the object.</td></tr>
+      </table></div>
+      
+      
+      
+      <div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.BroadcastMessage.html">BroadcastMessage</a></td><td class="desc"></td><td class="desc1">Calls the method named methodName on every MonoBehaviour in this game object or any of its children.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.CompareTag.html">CompareTag</a></td><td class="desc"></td><td class="desc1">Is this game object tagged with tag ?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponent.html">GetComponent</a></td><td class="desc"></td><td class="desc1">Returns the component of Type type if the game object has one attached, null if it doesn't.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponentInChildren.html">GetComponentInChildren</a></td><td class="desc"></td><td class="desc1">Returns the component of Type type in the GameObject or any of its children using depth first search.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponentInParent.html">GetComponentInParent</a></td><td class="desc"></td><td class="desc1">Returns the component of Type type in the GameObject or any of its parents.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponents.html">GetComponents</a></td><td class="desc"></td><td class="desc1">Returns all components of Type type in the GameObject.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponentsInChildren.html">GetComponentsInChildren</a></td><td class="desc"></td><td class="desc1">Returns all components of Type type in the GameObject or any of its children.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponentsInParent.html">GetComponentsInParent</a></td><td class="desc"></td><td class="desc1">Returns all components of Type type in the GameObject or any of its parents.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.SendMessage.html">SendMessage</a></td><td class="desc"></td><td class="desc1">Calls the method named methodName on every MonoBehaviour in this game object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.SendMessageUpwards.html">SendMessageUpwards</a></td><td class="desc"></td><td class="desc1">Calls the method named methodName on every MonoBehaviour in this game object and on every ancestor of the behaviour.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.TryGetComponent.html">TryGetComponent</a></td><td class="desc"></td><td class="desc1">Gets the component of the specified type, if it exists.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.GetInstanceID.html">GetInstanceID</a></td><td class="desc"></td><td class="desc1">Returns the instance id of the object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.ToString.html">ToString</a></td><td class="desc"></td><td class="desc1">Returns the name of the object.</td></tr>
+      </table></div>
+      
+      <div class="subsection"><h2>Static Methods   静态方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.Destroy.html">Destroy</a></td><td class="desc"></td><td class="desc1">Removes a GameObject, component or asset.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.DestroyImmediate.html">DestroyImmediate</a></td><td class="desc"></td><td class="desc1">Destroys the object obj immediately. You are strongly recommended to use Destroy instead.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.DontDestroyOnLoad.html">DontDestroyOnLoad</a></td><td class="desc"></td><td class="desc1">Do not destroy the target Object when loading a new Scene.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectOfType.html">FindObjectOfType</a></td><td class="desc"></td><td class="desc1">Returns the first active loaded object of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectsOfType.html">FindObjectsOfType</a></td><td class="desc"></td><td class="desc1">Returns a list of all active loaded objects of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.Instantiate.html">Instantiate</a></td><td class="desc"></td><td class="desc1">Clones the object original and returns the clone.</td></tr>
+      </table></div>
+      <div class="subsection"><h2>Operators   运算符</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_Object.html">bool</a></td><td class="desc"></td><td class="desc1">Does the object exist?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_ne.html">operator !=</a></td><td class="desc"></td><td class="desc1">Compares if two objects refer to a different object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_eq.html">operator ==</a></td><td class="desc"></td><td class="desc1">Compares two object references to see if they refer to the same object.</td></tr>
+      </table></div>
+      
+      
+      
+    </div></div></div></div></body></html>

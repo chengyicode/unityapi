@@ -1,0 +1,34 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: TerrainData.SetDetailLayer</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="TerrainData.html">TerrainData</a>.SetDetailLayer</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">SetDetailLayer</span>(int <span class="sig-kw">xBase</span>,
+int <span class="sig-kw">yBase</span>,
+int <span class="sig-kw">layer</span>,
+int[,] <span class="sig-kw">details</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Sets the detail layer density map.</p></div><div class="subsection"><p>The Terrain system uses detail layer density maps. Each map is essentially a grayscale image
+ where each pixel value denotes the number of detail objects that will be procedurally placed terrain area that corresponds to the pixel. Since several different detail types may be used, the map is arranged
+ into "layers" - the array indices of the layers are determined by the order of the detail types defined
+in the Terrain inspector (ie, when the Paint Details tool is selected).</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Set all pixels in a detail map below a certain threshold to zero.
+    void DetailMapCutoff(<a href="Terrain.html">Terrain</a> t, float threshold)
+    {
+        // Get all of layer zero.
+        var map = t.terrainData.GetDetailLayer(0, 0, t.terrainData.detailWidth, t.terrainData.detailHeight, 0);<br /><br />        // For each pixel in the detail map...
+        for (int y = 0; y &lt; t.terrainData.detailHeight; y++)
+        {
+            for (int x = 0; x &lt; t.terrainData.detailWidth; x++)
+            {
+                // If the pixel value is below the threshold then
+                // set it to zero.
+                if (map[x, y] &lt; threshold)
+                {
+                    map[x, y] = 0;
+                }
+            }
+        }<br /><br />        // Assign the modified map back.
+        t.terrainData.SetDetailLayer(0, 0, 0, map);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

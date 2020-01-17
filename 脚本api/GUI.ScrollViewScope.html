@@ -1,0 +1,33 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ScrollViewScope</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">ScrollViewScope</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.IMGUIModule.html" class="cl">UnityEngine.IMGUIModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Disposable helper class for managing <a href="GUI.BeginScrollView.html">BeginScrollView</a> / <a href="GUI.EndScrollView.html">EndScrollView</a>.</p></div><div class="subsection"><p>
+        <a href="GUI.BeginScrollView.html">BeginScrollView</a> is called at construction, and <a href="GUI.EndScrollView.html">EndScrollView</a> is called when the instance is disposed.
+ScrollViews let you make a smaller area on-screen look 'into' a much larger area, using scrollbars placed on the sides of the ScrollView.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // The position of the scrolling viewport
+    public <a href="Vector2.html">Vector2</a> scrollPosition = <a href="Vector2-zero.html">Vector2.zero</a>;
+    void OnGUI()
+    {
+        // An absolute-positioned example: We make a scrollview that has a really large client
+        // rect and put it in a small rect on the screen.
+        using (var scrollScope = new <a href="GUI.ScrollViewScope.html">GUI.ScrollViewScope</a>(new <a href="Rect.html">Rect</a>(10, 300, 100, 100), scrollPosition, new <a href="Rect.html">Rect</a>(0, 0, 220, 200)))
+        {
+            scrollPosition = scrollScope.scrollPosition;<br /><br />            // Make four buttons - one in each corner. The coordinate system is defined
+            // by the last parameter to the ScrollScope constructor.
+            <a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(0, 0, 100, 20), "Top-left");
+            <a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(120, 0, 100, 20), "Top-right");
+            <a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(0, 180, 100, 20), "Bottom-left");
+            <a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(120, 180, 100, 20), "Bottom-right");
+        }
+        // Now the scroll view is ended.
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="GUI.ScrollViewScope-handleScrollWheel.html">handleScrollWheel</a></td><td class="desc"></td><td class="desc1">Whether this ScrollView should handle scroll wheel events. (default: true).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GUI.ScrollViewScope-scrollPosition.html">scrollPosition</a></td><td class="desc"></td><td class="desc1">The modified scrollPosition. Feed this back into the variable you pass in, as shown in the example.</td></tr>
+    </table></div><div class="subsection"><h2>Constructors</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="GUI.ScrollViewScope-ctor.html">GUI.ScrollViewScope</a></td><td class="desc"></td><td class="desc1">Create a new ScrollViewScope and begin the corresponding ScrollView.</td></tr>
+    </table></div></div></div></div></body></html>

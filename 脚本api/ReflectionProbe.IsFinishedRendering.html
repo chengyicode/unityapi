@@ -1,0 +1,33 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ReflectionProbe.IsFinishedRendering</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="ReflectionProbe.html">ReflectionProbe</a>.IsFinishedRendering</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-ReflectionProbe.html' title='Go to ReflectionProbe Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public bool <span class="sig-kw">IsFinishedRendering</span>(int <span class="sig-kw">renderId</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">renderId</td><td class="desc"></td><td class="desc1">An integer representing the RenderID as returned by the RenderProbe method.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>bool</strong>
+        
+          True if the render has finished, false otherwise.<br /><br />          See Also: <a href="ReflectionProbe-timeSlicingMode.html">timeSlicingMode</a>
+        
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Checks if a probe has finished a time-sliced render.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />
+public class UpdateProbeEvery2Seconds : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private int RenderId = -1;
+    private <a href="ReflectionProbe.html">ReflectionProbe</a> TheProbe;
+    public <a href="RenderTexture.html">RenderTexture</a> TargetTexture;<br /><br />    IEnumerator Start()
+    {
+        TheProbe = GetComponent&lt;<a href="ReflectionProbe.html">ReflectionProbe</a>&gt;();<br /><br />        // set the probe to render in time-slicing mode and make sure all faces of the cubemap render the same frame.
+        TheProbe.timeSlicingMode = UnityEngine.Rendering.ReflectionProbeTimeSlicingMode.AllFacesAtOnce;
+        while (true)
+        {
+            yield return new <a href="WaitForSeconds.html">WaitForSeconds</a>(2.0f);<br /><br />            // render the probe over several frames and blit into TargetTexture once finished.
+            RenderId = TheProbe.RenderProbe(TargetTexture);
+        }
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        if (TheProbe.IsFinishedRendering(RenderId))
+        {
+            // Probe has finished rendering, do something with the render texture
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

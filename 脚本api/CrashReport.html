@@ -1,0 +1,42 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: CrashReport</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">CrashReport</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.CoreModule.html" class="cl">UnityEngine.CoreModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Holds data for a single application crash event and provides access to all gathered crash reports.</p></div><div class="subsection"><p>If compiled with appropriate settings, Unity will try to gather useful information, like location and thread stack traces, when your application crashes. Upon the next application start, if the data gathering was successful, all crash information will be accessible using this API.<br /><br />To enable crash report generation, in iOS player settings set "Script Call Optimization" option to "Fast but no Exceptions". After you build your Xcode project in Unity, open it and edit trampoline file: Classes/CrashReporter.h. Change ENABLE_CUSTOM_CRASH_REPORTER define from 0 to 1. Note that the iOS Player Settings has a Crash Reporting setting with an "Enable CrashReport API".<br /><br />Note: this API currently is available only for iOS targets.<br /><br />See Also: <a href="CrashReport-reports.html">CrashReport.reports</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />
+// This example shows a list of crash reports (if available),
+// and allows you to output crash data to console, or
+// delete them.
+public class Crashes : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void OnGUI()
+    {
+        var reports = <a href="CrashReport-reports.html">CrashReport.reports</a>;
+        <a href="GUILayout.Label.html">GUILayout.Label</a>("Crash reports:");
+        foreach (var r in reports)
+        {
+            <a href="GUILayout.BeginHorizontal.html">GUILayout.BeginHorizontal</a>();
+            <a href="GUILayout.Label.html">GUILayout.Label</a>("Crash: " + r.time);
+            if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Log"))
+            {
+                <a href="Debug.Log.html">Debug.Log</a>(r.text);
+            }
+            if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Remove"))
+            {
+                r.Remove();
+            }
+            <a href="GUILayout.EndHorizontal.html">GUILayout.EndHorizontal</a>();
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Static Properties</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="CrashReport-lastReport.html">lastReport</a></td><td class="desc"></td><td class="desc1">Returns last crash report, or null if no reports are available.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="CrashReport-reports.html">reports</a></td><td class="desc"></td><td class="desc1">Returns all currently available reports in a new array.</td></tr>
+    </table></div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="CrashReport-text.html">text</a></td><td class="desc"></td><td class="desc1">Crash report data as formatted text.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="CrashReport-time.html">time</a></td><td class="desc"></td><td class="desc1">Time, when the crash occured.</td></tr>
+    </table></div><div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="CrashReport.Remove.html">Remove</a></td><td class="desc"></td><td class="desc1">Remove report from available reports list.</td></tr>
+    </table></div><div class="subsection"><h2>Static Methods   静态方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="CrashReport.RemoveAll.html">RemoveAll</a></td><td class="desc"></td><td class="desc1">Remove all reports from available reports list.</td></tr>
+    </table></div></div></div></div></body></html>

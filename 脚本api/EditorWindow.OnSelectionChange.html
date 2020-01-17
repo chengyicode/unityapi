@@ -1,0 +1,40 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorWindow.OnSelectionChange()</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorWindow.html">EditorWindow</a>.OnSelectionChange()</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Called whenever the selection has changed.</p></div><div class="subsection"><p>
+        <img src="../StaticFiles/ScriptRefImages/SelectionChange.png" />
+        <br />
+<em>Saves the current selection and load it later with a simple click.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Simple example that lets you save the current selection and load it.<br /><br />using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;
+using System.Collections;<br /><br />public class ExampleClass : <a href="EditorWindow.html">EditorWindow</a>
+{
+    private int[] selectionIDs;<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Example/<a href="Selection.html">Selection</a> Saver")]
+    private static void Init()
+    {
+        ExampleClass window = (ExampleClass)GetWindow(typeof(ExampleClass));
+        window.Show();
+    }<br /><br />    void OnGUI()
+    {
+        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Save"))
+            SaveSelection();<br /><br />        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Load"))
+            LoadLastSavedSelection();
+    }<br /><br />    void OnSelectionChange()
+    {
+        selectionIDs = <a href="Selection-instanceIDs.html">Selection.instanceIDs</a>;
+    }<br /><br />    private void SaveSelection()
+    {
+        var saveStr = "";<br /><br />        foreach (int i in selectionIDs)
+        {
+            saveStr += i.ToString() + ";";
+        }<br /><br />        saveStr = saveStr.TrimEnd(char.Parse(";"));
+        <a href="EditorPrefs.SetString.html">EditorPrefs.SetString</a>("SelectedIDs", saveStr);
+    }<br /><br />    private void LoadLastSavedSelection()
+    {
+        string[] strIDs = <a href="EditorPrefs.GetString.html">EditorPrefs.GetString</a>("SelectedIDs").Split(char.Parse(";"));<br /><br />        int[] ids = new int[strIDs.Length];
+        for (var i = 0; i &lt; strIDs.Length; i++)
+            ids[i] = int.Parse(strIDs[i]);
+        <a href="Selection-instanceIDs.html">Selection.instanceIDs</a> = ids;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

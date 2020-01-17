@@ -1,0 +1,54 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: GUILayout.Space</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="GUILayout.html">GUILayout</a>.Space</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">Space</span>(float <span class="sig-kw">pixels</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Insert a space in the current layout group.</p></div><div class="subsection"><p>The direction of the space is dependent on the layout group you're currently in when issuing the command. If in a vertical group, the space will be vertical.
+<strong>Note:</strong> This will override the <a href="GUILayout.ExpandWidth.html">GUILayout.ExpandWidth</a> and <a href="GUILayout.ExpandHeight.html">GUILayout.ExpandHeight</a><br /><br /><img src="../StaticFiles/ScriptRefImages/GUILayoutSpace.png" /><br />
+<em>Space of 20px between two buttons.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void OnGUI()
+    {
+        <a href="GUILayout.Button.html">GUILayout.Button</a>("I'm the first button");<br /><br />        // Insert 20 pixels of space between the 2 buttons.
+        <a href="GUILayout.Space.html">GUILayout.Space</a>(20);<br /><br />        <a href="GUILayout.Button.html">GUILayout.Button</a>("I'm a bit further down");
+    }
+}
+</pre>
+      </div><div class="subsection"><p>In horizontal groups, the <code class="varname">pixels</code> are measured horizontally:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void OnGUI()
+    {
+        <a href="GUILayout.BeginHorizontal.html">GUILayout.BeginHorizontal</a>();
+        <a href="GUILayout.Button.html">GUILayout.Button</a>("I'm the first button");<br /><br />        // Insert 20 pixels of space between the 2 buttons.
+        <a href="GUILayout.Space.html">GUILayout.Space</a>(20);<br /><br />        <a href="GUILayout.Button.html">GUILayout.Button</a>("I'm the second button");
+        <a href="GUILayout.EndHorizontal.html">GUILayout.EndHorizontal</a>();
+    }
+}
+</pre>
+      </div><div class="subsection"><p>An example that is based on <a href="EditorWindow.html">EditorWindow</a>:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />// Example of using <a href="GUILayout.Space.html">GUILayout.Space</a> inside an <a href="EditorWindow.html">EditorWindow</a>.
+// Clicking on the buttons changes the size of the <a href="Space.html">Space</a>.<br /><br />public class ExampleClass : <a href="EditorWindow.html">EditorWindow</a>
+{
+    [<a href="MenuItem.html">MenuItem</a>("Examples/<a href="GUILayout.Space.html">GUILayout.Space</a>")]
+    static void CreateWindow()
+    {
+        <a href="EditorWindow.html">EditorWindow</a> window = GetWindow&lt;ExampleClass&gt;();
+        window.Show();
+    }<br /><br />    private float spaceSize = 20.0f;<br /><br />    void OnGUI()
+    {
+        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Button1: Move Button2 down by 2 pixels"))
+        {
+            spaceSize = spaceSize + 2.0f;
+        }<br /><br />        <a href="GUILayout.Space.html">GUILayout.Space</a>(spaceSize);<br /><br />        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Button2: Move up by 1 pixel"))
+        {
+            spaceSize = spaceSize - 1.0f;
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

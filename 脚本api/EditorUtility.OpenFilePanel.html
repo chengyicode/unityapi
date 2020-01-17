@@ -1,0 +1,29 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorUtility.OpenFilePanel</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorUtility.html">EditorUtility</a>.OpenFilePanel</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static string <span class="sig-kw">OpenFilePanel</span>(string <span class="sig-kw">title</span>,
+string <span class="sig-kw">directory</span>,
+string <span class="sig-kw">extension</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Displays the "open file" dialog and returns the selected path name.</p></div><div class="subsection"><p>See Also: <a href="EditorUtility.SaveFilePanel.html">SaveFilePanel</a> function.<br /><br /><img src="../StaticFiles/ScriptRefImages/EditorUtilityOpenFilePanel.png" /><br />
+<em>Open File Panel.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.IO;
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class OpenFilePanelExample : <a href="EditorWindow.html">EditorWindow</a>
+{
+    [<a href="MenuItem.html">MenuItem</a>("Example/Overwrite <a href="Texture.html">Texture</a>")]
+    static void Apply()
+    {
+        <a href="Texture2D.html">Texture2D</a> texture = <a href="Selection-activeObject.html">Selection.activeObject</a> as <a href="Texture2D.html">Texture2D</a>;
+        if (texture == null)
+        {
+            <a href="EditorUtility.DisplayDialog.html">EditorUtility.DisplayDialog</a>("Select <a href="Texture.html">Texture</a>", "You must select a texture first!", "OK");
+            return;
+        }<br /><br />        string path = <a href="EditorUtility.OpenFilePanel.html">EditorUtility.OpenFilePanel</a>("Overwrite with png", "", "png");
+        if (path.Length != 0)
+        {
+            var fileContent = <a href="Windows.File.ReadAllBytes.html">File.ReadAllBytes</a>(path);
+            texture.LoadImage(fileContent);
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

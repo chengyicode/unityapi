@@ -1,0 +1,21 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AssetPostprocessor.OnPostprocessModel(GameObject)</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="AssetPostprocessor.html">AssetPostprocessor</a>.OnPostprocessModel(GameObject)</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Add this function to a subclass to get a notification when a model has completed importing.</p></div><div class="subsection"><p>This lets you modify the imported Game Object, Meshes, AnimationClips referenced by it. Please note that the GameObjects, AnimationClips and Meshes only exist during the import and will be destroyed immediately afterwards.<br /><br />This function is called before the final Prefab is created and before it is written to disk, thus you have full control over the generated game objects and components.<br /><br />Any references to game objects or meshes will become invalid after the import has been completed. Thus it is not possible to
+ create a new Prefab in a different file from OnPostprocessModel that references meshes in the imported fbx file.<br /><br /><code class="varname">root</code> is the root game object of the imported model.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />// Adds a mesh collider to each game object that contains collider in its name
+public class Example : <a href="AssetPostprocessor.html">AssetPostprocessor</a>
+{
+    void OnPostprocessModel(<a href="GameObject.html">GameObject</a> g)
+    {
+        Apply(g.transform);
+    }<br /><br />    void Apply(<a href="Transform.html">Transform</a> t)
+    {
+        if (t.name.ToLower().Contains("collider"))
+            t.gameObject.AddComponent&lt;<a href="MeshCollider.html">MeshCollider</a>&gt;();<br /><br />        // Recurse
+        foreach (<a href="Transform.html">Transform</a> child in t)
+            Apply(child);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

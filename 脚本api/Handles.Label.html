@@ -1,0 +1,71 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Handles.Label</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Handles.html">Handles</a>.Label</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">Label</span>(<a href="Vector3.html">Vector3</a> <span class="sig-kw">position</span>,
+string <span class="sig-kw">text</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">Label</span>(<a href="Vector3.html">Vector3</a> <span class="sig-kw">position</span>,
+<a href="Texture.html">Texture</a> <span class="sig-kw">image</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">Label</span>(<a href="Vector3.html">Vector3</a> <span class="sig-kw">position</span>,
+<a href="GUIContent.html">GUIContent</a> <span class="sig-kw">content</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">Label</span>(<a href="Vector3.html">Vector3</a> <span class="sig-kw">position</span>,
+string <span class="sig-kw">text</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">Label</span>(<a href="Vector3.html">Vector3</a> <span class="sig-kw">position</span>,
+<a href="GUIContent.html">GUIContent</a> <span class="sig-kw">content</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">position</td><td class="desc"></td><td class="desc1">Position in 3D space as seen from the current handle camera.</td></tr><tr><td class="name lbl">text</td><td class="desc"></td><td class="desc1">Text to display on the label.</td></tr><tr><td class="name lbl">image</td><td class="desc"></td><td class="desc1">Texture to display on the label.</td></tr><tr><td class="name lbl">content</td><td class="desc"></td><td class="desc1">Text, image and tooltip for this label.</td></tr><tr><td class="name lbl">style</td><td class="desc"></td><td class="desc1">The style to use. If left out, the <code class="varname">label</code> style from the current GUISkin is used.<br /><br /><strong>Note:</strong> Use HandleUtility.GetHandleSize where you might want to have constant screen-sized handles.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Make a text label positioned in 3D space.</p></div><div class="subsection"><p>Labels have no user interaction, do not catch mouse clicks and are always rendered in normal style.<br /><br /><img src="../StaticFiles/ScriptRefImages/HandlesLabel.png" /><br />
+<em>Label in the Scene View.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//This script is not an editor script
+//Attach this script to a <a href="GameObject.html">GameObject</a> in your <a href="SceneManagement.Scene.html">Scene</a><br /><br />using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;<br /><br />[<a href="ExecuteInEditMode.html">ExecuteInEditMode</a>]
+public class HandleExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public float shieldArea = 5.0f;<br /><br />    // Use this for initialization
+    void Start()
+    {
+    }<br /><br />    // <a href="Experimental.PlayerLoop.Update.html">Update</a> is called once per frame
+    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+    }
+}
+</pre>
+      </div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//Create a folder and call it "<a href="Editor.html">Editor</a>" if one doesn't already exist. Place this script in it.<br /><br />using UnityEngine;
+using System.Collections;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />// Create a 180 degrees wire arc with a ScaleValueHandle attached to the disc
+// lets you visualize some info of the transform<br /><br />[<a href="CustomEditor.html">CustomEditor</a>(typeof(HandleExample))]
+class LabelHandle : <a href="Editor.html">Editor</a>
+{
+    void OnSceneGUI()
+    {
+        HandleExample handleExample = (HandleExample)target;
+        if (handleExample == null)
+        {
+            return;
+        }<br /><br />        <a href="Handles-color.html">Handles.color</a> = <a href="Color-blue.html">Color.blue</a>;
+        <a href="Handles.Label.html">Handles.Label</a>(handleExample.transform.position + <a href="Vector3-up.html">Vector3.up</a> * 2,
+            handleExample.transform.position.ToString() + "\nShieldArea: " +
+            handleExample.shieldArea.ToString());<br /><br />        <a href="Handles.BeginGUI.html">Handles.BeginGUI</a>();
+        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Reset Area", <a href="GUILayout.Width.html">GUILayout.Width</a>(100)))
+        {
+            handleExample.shieldArea = 5;
+        }
+        <a href="Handles.EndGUI.html">Handles.EndGUI</a>();<br /><br />
+        <a href="Handles.DrawWireArc.html">Handles.DrawWireArc</a>(handleExample.transform.position,
+            handleExample.transform.up,
+            -handleExample.transform.right,
+            180,
+            handleExample.shieldArea);
+        handleExample.shieldArea =
+            <a href="Handles.ScaleValueHandle.html">Handles.ScaleValueHandle</a>(handleExample.shieldArea,
+                handleExample.transform.position + handleExample.transform.forward * handleExample.shieldArea,
+                handleExample.transform.rotation,
+                1,
+                <a href="Handles.ConeHandleCap.html">Handles.ConeHandleCap</a>,
+                1);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

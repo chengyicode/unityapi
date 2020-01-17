@@ -1,0 +1,20 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Networking.DownloadHandlerBuffer.DownloadHandlerBuffer</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">DownloadHandlerBuffer Constructor</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <span class="sig-kw">DownloadHandlerBuffer</span>();
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Default constructor.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.Collections;
+using UnityEngine;
+using UnityEngine.Networking;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    IEnumerator Start()
+    {
+        using (var uwr = new <a href="Networking.UnityWebRequest.html">UnityWebRequest</a>("https://unity3d.com/", <a href="Networking.UnityWebRequest-kHttpVerbGET.html">UnityWebRequest.kHttpVerbGET</a>))
+        {
+            uwr.downloadHandler = new <a href="Networking.DownloadHandlerBuffer.html">DownloadHandlerBuffer</a>();
+            yield return uwr.SendWebRequest();
+            <a href="Debug.Log.html">Debug.Log</a>(uwr.downloadHandler.text);
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

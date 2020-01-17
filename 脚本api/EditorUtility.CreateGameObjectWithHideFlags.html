@@ -1,0 +1,46 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorUtility.CreateGameObjectWithHideFlags</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorUtility.html">EditorUtility</a>.CreateGameObjectWithHideFlags</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="GameObject.html">GameObject</a> <span class="sig-kw">CreateGameObjectWithHideFlags</span>(string <span class="sig-kw">name</span>,
+<a href="HideFlags.html">HideFlags</a> <span class="sig-kw">flags</span>,
+params Type[] <span class="sig-kw">components</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Creates a game object with <a href="HideFlags.html">HideFlags</a> and specified components.</p></div><div class="subsection"><p>This is very similar to creating a <a href="GameObject.html">GameObject</a> the usual way, except it
+sets the specified <a href="HideFlags.html">HideFlags</a> immediately.<br /><br /><img src="../StaticFiles/ScriptRefImages/EditorUtility CreateGameObjectWithHideFlags.png" />
+<em>Editor Window that shows how does the example looks.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class CreateGOHideFlagsExample : <a href="EditorWindow.html">EditorWindow</a>
+{
+    string objName = "<a href="GameObject.html">GameObject</a>";
+    int instanceID = 0;
+    bool create = true;
+    <a href="GameObject.html">GameObject</a> go = null;
+    bool hideHierarchy = false;<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Example/<a href="GameObject.html">GameObject</a> Flags")]
+    static void Init()
+    {
+        // Get existing open window or if none, make a new one:
+        CreateGOHideFlagsExample window = (CreateGOHideFlagsExample)<a href="EditorWindow.GetWindow.html">EditorWindow.GetWindow</a>(typeof(CreateGOHideFlagsExample));
+        window.Show();
+    }<br /><br />    void OnGUI()
+    {
+        create = <a href="EditorGUILayout.Toggle.html">EditorGUILayout.Toggle</a>("Create a GO:", create);
+        <a href="GUI-enabled.html">GUI.enabled</a> = create;<br /><br />        objName = <a href="EditorGUILayout.TextField.html">EditorGUILayout.TextField</a>("<a href="GameObject.html">GameObject</a> Name:", objName);
+        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Create"))
+        {
+            <a href="GameObject.html">GameObject</a> created = <a href="EditorUtility.CreateGameObjectWithHideFlags.html">EditorUtility.CreateGameObjectWithHideFlags</a>(objName,
+                hideHierarchy ? <a href="HideFlags.HideInHierarchy.html">HideFlags.HideInHierarchy</a> : 0);<br /><br />            instanceID = created.GetInstanceID();
+            <a href="Debug.Log.html">Debug.Log</a>("Created <a href="GameObject.html">GameObject</a> ID: " + instanceID);
+        }<br /><br />        <a href="GUI-enabled.html">GUI.enabled</a> = !create;<br /><br />        <a href="EditorGUILayout.BeginHorizontal.html">EditorGUILayout.BeginHorizontal</a>();<br /><br />        instanceID = <a href="EditorGUILayout.IntField.html">EditorGUILayout.IntField</a>("Instance ID:", instanceID);<br /><br />        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Search &amp; <a href="Experimental.PlayerLoop.Update.html">Update</a> flags"))
+        {
+            go = null;
+            go = <a href="EditorUtility.InstanceIDToObject.html">EditorUtility.InstanceIDToObject</a>(instanceID) as <a href="GameObject.html">GameObject</a>;
+            if (go)
+                go.hideFlags = hideHierarchy ? <a href="HideFlags.HideInHierarchy.html">HideFlags.HideInHierarchy</a> : 0;
+        }<br /><br />        <a href="EditorGUILayout.EndHorizontal.html">EditorGUILayout.EndHorizontal</a>();<br /><br />        if (!go)
+            <a href="EditorGUILayout.LabelField.html">EditorGUILayout.LabelField</a>("Object: ", (go == null) ? "No object was found" : go.name);<br /><br />        <a href="GUI-enabled.html">GUI.enabled</a> = true;
+        hideHierarchy = <a href="EditorGUILayout.Toggle.html">EditorGUILayout.Toggle</a>("HideInHierarchy", hideHierarchy);
+    }<br /><br />    void OnInspectorUpdate()
+    {
+        Repaint();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: TestTools.Coverage.GetStatsFor</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="TestTools.Coverage.html">Coverage</a>.GetStatsFor</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="TestTools.CoveredMethodStats.html">TestTools.CoveredMethodStats</a> <span class="sig-kw">GetStatsFor</span>(MethodBase <span class="sig-kw">method</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">method</td><td class="desc"></td><td class="desc1">The method to get coverage statistics for.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>CoveredMethodStats</strong>
+        Coverage summary.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Returns the coverage summary for the specified method. See <a href="TestTools.CoveredMethodStats.html">CoveredMethodStats</a> for more information about the coverage statistics returned by this method.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.TestTools;
+using System.Reflection;<br /><br />public class CoverageClass
+{
+    // A simple test method to get coverage information from.
+    // If the method is called with incrementValue set to true,
+    // the method will have complete coverage. If incrementValue
+    // is false, the coverage will be incomplete.
+    public int CoveredMethod(bool incrementValue)
+    {
+        int value = 0;
+        if (incrementValue)
+        {
+            value++;
+        }<br /><br />        return value;
+    }
+}<br /><br />public class CoverageExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        // Create an instance of the test class and call the test method
+        // to make sure the method has had some coverage. Note in this example,
+        // we're passing false into the method to make sure the coverage
+        // is incomplete.
+        CoverageClass coverageClasss = new CoverageClass();
+        int value = coverageClasss.CoveredMethod(false);<br /><br />        // Use reflection to get the MethodBase for CoverageClass.CoveredMethod
+        MethodBase coveredMethodBase = typeof(CoverageClass).GetMethod("CoveredMethod");
+        // And get the coverage stats for the method.
+        <a href="TestTools.CoveredMethodStats.html">CoveredMethodStats</a> stats = <a href="TestTools.Coverage.GetStatsFor.html">Coverage.GetStatsFor</a>(coveredMethodBase);<br /><br />        <a href="Debug.Log.html">Debug.Log</a>("CoveredMethod has " + stats.totalSequencePoints + " sequence points");
+        int coveredSequencePoints = stats.totalSequencePoints - stats.uncoveredSequencePoints;
+        <a href="Debug.Log.html">Debug.Log</a>("of which " + coveredSequencePoints + " were covered.");
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static CoveredMethodStats[] <span class="sig-kw">GetStatsFor</span>(MethodBase[] <span class="sig-kw">methods</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">methods</td><td class="desc"></td><td class="desc1">The array of methods.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>CoveredMethodStats[]</strong>
+        Array of coverage summaries.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Returns an array of coverage summaries for the specified array of methods.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.TestTools;
+using System.Reflection;
+using System;<br /><br />// A simple test class to get coverage information for.
+public class CoverageClass
+{
+    public bool CoveredMethod1()
+    {
+        return true;
+    }<br /><br />    public bool CoveredMethod2()
+    {
+        return false;
+    }
+}<br /><br />public class CoverageExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        // Create an instance of the test class and call the test methods
+        // to make sure the class has had some coverage.
+        CoverageClass coverageClasss = new CoverageClass();
+        coverageClasss.CoveredMethod1();
+        coverageClasss.CoveredMethod2();<br /><br />        // Get the Type of the CoverageClass
+        Type coverageClassType = typeof(CoverageClass);<br /><br />        // Use reflection to get an array of MethodBases for the two methods
+        // in CoverageClass.
+        MethodBase[] coveredMethodBaseArray =
+        {
+            coverageClassType.GetMethod("CoveredMethod1"),
+            coverageClassType.GetMethod("CoveredMethod2")
+        };<br /><br />        // And get the coverage stats for the methods.
+        <a href="TestTools.CoveredMethodStats.html">CoveredMethodStats</a>[] stats = <a href="TestTools.Coverage.GetStatsFor.html">Coverage.GetStatsFor</a>(coveredMethodBaseArray);<br /><br />        for (int i = 0; i &lt; stats.Length; i++)
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("Method Name: " + stats[i].method.ToString());
+            <a href="Debug.Log.html">Debug.Log</a>("Method has " + stats[i].totalSequencePoints + " sequence points");
+            int coveredSequencePoints = stats[i].totalSequencePoints - stats[i].uncoveredSequencePoints;
+            <a href="Debug.Log.html">Debug.Log</a>("of which " + coveredSequencePoints + " were covered.");
+        }
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static CoveredMethodStats[] <span class="sig-kw">GetStatsFor</span>(Type <span class="sig-kw">type</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">type</td><td class="desc"></td><td class="desc1">The type.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>CoveredMethodStats[]</strong>
+        Array of coverage summaries.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Returns an array of coverage summaries for the specified type.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.TestTools;
+using System;<br /><br />// A simple test class to get coverage information for.
+public class CoverageClass
+{
+    public bool CoveredMethod1()
+    {
+        return true;
+    }<br /><br />    public bool CoveredMethod2()
+    {
+        return false;
+    }
+}<br /><br />public class CoverageExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        // Create an instance of the test class and call the test methods
+        // to make sure the class has had some coverage.
+        CoverageClass coverageClasss = new CoverageClass();
+        coverageClasss.CoveredMethod1();
+        coverageClasss.CoveredMethod2();<br /><br />        // Get the Type of the CoverageClass
+        Type coverageClassType = typeof(CoverageClass);
+        // And get the coverage stats for all of the methods of the type.
+        // Note that this will include class's default constructor.
+        <a href="TestTools.CoveredMethodStats.html">CoveredMethodStats</a>[] stats = <a href="TestTools.Coverage.GetStatsFor.html">Coverage.GetStatsFor</a>(coverageClassType);<br /><br />        for (int i = 0; i &lt; stats.Length; i++)
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("Method Name: " + stats[i].method.ToString());
+            <a href="Debug.Log.html">Debug.Log</a>("Method has " + stats[i].totalSequencePoints + " sequence points");
+            int coveredSequencePoints = stats[i].totalSequencePoints - stats[i].uncoveredSequencePoints;
+            <a href="Debug.Log.html">Debug.Log</a>("of which " + coveredSequencePoints + " were covered.");
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

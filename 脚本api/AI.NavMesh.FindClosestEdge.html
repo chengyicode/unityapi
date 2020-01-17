@@ -1,0 +1,41 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AI.NavMesh.FindClosestEdge</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="AI.NavMesh.html">NavMesh</a>.FindClosestEdge</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">FindClosestEdge</span>(<a href="Vector3.html">Vector3</a> <span class="sig-kw">sourcePosition</span>,
+out <a href="AI.NavMeshHit.html">AI.NavMeshHit</a> <span class="sig-kw">hit</span>,
+int <span class="sig-kw">areaMask</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">sourcePosition</td><td class="desc"></td><td class="desc1">The origin of the distance query.</td></tr><tr><td class="name lbl">hit</td><td class="desc"></td><td class="desc1">Holds the properties of the resulting location.</td></tr><tr><td class="name lbl">areaMask</td><td class="desc"></td><td class="desc1">A bitfield mask specifying which NavMesh areas can be passed when finding the nearest edge.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>bool</strong>
+        True if a nearest edge is found.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Locate the closest NavMesh edge from a point on the NavMesh.</p></div><div class="subsection"><p>The returned <a href="AI.NavMeshHit.html">NavMeshHit</a> object contains the position
+and details of the nearest point on the nearest edge of the
+navmesh. This can be used to query how much extra space there is around the agent.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// MeasureSpace
+using UnityEngine;
+using UnityEngine.AI;<br /><br />public class MeasureSpace : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void DrawCircle(<a href="Vector3.html">Vector3</a> center, float radius, <a href="Color.html">Color</a> color)
+    {
+        <a href="Vector3.html">Vector3</a> prevPos = center + new <a href="Vector3.html">Vector3</a>(radius, 0, 0);
+        for (int i = 0; i &lt; 30; i++)
+        {
+            float angle = (float)(i + 1) / 30.0f * <a href="Mathf.PI.html">Mathf.PI</a> * 2.0f;
+            <a href="Vector3.html">Vector3</a> newPos = center + new <a href="Vector3.html">Vector3</a>(<a href="Mathf.Cos.html">Mathf.Cos</a>(angle) * radius, 0, <a href="Mathf.Sin.html">Mathf.Sin</a>(angle) * radius);
+            <a href="Debug.DrawLine.html">Debug.DrawLine</a>(prevPos, newPos, color);
+            prevPos = newPos;
+        }
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        <a href="AI.NavMeshHit.html">NavMeshHit</a> hit;
+        if (<a href="AI.NavMesh.FindClosestEdge.html">NavMesh.FindClosestEdge</a>(transform.position, out hit, <a href="AI.NavMesh.AllAreas.html">NavMesh.AllAreas</a>))
+        {
+            DrawCircle(transform.position, hit.distance, <a href="Color-red.html">Color.red</a>);
+            <a href="Debug.DrawRay.html">Debug.DrawRay</a>(hit.position, <a href="Vector3-up.html">Vector3.up</a>, <a href="Color-red.html">Color.red</a>);
+        }
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">FindClosestEdge</span>(<a href="Vector3.html">Vector3</a> <span class="sig-kw">sourcePosition</span>,
+out <a href="AI.NavMeshHit.html">AI.NavMeshHit</a> <span class="sig-kw">hit</span>,
+<a href="AI.NavMeshQueryFilter.html">AI.NavMeshQueryFilter</a> <span class="sig-kw">filter</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">sourcePosition</td><td class="desc"></td><td class="desc1">The origin of the distance query.</td></tr><tr><td class="name lbl">hit</td><td class="desc"></td><td class="desc1">Holds the properties of the resulting location.</td></tr><tr><td class="name lbl">filter</td><td class="desc"></td><td class="desc1">A filter specifying which NavMesh areas can be passed when finding the nearest edge.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>bool</strong>
+        True if a nearest edge is found.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Locate the closest NavMesh edge from a point on the NavMesh, subject to the constraints of the filter argument.</p></div><div class="subsection"><p>The returned NavMeshHit object contains the position and details of the nearest point on the nearest edge of the NavMesh. This can be used to query how much extra space there is around the agent.</p></div></div></div></div></body></html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: SortingCriteria</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">SortingCriteria</h1><div class="clear"></div><p class="cl mb0 left mr10">enumeration</p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>How to sort objects during rendering.</p></div><div class="subsection"><p>Control the way Unity sorts objects before drawing them by using and combining these flags.<br /><br />The basic flags are: <br />
+- <a href="Rendering.SortingCriteria.SortingLayer.html">SortingLayer</a>, <br />
+- <a href="Rendering.SortingCriteria.RenderQueue.html">RenderQueue</a>, <br />
+- <a href="Rendering.SortingCriteria.BackToFront.html">BackToFront</a>, <br />
+- <a href="Rendering.SortingCriteria.QuantizedFrontToBack.html">QuantizedFrontToBack</a>, <br />
+- <a href="Rendering.SortingCriteria.OptimizeStateChanges.html">OptimizeStateChanges</a>, <br />
+- <a href="Rendering.SortingCriteria.CanvasOrder.html">CanvasOrder</a>.<br /><br />Multiple flags, when combined, are applied in the above order.<br /><br />Some commonly-used sorting combinations are provided for convenience. Use <a href="Rendering.SortingCriteria.CommonOpaque.html">CommonOpaque</a> for opaque objects. This combination of flags includes optimization for reducing draw state changes and draws roughly front-to-back to reduce drawing over the same pixels many times. Use <a href="Rendering.SortingCriteria.CommonTransparent.html">CommonTransparent</a> for transparent objects, which need to be sorted from back to front before being drawn for them all to be visible.<br /><br />See Also: DrawingSettings.sorting, <a href="Rendering.ScriptableRenderContext.DrawRenderers.html">ScriptableRenderContext.DrawRenderers</a>.</p></div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.SortingCriteria.None.html">None</a></td><td class="desc"></td><td class="desc1">Do not sort objects.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.SortingCriteria.SortingLayer.html">SortingLayer</a></td><td class="desc"></td><td class="desc1">Sort by renderer sorting layer.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.SortingCriteria.RenderQueue.html">RenderQueue</a></td><td class="desc"></td><td class="desc1">Sort by material render queue.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.SortingCriteria.BackToFront.html">BackToFront</a></td><td class="desc"></td><td class="desc1">Sort objects back to front.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.SortingCriteria.QuantizedFrontToBack.html">QuantizedFrontToBack</a></td><td class="desc"></td><td class="desc1">Sort objects in rough front-to-back buckets.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.SortingCriteria.OptimizeStateChanges.html">OptimizeStateChanges</a></td><td class="desc"></td><td class="desc1">Sort objects to reduce draw state changes.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.SortingCriteria.CanvasOrder.html">CanvasOrder</a></td><td class="desc"></td><td class="desc1">Sort renderers taking canvas order into account.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.SortingCriteria.RendererPriority.html">RendererPriority</a></td><td class="desc"></td><td class="desc1">Sorts objects by renderer priority.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.SortingCriteria.CommonOpaque.html">CommonOpaque</a></td><td class="desc"></td><td class="desc1">Typical sorting for opaque objects.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.SortingCriteria.CommonTransparent.html">CommonTransparent</a></td><td class="desc"></td><td class="desc1">Typical sorting for transparencies.</td></tr>
+    </table></div></div></div></div></body></html>

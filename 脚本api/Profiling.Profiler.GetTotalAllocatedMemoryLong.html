@@ -1,0 +1,18 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Profiling.Profiler.GetTotalAllocatedMemoryLong</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Profiling.Profiler.html">Profiler</a>.GetTotalAllocatedMemoryLong</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static long <span class="sig-kw">GetTotalAllocatedMemoryLong</span>();
+    </div></div></div><div class="subsection"><h2>Returns</h2><p><strong>long</strong>
+        The amount of memory allocated by Unity. This returns 0 if the Profiler is not available.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>The total memory allocated by the internal allocators in Unity. Unity reserves large pools of memory from the system. This function returns the amount of used memory in those pools.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.Profiling;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("Total Reserved memory by Unity: " + <a href="Profiling.Profiler.GetTotalReservedMemoryLong.html">Profiler.GetTotalReservedMemoryLong</a>() + "Bytes");
+        <a href="Debug.Log.html">Debug.Log</a>("- Allocated memory by Unity: " + <a href="Profiling.Profiler.GetTotalAllocatedMemoryLong.html">Profiler.GetTotalAllocatedMemoryLong</a>() + "Bytes");
+        <a href="Debug.Log.html">Debug.Log</a>("- Reserved but not allocated: " + <a href="Profiling.Profiler.GetTotalUnusedReservedMemoryLong.html">Profiler.GetTotalUnusedReservedMemoryLong</a>() + "Bytes");
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

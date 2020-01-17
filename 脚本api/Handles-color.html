@@ -1,0 +1,43 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Handles.color</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Handles.html">Handles</a>.color</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Color.html">Color</a> <span class="sig-kw">color</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Colors of the handles.</p></div><div class="subsection"><p>
+        <img src="../StaticFiles/ScriptRefImages/SliderHandle.png" />
+        <br />
+<em>Magenta slider that points to 0,0,0.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Name this script "SliderHandleEditor"
+using UnityEngine;
+using System.Collections;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />[<a href="CustomEditor.html">CustomEditor</a>(typeof(SliderHandle))]
+public class SliderHandleEditor : <a href="Editor.html">Editor</a>
+{
+    // Simple script that creates a Slide Handle that
+    // allows you to drag a 'look at' point along the X axis<br /><br />    void OnSceneGUI()
+    {
+        SliderHandle t = (target as SliderHandle);<br /><br />        // Set the colour of the next handle to be drawn:
+        <a href="Handles-color.html">Handles.color</a> = <a href="Color-magenta.html">Color.magenta</a>;<br /><br />        <a href="EditorGUI.BeginChangeCheck.html">EditorGUI.BeginChangeCheck</a>();
+        <a href="Vector3.html">Vector3</a> lookTarget = <a href="Handles.Slider.html">Handles.Slider</a>(t.lookTarget, new <a href="Vector3.html">Vector3</a>(1, 0, 0), 2, Handles.ConeCap, 0.1f);
+        if (<a href="EditorGUI.EndChangeCheck.html">EditorGUI.EndChangeCheck</a>())
+        {
+            <a href="Undo.RecordObject.html">Undo.RecordObject</a>(target, "Changed <a href="UIElements.Slider.html">Slider</a> Look <a href="GraphicsBuffer.Target.html">Target</a>");
+            t.lookTarget = lookTarget;
+            t.Update();
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>And the script attached to this GameObject:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Name this script "SliderHandle"
+using UnityEngine;
+using System.Collections;<br /><br />[<a href="ExecuteInEditMode.html">ExecuteInEditMode</a>]
+public class SliderHandle : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Vector3.html">Vector3</a> lookTarget = new <a href="Vector3.html">Vector3</a>(0, 0, 0);<br /><br />    public void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        transform.LookAt(lookTarget);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

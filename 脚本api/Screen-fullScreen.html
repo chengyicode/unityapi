@@ -1,0 +1,14 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Screen.fullScreen</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Screen.html">Screen</a>.fullScreen</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">fullScreen</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Is the game running full-screen?</p></div><div class="subsection"><p>It is possible to toggle full-screen mode by changing this property:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        // <a href="UIElements.Toggle.html">Toggle</a> fullscreen
+        <a href="Screen-fullScreen.html">Screen.fullScreen</a> = !<a href="Screen-fullScreen.html">Screen.fullScreen</a>;
+    }
+}
+</pre>
+      </div><div class="subsection"><p>A full-screen switch does not happen immediately; it will actually happen when the current frame is finished.<br /><br />See Also: <a href="Screen.SetResolution.html">SetResolution</a>.</p></div></div></div></div></body></html>

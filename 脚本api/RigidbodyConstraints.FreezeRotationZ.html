@@ -1,0 +1,37 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: RigidbodyConstraints.FreezeRotationZ</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="RigidbodyConstraints.html">RigidbodyConstraints</a>.FreezeRotationZ</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Freeze rotation along the Z-axis.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//This example shows how <a href="RigidbodyConstraints.html">RigidbodyConstraints</a> is used to freeze the position and rotation of a <a href="Rigidbody.html">Rigidbody</a> in the z axis at start-up.
+//It also shows what happens when these constraints are removed, when you press the space key
+//Attach this to a <a href="GameObject.html">GameObject</a> with a <a href="Rigidbody.html">Rigidbody</a> to see it in action<br /><br />using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="Rigidbody.html">Rigidbody</a> m_Rigidbody;
+    <a href="Vector3.html">Vector3</a> m_ZAxis;<br /><br />    void Start()
+    {
+        m_Rigidbody = GetComponent&lt;<a href="Rigidbody.html">Rigidbody</a>&gt;();
+        //This locks the RigidBody so that it does not move or rotate in the z axis (can be seen in Inspector).
+        m_Rigidbody.constraints = <a href="RigidbodyConstraints.FreezePositionZ.html">RigidbodyConstraints.FreezePositionZ</a> | <a href="RigidbodyConstraints.FreezeRotationZ.html">RigidbodyConstraints.FreezeRotationZ</a>;
+        //Set up vector for moving the <a href="Rigidbody.html">Rigidbody</a> in the z axis
+        m_ZAxis = new <a href="Vector3.html">Vector3</a>(0, 0, 5);
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        //Press space to remove the constraints on the RigidBody
+        if (<a href="Input.GetKeyDown.html">Input.GetKeyDown</a>(<a href="KeyCode.Space.html">KeyCode.Space</a>))
+        {
+            //Remove all constraints
+            m_Rigidbody.constraints = <a href="RigidbodyConstraints.None.html">RigidbodyConstraints.None</a>;
+        }<br /><br />        //Press the right arrow key to move positively in the z axis if the constraints are removed
+        if (<a href="Input.GetKeyDown.html">Input.GetKeyDown</a>(<a href="KeyCode.RightArrow.html">KeyCode.RightArrow</a>))
+        {
+            //If the constraints are removed, the <a href="Rigidbody.html">Rigidbody</a> moves along the z axis
+            //If the constraints are there, no movement occurs
+            m_Rigidbody.velocity = m_ZAxis;
+        }<br /><br />        //Press the left arrow key to move negatively in the z axis if the constraints are removed
+        if (<a href="Input.GetKeyDown.html">Input.GetKeyDown</a>(<a href="KeyCode.LeftArrow.html">KeyCode.LeftArrow</a>))
+        {
+            m_Rigidbody.velocity = -m_ZAxis;
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

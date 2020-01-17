@@ -1,0 +1,43 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Handles.DrawPolyLine</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Handles.html">Handles</a>.DrawPolyLine</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">DrawPolyLine</span>(params Vector3[] <span class="sig-kw">points</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Draw a line going through the list of <code class="varname">points</code>.</p></div><div class="subsection"><p>
+        <strong>Note:</strong> Use <a href="HandleUtility.GetHandleSize.html">HandleUtility.GetHandleSize</a> where you might want to have constant screen-sized handles.<br /><br /><img src="../StaticFiles/ScriptRefImages/DrawPolyLine.png" /><br />
+<em>PolyLine that connects all the objects in the Scene View.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Draw lines between selected GameObjects.<br /><br />using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;
+using System.Collections;<br /><br />[<a href="CustomEditor.html">CustomEditor</a>(typeof(DrawPolyLineExample))]
+public class PolyLineDraw : <a href="Editor.html">Editor</a>
+{
+    private <a href="Vector3.html">Vector3</a>[] positions;<br /><br />    void OnSceneGUI()
+    {
+        DrawPolyLineExample connectedObjects = target as DrawPolyLineExample;
+        if (connectedObjects.objs == null)
+        {
+            return;
+        }<br /><br />        if (connectedObjects.objs.Length &gt; 0)
+        {
+            positions = new <a href="Vector3.html">Vector3</a>[connectedObjects.objs.Length];
+        }<br /><br />        for (var i = 0; i &lt; connectedObjects.objs.Length; i++)
+        {
+            if (connectedObjects.objs[i])
+            {
+                positions[i] = connectedObjects.objs[i].transform.position;
+            }
+            else
+            {
+                positions[i] = <a href="Vector3-zero.html">Vector3.zero</a>;
+            }
+        }<br /><br />        <a href="Handles.DrawPolyLine.html">Handles.DrawPolyLine</a>(positions);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>And the script attached to this handle:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class DrawPolyLineExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="GameObject.html">GameObject</a>[] objs;
+}
+</pre>
+      </div></div></div></div></body></html>

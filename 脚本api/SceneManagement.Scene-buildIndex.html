@@ -1,0 +1,31 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: SceneManagement.Scene.buildIndex</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="SceneManagement.Scene.html">Scene</a>.buildIndex</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public int <span class="sig-kw">buildIndex</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Return the index of the Scene in the Build Settings.</p></div><div class="subsection"><p>
+        <a href="SceneManagement.Scene-buildIndex.html">Scene.buildIndex</a> varies from zero to the number of <a href="SceneManagement.Scene.html">Scene</a>s in the <code class="mono">Build Settings</code> minus one. This is because indexes start at zero, so the first <a href="SceneManagement.Scene.html">Scene</a> is at position zero in the <a href="SceneManagement.Scene-buildIndex.html">buildIndex</a>.  For example, five <a href="SceneManagement.Scene.html">Scene</a>s in the <code class="mono">Build Settings</code> have an index from zero to four.<br /><br />Unity ignores any numbers in a <code class="mono">Scene</code> name. For example, if you add a <code class="mono">Scene</code> called <code class="varname">scene15</code> to a list of five <a href="SceneManagement.Scene.html">Scene</a>s in the <code class="mono">Build Settings</code>, Unity gives it a <a href="SceneManagement.Scene-buildIndex.html">buildIndex</a> of 5.<br /><br />A <code class="mono">Scene</code> that is not added to the <code class="mono">Scenes in Build</code> window returns a <a href="SceneManagement.Scene-buildIndex.html">buildIndex</a> one more than the highest in the list.  For example, if you don’t add a  <code class="mono">Scene</code> to a <code class="mono">Scenes in Build</code> window that already has 6 Scenes in it, then <a href="SceneManagement.Scene-buildIndex.html">Scene.buildIndex</a> returns 6 as its index .<br /><br />If the <code class="mono">Scene</code> is loaded through an <code class="mono">AssetBundle</code>, <a href="SceneManagement.Scene-buildIndex.html">Scene.buildIndex</a> returns -1.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.SceneManagement;<br /><br />// Show the buildIndex for the current script.
+//
+// The Build <a href="CameraEditor.Settings.html">Settings</a> window shows 5 added Scenes.  These have buildIndex values from
+// 0 to 4. Each <a href="SceneManagement.Scene.html">Scene</a> has a version of this script applied.
+//
+// In the Project, create 5 Scenes called scene1, scene2, scene3, scene4 and scene5.
+// In each <a href="SceneManagement.Scene.html">Scene</a> add an empty <a href="GameObject.html">GameObject</a> and attach this script to it.
+//
+// Each <a href="SceneManagement.Scene.html">Scene</a> randomly switches to a different <a href="SceneManagement.Scene.html">Scene</a> when the button is clicked.<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="SceneManagement.Scene.html">Scene</a> scene;<br /><br />    void Start()
+    {
+        scene = <a href="SceneManagement.SceneManager.GetActiveScene.html">SceneManager.GetActiveScene</a>();
+        <a href="Debug.Log.html">Debug.Log</a>("Active <a href="SceneManagement.Scene.html">Scene</a> name is: " + scene.name + "\nActive <a href="SceneManagement.Scene.html">Scene</a> index: " + scene.buildIndex);
+    }<br /><br />    void OnGUI()
+    {
+        GUI.skin.button.fontSize = 20;<br /><br />        if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(10, 80, 180, 60), "Change from scene " + scene.buildIndex))
+        {
+            int nextSceneIndex = <a href="Random.Range.html">Random.Range</a>(0, 4);
+            <a href="SceneManagement.SceneManager.LoadScene.html">SceneManager.LoadScene</a>(nextSceneIndex, <a href="SceneManagement.LoadSceneMode.Single.html">LoadSceneMode.Single</a>);
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

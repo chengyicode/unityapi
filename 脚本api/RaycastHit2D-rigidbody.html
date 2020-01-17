@@ -1,0 +1,22 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: RaycastHit2D.rigidbody</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="RaycastHit2D.html">RaycastHit2D</a>.rigidbody</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Rigidbody2D.html">Rigidbody2D</a> <span class="sig-kw">rigidbody</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The Rigidbody2D attached to the object that was hit.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Apply a force to a clicked rigidbody2D object.<br /><br />    // The force applied to an object when hit.
+    float hitForce;<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        //If the left mouse button is clicked.
+        if (<a href="Input.GetMouseButtonDown.html">Input.GetMouseButtonDown</a>(0))
+        {
+            //Get the mouse position on the screen and send a raycast into the game world from that position.
+            <a href="Vector2.html">Vector2</a> worldPoint = Camera.main.ScreenToWorldPoint(<a href="Input-mousePosition.html">Input.mousePosition</a>);<br /><br />            <a href="RaycastHit2D.html">RaycastHit2D</a> hit = <a href="Physics2D.Raycast.html">Physics2D.Raycast</a>(worldPoint, <a href="Vector2-zero.html">Vector2.zero</a>);<br /><br />            if (hit.rigidbody != null)
+            {
+                hit.rigidbody.AddForce(<a href="Vector2-one.html">Vector2.one</a> * hitForce);
+            }
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="Rigidbody2D.html">Rigidbody2D</a> class.</p></div></div></div></div></body></html>

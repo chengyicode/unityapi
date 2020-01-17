@@ -1,0 +1,30 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Texture2D.GetPixels32</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Texture2D.html">Texture2D</a>.GetPixels32</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public Color32[] <span class="sig-kw">GetPixels32</span>(int <span class="sig-kw">miplevel</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Get a block of pixel colors in Color32 format.</p></div><div class="subsection"><p>This function returns an array of pixel colors of the whole
+mip level of the texture.<br /><br />The returned array is a flattened 2D array, where pixels are laid out left to right,
+bottom to top (i.e. row after row). Array size is width by height of the mip level used.
+The default mip level is zero (the base texture) in which case the size is just the size of the texture.
+In general case, mip level size is <code class="mono">mipWidth=max(1,width&gt;&gt;miplevel)</code>
+and similarly for height.<br /><br />The texture must have the <a href="TextureImporter-isReadable.html">read/write enabled</a> flag set in the <a href="../Manual/Textures.html">texture import settings</a>, otherwise this function will fail. GetPixels32 is not available on Textures using Crunch texture compression.<br /><br />Using <code class="varname">GetPixels32</code> can be faster than calling <a href="Texture2D.GetPixel.html">GetPixel</a> repeatedly, especially
+for large textures. In addition, <code class="varname">GetPixels32</code> can access individual mipmap levels.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Rotate an image 180 degrees by reversing the order
+    // of the pixels.<br /><br />    // Source texture.
+    <a href="Texture2D.html">Texture2D</a> sourceTex;<br /><br />
+    void Start()
+    {
+        // Get the pixel block and reverse the array to
+        // rotate the image.
+        var pix = sourceTex.GetPixels32();
+        System.Array.Reverse(pix);<br /><br />        // Copy the reversed image data to a new texture.
+        var destTex = new <a href="Texture2D.html">Texture2D</a>(sourceTex.width, sourceTex.height);
+        destTex.SetPixels32(pix);
+        destTex.Apply();<br /><br />        // Set the current object's texture to show the
+        // rotated image.
+        GetComponent&lt;<a href="Renderer.html">Renderer</a>&gt;().material.mainTexture = destTex;
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="Texture2D.SetPixels.html">SetPixels</a>, <a href="Texture2D-mipmapCount.html">mipmapCount</a>.</p></div></div></div></div></body></html>

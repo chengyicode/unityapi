@@ -1,0 +1,16 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Gyroscope.enabled</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Gyroscope.html">Gyroscope</a>.enabled</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public bool <span class="sig-kw">enabled</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Sets or retrieves the enabled status of this gyroscope.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    bool enableTilt;<br /><br />    void OnGUI()
+    {
+        if (Input.gyro.enabled)
+        {
+            <a href="GUILayout.Toggle.html">GUILayout.Toggle</a>(enableTilt, "Enable tilt control");
+        }<br /><br />        // Other <a href="GUI.html">GUI</a> elements...
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: SceneManagement.SceneManager.sceneLoaded</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="SceneManagement.SceneManager.html">SceneManager</a>.sceneLoaded</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">value</td><td class="desc"></td><td class="desc1">Use a subscription of either a UnityAction&lt;<a href="SceneManagement.Scene.html">Scene</a>, <a href="SceneManagement.LoadSceneMode.html">LoadSceneMode</a>&gt; or a method that takes a <a href="SceneManagement.Scene.html">Scene</a> and a <a href="SceneManagement.LoadSceneMode.html">LoadSceneMode</a>.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Add a delegate to this to get notifications when a Scene has loaded.</p></div><div class="subsection"><p>Rather than being called directly this script code shows use of a delegate.
+                    This means the <a href="SceneManagement.SceneManager-sceneLoaded.html">sceneLoaded</a> value is added into a list of delegates.<br /><br /><br />                    In the script example below a number of method calls are shown.
+                    Specifically the first labelled method <a href="MonoBehaviour.OnEnable.html">OnEnable()</a> is used to
+                    add OnSceneLoaded (), which is not a Unity provided method.  The <a href="SceneManagement.SceneManager-sceneLoaded.html">SceneManager.sceneLoaded</a> delegate
+                    can have any method hooked into it and it is OnSceneLoaded () here.
+                    Finally, <a href="MonoBehaviour.OnDisable.html">OnDisable()</a> is used to remove OnSceneLoaded ()
+                    from <a href="SceneManagement.SceneManager-sceneLoaded.html">SceneManager.sceneLoaded</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.SceneManagement;<br /><br />public class ExampleCode : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // called zero
+    void Awake()
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("Awake");
+    }<br /><br />    // called first
+    void OnEnable()
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("OnEnable called");
+        <a href="SceneManagement.SceneManager-sceneLoaded.html">SceneManager.sceneLoaded</a> += OnSceneLoaded;
+    }<br /><br />    // called second
+    void OnSceneLoaded(<a href="SceneManagement.Scene.html">Scene</a> scene, <a href="SceneManagement.LoadSceneMode.html">LoadSceneMode</a> mode)
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("OnSceneLoaded: " + scene.name);
+        <a href="Debug.Log.html">Debug.Log</a>(mode);
+    }<br /><br />    // called third
+    void Start()
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("Start");
+    }<br /><br />    // called when the game is terminated
+    void OnDisable()
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("OnDisable");
+        <a href="SceneManagement.SceneManager-sceneLoaded.html">SceneManager.sceneLoaded</a> -= OnSceneLoaded;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

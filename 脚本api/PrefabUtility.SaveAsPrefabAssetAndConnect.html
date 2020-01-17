@@ -1,0 +1,41 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: PrefabUtility.SaveAsPrefabAssetAndConnect</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="PrefabUtility.html">PrefabUtility</a>.SaveAsPrefabAssetAndConnect</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="GameObject.html">GameObject</a> <span class="sig-kw">SaveAsPrefabAssetAndConnect</span>(<a href="GameObject.html">GameObject</a> <span class="sig-kw">instanceRoot</span>,
+string <span class="sig-kw">assetPath</span>,
+<a href="InteractionMode.html">InteractionMode</a> <span class="sig-kw">action</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="GameObject.html">GameObject</a> <span class="sig-kw">SaveAsPrefabAssetAndConnect</span>(<a href="GameObject.html">GameObject</a> <span class="sig-kw">instanceRoot</span>,
+string <span class="sig-kw">assetPath</span>,
+<a href="InteractionMode.html">InteractionMode</a> <span class="sig-kw">action</span>,
+out bool <span class="sig-kw">success</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">instanceRoot</td><td class="desc"></td><td class="desc1">The GameObject to save as a Prefab and make into a Prefab instance.</td></tr><tr><td class="name lbl">assetPath</td><td class="desc"></td><td class="desc1">The path to save the Prefab at.</td></tr><tr><td class="name lbl">action</td><td class="desc"></td><td class="desc1">The interaction mode to use for this action.</td></tr><tr><td class="name lbl">success</td><td class="desc"></td><td class="desc1">The result of the save action, either successful or unsuccessful. Use this together with the console log to get more insight into the save process.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>GameObject</strong>
+        The root GameObject of the saved Prefab Asset, if available.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Use this function to create a Prefab Asset at the given path from the given GameObject including any children in the Scene and at the same time make the given GameObject into an instance of the new Prefab.</p></div><div class="subsection"><p>In case some of the children are Prefab instances they will automatically become nested inside the new Prefab.<br /><br />The input object has to be a plain GameObject or the outermost root of a Prefab Instance. It cannot be a child inside a Prefab instance.<br /><br />If the input object is a Prefab instance root the resulting Prefab will be a Prefab Variant. If you want to create a new unique Prefab instead, you need to unpack the Prefab instance first.<br /><br />The returned object is the root GameObject of the saved Prefab Asset, if available. If the editor in currently in the middle of an asset editing batch operation, as controlled with <a href="AssetDatabase.StartAssetEditing.html">AssetDatabase.StartAssetEditing</a> and <a href="AssetDatabase.StopAssetEditing.html">AssetDatabase.StopAssetEditing</a>, assets are not immediately imported upon being saved. In this case, SaveAsPrefabAsset will return null even if the save was successful because the saved Prefab Asset was not yet reimported and thus not yet available.<br /><br />If you are saving over an existing Prefab, Unity tries to preserve references to the Prefab itself and the individual parts of the Prefab such as child GameObjects and Components. To do this, it matches the names of GameObjects between the new saved Prefab and the existing Prefab.<br /><br />Note: Because this matching is done by name only, if there are multiple GameObjects with the same name in the Prefab's hierarchy, you cannot predict which will be matched. Therefore if you need to ensure your references are preserved when saving over an existing prefab, you must ensure all GameObjects within the Prefab have unique names.<br /><br />Also note: You may encounter a similar problem in the case of preserving references to existing Components when you save over an existing Prefab, if a single GameObject within the Prefab has more than one of the same Component type attached. In this case you cannot predict which of them will be matched to the existing references.<br /><br />See Also: SaveAsPrefabAsset, UnpackPrefabInstance.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Create a folder (right click in the Assets directory, click <strong>Create</strong>&gt;<strong>New Folder</strong>)
+// and name it “<a href="Editor.html">Editor</a>” if one doesn’t exist already. Place this script in that folder.<br /><br />// This script creates a new menu item <strong>Examples</strong>&gt;<strong>Create Prefab</strong> in the main menu.
+// Use it to create Prefab(s) from the selected <a href="GameObject.html">GameObject</a>(s).
+// It will be placed in the root <strong>Assets</strong> folder.<br /><br />using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class Example
+{
+    // Creates a new menu item 'Examples &gt; Create Prefab' in the main menu.
+    [<a href="MenuItem.html">MenuItem</a>("Examples/Create Prefab")]
+    static void CreatePrefab()
+    {
+        // Keep track of the currently selected <a href="GameObject.html">GameObject</a>(s)
+        <a href="GameObject.html">GameObject</a>[] objectArray = <a href="Selection-gameObjects.html">Selection.gameObjects</a>;<br /><br />        // Loop through every <a href="GameObject.html">GameObject</a> in the array above
+        foreach (<a href="GameObject.html">GameObject</a> gameObject in objectArray)
+        {
+            // Set the path as within the Assets folder,
+            // and name it as the <a href="GameObject.html">GameObject</a>'s name with the .Prefab format
+            string localPath = "Assets/" + gameObject.name + ".prefab";<br /><br />            // Make sure the file name is unique, in case an existing Prefab has the same name.
+            localPath = <a href="AssetDatabase.GenerateUniqueAssetPath.html">AssetDatabase.GenerateUniqueAssetPath</a>(localPath);<br /><br />            // Create the new Prefab.
+            <a href="PrefabUtility.SaveAsPrefabAssetAndConnect.html">PrefabUtility.SaveAsPrefabAssetAndConnect</a>(gameObject, localPath, <a href="InteractionMode.UserAction.html">InteractionMode.UserAction</a>);
+        }
+    }<br /><br />    // Disable the menu item if no selection is in place.
+    [<a href="MenuItem.html">MenuItem</a>("Examples/Create Prefab", true)]
+    static bool ValidateCreatePrefab()
+    {
+        return <a href="Selection-activeGameObject.html">Selection.activeGameObject</a> != null &amp;&amp; !<a href="EditorUtility.IsPersistent.html">EditorUtility.IsPersistent</a>(<a href="Selection-activeGameObject.html">Selection.activeGameObject</a>);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Experimental.AssetImporters.AssetImporterEditor.OnApplyRevertGUI</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Experimental</b>: this API is experimental and might be changed or removed in the future.</div><h1 class="heading inherit"><a href="Experimental.AssetImporters.AssetImporterEditor.html">AssetImporterEditor</a>.OnApplyRevertGUI</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>protected bool <span class="sig-kw">OnApplyRevertGUI</span>();
+    </div></div></div><div class="subsection"><h2>Returns</h2><p><strong>bool</strong>
+        Returns true if the new settings were successfully applied.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Process the 'Apply' and 'Revert' buttons.</p></div><div class="subsection"><p>This is called by ApplyRevertGUI to place and handle the 'Apply' and 'Revert' buttons.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEditor.Experimental.AssetImporters;<br /><br />public class ExampleScript : <a href="Experimental.AssetImporters.ScriptedImporterEditor.html">ScriptedImporterEditor</a>
+{
+    public override void OnInspectorGUI()
+    {
+        serializedObject.Update();<br /><br />        // Draw custom <a href="GUI.html">GUI</a><br /><br />        serializedObject.ApplyModifiedProperties();
+        ApplyRevertGUI();
+    }<br /><br />    private bool CanApply()
+    {
+        // Add custom checks that make sure the Importer is in a valid state to be applied.
+        return false;
+    }<br /><br />    protected virtual bool OnApplyRevertGUI()
+    {
+        using (new <a href="EditorGUI.DisabledScope.html">EditorGUI.DisabledScope</a>(!HasModified()))
+        {
+            RevertButton();
+            using (new <a href="EditorGUI.DisabledScope.html">EditorGUI.DisabledScope</a>(!CanApply()))
+            {
+                return ApplyButton();
+            }
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

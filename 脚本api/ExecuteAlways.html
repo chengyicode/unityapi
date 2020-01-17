@@ -1,0 +1,24 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ExecuteAlways</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">ExecuteAlways</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.CoreModule.html" class="cl">UnityEngine.CoreModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Makes instances of a script always execute, both as part of Play Mode and when editing.</p></div><div class="subsection"><p>By default, MonoBehaviours are only executed in Play Mode and only if they are on GameObjects in the main stage containing the user Scenes. They do not execute in Edit Mode, nor do they execute on objects edited in Prefab Mode, even while in Play Mode. By adding this attribute, any instance of the MonoBehaviour will have its callback functions executed at all times.<br /><br />The [ExecuteAlways] attribute can be used when you want your script to perform certain things as part of Editor tooling, which is not necessarily related to the Play logic that happens in buildt Players and in Play Mode. Sometimes the Play functionality of such a script is identical to its Edit Mode functionality, while other times they differ greatly.<br /><br />A MonoBehaviour using this attribute must ensure that they do not run Play logic that incorrectly modifies the object while in Edit Mode, or if the object is not part of the playing world. This can be done via <a href="Application.IsPlaying.html">Application.IsPlaying</a> in which the script can pass in its own GameObject to check if it's part of the playing world.<br /><br />If a MonoBehaviour runs Play logic in Play Mode and fails to check if its GameObject is part of the playing world, a Prefab being edited in Prefab Mode may incorrectly get modified and saved by logic intended only to be run as part of the game.<br /><br />If your script makes use of static variables or Singleton patterns, you should ensure that instances of the script that belong to the playing world and instances that don't will not accidentally affect each other through those variables or Singletons.<br /><br />On an object which is not part of the playing world, the functions are not called constantly like they otherwise are.<br />
+- <a href="MonoBehaviour.Update.html">Update</a> is only called when something in the Scene changed.<br />
+- <a href="MonoBehaviour.OnGUI.html">OnGUI</a> is called when the Game view receives a non-editor-only <a href="Event.html">Event</a> that it does not use (e.g., <a href="EventType.ScrollWheel.html">EventType.ScrollWheel</a>) and does not forward to the Editor's keyboard shortcut system (e.g., <a href="EventType.KeyDown.html">EventType.KeyDown</a>, <a href="EventType.KeyUp.html">EventType.KeyUp</a>). Events forwarded to the Game view are enqueued and are not guaranteed to be processed immediately.<br />
+- <a href="MonoBehaviour.OnRenderObject.html">OnRenderObject</a> and the other rendering callback functions are called on every repaint of the Scene view or Game view.<br /><br />See Also: <a href="Application.IsPlaying.html">Application.IsPlaying</a>, <a href="MonoBehaviour-runInEditMode.html">runInEditMode</a>, <a href="EditorApplication.QueuePlayerLoopUpdate.html">EditorApplication.QueuePlayerLoopUpdate</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />[<a href="ExecuteAlways.html">ExecuteAlways</a>]
+public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        if (<a href="Application.IsPlaying.html">Application.IsPlaying</a>(gameObject))
+        {
+            // Play logic
+        }
+        else
+        {
+            // <a href="Editor.html">Editor</a> logic
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

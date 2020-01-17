@@ -1,0 +1,39 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ParticleSystem.SizeBySpeedModule.z</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="ParticleSystem.SizeBySpeedModule.html">ParticleSystem.SizeBySpeedModule</a>.z</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-ParticleSystem.html' title='Go to ParticleSystem Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="ParticleSystem.MinMaxCurve.html">ParticleSystem.MinMaxCurve</a> <span class="sig-kw">z</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Size by speed curve for the Z axis.</p></div><div class="subsection"><p>Only used by mesh particles.
+See Also: <a href="ParticleSystem.MinMaxCurve.html">MinMaxCurve</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private <a href="ParticleSystem.html">ParticleSystem</a> ps;
+    public float hSliderValueX = 1.0f;
+    public float hSliderValueY = 1.0f;
+    public float hSliderValueZ = 1.0f;<br /><br />    void Start()
+    {
+        ps = GetComponent&lt;<a href="ParticleSystem.html">ParticleSystem</a>&gt;();<br /><br />        var sizeBySpeed = ps.sizeBySpeed;
+        sizeBySpeed.enabled = true;
+        sizeBySpeed.separateAxes = true;<br /><br />        <a href="AnimationCurve.html">AnimationCurve</a> curve = new <a href="AnimationCurve.html">AnimationCurve</a>();
+        curve.AddKey(0.0f, 0.0f);
+        curve.AddKey(1.0f, 1.0f);<br /><br />        <a href="ParticleSystem.MinMaxCurve.html">ParticleSystem.MinMaxCurve</a> minMaxCurve = new <a href="ParticleSystem.MinMaxCurve.html">ParticleSystem.MinMaxCurve</a>(1.0f, curve);<br /><br />        sizeBySpeed.x = minMaxCurve;
+        sizeBySpeed.y = minMaxCurve;
+        sizeBySpeed.z = minMaxCurve;
+        sizeBySpeed.range = new <a href="Vector2.html">Vector2</a>(1.0f, 10.0f);<br /><br />        var psr = GetComponent&lt;<a href="ParticleSystemRenderer.html">ParticleSystemRenderer</a>&gt;();
+        psr.material = new <a href="Material.html">Material</a>(<a href="Shader.Find.html">Shader.Find</a>("Sprites/Default"));    // this material renders a square billboard, making it easier to see the size
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        var sizeBySpeed = ps.sizeBySpeed;
+        sizeBySpeed.xMultiplier = hSliderValueX;
+        sizeBySpeed.yMultiplier = hSliderValueY;
+        sizeBySpeed.zMultiplier = hSliderValueZ;
+    }<br /><br />    void OnGUI()
+    {
+        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, 40, 100, 30), "X");
+        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, 80, 100, 30), "Y");
+        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, 120, 100, 30), "Z");<br /><br />        hSliderValueX = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(55, 45, 100, 30), hSliderValueX, 1.0f, 5.0f);
+        hSliderValueY = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(55, 85, 100, 30), hSliderValueY, 1.0f, 5.0f);
+        hSliderValueZ = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(55, 125, 100, 30), hSliderValueZ, 1.0f, 5.0f);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

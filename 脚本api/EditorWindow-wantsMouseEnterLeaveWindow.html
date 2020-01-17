@@ -1,0 +1,28 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorWindow.wantsMouseEnterLeaveWindow</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorWindow.html">EditorWindow</a>.wantsMouseEnterLeaveWindow</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public bool <span class="sig-kw">wantsMouseEnterLeaveWindow</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Checks whether MouseEnterWindow and MouseLeaveWindow events are received in the GUI in this Editor window.</p></div><div class="subsection"><p>If set to true, the window recieves an OnGUI call whenever the mouse enters or leaves a window.<br /><br /><strong>Note:</strong> This function does not trigger Repaint() Automatically.  Also, entering or leaving a window while a mouse button is pressed does not trigger either event, as pressing the mouse button activates drag mode (see <a href="EventType.MouseDrag.html">EventType.MouseDrag</a> and other drag-related events for more information).</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// <a href="Editor.html">Editor</a> Script that shows how mouse enter and leave window events
+// get caught in the <a href="Editor.html">Editor</a> window<br /><br />using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;<br /><br />public class WantsMouseEnterLeaveWindowEx : <a href="EditorWindow.html">EditorWindow</a>
+{
+    [<a href="MenuItem.html">MenuItem</a>("Example/wantsMouseEnterLeaveWindow example")]
+    static void Init()
+    {
+        <a href="EditorWindow.html">EditorWindow</a> editorWindow = GetWindow(typeof(WantsMouseEnterLeaveWindowEx));
+        editorWindow.Show();
+    }<br /><br />    public void OnGUI()
+    {
+        wantsMouseEnterLeaveWindow = <a href="EditorGUILayout.Toggle.html">EditorGUILayout.Toggle</a>("Receive Enter/Leave: ", wantsMouseEnterLeaveWindow);
+        <a href="EditorGUILayout.LabelField.html">EditorGUILayout.LabelField</a>("Check Console for MouseEnter/LeaveWindow messages");<br /><br />        // Repaint the window as wantsMouseEnterLeaveWindow doesnt trigger a repaint automatically
+        if (Event.current.type == <a href="EventType.MouseEnterWindow.html">EventType.MouseEnterWindow</a> ||
+            Event.current.type == <a href="EventType.MouseLeaveWindow.html">EventType.MouseLeaveWindow</a>)
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("Received event " +
+                ((Event.current.type == <a href="EventType.MouseEnterWindow.html">EventType.MouseEnterWindow</a>) ? "MouseEnterWindow" : "MouseLeaveWindow"));
+            Repaint();
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

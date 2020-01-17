@@ -1,0 +1,25 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ExecuteInEditMode</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">ExecuteInEditMode</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.CoreModule.html" class="cl">UnityEngine.CoreModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Makes all instances of a script execute in Edit Mode.</p></div><div class="subsection"><p>By default, MonoBehaviours are only executed in Play Mode. By adding this attribute, any instance of the MonoBehaviour will have its callback functions executed while the Editor is in Edit Mode too.<br /><br />This attribute is being phased out since it does not take Prefab Mode into account. If a Prefab with a MonoBehaviour with this attribute on is edited in Prefab Mode, and Play Mode is entered, the Editor will exit Prefab Mode to prevent accidental modifications to the Prefab caused by logic intended for Play Mode only.<br /><br />To indicate that a MonoBehaviour correctly takes Prefab Mode into account and is safe to have open in Prefab Mode while in Play Mode, the attribute <a href="ExecuteAlways.html">ExecuteAlways</a> can be used instead of the attribute here.<br /><br />The functions are not called constantly like they are in Play Mode.<br />
+- <a href="MonoBehaviour.Update.html">Update</a> is only called when something in the Scene changed.<br />
+- <a href="MonoBehaviour.OnGUI.html">OnGUI</a> is called when the Game View receives a non-editor-only <a href="Event.html">Event</a> that it does not use (e.g., <a href="EventType.ScrollWheel.html">EventType.ScrollWheel</a>) and does not forward to the Editor's keyboard shortcut system (e.g., <a href="EventType.KeyDown.html">EventType.KeyDown</a>, <a href="EventType.KeyUp.html">EventType.KeyUp</a>). Events forwarded to the Game View are enqueued and are not guaranteed to be processed immediately.<br />
+- <a href="MonoBehaviour.OnRenderObject.html">OnRenderObject</a> and the other rendering callback functions are called on every repaint of the Scene View or Game View.<br /><br />See Also: <a href="ExecuteAlways.html">ExecuteAlways</a>, <a href="Application.IsPlaying.html">Application.IsPlaying</a>, <a href="MonoBehaviour-runInEditMode.html">runInEditMode</a>, <a href="EditorApplication.QueuePlayerLoopUpdate.html">EditorApplication.QueuePlayerLoopUpdate</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// The PrintAwake script is placed on a <a href="GameObject.html">GameObject</a>.  The Awake function is
+// called when the <a href="GameObject.html">GameObject</a> is started at runtime.  The script is also
+// called by the <a href="Editor.html">Editor</a>.  An example is when the <a href="SceneManagement.Scene.html">Scene</a> is changed to a
+// different <a href="SceneManagement.Scene.html">Scene</a> in the Project window.
+// The <a href="Experimental.PlayerLoop.Update.html">Update</a>() function is called, for example, when the <a href="GameObject.html">GameObject</a> transform
+// position is changed in the <a href="Editor.html">Editor</a>.<br /><br />using UnityEngine;<br /><br />[<a href="ExecuteInEditMode.html">ExecuteInEditMode</a>]
+public class PrintAwake : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Awake()
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("<a href="Editor.html">Editor</a> causes this Awake");
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("<a href="Editor.html">Editor</a> causes this <a href="Experimental.PlayerLoop.Update.html">Update</a>");
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

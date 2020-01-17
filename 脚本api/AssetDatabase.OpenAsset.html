@@ -1,0 +1,15 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AssetDatabase.OpenAsset</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="AssetDatabase.html">AssetDatabase</a>.OpenAsset</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">OpenAsset</span>(int <span class="sig-kw">instanceID</span>,
+int <span class="sig-kw">lineNumber</span> = -1);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">OpenAsset</span>(int <span class="sig-kw">instanceID</span>,
+int <span class="sig-kw">lineNumber</span>,
+int <span class="sig-kw">columnNumber</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">OpenAsset</span>(<a href="Object.html">Object</a> <span class="sig-kw">target</span>,
+int <span class="sig-kw">lineNumber</span> = -1);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">OpenAsset</span>(<a href="Object.html">Object</a> <span class="sig-kw">target</span>,
+int <span class="sig-kw">lineNumber</span>,
+int <span class="sig-kw">columnNumber</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Opens the asset with associated application.</p></div><div class="subsection"><p>Opens asset in an external editor, texture application or modelling tool depending on what type of asset it is.
+If it is a text file, <code class="varname">lineNumber</code> and <code class="varname">columnNumber</code> instructs the text editor to go to that line and column.
+Returns true if asset opened successfully.</p></div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">OpenAsset</span>(Object[] <span class="sig-kw">objects</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Opens the asset(s) with associated application(s).</p></div><div class="subsection"><p>Opens asset in an external editor, texture application or modelling tool depending on what type of asset it is.
+Returns true if all assets opened successfully.</p></div></div></div></div></body></html>

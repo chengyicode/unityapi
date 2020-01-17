@@ -1,0 +1,30 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: TrailRenderer.textureMode</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="TrailRenderer.html">TrailRenderer</a>.textureMode</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-TrailRenderer.html' title='Go to TrailRenderer Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="LineTextureMode.html">LineTextureMode</a> <span class="sig-kw">textureMode</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Choose whether the U coordinate of the trail texture is tiled or stretched.</p></div><div class="subsection"><p>Stretching will cause the texture to be mapped once along the entire length of the trail, whereas Tiling will cause the texture to be repeated at a rate of once per world unit. To set the tiling rate, use <a href="Material.SetTextureScale.html">Material.SetTextureScale</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="LineTextureMode.html">LineTextureMode</a> textureMode = <a href="LineTextureMode.Stretch.html">LineTextureMode.Stretch</a>;
+    public float tileAmount = 1.0f;
+    private <a href="TrailRenderer.html">TrailRenderer</a> tr;<br /><br />    void Start()
+    {
+        tr = GetComponent&lt;<a href="TrailRenderer.html">TrailRenderer</a>&gt;();
+        tr.material = AssetDatabase.GetBuiltinExtraResource&lt;<a href="Material.html">Material</a>&gt;("Default-Particle.mat");
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        tr.textureMode = textureMode;
+        tr.material.SetTextureScale("_MainTex", new <a href="Vector2.html">Vector2</a>(tileAmount, 1.0f));
+        tr.transform.position = new <a href="Vector3.html">Vector3</a>(<a href="Mathf.Sin.html">Mathf.Sin</a>(<a href="Time-time.html">Time.time</a> * 1.51f) * 7.0f, <a href="Mathf.Cos.html">Mathf.Cos</a>(<a href="Time-time.html">Time.time</a> * 1.27f) * 4.0f, 0.0f);
+    }<br /><br />    void OnGUI()
+    {
+        textureMode = <a href="GUI.Toggle.html">GUI.Toggle</a>(new <a href="Rect.html">Rect</a>(25, 25, 200, 30), textureMode == <a href="LineTextureMode.Tile.html">LineTextureMode.Tile</a>, "Tiled") ? <a href="LineTextureMode.Tile.html">LineTextureMode.Tile</a> : <a href="LineTextureMode.Stretch.html">LineTextureMode.Stretch</a>;<br /><br />        if (textureMode == <a href="LineTextureMode.Tile.html">LineTextureMode.Tile</a>)
+        {
+            <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, 60, 200, 30), "<a href="Tilemaps.Tile.html">Tile</a> Amount");
+            tileAmount = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(125, 65, 200, 30), tileAmount, 0.1f, 4.0f);
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

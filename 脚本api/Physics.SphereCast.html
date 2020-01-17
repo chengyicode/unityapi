@@ -1,0 +1,49 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Physics.SphereCast</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Physics.html">Physics</a>.SphereCast</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">SphereCast</span>(<a href="Vector3.html">Vector3</a> <span class="sig-kw">origin</span>,
+float <span class="sig-kw">radius</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">direction</span>,
+out <a href="RaycastHit.html">RaycastHit</a> <span class="sig-kw">hitInfo</span>,
+float <span class="sig-kw">maxDistance</span> = Mathf.Infinity,
+int <span class="sig-kw">layerMask</span> = DefaultRaycastLayers,
+<a href="QueryTriggerInteraction.html">QueryTriggerInteraction</a> <span class="sig-kw">queryTriggerInteraction</span> = QueryTriggerInteraction.UseGlobal);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">origin</td><td class="desc"></td><td class="desc1">The center of the sphere at the start of the sweep.</td></tr><tr><td class="name lbl">radius</td><td class="desc"></td><td class="desc1">The radius of the sphere.</td></tr><tr><td class="name lbl">direction</td><td class="desc"></td><td class="desc1">The direction into which to sweep the sphere.</td></tr><tr><td class="name lbl">hitInfo</td><td class="desc"></td><td class="desc1">If true is returned, <code class="varname">hitInfo</code> will contain more information about where the collider was hit. (See Also: <a href="RaycastHit.html">RaycastHit</a>).</td></tr><tr><td class="name lbl">maxDistance</td><td class="desc"></td><td class="desc1">The max length of the cast.</td></tr><tr><td class="name lbl">layerMask</td><td class="desc"></td><td class="desc1">A <a href="../Manual/Layers.html">Layer mask</a> that is used to selectively ignore colliders when casting a capsule.</td></tr><tr><td class="name lbl">queryTriggerInteraction</td><td class="desc"></td><td class="desc1">Specifies whether this query should hit Triggers.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>bool</strong>
+        True when the sphere sweep intersects any collider, otherwise false.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Casts a sphere along a ray and returns detailed information on what was hit.</p></div><div class="subsection"><p>This is useful when a Raycast does not give enough precision, because you want to find out if an object of a specific size,
+such as a character, will be able to move somewhere without colliding with anything on the way.
+Think of the sphere cast like a thick raycast.  In this case the ray is specified by a start vector and a
+direction.<br /><br /><strong>Notes:</strong> SphereCast will not detect colliders for which the sphere overlaps the collider. Passing a zero radius results in undefined output and doesn't always behave the same as <a href="Physics.Raycast.html">Physics.Raycast</a>.<br /><br />See Also: <a href="Physics.SphereCastAll.html">Physics.SphereCastAll</a>, <a href="Physics.CapsuleCast.html">Physics.CapsuleCast</a>, <a href="Physics.Raycast.html">Physics.Raycast</a>, <a href="Rigidbody.SweepTest.html">Rigidbody.SweepTest</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="CharacterController.html">CharacterController</a> charCtrl;<br /><br />    void Start()
+    {
+        charCtrl = GetComponent&lt;<a href="CharacterController.html">CharacterController</a>&gt;();
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        <a href="RaycastHit.html">RaycastHit</a> hit;<br /><br />        <a href="Vector3.html">Vector3</a> p1 = transform.position + charCtrl.center;
+        float distanceToObstacle = 0;<br /><br />        // Cast a sphere wrapping character controller 10 meters forward
+        // to see if it is about to hit anything.
+        if (<a href="Physics.SphereCast.html">Physics.SphereCast</a>(p1, charCtrl.height / 2, transform.forward, out hit, 10))
+        {
+            distanceToObstacle = hit.distance;
+        }
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">SphereCast</span>(<a href="Ray.html">Ray</a> <span class="sig-kw">ray</span>,
+float <span class="sig-kw">radius</span>,
+float <span class="sig-kw">maxDistance</span> = Mathf.Infinity,
+int <span class="sig-kw">layerMask</span> = DefaultRaycastLayers,
+<a href="QueryTriggerInteraction.html">QueryTriggerInteraction</a> <span class="sig-kw">queryTriggerInteraction</span> = QueryTriggerInteraction.UseGlobal);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">ray</td><td class="desc"></td><td class="desc1">The starting point and direction of the ray into which the sphere sweep is cast.</td></tr><tr><td class="name lbl">radius</td><td class="desc"></td><td class="desc1">The radius of the sphere.</td></tr><tr><td class="name lbl">maxDistance</td><td class="desc"></td><td class="desc1">The max length of the cast.</td></tr><tr><td class="name lbl">layerMask</td><td class="desc"></td><td class="desc1">A <a href="../Manual/Layers.html">Layer mask</a> that is used to selectively ignore colliders when casting a capsule.</td></tr><tr><td class="name lbl">queryTriggerInteraction</td><td class="desc"></td><td class="desc1">Specifies whether this query should hit Triggers.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>bool</strong>
+        True when the sphere sweep intersects any collider, otherwise false.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Casts a sphere along a ray and returns detailed information on what was hit.</p></div><div class="subsection"><p>This is useful when a Raycast does not give enough precision, because you want to find out if an object of a specific size,
+such as a character, will be able to move somewhere without colliding with anything on the way.
+Think of the sphere cast like a thick raycast.<br /><br />See Also: <a href="Physics.SphereCastAll.html">Physics.SphereCastAll</a>, <a href="Physics.CapsuleCast.html">Physics.CapsuleCast</a>, <a href="Physics.Raycast.html">Physics.Raycast</a>, <a href="Rigidbody.SweepTest.html">Rigidbody.SweepTest</a>.</p></div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">SphereCast</span>(<a href="Ray.html">Ray</a> <span class="sig-kw">ray</span>,
+float <span class="sig-kw">radius</span>,
+out <a href="RaycastHit.html">RaycastHit</a> <span class="sig-kw">hitInfo</span>,
+float <span class="sig-kw">maxDistance</span> = Mathf.Infinity,
+int <span class="sig-kw">layerMask</span> = DefaultRaycastLayers,
+<a href="QueryTriggerInteraction.html">QueryTriggerInteraction</a> <span class="sig-kw">queryTriggerInteraction</span> = QueryTriggerInteraction.UseGlobal);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">ray</td><td class="desc"></td><td class="desc1">The starting point and direction of the ray into which the sphere sweep is cast.</td></tr><tr><td class="name lbl">radius</td><td class="desc"></td><td class="desc1">The radius of the sphere.</td></tr><tr><td class="name lbl">hitInfo</td><td class="desc"></td><td class="desc1">If true is returned, <code class="varname">hitInfo</code> will contain more information about where the collider was hit. (See Also: <a href="RaycastHit.html">RaycastHit</a>).</td></tr><tr><td class="name lbl">maxDistance</td><td class="desc"></td><td class="desc1">The max length of the cast.</td></tr><tr><td class="name lbl">layerMask</td><td class="desc"></td><td class="desc1">A <a href="../Manual/Layers.html">Layer mask</a> that is used to selectively ignore colliders when casting a capsule.</td></tr><tr><td class="name lbl">queryTriggerInteraction</td><td class="desc"></td><td class="desc1">Specifies whether this query should hit Triggers.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p></p></div></div></div></div></body></html>

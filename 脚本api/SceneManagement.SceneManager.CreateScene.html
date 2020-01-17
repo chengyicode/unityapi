@@ -1,0 +1,16 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: SceneManagement.SceneManager.CreateScene</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="SceneManagement.SceneManager.html">SceneManager</a>.CreateScene</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="SceneManagement.Scene.html">SceneManagement.Scene</a> <span class="sig-kw">CreateScene</span>(string <span class="sig-kw">sceneName</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="SceneManagement.Scene.html">SceneManagement.Scene</a> <span class="sig-kw">CreateScene</span>(string <span class="sig-kw">sceneName</span>,
+<a href="SceneManagement.CreateSceneParameters.html">SceneManagement.CreateSceneParameters</a> <span class="sig-kw">parameters</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">sceneName</td><td class="desc"></td><td class="desc1">The name of the new Scene. It cannot be empty or null, or same as the name of the existing Scenes.</td></tr><tr><td class="name lbl">parameters</td><td class="desc"></td><td class="desc1">Various parameters used to create the Scene.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>Scene</strong>
+        A reference to the new Scene that was created, or an invalid Scene if creation failed.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Create an empty new Scene at runtime with the given name.</p></div><div class="subsection"><p>The new Scene will be opened additively into the hierarchy alongside any existing Scenes that are currently open. The path of the new Scene will be empty. This function is for creating Scenes at runtime. To create a Scene at edit-time (for example, when making an editor script or tool which needs to create Scenes), use <a href="SceneManagement.EditorSceneManager.NewScene.html">EditorSceneManager.NewScene</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine.SceneManagement;
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="SceneManagement.Scene.html">Scene</a> newScene = <a href="SceneManagement.SceneManager.CreateScene.html">SceneManager.CreateScene</a>("My New <a href="SceneManagement.Scene.html">Scene</a>");
+}
+</pre>
+      </div></div></div></div></body></html>

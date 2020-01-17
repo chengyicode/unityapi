@@ -1,0 +1,48 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AsyncOperation.allowSceneActivation</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="AsyncOperation.html">AsyncOperation</a>.allowSceneActivation</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public bool <span class="sig-kw">allowSceneActivation</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Allow Scenes to be activated as soon as it is ready.</p></div><div class="subsection"><p>When used in combination with LoadLevelAsync &amp; LoadLevelAdditiveAsync it allows you
+to delay the actual activation of the Scene. (And unloading of the previous Scene).<br /><br />When <a href="AsyncOperation-allowSceneActivation.html">allowSceneActivation</a> is set to false then progress is stopped at 0.9.  The <a href="AsyncOperation-isDone.html">isDone</a> is then maintained at false.  When <a href="AsyncOperation-allowSceneActivation.html">allowSceneActivation</a> is set to true <a href="AsyncOperation-isDone.html">isDone</a> can complete. While <a href="AsyncOperation-isDone.html">isDone</a> is false, the <a href="AsyncOperation.html">AsyncOperation</a> queue is stalled. For example, if a LoadSceneAsync.allowSceneActivation is set to false, and another <a href="AsyncOperation.html">AsyncOperation</a> (e.g. <a href="SceneManagement.SceneManager.UnloadSceneAsync.html">SceneManager.UnloadSceneAsync</a> ) is initialized, the last operation will not be called before the first <a href="AsyncOperation-allowSceneActivation.html">allowSceneActivation</a> is set to true.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//This script lets you load a <a href="SceneManagement.Scene.html">Scene</a> asynchronously. It uses an asyncOperation to calculate the progress and outputs the current progress to Text (could also be used to make progress bars).<br /><br />//Attach this script to a <a href="GameObject.html">GameObject</a>
+//Create a <a href="UIElements.Button.html">Button</a> (<strong>Create</strong>&gt;<strong>UI</strong>&gt;<strong>Button</strong>) and a Text <a href="GameObject.html">GameObject</a> (<strong>Create</strong>&gt;<strong>UI</strong>&gt;<strong>Text</strong>) and attach them both to the Inspector of your <a href="GameObject.html">GameObject</a>
+//In Play <a href="Scripting.GarbageCollector.Mode.html">Mode</a>, press your <a href="UIElements.Button.html">Button</a> to load the <a href="SceneManagement.Scene.html">Scene</a>, and the Text changes depending on progress. Press the space key to activate the <a href="SceneManagement.Scene.html">Scene</a>.
+//<strong>Note:</strong> The progress may look like it goes straight to 100% if your <a href="SceneManagement.Scene.html">Scene</a> doesn’t have a lot to load.<br /><br />using System.Collections;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;<br /><br />public class AsyncOperationProgressExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public Text m_Text;
+    public <a href="UIElements.Button.html">Button</a> m_Button;<br /><br />    void Start()
+    {
+        //Call the LoadButton() function when the user clicks this <a href="UIElements.Button.html">Button</a>
+        m_Button.onClick.AddListener(LoadButton);
+    }<br /><br />    void LoadButton()
+    {
+        //Start loading the <a href="SceneManagement.Scene.html">Scene</a> asynchronously and output the progress bar
+        StartCoroutine(LoadScene());
+    }<br /><br />    IEnumerator LoadScene()
+    {
+        yield return null;<br /><br />        //Begin to load the <a href="SceneManagement.Scene.html">Scene</a> you specify
+        <a href="AsyncOperation.html">AsyncOperation</a> asyncOperation = <a href="SceneManagement.SceneManager.LoadSceneAsync.html">SceneManager.LoadSceneAsync</a>("Scene3");
+        //Don't let the <a href="SceneManagement.Scene.html">Scene</a> activate until you allow it to
+        asyncOperation.allowSceneActivation = false;
+        <a href="Debug.Log.html">Debug.Log</a>("Pro :" + asyncOperation.progress);
+        //When the load is still in progress, output the Text and progress bar
+        while (!asyncOperation.isDone)
+        {
+            //Output the current progress
+            m_Text.text = "Loading progress: " + (asyncOperation.progress * 100) + "%";<br /><br />            // Check if the load has finished
+            if (asyncOperation.progress &gt;= 0.9f)
+            {
+                //Change the Text to show the <a href="SceneManagement.Scene.html">Scene</a> is ready
+                m_Text.text = "Press the space bar to continue";
+                //Wait to you press the space key to activate the <a href="SceneManagement.Scene.html">Scene</a>
+                if (<a href="Input.GetKeyDown.html">Input.GetKeyDown</a>(<a href="KeyCode.Space.html">KeyCode.Space</a>))
+                    //Activate the <a href="SceneManagement.Scene.html">Scene</a>
+                    asyncOperation.allowSceneActivation = true;
+            }<br /><br />            yield return null;
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

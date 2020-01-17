@@ -1,0 +1,37 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Object.Destroy</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Object.html">Object</a>.Destroy</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">Destroy</span>(<a href="Object.html">Object</a> <span class="sig-kw">obj</span>,
+float <span class="sig-kw">t</span> = 0.0F);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">obj</td><td class="desc"></td><td class="desc1">The object to destroy.</td></tr><tr><td class="name lbl">t</td><td class="desc"></td><td class="desc1">The optional amount of time to delay before destroying the object.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Removes a GameObject, component or asset.</p></div><div class="subsection"><p>The object <code class="varname">obj</code> is destroyed immediately after the current Update loop, or <code class="varname">t</code> seconds from now if a time is specified.
+If <code class="varname">obj</code> is a <a href="Component.html">Component</a>, this method removes the component from the <a href="GameObject.html">GameObject</a> and destroys it.
+If <code class="varname">obj</code> is a <a href="GameObject.html">GameObject</a>, it destroys the <a href="GameObject.html">GameObject</a>, all its components and all transform children of the <a href="GameObject.html">GameObject</a>.
+Actual object destruction is always delayed until after the current Update loop, but is always done before rendering.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class ScriptExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void DestroyGameObject()
+    {
+        Destroy(gameObject);
+    }<br /><br />    void DestroyScriptInstance()
+    {
+        // Removes this script instance from the game object
+        Destroy(this);
+    }<br /><br />    void DestroyComponent()
+    {
+        // Removes the rigidbody from the game object
+        Destroy(GetComponent&lt;<a href="Rigidbody.html">Rigidbody</a>&gt;());
+    }<br /><br />    void DestroyObjectDelayed()
+    {
+        // Kills the game object in 5 seconds after loading the object
+        Destroy(gameObject, 5);
+    }<br /><br />    // When the user presses Ctrl, it will remove the
+    // <a href="BoxCollider.html">BoxCollider</a> component from the game object
+    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        if (<a href="Input.GetButton.html">Input.GetButton</a>("Fire1") &amp;&amp; GetComponent&lt;<a href="BoxCollider.html">BoxCollider</a>&gt;())
+        {
+            Destroy(GetComponent&lt;<a href="BoxCollider.html">BoxCollider</a>&gt;());
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Destroy is inherited from the UnityEngine.Object base class.</p></div></div></div></div></body></html>

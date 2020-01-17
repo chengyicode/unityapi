@@ -1,0 +1,80 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: NetworkError</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">NetworkError</h1><div class="clear"></div><p class="cl mb0 left mr10">enumeration</p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Possible Networking.NetworkTransport errors.</p></div><div class="subsection"><p>A group of possible NetworkTransport errors. If an error is returned from a NetworkTransport function, you can use NetworkError to find out what type of error occured.
+Make sure to use NetworkTransport.Receive or similar to listen for these type of events.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//Create a <a href="UIElements.Button.html">Button</a> (<strong>Create</strong>&gt;<strong>UI</strong>&gt;<strong>Button</strong>) for the host.<br /><br />//Attach this <a href="UIElements.Button.html">Button</a> in the Inspector of your <a href="GameObject.html">GameObject</a>.<br /><br />//In Play <a href="Scripting.GarbageCollector.Mode.html">Mode</a>, click the <a href="UIElements.Button.html">Button</a> to connect. If the connection works, the details are output to the Console window. If there is an error, the error is output to the console.<br /><br />using UnityEngine;
+using UnityEngine.Networking;
+using UnityEngine.UI;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    int m_ServerSocket;<br /><br />    HostTopology m_HostTopology;<br /><br />    //These are the Buttons that start the client and server, and the <a href="UIElements.Button.html">Button</a> for sending messages
+    //Assure that you assign these in the Inspector before testing
+    public <a href="UIElements.Button.html">Button</a> m_ServerButton;<br /><br />    void Start()
+    {
+        //Set up the <a href="MemoryProfiler.Connection.html">Connection</a> Configuration which holds channel information
+        ConnectionConfig config = new ConnectionConfig();<br /><br />        //Create a new Host information based on the configuration created, and the maximum connections allowed (20)
+        m_HostTopology = new HostTopology(config, 20);
+        //Initialise the NetworkTransport
+        NetworkTransport.Init();<br /><br />        //Call the ServerButton function when you click the server <a href="UIElements.Button.html">Button</a>
+        m_ServerButton.onClick.AddListener(ServerButton);
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        //These are the variables that are replaced by the incoming message
+        int outHostId;
+        int outConnectionId;
+        int outChannelId;
+        byte[] buffer = new byte[1024];
+        int receivedSize;
+        byte error;<br /><br />        //Set up the Network Transport to receive the incoming message, and decide what type of event
+        <a href="Networking.NetworkEventType.html">NetworkEventType</a> eventType = NetworkTransport.Receive(out outHostId, out outConnectionId, out outChannelId, buffer, buffer.Length, out receivedSize, out error);<br /><br />        switch (eventType)
+        {
+            //Use this case when there is a connection detected
+            case <a href="Networking.NetworkEventType.ConnectEvent.html">NetworkEventType.ConnectEvent</a>:
+            {
+                //Call the function to deal with the received information
+                OnConnect(outHostId, outConnectionId, (<a href="Networking.NetworkError.html">NetworkError</a>)error);
+                break;
+            }<br /><br />            case <a href="Networking.NetworkEventType.Nothing.html">NetworkEventType.Nothing</a>:
+                break;<br /><br />            default:
+                //Output the error
+                <a href="Debug.LogError.html">Debug.LogError</a>("Unknown network message type received: " + eventType);
+                break;
+        }
+    }<br /><br />    //This function is called when a connection is detected
+    void OnConnect(int hostID, int connectionID, <a href="Networking.NetworkError.html">NetworkError</a> error)
+    {
+        //Output the given information to the console
+        <a href="Debug.Log.html">Debug.Log</a>("OnConnect(hostId = " + hostID + ", connectionId = "
+            + connectionID + ", error = " + error.ToString() + ")");
+    }<br /><br />    void ServerButton()
+    {
+        byte error;
+        //Open the sockets for sending and receiving the messages on port 54321
+        m_ServerSocket = NetworkTransport.AddHost(m_HostTopology, 54321);
+        //Connect the "server"
+        NetworkTransport.Connect(m_ServerSocket, "127.0.0.1", 54321, 0, out error);
+        //Check for if there is an error
+        if ((<a href="Networking.NetworkError.html">NetworkError</a>)error != <a href="Networking.NetworkError.Ok.html">NetworkError.Ok</a>)
+        {
+            //Output this message in the console with the Network <a href="PackageManager.Error.html">Error</a>
+            <a href="Debug.Log.html">Debug.Log</a>("There was this error : " + (<a href="Networking.NetworkError.html">NetworkError</a>)error);
+        }
+        //Otherwise if no errors occur, output this message to the console
+        else <a href="Debug.Log.html">Debug.Log</a>("Connected : " + (<a href="Networking.NetworkError.html">NetworkError</a>)error);
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Networking.NetworkError.Ok.html">Ok</a></td><td class="desc"></td><td class="desc1">The operation completed successfully.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Networking.NetworkError.WrongHost.html">WrongHost</a></td><td class="desc"></td><td class="desc1">The specified host not available.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Networking.NetworkError.WrongConnection.html">WrongConnection</a></td><td class="desc"></td><td class="desc1">The specified connectionId doesn't exist.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Networking.NetworkError.WrongChannel.html">WrongChannel</a></td><td class="desc"></td><td class="desc1">The specified channel doesn't exist.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Networking.NetworkError.NoResources.html">NoResources</a></td><td class="desc"></td><td class="desc1">Not enough resources are available to process this request.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Networking.NetworkError.BadMessage.html">BadMessage</a></td><td class="desc"></td><td class="desc1">Not a data message.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Networking.NetworkError.Timeout.html">Timeout</a></td><td class="desc"></td><td class="desc1">Connection timed out.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Networking.NetworkError.MessageToLong.html">MessageToLong</a></td><td class="desc"></td><td class="desc1">The message is too long to fit the buffer.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Networking.NetworkError.WrongOperation.html">WrongOperation</a></td><td class="desc"></td><td class="desc1">Operation is not supported.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Networking.NetworkError.VersionMismatch.html">VersionMismatch</a></td><td class="desc"></td><td class="desc1">The protocol versions are not compatible. Check your library versions.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Networking.NetworkError.CRCMismatch.html">CRCMismatch</a></td><td class="desc"></td><td class="desc1">The Networking.ConnectionConfig  does not match the other endpoint.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Networking.NetworkError.DNSFailure.html">DNSFailure</a></td><td class="desc"></td><td class="desc1">The address supplied to connect to was invalid or could not be resolved.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Networking.NetworkError.UsageError.html">UsageError</a></td><td class="desc"></td><td class="desc1">This error will occur if any function is called with inappropriate parameter values.</td></tr>
+    </table></div></div></div></div></body></html>

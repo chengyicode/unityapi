@@ -1,0 +1,15 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: HandleUtility.GUIPointToScreenPixelCoordinate</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="HandleUtility.html">HandleUtility</a>.GUIPointToScreenPixelCoordinate</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Vector2.html">Vector2</a> <span class="sig-kw">GUIPointToScreenPixelCoordinate</span>(<a href="Vector2.html">Vector2</a> <span class="sig-kw">guiPoint</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Converts a 2D GUI position to screen pixel coordinates.</p></div><div class="subsection"><p>The bottom-left of the screen or window is at (0, 0). The top-right of the screen or window is at (<a href="Screen-width.html">Screen.width</a>, <a href="Screen-height.html">Screen.height</a>).<br /><br />See Also: <a href="Input-mousePosition.html">Input.mousePosition</a> and <a href="Camera.ScreenPointToRay.html">Camera.ScreenPointToRay</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public static <a href="Ray.html">Ray</a> GUIPointToWorldRay(<a href="Vector2.html">Vector2</a> guiPos, <a href="Camera.html">Camera</a> camera)
+    {
+        <a href="Vector2.html">Vector2</a> screenPixelPos = <a href="HandleUtility.GUIPointToScreenPixelCoordinate.html">HandleUtility.GUIPointToScreenPixelCoordinate</a>(guiPos);
+        return Camera.main.ScreenPointToRay(screenPixelPos);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

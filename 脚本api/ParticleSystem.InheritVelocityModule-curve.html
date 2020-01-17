@@ -1,0 +1,31 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ParticleSystem.InheritVelocityModule.curve</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="ParticleSystem.InheritVelocityModule.html">ParticleSystem.InheritVelocityModule</a>.curve</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-ParticleSystem.html' title='Go to ParticleSystem Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="ParticleSystem.MinMaxCurve.html">ParticleSystem.MinMaxCurve</a> <span class="sig-kw">curve</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Curve to define how much emitter velocity is applied during the lifetime of a particle.</p></div><div class="subsection"><p>See Also: <a href="ParticleSystem.MinMaxCurve.html">MinMaxCurve</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private <a href="ParticleSystem.html">ParticleSystem</a> ps;
+    public bool isEnabled = true;
+    public float hSliderValue = 5.0f;
+    public <a href="ParticleSystemInheritVelocityMode.html">ParticleSystemInheritVelocityMode</a> inheritMode;<br /><br />    void Start()
+    {
+        ps = GetComponent&lt;<a href="ParticleSystem.html">ParticleSystem</a>&gt;();<br /><br />        var main = ps.main;
+        main.simulationSpace = <a href="ParticleSystemSimulationSpace.World.html">ParticleSystemSimulationSpace.World</a>; // rate over distance only works for world space simulations<br /><br />        // add a sphere so we can see our transform position as it moves
+        var sphere = <a href="GameObject.CreatePrimitive.html">GameObject.CreatePrimitive</a>(<a href="PrimitiveType.Sphere.html">PrimitiveType.Sphere</a>);
+        sphere.transform.parent = ps.transform;
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        var inheritVelocity = ps.inheritVelocity;
+        inheritVelocity.enabled = isEnabled;
+        inheritVelocity.curve = hSliderValue;
+        inheritVelocity.mode = inheritMode;<br /><br />        ps.transform.position = new <a href="Vector3.html">Vector3</a>(<a href="Mathf.Sin.html">Mathf.Sin</a>(<a href="Time-time.html">Time.time</a> * 2.0f) * 2.0f, 0.0f, 0.0f);
+    }<br /><br />    void OnGUI()
+    {
+        isEnabled = <a href="GUI.Toggle.html">GUI.Toggle</a>(new <a href="Rect.html">Rect</a>(25, 45, 100, 30), isEnabled, "Enabled");
+        hSliderValue = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(25, 85, 100, 30), hSliderValue, 0.0f, 10.0f);
+        inheritMode = (<a href="ParticleSystemInheritVelocityMode.html">ParticleSystemInheritVelocityMode</a>)<a href="GUI.SelectionGrid.html">GUI.SelectionGrid</a>(new <a href="Rect.html">Rect</a>(25, 125, 300, 30), (int)inheritMode, new <a href="GUIContent.html">GUIContent</a>[] { new <a href="GUIContent.html">GUIContent</a>("Initial"), new <a href="GUIContent.html">GUIContent</a>("Current") }, 2);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

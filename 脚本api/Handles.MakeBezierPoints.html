@@ -1,0 +1,32 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Handles.MakeBezierPoints</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Handles.html">Handles</a>.MakeBezierPoints</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static Vector3[] <span class="sig-kw">MakeBezierPoints</span>(<a href="Vector3.html">Vector3</a> <span class="sig-kw">startPosition</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">endPosition</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">startTangent</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">endTangent</span>,
+int <span class="sig-kw">division</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Retuns an array of points to representing the bezier curve.</p></div><div class="subsection"><p>The <code class="mono">division</code> argument provides the number of lines used to make the bezier curve.<br /><br />See Also: <a href="Handles.DrawBezier.html">Handles.DrawBezier</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />// Generates 20 points that define the bezier curve<br /><br />[<a href="CustomEditor.html">CustomEditor</a>(typeof(DrawBezier))]
+public class DrawBezierExample : <a href="Editor.html">Editor</a>
+{
+    private <a href="Vector3.html">Vector3</a>[] points;<br /><br />    private void OnSceneGUI()
+    {
+        points = <a href="Handles.MakeBezierPoints.html">Handles.MakeBezierPoints</a>(
+            new <a href="Vector3.html">Vector3</a>(1.0f,  0.0f,   0.0f),
+            new <a href="Vector3.html">Vector3</a>(-1.0f,  0.0f,   0.0f),
+            new <a href="Vector3.html">Vector3</a>(-1.0f,  0.75f,  0.75f),
+            new <a href="Vector3.html">Vector3</a>(1.0f, -0.75f, -0.75f),
+            20);<br /><br />        <a href="Handles.DrawAAPolyLine.html">Handles.DrawAAPolyLine</a>(points);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>This is the second script:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />// The class called by the DrawBezierExample<br /><br />public class DrawBezier : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // no script needed, just the class
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,14 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Cloth.ClearTransformMotion</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Cloth.html">Cloth</a>.ClearTransformMotion</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Cloth.html' title='Go to Cloth Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">ClearTransformMotion</span>();
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Clear the pending transform changes from affecting the cloth simulation.</p></div><div class="subsection"><p>When the transform of a cloth changes, the cloth will not directly follow that change, but instead, the new positions of the SkinnedMeshRenderer's vertices will affect the cloth through the configured constraints in the next cloth simulation update, so that moving the tranform will result in realistic motion of the cloth.<br /><br />You can call ClearTransformMotion on the cloth to change this behavior. Calling ClearTransformMotion will move the cloth simulation particles along with the transform, so that the transform movement has no effect on the cloth simulation. This is useful if you want to teleport Characters from one point in the Scene to another, without having the cloth suddenly jerk into place.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="Vector3.html">Vector3</a> newPosition;<br /><br />    void Start()
+    {
+        transform.position = newPosition;
+        GetComponent&lt;<a href="Cloth.html">Cloth</a>&gt;().ClearTransformMotion();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

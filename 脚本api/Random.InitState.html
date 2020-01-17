@@ -1,0 +1,21 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Random.InitState</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Random.html">Random</a>.InitState</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">InitState</span>(int <span class="sig-kw">seed</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">seed</td><td class="desc"></td><td class="desc1">Seed used to initialize the random number generator.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Initializes the random number generator state with a seed.</p></div><div class="subsection"><p>The random number generator is not truly random but produces numbers in a preset sequence (the values in the sequence "jump" around the range in such a way that they appear random for most purposes).<br /><br />The point in the sequence where a particular run of pseudo-random values begins is selected using an integer called the <em>seed</em> value. The seed is normally set from some arbitrary value like the system clock before the random number functions are used. This prevents the same run of values from occurring each time a game is played and thus avoids predictable gameplay. However, it is sometimes useful to produce the same run of pseudo-random values on demand by setting the seed yourself.<br /><br />You might set your own seed, for example, when you generate a game level procedurally. You can use randomly-chosen elements to make the Scene look arbitrary and natural but set the seed to a preset value before generating. This will make sure that the same "random" pattern is produced each time the game is played. This can often be an effective way to reduce a game's storage requirements - you can generate as many levels as you like procedurally and store each one using nothing more than an integer seed value.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private float[] noiseValues;
+    void Start()
+    {
+        <a href="Random.InitState.html">Random.InitState</a>(42);
+        noiseValues = new float[10];
+        for (int i = 0; i &lt; noiseValues.Length; i++)
+        {
+            noiseValues[i] = <a href="Random-value.html">Random.value</a>;
+            <a href="Debug.Log.html">Debug.Log</a>(noiseValues[i]);
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

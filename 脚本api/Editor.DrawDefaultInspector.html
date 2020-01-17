@@ -1,0 +1,20 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Editor.DrawDefaultInspector</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Editor.html">Editor</a>.DrawDefaultInspector</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public bool <span class="sig-kw">DrawDefaultInspector</span>();
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Draws the built-in inspector.</p></div><div class="subsection"><p>Call this method, within the OnInspectorGUI method, to automatically draw the inspector.
+This is useful if you want to add a few buttons without having to redo the entire inspector.
+See Also: <a href="Editor.OnInspectorGUI.html">OnInspectorGUI</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">// This example shows a custom inspector for an
+// object "MyPlayer", which has a variable speed.
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;
+using System.Collections;<br /><br />[<a href="CustomEditor.html">CustomEditor</a>(typeof(MyPlayer))]
+public class Example : <a href="Editor.html">Editor</a>
+{
+    public override void OnInspectorGUI()
+    {
+        MyPlayer targetPlayer = (MyPlayer)target;
+        <a href="EditorGUILayout.LabelField.html">EditorGUILayout.LabelField</a> ("Some help", "Some other text");<br /><br />        targetPlayer.speed = <a href="EditorGUILayout.Slider.html">EditorGUILayout.Slider</a> ("Speed", targetPlayer.speed, 0, 100);<br /><br />        // Show default inspector property editor
+        DrawDefaultInspector ();
+    }
+}</pre>
+      </div></div></div></div></body></html>

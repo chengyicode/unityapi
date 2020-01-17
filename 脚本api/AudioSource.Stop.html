@@ -1,0 +1,47 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AudioSource.Stop</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="AudioSource.html">AudioSource</a>.Stop</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-AudioSource.html' title='Go to AudioSource Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">Stop</span>();
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Stops playing the <a href="AudioSource-clip.html">clip</a>.</p></div><div class="subsection"><p>The AudioSource.stop function stops the currently set Audio clip from playing. The Audio clip plays from the beginning the next time you play it.<br /><br />See Also: <a href="AudioSource.Play.html">Play</a>, <a href="AudioSource.Pause.html">Pause</a> functions.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//This script allows you to toggle music to play and stop.
+//Assign an <a href="AudioSource.html">AudioSource</a> to a <a href="GameObject.html">GameObject</a> and attach an Audio Clip in the Audio Source. Attach this script to the <a href="GameObject.html">GameObject</a>.<br /><br />using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="AudioSource.html">AudioSource</a> m_MyAudioSource;<br /><br />    //Play the music
+    bool m_Play;
+    //Detect when you use the toggle, ensures music isn’t played multiple times
+    bool m_ToggleChange;<br /><br />    void Start()
+    {
+        //Fetch the <a href="AudioSource.html">AudioSource</a> from the <a href="GameObject.html">GameObject</a>
+        m_MyAudioSource = GetComponent&lt;<a href="AudioSource.html">AudioSource</a>&gt;();
+        //Ensure the toggle is set to true for the music to play at start-up
+        m_Play = true;
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        //Check to see if you just set the toggle to positive
+        if (m_Play == true &amp;&amp; m_ToggleChange == true)
+        {
+            //Play the audio you attach to the <a href="AudioSource.html">AudioSource</a> component
+            m_MyAudioSource.Play();
+            //Ensure audio doesn’t play more than once
+            m_ToggleChange = false;
+        }
+        //Check if you just set the toggle to false
+        if (m_Play == false &amp;&amp; m_ToggleChange == true)
+        {
+            //Stop the audio
+            m_MyAudioSource.Stop();
+            //Ensure audio doesn’t play more than once
+            m_ToggleChange = false;
+        }
+    }<br /><br />    void OnGUI()
+    {
+        //<a href="PlayerSettings.Switch.html">Switch</a> this toggle to activate and deactivate the parent <a href="GameObject.html">GameObject</a>
+        m_Play = <a href="GUI.Toggle.html">GUI.Toggle</a>(new <a href="Rect.html">Rect</a>(10, 10, 100, 30), m_Play, "Play Music");<br /><br />        //Detect if there is a change with the toggle
+        if (<a href="GUI-changed.html">GUI.changed</a>)
+        {
+            //Change to true to show that there was just a change in the toggle state
+            m_ToggleChange = true;
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

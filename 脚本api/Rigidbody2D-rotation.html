@@ -1,0 +1,17 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Rigidbody2D.rotation</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Rigidbody2D.html">Rigidbody2D</a>.rotation</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Rigidbody2D.html' title='Go to Rigidbody2D Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public float <span class="sig-kw">rotation</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The rotation of the rigidbody.</p></div><div class="subsection"><p>This is the rotation around the z-axis only.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />// Rotate rigidBody2D every frame.  Start at 45 degrees.<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Rigidbody2D.html">Rigidbody2D</a> rigidBody2D;<br /><br />    void Start()
+    {
+        rigidBody2D = GetComponent&lt;<a href="Rigidbody2D.html">Rigidbody2D</a>&gt;();
+        rigidBody2D.rotation = 45f;
+    }<br /><br />    void <a href="Experimental.PlayerLoop.FixedUpdate.html">FixedUpdate</a>()
+    {
+        rigidBody2D.rotation += 1.0f;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

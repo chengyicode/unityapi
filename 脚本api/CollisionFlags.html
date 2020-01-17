@@ -1,0 +1,39 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: CollisionFlags</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">CollisionFlags</h1><div class="clear"></div><p class="cl mb0 left mr10">enumeration</p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>CollisionFlags is a bitmask returned by CharacterController.Move.</p></div><div class="subsection"><p>It gives you a broad overview of where your character collided with any other objects.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        <a href="CharacterController.html">CharacterController</a> controller = GetComponent&lt;<a href="CharacterController.html">CharacterController</a>&gt;();<br /><br />        if (controller.collisionFlags == <a href="CollisionFlags.None.html">CollisionFlags.None</a>)
+        {
+            print("Free floating!");
+        }<br /><br />        if ((controller.collisionFlags &amp; <a href="CollisionFlags.Sides.html">CollisionFlags.Sides</a>) != 0)
+        {
+            print("Touching sides!");
+        }<br /><br />        if (controller.collisionFlags == <a href="CollisionFlags.Sides.html">CollisionFlags.Sides</a>)
+        {
+            print("Only touching sides, nothing else!");
+        }<br /><br />        if ((controller.collisionFlags &amp; <a href="CollisionFlags.Above.html">CollisionFlags.Above</a>) != 0)
+        {
+            print("Touching Ceiling!");
+        }<br /><br />        if (controller.collisionFlags == <a href="CollisionFlags.Above.html">CollisionFlags.Above</a>)
+        {
+            print("Only touching Ceiling, nothing else!");
+        }<br /><br />        if ((controller.collisionFlags &amp; <a href="CollisionFlags.Below.html">CollisionFlags.Below</a>) != 0)
+        {
+            print("Touching ground!");
+        }<br /><br />        if (controller.collisionFlags == <a href="CollisionFlags.Below.html">CollisionFlags.Below</a>)
+        {
+            print("Only touching ground, nothing else!");
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="CollisionFlags.None.html">None</a></td><td class="desc"></td><td class="desc1">CollisionFlags is a bitmask returned by CharacterController.Move.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="CollisionFlags.Sides.html">Sides</a></td><td class="desc"></td><td class="desc1">CollisionFlags is a bitmask returned by CharacterController.Move.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="CollisionFlags.Above.html">Above</a></td><td class="desc"></td><td class="desc1">CollisionFlags is a bitmask returned by CharacterController.Move.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="CollisionFlags.Below.html">Below</a></td><td class="desc"></td><td class="desc1">CollisionFlags is a bitmask returned by CharacterController.Move.</td></tr>
+    </table></div></div></div></div></body></html>

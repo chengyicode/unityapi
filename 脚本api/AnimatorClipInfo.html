@@ -1,0 +1,25 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AnimatorClipInfo</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">AnimatorClipInfo</h1><div class="clear"></div><p class="cl mb0 left mr10">struct in
+          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.AnimationModule.html" class="cl">UnityEngine.AnimationModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Information about clip being played and blended by the Animator.</p></div><div class="subsection"><p>See Also: <a href="Animator.GetCurrentAnimatorClipInfo.html">Animator.GetCurrentAnimatorClipInfo</a> and <a href="Animator.GetNextAnimatorClipInfo.html">Animator.GetNextAnimatorClipInfo</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//Create a <a href="GameObject.html">GameObject</a> and attach an <a href="Animator.html">Animator</a> component (Click the Add <a href="Component.html">Component</a> button in the Inspector of the <a href="GameObject.html">GameObject</a> and go to Miscellaneous&gt;<a href="Animator.html">Animator</a>). Set up the <a href="Animator.html">Animator</a> how you would like.
+//Attach this script to the <a href="GameObject.html">GameObject</a><br /><br />//This script outputs the current clip from the <a href="Animator.html">Animator</a> to the console
+using UnityEngine;<br /><br />public class AnimationClipInfoClipExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="Animator.html">Animator</a> m_Animator;
+    <a href="AnimatorClipInfo.html">AnimatorClipInfo</a>[] m_AnimatorClipInfo;<br /><br />    // Use this for initialization
+    void Start()
+    {
+        //Fetch the <a href="Animator.html">Animator</a> component from the <a href="GameObject.html">GameObject</a>
+        m_Animator = GetComponent&lt;<a href="Animator.html">Animator</a>&gt;();
+        //Get the animator clip information from the <a href="Animator.html">Animator</a> Controller
+        m_AnimatorClipInfo = m_Animator.GetCurrentAnimatorClipInfo(0);
+        //Output the name of the starting clip
+        <a href="Debug.Log.html">Debug.Log</a>("Starting clip : " + m_AnimatorClipInfo[0].clip);
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Properties 属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="AnimatorClipInfo-clip.html">clip</a></td><td class="desc"></td><td class="desc1">Returns the animation clip played by the Animator.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AnimatorClipInfo-weight.html">weight</a></td><td class="desc"></td><td class="desc1">Returns the blending weight used by the Animator to blend this clip.</td></tr>
+    </table></div></div></div></div></body></html>

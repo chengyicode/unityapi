@@ -1,0 +1,28 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: DynamicGI.SetEnvironmentData</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="DynamicGI.html">DynamicGI</a>.SetEnvironmentData</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">SetEnvironmentData</span>(float[] <span class="sig-kw">input</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">input</td><td class="desc"></td><td class="desc1">Array of float values to be used for Realtime GI environment lighting.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Allows overriding the distant environment lighting for Realtime GI, without changing the Skybox Material.</p></div><div class="subsection"><p>The input array represents a cube with each face being 8 x 8 texels and each texel being 4 floats (for the RGBA values of the texel's color), so the size of the array is 8*8*6*4 = 1536 floats.<br />Note that changing the Distant Environment Lighting Source or Environment Lighting Intensity will overwrite the data set with this function.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        // Set custom environment data for Realtime GI.
+        const int kCubeSize = 8 * 8;
+        const int kEnvironmentDataSize = kCubeSize * 6 * 4;
+        float[] envData = new float[kEnvironmentDataSize];<br /><br />        for (int c = 0; c &lt; 6; ++c) // cube has 6 sides.
+        {
+            for (int i = 0; i &lt; kCubeSize; i += 4)
+            {
+                int index = c * kCubeSize;<br /><br />                // Fill with default values.
+                envData[index + i + 0] = 0.0f;
+                envData[index + i + 1] = 0.0f;
+                envData[index + i + 2] = 0.0f;
+                envData[index + i + 3] = 1.0f;<br /><br />                // Funky colors on each cube face.
+                envData[index + i + (c / 2)] = 4.0f * (float)i / (float)kCubeSize;
+            }
+        }<br /><br />        // Send the generated environment data to the GI system.
+        <a href="DynamicGI.SetEnvironmentData.html">DynamicGI.SetEnvironmentData</a>(envData);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

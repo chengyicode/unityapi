@@ -1,0 +1,46 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Rigidbody2D.AddForce</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Rigidbody2D.html">Rigidbody2D</a>.AddForce</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Rigidbody2D.html' title='Go to Rigidbody2D Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">AddForce</span>(<a href="Vector2.html">Vector2</a> <span class="sig-kw">force</span>,
+<a href="ForceMode2D.html">ForceMode2D</a> <span class="sig-kw">mode</span> = ForceMode2D.Force);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">force</td><td class="desc"></td><td class="desc1">Components of the force in the X and Y axes.</td></tr><tr><td class="name lbl">mode</td><td class="desc"></td><td class="desc1">The method used to apply the specified force.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Apply a force to the rigidbody.</p></div><div class="subsection"><p>The force is specified as two separate components in the X and Y directions (there is no Z direction in 2D physics). The object will be accelerated by the force according to the law <em>force = mass x acceleration</em> - the larger the mass, the greater the force required to accelerate to a given speed.<br /><br />If you don’t specify a ForceMode2D the default will be used.
+The default in this case is ForceMode2D.Force which adds force over time, using mass.<br /><br />To use the example scripts below, drag and drop your chosen script onto a Sprite in the Hierarchy. Make sure that the Sprite has a Rigidbody2D component.<br /><br />
+See Also: <a href="Rigidbody2D.AddForceAtPosition.html">AddForceAtPosition</a>, <a href="Rigidbody2D.AddTorque.html">AddTorque</a>, <a href="Rigidbody2D-mass.html">mass</a>, <a href="Rigidbody2D-velocity.html">velocity</a>, <a href="Rigidbody2D.AddForce.html">AddForce</a>, <a href="ForceMode2D.html">ForceMode2D</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// The sprite will fall under its weight.  After a short time the
+// sprite will start its upwards travel due to the thrust force that is added
+// in the opposite direction<br /><br />
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleTwo : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private <a href="Rigidbody2D.html">Rigidbody2D</a> rb2D;
+    private float thrust = 10.0f;<br /><br />    void Start()
+    {
+        rb2D = gameObject.AddComponent&lt;<a href="Rigidbody2D.html">Rigidbody2D</a>&gt;();
+        transform.position = new <a href="Vector3.html">Vector3</a>(0.0f, -2.0f, 0.0f);
+    }<br /><br />    void <a href="Experimental.PlayerLoop.FixedUpdate.html">FixedUpdate</a>()
+    {
+        rb2D.AddForce(transform.up * thrust);
+    }
+}
+</pre>
+      </div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// For short bursts of force (such as an explosion) use <a href="ForceMode2D.Impulse.html">ForceMode2D.Impulse</a>
+// This adds an instant force impulse to the <a href="Rigidbody2D.html">Rigidbody2D</a>, using mass<br /><br />using System.Collections;
+using UnityEngine;<br /><br />public class ExampleOne : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private <a href="Rigidbody2D.html">Rigidbody2D</a> rb2D;
+    private float thrust = 10.0f;<br /><br />    private void Start()
+    {
+        rb2D = gameObject.AddComponent&lt;<a href="Rigidbody2D.html">Rigidbody2D</a>&gt;();
+        transform.position = new <a href="Vector3.html">Vector3</a>(0.0f, -2.0f, 0.0f);
+    }<br /><br />    private void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        if (<a href="Input.GetKeyDown.html">Input.GetKeyDown</a>(<a href="KeyCode.Space.html">KeyCode.Space</a>))
+        {
+            rb2D.AddForce(transform.up * thrust, <a href="ForceMode2D.Impulse.html">ForceMode2D.Impulse</a>);
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Animator.SetFloat</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Animator.html">Animator</a>.SetFloat</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Animator.html' title='Go to Animator Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">SetFloat</span>(string <span class="sig-kw">name</span>,
+float <span class="sig-kw">value</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">SetFloat</span>(string <span class="sig-kw">name</span>,
+float <span class="sig-kw">value</span>,
+float <span class="sig-kw">dampTime</span>,
+float <span class="sig-kw">deltaTime</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">SetFloat</span>(int <span class="sig-kw">id</span>,
+float <span class="sig-kw">value</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">SetFloat</span>(int <span class="sig-kw">id</span>,
+float <span class="sig-kw">value</span>,
+float <span class="sig-kw">dampTime</span>,
+float <span class="sig-kw">deltaTime</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">name</td><td class="desc"></td><td class="desc1">The parameter name.</td></tr><tr><td class="name lbl">id</td><td class="desc"></td><td class="desc1">The parameter ID.</td></tr><tr><td class="name lbl">value</td><td class="desc"></td><td class="desc1">The new parameter value.</td></tr><tr><td class="name lbl">dampTime</td><td class="desc"></td><td class="desc1">The damper total time.</td></tr><tr><td class="name lbl">deltaTime</td><td class="desc"></td><td class="desc1">The delta time to give to the damper.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Send float values to the Animator to affect transitions.</p></div><div class="subsection"><p>Use SetFloat in a script to send float values to the Animator in order to activate transitions. In the Animator, define what values affect how certain animations transition. This is useful in various situations, especially in animation cycles such as movement animations where you might require the character to walk or run depending on the button pressure applied.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//The code below shows how to send the horizontal value of the controller or keys to the <a href="Animator.html">Animator</a>.
+//You must assign the same parameter name in the <a href="Animator.html">Animator</a> as you set in SetFloat, in this case “horizontalSpeed”. You must also handle the transition conditions in the <a href="Animator.html">Animator</a>, to tell which values should cause each transition.
+//For example, the walking animation triggers when the horizontal value is above 0, and the running animation triggers when the horizontal value reaches past 0.5. Assigning animations to states are also done in the <a href="Animator.html">Animator</a>.<br /><br />using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="Animator.html">Animator</a> m_Animator;
+    float m_HorizontalMovement;<br /><br />    void Start()
+    {
+        //Get the animator, which you attach to the <a href="GameObject.html">GameObject</a> you are intending to animate.
+        m_Animator = gameObject.GetComponent&lt;<a href="Animator.html">Animator</a>&gt;();
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        //Translate the left and right button presses or the horizontal joystick movements to a float
+        m_HorizontalMovement = <a href="Input.GetAxis.html">Input.GetAxis</a>("Horizontal");
+        //Sends the value from the horizontal axis input to the animator. Change the settings in the
+        //<a href="Animator.html">Animator</a> to define when the character is walking or running
+        m_Animator.SetFloat("horizontalSpeed", m_HorizontalMovement);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>
+        <img src="../StaticFiles/ScriptRefImages/AnimatorSetFloat.png" />
+        <br />
+        <br />Above is an example setup of the Animator for accepting floats.</p></div></div></div></div></body></html>

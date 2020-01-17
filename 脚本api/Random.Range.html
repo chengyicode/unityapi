@@ -1,0 +1,31 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Random.Range</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Random.html">Random</a>.Range</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static float <span class="sig-kw">Range</span>(float <span class="sig-kw">min</span>,
+float <span class="sig-kw">max</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Return a random float number between <code class="varname">min</code> [inclusive] and <code class="varname">max</code> [inclusive] (Read Only).</p></div><div class="subsection"><p>Note <code class="varname">max</code> is inclusive. <code class="mono">Random.Range(0.0f, 1.0f)</code> can return <code class="mono">1.0</code> as the value. The <a href="Random.Range.html">Random.Range</a> distribution is uniform. <a href="Random.Range.html">Range</a> is a Random Number Generator.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="GameObject.html">GameObject</a> prefab;<br /><br />    // Instantiate the Prefab somewhere between -10.0 and 10.0 on the x-z plane
+    void Start()
+    {
+        <a href="Vector3.html">Vector3</a> position = new <a href="Vector3.html">Vector3</a>(<a href="Random.Range.html">Random.Range</a>(-10.0f, 10.0f), 0, <a href="Random.Range.html">Random.Range</a>(-10.0f, 10.0f));
+        Instantiate(prefab, position, <a href="Quaternion-identity.html">Quaternion.identity</a>);
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static int <span class="sig-kw">Range</span>(int <span class="sig-kw">min</span>,
+int <span class="sig-kw">max</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Return a random integer number between <code class="varname">min</code> [inclusive] and <code class="varname">max</code> [exclusive] (Read Only).</p></div><div class="subsection"><p>Note <code class="varname">max</code> is exclusive. <code class="mono">Random.Range(0, 10)</code> can return a value between 0 and 9. Return <code class="varname">min</code> if <code class="varname">max</code> equals <code class="varname">min</code>. The <a href="Random.Range.html">Random.Range</a> distribution is uniform. <a href="Random.Range.html">Range</a> is a Random Number Generator.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.SceneManagement;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Loads a random level from the level list<br /><br />    void Start()
+    {
+        <a href="SceneManagement.SceneManager.LoadScene.html">SceneManager.LoadScene</a>(<a href="Random.Range.html">Random.Range</a>(0, <a href="SceneManagement.SceneManager-sceneCount.html">SceneManager.sceneCount</a>));
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

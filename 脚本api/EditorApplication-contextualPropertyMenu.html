@@ -1,0 +1,33 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorApplication.contextualPropertyMenu</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorApplication.html">EditorApplication</a>.contextualPropertyMenu</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="EditorApplication.SerializedPropertyCallbackFunction.html">EditorApplication.SerializedPropertyCallbackFunction</a> <span class="sig-kw">contextualPropertyMenu</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Callback raised whenever the user contex-clicks on a property in an Inspector.</p></div><div class="subsection"><p>This callback is useful to add custom contextual menu items which can perform operations on a particular property.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//This script creates a new menu item named "Example" in the <strong>Window</strong> dropdown menu. Press this to create the Example window.<br /><br />using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;
+using System.Collections;<br /><br />public class Example : <a href="EditorWindow.html">EditorWindow</a>
+{
+    [<a href="MenuItem.html">MenuItem</a>("Window/Example")]<br /><br />    public static void  ShowWindow()
+    {
+        <a href="EditorWindow.GetWindow.html">EditorWindow.GetWindow</a>(typeof(Example));
+    }<br /><br />    void OnEnable()
+    {
+        <a href="EditorApplication-contextualPropertyMenu.html">EditorApplication.contextualPropertyMenu</a> += OnPropertyContextMenu;
+    }<br /><br />    void OnDestroy()
+    {
+        <a href="EditorApplication-contextualPropertyMenu.html">EditorApplication.contextualPropertyMenu</a> -= OnPropertyContextMenu;
+    }<br /><br />    void OnPropertyContextMenu(<a href="GenericMenu.html">GenericMenu</a> menu, <a href="SerializedProperty.html">SerializedProperty</a> property)
+    {
+        // show a custom menu item only for <a href="Vector3.html">Vector3</a> properties
+        if (property.propertyType != <a href="SerializedPropertyType.Vector3.html">SerializedPropertyType.Vector3</a>)
+            return;<br /><br />        // and only when called on a <a href="Transform.html">Transform</a> component
+        if (property.serializedObject.targetObject.GetType() != typeof(<a href="Transform.html">Transform</a>))
+            return;<br /><br />        var propertyCopy = property.Copy();
+        menu.AddItem(new <a href="GUIContent.html">GUIContent</a>("Randomize Vector"), false, () =&gt;
+        {
+            propertyCopy.vector3Value = <a href="Random-insideUnitSphere.html">Random.insideUnitSphere</a> * 5;
+            propertyCopy.serializedObject.ApplyModifiedProperties();
+        });
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

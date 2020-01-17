@@ -1,0 +1,56 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Compilation.AssemblyBuilder.Build</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Compilation.AssemblyBuilder.html">AssemblyBuilder</a>.Build</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public bool <span class="sig-kw">Build</span>();
+    </div></div></div><div class="subsection"><h2>Returns</h2><p><strong>bool</strong>
+        Returns true if build was started. Returns false if the build was not started due to the editor currently compiling scripts in the Assets folder.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Starts the build of the assembly.<br /><br />While building, the small progress icon in the lower right corner of Unity's main window will spin and <a href="EditorApplication-isCompiling.html">EditorApplication.isCompiling</a> will return true.</p></div><div class="subsection"><p>Use <a href="Compilation.AssemblyBuilder-buildStarted.html">AssemblyBuilder.buildStarted</a> and <a href="Compilation.AssemblyBuilder-buildFinished.html">AssemblyBuilder.buildFinished</a> to get notified when the build has started and finished.<br /><br />See Also: <a href="Compilation.AssemblyBuilder-buildStarted.html">AssemblyBuilder.buildStarted</a>, <a href="Compilation.AssemblyBuilder-buildFinished.html">AssemblyBuilder.buildFinished</a>, <a href="Compilation.AssemblyBuilder-status.html">AssemblyBuilder.status</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">using System.IO;
+using System.Linq;
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEditor.Compilation;
+using UnityEngine;<br /><br />public class AssembyBuilderExample
+{
+    [<a href="MenuItem.html">MenuItem</a>("<a href="Compilation.AssemblyBuilder.html">AssemblyBuilder</a> Example/Build <a href="Compilation.Assembly.html">Assembly</a> Async")]
+    public static void BuildAssemblyAsync()
+    {
+        BuildAssembly(false);
+    }<br /><br />    [<a href="MenuItem.html">MenuItem</a>("<a href="Compilation.AssemblyBuilder.html">AssemblyBuilder</a> Example/Build <a href="Compilation.Assembly.html">Assembly</a> Sync")]
+    public static void BuildAssemblySync()
+    {
+        BuildAssembly(true);
+    }<br /><br />    static void BuildAssembly(bool wait)
+    {
+        var scripts = new[] { "Temp/MyAssembly/MyScript1.cs", "Temp/MyAssembly/MyScript2.cs" };
+        var outputAssembly = "Temp/MyAssembly/MyAssembly.dll";
+        var assemblyProjectPath = "Assets/MyAssembly.dll";<br /><br />        <a href="Windows.Directory.CreateDirectory.html">Directory.CreateDirectory</a>("Temp/MyAssembly");<br /><br />        // Create scripts
+        foreach (var scriptPath in scripts)
+        {
+            var scriptName = <a href="Path.GetFileNameWithoutExtension.html">Path.GetFileNameWithoutExtension</a>(scriptPath);
+            File.WriteAllText(scriptPath, string.Format("using UnityEngine; public class {0} : <a href="MonoBehaviour.html">MonoBehaviour</a> {{ void Start() {{ <a href="Debug.Log.html">Debug.Log</a>(\"{0}\"); }} }}", scriptName));
+        }<br /><br />        var assemblyBuilder = new <a href="Compilation.AssemblyBuilder.html">AssemblyBuilder</a>(outputAssembly, scripts);<br /><br />        // Exclude a reference to the copy of the assembly in the Assets folder, if any.
+        assemblyBuilder.excludeReferences = new string[] { assemblyProjectPath };<br /><br />        // Called on main thread
+        assemblyBuilder.buildStarted += delegate(string assemblyPath)
+        {
+            <a href="Debug.LogFormat.html">Debug.LogFormat</a>("<a href="Compilation.Assembly.html">Assembly</a> build started for {0}", assemblyPath);
+        };<br /><br />        // Called on main thread
+        assemblyBuilder.buildFinished += delegate(string assemblyPath, <a href="Compilation.CompilerMessage.html">CompilerMessage</a>[] compilerMessages)
+        {
+            var errorCount = compilerMessages.Count(m =&gt; m.type == <a href="Compilation.CompilerMessageType.Error.html">CompilerMessageType.Error</a>);
+            var warningCount = compilerMessages.Count(m =&gt; m.type == <a href="Compilation.CompilerMessageType.Warning.html">CompilerMessageType.Warning</a>);<br /><br />            <a href="Debug.LogFormat.html">Debug.LogFormat</a>("<a href="Compilation.Assembly.html">Assembly</a> build finished for {0}", assemblyPath);
+            <a href="Debug.LogFormat.html">Debug.LogFormat</a>("Warnings: {0} - Errors: {0}", errorCount, warningCount);<br /><br />            if(errorCount == 0)
+            {
+                File.Copy(outputAssembly, assemblyProjectPath, true);
+                <a href="AssetDatabase.ImportAsset.html">AssetDatabase.ImportAsset</a>(assemblyProjectPath);
+            }
+        };<br /><br />        // Start build of assembly
+        if(!assemblyBuilder.Build())
+        {
+            <a href="Debug.LogErrorFormat.html">Debug.LogErrorFormat</a>("Failed to start build of assembly {0}!", assemblyBuilder.assemblyPath);
+            return;
+        }<br /><br />        if(wait)
+        {
+            while(assemblyBuilder.status != <a href="Compilation.AssemblyBuilderStatus.Finished.html">AssemblyBuilderStatus.Finished</a>)
+                System.Threading.Thread.Sleep(10);
+        }
+    }
+}</pre>
+      </div></div></div></div></body></html>

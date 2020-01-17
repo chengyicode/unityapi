@@ -1,0 +1,39 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Touch.phase</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Touch.html">Touch</a>.phase</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="TouchPhase.html">TouchPhase</a> <span class="sig-kw">phase</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Describes the phase of the touch.</p></div><div class="subsection"><p>The touch <code class="varname">phase</code> refers to the action the finger has taken on the most recent frame update. Since a touch is tracked over its "lifetime" by the device, the start and end of a touch and movements in between can be reported on the frames they occur. The <code class="varname">phase</code> property can be used as the basis of a "switch' statement or as part of a more sophisticated state handling system.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Vector2.html">Vector2</a> startPos;
+    public <a href="Vector2.html">Vector2</a> direction;
+    public bool directionChosen;
+    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        // Track a single touch as a direction control.
+        if (<a href="Input-touchCount.html">Input.touchCount</a> &gt; 0)
+        {
+            <a href="Touch.html">Touch</a> touch = <a href="Input.GetTouch.html">Input.GetTouch</a>(0);<br /><br />            // Handle finger movements based on touch phase.
+            switch (touch.phase)
+            {
+                // Record initial touch position.
+                case <a href="TouchPhase.Began.html">TouchPhase.Began</a>:
+                    startPos = touch.position;
+                    directionChosen = false;
+                    break;<br /><br />                // Determine direction by comparing the current touch position with the initial one.
+                case <a href="TouchPhase.Moved.html">TouchPhase.Moved</a>:
+                    direction = touch.position - startPos;
+                    break;<br /><br />                // Report that a direction has been chosen when the finger is lifted.
+                case <a href="TouchPhase.Ended.html">TouchPhase.Ended</a>:
+                    directionChosen = true;
+                    break;
+            }
+        }
+        if (directionChosen)
+        {
+            // Something that uses the chosen direction...
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

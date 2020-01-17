@@ -1,0 +1,28 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: MonoBehaviour.OnApplicationFocus(bool)</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="MonoBehaviour.html">MonoBehaviour</a>.OnApplicationFocus(bool)</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">hasFocus</td><td class="desc"></td><td class="desc1">True if the GameObjects have focus, else False.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Sent to all GameObjects when the player gets or loses focus.</p></div><div class="subsection"><p>
+        <a href="MonoBehaviour.OnApplicationFocus.html">OnApplicationFocus</a> is called when the application loses or
+        gains focus.  Alt-tabbing or Cmd-tabbing can take focus away from the Unity
+        application to another desktop application. This causes the GameObjects to receive
+        an <a href="MonoBehaviour.OnApplicationFocus.html">OnApplicationFocus</a> call with the argument set to false.  When the user
+        switches back to the Unity application, the GameObjects receive an <a href="MonoBehaviour.OnApplicationFocus.html">OnApplicationFocus</a>
+        call with the argument set to true.<br /><br />        <a href="MonoBehaviour.OnApplicationFocus.html">OnApplicationFocus</a> can be a co-routine; to do this, use the yield statement
+        in the function. Implemented this way, it is evaluated twice during the initial
+        frame: first as an early notification, and secondly during the normal co-routine update step.<br /><br />On Android, when the on-screen keyboard is enabled, it causes an <a href="MonoBehaviour.OnApplicationFocus.html">OnApplicationFocus</a>( false ) event.
+Additionally, if you press <strong>Home</strong> at the moment the keyboard is enabled, the <a href="MonoBehaviour.OnApplicationFocus.html">OnApplicationFocus</a>() event is not called, but <a href="MonoBehaviour.OnApplicationPause.html">OnApplicationPause</a>() is called instead.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class AppPaused : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    bool isPaused = false;<br /><br />    void OnGUI()
+    {
+        if (isPaused)
+            <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(100, 100, 50, 30), "Game paused");
+    }<br /><br />    void OnApplicationFocus(bool hasFocus)
+    {
+        isPaused = !hasFocus;
+    }<br /><br />    void OnApplicationPause(bool pauseStatus)
+    {
+        isPaused = pauseStatus;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

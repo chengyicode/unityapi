@@ -1,0 +1,29 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Networking.Match.NetworkMatch.CreateMatch</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Method group is Obsolete</b><br /></div><h1 class="heading inherit"><a href="Networking.Match.NetworkMatch.html">NetworkMatch</a>.CreateMatch</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public <a href="Coroutine.html">Coroutine</a> <span class="sig-kw">CreateMatch</span>(string <span class="sig-kw">matchName</span>,
+uint <span class="sig-kw">matchSize</span>,
+bool <span class="sig-kw">matchAdvertise</span>,
+string <span class="sig-kw">matchPassword</span>,
+string <span class="sig-kw">publicClientAddress</span>,
+string <span class="sig-kw">privateClientAddress</span>,
+int <span class="sig-kw">eloScoreForMatch</span>,
+int <span class="sig-kw">requestDomain</span>,
+DataResponseDelegate&lt;MatchInfo&gt; <span class="sig-kw">callback</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">matchName</td><td class="desc"></td><td class="desc1">The text string describing the name for this match.</td></tr><tr><td class="name lbl">matchSize</td><td class="desc"></td><td class="desc1">When creating a match, the matchmaker will use either this value, or the maximum size you have configured online at https://multiplayer.unity3d.com, whichever is lower. This way you can specify different match sizes for a particular game, but still maintain an overall size limit in the online control panel.</td></tr><tr><td class="name lbl">matchAdvertise</td><td class="desc"></td><td class="desc1">A bool indicating if this match should be available in NetworkMatch.ListMatches results.</td></tr><tr><td class="name lbl">matchPassword</td><td class="desc"></td><td class="desc1">A text string indicating if this match is password protected. If it is, all clients trying to join this match must supply the correct match password.</td></tr><tr><td class="name lbl">publicClientAddress</td><td class="desc"></td><td class="desc1">The optional public client address. This value is stored on the matchmaker and given to clients listing matches. It is intended to be a network address for connecting to this client directly over the internet. This value will only be present if a publicly available address is known, and direct connection is supported by the matchmaker.</td></tr><tr><td class="name lbl">privateClientAddress</td><td class="desc"></td><td class="desc1">The optional private client address. This value is stored on the matchmaker and given to clients listing matches. It is intended to be a network address for connecting to this client directly on a local area network. This value will only be present if direct connection is supported by the matchmaker. This may be an empty string and it will not affect the ability to interface with matchmaker or use relay server.</td></tr><tr><td class="name lbl">eloScoreForMatch</td><td class="desc"></td><td class="desc1">The Elo score for the client hosting the match being created.  If this number is set on all clients to indicate relative skill level, this number is used to return matches ordered by those that are most suitable for play given a listing player's skill level. This may be 0 on all clients, which would disable any Elo calculations in the MatchMaker.</td></tr><tr><td class="name lbl">requestDomain</td><td class="desc"></td><td class="desc1">The request domain for this request. Only requests in the same domain can interface with each other. For example if a NetworkMatch.CreateMatch is made with domain 1, only ListMatches that also specify domain 1 will find that match. Use this value to silo different (possibly incompatible) client versions.</td></tr><tr><td class="name lbl">callback</td><td class="desc"></td><td class="desc1">The callback to be called when this function completes. This will be called regardless of whether the function succeeds or fails.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>Coroutine</strong>
+        This function is asynchronous and will complete at some point in the future, when the coroutine has finished communicating with the service backend.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Use this function to create a new match. The client which calls this function becomes the host of the match.</p></div><div class="subsection"><p>When creating a match you should call this function and wait for the callback to be invoked before proceeding. The callback will indicate if the call was successful as well as extended information if it failed. After receiving the response callback you then should call StartHost() with the passed in MatchInfo.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.Networking;
+using UnityEngine.Networking.Match;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        NetworkManager.singleton.StartMatchMaker();
+        NetworkManager.singleton.matchMaker.CreateMatch("roomName", 4, true, "", "", "", 0, 0, OnMatchCreate);
+    }<br /><br />    public void OnMatchCreate(bool success, string extendedInfo, MatchInfo matchInfo)
+    {
+        // ...
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

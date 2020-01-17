@@ -1,0 +1,53 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: DictationRecognizer</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">DictationRecognizer</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine.Windows.Speech</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.CoreModule.html" class="cl">UnityEngine.CoreModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>DictationRecognizer listens to speech input and attempts to determine what phrase was uttered.</p></div><div class="subsection"><p>Users can register and listen for hypothesis and phrase completed events.  Start() and Stop() methods respectively enable and disable dictation recognition. Once done with the recognizer, it must be disposed using Dispose() method to release the resources it uses. It will release these resources automatically during garbage collection at an additional performance cost if they are not released prior to that.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.Windows.Speech;<br /><br />public class DictationScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    [<a href="SerializeField.html">SerializeField</a>]
+    private Text m_Hypotheses;<br /><br />    [<a href="SerializeField.html">SerializeField</a>]
+    private Text m_Recognitions;<br /><br />    private <a href="Windows.Speech.DictationRecognizer.html">DictationRecognizer</a> m_DictationRecognizer;<br /><br />    void Start()
+    {
+        m_DictationRecognizer = new <a href="Windows.Speech.DictationRecognizer.html">DictationRecognizer</a>();<br /><br />        m_DictationRecognizer.DictationResult += (text, confidence) =&gt;
+        {
+            <a href="Debug.LogFormat.html">Debug.LogFormat</a>("Dictation result: {0}", text);
+            m_Recognitions.text += text + "\n";
+        };<br /><br />        m_DictationRecognizer.DictationHypothesis += (text) =&gt;
+        {
+            <a href="Debug.LogFormat.html">Debug.LogFormat</a>("Dictation hypothesis: {0}", text);
+            m_Hypotheses.text += text;
+        };<br /><br />        m_DictationRecognizer.DictationComplete += (completionCause) =&gt;
+        {
+            if (completionCause != <a href="Windows.Speech.DictationCompletionCause.Complete.html">DictationCompletionCause.Complete</a>)
+                <a href="Debug.LogErrorFormat.html">Debug.LogErrorFormat</a>("Dictation completed unsuccessfully: {0}.", completionCause);
+        };<br /><br />        m_DictationRecognizer.DictationError += (error, hresult) =&gt;
+        {
+            <a href="Debug.LogErrorFormat.html">Debug.LogErrorFormat</a>("Dictation error: {0}; HResult = {1}.", error, hresult);
+        };<br /><br />        m_DictationRecognizer.Start();
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Dictation recognizer is currently functional only on Windows 10, and requires that dictation is permitted in the user's Speech privacy policy (Settings-&gt;Privacy-&gt;Speech, inking &amp; typing). If dictation is not enabled, DictationRecognizer will fail on <a href="Windows.Speech.DictationRecognizer.Start.html">Start</a>. Developers can handle this failure in an app-specific way by providing a <a href="Windows.Speech.DictationRecognizer.DictationError.html">DictationError</a> delegate and testing for SPERR_SPEECH_PRIVACY_POLICY_NOT_ACCEPTED (0x80045509).</p></div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Windows.Speech.DictationRecognizer.AutoSilenceTimeoutSeconds.html">AutoSilenceTimeoutSeconds</a></td><td class="desc"></td><td class="desc1">The time length in seconds before dictation recognizer session ends due to lack of audio input.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Windows.Speech.DictationRecognizer.InitialSilenceTimeoutSeconds.html">InitialSilenceTimeoutSeconds</a></td><td class="desc"></td><td class="desc1">The time length in seconds before dictation recognizer session ends due to lack of audio input in case there was no audio heard in the current session.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Windows.Speech.DictationRecognizer.Status.html">Status</a></td><td class="desc"></td><td class="desc1">Indicates the status of dictation recognizer.</td></tr>
+    </table></div><div class="subsection"><h2>Constructors</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Windows.Speech.DictationRecognizer-ctor.html">DictationRecognizer</a></td><td class="desc"></td><td class="desc1">Create a DictationRecognizer with the specified minimum confidence and dictation topic constraint. Phrases under the specified minimum level will be ignored.</td></tr>
+    </table></div><div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Windows.Speech.DictationRecognizer.Dispose.html">Dispose</a></td><td class="desc"></td><td class="desc1">Disposes the resources this dictation recognizer uses.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Windows.Speech.DictationRecognizer.Start.html">Start</a></td><td class="desc"></td><td class="desc1">Starts the dictation recognization session. Dictation recognizer can only be started if PhraseRecognitionSystem is not running.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Windows.Speech.DictationRecognizer.Stop.html">Stop</a></td><td class="desc"></td><td class="desc1">Stops the dictation recognization session.</td></tr>
+    </table></div><div class="subsection"><h2>Events</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Windows.Speech.DictationRecognizer.DictationComplete.html">DictationComplete</a></td><td class="desc"></td><td class="desc1">Event that is triggered when the recognizer session completes.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Windows.Speech.DictationRecognizer.DictationError.html">DictationError</a></td><td class="desc"></td><td class="desc1">Event that is triggered when the recognizer session encouters an error.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Windows.Speech.DictationRecognizer.DictationHypothesis.html">DictationHypothesis</a></td><td class="desc"></td><td class="desc1">Event that is triggered when the recognizer changes its hypothesis for the current fragment.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Windows.Speech.DictationRecognizer.DictationResult.html">DictationResult</a></td><td class="desc"></td><td class="desc1">Event indicating a phrase has been recognized with the specified confidence level.</td></tr>
+    </table></div><div class="subsection"><h2>Delegates</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Windows.Speech.DictationRecognizer.DictationCompletedDelegate.html">DictationCompletedDelegate</a></td><td class="desc"></td><td class="desc1">Delegate for DictationComplete event.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Windows.Speech.DictationRecognizer.DictationErrorHandler.html">DictationErrorHandler</a></td><td class="desc"></td><td class="desc1">Delegate for DictationError event.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Windows.Speech.DictationRecognizer.DictationHypothesisDelegate.html">DictationHypothesisDelegate</a></td><td class="desc"></td><td class="desc1">Callback indicating a hypothesis change event. You should register with DictationHypothesis event.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Windows.Speech.DictationRecognizer.DictationResultDelegate.html">DictationResultDelegate</a></td><td class="desc"></td><td class="desc1">Callback indicating a phrase has been recognized with the specified confidence level. You should register with DictationResult event.</td></tr>
+    </table></div></div></div></div></body></html>

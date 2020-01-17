@@ -1,0 +1,19 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Event.mousePosition</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Event.html">Event</a>.mousePosition</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Vector2.html">Vector2</a> <span class="sig-kw">mousePosition</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The mouse position.</p></div><div class="subsection"><p>Used in <a href="EventType.MouseMove.html">EventType.MouseMove</a> and <a href="EventType.MouseDrag.html">EventType.MouseDrag</a> events.  The top-left of the window returns (0, 0).  The bottom-right returns (Screen.width, Screen.height).<br /><br />See Also: <a href="Event-delta.html">Event.delta</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />// print the mousePosition every 10th of a second<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private float range = 0.0f;<br /><br />    void OnGUI()
+    {
+        range = range + <a href="Time-deltaTime.html">Time.deltaTime</a>;<br /><br />        if (range &gt; 0.1f)
+        {
+            <a href="Event.html">Event</a> e = <a href="Event-current.html">Event.current</a>;
+            <a href="Debug.Log.html">Debug.Log</a>(e.mousePosition);
+            range = 0.0f;
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

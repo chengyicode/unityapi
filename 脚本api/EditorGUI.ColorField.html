@@ -1,0 +1,63 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorGUI.ColorField</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorGUI.html">EditorGUI</a>.ColorField</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Color.html">Color</a> <span class="sig-kw">ColorField</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+<a href="Color.html">Color</a> <span class="sig-kw">value</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Color.html">Color</a> <span class="sig-kw">ColorField</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+string <span class="sig-kw">label</span>,
+<a href="Color.html">Color</a> <span class="sig-kw">value</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Color.html">Color</a> <span class="sig-kw">ColorField</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+<a href="GUIContent.html">GUIContent</a> <span class="sig-kw">label</span>,
+<a href="Color.html">Color</a> <span class="sig-kw">value</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Color.html">Color</a> <span class="sig-kw">ColorField</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+<a href="GUIContent.html">GUIContent</a> <span class="sig-kw">label</span>,
+<a href="Color.html">Color</a> <span class="sig-kw">value</span>,
+bool <span class="sig-kw">showEyedropper</span>,
+bool <span class="sig-kw">showAlpha</span>,
+bool <span class="sig-kw">hdr</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public static <a href="Color.html">Color</a> <span class="sig-kw">ColorField</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+<a href="GUIContent.html">GUIContent</a> <span class="sig-kw">label</span>,
+<a href="Color.html">Color</a> <span class="sig-kw">value</span>,
+bool <span class="sig-kw">showEyedropper</span>,
+bool <span class="sig-kw">showAlpha</span>,
+bool <span class="sig-kw">hdr</span>,
+<a href="ColorPickerHDRConfig.html">ColorPickerHDRConfig</a> <span class="sig-kw">hdrConfig</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">position</td><td class="desc"></td><td class="desc1">Rectangle on the screen to use for the field.</td></tr><tr><td class="name lbl">label</td><td class="desc"></td><td class="desc1">Optional label to display in front of the field.</td></tr><tr><td class="name lbl">value</td><td class="desc"></td><td class="desc1">The color to edit.</td></tr><tr><td class="name lbl">showEyedropper</td><td class="desc"></td><td class="desc1">If true, the color picker should show the eyedropper control. If false, don't show it.</td></tr><tr><td class="name lbl">showAlpha</td><td class="desc"></td><td class="desc1">If true, allow the user to set an alpha value for the color. If false, hide the alpha component.</td></tr><tr><td class="name lbl">hdr</td><td class="desc"></td><td class="desc1">If true, treat the color as an HDR value. If false, treat it as a standard LDR value.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>Color</strong>
+        The color selected by the user.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Makes a field for selecting a <a href="Color.html">Color</a>.</p></div><div class="subsection"><p>
+        <img src="../StaticFiles/ScriptRefImages/EditorGUIColorField.png" />
+        <br />
+<em>Color field in an Editor Window.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />// Change The color of the selected Game Objects
+class EditorGUIColorField : <a href="EditorWindow.html">EditorWindow</a>
+{
+    <a href="Color.html">Color</a> matColor  = <a href="Color-white.html">Color.white</a>;<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Examples/Mass <a href="Color.html">Color</a> Change")]<br /><br />    static void Init()
+    {
+        var window = GetWindow&lt;EditorGUIColorField&gt;();
+        window.position = new <a href="Rect.html">Rect</a>(0, 0, 170, 60);
+        window.Show();
+    }<br /><br />    void OnGUI()
+    {
+        matColor = <a href="EditorGUI.ColorField.html">EditorGUI.ColorField</a>(new <a href="Rect.html">Rect</a>(3, 3, position.width - 6, 15),
+            "New <a href="Color.html">Color</a>:",
+            matColor);
+        if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(3, 25, position.width - 6, 30), "Change!"))
+        {
+            ChangeColors();
+        }
+    }<br /><br />    void ChangeColors()
+    {
+        if (<a href="Selection-activeGameObject.html">Selection.activeGameObject</a>)
+        {
+            foreach (<a href="GameObject.html">GameObject</a> obj in <a href="Selection-gameObjects.html">Selection.gameObjects</a>)
+            {
+                <a href="Renderer.html">Renderer</a> rend = obj.GetComponent&lt;<a href="Renderer.html">Renderer</a>&gt;();<br /><br />                if (rend != null)
+                {
+                    rend.sharedMaterial.color = matColor;
+                }
+            }
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

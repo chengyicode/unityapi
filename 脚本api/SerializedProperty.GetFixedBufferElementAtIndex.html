@@ -1,0 +1,27 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: SerializedProperty.GetFixedBufferElementAtIndex</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="SerializedProperty.html">SerializedProperty</a>.GetFixedBufferElementAtIndex</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="SerializedProperty.html">SerializedProperty</a> <span class="sig-kw">GetFixedBufferElementAtIndex</span>(int <span class="sig-kw">index</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Returns the element at the specified index in the fixed buffer.</p></div><div class="subsection"><p>See Also: <a href="SerializedProperty-isFixedBuffer.html">isFixedBuffer</a>, <a href="SerializedProperty-fixedBufferSize.html">fixedBufferSize</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />[System.Serializable]
+public unsafe struct TestStruct
+{
+    public fixed int intBuffer[7];
+}<br /><br />public unsafe class TestScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public TestStruct testStruct;<br /><br />    void Start()
+    {
+        fixed(int* buffer = testStruct.intBuffer)
+        {
+            for (int i = 0; i &lt; 7; ++i)
+                buffer[i] = 3 + i;
+        }<br /><br />        var so = new <a href="SerializedObject.html">SerializedObject</a>(this);
+        var prop = so.FindProperty("testStruct.intBuffer");<br /><br />        <a href="Debug.Log.html">Debug.Log</a>("isFixedBuffer = " + prop.isFixedBuffer);
+        <a href="Debug.Log.html">Debug.Log</a>("fixedBufferSize = " + prop.fixedBufferSize);<br /><br />        var elemProp = prop.GetFixedBufferElementAtIndex(2);<br /><br />        <a href="Debug.Log.html">Debug.Log</a>("GetFixedBufferElementAtIndex(2) = " + elemProp.intValue);<br /><br />        elemProp.intValue = 42;<br /><br />        so.ApplyModifiedProperties();<br /><br />        fixed(int* buffer = testStruct.intBuffer)
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("intBuffer[2] = " + buffer[2]);
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

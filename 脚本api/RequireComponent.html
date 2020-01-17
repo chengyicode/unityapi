@@ -1,0 +1,26 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: RequireComponent</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">RequireComponent</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.CoreModule.html" class="cl">UnityEngine.CoreModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>The RequireComponent attribute automatically adds required components as dependencies.</p></div><div class="subsection"><p>When you add a script which uses RequireComponent to a GameObject, the required component will automatically be added to the GameObject.
+This is useful to avoid setup errors.
+For example a script might require that a Rigidbody is always added to the same GameObject.
+Using RequireComponent this will be done automatically, thus you can never get the setup wrong.
+Note that RequireComponent only checks for missing dependencies during the moment the component is added to a GameObject. Existing instances of the component whose GameObject lacks the new dependencies will not have those dependencies automatically added.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />// PlayerScript requires the <a href="GameObject.html">GameObject</a> to have a <a href="Rigidbody.html">Rigidbody</a> component
+[<a href="RequireComponent.html">RequireComponent</a>(typeof(<a href="Rigidbody.html">Rigidbody</a>))]
+public class PlayerScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="Rigidbody.html">Rigidbody</a> rb;<br /><br />    void Start()
+    {
+        rb = GetComponent&lt;<a href="Rigidbody.html">Rigidbody</a>&gt;();
+    }<br /><br />    void <a href="Experimental.PlayerLoop.FixedUpdate.html">FixedUpdate</a>()
+    {
+        rb.AddForce(<a href="Vector3-up.html">Vector3.up</a>);
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Constructors</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="RequireComponent-ctor.html">RequireComponent</a></td><td class="desc"></td><td class="desc1">Require a single component.</td></tr>
+    </table></div></div></div></div></body></html>

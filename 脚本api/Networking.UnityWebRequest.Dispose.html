@@ -1,0 +1,19 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Networking.UnityWebRequest.Dispose</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Networking.UnityWebRequest.html">UnityWebRequest</a>.Dispose</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">Dispose</span>();
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Signals that this <a href="Networking.UnityWebRequest.html">UnityWebRequest</a> is no longer being used, and should clean up any resources it is using.</p></div><div class="subsection"><p>You must call Dispose once you have finished using a <a href="Networking.UnityWebRequest.html">UnityWebRequest</a> object, regardless of whether the request succeeded or failed.<br /><br />For safety, it is usually a best practice to employ the <a href="https://msdn.microsoft.com/en-us/library/yh598w02.aspx">using statement</a> to ensure that a [UnityWebRequest] is properly cleaned up in case of uncaught exceptions.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.Networking;
+using System.Collections;<br /><br />public class MyExampleBehaviour : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public IEnumerator Start()
+    {
+        using (<a href="Networking.UnityWebRequest.html">UnityWebRequest</a> request = <a href="Networking.UnityWebRequest.Get.html">UnityWebRequest.Get</a>("http://my-website.com"))
+        {
+            yield return request.Send();
+            <a href="Debug.Log.html">Debug.Log</a>("Server responded: " + request.downloadHandler.text);
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

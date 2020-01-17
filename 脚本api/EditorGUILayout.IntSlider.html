@@ -1,0 +1,71 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorGUILayout.IntSlider</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorGUILayout.html">EditorGUILayout</a>.IntSlider</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static int <span class="sig-kw">IntSlider</span>(int <span class="sig-kw">value</span>,
+int <span class="sig-kw">leftValue</span>,
+int <span class="sig-kw">rightValue</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static int <span class="sig-kw">IntSlider</span>(string <span class="sig-kw">label</span>,
+int <span class="sig-kw">value</span>,
+int <span class="sig-kw">leftValue</span>,
+int <span class="sig-kw">rightValue</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static int <span class="sig-kw">IntSlider</span>(<a href="GUIContent.html">GUIContent</a> <span class="sig-kw">label</span>,
+int <span class="sig-kw">value</span>,
+int <span class="sig-kw">leftValue</span>,
+int <span class="sig-kw">rightValue</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">label</td><td class="desc"></td><td class="desc1">Optional label in front of the slider.</td></tr><tr><td class="name lbl">value</td><td class="desc"></td><td class="desc1">The value the slider shows. This determines the position of the draggable thumb.</td></tr><tr><td class="name lbl">leftValue</td><td class="desc"></td><td class="desc1">The value at the left end of the slider.</td></tr><tr><td class="name lbl">rightValue</td><td class="desc"></td><td class="desc1">The value at the right end of the slider.</td></tr><tr><td class="name lbl">options</td><td class="desc"></td><td class="desc1">An optional list of layout options that specify extra layout properties. Any values passed in here will override settings defined by the <code class="varname">style</code>.<br />
+See Also: <a href="GUILayout.Width.html">GUILayout.Width</a>, <a href="GUILayout.Height.html">GUILayout.Height</a>, <a href="GUILayout.MinWidth.html">GUILayout.MinWidth</a>, <a href="GUILayout.MaxWidth.html">GUILayout.MaxWidth</a>, <a href="GUILayout.MinHeight.html">GUILayout.MinHeight</a>,
+<a href="GUILayout.MaxHeight.html">GUILayout.MaxHeight</a>, <a href="GUILayout.ExpandWidth.html">GUILayout.ExpandWidth</a>, <a href="GUILayout.ExpandHeight.html">GUILayout.ExpandHeight</a>.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>int</strong>
+        The value that has been set by the user.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Make a slider the user can drag to change an integer value between a min and a max.</p></div><div class="subsection"><p>
+        <img src="../StaticFiles/ScriptRefImages/EditorGUILayoutIntSlider.png" />
+        <br />
+<em>Create a grid of cloned Objects.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;<br /><br />// Simple editor script that lets you clone your object in a grid<br /><br />public class IntSliderExample : <a href="EditorWindow.html">EditorWindow</a>
+{
+    int cloneTimesX  = 1;
+    int cloneTimesY  = 1;
+    int cloneTimesZ  = 1;
+    int spacing   = 2;<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Examples/<a href="Editor.html">Editor</a> <a href="GUILayout.html">GUILayout</a> IntSlider usage")]
+    static void Init()
+    {
+        <a href="EditorWindow.html">EditorWindow</a> window = GetWindow(typeof(IntSliderExample));
+        window.Show();
+    }<br /><br />    void OnGUI()
+    {
+        cloneTimesX = <a href="EditorGUILayout.IntSlider.html">EditorGUILayout.IntSlider</a>(cloneTimesX, 1, 10);
+        cloneTimesY = <a href="EditorGUILayout.IntSlider.html">EditorGUILayout.IntSlider</a>(cloneTimesY, 1, 10);
+        cloneTimesZ = <a href="EditorGUILayout.IntSlider.html">EditorGUILayout.IntSlider</a>(cloneTimesZ, 1, 10);<br /><br />        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Duplicate object"))
+            CloneSelected();
+    }<br /><br />    void CloneSelected()
+    {
+        if (!<a href="Selection-activeGameObject.html">Selection.activeGameObject</a>)
+        {
+            <a href="Debug.LogError.html">Debug.LogError</a>("Select a <a href="GameObject.html">GameObject</a> first");
+            return;
+        }<br /><br />        for (int i = 0; i &lt; cloneTimesX; i++)
+            for (int j = 0; j &lt; cloneTimesY; j++)
+                for (int k = 0; k &lt; cloneTimesZ; k++)
+                    Instantiate(<a href="Selection-activeGameObject.html">Selection.activeGameObject</a>, new <a href="Vector3.html">Vector3</a>(i, j, k) * spacing, Selection.activeGameObject.transform.rotation);
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">IntSlider</span>(<a href="SerializedProperty.html">SerializedProperty</a> <span class="sig-kw">property</span>,
+int <span class="sig-kw">leftValue</span>,
+int <span class="sig-kw">rightValue</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">IntSlider</span>(<a href="SerializedProperty.html">SerializedProperty</a> <span class="sig-kw">property</span>,
+int <span class="sig-kw">leftValue</span>,
+int <span class="sig-kw">rightValue</span>,
+string <span class="sig-kw">label</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">IntSlider</span>(<a href="SerializedProperty.html">SerializedProperty</a> <span class="sig-kw">property</span>,
+int <span class="sig-kw">leftValue</span>,
+int <span class="sig-kw">rightValue</span>,
+<a href="GUIContent.html">GUIContent</a> <span class="sig-kw">label</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">label</td><td class="desc"></td><td class="desc1">Optional label in front of the slider.</td></tr><tr><td class="name lbl">property</td><td class="desc"></td><td class="desc1">The value the slider shows. This determines the position of the draggable thumb.</td></tr><tr><td class="name lbl">leftValue</td><td class="desc"></td><td class="desc1">The value at the left end of the slider.</td></tr><tr><td class="name lbl">rightValue</td><td class="desc"></td><td class="desc1">The value at the right end of the slider.</td></tr><tr><td class="name lbl">options</td><td class="desc"></td><td class="desc1">An optional list of layout options that specify extra layout properties. Any values passed in here will override settings defined by the <code class="varname">style</code>.<br />
+See Also: <a href="GUILayout.Width.html">GUILayout.Width</a>, <a href="GUILayout.Height.html">GUILayout.Height</a>, <a href="GUILayout.MinWidth.html">GUILayout.MinWidth</a>, <a href="GUILayout.MaxWidth.html">GUILayout.MaxWidth</a>, <a href="GUILayout.MinHeight.html">GUILayout.MinHeight</a>,
+<a href="GUILayout.MaxHeight.html">GUILayout.MaxHeight</a>, <a href="GUILayout.ExpandWidth.html">GUILayout.ExpandWidth</a>, <a href="GUILayout.ExpandHeight.html">GUILayout.ExpandHeight</a>.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Make a slider the user can drag to change an integer value between a min and a max.</p></div></div></div></div></body></html>

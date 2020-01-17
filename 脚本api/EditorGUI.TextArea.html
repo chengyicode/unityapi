@@ -1,0 +1,32 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorGUI.TextArea</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorGUI.html">EditorGUI</a>.TextArea</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static string <span class="sig-kw">TextArea</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+string <span class="sig-kw">text</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span> = EditorStyles.textField);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">position</td><td class="desc"></td><td class="desc1">Rectangle on the screen to use for the text field.</td></tr><tr><td class="name lbl">text</td><td class="desc"></td><td class="desc1">The text to edit.</td></tr><tr><td class="name lbl">style</td><td class="desc"></td><td class="desc1">Optional <a href="GUIStyle.html">GUIStyle</a>.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>string</strong>
+        The text entered by the user.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Makes a text area.</p></div><div class="subsection"><p>This works just like <a href="GUI.TextArea.html">GUI.TextArea</a>, but correctly responds to select all, copy, paste etc. in the editor.<br /><br /><img src="../StaticFiles/ScriptRefImages/EditorGUITextArea.png" /><br />
+<em>Text Area in an Editor Window.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />// Create a window where you can have notes
+// This doesnt preserve the notes between sessions.
+//
+// check <a href="EditorPrefs.html">EditorPrefs</a> Get/SetString to save the notes.<br /><br />class EditorGUITextArea : <a href="EditorWindow.html">EditorWindow</a>
+{
+    string note = "Notes:\n-&gt;";<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Examples/Notes")]
+    static void Init()
+    {
+        <a href="EditorWindow.html">EditorWindow</a> window = GetWindow&lt;EditorGUITextArea&gt;();
+        window.position = new <a href="Rect.html">Rect</a>(0, 0, 350, 70);
+        window.Show();
+    }<br /><br />    void OnGUI()
+    {
+        note = <a href="EditorGUI.TextArea.html">EditorGUI.TextArea</a>(new <a href="Rect.html">Rect</a>(3, 3, position.width - 6, position.height - 35), note);
+        if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(0, position.height - 30, position.width, 25), "Close"))
+        {
+            this.Close();
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

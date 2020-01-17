@@ -1,0 +1,16 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Android.IPostGenerateGradleAndroidProject.OnPostGenerateGradleAndroidProject</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Android.IPostGenerateGradleAndroidProject.html">IPostGenerateGradleAndroidProject</a>.OnPostGenerateGradleAndroidProject</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">OnPostGenerateGradleAndroidProject</span>(string <span class="sig-kw">path</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">path</td><td class="desc"></td><td class="desc1">The path to the root of the Gradle project. Note: when exporting the project, this parameter holds the path to the folder specified for export.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Implement this function to receive a callback after the Android Gradle project is generated and before building begins. It is not called when doing an Internal build.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEditor.Android;
+using UnityEngine;<br /><br />class MyCustomBuildProcessor : <a href="Android.IPostGenerateGradleAndroidProject.html">IPostGenerateGradleAndroidProject</a>
+{
+    public int callbackOrder { get { return 0; } }
+    public void OnPostGenerateGradleAndroidProject(string path)
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("MyCustomBuildProcessor.OnPostGenerateGradleAndroidProject at path " + path);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

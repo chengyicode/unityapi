@@ -1,0 +1,40 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Vector2.MoveTowards</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Vector2.html">Vector2</a>.MoveTowards</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Vector2.html">Vector2</a> <span class="sig-kw">MoveTowards</span>(<a href="Vector2.html">Vector2</a> <span class="sig-kw">current</span>,
+<a href="Vector2.html">Vector2</a> <span class="sig-kw">target</span>,
+float <span class="sig-kw">maxDistanceDelta</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Moves a point <code class="varname">current</code> towards <code class="varname">target</code>.</p></div><div class="subsection"><p>This is essentially the same as <a href="Vector2.Lerp.html">Vector2.Lerp</a> but instead the function will ensure that the distance never exceeds <code class="varname">maxDistanceDelta</code>.
+Negative values of <code class="varname">maxDistanceDelta</code> pushes the vector away from <code class="varname">target</code>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />// 2D MoveTowards example
+// Move the sprite to where the mouse is clicked
+//
+// Set speed to -1.0f and the sprite will move
+// away from the mouse click position forever<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private float speed = 10.0f;
+    private <a href="Vector2.html">Vector2</a> target;
+    private <a href="Vector2.html">Vector2</a> position;
+    private <a href="Camera.html">Camera</a> cam;<br /><br />    void Start()
+    {
+        target = new <a href="Vector2.html">Vector2</a>(0.0f, 0.0f);
+        position = gameObject.transform.position;<br /><br />        cam = <a href="Camera-main.html">Camera.main</a>;
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        float step = speed * <a href="Time-deltaTime.html">Time.deltaTime</a>;<br /><br />        // move sprite towards the target location
+        transform.position = <a href="Vector2.MoveTowards.html">Vector2.MoveTowards</a>(transform.position, target, step);
+    }<br /><br />    void OnGUI()
+    {
+        <a href="Event.html">Event</a> currentEvent = <a href="Event-current.html">Event.current</a>;
+        <a href="Vector2.html">Vector2</a> mousePos = new <a href="Vector2.html">Vector2</a>();
+        <a href="Vector2.html">Vector2</a> point = new <a href="Vector2.html">Vector2</a>();<br /><br />        // compute where the mouse is in world space
+        mousePos.x = currentEvent.mousePosition.x;
+        mousePos.y = cam.pixelHeight - currentEvent.mousePosition.y;
+        point = cam.ScreenToWorldPoint(new <a href="Vector3.html">Vector3</a>(mousePos.x, mousePos.y, 0.0f));<br /><br />        if (<a href="Input.GetMouseButtonDown.html">Input.GetMouseButtonDown</a>(0))
+        {
+            // set the target to the mouse click location
+            target = point;
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

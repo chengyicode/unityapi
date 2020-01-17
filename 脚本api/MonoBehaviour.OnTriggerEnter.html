@@ -1,0 +1,64 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: MonoBehaviour.OnTriggerEnter(Collider)</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="MonoBehaviour.html">MonoBehaviour</a>.OnTriggerEnter(Collider)</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">other</td><td class="desc"></td><td class="desc1">A <a href="Collider.html">Collider</a> involved in this collision.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>
+        <a href="MonoBehaviour.OnTriggerEnter.html">OnTriggerEnter</a> is called when the <a href="GameObject.html">GameObject</a> collides with another <a href="GameObject.html">GameObject</a>.</p></div><div class="subsection"><p>The given <code class="varname">other</code> <a href="Collider.html">Collider</a> has details about the trigger event, such as the name of its <a href="GameObject.html">GameObject</a>. Either of the two <a href="GameObject.html">GameObject</a>s must have a <a href="Rigidbody.html">Rigidbody</a> component. The <a href="Rigidbody.html">Rigidbody</a> component has both <a href="Rigidbody-useGravity.html">Rigidbody.useGravity</a> and <a href="Rigidbody-isKinematic.html">Rigidbody.isKinematic</a> set to <code class="varname">false</code>.  These prevents the <a href="GameObject.html">GameObject</a> from falling under gravity and having kinematic behavior. One <a href="Collider.html">Collider</a> has <a href="Collider-isTrigger.html">Collider.isTrigger</a> set to <code class="varname">true</code>. The <a href="GameObject.html">GameObject</a> with <a href="Collider-isTrigger.html">Collider.isTrigger</a> set to <code class="varname">true</code> has <a href="MonoBehaviour.OnTriggerEnter.html">OnTriggerEnter</a> called when the other <a href="GameObject.html">GameObject</a> touches or passes through it. <a href="MonoBehaviour.OnTriggerEnter.html">OnTriggerEnter</a> occurs after <a href="MonoBehaviour.FixedUpdate.html">FixedUpdate</a> ends.<br /><br />A disabled <a href="GameObject.html">GameObject</a> receives the <a href="MonoBehaviour.OnTriggerEnter.html">OnTriggerEnter</a> message.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />// <a href="MonoBehaviour.OnTriggerEnter.html">MonoBehaviour.OnTriggerEnter</a> example.
+//
+// A cube is based in the center of the world. A small white sphere is added
+// to the world and it can move anywhere in the <a href="SceneManagement.Scene.html">Scene</a>. The cube changes
+// color each time the sphere enters the cube. As the sphere leaves the cube,
+// the cube reverts back to white.<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private float moveSpeed = 3.0f;
+    private <a href="GameObject.html">GameObject</a> sphere;<br /><br />    void Awake()
+    {
+        // Create the ground.
+        <a href="GameObject.html">GameObject</a> ground = <a href="GameObject.CreatePrimitive.html">GameObject.CreatePrimitive</a>(<a href="PrimitiveType.Quad.html">PrimitiveType.Quad</a>);
+        ground.transform.rotation = <a href="Quaternion.Euler.html">Quaternion.Euler</a>(90, 0, 0);
+        ground.transform.localScale = new <a href="Vector3.html">Vector3</a>(6, 6, 6);
+        ground.transform.position = new <a href="Vector3.html">Vector3</a>(0, -0.5f, 0);<br /><br />        // Make sure the <a href="BoxCollider.html">BoxCollider</a> is a trigger.
+        <a href="BoxCollider.html">BoxCollider</a> boxCollider = gameObject.GetComponent&lt;<a href="BoxCollider.html">BoxCollider</a>&gt;();
+        boxCollider.isTrigger = true;<br /><br />        // Create a sphere to interact with this cube.
+        sphere = <a href="GameObject.CreatePrimitive.html">GameObject.CreatePrimitive</a>(<a href="PrimitiveType.Sphere.html">PrimitiveType.Sphere</a>);
+        sphere.gameObject.transform.position = new <a href="Vector3.html">Vector3</a>(1f, 0, 0);
+        sphere.gameObject.transform.localScale = new <a href="Vector3.html">Vector3</a>(0.5f, 0.5f, 0.5f);<br /><br />        // Add a <a href="Rigidbody.html">Rigidbody</a> to the sphere.
+        // The sphere does not touch the ground.
+        sphere.gameObject.AddComponent&lt;<a href="Rigidbody.html">Rigidbody</a>&gt;();
+        sphere.gameObject.GetComponent&lt;<a href="Rigidbody.html">Rigidbody</a>&gt;().useGravity = false;
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        // Move the sphere based on a/d and s/w.
+        <a href="Transform.html">Transform</a> sphereTransform = sphere.gameObject.transform;
+        sphereTransform.Translate(<a href="Vector3-forward.html">Vector3.forward</a> * <a href="Time-deltaTime.html">Time.deltaTime</a> * <a href="Input.GetAxis.html">Input.GetAxis</a>("Vertical") * moveSpeed);
+        sphereTransform.Translate(<a href="Vector3-right.html">Vector3.right</a> * <a href="Time-deltaTime.html">Time.deltaTime</a> * <a href="Input.GetAxis.html">Input.GetAxis</a>("Horizontal") * moveSpeed);<br /><br />        LimitSphere(sphereTransform);
+    }<br /><br />    private void OnTriggerEnter(<a href="Collider.html">Collider</a> other)
+    {
+        // Change the cube color to green.
+        <a href="MeshRenderer.html">MeshRenderer</a> meshRend = GetComponent&lt;<a href="MeshRenderer.html">MeshRenderer</a>&gt;();
+        meshRend.material.color = <a href="Color-green.html">Color.green</a>;
+        <a href="Debug.Log.html">Debug.Log</a>(other.name);
+    }<br /><br />    private void OnTriggerExit(<a href="Collider.html">Collider</a> other)
+    {
+        // Revert the cube color to white.
+        <a href="MeshRenderer.html">MeshRenderer</a> meshRend = GetComponent&lt;<a href="MeshRenderer.html">MeshRenderer</a>&gt;();
+        meshRend.material.color = <a href="Color-white.html">Color.white</a>;
+    }<br /><br />    // Keep sphere inside a xz square of 2 units.
+    private void LimitSphere(<a href="Transform.html">Transform</a> sphereTransform)
+    {
+        if (sphereTransform.position.x &lt; -1.0f)
+        {
+            sphereTransform.position = new <a href="Vector3.html">Vector3</a>(-1.0f, 0.0f, sphereTransform.position.z);
+        }<br /><br />        if (sphereTransform.position.x &gt; 1.0f)
+        {
+            sphereTransform.position = new <a href="Vector3.html">Vector3</a>(1.0f, 0.0f, sphereTransform.position.z);
+        }<br /><br />        if (sphereTransform.position.z &lt; -1.0f)
+        {
+            sphereTransform.position = new <a href="Vector3.html">Vector3</a>(sphereTransform.position.x, 0.0f, -1.0f);
+        }<br /><br />        if (sphereTransform.position.z &gt; 1.0f)
+        {
+            sphereTransform.position = new <a href="Vector3.html">Vector3</a>(sphereTransform.position.x, 0.0f, 1.0f);
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

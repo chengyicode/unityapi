@@ -1,0 +1,31 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Vector3.sqrMagnitude</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Vector3.html">Vector3</a>.sqrMagnitude</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public float <span class="sig-kw">sqrMagnitude</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Returns the squared length of this vector (Read Only).</p></div><div class="subsection"><p>The magnitude of a vector <code class="varname">v</code> is calculated as Mathf.Sqrt(Vector3.Dot(v, v)). However, the
+Sqrt calculation is quite complicated and takes longer to execute than the normal arithmetic
+operations.
+Calculating the squared magnitude instead of using the <a href="Vector3-magnitude.html">magnitude</a> property is much faster -
+the calculation is basically the same only without the slow Sqrt call. If you are using
+magnitudes simply to compare distances, then you can just as well compare squared magnitudes against
+the squares of distances since the comparison will give the same result.<br /><br />See Also: <a href="Vector3-magnitude.html">magnitude</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // detects when the other transform is closer than closeDistance
+    // this is faster than using <a href="Vector3-magnitude.html">Vector3.magnitude</a>
+    public <a href="Transform.html">Transform</a> other;
+    public float closeDistance = 5.0f;<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        if (other)
+        {
+            <a href="Vector3.html">Vector3</a> offset = other.position - transform.position;
+            float sqrLen = offset.sqrMagnitude;<br /><br />            // square the distance we compare with
+            if (sqrLen &lt; closeDistance * closeDistance)
+            {
+                print("The other transform is close to me!");
+            }
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

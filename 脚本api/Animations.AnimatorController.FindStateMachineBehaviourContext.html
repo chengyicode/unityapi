@@ -1,0 +1,49 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Animations.AnimatorController.FindStateMachineBehaviourContext</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Animations.AnimatorController.html">AnimatorController</a>.FindStateMachineBehaviourContext</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static StateMachineBehaviourContext[] <span class="sig-kw">FindStateMachineBehaviourContext</span>(<a href="StateMachineBehaviour.html">StateMachineBehaviour</a> <span class="sig-kw">behaviour</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">behaviour</td><td class="desc"></td><td class="desc1">The State Machine Behaviour to get context for.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>StateMachineBehaviourContext[]</strong>
+        Returns the State Machine Behaviour edition context.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Use this function to retrieve the owner of this behaviour.</p></div><div class="subsection"><p>Please note that this function is very slow. It is not recommended to use this function every frame.
+See Also: <a href="Animations.StateMachineBehaviourContext.html">StateMachineBehaviourContext</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />
+public class IdleBehaviour : <a href="StateMachineBehaviour.html">StateMachineBehaviour</a>
+{
+    public int transitionCount;
+    protected int randomTransitionId = <a href="Animator.StringToHash.html">Animator.StringToHash</a>("random");<br /><br />    // OnStateEnter is called when a transition starts and the state machine starts to evaluate the state
+    override public void OnStateEnter(<a href="Animator.html">Animator</a> animator, <a href="AnimatorStateInfo.html">AnimatorStateInfo</a> stateInfo, int layerIndex)
+    {
+    }<br /><br />    // OnStateUpdate is called at each engine tick between OnStateEnter and OnStateExit callback
+    override public void OnStateUpdate(<a href="Animator.html">Animator</a> animator, <a href="AnimatorStateInfo.html">AnimatorStateInfo</a> stateInfo, int layerIndex)
+    {
+        if (stateInfo.normalizedTime &gt; 0.5f)
+            animator.SetInteger(randomTransitionId, <a href="Random.Range.html">Random.Range</a>(0, transitionCount));
+    }<br /><br />    // OnStateExit is called when a transition ends and the state machine ends to evaluate the state
+    override public void OnStateExit(<a href="Animator.html">Animator</a> animator, <a href="AnimatorStateInfo.html">AnimatorStateInfo</a> stateInfo, int layerIndex)
+    {
+    }
+}<br /><br />[<a href="CustomEditor.html">CustomEditor</a>(typeof(IdleBehaviour), true)]
+public class IdleBehaviourEditor : <a href="Editor.html">Editor</a>
+{
+    UnityEditor.Animations.StateMachineBehaviourContext[] context;<br /><br />    <a href="SerializedProperty.html">SerializedProperty</a> transitionCount;<br /><br />    public void OnEnable()
+    {
+        context = UnityEditor.Animations.AnimatorController.FindStateMachineBehaviourContext(target as <a href="StateMachineBehaviour.html">StateMachineBehaviour</a>);
+        if (context != null)
+        {
+            // animatorObject can be an <a href="Animations.AnimatorState.html">AnimatorState</a> or <a href="Animations.AnimatorStateMachine.html">AnimatorStateMachine</a>
+            UnityEditor.Animations.AnimatorState state = context[0].animatorObject as UnityEditor.Animations.AnimatorState;
+            if (state != null)
+            {
+                IdleBehaviour behaviour = target as IdleBehaviour;
+                behaviour.transitionCount = state.transitions.Length;
+            }
+        }<br /><br />        transitionCount = serializedObject.FindProperty("transitionCount");
+    }<br /><br />    public override void OnInspectorGUI()
+    {
+        serializedObject.Update();<br /><br />        <a href="EditorGUI.BeginDisabledGroup.html">EditorGUI.BeginDisabledGroup</a>(true);
+        <a href="EditorGUILayout.PropertyField.html">EditorGUILayout.PropertyField</a>(transitionCount);
+        <a href="EditorGUI.EndDisabledGroup.html">EditorGUI.EndDisabledGroup</a>();<br /><br />        serializedObject.ApplyModifiedProperties();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

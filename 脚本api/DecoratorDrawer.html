@@ -1,0 +1,82 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: DecoratorDrawer</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">DecoratorDrawer</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEditor</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Inherits from:<a href="GUIDrawer.html" class="cl">GUIDrawer</a></p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEditor.html" class="cl">UnityEditor</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Base class to derive custom decorator drawers from.</p></div><div class="subsection"><p>A DecoratorDrawer is similar to a <a href="PropertyDrawer.html">PropertyDrawer</a>, except that it doesn't draw a property but rather draws decorative elements based purely on the data it gets from its corresponding <a href="PropertyAttribute.html">PropertyAttribute</a>.<br /><br />Unity uses builtin DecoratorDrawers for the <a href="SpaceAttribute.html">SpaceAttribute</a> and <a href="HeaderAttribute.html">HeaderAttribute</a>. You can also create your own DecoratorDrawers with matching PropertyAttributes.<br /><br />Although a DecoratorDrawer conceptually is not meant to be associated with a specific field, its attribute still needs to be placed above a field in the script. However, unlike PropertyDrawer attributes, there can be multiple DecoratorDrawers attributes above the same field. Also unlike PropertyDrawers, if a DecoratorDrawer attribute is placed above a field that is a List or an array, the decorator will only show up once before the array; not for every array element.<br /><br />The example below comes in two scripts.<br /><br />The first script defines the an example attribute called "ColorSpacer", and then defines a DecoratorDrawer which determines how it should be drawn in the inspector.<br /><br />The second script is an example MonoBehaviour which uses the ColorSpacer attribute to visually separate two groups of public properties in the inspector.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Name this script "ColorSpacerExample"<br /><br />using UnityEngine;
+using System.Collections;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />// This class defines the ColorSpacer attribute, so that
+// it can be used in your regular <a href="MonoBehaviour.html">MonoBehaviour</a> scripts:<br /><br />public class ColorSpacer : <a href="PropertyAttribute.html">PropertyAttribute</a>
+{
+    public float spaceHeight;
+    public float lineHeight;
+    public float lineWidth;
+    public <a href="Color.html">Color</a> lineColor = <a href="Color-red.html">Color.red</a>;<br /><br />    public ColorSpacer(float spaceHeight, float lineHeight, float lineWidth, float r, float g, float b)
+    {
+        this.spaceHeight = spaceHeight;
+        this.lineHeight = lineHeight;
+        this.lineWidth = lineWidth;<br /><br />        // unfortunately we can't pass a color through as a <a href="Color.html">Color</a> object
+        // so we pass as 3 floats and make the object here
+        this.lineColor = new <a href="Color.html">Color</a>(r, g, b);
+    }
+}<br /><br />
+// This defines how the ColorSpacer should be drawn
+// in the inspector, when inspecting a <a href="GameObject.html">GameObject</a> with
+// a <a href="MonoBehaviour.html">MonoBehaviour</a> which uses the ColorSpacer attribute<br /><br />[<a href="CustomPropertyDrawer.html">CustomPropertyDrawer</a>(typeof(ColorSpacer))]
+public class ColorSpacerDrawer : <a href="DecoratorDrawer.html">DecoratorDrawer</a>
+{
+    ColorSpacer colorSpacer
+    {
+        get { return ((ColorSpacer)attribute); }
+    }<br /><br />    public override float GetHeight()
+    {
+        return base.GetHeight() + colorSpacer.spaceHeight;
+    }<br /><br />    public override void OnGUI(<a href="Rect.html">Rect</a> position)
+    {
+        // calculate the rect values for where to draw the line in the inspector
+        float lineX = (position.x + (position.width / 2)) - colorSpacer.lineWidth / 2;
+        float lineY = position.y + (colorSpacer.spaceHeight / 2);
+        float lineWidth = colorSpacer.lineWidth;
+        float lineHeight = colorSpacer.lineHeight;<br /><br />        // Draw the line in the calculated place in the inspector
+        // (using the built in white pixel texture, tinted with <a href="GUI-color.html">GUI.color</a>)
+        <a href="Color.html">Color</a> oldGuiColor = <a href="GUI-color.html">GUI.color</a>;
+        <a href="GUI-color.html">GUI.color</a> = colorSpacer.lineColor;
+        <a href="EditorGUI.DrawPreviewTexture.html">EditorGUI.DrawPreviewTexture</a>(new <a href="Rect.html">Rect</a>(lineX, lineY, lineWidth, lineHeight), <a href="Texture2D-whiteTexture.html">Texture2D.whiteTexture</a>);
+        <a href="GUI-color.html">GUI.color</a> = oldGuiColor;
+    }
+}
+</pre>
+      </div><div class="subsection"><p>And this second script is the one which makes use of the ColorSpacer attribute defined above:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ShowDecoratorDrawerExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public int a = 1;
+    public int b = 2;
+    public int c = 3;<br /><br />    // this shows our custom Decorator Drawer between the groups of properties
+    [ColorSpacer(30, 3, 100, 1, 0, 0)]<br /><br />    public string d = "d";
+    public string e = "e";
+    public string f = "f";
+}
+</pre>
+      </div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="DecoratorDrawer-attribute.html">attribute</a></td><td class="desc"></td><td class="desc1">The PropertyAttribute for the decorator. (Read Only)</td></tr>
+    </table></div><div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="DecoratorDrawer.CanCacheInspectorGUI.html">CanCacheInspectorGUI</a></td><td class="desc"></td><td class="desc1">Override this method to determine whether the inspector GUI for your decorator can be cached.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="DecoratorDrawer.GetHeight.html">GetHeight</a></td><td class="desc"></td><td class="desc1">Override this method to specify how tall the GUI for this decorator is in pixels.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="DecoratorDrawer.OnGUI.html">OnGUI</a></td><td class="desc"></td><td class="desc1">Override this method to make your own GUI for the decorator.
+See DecoratorDrawer for an example of how to use this.</td></tr>
+    </table></div><div class="subsection"><h2>Inherited Members   继承成员</h2>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </div></div></div></div></body></html>

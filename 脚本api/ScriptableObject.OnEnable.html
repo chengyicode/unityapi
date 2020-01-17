@@ -1,0 +1,53 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ScriptableObject.OnEnable()</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="ScriptableObject.html">ScriptableObject</a>.OnEnable()</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-ScriptableObject.html' title='Go to ScriptableObject Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>This function is called when the object is loaded.</p></div><div class="subsection"><p>
+An example is given below.  This example has two scripts.  The first shown is the <a href="ScriptableObject.html">ScriptableObject</a>
+script.  This implements code which is separate from <a href="MonoBehaviour.html">MonoBehaviour</a>. The second is a small
+<a href="MonoBehaviour.html">MonoBehaviour</a> related script which accesses values from the ScriptableObject script.
+                 </p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// A <a href="ScriptableObject.html">ScriptableObject</a> example script.
+// The A and B members implement features which
+// are unrelated to <a href="MonoBehaviour.html">MonoBehaviour</a>.<br /><br />using UnityEngine;<br /><br />public class ScriptObj : <a href="ScriptableObject.html">ScriptableObject</a>
+{
+    int a = 10;
+    int[] b = new int[5] {0, 17, 34, 42, 67};<br /><br />    public int A
+    {
+        get {return a; }
+    }<br /><br />    // return value in b array, or -1 if x is out-of-range
+    public int B(int x)
+    {
+        if (x &gt;= 0 &amp;&amp; x &lt;= 5)
+            return b[x];
+        else
+            return -1;
+    }<br /><br />    public void Awake()
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("Awake");
+    }<br /><br />    public void OnEnable()
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("OnEnable");
+    }<br /><br />    public void OnDisable()
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("OnDisable");
+    }<br /><br />    public void OnDestroy()
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("OnDestroy");
+    }
+}
+</pre>
+      </div><div class="subsection"><p>
+          The following script makes use of the above ScriptableObject script.
+        </p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// create and access the ScriptObj<br /><br />using UnityEngine;<br /><br />public class ScriptObjExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    ScriptObj test;<br /><br />    void Start()
+    {
+        test = (ScriptObj)<a href="ScriptableObject.CreateInstance.html">ScriptableObject.CreateInstance</a>(typeof(ScriptObj));<br /><br />        print(test.A);
+        print(test.B(3));
+        print(test.B(-3));
+    }
+}
+</pre>
+      </div><div class="subsection"><p>OnEnable cannot be a co-routine.</p></div></div></div></div></body></html>

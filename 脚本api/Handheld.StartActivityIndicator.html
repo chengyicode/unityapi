@@ -1,0 +1,28 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Handheld.StartActivityIndicator</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Handheld.html">Handheld</a>.StartActivityIndicator</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">StartActivityIndicator</span>();
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Starts os activity indicator.</p></div><div class="subsection"><p>Please be warned that this informs os ui system to start.
+For actual animation to take effect you usually need to wait till the end of this frame.
+So if you want activity indicator to be animated during synced operation, please use coroutines.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;<br /><br />public class Example2 : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    IEnumerator Load()
+    {
+        #if UNITY_IPHONE
+        <a href="Handheld.SetActivityIndicatorStyle.html">Handheld.SetActivityIndicatorStyle</a>(<a href="iOS.ActivityIndicatorStyle.Gray.html">iOS.ActivityIndicatorStyle.Gray</a>);
+        #elif UNITY_ANDROID
+        <a href="Handheld.SetActivityIndicatorStyle.html">Handheld.SetActivityIndicatorStyle</a>(<a href="AndroidActivityIndicatorStyle.Small.html">AndroidActivityIndicatorStyle.Small</a>);
+        #endif<br /><br />        <a href="Handheld.StartActivityIndicator.html">Handheld.StartActivityIndicator</a>();
+        yield return new <a href="WaitForSeconds.html">WaitForSeconds</a>(0);
+        <a href="SceneManagement.SceneManager.LoadScene.html">SceneManager.LoadScene</a>("My Next <a href="SceneManagement.Scene.html">Scene</a>");
+    }<br /><br />    void OnGUI()
+    {
+        if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(10, 10, 200, 200), "Load!"))
+            StartCoroutine(Load());
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

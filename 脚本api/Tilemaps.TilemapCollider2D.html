@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link href="./css/stylesheet.css" rel="stylesheet" type="text/css">
+		<title></title>
+	</head>
+	<body>
+
+		<div class="content">
+			<div class="section">
+				<div class="mb20 clear" id="">
+					<h1 class="heading inherit">TilemapCollider2D 瓦片地图碰撞器2D</h1>
+
+					<div class="clear"></div>
+					<p class="cl mb0 left mr10">class in
+						UnityEngine.Tilemaps</p>
+					<p class="cl mb0 left mr10">/</p>
+					<p class="cl mb0 left">Inherits from:<a href="Collider2D.html" class="cl">Collider2D</a></p>
+					<p class="cl mb0 left mr10">/</p>
+					<p class="cl mb0 left">Implemented in:<a href="UnityEngine.TilemapModule.html" class="cl">UnityEngine.TilemapModule</a></p>
+					<div class="clear"></div>
+
+					<p class="cl mb0 left mr10">
+						UnityEngine.Tilemaps中的类</p>
+					<p class="cl mb0 left mr10">/</p>
+					<p class="cl mb0 left">基础自：<a href="Collider2D.html" class="cl">Collider2D</a></p>
+					<p class="cl mb0 left mr10">/</p>
+					<p class="cl mb0 left">实现于：<a href="UnityEngine.TilemapModule.html" class="cl">UnityEngine.TilemapModule</a></p>
+					<div class="clear"></div>
+
+
+					<div class="suggest hide" style="display: none;"><a class="blue-btn sbtn">Suggest a change</a>
+						<div class="suggest-wrap rel hide">
+							<div class="loading hide">
+								<div></div>
+								<div></div>
+								<div></div>
+							</div>
+							<div class="suggest-success hide">
+								<h2>Success!</h2>
+								<p>Thank you for helping us improve the quality of Unity Documentation. Although we cannot accept all
+									submissions, we do read each suggested change from our users and will make updates where applicable.</p><a
+								 class="gray-btn sbtn close">Close</a>
+							</div>
+							<div class="suggest-failed hide">
+								<h2>Submission failed</h2>
+								<p>For some reason your suggested change could not be submitted. Please &lt;a&gt;try again&lt;/a&gt; in a few
+									minutes. And thank you for taking the time to help us improve the quality of Unity Documentation.</p><a class="gray-btn sbtn close">Close</a>
+							</div>
+							<div class="suggest-form clear"><label for="suggest_name">Your name</label><input id="suggest_name" type="text"><label
+								 for="suggest_email">Your email</label><input id="suggest_email" type="email"><label for="suggest_body" class="clear">Suggestion<span
+									 class="r">*</span></label><textarea id="suggest_body" class="req"></textarea><button id="suggest_submit"
+								 class="blue-btn mr10">Submit suggestion</button>
+								<p class="mb0"><a class="cancel left lh42 cn">Cancel</a></p>
+							</div>
+						</div>
+					</div><a href="" class="switch-link gray-btn sbtn left hide"></a>
+					<div class="clear"></div>
+				</div>
+				<div class="subsection">
+					<div class="signature">
+						<div class="signature-CS sig-block"><span style="color:red;"></span></div>
+					</div>
+				</div>
+				<div class="subsection">
+					<h2>Description 描述</h2>
+					<p>Collider for 2D physics representing shapes defined by the corresponding <a href="Tilemaps.Tilemap.html">Tilemap</a>.</p>
+
+				</div>
+				<div class="subsection">
+					<p>See Also: <a href="BoxCollider2D.html">BoxCollider2D</a>, <a href="CircleCollider2D.html">CircleCollider2D</a>,
+						<a href="EdgeCollider2D.html">EdgeCollider2D</a>, <a href="PolygonCollider2D.html">PolygonCollider2D</a>.</p>
+				</div>
+
+				<p>用于2D物理的碰撞器，表示由相应的<a href="Tilemaps.Tilemap.html">Tilemap</a>定义的形状.</p>
+				<div class="subsection">
+					<p>另参见：<a href="BoxCollider2D.html">BoxCollider2D</a>, <a href="CircleCollider2D.html">CircleCollider2D</a>,
+						<a href="EdgeCollider2D.html">EdgeCollider2D</a>, <a href="PolygonCollider2D.html">PolygonCollider2D</a>.</p>
+				</div>
+
+				<div class="subsection">
+					<h2>Properties 属性</h2>
+					<table class="list">
+						<tbody>
+							<tr>
+								<td class="descn">挤压系数</td>
+								<td class="lbl"><a href="Tilemaps.TilemapCollider2D-extrusionFactor.html">extrusionFactor</a></td>
+								<td class="desc">	根据数量让各个瓦片的碰撞器形状进行挤压，使相邻的瓦片合成。使用CompositeCollider2D时，能够消除瓦片之间的细小间隙。这是在世界空间内以Unity单位计算的。</td>
+								<td class="desc1">The amount of collider shapes each Tile extrudes to facilitate compositing with neighboring
+									Tiles. This eliminates fine gaps between Tiles when using a CompositeCollider2D. This is calculated in Unity
+									units within world space.</td>
+							</tr>
+							<tr>
+								<td class="descn">最大瓦片变化数量</td>
+								<td class="lbl"><a href="Tilemaps.TilemapCollider2D-maximumTileChangeCount.html">maximumTileChangeCount</a></td>
+								<td class="desc">在进行完全碰撞器重建而不是增量重建之前，累计的“瓦片变化”的最大数量。</td>
+								<td class="desc1">Maximum number of Tile Changes accumulated before doing a full collider rebuild instead of an
+									incremental rebuild.</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="subsection">
+					<h2>Inherited Members</h2>
+
+					<div class="subsection">
+						<h2>Properties</h2>
+						<table class="list">
+							<tbody>
+								<tr>
+									<td class="descn">已启用</td>
+									<td class="lbl"><a href="Behaviour-enabled.html">enabled</a></td>
+									<td class="desc">启用行为已更新，禁用行为未更新。</td>
+									<td class="desc1">Enabled Behaviours are Updated, disabled Behaviours are not.</td>
+								</tr>
+								<tr>
+									<td class="descn">是否已激活并已启用</td>
+									<td class="lbl"><a href="Behaviour-isActiveAndEnabled.html">isActiveAndEnabled</a></td>
+									<td class="desc">该行为是否已激活并已启用？</td>
+									<td class="desc1">Has the Behaviour had active and enabled called?</td>
+								</tr>
+								<tr>
+									<td class="descn">附加刚体</td>
+									<td class="lbl"><a href="Collider2D-attachedRigidbody.html">attachedRigidbody</a></td>
+									<td class="desc">Rigidbody2D附加到Collider2D。</td>
+									<td class="desc1">The Rigidbody2D attached to the Collider2D.</td>
+								</tr>
+								<tr>
+									<td class="descn">弹力</td>
+									<td class="lbl"><a href="Collider2D-bounciness.html">bounciness</a></td>
+									<td class="desc">获取对撞机使用的弹跳力。</td>
+									<td class="desc1">Get the bounciness used by the collider.</td>
+								</tr>
+								<tr>
+									<td class="descn">边界</td>
+									<td class="lbl"><a href="Collider2D-bounds.html">bounds</a></td>
+									<td class="desc">碰撞器在世界空间中的边界区域。</td>
+									<td class="desc1">The world space bounding area of the collider.</td>
+								</tr>
+								<tr>
+									<td class="descn">合成</td>
+									<td class="lbl"><a href="Collider2D-composite.html">composite</a></td>
+									<td class="desc">获取可用于附加到对撞机的CompositeCollider2D。</td>
+									<td class="desc1">Get the CompositeCollider2D that is available to be attached to the collider.</td>
+								</tr>
+								<tr>
+									<td class="descn">密度</td>
+									<td class="lbl"><a href="Collider2D-density.html">density</a></td>
+									<td class="desc">用于计算质量的对撞机的密度（启用自动质量时）。</td>
+									<td class="desc1">The density of the collider used to calculate its mass (when auto mass is enabled).</td>
+								</tr>
+								<tr>
+									<td class="descn">摩擦力</td>
+									<td class="lbl"><a href="Collider2D-friction.html">friction</a></td>
+									<td class="desc">获取对撞机使用的摩擦力。td>
+									<td class="desc1">Get the friction used by the collider.</td>
+								</tr>
+								<tr>
+									<td class="descn">是否为触发器</td>
+									<td class="lbl"><a href="Collider2D-isTrigger.html">isTrigger</a></td>
+									<td class="desc">该对撞机是否配置为触发器？</td>
+									<td class="desc1">Is this collider configured as a trigger?</td>
+								</tr>
+								<tr>
+									<td class="descn">偏移</td>
+									<td class="lbl"><a href="Collider2D-offset.html">offset</a></td>
+									<td class="desc">对撞机几何体的局部偏移。</td>
+									<td class="desc1">The local offset of the collider geometry.</td>
+								</tr>
+								<tr>
+									<td class="descn">形状数量</td>
+									<td class="lbl"><a href="Collider2D-shapeCount.html">shapeCount</a></td>
+									<td class="desc">对撞机中单独成形区域的数量。</td>
+									<td class="desc1">The number of separate shaped regions in the collider.</td>
+								</tr>
+								<tr>
+									<td class="descn">共用的材质</td>
+									<td class="lbl"><a href="Collider2D-sharedMaterial.html">sharedMaterial</a></td>
+									<td class="desc">应用于此对撞机的PhysicsMaterial2D。</td>
+									<td class="desc1">The PhysicsMaterial2D that is applied to this collider.</td>
+								</tr>
+								<tr>
+									<td class="descn">被合成使用</td>
+									<td class="lbl"><a href="Collider2D-usedByComposite.html">usedByComposite</a></td>
+									<td class="desc">设置碰撞器是否会被CompositeCollider2D使用。</td>
+									<td class="desc1">Sets whether the Collider will be used or not used by a CompositeCollider2D.</td>
+								</tr>
+								<tr>
+									<td class="descn">被效应器</td>
+									<td class="lbl"><a href="Collider2D-usedByEffector.html">usedByEffector</a></td>
+									<td class="desc">对撞机是否被附加的效应器使用。</td>
+									<td class="desc1">Whether the collider is used by an attached effector or not.</td>
+								</tr>
+								<tr>
+									<td class="descn">游戏对象</td>
+									<td class="lbl"><a href="Component-gameObject.html">gameObject</a></td>
+									<td class="desc">该组件附加到的游戏对象。组件始终附加在游戏对象上。</td>
+									<td class="desc1">The game object this component is attached to. A component is always attached to a game
+										object.</td>
+								</tr>
+								<tr>
+									<td class="descn">标签</td>
+									<td class="lbl"><a href="Component-tag.html">tag</a></td>
+									<td class="desc">此游戏对象的标签。</td>
+									<td class="desc1">The tag of this game object.</td>
+								</tr>
+								<tr>
+									<td class="descn">变换</td>
+									<td class="lbl"><a href="Component-transform.html">transform</a></td>
+									<td class="desc">附加到此GameObject的Transform。</td>
+									<td class="desc1">The Transform attached to this GameObject.</td>
+								</tr>
+								<tr>
+									<td class="descn">隐藏标志</td>
+									<td class="lbl"><a href="Object-hideFlags.html">hideFlags</a></td>
+									<td class="desc">该对象是否应该隐藏，随场景保存或可由用户修改？</td>
+									<td class="desc1">Should the object be hidden, saved with the Scene or modifiable by the user?</td>
+								</tr>
+								<tr>
+									<td class="descn">名字</td>
+									<td class="lbl"><a href="Object-name.html">name</a></td>
+									<td class="desc">对象的名称。</td>
+									<td class="desc1">The name of the object.</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+
+
+					<div class="subsection">
+						<h2>Public Methods   公共方法</h2>
+						<table class="list">
+							<tbody>
+								<tr>
+									<td class="descn">投射</td>
+									<td class="lbl"><a href="Collider2D.Cast.html">Cast</a></td>
+									<td class="desc">从对撞机位置开始，忽略对撞机本身，将对撞机形状投射到场景中。</td>
+									<td class="desc1">Casts the Collider shape into the Scene starting at the Collider position ignoring the
+										Collider itself.</td>
+								</tr>
+								<tr>
+									<td class="descn">最近点</td>
+									<td class="lbl"><a href="Collider2D.ClosestPoint.html">ClosestPoint</a></td>
+									<td class="desc">返回此对撞机周界上最接近指定位置的点。</td>
+									<td class="desc1">Returns a point on the perimeter of this Collider that is closest to the specified position.</td>
+								</tr>
+								<tr>
+									<td class="descn">距离</td>
+									<td class="lbl"><a href="Collider2D.Distance.html">Distance</a></td>
+									<td class="desc">计算此对撞机与另一个对撞机的最小距离。</td>
+									<td class="desc1">Calculates the minimum separation of this collider against another collider.</td>
+								</tr>
+								<tr>
+									<td class="descn">获取联系</td>
+									<td class="lbl"><a href="Collider2D.GetContacts.html">GetContacts</a></td>
+									<td class="desc">检索此对撞机的所有联系点。</td>
+									<td class="desc1">Retrieves all contact points for this Collider.</td>
+								</tr>
+								<tr>
+									<td class="descn">是否接触</td>
+									<td class="lbl"><a href="Collider2D.IsTouching.html">IsTouching</a></td>
+									<td class="desc">检查此对撞机是否接触了对撞机。</td>
+									<td class="desc1">Check whether this collider is touching the collider or not.</td>
+								</tr>
+								<tr>
+									<td class="descn">是否接触层</td>
+									<td class="lbl"><a href="Collider2D.IsTouchingLayers.html">IsTouchingLayers</a></td>
+									<td class="desc">检查此对撞机是否接触了指定layerMask上的任何对撞机。</td>
+									<td class="desc1">Checks whether this collider is touching any colliders on the specified layerMask or not.</td>
+								</tr>
+								<tr>
+									<td class="descn">重叠碰撞器</td>
+									<td class="lbl"><a href="Collider2D.OverlapCollider.html">OverlapCollider</a></td>
+									<td class="desc">获取与该对撞机重叠的所有对撞机的列表。</td>
+									<td class="desc1">Get a list of all colliders that overlap this collider.</td>
+								</tr>
+								<tr>
+									<td class="descn">重叠点</td>
+									<td class="lbl"><a href="Collider2D.OverlapPoint.html">OverlapPoint</a></td>
+									<td class="desc">检查对撞机是否与空间点重叠。</td>
+									<td class="desc1">Check if a collider overlaps a point in space.</td>
+								</tr>
+								<tr>
+									<td class="descn">光线投射</td>
+									<td class="lbl"><a href="Collider2D.Raycast.html">Raycast</a></td>
+									<td class="desc">将光线投射到从对撞机位置开始的场景中，并忽略对撞机本身。</td>
+									<td class="desc1">Casts a ray into the Scene that starts at the Collider position and ignores the Collider
+										itself.</td>
+								</tr>
+								<tr>
+									<td class="descn">广播信息</td>
+									<td class="lbl"><a href="Component.BroadcastMessage.html">BroadcastMessage</a></td>
+									<td class="desc">在此游戏对象或其任何子级中的每个MonoBehaviour上调用名为methodName的方法。</td>
+									<td class="desc1">Calls the method named methodName on every MonoBehaviour in this game object or any of its
+										children.</td>
+								</tr>
+								<tr>
+									<td class="descn">比较标签</td>
+									<td class="lbl"><a href="Component.CompareTag.html">CompareTag</a></td>
+									<td class="desc">这个游戏对象是否带有标签？</td>
+									<td class="desc1">Is this game object tagged with tag ?</td>
+								</tr>
+								<tr>
+									<td class="descn">获取组件</td>
+									<td class="lbl"><a href="Component.GetComponent.html">GetComponent</a></td>
+									<td class="desc">如果游戏对象附加了一个，则返回Type类型的组件；如果没有，则返回null。</td>
+									<td class="desc1">Returns the component of Type type if the game object has one attached, null if it doesn't.</td>
+								</tr>
+								<tr>
+									<td class="descn">获取子类组件</td>
+									<td class="lbl"><a href="Component.GetComponentInChildren.html">GetComponentInChildren</a></td>
+									<td class="desc">使用深度优先搜索返回GameObject或其任何子级中Type类型的组件。</td>
+									<td class="desc1">Returns the component of Type type in the GameObject or any of its children using depth
+										first
+										search.</td>
+								</tr>
+								<tr>
+									<td class="descn">获取父类组件</td>
+									<td class="lbl"><a href="Component.GetComponentInParent.html">GetComponentInParent</a></td>
+									<td class="desc">返回GameObject或其任何父代中Type类型的组件。</td>
+									<td class="desc1">Returns the component of Type type in the GameObject or any of its parents.</td>
+								</tr>
+								<tr>
+									<td class="descn">获取组件(s)</td>
+									<td class="lbl"><a href="Component.GetComponents.html">GetComponents</a></td>
+									<td class="desc">返回GameObject中Type类型的所有组件。</td>
+									<td class="desc1">Returns all components of Type type in the GameObject.</td>
+								</tr>
+								<tr>
+									<td class="descn">获取子类组件(s)</td>
+									<td class="lbl"><a href="Component.GetComponentsInChildren.html">GetComponentsInChildren</a></td>
+									<td class="desc">返回GameObject或其任何子级中Type类型的所有组件。</td>
+									<td class="desc1">Returns all components of Type type in the GameObject or any of its children.</td>
+								</tr>
+								<tr>
+									<td class="descn">获取父类组件(s)</td>
+									<td class="lbl"><a href="Component.GetComponentsInParent.html">GetComponentsInParent</a></td>
+									<td class="desc">返回GameObject或其任何父代中Type类型的所有组件。</td>
+									<td class="desc1">Returns all components of Type type in the GameObject or any of its parents.</td>
+								</tr>
+								<tr>
+									<td class="descn">发生消息</td>
+									<td class="lbl"><a href="Component.SendMessage.html">SendMessage</a></td>
+									<td class="desc">在此游戏对象中的每个MonoBehaviour上调用名为methodName的方法。</td>
+									<td class="desc1">Calls the method named methodName on every MonoBehaviour in this game object.</td>
+								</tr>
+								<tr>
+									<td class="descn">向上发生消息</td>
+									<td class="lbl"><a href="Component.SendMessageUpwards.html">SendMessageUpwards</a></td>
+									<td class="desc">在此游戏对象中的每个MonoBehaviour以及该行为的每个祖先上调用名为methodName的方法。</td>
+									<td class="desc1">Calls the method named methodName on every MonoBehaviour in this game object and on every
+										ancestor of the behaviour.</td>
+								</tr>
+								<tr>
+									<td class="descn">尝试获取组件</td>
+									<td class="lbl"><a href="Component.TryGetComponent.html">TryGetComponent</a></td>
+									<td class="desc">获取指定类型的组件（如果存在）。</td>
+									<td class="desc1">Gets the component of the specified type, if it exists.</td>
+								</tr>
+								<tr>
+									<td class="descn">实例ID</td>
+									<td class="lbl"><a href="Object.GetInstanceID.html">GetInstanceID</a></td>
+									<td class="desc">返回对象的实例ID。</td>
+									<td class="desc1">Returns the instance id of the object.</td>
+								</tr>
+								<tr>
+									<td class="descn">返回字符串</td>
+									<td class="lbl"><a href="Object.ToString.html">ToString</a></td>
+									<td class="desc">返回对象的名称。</td>
+									<td class="desc1">Returns the name of the object.</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+					<div class="subsection">
+						<h2>Static Methods   静态方法</h2>
+						<table class="list">
+							<tbody>
+								<tr>
+									<td class="descn">销毁</td>
+									<td class="lbl"><a href="Object.Destroy.html">Destroy</a></td>
+									<td class="desc">移除GameObject，组件或资产。</td>
+									<td class="desc1">Removes a GameObject, component or asset.</td>
+								</tr>
+								<tr>
+									<td class="descn">立即销毁</td>
+									<td class="lbl"><a href="Object.DestroyImmediate.html">DestroyImmediate</a></td>
+									<td class="desc">立即销毁对象obj。强烈建议您改用销毁。</td>
+									<td class="desc1">Destroys the object obj immediately. You are strongly recommended to use Destroy instead.</td>
+								</tr>
+								<tr>
+									<td class="descn">不在加载时销毁</td>
+									<td class="lbl"><a href="Object.DontDestroyOnLoad.html">DontDestroyOnLoad</a></td>
+									<td class="desc">加载新场景时，请勿破坏目标对象。</td>
+									<td class="desc1">Do not destroy the target Object when loading a new Scene.</td>
+								</tr>
+								<tr>
+									<td class="descn">查找对象类型</td>
+									<td class="lbl"><a href="Object.FindObjectOfType.html">FindObjectOfType</a></td>
+									<td class="desc">返回第一个Type类型的活动加载对象。</td>
+									<td class="desc1">Returns the first active loaded object of Type type.</td>
+								</tr>
+								<tr>
+									<td class="descn">查找对象(s)类型</td>
+									<td class="lbl"><a href="Object.FindObjectsOfType.html">FindObjectsOfType</a></td>
+									<td class="desc">返回所有类型为Type的活动加载对象的列表。</td>
+									<td class="desc1">Returns a list of all active loaded objects of Type type.</td>
+								</tr>
+								<tr>
+									<td class="descn">实例化</td>
+									<td class="lbl"><a href="Object.Instantiate.html">Instantiate</a></td>
+									<td class="desc">克隆对象原始对象并返回克隆。</td>
+									<td class="desc1">Clones the object original and returns the clone.</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="subsection">
+						<h2>Operators   运算符</h2>
+						<table class="list">
+							<tbody>
+								<tr>
+									<td class="descn">布尔</td>
+									<td class="lbl"><a href="Object-operator_Object.html">bool</a></td>
+									<td class="desc">该对象是否存在？</td>
+									<td class="desc1">Does the object exist?</td>
+								</tr>
+								<tr>
+									<td class="descn">运算符</td>
+									<td class="lbl"><a href="Object-operator_ne.html">operator !=</a></td>
+									<td class="desc">比较两个对象是否引用了另一个对象。</td>
+									<td class="desc1">Compares if two objects refer to a different object.</td>
+								</tr>
+								<tr>
+									<td class="descn">运算符</td>
+									<td class="lbl"><a href="Object-operator_eq.html">operator ==</a></td>
+									<td class="desc">比较两个对象引用以查看它们是否引用相同的对象。</td>
+									<td class="desc1">Compares two object references to see if they refer to the same object.</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="subsection">
+						<h2>Messages   消息</h2>
+						<table class="list">
+							<tbody>
+								<tr>
+									<td class="descn">碰撞开始时2D</td>
+									<td class="lbl"><a href="Collider2D.OnCollisionEnter2D.html">OnCollisionEnter2D</a></td>
+									<td class="desc">当传入的对撞机与该对象的对撞机接触时发送（仅限2D物理）。</td>
+									<td class="desc1">Sent when an incoming collider makes contact with this object's collider (2D physics only).</td>
+								</tr>
+								<tr>
+									<td class="descn">碰撞结束时2D</td>
+									<td class="lbl"><a href="Collider2D.OnCollisionExit2D.html">OnCollisionExit2D</a></td>
+									<td class="desc">当另一个对象上的碰撞器停止接触该对象的碰撞器时发送（仅2D物理）。</td>
+									<td class="desc1">Sent when a collider on another object stops touching this object's collider (2D physics
+										only).</td>
+								</tr>
+								<tr>
+									<td class="descn">碰撞停留时2D</td>
+									<td class="lbl"><a href="Collider2D.OnCollisionStay2D.html">OnCollisionStay2D</a></td>
+									<td class="desc">将每帧发送到另一个对象上的碰撞器正在触摸该对象的碰撞器的帧（仅适用于2D物理）。</td>
+									<td class="desc1">Sent each frame where a collider on another object is touching this object's collider (2D
+										physics only).</td>
+								</tr>
+								<tr>
+									<td class="descn">触发开始时2D</td>
+									<td class="lbl"><a href="Collider2D.OnTriggerEnter2D.html">OnTriggerEnter2D</a></td>
+									<td class="desc">当另一个对象进入连接到该对象的触发对撞机时发送（仅限2D物理）。</td>
+									<td class="desc1">Sent when another object enters a trigger collider attached to this object (2D physics
+										only).</td>
+								</tr>
+								<tr>
+									<td class="descn">触发结束时2D</td>
+									<td class="lbl"><a href="Collider2D.OnTriggerExit2D.html">OnTriggerExit2D</a></td>
+									<td class="desc">当另一个对象将触发对撞机附加到该对象时发送（仅2D物理）。</td>
+									<td class="desc1">Sent when another object leaves a trigger collider attached to this object (2D physics
+										only).</td>
+								</tr>
+								<tr>
+									<td class="descn">触发停留时2D</td>
+									<td class="lbl"><a href="Collider2D.OnTriggerStay2D.html">OnTriggerStay2D</a></td>
+									<td class="desc">在附加到该对象的触发对撞机内将其他对象发送到每个帧（仅2D物理）。</td>
+									<td class="desc1">Sent each frame where another object is within a trigger collider attached to this object
+										(2D
+										physics only).</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+	</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: RaycastHit.barycentricCoordinate</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="RaycastHit.html">RaycastHit</a>.barycentricCoordinate</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Vector3.html">Vector3</a> <span class="sig-kw">barycentricCoordinate</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The barycentric coordinate of the triangle we hit.</p></div><div class="subsection"><p>This lets you interpolate any of the vertex data along the 3 axes.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Attach this script to a camera and it will
+    // draw a debug line pointing outward from the normal
+    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        // Only if we hit something, do we continue
+        <a href="RaycastHit.html">RaycastHit</a> hit;<br /><br />
+        if (!<a href="Physics.Raycast.html">Physics.Raycast</a>(Camera.main.ScreenPointToRay(<a href="Input-mousePosition.html">Input.mousePosition</a>), out hit))
+        {
+            return;
+        }<br /><br />        // Just in case, also make sure the collider also has a renderer
+        // material and texture
+        <a href="MeshCollider.html">MeshCollider</a> meshCollider = hit.collider as <a href="MeshCollider.html">MeshCollider</a>;
+        if (meshCollider == null || meshCollider.sharedMesh == null)
+        {
+            return;
+        }<br /><br />        <a href="Mesh.html">Mesh</a> mesh = meshCollider.sharedMesh;
+        <a href="Vector3.html">Vector3</a>[] normals = mesh.normals;
+        int[] triangles = mesh.triangles;<br /><br />        // Extract local space normals of the triangle we hit
+        <a href="Vector3.html">Vector3</a> n0 = normals[triangles[hit.triangleIndex * 3 + 0]];
+        <a href="Vector3.html">Vector3</a> n1 = normals[triangles[hit.triangleIndex * 3 + 1]];
+        <a href="Vector3.html">Vector3</a> n2 = normals[triangles[hit.triangleIndex * 3 + 2]];<br /><br />        // interpolate using the barycentric coordinate of the hitpoint
+        <a href="Vector3.html">Vector3</a> baryCenter = hit.barycentricCoordinate;<br /><br />        // Use barycentric coordinate to interpolate normal
+        <a href="Vector3.html">Vector3</a> interpolatedNormal = n0 * baryCenter.x + n1 * baryCenter.y + n2 * baryCenter.z;
+        // normalize the interpolated normal
+        interpolatedNormal = interpolatedNormal.normalized;<br /><br />        // <a href="Transform.html">Transform</a> local space normals to world space
+        <a href="Transform.html">Transform</a> hitTransform = hit.collider.transform;
+        interpolatedNormal = hitTransform.TransformDirection(interpolatedNormal);<br /><br />        // <a href="Display.html">Display</a> with <a href="Debug.DrawLine.html">Debug.DrawLine</a>
+        <a href="Debug.DrawRay.html">Debug.DrawRay</a>(hit.point, interpolatedNormal);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

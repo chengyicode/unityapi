@@ -1,0 +1,21 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: IHasCustomMenu.AddItemsToMenu</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="IHasCustomMenu.html">IHasCustomMenu</a>.AddItemsToMenu</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">AddItemsToMenu</span>(<a href="GenericMenu.html">GenericMenu</a> <span class="sig-kw">menu</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Adds your custom menu items to an Editor Window.</p></div><div class="subsection"><p>The following example shows how you can implement this method in a class that derives from <a href="EditorWindow.html">EditorWindow</a> and implements IHasCustomMenu.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class CustomMenuExample : <a href="EditorWindow.html">EditorWindow</a>, <a href="IHasCustomMenu.html">IHasCustomMenu</a>
+{
+    [<a href="MenuItem.html">MenuItem</a>("MyWindows/Custom <a href="Menu.html">Menu</a> Window Example")]
+    static void ShowCustomWindow()
+    {
+        GetWindow&lt;CustomMenuExample&gt;().Show();
+    }<br /><br />    public void AddItemsToMenu(<a href="GenericMenu.html">GenericMenu</a> menu)
+    {
+        menu.AddItem(new <a href="GUIContent.html">GUIContent</a>("Hello"), false, OnHello);
+    }<br /><br />    void OnHello()
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("Hello!");
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

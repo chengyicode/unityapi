@@ -1,0 +1,37 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Animator.GetCurrentAnimatorStateInfo</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Animator.html">Animator</a>.GetCurrentAnimatorStateInfo</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Animator.html' title='Go to Animator Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="AnimatorStateInfo.html">AnimatorStateInfo</a> <span class="sig-kw">GetCurrentAnimatorStateInfo</span>(int <span class="sig-kw">layerIndex</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">layerIndex</td><td class="desc"></td><td class="desc1">The layer index.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>AnimatorStateInfo</strong>
+        An <a href="AnimatorStateInfo.html">AnimatorStateInfo</a> with the information on the current state.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Returns an <a href="AnimatorStateInfo.html">AnimatorStateInfo</a> with the information on the current state.</p></div><div class="subsection"><p>Fetches the data from the current state in the Animator. Use this to get details from the state, including accessing the state’s speed, length, name and other variables. For gathering information from the clips that the states hold, see <a href="Animator.GetCurrentAnimatorClipInfo.html">Animator.GetCurrentAnimatorClipInfo</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//Create a <a href="GameObject.html">GameObject</a> and attach an <a href="Animator.html">Animator</a> component (Click the <strong>Add Component</strong> button in the Inspector window, go to <strong>Miscellaneous</strong>&gt;<strong>Animator</strong>).
+//Create an <a href="Animator.html">Animator</a> by going to <strong>Assets</strong> &gt;  <strong>Create</strong> &gt; <strong>Animator Controller</strong>. Attach this Controller to the <a href="Animator.html">Animator</a> attached to your <a href="GameObject.html">GameObject</a>
+//In the <a href="Animator.html">Animator</a> Controller, create a Trigger parameter in the <strong>Parameters</strong> tab and name it “Jump”. Then create states and transition arrows that use this parameter.<br /><br />//This script triggers an <a href="Animation.html">Animation</a> parameter when you press the space key.<br /><br />using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="Animator.html">Animator</a> m_Animator;
+    //Use to output current speed of the state to the screen
+    float m_CurrentSpeed;<br /><br />    void Start()
+    {
+        //Get the <a href="Animator.html">Animator</a>, which you attach to the <a href="GameObject.html">GameObject</a> you intend to animate.
+        m_Animator = gameObject.GetComponent&lt;<a href="Animator.html">Animator</a>&gt;();
+        //The current speed of the first <a href="Animator.html">Animator</a> state
+        m_CurrentSpeed = m_Animator.GetCurrentAnimatorStateInfo(0).speed;
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        //Press the space bar to tell the <a href="Animator.html">Animator</a> to trigger the Jump <a href="Animation.html">Animation</a>
+        if (<a href="Input.GetKeyDown.html">Input.GetKeyDown</a>(<a href="KeyCode.Space.html">KeyCode.Space</a>))
+        {
+            m_Animator.SetTrigger("Jump");
+        }<br /><br />        //When entering the Jump state in the <a href="Animator.html">Animator</a>, output the message in the console
+        if (m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Jump"))
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("Jumping");
+        }
+    }<br /><br />    void OnGUI()
+    {
+        //Output the first <a href="Animation.html">Animation</a> speed to the screen
+        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, 25, 200, 20),  "Speed of <a href="Random.State.html">State</a> : " + m_CurrentSpeed);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

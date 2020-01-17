@@ -1,0 +1,41 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorApplication.SaveScene</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Method group is Obsolete</b><br /></div><h1 class="heading inherit"><a href="EditorApplication.html">EditorApplication</a>.SaveScene</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public static bool <span class="sig-kw">SaveScene</span>();
+    </div><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public static bool <span class="sig-kw">SaveScene</span>(string <span class="sig-kw">path</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public static bool <span class="sig-kw">SaveScene</span>(string <span class="sig-kw">path</span>,
+bool <span class="sig-kw">saveAsCopy</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">path</td><td class="desc"></td><td class="desc1">The file path to save at. If empty, the current open Scene will be overwritten, or if never saved before, a save dialog is shown.</td></tr><tr><td class="name lbl">saveAsCopy</td><td class="desc"></td><td class="desc1">If set to <code class="varname">true</code>, the Scene will be saved without changing the <a href="EditorApplication-currentScene.html">currentScene</a> and without clearing the unsaved changes marker.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>bool</strong>
+        True if the save succeeded, otherwise false.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Save the open Scene.</p></div><div class="subsection"><p>All paths are relative to the project folder, such as: "Assets/MyScenes/MyScene.unity".
+Folders specified in the path must already exist before calling the function.
+If no path is specified, the path of the current open Scene is used, except if it was never saved before, in which case a save dialog is shown.<br /><br />The function returns <code class="varname">false</code> if the save failed. This can happen if the specified path is invalid or if the user cancels in the case of a save dialog.<br /><br />When calling the function, the unsaved changes marker is cleared, just as when saving using the file menu.
+(On Windows, the unsaved changes marker is an asterix after the file name in the window title.
+On macOS it's a dot inside the red close button of the window.)
+When a path is specified, the <a href="EditorApplication-currentScene.html">currentScene</a> is also changed to be the specified asset.<br /><br />When <code class="varname">saveAsCopy</code> is set to <code class="varname">true</code> however, neither the <a href="EditorApplication-currentScene.html">currentScene</a> or the unsaved changes marker is changed.<br /><br />See Also: <a href="EditorApplication-currentScene.html">currentScene</a>.<br /><br /><img src="../StaticFiles/ScriptRefImages/SimpleAutoSave.png" /><br />
+<em>Simple Editor Window that saves each 300 seconds the current Scene.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class SimpleAutoSave : <a href="EditorWindow.html">EditorWindow</a>
+{
+    float saveTime = 300f;
+    float nextSave = 0f;<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Example/Simple autoSave")]
+    static void Init()
+    {
+        SimpleAutoSave window = <a href="EditorWindow.GetWindowWithRect.html">EditorWindow.GetWindowWithRect</a>&lt;SimpleAutoSave&gt;(new <a href="Rect.html">Rect</a>(0, 0, 165, 40), true);
+        window.Show();
+    }<br /><br />    void OnGUI()
+    {
+        <a href="EditorGUILayout.LabelField.html">EditorGUILayout.LabelField</a>("Save Each:", saveTime + " Secs");
+        int timeToSave = (int)(nextSave - <a href="EditorApplication-timeSinceStartup.html">EditorApplication.timeSinceStartup</a>);
+        <a href="EditorGUILayout.LabelField.html">EditorGUILayout.LabelField</a>("Next Save:", timeToSave.ToString() + " Sec");
+        this.Repaint();<br /><br />        if (<a href="EditorApplication-timeSinceStartup.html">EditorApplication.timeSinceStartup</a> &gt; nextSave)
+        {
+            string[] path = EditorApplication.currentScene.Split(char.Parse("/"));
+            path[path.Length - 1] = "AutoSave_" + path[path.Length - 1];
+            EditorApplication.SaveScene(string.Join("/", path), true);
+            <a href="Debug.Log.html">Debug.Log</a>("Saved <a href="SceneManagement.Scene.html">Scene</a>");
+            nextSave = (int)(<a href="EditorApplication-timeSinceStartup.html">EditorApplication.timeSinceStartup</a> + saveTime);
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

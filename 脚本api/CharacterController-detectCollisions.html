@@ -1,0 +1,18 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: CharacterController.detectCollisions</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="CharacterController.html">CharacterController</a>.detectCollisions</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-CharacterController.html' title='Go to CharacterController Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public bool <span class="sig-kw">detectCollisions</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Determines whether other rigidbodies or character controllers collide with this character controller (by default this is always enabled).</p></div><div class="subsection"><p>This method does not affect collisions detected during the character controller's movement but rather decides whether an
+incoming collider will be blocked by the controller's collider. For example, a box collider in the Scene will block the movement of the controller,
+but the box may still fall through the controller if detectCollisions is false.
+This property is useful to disable the character controller temporarily. For example, you might want to mount a character into a car and
+disable collision detection until it exits the car again.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="CharacterController.html">CharacterController</a> controller;<br /><br />    void Start()
+    {
+        controller = GetComponent&lt;<a href="CharacterController.html">CharacterController</a>&gt;();
+        controller.detectCollisions = false;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

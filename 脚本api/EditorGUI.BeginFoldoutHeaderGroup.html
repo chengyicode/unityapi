@@ -1,0 +1,90 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorGUI.BeginFoldoutHeaderGroup</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorGUI.html">EditorGUI</a>.BeginFoldoutHeaderGroup</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">BeginFoldoutHeaderGroup</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+bool <span class="sig-kw">foldout</span>,
+string <span class="sig-kw">content</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span> = EditorStyles.foldoutHeader,
+Action&lt;Rect&gt; <span class="sig-kw">menuAction</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">menuIcon</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">BeginFoldoutHeaderGroup</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+bool <span class="sig-kw">foldout</span>,
+<a href="GUIContent.html">GUIContent</a> <span class="sig-kw">content</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span> = EditorStyles.foldoutHeader,
+Action&lt;Rect&gt; <span class="sig-kw">menuAction</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">menuIcon</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">foldout</td><td class="desc"></td><td class="desc1">The shown foldout state.</td></tr><tr><td class="name lbl">content</td><td class="desc"></td><td class="desc1">The label to show.</td></tr><tr><td class="name lbl">style</td><td class="desc"></td><td class="desc1">Optional <a href="GUIStyle.html">GUIStyle</a>.</td></tr><tr><td class="name lbl">menuAction</td><td class="desc"></td><td class="desc1">The action that happens when you click the icon.</td></tr><tr><td class="name lbl">menuIcon</td><td class="desc"></td><td class="desc1">Optional <a href="GUIStyle.html">GUIStyle</a> for icon.</td></tr><tr><td class="name lbl">position</td><td class="desc"></td><td class="desc1">Rectangle on the screen to use for the control.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>bool</strong>
+        The foldout state selected by the user. If true, you should render sub-objects.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Make a label with a foldout arrow to the left of it.</p></div><div class="subsection"><p>This is useful for folder-like structures, where child objects only appear if you've unfolded the parent folder. This control cannot be nested in another BeginFoldoutHeaderGroup. To use multiple of these foldouts, you must end each method with EndFoldoutHeaderGroup.<br /><br /><img src="../StaticFiles/ScriptRefImages/EditorGUIFoldoutHeader.png" /><br />
+<em>Create a foldable header menu that hides or shows the selected Transform.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">// Create a foldable header menu that hides or shows the selected <a href="Transform.html">Transform</a> position.
+// If you have not selected a <a href="Transform.html">Transform</a>, the <a href="UIElements.Foldout.html">Foldout</a> item stays folded until
+// you select a <a href="Transform.html">Transform</a>.<br /><br />using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;<br /><br />public class FoldoutHeaderUsage : <a href="EditorWindow.html">EditorWindow</a>
+{
+    bool showPosition = true;
+    string status = "Select a <a href="GameObject.html">GameObject</a>";<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Examples/<a href="UIElements.Foldout.html">Foldout</a> Header Usage")]
+    static void CreateWindow()
+    {
+        GetWindow&lt;FoldoutHeaderUsage&gt;();
+    }<br /><br />    public void OnGUI()
+    {
+        // An absolute-positioned example: We make foldout header group and put it in a small rect on the screen.
+        showPosition = <a href="EditorGUI.BeginFoldoutHeaderGroup.html">EditorGUI.BeginFoldoutHeaderGroup</a>(new <a href="Rect.html">Rect</a>(10, 10, 200, 100), showPosition, status);<br /><br />        if (showPosition)
+            if (<a href="Selection-activeTransform.html">Selection.activeTransform</a>)
+            {
+                Selection.activeTransform.position =
+                    <a href="EditorGUI.Vector3Field.html">EditorGUI.Vector3Field</a>(new <a href="Rect.html">Rect</a>(10, 30, 200, 100), "<a href="UIElements.Position.html">Position</a>", Selection.activeTransform.position);
+                status = Selection.activeTransform.name;
+            }<br /><br />        if (!<a href="Selection-activeTransform.html">Selection.activeTransform</a>)
+        {
+            status = "Select a <a href="GameObject.html">GameObject</a>";
+            showPosition = false;
+        }
+        // End the <a href="UIElements.Foldout.html">Foldout</a> Header that we began above.
+        <a href="EditorGUI.EndFoldoutHeaderGroup.html">EditorGUI.EndFoldoutHeaderGroup</a>();
+    }
+}
+</pre>
+      </div><div class="subsection"><p>
+        <img src="../StaticFiles/ScriptRefImages/EditorGUIFoldoutHeaderMenu.png" />
+        <br />
+<em>Create a menu item action that moves the selected object to 0,0,0 when you click it.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">// Create a foldable header menu that hides or shows the selected <a href="Transform.html">Transform</a> position.
+// If you have not selected a <a href="Transform.html">Transform</a>, the <a href="UIElements.Foldout.html">Foldout</a> item stays folded until
+// you select a <a href="Transform.html">Transform</a>.<br /><br />using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;<br /><br />public class FoldoutHeaderUsage : <a href="EditorWindow.html">EditorWindow</a>
+{
+    bool showPosition = true;
+    string status = "Select a <a href="GameObject.html">GameObject</a>";<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Examples/<a href="UIElements.Foldout.html">Foldout</a> Header Usage")]
+    static void CreateWindow()
+    {
+        GetWindow&lt;FoldoutHeaderUsage&gt;();
+    }<br /><br />    public void OnGUI()
+    {
+        // An absolute-positioned example: We make foldout header group and put it in a small rect on the screen.
+        showPosition = <a href="EditorGUI.BeginFoldoutHeaderGroup.html">EditorGUI.BeginFoldoutHeaderGroup</a>(new <a href="Rect.html">Rect</a>(10, 10, 200, 100), showPosition, status, null, ShowHeaderContextMenu);<br /><br />        if (showPosition)
+            if (<a href="Selection-activeTransform.html">Selection.activeTransform</a>)
+            {
+                Selection.activeTransform.position =
+                    <a href="EditorGUI.Vector3Field.html">EditorGUI.Vector3Field</a>(new <a href="Rect.html">Rect</a>(10, 30, 200, 100), "<a href="UIElements.Position.html">Position</a>", Selection.activeTransform.position);
+                status = Selection.activeTransform.name;
+            }<br /><br />        if (!<a href="Selection-activeTransform.html">Selection.activeTransform</a>)
+        {
+            status = "Select a <a href="GameObject.html">GameObject</a>";
+            showPosition = false;
+        }
+        // End the <a href="UIElements.Foldout.html">Foldout</a> Header that we began above.
+        <a href="EditorGUI.EndFoldoutHeaderGroup.html">EditorGUI.EndFoldoutHeaderGroup</a>();
+    }<br /><br />    void ShowHeaderContextMenu(<a href="Rect.html">Rect</a> position)
+    {
+        var menu = new <a href="GenericMenu.html">GenericMenu</a>();
+        menu.AddItem(new <a href="GUIContent.html">GUIContent</a>("Move to (0,0,0)"), false, OnItemClicked);
+        menu.DropDown(position);
+    }<br /><br />    void OnItemClicked()
+    {
+        <a href="Undo.RecordObject.html">Undo.RecordObject</a>(<a href="Selection-activeTransform.html">Selection.activeTransform</a>, "Moving to center of world");
+        Selection.activeTransform.position = <a href="Vector3-zero.html">Vector3.zero</a>;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

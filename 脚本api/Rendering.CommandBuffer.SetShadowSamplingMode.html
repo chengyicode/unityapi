@@ -1,0 +1,28 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Rendering.CommandBuffer.SetShadowSamplingMode</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Rendering.CommandBuffer.html">CommandBuffer</a>.SetShadowSamplingMode</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">SetShadowSamplingMode</span>(<a href="Rendering.RenderTargetIdentifier.html">Rendering.RenderTargetIdentifier</a> <span class="sig-kw">shadowmap</span>,
+<a href="Rendering.ShadowSamplingMode.html">Rendering.ShadowSamplingMode</a> <span class="sig-kw">mode</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">shadowmap</td><td class="desc"></td><td class="desc1">Shadowmap render target to change the sampling mode on.</td></tr><tr><td class="name lbl">mode</td><td class="desc"></td><td class="desc1">New sampling mode.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Add a "set shadow sampling mode" command.</p></div><div class="subsection"><p>Shadowmap render textures are normally set up to be sampled with a comparison filter - the sampler gets a shadow-space depth value of the screen pixel and returns 0 or 1, depending on if the depth value in the shadowmap is smaller or larger. That's the default <a href="Rendering.ShadowSamplingMode.CompareDepths.html">ShadowSamplingMode.CompareDepths</a> mode and is used for rendering shadows.<br /><br />If you'd like to access the shadowmap values as in a regular texture, set the sampling mode to <a href="Rendering.ShadowSamplingMode.RawDepth.html">ShadowSamplingMode.RawDepth</a>.<br /><br />Shadowmap's sampling mode will be reverted to default after the the last command in the current CommandBuffer.<br /><br />Check <a href="SystemInfo-supportsRawShadowDepthSampling.html">SystemInfo.supportsRawShadowDepthSampling</a> to verify if current runtime platform supports sampling shadows this way. Notably, DirectX9 does not.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.Rendering;<br /><br />[<a href="RequireComponent.html">RequireComponent</a>(typeof(<a href="Camera.html">Camera</a>))]
+public class RawShadowmapDepth : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Light.html">Light</a> m_Light;
+    <a href="RenderTexture.html">RenderTexture</a> m_ShadowmapCopy;<br /><br />    void Start()
+    {
+        <a href="Rendering.RenderTargetIdentifier.html">RenderTargetIdentifier</a> shadowmap = <a href="Rendering.BuiltinRenderTextureType.CurrentActive.html">BuiltinRenderTextureType.CurrentActive</a>;
+        m_ShadowmapCopy = new <a href="RenderTexture.html">RenderTexture</a>(1024, 1024, 0);
+        <a href="Rendering.CommandBuffer.html">CommandBuffer</a> cb = new <a href="Rendering.CommandBuffer.html">CommandBuffer</a>();<br /><br />        // Change shadow sampling mode for m_Light's shadowmap.
+        cb.SetShadowSamplingMode(shadowmap, <a href="Rendering.ShadowSamplingMode.RawDepth.html">ShadowSamplingMode.RawDepth</a>);<br /><br />        // The shadowmap values can now be sampled normally - copy it to a different render texture.
+        cb.Blit(shadowmap, new <a href="Rendering.RenderTargetIdentifier.html">RenderTargetIdentifier</a>(m_ShadowmapCopy));<br /><br />        // Execute after the shadowmap has been filled.
+        m_Light.AddCommandBuffer(<a href="Rendering.LightEvent.AfterShadowMap.html">LightEvent.AfterShadowMap</a>, cb);<br /><br />        // <a href="LightmapEditorSettings.Sampling.html">Sampling</a> mode is restored automatically after this command buffer completes, so shadows will render normally.
+    }<br /><br />    void OnRenderImage(<a href="RenderTexture.html">RenderTexture</a> src, <a href="RenderTexture.html">RenderTexture</a> dest)
+    {
+        // <a href="Display.html">Display</a> the shadowmap in the corner.
+        Camera.main.rect = new <a href="Rect.html">Rect</a>(0, 0, 0.5f, 0.5f);
+        <a href="Graphics.Blit.html">Graphics.Blit</a>(m_ShadowmapCopy, dest);
+        Camera.main.rect = new <a href="Rect.html">Rect</a>(0, 0, 1, 1);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

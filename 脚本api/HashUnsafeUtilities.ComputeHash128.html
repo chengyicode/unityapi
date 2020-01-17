@@ -1,0 +1,33 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: HashUnsafeUtilities.ComputeHash128</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="HashUnsafeUtilities.html">HashUnsafeUtilities</a>.ComputeHash128</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">ComputeHash128</span>(void* <span class="sig-kw">data</span>,
+ulong <span class="sig-kw">dataSize</span>,
+ulong* <span class="sig-kw">hash1</span>,
+ulong* <span class="sig-kw">hash2</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">ComputeHash128</span>(void* <span class="sig-kw">data</span>,
+ulong <span class="sig-kw">dataSize</span>,
+Hash128* <span class="sig-kw">hash</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">data</td><td class="desc"></td><td class="desc1">Pointer to the data to hash.</td></tr><tr><td class="name lbl">dataSize</td><td class="desc"></td><td class="desc1">The number of bytes to hash.</td></tr><tr><td class="name lbl">hash1</td><td class="desc"></td><td class="desc1">A pointer to store the low 64 bits of the computed hash.</td></tr><tr><td class="name lbl">hash2</td><td class="desc"></td><td class="desc1">A pointer to store the high 64 bits of the computed hash.</td></tr><tr><td class="name lbl">hash</td><td class="desc"></td><td class="desc1">A pointer to the Hash128 to updated with the computed hash.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Compute a 128 bit hash based on a data.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class HashUtilitiesSample
+{
+    public void ComputeHash128_ToULong()
+    {
+        unsafe
+        {
+            ulong* message = stackalloc ulong[2];
+            message[0] = 0x73BC2A67F;
+            message[1] = 0x54B1A5C2C;<br /><br />            ulong h1 = 0;
+            ulong h2 = 0;<br /><br />            <a href="HashUnsafeUtilities.ComputeHash128.html">HashUnsafeUtilities.ComputeHash128</a>(message, sizeof(ulong) * 2, &amp;h1, &amp;h2);
+        }
+    }<br /><br />    public void ComputeHash128_ToHash128()
+    {
+        unsafe
+        {
+            ulong* message = stackalloc ulong[2];
+            message[0] = 0x73BC2A67F;
+            message[1] = 0x54B1A5C2C;<br /><br />            <a href="Hash128.html">Hash128</a> hash = new <a href="Hash128.html">Hash128</a>();<br /><br />            <a href="HashUnsafeUtilities.ComputeHash128.html">HashUnsafeUtilities.ComputeHash128</a>(message, sizeof(ulong) * 2, &amp;hash);
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Help.HasHelpForObject</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Help.html">Help</a>.HasHelpForObject</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">HasHelpForObject</span>(<a href="Object.html">Object</a> <span class="sig-kw">obj</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Is there a help page for this object?</p></div><div class="subsection"><p>See Also: <a href="Help.ShowHelpForObject.html">Help.ShowHelpForObject</a>, <a href="Help.GetHelpURLForObject.html">Help.GetHelpURLForObject</a>.<br /><br /><img src="../StaticFiles/ScriptRefImages/QuickHelper.png" /><br />
+<em>Editor Window that lets you load docs for any Selected GameObject.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />// EditorScript that quickly searchs for a help page
+// of the selected Object.
+//
+// If there is no page found on the Manual it opens the Unity forum.<br /><br />class QuickHelper : <a href="EditorWindow.html">EditorWindow</a>
+{
+    Object source;<br /><br />    [@<a href="MenuItem.html">MenuItem</a>("Example/QuickHelper _h")]
+    static void Init()
+    {
+        <a href="EditorWindow.html">EditorWindow</a> window = <a href="EditorWindow.GetWindowWithRect.html">EditorWindow.GetWindowWithRect</a>(typeof(QuickHelper), new <a href="Rect.html">Rect</a>(0, 0, 165, 100));
+        window.Show();
+    }<br /><br />    void OnGUI()
+    {
+        <a href="EditorGUILayout.BeginHorizontal.html">EditorGUILayout.BeginHorizontal</a>();
+        source = <a href="EditorGUILayout.ObjectField.html">EditorGUILayout.ObjectField</a>(source, typeof(Object));
+        <a href="EditorGUILayout.EndHorizontal.html">EditorGUILayout.EndHorizontal</a>();<br /><br />        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Search!"))
+        {
+            if (source == null)
+            {
+                this.ShowNotification(new <a href="GUIContent.html">GUIContent</a>("No object selected for searching"));
+            }
+            else
+            {
+                if (<a href="Help.HasHelpForObject.html">Help.HasHelpForObject</a>(source))
+                {
+                    <a href="Help.ShowHelpForObject.html">Help.ShowHelpForObject</a>(source);
+                }
+                else
+                {
+                    <a href="Help.BrowseURL.html">Help.BrowseURL</a>("http://forum.unity3d.com/search.php");
+                }
+            }
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorToolAttribute</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">EditorToolAttribute</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEditor.EditorTools</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEditor.html" class="cl">UnityEditor</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Registers an <a href="EditorTools.EditorTool.html">EditorTool</a> as either a global tool or a <a href="CustomEditor.html">CustomEditor</a> for a specific target type.</p></div><div class="subsection"><p>A global tool works on any selection. A global tool is also always available from the top toolbar. A <a href="CustomEditor.html">CustomEditor</a> tool is only available for selections that match a target type.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEditor.EditorTools;
+using UnityEngine.Rendering;<br /><br />// By passing `typeof(<a href="MeshFilter.html">MeshFilter</a>)` as the second argument, we register VertexTool as a <a href="CustomEditor.html">CustomEditor</a> tool to be presented
+// when the current selection contains a <a href="MeshFilter.html">MeshFilter</a> component.
+[<a href="EditorTools.EditorTool.html">EditorTool</a>("Show Vertices", typeof(<a href="MeshFilter.html">MeshFilter</a>))]
+class VertexTool : <a href="EditorTools.EditorTool.html">EditorTool</a>
+{
+    struct TransformAndPositions
+    {
+        public <a href="Transform.html">Transform</a> transform;
+        public <a href="Vector3.html">Vector3</a>[] positions;
+    }<br /><br />    IEnumerable&lt;TransformAndPositions&gt; m_Vertices;
+    <a href="GUIContent.html">GUIContent</a> m_ToolbarIcon;<br /><br />    public override <a href="GUIContent.html">GUIContent</a> toolbarIcon
+    {
+        get
+        {
+            if (m_ToolbarIcon == null)
+                m_ToolbarIcon = new <a href="GUIContent.html">GUIContent</a>(
+                    <a href="AssetDatabase.LoadAssetAtPath.html">AssetDatabase.LoadAssetAtPath</a>&lt;<a href="Texture2D.html">Texture2D</a>&gt;("Assets/Examples/Icons/VertexTool.png"),
+                    "Vertex Visualization <a href="Tool.html">Tool</a>");
+            return m_ToolbarIcon;
+        }
+    }<br /><br />    void OnEnable()
+    {
+        <a href="EditorTools.EditorTools-activeToolChanged.html">EditorTools.activeToolChanged</a> += ActiveToolDidChange;
+    }<br /><br />    void OnDisable()
+    {
+        <a href="EditorTools.EditorTools-activeToolChanged.html">EditorTools.activeToolChanged</a> -= ActiveToolDidChange;
+    }<br /><br />    void ActiveToolDidChange()
+    {
+        if (!<a href="EditorTools.EditorTools.IsActiveTool.html">EditorTools.IsActiveTool</a>(this))
+            return;<br /><br />        m_Vertices = targets.Select(x =&gt;
+        {
+            return new TransformAndPositions()
+            {
+                transform = ((<a href="MeshFilter.html">MeshFilter</a>)x).transform,
+                positions = ((<a href="MeshFilter.html">MeshFilter</a>)x).sharedMesh.vertices
+            };
+        }).ToArray();
+    }<br /><br />    public override void OnToolGUI(<a href="EditorWindow.html">EditorWindow</a> window)
+    {
+        var evt = <a href="Event-current.html">Event.current</a>;<br /><br />        if (evt.type == <a href="EventType.Repaint.html">EventType.Repaint</a>)
+        {
+            var zTest = <a href="Handles-zTest.html">Handles.zTest</a>;
+            <a href="Handles-zTest.html">Handles.zTest</a> = <a href="Rendering.CompareFunction.LessEqual.html">CompareFunction.LessEqual</a>;<br /><br />            foreach (var entry in m_Vertices)
+            {
+                foreach (var vertex in entry.positions)
+                {
+                    var world = entry.transform.TransformPoint(vertex);
+                    <a href="Handles.DotHandleCap.html">Handles.DotHandleCap</a>(0, world, <a href="Quaternion-identity.html">Quaternion.identity</a>, <a href="HandleUtility.GetHandleSize.html">HandleUtility.GetHandleSize</a>(world) * .05f, evt.type);
+                }
+            }<br /><br />            <a href="Handles-zTest.html">Handles.zTest</a> = zTest;
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="EditorTools.EditorToolAttribute-displayName.html">displayName</a></td><td class="desc"></td><td class="desc1">The name that displays in menus.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="EditorTools.EditorToolAttribute-targetType.html">targetType</a></td><td class="desc"></td><td class="desc1">The target type that this tool can edit.</td></tr>
+    </table></div><div class="subsection"><h2>Constructors</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="EditorTools.EditorToolAttribute-ctor.html">EditorToolAttribute</a></td><td class="desc"></td><td class="desc1">Registers an EditorTool as either a global tool or a CustomEditor tool.</td></tr>
+    </table></div></div></div></div></body></html>

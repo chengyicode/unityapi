@@ -1,0 +1,80 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Cloth</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">Cloth</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Inherits from:<a href="Component.html" class="cl">Component</a></p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.ClothModule.html" class="cl">UnityEngine.ClothModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Cloth.html' title='Go to Cloth Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>The Cloth class provides an interface to cloth simulation physics.</p></div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Cloth-bendingStiffness.html">bendingStiffness</a></td><td class="desc"></td><td class="desc1">Bending stiffness of the cloth.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Cloth-capsuleColliders.html">capsuleColliders</a></td><td class="desc"></td><td class="desc1">An array of CapsuleColliders which this Cloth instance should collide with.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Cloth-clothSolverFrequency.html">clothSolverFrequency</a></td><td class="desc"></td><td class="desc1">Number of cloth solver iterations per second.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Cloth-coefficients.html">coefficients</a></td><td class="desc"></td><td class="desc1">The cloth skinning coefficients used to set up how the cloth interacts with the skinned mesh.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Cloth-collisionMassScale.html">collisionMassScale</a></td><td class="desc"></td><td class="desc1">How much to increase mass of colliding particles.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Cloth-damping.html">damping</a></td><td class="desc"></td><td class="desc1">Damp cloth motion.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Cloth-enableContinuousCollision.html">enableContinuousCollision</a></td><td class="desc"></td><td class="desc1">Enable continuous collision to improve collision stability.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Cloth-enabled.html">enabled</a></td><td class="desc"></td><td class="desc1">Is this cloth enabled?</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Cloth-externalAcceleration.html">externalAcceleration</a></td><td class="desc"></td><td class="desc1">A constant, external acceleration applied to the cloth.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Cloth-friction.html">friction</a></td><td class="desc"></td><td class="desc1">The friction of the cloth when colliding with the character.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Cloth-normals.html">normals</a></td><td class="desc"></td><td class="desc1">The current normals of the cloth object.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Cloth-randomAcceleration.html">randomAcceleration</a></td><td class="desc"></td><td class="desc1">A random, external acceleration applied to the cloth.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Cloth-selfCollisionDistance.html">selfCollisionDistance</a></td><td class="desc"></td><td class="desc1">Minimum distance at which two cloth particles repel each other (default: 0.0).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Cloth-selfCollisionStiffness.html">selfCollisionStiffness</a></td><td class="desc"></td><td class="desc1">Self-collision stiffness defines how strong the separating impulse should be for colliding particles.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Cloth-sleepThreshold.html">sleepThreshold</a></td><td class="desc"></td><td class="desc1">Cloth's sleep threshold.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Cloth-sphereColliders.html">sphereColliders</a></td><td class="desc"></td><td class="desc1">An array of ClothSphereColliderPairs which this Cloth instance should collide with.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Cloth-stiffnessFrequency.html">stiffnessFrequency</a></td><td class="desc"></td><td class="desc1">Sets the stiffness frequency parameter.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Cloth-stretchingStiffness.html">stretchingStiffness</a></td><td class="desc"></td><td class="desc1">Stretching stiffness of the cloth.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Cloth-useGravity.html">useGravity</a></td><td class="desc"></td><td class="desc1">Should gravity affect the cloth simulation?</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Cloth-useTethers.html">useTethers</a></td><td class="desc"></td><td class="desc1">Use Tether Anchors.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Cloth-useVirtualParticles.html">useVirtualParticles</a></td><td class="desc"></td><td class="desc1">Add one virtual particle per triangle to improve collision stability.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Cloth-vertices.html">vertices</a></td><td class="desc"></td><td class="desc1">The current vertex positions of the cloth object.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Cloth-worldAccelerationScale.html">worldAccelerationScale</a></td><td class="desc"></td><td class="desc1">How much world-space acceleration of the character will affect cloth vertices.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Cloth-worldVelocityScale.html">worldVelocityScale</a></td><td class="desc"></td><td class="desc1">How much world-space movement of the character will affect cloth vertices.</td></tr>
+    </table></div><div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Cloth.ClearTransformMotion.html">ClearTransformMotion</a></td><td class="desc"></td><td class="desc1">Clear the pending transform changes from affecting the cloth simulation.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Cloth.GetSelfAndInterCollisionIndices.html">GetSelfAndInterCollisionIndices</a></td><td class="desc"></td><td class="desc1">Get list of particles to be used for self and inter collision.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Cloth.GetVirtualParticleIndices.html">GetVirtualParticleIndices</a></td><td class="desc"></td><td class="desc1">Get list of indices to be used when generating virtual particles.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Cloth.GetVirtualParticleWeights.html">GetVirtualParticleWeights</a></td><td class="desc"></td><td class="desc1">Get weights to be used when generating virtual particles for cloth.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Cloth.SetEnabledFading.html">SetEnabledFading</a></td><td class="desc"></td><td class="desc1">Fade the cloth simulation in or out.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Cloth.SetSelfAndInterCollisionIndices.html">SetSelfAndInterCollisionIndices</a></td><td class="desc"></td><td class="desc1">This allows you to set the cloth indices used for self and inter collision.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Cloth.SetVirtualParticleIndices.html">SetVirtualParticleIndices</a></td><td class="desc"></td><td class="desc1">Set indices to use when generating virtual particles.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Cloth.SetVirtualParticleWeights.html">SetVirtualParticleWeights</a></td><td class="desc"></td><td class="desc1">Sets weights to be used when generating virtual particles for cloth.</td></tr>
+    </table></div><div class="subsection"><h2>Inherited Members   继承成员</h2>
+      
+      <div class="subsection"><h2>Properties   属性</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Component-gameObject.html">gameObject</a></td><td class="desc"></td><td class="desc1">The game object this component is attached to. A component is always attached to a game object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component-tag.html">tag</a></td><td class="desc"></td><td class="desc1">The tag of this game object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component-transform.html">transform</a></td><td class="desc"></td><td class="desc1">The Transform attached to this GameObject.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-hideFlags.html">hideFlags</a></td><td class="desc"></td><td class="desc1">Should the object be hidden, saved with the Scene or modifiable by the user?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-name.html">name</a></td><td class="desc"></td><td class="desc1">The name of the object.</td></tr>
+      </table></div>
+      
+      
+      
+      <div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.BroadcastMessage.html">BroadcastMessage</a></td><td class="desc"></td><td class="desc1">Calls the method named methodName on every MonoBehaviour in this game object or any of its children.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.CompareTag.html">CompareTag</a></td><td class="desc"></td><td class="desc1">Is this game object tagged with tag ?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponent.html">GetComponent</a></td><td class="desc"></td><td class="desc1">Returns the component of Type type if the game object has one attached, null if it doesn't.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponentInChildren.html">GetComponentInChildren</a></td><td class="desc"></td><td class="desc1">Returns the component of Type type in the GameObject or any of its children using depth first search.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponentInParent.html">GetComponentInParent</a></td><td class="desc"></td><td class="desc1">Returns the component of Type type in the GameObject or any of its parents.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponents.html">GetComponents</a></td><td class="desc"></td><td class="desc1">Returns all components of Type type in the GameObject.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponentsInChildren.html">GetComponentsInChildren</a></td><td class="desc"></td><td class="desc1">Returns all components of Type type in the GameObject or any of its children.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponentsInParent.html">GetComponentsInParent</a></td><td class="desc"></td><td class="desc1">Returns all components of Type type in the GameObject or any of its parents.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.SendMessage.html">SendMessage</a></td><td class="desc"></td><td class="desc1">Calls the method named methodName on every MonoBehaviour in this game object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.SendMessageUpwards.html">SendMessageUpwards</a></td><td class="desc"></td><td class="desc1">Calls the method named methodName on every MonoBehaviour in this game object and on every ancestor of the behaviour.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.TryGetComponent.html">TryGetComponent</a></td><td class="desc"></td><td class="desc1">Gets the component of the specified type, if it exists.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.GetInstanceID.html">GetInstanceID</a></td><td class="desc"></td><td class="desc1">Returns the instance id of the object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.ToString.html">ToString</a></td><td class="desc"></td><td class="desc1">Returns the name of the object.</td></tr>
+      </table></div>
+      
+      <div class="subsection"><h2>Static Methods   静态方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.Destroy.html">Destroy</a></td><td class="desc"></td><td class="desc1">Removes a GameObject, component or asset.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.DestroyImmediate.html">DestroyImmediate</a></td><td class="desc"></td><td class="desc1">Destroys the object obj immediately. You are strongly recommended to use Destroy instead.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.DontDestroyOnLoad.html">DontDestroyOnLoad</a></td><td class="desc"></td><td class="desc1">Do not destroy the target Object when loading a new Scene.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectOfType.html">FindObjectOfType</a></td><td class="desc"></td><td class="desc1">Returns the first active loaded object of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectsOfType.html">FindObjectsOfType</a></td><td class="desc"></td><td class="desc1">Returns a list of all active loaded objects of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.Instantiate.html">Instantiate</a></td><td class="desc"></td><td class="desc1">Clones the object original and returns the clone.</td></tr>
+      </table></div>
+      <div class="subsection"><h2>Operators   运算符</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_Object.html">bool</a></td><td class="desc"></td><td class="desc1">Does the object exist?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_ne.html">operator !=</a></td><td class="desc"></td><td class="desc1">Compares if two objects refer to a different object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_eq.html">operator ==</a></td><td class="desc"></td><td class="desc1">Compares two object references to see if they refer to the same object.</td></tr>
+      </table></div>
+      
+      
+      
+    </div></div></div></div></body></html>

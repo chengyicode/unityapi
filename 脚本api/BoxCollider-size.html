@@ -1,0 +1,39 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: BoxCollider.size</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="BoxCollider.html">BoxCollider</a>.size</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-BoxCollider.html' title='Go to BoxCollider Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Vector3.html">Vector3</a> <span class="sig-kw">size</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The size of the box, measured in the object's local space.</p></div><div class="subsection"><p>Use this to return or set the size of the BoxCollider component of a GameObject.  Unity measures the size in the GameObject's local space.
+Changing the BoxCollider size scales it by the Transform’s scale.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//Attach this script to a <a href="GameObject.html">GameObject</a>. Make sure the <a href="GameObject.html">GameObject</a> has a <a href="BoxCollider.html">BoxCollider</a> component (Unity Cubes have these automatically as long as they weren’t removed).
+//Create three Sliders ( <strong>Create</strong>&gt;<strong>UI</strong>&gt;<strong>Slider</strong>). These are for manipulating the x, y, and z values of the size.
+//Click on the <a href="GameObject.html">GameObject</a> and attach each of the Sliders to the fields in the Inspector.
+//In Play <a href="Scripting.GarbageCollector.Mode.html">Mode</a>, click the <a href="GameObject.html">GameObject</a> and enable <a href="Gizmos.html">Gizmos</a> to visualize the <a href="BoxCollider.html">BoxCollider</a>.<br /><br />using UnityEngine;
+using UnityEngine.UI;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    //Make sure there is a <a href="BoxCollider.html">BoxCollider</a> component attached to your <a href="GameObject.html">GameObject</a>
+    <a href="BoxCollider.html">BoxCollider</a> m_Collider;
+    float m_ScaleX, m_ScaleY, m_ScaleZ;
+    public <a href="UIElements.Slider.html">Slider</a> m_SliderX, m_SliderY, m_SliderZ;<br /><br />
+    void Start()
+    {
+        //Fetch the <a href="Collider.html">Collider</a> from the <a href="GameObject.html">GameObject</a>
+        m_Collider = GetComponent&lt;<a href="BoxCollider.html">BoxCollider</a>&gt;();
+        //These are the starting sizes for the <a href="Collider.html">Collider</a> component
+        m_ScaleX = 1.0f;
+        m_ScaleY = 1.0f;
+        m_ScaleZ = 1.0f;<br /><br />        //Set all the sliders max values to 20 so the size values don't go above 20
+        m_SliderX.maxValue = 20;
+        m_SliderY.maxValue = 20;
+        m_SliderZ.maxValue = 20;<br /><br />        //Set all the sliders min values to 1 so the size don't go below 1
+        m_SliderX.minValue = 1;
+        m_SliderY.minValue = 1;
+        m_SliderZ.minValue = 1;
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        m_ScaleX = m_SliderX.value;
+        m_ScaleY = m_SliderY.value;
+        m_ScaleZ = m_SliderZ.value;<br /><br />        m_Collider.size = new <a href="Vector3.html">Vector3</a>(m_ScaleX, m_ScaleY, m_ScaleZ);
+        <a href="Debug.Log.html">Debug.Log</a>("Current <a href="BoxCollider.html">BoxCollider</a> Size : " + m_Collider.size);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

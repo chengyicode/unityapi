@@ -1,0 +1,37 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorUtility.FocusProjectWindow</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorUtility.html">EditorUtility</a>.FocusProjectWindow</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">FocusProjectWindow</span>();
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Brings the project window to the front and focuses it.</p></div><div class="subsection"><p>This is commonly called after a menu item that creates and selects an asset is invoked.<br /><br /><img src="../StaticFiles/ScriptRefImages/EditorUtilityFocusProjectWindow.png" /><br />
+<em>Changes the color of the selected GameObjects.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class FocusProjectWindowExample : <a href="EditorWindow.html">EditorWindow</a>
+{
+    static <a href="Color.html">Color</a>    matColor = <a href="Color-white.html">Color.white</a>;<br /><br />
+    [<a href="MenuItem.html">MenuItem</a>("Example/<a href="Color.html">Color</a> Change")]
+    static void Init()
+    {
+        // Get existing open window or if none, make a new one:
+        FocusProjectWindowExample window = (FocusProjectWindowExample)<a href="EditorWindow.GetWindow.html">EditorWindow.GetWindow</a>(typeof(FocusProjectWindowExample));
+        window.Show();
+    }<br /><br />    void OnGUI()
+    {
+        matColor = <a href="EditorGUI.ColorField.html">EditorGUI.ColorField</a>(new <a href="Rect.html">Rect</a>(3, 3, position.width - 6, 15), "New <a href="Color.html">Color</a>:", matColor);
+        if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(3, 25, position.width - 6, 30), "Change"))
+            ChangeColors();
+    }<br /><br />    void ChangeColors()
+    {
+        if (<a href="Selection-activeGameObject.html">Selection.activeGameObject</a>)
+        {
+            foreach (<a href="GameObject.html">GameObject</a> t in <a href="Selection-gameObjects.html">Selection.gameObjects</a>)
+            {
+                <a href="Renderer.html">Renderer</a> rend = t.GetComponent&lt;<a href="Renderer.html">Renderer</a>&gt;();<br /><br />                if (rend)
+                    rend.sharedMaterial.color = matColor;
+            }
+        }<br /><br />        <a href="EditorUtility.FocusProjectWindow.html">EditorUtility.FocusProjectWindow</a>();
+    }<br /><br />    void OnInspectorUpdate()
+    {
+        Repaint();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

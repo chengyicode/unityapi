@@ -1,0 +1,83 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Debug.Log</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Debug.html">Debug</a>.Log</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">Log</span>(object <span class="sig-kw">message</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">Log</span>(object <span class="sig-kw">message</span>,
+<a href="Object.html">Object</a> <span class="sig-kw">context</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">message</td><td class="desc"></td><td class="desc1">String or object to be converted to string representation for display.</td></tr><tr><td class="name lbl">context</td><td class="desc"></td><td class="desc1">Object to which the message applies.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Logs a message to the Unity Console.</p></div><div class="subsection"><p>Use <a href="Debug.Log.html">Debug.Log</a> to print informational messages that help you debug your application. For example, you could print a message containing a <a href="GameObject-name.html">GameObject.name</a> and information about the object’s current state.<br /><br />You can format messages with string concatenation:<br />
+<code class="mono">Debug.Log("Text: " + myText.text);</code><br /><br />You can also use <a href="../Manual/StyledText.html">Rich Text</a> markup.<br /><br />If you pass a <a href="GameObject.html">GameObject</a> or <a href="Component.html">Component</a> as the optional <code class="varname">context</code> argument,
+Unity momentarily highlights that object in the <code class="mono">Hierarchy</code> window when you click the
+log message in the <code class="mono">Console</code>. Use a <code class="varname">context</code> object when you have many instances of an
+object in a Scene so that you can identify which one produced the message. <code class="varname">Example 2</code>,
+below, illustrates how this feature works. When you run this example, first click one of
+the cubes it creates in the Scene. The example prints a log message to the <code class="mono">Console</code>.
+When you click on the message, Unity highlights the <code class="varname">context</code> object in the <code class="mono">Hierarchy</code>
+window — in this case, the cube you clicked on in the Scene.<br /><br />Example 1: Show some uses of <a href="Debug.Log.html">Debug.Log</a>:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class MyGameClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // A <a href="Light.html">Light</a> used in the <a href="SceneManagement.Scene.html">Scene</a> and needed by MyGameMethod().
+    public <a href="Light.html">Light</a> light;<br /><br />    void MyGameMethod()
+    {
+        // <a href="VersionControl.Message.html">Message</a> with a <a href="GameObject.html">GameObject</a> name.
+        <a href="Debug.Log.html">Debug.Log</a>("Hello: " + gameObject.name);<br /><br />        // <a href="VersionControl.Message.html">Message</a> with light type. This is an Object example.
+        <a href="Debug.Log.html">Debug.Log</a>(light.type);<br /><br />        // <a href="VersionControl.Message.html">Message</a> using rich text.
+        <a href="Debug.Log.html">Debug.Log</a>("&lt;color=red&gt;<a href="PackageManager.Error.html">Error</a>: &lt;/color&gt;<a href="AssetBundle.html">AssetBundle</a> not found");
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Example 2: Show selection of a clicked <a href="GameObject.html">GameObject</a>:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;<br /><br />// <a href="Debug.Log.html">Debug.Log</a> example
+//
+// Create three cubes. Place them around the world origin.
+// If a cube is clicked use <a href="Debug.Log.html">Debug.Log</a> to announce it. Use
+// <a href="Debug.Log.html">Debug.Log</a> with two arguments. Argument two allows the
+// cube to be automatically selected in the hierarchy when
+// the console message is clicked.
+//
+// Add this script to an empty <a href="GameObject.html">GameObject</a>.<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private <a href="GameObject.html">GameObject</a>[] cubes;<br /><br />    void Awake()
+    {
+        // Create three cubes and place them close to the world space center.
+        cubes = new <a href="GameObject.html">GameObject</a>[3];
+        float f = 25.0f;
+        float p = -2.0f;
+        float[] z = new float[] {0.5f, 0.0f, 0.5f};<br /><br />        for (int i = 0; i &lt; 3; i++)
+        {
+            // <a href="UIElements.Position.html">Position</a> and rotate each cube.
+            cubes[i] = <a href="GameObject.CreatePrimitive.html">GameObject.CreatePrimitive</a>(<a href="PrimitiveType.Cube.html">PrimitiveType.Cube</a>);
+            cubes[i].name = "Cube" + (i + 1).ToString();
+            cubes[i].transform.Rotate(0.0f, f, 0.0f);
+            cubes[i].transform.position = new <a href="Vector3.html">Vector3</a>(p, 0.0f, z[i]);
+            f -= 25.0f;
+            p = p + 2.0f;
+        }<br /><br />        // <a href="UIElements.Position.html">Position</a> and rotate the camera to view all three cubes.
+        Camera.main.transform.position = new <a href="Vector3.html">Vector3</a>(3.0f, 1.5f, 3.0f);
+        Camera.main.transform.localEulerAngles = new <a href="Vector3.html">Vector3</a>(25.0f, -140.0f, 0.0f);
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        // Process a mouse button click.
+        if (<a href="Input.GetMouseButtonDown.html">Input.GetMouseButtonDown</a>(0))
+        {
+            var ray = Camera.main.ScreenPointToRay(<a href="Input-mousePosition.html">Input.mousePosition</a>);
+            <a href="RaycastHit.html">RaycastHit</a> hit;<br /><br />            if (<a href="Physics.Raycast.html">Physics.Raycast</a>(ray, out hit))
+            {
+                // Visit each cube and determine if it has been clicked.
+                for (int i = 0; i &lt; 3; i++)
+                {
+                    if (hit.collider.gameObject == cubes[i])
+                    {
+                        // This cube was clicked.
+                        <a href="Debug.Log.html">Debug.Log</a>("Hit " + cubes[i].name, cubes[i]);
+                    }
+                }
+            }
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Note that Unity also adds <a href="Debug.Log.html">Debug.Log</a> messages to the Editor and Player log files. See <a href="../Manual/LogFiles.html">Log Files</a> for more information about accessing these files on different platforms.</p></div></div></div></div></body></html>

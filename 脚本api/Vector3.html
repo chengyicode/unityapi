@@ -1,0 +1,58 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Vector3</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">Vector3</h1><div class="clear"></div><p class="cl mb0 left mr10">struct in
+          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.CoreModule.html" class="cl">UnityEngine.CoreModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Representation of 3D vectors and points.</p></div><div class="subsection"><p>This structure is used throughout Unity to pass 3D positions and directions around.
+It also contains functions for doing common vector operations.<br /><br />Besides the functions listed below, other classes can be used to manipulate vectors and points as well.
+For example the <a href="Quaternion.html">Quaternion</a> and the <a href="Matrix4x4.html">Matrix4x4</a> classes are useful for rotating or transforming vectors and points.</p></div><div class="subsection"><h2>Static Properties</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector3-back.html">back</a></td><td class="desc"></td><td class="desc1">Shorthand for writing Vector3(0, 0, -1).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector3-down.html">down</a></td><td class="desc"></td><td class="desc1">Shorthand for writing Vector3(0, -1, 0).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector3-forward.html">forward</a></td><td class="desc"></td><td class="desc1">Shorthand for writing Vector3(0, 0, 1).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector3-left.html">left</a></td><td class="desc"></td><td class="desc1">Shorthand for writing Vector3(-1, 0, 0).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector3-negativeInfinity.html">negativeInfinity</a></td><td class="desc"></td><td class="desc1">Shorthand for writing Vector3(float.NegativeInfinity, float.NegativeInfinity, float.NegativeInfinity).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector3-one.html">one</a></td><td class="desc"></td><td class="desc1">Shorthand for writing Vector3(1, 1, 1).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector3-positiveInfinity.html">positiveInfinity</a></td><td class="desc"></td><td class="desc1">Shorthand for writing Vector3(float.PositiveInfinity, float.PositiveInfinity, float.PositiveInfinity).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector3-right.html">right</a></td><td class="desc"></td><td class="desc1">Shorthand for writing Vector3(1, 0, 0).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector3-up.html">up</a></td><td class="desc"></td><td class="desc1">Shorthand for writing Vector3(0, 1, 0).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector3-zero.html">zero</a></td><td class="desc"></td><td class="desc1">Shorthand for writing Vector3(0, 0, 0).</td></tr>
+    </table></div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector3-magnitude.html">magnitude</a></td><td class="desc"></td><td class="desc1">Returns the length of this vector (Read Only).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector3-normalized.html">normalized</a></td><td class="desc"></td><td class="desc1">Returns this vector with a magnitude of 1 (Read Only).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector3-sqrMagnitude.html">sqrMagnitude</a></td><td class="desc"></td><td class="desc1">Returns the squared length of this vector (Read Only).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector3.Index_operator.html">this[int]</a></td><td class="desc"></td><td class="desc1">Access the x, y, z components using [0], [1], [2] respectively.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector3-x.html">x</a></td><td class="desc"></td><td class="desc1">X component of the vector.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector3-y.html">y</a></td><td class="desc"></td><td class="desc1">Y component of the vector.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector3-z.html">z</a></td><td class="desc"></td><td class="desc1">Z component of the vector.</td></tr>
+    </table></div><div class="subsection"><h2>Constructors</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector3-ctor.html">Vector3</a></td><td class="desc"></td><td class="desc1">Creates a new vector with given x, y, z components.</td></tr>
+    </table></div><div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector3.Equals.html">Equals</a></td><td class="desc"></td><td class="desc1">Returns true if the given vector is exactly equal to this vector.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector3.Set.html">Set</a></td><td class="desc"></td><td class="desc1">Set x, y and z components of an existing Vector3.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector3.ToString.html">ToString</a></td><td class="desc"></td><td class="desc1">Returns a nicely formatted string for this vector.</td></tr>
+    </table></div><div class="subsection"><h2>Static Methods   静态方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector3.Angle.html">Angle</a></td><td class="desc"></td><td class="desc1">Returns the angle in degrees between from and to.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector3.ClampMagnitude.html">ClampMagnitude</a></td><td class="desc"></td><td class="desc1">Returns a copy of vector with its magnitude clamped to maxLength.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector3.Cross.html">Cross</a></td><td class="desc"></td><td class="desc1">Cross Product of two vectors.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector3.Distance.html">Distance</a></td><td class="desc"></td><td class="desc1">Returns the distance between a and b.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector3.Dot.html">Dot</a></td><td class="desc"></td><td class="desc1">Dot Product of two vectors.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector3.Lerp.html">Lerp</a></td><td class="desc"></td><td class="desc1">Linearly interpolates between two points.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector3.LerpUnclamped.html">LerpUnclamped</a></td><td class="desc"></td><td class="desc1">Linearly interpolates between two vectors.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector3.Max.html">Max</a></td><td class="desc"></td><td class="desc1">Returns a vector that is made from the largest components of two vectors.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector3.Min.html">Min</a></td><td class="desc"></td><td class="desc1">Returns a vector that is made from the smallest components of two vectors.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector3.MoveTowards.html">MoveTowards</a></td><td class="desc"></td><td class="desc1">Calculate a position between the points specified by current and target, moving no farther than the distance specified by maxDistanceDelta.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector3.Normalize.html">Normalize</a></td><td class="desc"></td><td class="desc1">Makes this vector have a magnitude of 1.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector3.OrthoNormalize.html">OrthoNormalize</a></td><td class="desc"></td><td class="desc1">Makes vectors normalized and orthogonal to each other.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector3.Project.html">Project</a></td><td class="desc"></td><td class="desc1">Projects a vector onto another vector.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector3.ProjectOnPlane.html">ProjectOnPlane</a></td><td class="desc"></td><td class="desc1">Projects a vector onto a plane defined by a normal orthogonal to the plane.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector3.Reflect.html">Reflect</a></td><td class="desc"></td><td class="desc1">Reflects a vector off the plane defined by a normal.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector3.RotateTowards.html">RotateTowards</a></td><td class="desc"></td><td class="desc1">Rotates a vector current towards target.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector3.Scale.html">Scale</a></td><td class="desc"></td><td class="desc1">Multiplies two vectors component-wise.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector3.SignedAngle.html">SignedAngle</a></td><td class="desc"></td><td class="desc1">Returns the signed angle in degrees between from and to.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector3.Slerp.html">Slerp</a></td><td class="desc"></td><td class="desc1">Spherically interpolates between two vectors.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector3.SlerpUnclamped.html">SlerpUnclamped</a></td><td class="desc"></td><td class="desc1">Spherically interpolates between two vectors.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector3.SmoothDamp.html">SmoothDamp</a></td><td class="desc"></td><td class="desc1">Gradually changes a vector towards a desired goal over time.</td></tr>
+    </table></div><div class="subsection"><h2>Operators   运算符</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector3-operator_subtract.html">operator -</a></td><td class="desc"></td><td class="desc1">Subtracts one vector from another.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector3-operator_ne.html">operator !=</a></td><td class="desc"></td><td class="desc1">Returns true if vectors different.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector3-operator_multiply.html">operator *</a></td><td class="desc"></td><td class="desc1">Multiplies a vector by a number.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector3-operator_divide.html">operator /</a></td><td class="desc"></td><td class="desc1">Divides a vector by a number.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector3-operator_add.html">operator +</a></td><td class="desc"></td><td class="desc1">Adds two vectors.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Vector3-operator_eq.html">operator ==</a></td><td class="desc"></td><td class="desc1">Returns true if two vectors are approximately equal.</td></tr>
+    </table></div></div></div></div></body></html>

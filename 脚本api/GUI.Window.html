@@ -1,0 +1,127 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: GUI.Window</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="GUI.html">GUI</a>.Window</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Rect.html">Rect</a> <span class="sig-kw">Window</span>(int <span class="sig-kw">id</span>,
+<a href="Rect.html">Rect</a> <span class="sig-kw">clientRect</span>,
+<a href="GUI.WindowFunction.html">GUI.WindowFunction</a> <span class="sig-kw">func</span>,
+string <span class="sig-kw">text</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Rect.html">Rect</a> <span class="sig-kw">Window</span>(int <span class="sig-kw">id</span>,
+<a href="Rect.html">Rect</a> <span class="sig-kw">clientRect</span>,
+<a href="GUI.WindowFunction.html">GUI.WindowFunction</a> <span class="sig-kw">func</span>,
+<a href="Texture.html">Texture</a> <span class="sig-kw">image</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Rect.html">Rect</a> <span class="sig-kw">Window</span>(int <span class="sig-kw">id</span>,
+<a href="Rect.html">Rect</a> <span class="sig-kw">clientRect</span>,
+<a href="GUI.WindowFunction.html">GUI.WindowFunction</a> <span class="sig-kw">func</span>,
+<a href="GUIContent.html">GUIContent</a> <span class="sig-kw">content</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Rect.html">Rect</a> <span class="sig-kw">Window</span>(int <span class="sig-kw">id</span>,
+<a href="Rect.html">Rect</a> <span class="sig-kw">clientRect</span>,
+<a href="GUI.WindowFunction.html">GUI.WindowFunction</a> <span class="sig-kw">func</span>,
+string <span class="sig-kw">text</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Rect.html">Rect</a> <span class="sig-kw">Window</span>(int <span class="sig-kw">id</span>,
+<a href="Rect.html">Rect</a> <span class="sig-kw">clientRect</span>,
+<a href="GUI.WindowFunction.html">GUI.WindowFunction</a> <span class="sig-kw">func</span>,
+<a href="Texture.html">Texture</a> <span class="sig-kw">image</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Rect.html">Rect</a> <span class="sig-kw">Window</span>(int <span class="sig-kw">id</span>,
+<a href="Rect.html">Rect</a> <span class="sig-kw">clientRect</span>,
+<a href="GUI.WindowFunction.html">GUI.WindowFunction</a> <span class="sig-kw">func</span>,
+<a href="GUIContent.html">GUIContent</a> <span class="sig-kw">title</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">Style</td><td class="desc"></td><td class="desc1">An optional style to use for the window. If left out, the <code class="varname">window</code> style from the current <a href="GUISkin.html">GUISkin</a> is used.</td></tr><tr><td class="name lbl">id</td><td class="desc"></td><td class="desc1">ID number for the window (can be any value as long as it is unique).</td></tr><tr><td class="name lbl">clientRect</td><td class="desc"></td><td class="desc1">Onscreen rectangle denoting the window's position and size.</td></tr><tr><td class="name lbl">func</td><td class="desc"></td><td class="desc1">Script function to display the window's contents.</td></tr><tr><td class="name lbl">text</td><td class="desc"></td><td class="desc1">Text to render inside the window.</td></tr><tr><td class="name lbl">image</td><td class="desc"></td><td class="desc1">Image to render inside the window.</td></tr><tr><td class="name lbl">content</td><td class="desc"></td><td class="desc1">GUIContent to render inside the window.</td></tr><tr><td class="name lbl">style</td><td class="desc"></td><td class="desc1">Style information for the window.</td></tr><tr><td class="name lbl">title</td><td class="desc"></td><td class="desc1">Text displayed in the window's title bar.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>Rect</strong>
+        Onscreen rectangle denoting the window's position and size.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Make a popup window.</p></div><div class="subsection"><p>Windows float above normal GUI controls, feature click-to-focus and can optionally be dragged around by the end user. Unlike other controls, you need to pass them a separate function that renders the GUI controls inside the window.<br /><br /><strong>Note:</strong> If you are using <a href="GUILayout.html">GUILayout</a> to place your components inside the window, you should use <a href="GUILayout.Window.html">GUILayout.Window</a>. Also, if <a href="MonoBehaviour-useGUILayout.html">MonoBehaviour.useGUILayout</a> is set to false then a call to GUI.Window will not have any effect, even though it is not a GUILayout function.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Rect.html">Rect</a> windowRect = new <a href="Rect.html">Rect</a>(20, 20, 120, 50);<br /><br />    void OnGUI()
+    {
+        // Register the window. Notice the 3rd parameter
+        windowRect = <a href="GUI.Window.html">GUI.Window</a>(0, windowRect, DoMyWindow, "My Window");
+    }<br /><br />    // Make the contents of the window
+    void DoMyWindow(int windowID)
+    {
+        if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(10, 20, 100, 20), "Hello World"))
+        {
+            print("Got a click");
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>You can use the same function to create multiple windows. Just make sure that <em>each window has its own ID</em>. Example:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Rect.html">Rect</a> windowRect0 = new <a href="Rect.html">Rect</a>(20, 20, 120, 50);
+    public <a href="Rect.html">Rect</a> windowRect1 = new <a href="Rect.html">Rect</a>(20, 100, 120, 50);<br /><br />    void OnGUI()
+    {
+        // Register the window. We create two windows that use the same function
+        // Notice that their IDs differ
+        windowRect0 = <a href="GUI.Window.html">GUI.Window</a>(0, windowRect0, DoMyWindow, "My Window");
+        windowRect1 = <a href="GUI.Window.html">GUI.Window</a>(1, windowRect1, DoMyWindow, "My Window");
+    }<br /><br />    // Make the contents of the window
+    void DoMyWindow(int windowID)
+    {
+        if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(10, 20, 100, 20), "Hello World"))
+        {
+            print("Got a click in window " + windowID);
+        }<br /><br />        // Make the windows be draggable.
+        <a href="GUI.DragWindow.html">GUI.DragWindow</a>(new <a href="Rect.html">Rect</a>(0, 0, 10000, 10000));
+    }
+}
+</pre>
+      </div><div class="subsection"><p>To stop showing a window, simply stop calling GUI.Window from inside your main OnGUI function:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// boolean variable to decide whether to show the window or not.
+// Change this from the in-game <a href="GUI.html">GUI</a>, scripting, the inspector or anywhere else to
+// decide whether the window is visible<br /><br />using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public bool doWindow0 = true;<br /><br />    // Make the contents of the window.
+    void DoWindow0(int windowID)
+    {
+        <a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(10, 30, 80, 20), "Click Me!");
+    }<br /><br />    void OnGUI()
+    {
+        // Make a toggle button for hiding and showing the window
+        doWindow0 = <a href="GUI.Toggle.html">GUI.Toggle</a>(new <a href="Rect.html">Rect</a>(10, 10, 100, 20), doWindow0, "Window 0");<br /><br />        // Make sure we only call <a href="GUI.Window.html">GUI.Window</a> if doWindow0 is true.
+        if (doWindow0)
+        {
+            <a href="GUI.Window.html">GUI.Window</a>(0, new <a href="Rect.html">Rect</a>(110, 10, 200, 60), DoWindow0, "Basic Window");
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>To make a window that gets its size from automatic GUI layouting, use <a href="GUILayout.Window.html">GUILayout.Window</a>.
+    <strong>Call Ordering</strong>
+    Windows need to be drawn back-to-front; windows on top of other windows need to be drawn later than the ones below them. This means that you can not count on your DoWindow functions to
+    be called in any particular order. In order for this to work seamlessly, the following values are stored when you create your window (using the <strong>Window</strong> function), and retrieved when your DoWindow gets called:
+        <a href="GUI-skin.html">GUI.skin</a>, <a href="GUI-enabled.html">GUI.enabled</a>, <a href="GUI-color.html">GUI.color</a>, <a href="GUI-backgroundColor.html">GUI.backgroundColor</a>, <a href="GUI-contentColor.html">GUI.contentColor</a>, <a href="GUI-matrix.html">GUI.matrix</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Rect.html">Rect</a> windowRect0 = new <a href="Rect.html">Rect</a>(20, 20, 120, 50);
+    public <a href="Rect.html">Rect</a> windowRect1 = new <a href="Rect.html">Rect</a>(20, 100, 120, 50);<br /><br />    void OnGUI()
+    {
+        // Here we make 2 windows. We set the <a href="GUI-color.html">GUI.color</a> value to something before each.
+        <a href="GUI-color.html">GUI.color</a> = <a href="Color-red.html">Color.red</a>;
+        windowRect0 = <a href="GUI.Window.html">GUI.Window</a>(0, windowRect0, DoMyWindow, "Red Window");<br /><br />        <a href="GUI-color.html">GUI.color</a> = <a href="Color-green.html">Color.green</a>;
+        windowRect1 = <a href="GUI.Window.html">GUI.Window</a>(1, windowRect1, DoMyWindow, "Green Window");
+    }<br /><br />    // Make the contents of the window.
+    // The value of <a href="GUI-color.html">GUI.color</a> is set to what it was when the window
+    // was created in the code above.
+    void DoMyWindow(int windowID)
+    {
+        if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(10, 20, 100, 20), "Hello World"))
+        {
+            print("Got a click in window with color " + <a href="GUI-color.html">GUI.color</a>);
+        }<br /><br />        // Make the windows be draggable.
+        <a href="GUI.DragWindow.html">GUI.DragWindow</a>(new <a href="Rect.html">Rect</a>(0, 0, 10000, 10000));
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Note that you can use the alpha component of <a href="GUI-color.html">GUI.color</a> to fade windows in and out.<br /><br />See Also: <a href="GUI.DragWindow.html">DragWindow</a>, <a href="GUI.BringWindowToFront.html">BringWindowToFront</a>, <a href="GUI.BringWindowToBack.html">BringWindowToBack</a>.</p></div></div></div></div></body></html>

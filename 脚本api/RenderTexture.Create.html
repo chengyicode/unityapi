@@ -1,0 +1,19 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: RenderTexture.Create</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="RenderTexture.html">RenderTexture</a>.Create</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-RenderTexture.html' title='Go to RenderTexture Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public bool <span class="sig-kw">Create</span>();
+    </div></div></div><div class="subsection"><h2>Returns</h2><p><strong>bool</strong>
+        True if the texture is created, else false.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Actually creates the RenderTexture.</p></div><div class="subsection"><p>RenderTexture constructor does not actually create the hardware texture;
+by default the texture is created the first time it is set <a href="RenderTexture-active.html">active</a>.
+Calling <code class="mono">Create</code> lets you create it up front. <code class="mono">Create</code> does nothing
+if the texture is already created.<br /><br />See Also: <a href="RenderTexture.Release.html">Release</a>, <a href="RenderTexture.IsCreated.html">IsCreated</a> functions.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="RenderTexture.html">RenderTexture</a> rt;<br /><br />    void  Start()
+    {
+        rt = new <a href="RenderTexture.html">RenderTexture</a>(256, 256, 16, <a href="RenderTextureFormat.ARGB32.html">RenderTextureFormat.ARGB32</a>);
+        rt.Create();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

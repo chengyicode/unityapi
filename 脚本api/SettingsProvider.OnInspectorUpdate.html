@@ -1,0 +1,26 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: SettingsProvider.OnInspectorUpdate</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="SettingsProvider.html">SettingsProvider</a>.OnInspectorUpdate</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">OnInspectorUpdate</span>();
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>OnInspectorUpdate is called at 10 frames per second to give the inspector a chance to update. See <a href="EditorWindow.OnInspectorUpdate.html">EditorWindow.OnInspectorUpdate</a> for more details.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;
+public static class PresetManagerHelper
+{
+    [<a href="SettingsProvider.html">SettingsProvider</a>]
+    static <a href="SettingsProvider.html">SettingsProvider</a> CreatePresetManagerProvider()
+    {
+        var provider = <a href="AssetSettingsProvider.CreateProviderFromAssetPath.html">AssetSettingsProvider.CreateProviderFromAssetPath</a>(
+            "Project/<a href="Presets.Preset.html">Preset</a> Manager", "ProjectSettings/PresetManager.asset");
+        provider.inspectorUpdateHandler += () =&gt;
+        {
+            // When PresetManager is updated from the inspector, check to see if we need to update the <a href="Presets.Preset.html">Preset</a> <a href="CameraEditor.Settings.html">Settings</a> View.
+            if (provider.settingsEditor != null &amp;&amp;
+                provider.settingsEditor.serializedObject.UpdateIfRequiredOrScript())
+            {
+                provider.Repaint();
+            }
+        };
+        return provider;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

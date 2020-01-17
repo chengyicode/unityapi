@@ -1,0 +1,43 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Camera.main</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Camera.html">Camera</a>.main</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Camera.html' title='Go to Camera Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Camera.html">Camera</a> <span class="sig-kw">main</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The first enabled camera tagged "MainCamera" (Read Only).</p></div><div class="subsection"><p>The primary Camera in the Scene. Returns <code class="varname">null</code> if there is no such camera in the Scene.
+This property uses FindGameObjectsWithTag internally and doesn't cache the result. It is advised to cache the return value of <a href="Camera-main.html">Camera.main</a> if it is used multiple times per frame.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//Place this script on a <a href="GameObject.html">GameObject</a> to switch between the main <a href="Camera.html">Camera</a> and your own second <a href="Camera.html">Camera</a> on the press of the "L" key
+//Place a second <a href="Camera.html">Camera</a> in your <a href="SceneManagement.Scene.html">Scene</a> and assign it as the "<a href="Camera.html">Camera</a> Two" in the Inspector.<br /><br />using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    //This is Main <a href="Camera.html">Camera</a> in the <a href="SceneManagement.Scene.html">Scene</a>
+    <a href="Camera.html">Camera</a> m_MainCamera;
+    //This is the second <a href="Camera.html">Camera</a> and is assigned in inspector
+    public <a href="Camera.html">Camera</a> m_CameraTwo;<br /><br />    void Start()
+    {
+        //This gets the Main <a href="Camera.html">Camera</a> from the <a href="SceneManagement.Scene.html">Scene</a>
+        m_MainCamera = <a href="Camera-main.html">Camera.main</a>;
+        //This enables Main <a href="Camera.html">Camera</a>
+        m_MainCamera.enabled = true;
+        //Use this to disable secondary <a href="Camera.html">Camera</a>
+        m_CameraTwo.enabled = false;
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        //Press the L <a href="UIElements.Button.html">Button</a> to switch cameras
+        if (<a href="Input.GetKeyDown.html">Input.GetKeyDown</a>(<a href="KeyCode.L.html">KeyCode.L</a>))
+        {
+            //Check that the Main <a href="Camera.html">Camera</a> is enabled in the <a href="SceneManagement.Scene.html">Scene</a>, then switch to the other <a href="Camera.html">Camera</a> on a key press
+            if (m_MainCamera.enabled)
+            {
+                //Enable the second <a href="Camera.html">Camera</a>
+                m_CameraTwo.enabled = true;<br /><br />                //The Main first <a href="Camera.html">Camera</a> is disabled
+                m_MainCamera.enabled = false;
+            }
+            //Otherwise, if the Main <a href="Camera.html">Camera</a> is not enabled, switch back to the Main <a href="Camera.html">Camera</a> on a key press
+            else if (!m_MainCamera.enabled)
+            {
+                //Disable the second camera
+                m_CameraTwo.enabled = false;<br /><br />                //Enable the Main <a href="Camera.html">Camera</a>
+                m_MainCamera.enabled = true;
+            }
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

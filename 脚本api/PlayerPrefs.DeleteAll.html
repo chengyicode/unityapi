@@ -1,0 +1,80 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: PlayerPrefs.DeleteAll</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="PlayerPrefs.html">PlayerPrefs</a>.DeleteAll</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">DeleteAll</span>();
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Removes all keys and values from the preferences. Use with caution.</p></div><div class="subsection"><p>Call this function in a script to delete all current settings in the <a href="PlayerPrefs.html">PlayerPrefs</a>. Any values or keys have previously been set up are then reset.  Be careful when using this.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//This example creates a button on the screen that if pressed, deletes any <a href="PlayerPrefs.html">PlayerPrefs</a> settings.
+//You must set values or keys in the <a href="PlayerPrefs.html">PlayerPrefs</a> first to see this in action.<br /><br />using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void OnGUI()
+    {
+        //Delete all of the <a href="PlayerPrefs.html">PlayerPrefs</a> settings by pressing this <a href="UIElements.Button.html">Button</a>
+        if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(100, 200, 200, 60), "Delete"))
+        {
+            <a href="PlayerPrefs.DeleteAll.html">PlayerPrefs.DeleteAll</a>();
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Below is a larger example that sets up the PlayerPrefs as well as including deletion of the settings.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//First attach this script to a <a href="GameObject.html">GameObject</a> in the <a href="SceneManagement.Scene.html">Scene</a> to set up the <a href="PlayerPrefs.html">PlayerPrefs</a>.<br /><br />using UnityEngine;
+using UnityEngine.SceneManagement;<br /><br />public class SetUpPlayerPrefsExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    string m_PlayerName;<br /><br />    void Start()
+    {
+        m_PlayerName = "Enter Your Name";
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        //Give the <a href="PlayerPrefs.html">PlayerPrefs</a> some values to send over to the next <a href="SceneManagement.Scene.html">Scene</a>
+        <a href="PlayerPrefs.SetFloat.html">PlayerPrefs.SetFloat</a>("Health", 50.0F);
+        <a href="PlayerPrefs.SetInt.html">PlayerPrefs.SetInt</a>("Score", 20);
+        <a href="PlayerPrefs.SetString.html">PlayerPrefs.SetString</a>("Name", m_PlayerName);
+    }<br /><br />    void OnGUI()
+    {
+        //Create a Text Field where the user inputs their name
+        m_PlayerName = <a href="GUI.TextField.html">GUI.TextField</a>(new <a href="Rect.html">Rect</a>(10, 10, 200, 20), m_PlayerName, 25);<br /><br />        //Create a button which loads the appropriate level when you press it
+        if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(10, 30, 200, 60), "Next <a href="SceneManagement.Scene.html">Scene</a>"))
+        {
+            <a href="SceneManagement.SceneManager.LoadScene.html">SceneManager.LoadScene</a>("Scene2");
+        }
+    }
+}
+</pre>
+      </div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//This other script shows how the values of the <a href="PlayerPrefs.html">PlayerPrefs</a> reset using the <a href="PlayerPrefs.DeleteAll.html">PlayerPrefs.DeleteAll</a>() function.
+//Open a different <a href="SceneManagement.Scene.html">Scene</a> (the one you named before- "Scene2") and attach this script to a new <a href="GameObject.html">GameObject</a>.
+//Use this script to fetch the settings and show them as text on the screen.
+//Use the button included in the script to delete all these settings and the text on the screen will also reset to reflect this.<br /><br />using UnityEngine;
+using UnityEngine.UI;<br /><br />public class PlayerPrefsDeleteAllExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    int m_Score;
+    float m_Health;
+    string m_PlayerName;<br /><br />    void Start()
+    {
+        //Fetch the PlayerPref settings
+        SetText();
+    }<br /><br />    void SetText()
+    {
+        //Fetch the score, health and name from the <a href="PlayerPrefs.html">PlayerPrefs</a> (set these Playerprefs in another script)
+        m_Health = <a href="PlayerPrefs.GetFloat.html">PlayerPrefs.GetFloat</a>("Health", 0);
+        m_Score = <a href="PlayerPrefs.GetInt.html">PlayerPrefs.GetInt</a>("Score", 0);
+        m_PlayerName = <a href="PlayerPrefs.GetString.html">PlayerPrefs.GetString</a>("Name", "No Name");
+    }<br /><br />    void OnGUI()
+    {
+        //Fetch the <a href="PlayerPrefs.html">PlayerPrefs</a> settings and output them to the screen using Labels
+        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(50, 50, 200, 30), "Name : " + m_PlayerName);
+        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(50, 90, 200, 30), "Health : " + m_Health);
+        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(50, 130, 200, 30), "Score : " + m_Score);<br /><br />        //Delete all of the <a href="PlayerPrefs.html">PlayerPrefs</a> settings by pressing this <a href="UIElements.Button.html">Button</a>
+        if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(50, 0, 100, 30), "Delete"))
+        {
+            <a href="PlayerPrefs.DeleteAll.html">PlayerPrefs.DeleteAll</a>();
+            //Fetch the updated settings to change the Text
+            SetText();
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Animator.SetIKPositionWeight</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Animator.html">Animator</a>.SetIKPositionWeight</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Animator.html' title='Go to Animator Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">SetIKPositionWeight</span>(<a href="AvatarIKGoal.html">AvatarIKGoal</a> <span class="sig-kw">goal</span>,
+float <span class="sig-kw">value</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">goal</td><td class="desc"></td><td class="desc1">The AvatarIKGoal that is set.</td></tr><tr><td class="name lbl">value</td><td class="desc"></td><td class="desc1">The translative weight.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Sets the translative weight of an IK goal (0 = at the original animation before IK, 1 = at the goal).</p></div><div class="subsection"><p>An IK goal is a target position and rotation for a specific body part. Unity can calculate how to move the part toward the target from the starting point (ie, the current position and rotation obtained from the animation).<br /><br />This function sets a weight value in the range 0..1 to determine how far between the start and goal positions the IK will aim. The position itself is set separately using <a href="Animator.SetIKPosition.html">SetIKPosition</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="Transform.html">Transform</a> objToPickUp;
+    <a href="Animator.html">Animator</a> animator;<br /><br />    void Start()
+    {
+        animator = GetComponent&lt;<a href="Animator.html">Animator</a>&gt;();
+    }<br /><br />    void OnAnimatorIK(int layerIndex)
+    {
+        float reach = animator.GetFloat("RightHandReach");
+        animator.SetIKPositionWeight(<a href="AvatarIKGoal.RightHand.html">AvatarIKGoal.RightHand</a>, reach);
+        animator.SetIKPosition(<a href="AvatarIKGoal.RightHand.html">AvatarIKGoal.RightHand</a>, objToPickUp.position);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="Animator.SetIKPosition.html">SetIKPosition</a>, <a href="Animator.SetIKRotationWeight.html">SetIKRotationWeight</a>.</p></div></div></div></div></body></html>

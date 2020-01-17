@@ -1,0 +1,26 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: GlobalObjectId</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">GlobalObjectId</h1><div class="clear"></div><p class="cl mb0 left mr10">struct in
+          UnityEditor</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEditor.html" class="cl">UnityEditor</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Struct providing an API for stable, project-global object identifiers.</p></div><div class="subsection"><p>Provides a project-global object ID for lookup.<br /><br />The ID is persistent and unique for a given Unity Object.<br /><br />The format of the string representation of the ID is "GlobalObjectId_V1-{i}-{a}-{l}-{p}" where:
+<br />
+{i} is the identifier type represented by an integer (0 = Null, 1 = Imported Asset, 2 = Scene Object, 3 = Source Asset).
+<br />
+{a} is the asset GUID.
+<br />
+{l} is the local file ID of the object.
+<br />
+{p} is the prefab instance ID of the object.<br /><br />The default null ID is "GlobalObjectId_V1-0-00000000000000000000000000000000-0-0".<br /><br />Caveats:
+<br />
+- The ID changes when the object is moved to a new scene because the scene ID is part of the GlobalObjectID.</p></div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="GlobalObjectId-assetGUID.html">assetGUID</a></td><td class="desc"></td><td class="desc1">The GUID for the asset to which this object belongs.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GlobalObjectId-identifierType.html">identifierType</a></td><td class="desc"></td><td class="desc1">The identifier type represented as an integer.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GlobalObjectId-targetObjectId.html">targetObjectId</a></td><td class="desc"></td><td class="desc1">The local file ID of the object.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GlobalObjectId-targetPrefabId.html">targetPrefabId</a></td><td class="desc"></td><td class="desc1">The prefab instance id of the object.</td></tr>
+    </table></div><div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="GlobalObjectId.Equals.html">Equals</a></td><td class="desc"></td><td class="desc1">Check equality between two GlobalObjectIds.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GlobalObjectId.ToString.html">ToString</a></td><td class="desc"></td><td class="desc1">Get the string representation of the GlobalObjectId.</td></tr>
+    </table></div><div class="subsection"><h2>Static Methods   静态方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="GlobalObjectId.GetGlobalObjectIdSlow.html">GetGlobalObjectIdSlow</a></td><td class="desc"></td><td class="desc1">Converts an Object reference to a GlobalObjectId.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GlobalObjectId.GetGlobalObjectIdsSlow.html">GetGlobalObjectIdsSlow</a></td><td class="desc"></td><td class="desc1">Creates an array of GlobalObjectIds based on an array of Objects.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GlobalObjectId.GlobalObjectIdentifiersToObjectsSlow.html">GlobalObjectIdentifiersToObjectsSlow</a></td><td class="desc"></td><td class="desc1">Creates an array of Objects based on an array of GlobalObjectIds.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GlobalObjectId.GlobalObjectIdentifierToObjectSlow.html">GlobalObjectIdentifierToObjectSlow</a></td><td class="desc"></td><td class="desc1">Converts a GlobalObjectId to an Object reference.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GlobalObjectId.TryParse.html">TryParse</a></td><td class="desc"></td><td class="desc1">Parses the string representation of a GlobalObjectId into a GlobalObjectId struct.</td></tr>
+    </table></div></div></div></div></body></html>

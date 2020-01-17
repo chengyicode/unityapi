@@ -1,0 +1,33 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Animator.GetBehaviour</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Animator.html">Animator</a>.GetBehaviour</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Animator.html' title='Go to Animator Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public T <span class="sig-kw">GetBehaviour</span>();
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Returns the first <a href="StateMachineBehaviour.html">StateMachineBehaviour</a> that matches type <code class="varname">T</code> or is derived from <code class="varname">T</code>. Returns null if none are found.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;<br /><br />public class RunBehaviour : <a href="StateMachineBehaviour.html">StateMachineBehaviour</a>
+{
+    // OnStateUpdate is called at each <a href="Experimental.PlayerLoop.Update.html">Update</a> frame between OnStateEnter and OnStateExit callback
+    override public void OnStateUpdate(<a href="Animator.html">Animator</a> animator, <a href="AnimatorStateInfo.html">AnimatorStateInfo</a> stateInfo, int layerIndex)
+    {
+        <a href="Transform.html">Transform</a> transform = animator.GetComponent&lt;<a href="Transform.html">Transform</a>&gt;();<br /><br />        <a href="RaycastHit.html">RaycastHit</a> hitInfo;
+        <a href="Vector3.html">Vector3</a> dir = transform.TransformDirection(<a href="Vector3-forward.html">Vector3.forward</a>);
+        if (<a href="Physics.Raycast.html">Physics.Raycast</a>(transform.position + new <a href="Vector3.html">Vector3</a>(0, 1.5f, 0), dir, out hitInfo, 10))
+        {
+            if (hitInfo.collider.tag == "Obstacle")
+            {
+                animator.GetBehaviour&lt;SlideBehaviour&gt;().target = transform.position + 1.25f * hitInfo.distance * dir;
+                if (hitInfo.distance &lt; 6)
+                    animator.SetTrigger("Slide");
+            }
+        }
+    }
+}<br /><br />public class SlideBehaviour : <a href="StateMachineBehaviour.html">StateMachineBehaviour</a>
+{
+    public <a href="Vector3.html">Vector3</a> target;<br /><br />    public float slideMatchTargetStart = 0.11f;
+    public float slideMatchTargetStop = 0.40f;<br /><br />    // OnStateUpdate is called at each <a href="Experimental.PlayerLoop.Update.html">Update</a> frame between OnStateEnter and OnStateExit callback
+    override public void OnStateUpdate(<a href="Animator.html">Animator</a> animator, <a href="AnimatorStateInfo.html">AnimatorStateInfo</a> stateInfo, int layerIndex)
+    {
+        animator.MatchTarget(target, new <a href="Quaternion.html">Quaternion</a>(), <a href="AvatarTarget.Root.html">AvatarTarget.Root</a>, new <a href="MatchTargetWeightMask.html">MatchTargetWeightMask</a>(new <a href="Vector3.html">Vector3</a>(1, 0, 1), 0), slideMatchTargetStart, slideMatchTargetStop);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

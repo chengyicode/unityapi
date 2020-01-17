@@ -1,0 +1,20 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: RenderTextureReadWrite</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">RenderTextureReadWrite</h1><div class="clear"></div><p class="cl mb0 left mr10">enumeration</p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Color space conversion mode of a <a href="RenderTexture.html">RenderTexture</a>.</p></div><div class="subsection"><p>When using Gamma <a href="../Manual/LinearLighting.html">color space</a>, no conversions are done of any kind, and this setting is not used.<br /><br />When Linear color space is used, then by default non-HDR render textures are considered
+to contain sRGB data (i.e. "regular colors"), and fragment shaders are considered to output linear color values.
+So by default the fragment shader color value is converted into sRGB when rendering into a texture;
+and when sampling the texture in the shader the sRGB colors are converted into linear values.
+This is the <a href="RenderTextureReadWrite-sRGB.html">sRGB</a> read-write mode; and the <a href="RenderTextureReadWrite.Default.html">Default</a> mode matches that when linear color space is used.
+When this mode is set on a render texture, <a href="RenderTexture-sRGB.html">RenderTexture.sRGB</a> will return true.<br /><br />However, if your render texture will contain non-color data (normals, velocities, other custom values)
+then you don't want Linear&lt;-&gt;sRGB conversions to happen. This is the <a href="RenderTextureReadWrite.Linear.html">Linear</a> read-write mode.
+When this mode is set on a render texture, <a href="RenderTexture-sRGB.html">RenderTexture.sRGB</a> will return false.<br /><br />Note that some <a href="RenderTextureFormat.html">render texture formats</a> are always considered to contain "linear" data
+and no sRGB conversions are ever performed on them, no matter what is the read-write setting. This is true
+for all "HDR" (floating point) formats, and other formats like Depth or Shadowmap.<br /><br />See Also: <a href="../Manual/LinearLighting.html">Linear Color Space</a>, <a href="RenderTexture-sRGB.html">RenderTexture.sRGB</a>, <a href="PlayerSettings-colorSpace.html">PlayerSettings.colorSpace</a>, <a href="GL-sRGBWrite.html">GL.sRGBWrite</a>.</p></div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="RenderTextureReadWrite.Default.html">Default</a></td><td class="desc"></td><td class="desc1">Default color space conversion based on project settings.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="RenderTextureReadWrite.Linear.html">Linear</a></td><td class="desc"></td><td class="desc1">Render texture contains linear (non-color) data; don't perform color conversions on it.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="RenderTextureReadWrite-sRGB.html">sRGB</a></td><td class="desc"></td><td class="desc1">Render texture contains sRGB (color) data, perform Linear&lt;-&gt;sRGB conversions on it.</td></tr>
+    </table></div></div></div></div></body></html>

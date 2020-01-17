@@ -1,0 +1,100 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: TextureImporter</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">TextureImporter</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEditor</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Inherits from:<a href="AssetImporter.html" class="cl">AssetImporter</a></p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEditor.html" class="cl">UnityEditor</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-TextureImporter.html' title='Go to TextureImporter Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Texture importer lets you modify <a href="Texture2D.html">Texture2D</a> import settings from editor scripts.</p></div><div class="subsection"><p>Settings of this class match the ones exposed in <a href="../Manual/class-TextureImporter.html">Texture Import Settings</a>.</p></div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="TextureImporter-allowAlphaSplitting.html">allowAlphaSplitting</a></td><td class="desc"></td><td class="desc1">Allows alpha splitting on relevant platforms for this texture.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="TextureImporter-alphaIsTransparency.html">alphaIsTransparency</a></td><td class="desc"></td><td class="desc1">If the provided alpha channel is transparency, enable this to prefilter the color to avoid filtering artifacts.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="TextureImporter-alphaSource.html">alphaSource</a></td><td class="desc"></td><td class="desc1">Select how the alpha of the imported texture is generated.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="TextureImporter-alphaTestReferenceValue.html">alphaTestReferenceValue</a></td><td class="desc"></td><td class="desc1">Returns or assigns the alpha test reference value.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="TextureImporter-androidETC2FallbackOverride.html">androidETC2FallbackOverride</a></td><td class="desc"></td><td class="desc1">ETC2 texture decompression fallback override on Android devices that don't support ETC2.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="TextureImporter-anisoLevel.html">anisoLevel</a></td><td class="desc"></td><td class="desc1">Anisotropic filtering level of the texture.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="TextureImporter-borderMipmap.html">borderMipmap</a></td><td class="desc"></td><td class="desc1">Keep texture borders the same when generating mipmaps?</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="TextureImporter-compressionQuality.html">compressionQuality</a></td><td class="desc"></td><td class="desc1">Quality of Texture Compression in the range [0..100].</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="TextureImporter-convertToNormalmap.html">convertToNormalmap</a></td><td class="desc"></td><td class="desc1">Convert heightmap to normal map?</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="TextureImporter-crunchedCompression.html">crunchedCompression</a></td><td class="desc"></td><td class="desc1">Use crunched compression when available.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="TextureImporter-fadeout.html">fadeout</a></td><td class="desc"></td><td class="desc1">Fade out mip levels to gray color?</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="TextureImporter-filterMode.html">filterMode</a></td><td class="desc"></td><td class="desc1">Filtering mode of the texture.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="TextureImporter-generateCubemap.html">generateCubemap</a></td><td class="desc"></td><td class="desc1">Cubemap generation mode.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="TextureImporter-heightmapScale.html">heightmapScale</a></td><td class="desc"></td><td class="desc1">Amount of bumpyness in the heightmap.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="TextureImporter-isReadable.html">isReadable</a></td><td class="desc"></td><td class="desc1">Set this to true if you want texture data to be readable from scripts. Set it to false to prevent scripts from reading texture data.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="TextureImporter-maxTextureSize.html">maxTextureSize</a></td><td class="desc"></td><td class="desc1">Maximum texture size.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="TextureImporter-mipMapBias.html">mipMapBias</a></td><td class="desc"></td><td class="desc1">Mip map bias of the texture.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="TextureImporter-mipmapEnabled.html">mipmapEnabled</a></td><td class="desc"></td><td class="desc1">Generate Mip Maps.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="TextureImporter-mipmapFadeDistanceEnd.html">mipmapFadeDistanceEnd</a></td><td class="desc"></td><td class="desc1">Mip level where texture is faded out completely.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="TextureImporter-mipmapFadeDistanceStart.html">mipmapFadeDistanceStart</a></td><td class="desc"></td><td class="desc1">Mip level where texture begins to fade out.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="TextureImporter-mipmapFilter.html">mipmapFilter</a></td><td class="desc"></td><td class="desc1">Mipmap filtering mode.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="TextureImporter-mipMapsPreserveCoverage.html">mipMapsPreserveCoverage</a></td><td class="desc"></td><td class="desc1">Enables or disables coverage-preserving alpha MIP mapping.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="TextureImporter-normalmapFilter.html">normalmapFilter</a></td><td class="desc"></td><td class="desc1">Normal map filtering mode.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="TextureImporter-npotScale.html">npotScale</a></td><td class="desc"></td><td class="desc1">Scaling mode for non power of two textures.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="TextureImporter-qualifiesForSpritePacking.html">qualifiesForSpritePacking</a></td><td class="desc"></td><td class="desc1">Returns true if this TextureImporter is setup for Sprite packing.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="TextureImporter-secondarySpriteTextures.html">secondarySpriteTextures</a></td><td class="desc"></td><td class="desc1">Secondary textures for the imported Sprites.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="TextureImporter-spriteBorder.html">spriteBorder</a></td><td class="desc"></td><td class="desc1">Border sizes of the generated sprites.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="TextureImporter-spriteImportMode.html">spriteImportMode</a></td><td class="desc"></td><td class="desc1">Selects Single or Manual import mode for Sprite textures.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="TextureImporter-spritePackingTag.html">spritePackingTag</a></td><td class="desc"></td><td class="desc1">Selects the Sprite packing tag.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="TextureImporter-spritePivot.html">spritePivot</a></td><td class="desc"></td><td class="desc1">The point in the Sprite object's coordinate space where the graphic is located.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="TextureImporter-spritePixelsPerUnit.html">spritePixelsPerUnit</a></td><td class="desc"></td><td class="desc1">The number of pixels in the sprite that correspond to one unit in world space.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="TextureImporter-spritesheet.html">spritesheet</a></td><td class="desc"></td><td class="desc1">Array representing the sections of the atlas corresponding to individual sprite graphics.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="TextureImporter-sRGBTexture.html">sRGBTexture</a></td><td class="desc"></td><td class="desc1">Is texture storing color data?</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="TextureImporter-streamingMipmaps.html">streamingMipmaps</a></td><td class="desc"></td><td class="desc1">Enable mipmap streaming for this texture.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="TextureImporter-streamingMipmapsPriority.html">streamingMipmapsPriority</a></td><td class="desc"></td><td class="desc1">Relative priority for this texture when reducing memory size in order to hit the memory budget.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="TextureImporter-textureCompression.html">textureCompression</a></td><td class="desc"></td><td class="desc1">Compression of imported texture.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="TextureImporter-textureShape.html">textureShape</a></td><td class="desc"></td><td class="desc1">Shape of imported texture.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="TextureImporter-textureType.html">textureType</a></td><td class="desc"></td><td class="desc1">Which type of texture are we dealing with here.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="TextureImporter-wrapMode.html">wrapMode</a></td><td class="desc"></td><td class="desc1">Texture coordinate wrapping mode.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="TextureImporter-wrapModeU.html">wrapModeU</a></td><td class="desc"></td><td class="desc1">Texture U coordinate wrapping mode.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="TextureImporter-wrapModeV.html">wrapModeV</a></td><td class="desc"></td><td class="desc1">Texture V coordinate wrapping mode.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="TextureImporter-wrapModeW.html">wrapModeW</a></td><td class="desc"></td><td class="desc1">Texture W coordinate wrapping mode for Texture3D.</td></tr>
+    </table></div><div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="TextureImporter.ClearPlatformTextureSettings.html">ClearPlatformTextureSettings</a></td><td class="desc"></td><td class="desc1">Clear specific target platform settings.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="TextureImporter.DoesSourceTextureHaveAlpha.html">DoesSourceTextureHaveAlpha</a></td><td class="desc"></td><td class="desc1">Does textures source image have alpha channel.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="TextureImporter.GetAutomaticFormat.html">GetAutomaticFormat</a></td><td class="desc"></td><td class="desc1">Returns the TextureImporterFormat that would be automatically chosen for this platform.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="TextureImporter.GetDefaultPlatformTextureSettings.html">GetDefaultPlatformTextureSettings</a></td><td class="desc"></td><td class="desc1">Get the default platform specific texture settings.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="TextureImporter.GetPlatformTextureSettings.html">GetPlatformTextureSettings</a></td><td class="desc"></td><td class="desc1">Get platform specific texture settings.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="TextureImporter.ReadTextureImportInstructions.html">ReadTextureImportInstructions</a></td><td class="desc"></td><td class="desc1">Reads the active texture output instructions of this TextureImporter.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="TextureImporter.ReadTextureSettings.html">ReadTextureSettings</a></td><td class="desc"></td><td class="desc1">Read texture settings into TextureImporterSettings class.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="TextureImporter.SetPlatformTextureSettings.html">SetPlatformTextureSettings</a></td><td class="desc"></td><td class="desc1">Set specific target platform settings.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="TextureImporter.SetTextureSettings.html">SetTextureSettings</a></td><td class="desc"></td><td class="desc1">Set texture importers settings from TextureImporterSettings class.</td></tr>
+    </table></div><div class="subsection"><h2>Static Methods   静态方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="TextureImporter.IsDefaultPlatformTextureFormatValid.html">IsDefaultPlatformTextureFormatValid</a></td><td class="desc"></td><td class="desc1">Validates ref::TextureImporterFormat:: based on the type of the current format (ref::TextureImporterType::) and the default platform.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="TextureImporter.IsPlatformTextureFormatValid.html">IsPlatformTextureFormatValid</a></td><td class="desc"></td><td class="desc1">Validates ref::TextureImporterFormat:: based on a specified import type (ref::TextureImporterType::) and a specified build target (ref::BuildTarget::.).</td></tr>
+    </table></div><div class="subsection"><h2>Inherited Members   继承成员</h2>
+      
+      <div class="subsection"><h2>Properties   属性</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="AssetImporter-assetBundleName.html">assetBundleName</a></td><td class="desc"></td><td class="desc1">Get or set the AssetBundle name.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="AssetImporter-assetBundleVariant.html">assetBundleVariant</a></td><td class="desc"></td><td class="desc1">Get or set the AssetBundle variant.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="AssetImporter-assetPath.html">assetPath</a></td><td class="desc"></td><td class="desc1">The path name of the asset for this importer. (Read Only)</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="AssetImporter-importSettingsMissing.html">importSettingsMissing</a></td><td class="desc"></td><td class="desc1">The value is true when no meta file is provided with the imported asset.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="AssetImporter-userData.html">userData</a></td><td class="desc"></td><td class="desc1">Get or set any user data.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-hideFlags.html">hideFlags</a></td><td class="desc"></td><td class="desc1">Should the object be hidden, saved with the Scene or modifiable by the user?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-name.html">name</a></td><td class="desc"></td><td class="desc1">The name of the object.</td></tr>
+      </table></div>
+      
+      
+      
+      <div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="AssetImporter.AddRemap.html">AddRemap</a></td><td class="desc"></td><td class="desc1">Map a sub-asset from an imported asset (such as an FBX file) to an external Asset of the same type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="AssetImporter.GetExternalObjectMap.html">GetExternalObjectMap</a></td><td class="desc"></td><td class="desc1">Gets a copy of the external object map used by the AssetImporter.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="AssetImporter.RemoveRemap.html">RemoveRemap</a></td><td class="desc"></td><td class="desc1">Removes an item from the map of external objects.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="AssetImporter.SaveAndReimport.html">SaveAndReimport</a></td><td class="desc"></td><td class="desc1">Save asset importer settings if asset importer is dirty.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="AssetImporter.SetAssetBundleNameAndVariant.html">SetAssetBundleNameAndVariant</a></td><td class="desc"></td><td class="desc1">Set the AssetBundle name and variant.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="AssetImporter.SupportsRemappedAssetType.html">SupportsRemappedAssetType</a></td><td class="desc"></td><td class="desc1">Checks if the AssetImporter supports remapping the given asset type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.GetInstanceID.html">GetInstanceID</a></td><td class="desc"></td><td class="desc1">Returns the instance id of the object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.ToString.html">ToString</a></td><td class="desc"></td><td class="desc1">Returns the name of the object.</td></tr>
+      </table></div>
+      
+      <div class="subsection"><h2>Static Methods   静态方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="AssetImporter.GetAtPath.html">GetAtPath</a></td><td class="desc"></td><td class="desc1">Retrieves the asset importer for the asset at path.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.Destroy.html">Destroy</a></td><td class="desc"></td><td class="desc1">Removes a GameObject, component or asset.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.DestroyImmediate.html">DestroyImmediate</a></td><td class="desc"></td><td class="desc1">Destroys the object obj immediately. You are strongly recommended to use Destroy instead.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.DontDestroyOnLoad.html">DontDestroyOnLoad</a></td><td class="desc"></td><td class="desc1">Do not destroy the target Object when loading a new Scene.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectOfType.html">FindObjectOfType</a></td><td class="desc"></td><td class="desc1">Returns the first active loaded object of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectsOfType.html">FindObjectsOfType</a></td><td class="desc"></td><td class="desc1">Returns a list of all active loaded objects of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.Instantiate.html">Instantiate</a></td><td class="desc"></td><td class="desc1">Clones the object original and returns the clone.</td></tr>
+      </table></div>
+      <div class="subsection"><h2>Operators   运算符</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_Object.html">bool</a></td><td class="desc"></td><td class="desc1">Does the object exist?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_ne.html">operator !=</a></td><td class="desc"></td><td class="desc1">Compares if two objects refer to a different object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_eq.html">operator ==</a></td><td class="desc"></td><td class="desc1">Compares two object references to see if they refer to the same object.</td></tr>
+      </table></div>
+      
+      
+      
+    </div></div></div></div></body></html>

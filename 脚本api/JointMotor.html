@@ -1,0 +1,24 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: JointMotor</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">JointMotor</h1><div class="clear"></div><p class="cl mb0 left mr10">struct in
+          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.PhysicsModule.html" class="cl">UnityEngine.PhysicsModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>The JointMotor is used to motorize a joint.</p></div><div class="subsection"><p>For example the <a href="HingeJoint.html">HingeJoint</a> can be told to rotate at a given speed and force.
+The joint will then attempt to reach the velocity with the given maximum force.<br />
+See Also: <a href="HingeJoint.html">HingeJoint</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        <a href="HingeJoint.html">HingeJoint</a> hinge = GetComponent&lt;<a href="HingeJoint.html">HingeJoint</a>&gt;();<br /><br />        // Make the hinge motor rotate with 90 degrees per second and a strong force.
+        <a href="JointMotor.html">JointMotor</a> motor = hinge.motor;
+        motor.force = 100;
+        motor.targetVelocity = 90;
+        motor.freeSpin = false;
+        hinge.motor = motor;
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="JointMotor-force.html">force</a></td><td class="desc"></td><td class="desc1">The motor will apply a force.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="JointMotor-freeSpin.html">freeSpin</a></td><td class="desc"></td><td class="desc1">If freeSpin is enabled the motor will only accelerate but never slow down.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="JointMotor-targetVelocity.html">targetVelocity</a></td><td class="desc"></td><td class="desc1">The motor will apply a force up to force to achieve targetVelocity.</td></tr>
+    </table></div></div></div></div></body></html>

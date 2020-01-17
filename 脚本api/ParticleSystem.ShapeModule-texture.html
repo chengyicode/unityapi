@@ -1,0 +1,41 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ParticleSystem.ShapeModule.texture</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="ParticleSystem.ShapeModule.html">ParticleSystem.ShapeModule</a>.texture</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-ParticleSystem.html' title='Go to ParticleSystem Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Texture2D.html">Texture2D</a> <span class="sig-kw">texture</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Selects a texture to be used for tinting particle start colors.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private <a href="ParticleSystem.html">ParticleSystem</a> ps;
+    public float alphaThreshold = 0.0f;
+    public bool colorAffectsParticles = true;
+    public bool alphaAffectsParticles = true;
+    public bool bilinearFiltering = false;<br /><br />    void Start()
+    {
+        ps = GetComponent&lt;<a href="ParticleSystem.html">ParticleSystem</a>&gt;();<br /><br />        var main = ps.main;
+        main.startSpeed = 0.0f;
+        main.startSize = 0.5f;
+        main.startLifetime = 1.0f;<br /><br />        var emission = ps.emission;
+        emission.rateOverTime = 500.0f;<br /><br />        var shape = ps.shape;
+        shape.shapeType = <a href="ParticleSystemShapeType.Circle.html">ParticleSystemShapeType.Circle</a>;
+        shape.radius = 6.0f;
+        shape.texture = AssetDatabase.GetBuiltinExtraResource&lt;<a href="Texture2D.html">Texture2D</a>&gt;("Default-Particle.psd");
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        var shape = ps.shape;
+        shape.textureClipThreshold = alphaThreshold;
+        shape.textureColorAffectsParticles = colorAffectsParticles;
+        shape.textureAlphaAffectsParticles = alphaAffectsParticles;
+        shape.textureBilinearFiltering = bilinearFiltering;
+    }<br /><br />    void OnGUI()
+    {
+        float y = 120.0f;
+        float spacing = 40.0f;<br /><br />        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, y, 140, 30), "Alpha Threshold");
+        alphaThreshold = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(165, y + 5, 100, 30), alphaThreshold, 0.0f, 1.0f);
+        y += spacing;<br /><br />        colorAffectsParticles = <a href="GUI.Toggle.html">GUI.Toggle</a>(new <a href="Rect.html">Rect</a>(25, y + 5, 200, 30), colorAffectsParticles, "<a href="Color.html">Color</a> Affects Particles");
+        y += spacing;<br /><br />        alphaAffectsParticles = <a href="GUI.Toggle.html">GUI.Toggle</a>(new <a href="Rect.html">Rect</a>(25, y + 5, 200, 30), alphaAffectsParticles, "Alpha Affects Particles");
+        y += spacing;<br /><br />        bilinearFiltering = <a href="GUI.Toggle.html">GUI.Toggle</a>(new <a href="Rect.html">Rect</a>(25, y + 5, 200, 30), bilinearFiltering, "Bilinear Filtering");
+        y += spacing;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

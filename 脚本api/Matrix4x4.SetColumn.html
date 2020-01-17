@@ -1,0 +1,19 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Matrix4x4.SetColumn</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Matrix4x4.html">Matrix4x4</a>.SetColumn</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">SetColumn</span>(int <span class="sig-kw">index</span>,
+<a href="Vector4.html">Vector4</a> <span class="sig-kw">column</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Sets a column of the matrix.</p></div><div class="subsection"><p>You use this to build transformation matrices using right, up and forward vectors:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">using UnityEngine;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // build a matrix from a transform.
+    <a href="Matrix4x4.html">Matrix4x4</a> matrix = new <a href="Matrix4x4.html">Matrix4x4</a>();<br /><br />    /// Build a matrix from a transform.
+    void Start()
+    {
+        matrix.SetColumn(0, transform.right);
+        matrix.SetColumn(1, transform.up);
+        matrix.SetColumn(2, transform.forward);
+        var p = transform.position;
+        matrix.SetColumn(3, new <a href="Vector4.html">Vector4</a>(p.x, p.y, p.z, 1));
+    }
+}
+</pre>
+      </div><div class="subsection"><p>The i-th column is set from <code class="varname">v</code>. <code class="varname">i</code> must be from 0 to 3 inclusive.<br /><br />See Also: <a href="Matrix4x4.GetColumn.html">GetColumn</a>.</p></div></div></div></div></body></html>

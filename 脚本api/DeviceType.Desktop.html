@@ -1,0 +1,32 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: DeviceType.Desktop</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="DeviceType.html">DeviceType</a>.Desktop</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Desktop or laptop computer.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//Attach this script to a <a href="GameObject.html">GameObject</a>
+//This script checks what device type the <a href="Application.html">Application</a> is running on and outputs this to the console<br /><br />using UnityEngine;<br /><br />public class DeviceTypeExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    //This is the Text for the <a href="UIElements.Label.html">Label</a> at the top of the screen
+    string m_DeviceType;<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+//Output the device type to the console window
+        <a href="Debug.Log.html">Debug.Log</a>("<a href="iOS.Device.html">Device</a> type : " + m_DeviceType);<br /><br />        //Check if the device running this is a console
+        if (<a href="SystemInfo-deviceType.html">SystemInfo.deviceType</a> == <a href="DeviceType.Console.html">DeviceType.Console</a>)
+        {
+            //Change the text of the label
+            m_DeviceType = "Console";
+        }<br /><br />        //Check if the device running this is a desktop
+        if (<a href="SystemInfo-deviceType.html">SystemInfo.deviceType</a> == <a href="DeviceType.Desktop.html">DeviceType.Desktop</a>)
+        {
+            m_DeviceType = "Desktop";
+        }<br /><br />        //Check if the device running this is a handheld
+        if (<a href="SystemInfo-deviceType.html">SystemInfo.deviceType</a> == <a href="DeviceType.Handheld.html">DeviceType.Handheld</a>)
+        {
+            m_DeviceType = "<a href="Handheld.html">Handheld</a>";
+        }<br /><br />        //Check if the device running this is unknown
+        if (<a href="SystemInfo-deviceType.html">SystemInfo.deviceType</a> == <a href="DeviceType.Unknown.html">DeviceType.Unknown</a>)
+        {
+            m_DeviceType = "Unknown";
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,9 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: GraphicsBuffer.GetNativeBufferPtr</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="GraphicsBuffer.html">GraphicsBuffer</a>.GetNativeBufferPtr</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public IntPtr <span class="sig-kw">GetNativeBufferPtr</span>();
+    </div></div></div><div class="subsection"><h2>Returns</h2><p><strong>IntPtr</strong>
+        Pointer to the underlying graphics API buffer.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Retrieve a native (underlying graphics API) pointer to the buffer.</p></div><div class="subsection"><p>Use this function to retrieve a pointer/handle corresponding to the graphics buffer,
+as it is represented in the native graphics API. This can be used to enable
+graphics buffer data manipulation from <a href="../Manual/NativePluginInterface.html">native code plugins</a>.<br /><br />The type of data returned depends on the underlying graphics API: ID3D11Buffer on D3D11,
+ID3D12Resource on D3D12, buffer "name" (as GLuint) on OpenGL/ES, MTLBuffer on Metal.<br /><br />Note that calling this function when using multi-threaded rendering will synchronize with the rendering
+thread (a slow operation), so best practice is to set up the necessary buffer pointer only at initialization
+time.<br /><br />See Also: <a href="../Manual/NativePluginInterface.html">Native code plugins</a>.</p></div></div></div></div></body></html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Rigidbody.SweepTest</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Rigidbody.html">Rigidbody</a>.SweepTest</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Rigidbody.html' title='Go to Rigidbody Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public bool <span class="sig-kw">SweepTest</span>(<a href="Vector3.html">Vector3</a> <span class="sig-kw">direction</span>,
+out <a href="RaycastHit.html">RaycastHit</a> <span class="sig-kw">hitInfo</span>,
+float <span class="sig-kw">maxDistance</span> = Mathf.Infinity,
+<a href="QueryTriggerInteraction.html">QueryTriggerInteraction</a> <span class="sig-kw">queryTriggerInteraction</span> = QueryTriggerInteraction.UseGlobal);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">direction</td><td class="desc"></td><td class="desc1">The direction into which to sweep the rigidbody.</td></tr><tr><td class="name lbl">hitInfo</td><td class="desc"></td><td class="desc1">If true is returned, <code class="varname">hitInfo</code> will contain more information about where the collider was hit (See Also: <a href="RaycastHit.html">RaycastHit</a>).</td></tr><tr><td class="name lbl">maxDistance</td><td class="desc"></td><td class="desc1">The length of the sweep.</td></tr><tr><td class="name lbl">queryTriggerInteraction</td><td class="desc"></td><td class="desc1">Specifies whether this query should hit Triggers.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>bool</strong>
+        True when the rigidbody sweep intersects any collider, otherwise false.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Tests if a rigidbody would collide with anything, if it was moved through the Scene.</p></div><div class="subsection"><p>Tests if a rigidbody would collide with anything, if it was moved through the Scene.
+This is similar to doing a <a href="Physics.Raycast.html">Physics.Raycast</a> for all points contained in any of a Rigidbody's colliders and returning the closest of all hits (if any) reported. This is useful for AI code, say if you need to know that an object would fit through a gap without colliding with anything.<br /><br />Note that this function only works when a primitive collider type (sphere, cube or capsule) or a convex mesh is attached to the rigidbody object - concave mesh colliders will not work, although they can be detected in the Scene by the sweep.<br /><br />See Also: <a href="Physics.SphereCast.html">Physics.SphereCast</a>, <a href="Physics.CapsuleCast.html">Physics.CapsuleCast</a>, <a href="Rigidbody.SweepTestAll.html">Rigidbody.SweepTestAll</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public float collisionCheckDistance;
+    public bool aboutToCollide;
+    public float distanceToCollision;
+    public <a href="Rigidbody.html">Rigidbody</a> rb;<br /><br />    void Start()
+    {
+        rb = GetComponent&lt;<a href="Rigidbody.html">Rigidbody</a>&gt;();
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        <a href="RaycastHit.html">RaycastHit</a> hit;
+        if (rb.SweepTest(transform.forward, out hit, collisionCheckDistance))
+        {
+            aboutToCollide = true;
+            distanceToCollision = hit.distance;
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ParticleSystem.CollisionModule.colliderForce</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="ParticleSystem.CollisionModule.html">ParticleSystem.CollisionModule</a>.colliderForce</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-ParticleSystem.html' title='Go to ParticleSystem Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public float <span class="sig-kw">colliderForce</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>How much force is applied to a Collider when hit by particles from this Particle System.</p></div><div class="subsection"><p>See Also: <a href="ParticleSystem.CollisionModule-multiplyColliderForceByParticleSize.html">ParticleSystem.CollisionModule.multiplyColliderForceByParticleSize</a>, <a href="ParticleSystem.CollisionModule-multiplyColliderForceByParticleSpeed.html">ParticleSystem.CollisionModule.multiplyColliderForceByParticleSpeed</a>, <a href="ParticleSystem.CollisionModule-multiplyColliderForceByCollisionAngle.html">ParticleSystem.CollisionModule.multiplyColliderForceByCollisionAngle</a>, <a href="ParticleSystem-collision.html">ParticleSystem.collision</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private <a href="ParticleSystem.html">ParticleSystem</a> ps;
+    public float hSliderValue = 0.02F;
+    public bool hToggleUseCollisionAngle = true;
+    public bool hToggleUseSpeed = true;
+    public bool hToggleUseSize = true;<br /><br />    void Start()
+    {
+        ps = GetComponent&lt;<a href="ParticleSystem.html">ParticleSystem</a>&gt;();<br /><br />        var main = ps.main;
+        main.startSize = new <a href="ParticleSystem.MinMaxCurve.html">ParticleSystem.MinMaxCurve</a>(0.01f, 1.0f);<br /><br />        var collision = ps.collision;
+        collision.enabled = true;
+        collision.type = <a href="ParticleSystemCollisionType.World.html">ParticleSystemCollisionType.World</a>;
+        collision.mode = <a href="ParticleSystemCollisionMode.Collision3D.html">ParticleSystemCollisionMode.Collision3D</a>;<br /><br />        var collider = <a href="GameObject.CreatePrimitive.html">GameObject.CreatePrimitive</a>(<a href="PrimitiveType.Sphere.html">PrimitiveType.Sphere</a>);
+        collider.transform.parent = ps.transform;
+        collider.transform.localPosition = new <a href="Vector3.html">Vector3</a>(0.0f, 0.0f, 13.0f);
+        collider.transform.localScale = new <a href="Vector3.html">Vector3</a>(20.0f, 20.0f, 20.0f);<br /><br />        var rb = collider.AddComponent&lt;<a href="Rigidbody.html">Rigidbody</a>&gt;();
+        rb.isKinematic = false;
+        rb.useGravity = false;
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        var collision = ps.collision;
+        collision.colliderForce = hSliderValue;
+        collision.multiplyColliderForceByCollisionAngle = hToggleUseCollisionAngle;
+        collision.multiplyColliderForceByParticleSpeed = hToggleUseSpeed;
+        collision.multiplyColliderForceByParticleSize = hToggleUseSize;
+    }<br /><br />    void OnGUI()
+    {
+        hSliderValue = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(25, 40, 100, 30), hSliderValue, 0.0F, 1.0F);
+        hToggleUseCollisionAngle = <a href="GUI.Toggle.html">GUI.Toggle</a>(new <a href="Rect.html">Rect</a>(25, 80, 140, 30), hToggleUseCollisionAngle, "Use <a href="Collision.html">Collision</a> Angle");
+        hToggleUseSpeed = <a href="GUI.Toggle.html">GUI.Toggle</a>(new <a href="Rect.html">Rect</a>(25, 120, 140, 30), hToggleUseSpeed, "Use <a href="ParticleSystem.Particle.html">Particle</a> Speed");
+        hToggleUseSize = <a href="GUI.Toggle.html">GUI.Toggle</a>(new <a href="Rect.html">Rect</a>(25, 160, 140, 30), hToggleUseSize, "Use <a href="ParticleSystem.Particle.html">Particle</a> Size");
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

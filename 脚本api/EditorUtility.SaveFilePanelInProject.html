@@ -1,0 +1,35 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorUtility.SaveFilePanelInProject</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorUtility.html">EditorUtility</a>.SaveFilePanelInProject</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static string <span class="sig-kw">SaveFilePanelInProject</span>(string <span class="sig-kw">title</span>,
+string <span class="sig-kw">defaultName</span>,
+string <span class="sig-kw">extension</span>,
+string <span class="sig-kw">message</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Displays the "save file" dialog in the Assets folder of the project and returns the selected path name.</p></div><div class="subsection"><p>See Also: <a href="EditorUtility.SaveFilePanel.html">SaveFilePanel</a> function.<br /><br /><img src="../StaticFiles/ScriptRefImages/EditorUtilitySaveFilePanelInProject.png" /><br />
+<em>Save File panel in project.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;
+using System.IO;<br /><br />public class SaveFilePanelInProjectExample : <a href="EditorWindow.html">EditorWindow</a>
+{
+    [<a href="MenuItem.html">MenuItem</a>("Example/Save <a href="Texture.html">Texture</a> In Project")]
+    static void Apply()
+    {
+        <a href="Texture2D.html">Texture2D</a> texture = <a href="Selection-activeObject.html">Selection.activeObject</a> as <a href="Texture2D.html">Texture2D</a>;
+        if (texture == null)
+        {
+            <a href="EditorUtility.DisplayDialog.html">EditorUtility.DisplayDialog</a>("Select <a href="Texture.html">Texture</a>", "You must select a texture first!", "OK");
+            return;
+        }<br /><br />        string path = <a href="EditorUtility.SaveFilePanelInProject.html">EditorUtility.SaveFilePanelInProject</a>("Save png", texture.name + "png", "png",
+            "Please enter a file name to save the texture to");
+        if (path.Length != 0)
+        {
+            byte[] pngData = texture.EncodeToPNG();
+            if (pngData != null)
+            {
+                <a href="Windows.File.WriteAllBytes.html">File.WriteAllBytes</a>(path, pngData);<br /><br />                // As we are saving to the asset folder, tell Unity to scan for modified or new assets
+                <a href="AssetDatabase.Refresh.html">AssetDatabase.Refresh</a>();
+            }
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Experimental.Rendering.ScriptableRuntimeReflectionSystemSettings.system</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Experimental</b>: this API is experimental and might be changed or removed in the future.</div><h1 class="heading inherit"><a href="Experimental.Rendering.ScriptableRuntimeReflectionSystemSettings.html">ScriptableRuntimeReflectionSystemSettings</a>.system</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Experimental.Rendering.IScriptableRuntimeReflectionSystem.html">Experimental.Rendering.IScriptableRuntimeReflectionSystem</a> <span class="sig-kw">system</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The current scriptable runtime reflection system instance.</p></div><div class="subsection"><p>Set this property in a method with <a href="RuntimeInitializeOnLoadMethodAttribute.html">RuntimeInitializeOnLoadMethodAttribute</a> with your own implementation.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.Experimental.Rendering;<br /><br />// Empty <a href="Experimental.Rendering.ScriptableRuntimeReflectionSystem.html">ScriptableRuntimeReflectionSystem</a> for the exemple
+class CustomScriptableRuntimeReflectionSystem : <a href="Experimental.Rendering.ScriptableRuntimeReflectionSystem.html">ScriptableRuntimeReflectionSystem</a> {}<br /><br />class CustomScriptableRuntimeReflectionSystemIntegration
+{
+    [RuntimeInitializeOnLoadMethod]
+    static void Initialize()
+    {
+        <a href="Experimental.Rendering.ScriptableRuntimeReflectionSystemSettings-system.html">ScriptableRuntimeReflectionSystemSettings.system</a> = new CustomScriptableRuntimeReflectionSystem();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

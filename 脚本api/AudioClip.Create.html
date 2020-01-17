@@ -1,0 +1,71 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AudioClip.Create</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="AudioClip.html">AudioClip</a>.Create</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-AudioClip.html' title='Go to AudioClip Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="AudioClip.html">AudioClip</a> <span class="sig-kw">Create</span>(string <span class="sig-kw">name</span>,
+int <span class="sig-kw">lengthSamples</span>,
+int <span class="sig-kw">channels</span>,
+int <span class="sig-kw">frequency</span>,
+bool <span class="sig-kw">stream</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="AudioClip.html">AudioClip</a> <span class="sig-kw">Create</span>(string <span class="sig-kw">name</span>,
+int <span class="sig-kw">lengthSamples</span>,
+int <span class="sig-kw">channels</span>,
+int <span class="sig-kw">frequency</span>,
+bool <span class="sig-kw">stream</span>,
+<a href="AudioClip.PCMReaderCallback.html">AudioClip.PCMReaderCallback</a> <span class="sig-kw">pcmreadercallback</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="AudioClip.html">AudioClip</a> <span class="sig-kw">Create</span>(string <span class="sig-kw">name</span>,
+int <span class="sig-kw">lengthSamples</span>,
+int <span class="sig-kw">channels</span>,
+int <span class="sig-kw">frequency</span>,
+bool <span class="sig-kw">stream</span>,
+<a href="AudioClip.PCMReaderCallback.html">AudioClip.PCMReaderCallback</a> <span class="sig-kw">pcmreadercallback</span>,
+<a href="AudioClip.PCMSetPositionCallback.html">AudioClip.PCMSetPositionCallback</a> <span class="sig-kw">pcmsetpositioncallback</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public static <a href="AudioClip.html">AudioClip</a> <span class="sig-kw">Create</span>(string <span class="sig-kw">name</span>,
+int <span class="sig-kw">lengthSamples</span>,
+int <span class="sig-kw">channels</span>,
+int <span class="sig-kw">frequency</span>,
+bool <span class="sig-kw">_3D</span>,
+bool <span class="sig-kw">stream</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public static <a href="AudioClip.html">AudioClip</a> <span class="sig-kw">Create</span>(string <span class="sig-kw">name</span>,
+int <span class="sig-kw">lengthSamples</span>,
+int <span class="sig-kw">channels</span>,
+int <span class="sig-kw">frequency</span>,
+bool <span class="sig-kw">_3D</span>,
+bool <span class="sig-kw">stream</span>,
+<a href="AudioClip.PCMReaderCallback.html">AudioClip.PCMReaderCallback</a> <span class="sig-kw">pcmreadercallback</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public static <a href="AudioClip.html">AudioClip</a> <span class="sig-kw">Create</span>(string <span class="sig-kw">name</span>,
+int <span class="sig-kw">lengthSamples</span>,
+int <span class="sig-kw">channels</span>,
+int <span class="sig-kw">frequency</span>,
+bool <span class="sig-kw">_3D</span>,
+bool <span class="sig-kw">stream</span>,
+<a href="AudioClip.PCMReaderCallback.html">AudioClip.PCMReaderCallback</a> <span class="sig-kw">pcmreadercallback</span>,
+<a href="AudioClip.PCMSetPositionCallback.html">AudioClip.PCMSetPositionCallback</a> <span class="sig-kw">pcmsetpositioncallback</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">name</td><td class="desc"></td><td class="desc1">Name of clip.</td></tr><tr><td class="name lbl">lengthSamples</td><td class="desc"></td><td class="desc1">Number of sample frames.</td></tr><tr><td class="name lbl">channels</td><td class="desc"></td><td class="desc1">Number of channels per frame.</td></tr><tr><td class="name lbl">frequency</td><td class="desc"></td><td class="desc1">Sample frequency of clip.</td></tr><tr><td class="name lbl">_3D</td><td class="desc"></td><td class="desc1">Audio clip is played back in 3D.</td></tr><tr><td class="name lbl">stream</td><td class="desc"></td><td class="desc1">True if clip is streamed, that is if the pcmreadercallback generates data on the fly.</td></tr><tr><td class="name lbl">pcmreadercallback</td><td class="desc"></td><td class="desc1">This callback is invoked to generate a block of sample data. Non-streamed clips call this only once at creation time while streamed clips call this continuously.</td></tr><tr><td class="name lbl">pcmsetpositioncallback</td><td class="desc"></td><td class="desc1">This callback is invoked whenever the clip loops or changes playback position.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>AudioClip</strong>
+        A reference to the created AudioClip.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Creates a user AudioClip with a name and with the given length in samples, channels and frequency.</p></div><div class="subsection"><p>Set your own audio data with SetData. Use the PCMReaderCallback and PCMSetPositionCallback delegates to get a callback whenever the clip reads data and changes the position. If stream is true, Unity will on demand read in small chunks of data. If it's false, all the samples will be read during the creation.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public int position = 0;
+    public int samplerate = 44100;
+    public float frequency = 440;<br /><br />    void Start()
+    {
+        <a href="AudioClip.html">AudioClip</a> myClip = <a href="AudioClip.Create.html">AudioClip.Create</a>("MySinusoid", samplerate * 2, 1, samplerate, true, OnAudioRead, OnAudioSetPosition);
+        <a href="AudioSource.html">AudioSource</a> aud = GetComponent&lt;<a href="AudioSource.html">AudioSource</a>&gt;();
+        aud.clip = myClip;
+        aud.Play();
+    }<br /><br />    void OnAudioRead(float[] data)
+    {
+        int count = 0;
+        while (count &lt; data.Length)
+        {
+            data[count] = <a href="Mathf.Sin.html">Mathf.Sin</a>(2 * <a href="Mathf.PI.html">Mathf.PI</a> * frequency * position / samplerate);
+            position++;
+            count++;
+        }
+    }<br /><br />    void OnAudioSetPosition(int newPosition)
+    {
+        position = newPosition;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

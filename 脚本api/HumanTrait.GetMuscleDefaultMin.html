@@ -1,0 +1,18 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: HumanTrait.GetMuscleDefaultMin</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="HumanTrait.html">HumanTrait</a>.GetMuscleDefaultMin</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static float <span class="sig-kw">GetMuscleDefaultMin</span>(int <span class="sig-kw">i</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">i</td><td class="desc"></td><td class="desc1">Muscle index.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Get the default minimum value of rotation for a muscle in degrees.</p></div><div class="subsection"><p>The default minimum applies to all three axes of rotation for the muscle. The indexing order for the muscles is the same as that of the <a href="HumanTrait.MuscleName.html">MuscleName</a> array.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        string[] muscleName = <a href="HumanTrait.MuscleName.html">HumanTrait.MuscleName</a>;
+        for (int i = 0; i &lt; <a href="HumanTrait.BoneCount.html">HumanTrait.BoneCount</a>; ++i)
+        {
+            <a href="Debug.Log.html">Debug.Log</a>(muscleName[i] + " min: " + <a href="HumanTrait.GetMuscleDefaultMin.html">HumanTrait.GetMuscleDefaultMin</a>(i) + " max: " + <a href="HumanTrait.GetMuscleDefaultMax.html">HumanTrait.GetMuscleDefaultMax</a>(i));
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="HumanLimit-min.html">HumanLimit.min</a>, <a href="HumanTrait.GetMuscleDefaultMax.html">HumanTrait.GetMuscleDefaultMax</a>.</p></div></div></div></div></body></html>

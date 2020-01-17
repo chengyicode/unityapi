@@ -1,0 +1,35 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AssetPostprocessor.OnPostprocessCubemap(Cubemap)</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="AssetPostprocessor.html">AssetPostprocessor</a>.OnPostprocessCubemap(Cubemap)</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Add this function to a subclass to get a notification just before a cubemap texture has completed importing.</p></div><div class="subsection"><p>
+                    Note that you should avoid modifying the TextureImporter settings in this manner as it would have no effect on the texture that is currently being imported but would apply the next time the texture is imported. This behavior is nondeterministic and therefore undesirable.
+                </p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;
+using System.Collections;<br /><br />// Postprocesses all cubemaps that are placed in a folder
+// Here we just halve the texels values
+public class ProcessCubemap : <a href="AssetPostprocessor.html">AssetPostprocessor</a>
+{
+    void OnPostprocessCubemap(<a href="Cubemap.html">Cubemap</a> texture)
+    {
+        string lowerCaseAssetPath = assetPath.ToLower();
+        if (lowerCaseAssetPath.IndexOf("/postprocessedcubemaps/") == -1)
+            return;<br /><br />        for (int m = 0; m &lt; texture.mipmapCount; m++)
+        {
+            for (int face = 0; face &lt; 6; face++)
+            {
+                <a href="CubemapFace.html">CubemapFace</a> f = (<a href="CubemapFace.html">CubemapFace</a>)face;
+                <a href="Color.html">Color</a>[] c = texture.GetPixels(f, m);<br /><br />                for (int i = 0; i &lt; c.Length; i++)
+                {
+                    c[i].r = c[i].r * 0.5f;
+                    c[i].g = c[i].g * 0.5f;
+                    c[i].b = c[i].b * 0.5f;
+                }<br /><br />                texture.SetPixels(c, f, m);
+            }
+            // Instead of setting pixels for each mip map levels, you can also
+            // modify only the pixels in the highest mip level. And then simply use
+            // texture.Apply(true); to generate lower mip levels.
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

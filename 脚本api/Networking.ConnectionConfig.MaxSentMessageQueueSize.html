@@ -1,0 +1,17 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Networking.ConnectionConfig.MaxSentMessageQueueSize</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Method group is Obsolete</b><br /></div><h1 class="heading inherit"><a href="Networking.ConnectionConfig.html">ConnectionConfig</a>.MaxSentMessageQueueSize</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public ushort <span class="sig-kw">MaxSentMessageQueueSize</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Defines maximum number of messages that can be held in the queue for sending. Default value = 128.<br /><br />This buffer serves to smooth spikes in traffic and decreases network jitter. If the queue is full, a NoResources error will result from any calls to Send(). Setting this value greater than around 300 is likely to cause significant delaying of message delivering and can make game unplayable.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.Networking;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        ConnectionConfig myConfig = new ConnectionConfig();
+        myConfig.AddChannel(<a href="Networking.QosType.Unreliable.html">QosType.Unreliable</a>);
+        myConfig.AddChannel(<a href="Networking.QosType.UnreliableFragmented.html">QosType.UnreliableFragmented</a>);
+        myConfig.MaxSentMessageQueueSize = 64;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Unity.Profiling.ProfilerMarker.End</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Unity.Profiling.ProfilerMarker.html">ProfilerMarker</a>.End</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">End</span>();
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>End profiling a piece of code marked with a custom name defined by this instance of <a href="Unity.Profiling.ProfilerMarker.html">ProfilerMarker</a>.</p></div><div class="subsection"><p>Always use <a href="Unity.Profiling.ProfilerMarker.Begin.html">Begin</a> to start a section of an instrumented code.<br />
+Code marked with <a href="Unity.Profiling.ProfilerMarker.Begin.html">Begin</a> and <a href="Unity.Profiling.ProfilerMarker.End.html">End</a> will show up in the Profiler hierarchy.
+Use <a href="Profiling.Recorder.html">Recorder</a> to obtain per-frame timings in the Player.<br /><br /><strong>Note:</strong> Both <a href="Unity.Profiling.ProfilerMarker.Begin.html">Begin</a> and <a href="Unity.Profiling.ProfilerMarker.End.html">End</a> are thread safe and can be used in jobified code.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using Unity.Profiling;<br /><br />public class MySystemClass
+{
+    static <a href="Unity.Profiling.ProfilerMarker.html">ProfilerMarker</a> s_PreparePerfMarker = new <a href="Unity.Profiling.ProfilerMarker.html">ProfilerMarker</a>("MySystem.Prepare");<br /><br />    public void UpdateLogic()
+    {
+        s_PreparePerfMarker.Begin();
+        // ...
+        s_PreparePerfMarker.End();
+    }
+}
+</pre>
+      </div><div class="subsection"><p>
+        <a href="Unity.Profiling.ProfilerMarker.End.html">End</a> is conditionally compiled away using ConditionalAttribute.
+Thus it will have zero overhead, when it is deployed in non-Development Build.<br /><br />See Also: <a href="Unity.Profiling.ProfilerMarker.Begin.html">ProfilerMarker.Begin</a>, <a href="Profiling.Recorder.html">Recorder</a>, <a href="../Manual/ProfilerCPU.html">ProfilerCPU</a>.</p></div></div></div></div></body></html>

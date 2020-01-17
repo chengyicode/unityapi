@@ -1,0 +1,38 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: WWW.movie</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Removed in version 2019.2.18</b><br /></div><h1 class="heading inherit"><a href="WWW.html">WWW</a>.movie</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public Object <span class="sig-kw">movie</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Returns a MovieTexture generated from the downloaded data (Read Only).</p></div><div class="subsection"><p>The data must be a movie in Ogg Theora format.<br /><br />Even if the movie is not yet completely downloaded, this returns immediately,
+allowing you to start playing the partial movie as it downloads.<br /><br />See Also: MovieTexture.audioClip.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />// Make sure we have gui texture and audio source
+[<a href="RequireComponent.html">RequireComponent</a>(typeof(GUITexture))]
+[<a href="RequireComponent.html">RequireComponent</a>(typeof(<a href="AudioSource.html">AudioSource</a>))]
+public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    string url = "http://www.unity3d.com/Movie/sample.ogg";<br /><br />    IEnumerator Start()
+    {
+        // Start download
+        using (var www = new WWW(url))
+        {
+            yield return www;<br /><br />            // Make sure the movie is ready to start before we start playing
+            var movieTexture = www.GetMovieTexture();
+            while (!movieTexture.isReadyToPlay)
+                yield return null;<br /><br />            var gt = GetComponent&lt;GUITexture&gt;();<br /><br />            // Initialize gui texture to be 1:1 resolution centered on screen
+            gt.texture = movieTexture;<br /><br />            transform.localScale = new <a href="Vector3.html">Vector3</a>(0, 0, 0);
+            transform.position = new <a href="Vector3.html">Vector3</a>(0.5f, 0.5f, 0.0f);
+            var pixelInset = gt.pixelInset;
+            pixelInset.xMin = -movieTexture.width / 2;
+            pixelInset.xMax = movieTexture.width / 2;
+            pixelInset.yMin = -movieTexture.height / 2;
+            pixelInset.yMax = movieTexture.height / 2;
+            gt.pixelInset = pixelInset;<br /><br />            // Assign clip to audio source
+            // Sync playback with audio
+            var aud = GetComponent&lt;<a href="AudioSource.html">AudioSource</a>&gt;();
+            aud.clip = movieTexture.audioClip;<br /><br />            // Play both movie &amp; sound
+            movieTexture.Play();
+            aud.Play();
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

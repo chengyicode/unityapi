@@ -1,0 +1,22 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: SceneManagement.EditorSceneManager.OpenScene</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="SceneManagement.EditorSceneManager.html">EditorSceneManager</a>.OpenScene</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="SceneManagement.Scene.html">SceneManagement.Scene</a> <span class="sig-kw">OpenScene</span>(string <span class="sig-kw">scenePath</span>,
+<a href="SceneManagement.OpenSceneMode.html">SceneManagement.OpenSceneMode</a> <span class="sig-kw">mode</span> = OpenSceneMode.Single);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">scenePath</td><td class="desc"></td><td class="desc1">The path of the Scene. This should be relative to the Project folder; for example, "Assets/MyScenes/MyScene.unity".</td></tr><tr><td class="name lbl">mode</td><td class="desc"></td><td class="desc1">Allows you to select how to open the specified Scene, and whether to keep existing Scenes in the Hierarchy. See <a href="SceneManagement.OpenSceneMode.html">OpenSceneMode</a> for more information about the options.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>Scene</strong>
+        A reference to the opened Scene.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Open a Scene in the Editor.</p></div><div class="subsection"><p>Use this function to open Scenes in the Hierarchy while in the Editor. This is useful for making custom Editor scripts, tools, or menu items. It is not intended to be used for loading Scenes at run time. To load Scenes at run time, see <a href="SceneManagement.SceneManager.LoadScene.html">SceneManager.LoadScene</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//Create a new folder (Right click in the Assets folder, <strong>Create</strong>&gt;<strong>Folder</strong>) and name it “<a href="Editor.html">Editor</a>” if one doesn’t already exist
+//Put this script in the folder<br /><br />//This script creates a new menu (Examples) and item (Open <a href="SceneManagement.Scene.html">Scene</a>). If you choose this item in the <a href="Editor.html">Editor</a>, the <a href="SceneManagement.EditorSceneManager.html">EditorSceneManager</a> opens the <a href="SceneManagement.Scene.html">Scene</a> at the given directory (In this case, the “Scene2” <a href="SceneManagement.Scene.html">Scene</a> is located in the Assets folder). This allows you to open Scenes while still working with the <a href="Editor.html">Editor</a>.<br /><br />using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEditor.SceneManagement;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Create a new drop-down menu in <a href="Editor.html">Editor</a> named "Examples" and a new option called "Open <a href="SceneManagement.Scene.html">Scene</a>"
+    [<a href="MenuItem.html">MenuItem</a>("Examples/Open <a href="SceneManagement.Scene.html">Scene</a>")]
+    static void OpenScene()
+    {
+        //Open the <a href="SceneManagement.Scene.html">Scene</a> in the <a href="Editor.html">Editor</a> (do not enter Play <a href="Scripting.GarbageCollector.Mode.html">Mode</a>)
+        <a href="SceneManagement.EditorSceneManager.OpenScene.html">EditorSceneManager.OpenScene</a>("Assets/Scene2.unity");
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

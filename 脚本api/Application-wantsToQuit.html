@@ -1,0 +1,20 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Application.wantsToQuit</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Application.html">Application</a>.wantsToQuit</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Unity raises this event when the player application wants to quit.</p></div><div class="subsection"><p>Add an event handler to this event to receive a notification that application is attempting to quit.<br /><br />When this event is raised the quit process has started but can be cancelled. This means the player is not guaranteed to quit. For a guaranteed quit event take a look at <a href="Application-quitting.html">Application.quitting</a>.<br /><br />Return true and the quit process will continue.
+Return false and the quit process will cancel.<br /><br />Note: The return value of this event is ignored when exiting play mode in the editor.
+IMPORTANT: The return has no effect on iPhone. Application can not prevent termination under iPhone OS.
+                </p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class PlayerWantsToQuitExample
+{
+    static bool WantsToQuit()
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("Player prevented from quitting.");
+        return false;
+    }<br /><br />    [RuntimeInitializeOnLoadMethod]
+    static void RunOnStart()
+    {
+        <a href="Application-wantsToQuit.html">Application.wantsToQuit</a> += WantsToQuit;
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="Application-quitting.html">Application.quitting</a>.</p></div></div></div></div></body></html>

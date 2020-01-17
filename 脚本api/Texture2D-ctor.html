@@ -1,0 +1,31 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Texture2D.Texture2D</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">Texture2D Constructor</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <span class="sig-kw">Texture2D</span>(int <span class="sig-kw">width</span>,
+int <span class="sig-kw">height</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Create a new empty texture.</p></div><div class="subsection"><p>The texture will be <code class="varname">width</code> by <code class="varname">height</code> size, with an RGBA32 <a href="TextureFormat.html">TextureFormat</a>, with mipmaps and in sRGB color space.<br /><br />Usually you will want to set the colors of the texture after creating it, using
+<a href="Texture2D.SetPixel.html">SetPixel</a>, <a href="Texture2D.SetPixels.html">SetPixels</a> and <a href="Texture2D.Apply.html">Apply</a> functions.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Create a new texture and assign it to the renderer's material
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        <a href="Texture2D.html">Texture2D</a> texture = new <a href="Texture2D.html">Texture2D</a>(128, 128);
+        <a href="Renderer.html">Renderer</a> renderer = GetComponent&lt;<a href="Renderer.html">Renderer</a>&gt;();
+        renderer.material.mainTexture = texture;
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="Texture2D.SetPixel.html">SetPixel</a>, <a href="Texture2D.SetPixels.html">SetPixels</a>, <a href="Texture2D.Apply.html">Apply</a> functions.</p></div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <span class="sig-kw">Texture2D</span>(int <span class="sig-kw">width</span>,
+int <span class="sig-kw">height</span>,
+<a href="TextureFormat.html">TextureFormat</a> <span class="sig-kw">textureFormat</span>,
+bool <span class="sig-kw">mipChain</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Create a new empty texture.</p></div><div class="subsection"><p>The texture will be <code class="varname">width</code> by <code class="varname">height</code> size, with a given <code class="varname">format</code>, with or without mipmaps.<br /><br />Usually you will want to set the colors of the texture after creating it, using
+<a href="Texture2D.SetPixel.html">SetPixel</a>, <a href="Texture2D.SetPixels.html">SetPixels</a> and <a href="Texture2D.Apply.html">Apply</a> functions.<br /><br />See Also: <a href="Texture2D.SetPixel.html">SetPixel</a>, <a href="Texture2D.SetPixels.html">SetPixels</a>, <a href="Texture2D.Apply.html">Apply</a> functions.</p></div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <span class="sig-kw">Texture2D</span>(int <span class="sig-kw">width</span>,
+int <span class="sig-kw">height</span>,
+<a href="TextureFormat.html">TextureFormat</a> <span class="sig-kw">textureFormat</span> = TextureFormat.RGBA32,
+bool <span class="sig-kw">mipChain</span> = true,
+bool <span class="sig-kw">linear</span> = false);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Create a new empty texture.</p></div><div class="subsection"><p>The texture will be <code class="varname">width</code> by <code class="varname">height</code> size, with a given <code class="varname">format</code>, with mipmaps
+or without and in either the linear or sRGB color space.<br /><br />Usually you will want to set the colors of the texture after creating it, using
+<a href="Texture2D.SetPixel.html">SetPixel</a>, <a href="Texture2D.SetPixels.html">SetPixels</a> and <a href="Texture2D.Apply.html">Apply</a> functions.<br /><br />See Also: <a href="Texture2D.SetPixel.html">SetPixel</a>, <a href="Texture2D.SetPixels.html">SetPixels</a>, <a href="Texture2D.Apply.html">Apply</a> functions.</p></div></div></div></div></body></html>

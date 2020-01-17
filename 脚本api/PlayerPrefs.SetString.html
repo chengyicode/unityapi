@@ -1,0 +1,27 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: PlayerPrefs.SetString</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="PlayerPrefs.html">PlayerPrefs</a>.SetString</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">SetString</span>(string <span class="sig-kw">key</span>,
+string <span class="sig-kw">value</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Sets the value of the preference identified by <code class="varname">key</code>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//Attach this script to a <a href="GameObject.html">GameObject</a> in the <a href="SceneManagement.Scene.html">Scene</a> to set up the <a href="PlayerPrefs.html">PlayerPrefs</a>.<br /><br />using UnityEngine;
+using UnityEngine.SceneManagement;<br /><br />public class SetUpPlayerPrefsExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    string m_PlayerName;<br /><br />    void Start()
+    {
+        m_PlayerName = "Enter Your Name";
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        //Give the <a href="PlayerPrefs.html">PlayerPrefs</a> some values to send over to the next <a href="SceneManagement.Scene.html">Scene</a>
+        <a href="PlayerPrefs.SetString.html">PlayerPrefs.SetString</a>("Name", m_PlayerName);
+    }<br /><br />    void OnGUI()
+    {
+        //Create a Text Field where the user inputs their name
+        m_PlayerName = <a href="GUI.TextField.html">GUI.TextField</a>(new <a href="Rect.html">Rect</a>(10, 10, 200, 20), m_PlayerName, 25);<br /><br />        //Create a button which loads the appropriate level when you press it
+        if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(10, 30, 200, 60), "Next <a href="SceneManagement.Scene.html">Scene</a>"))
+        {
+            <a href="SceneManagement.SceneManager.LoadScene.html">SceneManager.LoadScene</a>("Scene2");
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

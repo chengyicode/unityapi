@@ -1,0 +1,16 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ParticleSystem.TextureSheetAnimationModule.speedRange</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="ParticleSystem.TextureSheetAnimationModule.html">ParticleSystem.TextureSheetAnimationModule</a>.speedRange</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-ParticleSystem.html' title='Go to ParticleSystem Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Vector2.html">Vector2</a> <span class="sig-kw">speedRange</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Specify how particle speeds are mapped to the animation frames.</p></div><div class="subsection"><p>If a particle is travelling slower than the minimum speed, the first frame will be used. If a particle is travelling faster than the maximum speed, then the final frame will be used. For all other speeds, frames are chosen based on how far between the minimum and maximum value the speed is.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private <a href="ParticleSystem.html">ParticleSystem</a> ps;<br /><br />    void Start()
+    {
+        ps = GetComponent&lt;<a href="ParticleSystem.html">ParticleSystem</a>&gt;();<br /><br />        var textureSheetAnimation = ps.textureSheetAnimation;
+        textureSheetAnimation.enabled = true;
+        textureSheetAnimation.speedRange = new <a href="Vector2.html">Vector2</a>(0.9f, 5.0f);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Quaternion.w</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Quaternion.html">Quaternion</a>.w</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public float <span class="sig-kw">w</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>W component of the Quaternion. Do not directly modify quaternions.</p></div><div class="subsection"><p>A quaternion can represent a 3D rotation and is defined by 4 real numbers. <a href="Quaternion-x.html">x</a>, <a href="Quaternion-y.html">y</a> and <a href="Quaternion-z.html">z</a> represent a vector. <a href="Quaternion-w.html">w</a> is a scalar that stores the rotation around the vector. More details about quaternions can be located at <a href="https://scriptinghelpers.org/blog/how-to-think-about-quaternions">https://scriptinghelpers.org/blog/how-to-think-about-quaternions</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;<br /><br />// <a href="Quaternion.html">Quaternion</a>-w script example
+// Create a Sphere and apply a texture to help the orientation be recognised.
+// At each second the sphere is rotated and the quaternion is displayed.<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private float timeDelay = 0.0f;
+    private <a href="Quaternion.html">Quaternion</a> q;
+    private string label = "";<br /><br />    void Awake()
+    {
+        // Add a line that passes through the y axis of the sphere and make
+        // the line as a child.
+        <a href="GameObject.html">GameObject</a> line = <a href="GameObject.CreatePrimitive.html">GameObject.CreatePrimitive</a>(<a href="PrimitiveType.Cube.html">PrimitiveType.Cube</a>);
+        line.transform.localScale = new <a href="Vector3.html">Vector3</a>(0.05f, 1.5f, 0.05f);
+        line.transform.parent = gameObject.transform;
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        if (timeDelay &gt; 1.0f)
+        {
+            <a href="Vector3.html">Vector3</a> v;<br /><br />            // generate a random euler angle
+            v.x = <a href="Random.Range.html">Random.Range</a>(0.0f, 360.0f);
+            v.y = <a href="Random.Range.html">Random.Range</a>(0.0f, 360.0f);
+            v.z = <a href="Random.Range.html">Random.Range</a>(0.0f, 360.0f);<br /><br />            // convert the euler into a quaternion
+            q = <a href="Quaternion.Euler.html">Quaternion.Euler</a>(v);<br /><br />            // and apply it to the sphere
+            transform.rotation = q;<br /><br />            // generate a string
+            label = q.ToString("f3");<br /><br />            // and start another 1 second delay
+            timeDelay = 0.0f;
+        }
+        timeDelay += <a href="Time-deltaTime.html">Time.deltaTime</a>;
+    }<br /><br />    // display the quaternion as a string
+    void OnGUI()
+    {
+        GUI.skin.label.fixedHeight = 40;
+        GUI.skin.label.fontSize = 24;
+        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(10, 10, 400, 30), label);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

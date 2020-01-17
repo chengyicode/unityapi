@@ -1,0 +1,50 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorGUILayout.BeginScrollView</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorGUILayout.html">EditorGUILayout</a>.BeginScrollView</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Vector2.html">Vector2</a> <span class="sig-kw">BeginScrollView</span>(<a href="Vector2.html">Vector2</a> <span class="sig-kw">scrollPosition</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Vector2.html">Vector2</a> <span class="sig-kw">BeginScrollView</span>(<a href="Vector2.html">Vector2</a> <span class="sig-kw">scrollPosition</span>,
+bool <span class="sig-kw">alwaysShowHorizontal</span>,
+bool <span class="sig-kw">alwaysShowVertical</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Vector2.html">Vector2</a> <span class="sig-kw">BeginScrollView</span>(<a href="Vector2.html">Vector2</a> <span class="sig-kw">scrollPosition</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">horizontalScrollbar</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">verticalScrollbar</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Vector2.html">Vector2</a> <span class="sig-kw">BeginScrollView</span>(<a href="Vector2.html">Vector2</a> <span class="sig-kw">scrollPosition</span>,
+bool <span class="sig-kw">alwaysShowHorizontal</span>,
+bool <span class="sig-kw">alwaysShowVertical</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">horizontalScrollbar</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">verticalScrollbar</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">background</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">scrollPosition</td><td class="desc"></td><td class="desc1">The position to use display.</td></tr><tr><td class="name lbl">alwayShowHorizontal</td><td class="desc"></td><td class="desc1">Optional parameter to always show the horizontal scrollbar. If false or left out, it is only shown when the content inside the ScrollView is wider than the scrollview itself.</td></tr><tr><td class="name lbl">alwayShowVertical</td><td class="desc"></td><td class="desc1">Optional parameter to always show the vertical scrollbar. If false or left out, it is only shown when content inside the ScrollView is taller than the scrollview itself.</td></tr><tr><td class="name lbl">horizontalScrollbar</td><td class="desc"></td><td class="desc1">Optional <a href="GUIStyle.html">GUIStyle</a> to use for the horizontal scrollbar. If left out, the <code class="varname">horizontalScrollbar</code> style from the current <a href="GUISkin.html">GUISkin</a> is used.</td></tr><tr><td class="name lbl">verticalScrollbar</td><td class="desc"></td><td class="desc1">Optional <a href="GUIStyle.html">GUIStyle</a> to use for the vertical scrollbar. If left out, the <code class="varname">verticalScrollbar</code> style from the current <a href="GUISkin.html">GUISkin</a> is used.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>Vector2</strong>
+        The modified scrollPosition. Feed this back into the variable you pass in, as shown in the example.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Begin an automatically laid out scrollview.</p></div><div class="subsection"><p>These work just like <a href="GUILayout.BeginScrollView.html">GUILayout.BeginScrollView</a> but feel more application-like and should be used in the editor<br /><br /><img src="../StaticFiles/ScriptRefImages/BeginEndScrollView.png" /><br />
+<em>Label inside a scroll view.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class BeginScrollViewExample : <a href="EditorWindow.html">EditorWindow</a>
+{
+    <a href="Vector2.html">Vector2</a> scrollPos;
+    string t = "This is a string inside a Scroll view!";<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Examples/Modify internal <a href="Quaternion.html">Quaternion</a>")]
+    static void Init()
+    {
+        BeginScrollViewExample window = (BeginScrollViewExample)<a href="EditorWindow.GetWindow.html">EditorWindow.GetWindow</a>(typeof(BeginScrollViewExample), true, "My Empty Window");
+        window.Show();
+    }<br /><br />    void OnGUI()
+    {
+        <a href="EditorGUILayout.BeginHorizontal.html">EditorGUILayout.BeginHorizontal</a>();
+        scrollPos =
+            <a href="EditorGUILayout.BeginScrollView.html">EditorGUILayout.BeginScrollView</a>(scrollPos, <a href="GUILayout.Width.html">GUILayout.Width</a>(100), <a href="GUILayout.Height.html">GUILayout.Height</a>(100));
+        <a href="GUILayout.Label.html">GUILayout.Label</a>(t);
+        <a href="EditorGUILayout.EndScrollView.html">EditorGUILayout.EndScrollView</a>();
+        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Add More Text", <a href="GUILayout.Width.html">GUILayout.Width</a>(100), <a href="GUILayout.Height.html">GUILayout.Height</a>(100)))
+            t += " \nAnd this is more text!";
+        <a href="EditorGUILayout.EndHorizontal.html">EditorGUILayout.EndHorizontal</a>();
+        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Clear"))
+            t = "";
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

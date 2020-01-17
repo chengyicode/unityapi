@@ -1,0 +1,73 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: MenuItem.MenuItem</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">MenuItem Constructor</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <span class="sig-kw">MenuItem</span>(string <span class="sig-kw">itemName</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public <span class="sig-kw">MenuItem</span>(string <span class="sig-kw">itemName</span>,
+bool <span class="sig-kw">isValidateFunction</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public <span class="sig-kw">MenuItem</span>(string <span class="sig-kw">itemName</span>,
+bool <span class="sig-kw">isValidateFunction</span>,
+int <span class="sig-kw">priority</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">itemName</td><td class="desc"></td><td class="desc1">The <code class="varname">itemName</code> is the menu item represented like a pathname.
+        For example the menu item could be "GameObject/Do Something".</td></tr><tr><td class="name lbl">isValidateFunction</td><td class="desc"></td><td class="desc1">If <code class="varname">isValidateFunction</code> is true, this is a validation
+        function and will be called before invoking the menu function with the same <code class="varname">itemName</code>.</td></tr><tr><td class="name lbl">priority</td><td class="desc"></td><td class="desc1">The order by which the menu items are displayed.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Creates a menu item and invokes the static function following it, when the menu item is selected.</p></div><div class="subsection"><p>
+        <code class="varname">MenuItem</code> is an attribute that precedes a script function.  This makes the function
+        appear in the Unity menu system.  The menu location is specified by the <code class="mono">itemName</code>
+        argument.<br /><br />        <code class="varname">isValidateFunction</code> is used to make a <code class="varname">MenuItem</code> function as one that will be executed
+        before a script function with the same <code class="varname">itemName</code> argument. The second argument is
+        boolean.  If this argument is set to <code class="varname">true</code> it will mark the associated function
+        as one that is called before the execution of the second script function.  This second
+        script function with the same <code class="varname">itemName</code> will be executed next.<br /><br />        <code class="varname">priority</code> determines how the following script function is ordered in the menu system.
+        The integer value is compared against values on other script functions.  If the
+        integer value is greater than the other values, then the <code class="varname">MenuItem</code> script function will
+        be placed at the bottom of the list.  The value of <code class="varname">priority</code> can also be used to
+        manage the list of script functions into groups.  The example later in this
+        page describes more about this feature.<br /><br />        The following script example adds two functions into a Example menu system.
+        </p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Add Example1 into a new menu list
+    [<a href="MenuItem.html">MenuItem</a>("Example/Example1", false, 100)]
+    public static void Example1()
+    {
+        print("Example/Example1");
+    }<br /><br />    // Add Example2 into the same menu list
+    [<a href="MenuItem.html">MenuItem</a>("Example/Example2", false, 100)]
+    public static void Example2()
+    {
+        print("Example/Example2");
+    }
+}
+</pre>
+      </div><div class="subsection"><p>
+        This simple following example shows how the <code class="varname">Example</code> menu can have two entries divided by
+        a separator line.  This happens when the <code class="varname">priority</code> argument is separated by more
+        than 10. (However, see the following description.)
+        </p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Add Example1 has priority of 100
+    [<a href="MenuItem.html">MenuItem</a>("Example/Example1", false, 100)]
+    public static void Example1()
+    {
+        print("Example/Example1");
+    }<br /><br />    // Example2 has a priority of 111 which is 11 more than Example1.
+    // This will cause a divider to be created.
+    [<a href="MenuItem.html">MenuItem</a>("Example/Example2", false, 111)]
+    public static void Example2()
+    {
+        print("Example/Example2");
+    }
+}
+</pre>
+      </div><div class="subsection"><p>
+        <strong>Note:</strong> The understanding of ten or greater is considered to create a divider
+        in the menu.  However, as per the example above, the difference between script
+        function need to have the <code class="varname">priority</code> separated by 11 or more.  This is why the
+        example before has a value of 100 and one of 111.  Changing 111 to 110 does
+        not have a divider.
+        </p></div></div></div></div></body></html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: JointDrive.maximumForce</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="JointDrive.html">JointDrive</a>.maximumForce</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public float <span class="sig-kw">maximumForce</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Amount of force applied to push the object toward the defined direction.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Create a <a href="JointDrive.html">JointDrive</a>, configure it and assign the <a href="JointDrive.html">JointDrive</a> to
+    // the zDrive element of a configurable joint.<br /><br />    void Start()
+    {
+        <a href="ConfigurableJoint.html">ConfigurableJoint</a> joint = gameObject.AddComponent&lt;<a href="ConfigurableJoint.html">ConfigurableJoint</a>&gt;();
+        joint.targetPosition = new <a href="Vector3.html">Vector3</a>(0, 0, -10);<br /><br />        <a href="JointDrive.html">JointDrive</a> drive = new <a href="JointDrive.html">JointDrive</a>();
+        drive.mode = JointDriveMode.Velocity;
+        drive.maximumForce = <a href="Mathf.Infinity.html">Mathf.Infinity</a>;;<br /><br />        joint.zDrive = drive;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

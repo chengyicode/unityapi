@@ -1,0 +1,22 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Caching.GetAllCachePaths</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Caching.html">Caching</a>.GetAllCachePaths</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">GetAllCachePaths</span>(List&lt;string&gt; <span class="sig-kw">cachePaths</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">cachePaths</td><td class="desc"></td><td class="desc1">List of all the cache paths.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Returns all paths of the cache in the cache list.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.IO;
+using System.Collections.Generic;
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void GetAllCachePathExample()
+    {
+        <a href="Windows.Directory.CreateDirectory.html">Directory.CreateDirectory</a>("Cache1");
+        <a href="Windows.Directory.CreateDirectory.html">Directory.CreateDirectory</a>("Cache2");
+        <a href="Windows.Directory.CreateDirectory.html">Directory.CreateDirectory</a>("Cache3");<br /><br />        <a href="Cache.html">Cache</a> c1 = <a href="Caching.AddCache.html">Caching.AddCache</a>("Cache1"); //Placed in cache list at position 1
+        <a href="Cache.html">Cache</a> c2 = <a href="Caching.AddCache.html">Caching.AddCache</a>("Cache2"); //Placed in cache list at position 2
+        <a href="Cache.html">Cache</a> c3 = <a href="Caching.AddCache.html">Caching.AddCache</a>("Cache3"); //Placed in cache list at position 3<br /><br />        List&lt;string&gt; cachePaths = new List&lt;string&gt;();
+        <a href="Caching.GetAllCachePaths.html">Caching.GetAllCachePaths</a>(cachePaths);<br /><br />        //cachePaths[0] is Cache1
+        //cachePaths[1] is Cache2
+        //cachePaths[2] is Cache3
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Space.Self</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Space.html">Space</a>.Self</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Applies transformation relative to the local coordinate system.</p></div><div class="subsection"><p>Use this to transform a GameObject considering the GameObject’s rotation. To apply transformations to a GameObject using the world’s coordinates, use Space.world.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//This example shows the difference between using Space.world and Space.self. Attach this script to a <a href="GameObject.html">GameObject</a>
+//Enable or disable the checkbox in the Inspector before starting (depending on if you want world or self)
+//Press play to see the <a href="GameObject.html">GameObject</a> rotating appropriately. Press space to switch between world and self.<br /><br />using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    float m_Speed;
+    public bool m_WorldSpace;<br /><br />    void Start()
+    {
+        //Set the speed of the rotation
+        m_Speed = 20.0f;
+        //Rotate the <a href="GameObject.html">GameObject</a> a little at the start to show the difference between <a href="Space.html">Space</a> and Local
+        transform.Rotate(60, 0, 60);
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        //Rotate the <a href="GameObject.html">GameObject</a> in World <a href="Space.html">Space</a> if in the m_WorldSpace state
+        if (m_WorldSpace)
+            transform.Rotate(<a href="Vector3-up.html">Vector3.up</a> * m_Speed * <a href="Time-deltaTime.html">Time.deltaTime</a>, <a href="Space.World.html">Space.World</a>);
+        //Otherwise, rotate the <a href="GameObject.html">GameObject</a> in local space
+        else
+            transform.Rotate(<a href="Vector3-up.html">Vector3.up</a> * m_Speed * <a href="Time-deltaTime.html">Time.deltaTime</a>, <a href="Space.Self.html">Space.Self</a>);<br /><br />        //Press the <a href="Space.html">Space</a> button to switch between world and local space states
+        if (<a href="Input.GetKeyDown.html">Input.GetKeyDown</a>(<a href="KeyCode.Space.html">KeyCode.Space</a>))
+        {
+            //Make the current state switch to the other state
+            m_WorldSpace = !m_WorldSpace;
+            //Output the Current state to the console
+            <a href="Debug.Log.html">Debug.Log</a>("World <a href="Space.html">Space</a> : " + m_WorldSpace.ToString());
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

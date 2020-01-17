@@ -1,0 +1,26 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: GameObject.GameObject</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">GameObject Constructor</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-GameObject.html' title='Go to GameObject Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <span class="sig-kw">GameObject</span>();
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public <span class="sig-kw">GameObject</span>(string <span class="sig-kw">name</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public <span class="sig-kw">GameObject</span>(string <span class="sig-kw">name</span>,
+params Type[] <span class="sig-kw">components</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">name</td><td class="desc"></td><td class="desc1">The name that the <a href="GameObject.html">GameObject</a> is created with.</td></tr><tr><td class="name lbl">components</td><td class="desc"></td><td class="desc1">A list of <code class="varname">Components</code> to add to the <a href="GameObject.html">GameObject</a> on creation.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Creates a new game object, named <strong>name</strong>.</p></div><div class="subsection"><p>
+        <a href="Transform.html">Transform</a> is always added to the <code class="varname">GameObject</code> that is being created.
+        The creation of a <a href="GameObject.html">GameObject</a> with no script arguments will add the <a href="Transform.html">Transform</a> but
+        nothing else.  Similarly, the version with just a single <code class="varname">string</code> argument just adds
+        this and the <a href="Transform.html">Transform</a>.  Finally, the third version allows the name to be specified
+        but also components to be passed in as an array.
+        </p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Creates a game object named "Player" and
+// adds a rigidbody and box collider to it.<br /><br />using UnityEngine;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        <a href="GameObject.html">GameObject</a> player;
+        player = new <a href="GameObject.html">GameObject</a>("Player");
+        player.AddComponent&lt;<a href="Rigidbody.html">Rigidbody</a>&gt;();
+        player.AddComponent&lt;<a href="BoxCollider.html">BoxCollider</a>&gt;();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

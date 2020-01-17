@@ -1,0 +1,42 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: WWW</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Method group is Obsolete</b><br /></div><h1 class="heading inherit">WWW</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Inherits from:<a href="CustomYieldInstruction.html" class="cl">CustomYieldInstruction</a></p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.UnityWebRequestWWWModule.html" class="cl">UnityEngine.UnityWebRequestWWWModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Simple access to web pages.</p></div><div class="subsection"><p>This is a small utility module for retrieving the contents of URLs.<br /><br />You start a download in the background by calling <code class="mono">WWW(url)</code> which returns a new WWW object.<br /><br />You can inspect the <code class="varname">isDone</code> property to see if the download has completed or yield
+the download object to automatically wait until it is (without blocking the rest of the game).<br /><br />Use it if you want to get some data from a web server for integration with a game
+such as highscore lists or calling home for some reason. There is also functionality
+to create textures from images downloaded from the web and to stream &amp; load new web
+player data files.<br /><br />The WWW class can be used to send both GET and POST requests to the server. The WWW class will use GET
+by default and POST if you supply a postData parameter.<br /><br />See Also: <a href="WWWForm.html">WWWForm</a> for a way to build valid form data for the postData parameter.<br /><br /><strong>Note:</strong> URLs passed to WWW class must be '%' escaped.<br /><br /><strong>Notes</strong> <strong>http://</strong>, <strong>https://</strong> and <strong>file://</strong> protocols are supported on iPhone.
+<strong>ftp://</strong> protocol support is limited to anonymous downloads only. Other protocols are not supported.<br /><br /><strong>Note:</strong> When using file protocol on Windows and Windows Store Apps for accessing local files, you have to specify <strong>file:///</strong> (with three slashes).</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Get the latest webcam shot from outside "Friday's" in Times Square
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public string url = "http://images.earthcam.com/ec_metros/ourcams/fridays.jpg";
+    IEnumerator Start()
+    {
+        using (WWW www = new WWW(url))
+        {
+            yield return www;
+            <a href="Renderer.html">Renderer</a> renderer = GetComponent&lt;<a href="Renderer.html">Renderer</a>&gt;();
+            renderer.material.mainTexture = www.texture;
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Inherited Members   继承成员</h2>
+      
+      <div class="subsection"><h2>Properties   属性</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="CustomYieldInstruction-keepWaiting.html">keepWaiting</a></td><td class="desc"></td><td class="desc1">Indicates if coroutine should be kept suspended.</td></tr>
+      </table></div>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </div></div></div></div></body></html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: GUILayout.EndVertical</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="GUILayout.html">GUILayout</a>.EndVertical</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">EndVertical</span>();
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Close a group started with BeginVertical.</p></div><div class="subsection"><p>
+        <img src="../StaticFiles/ScriptRefImages/GUILayoutVertical.png" />
+        <br />
+<em>Vertical Layout.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void OnGUI()
+    {
+        <a href="GUILayout.BeginVertical.html">GUILayout.BeginVertical</a>("box");<br /><br />        <a href="GUILayout.Button.html">GUILayout.Button</a>("I'm the top button");
+        <a href="GUILayout.Button.html">GUILayout.Button</a>("I'm the bottom button");<br /><br />        // End the vertical group we started above
+        <a href="GUILayout.EndVertical.html">GUILayout.EndVertical</a>();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

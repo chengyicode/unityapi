@@ -1,0 +1,91 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Material</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">Material</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Inherits from:<a href="Object.html" class="cl">Object</a></p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.CoreModule.html" class="cl">UnityEngine.CoreModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Material.html' title='Go to Material Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>The material class.</p></div><div class="subsection"><p>This class exposes all properties from a material, allowing you to animate them.
+You can also use it to set custom shader properties that can't be accessed through
+the inspector (e.g. matrices).<br /><br />In order to get the material used by an object, use the <a href="Renderer-material.html">Renderer.material</a> property.<br /><br />See Also: <a href="../Manual/Materials.html">Materials</a>, <a href="../Manual/Shaders.html">Shaders</a>.</p></div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Material-color.html">color</a></td><td class="desc"></td><td class="desc1">The main material's color.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Material-doubleSidedGI.html">doubleSidedGI</a></td><td class="desc"></td><td class="desc1">Gets and sets whether the Double Sided Global Illumination setting is enabled for this material.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Material-enableInstancing.html">enableInstancing</a></td><td class="desc"></td><td class="desc1">Gets and sets whether GPU instancing is enabled for this material.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Material-globalIlluminationFlags.html">globalIlluminationFlags</a></td><td class="desc"></td><td class="desc1">Defines how the material should interact with lightmaps and lightprobes.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Material-mainTexture.html">mainTexture</a></td><td class="desc"></td><td class="desc1">The material's texture.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Material-mainTextureOffset.html">mainTextureOffset</a></td><td class="desc"></td><td class="desc1">The texture offset of the main texture.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Material-mainTextureScale.html">mainTextureScale</a></td><td class="desc"></td><td class="desc1">The texture scale of the main texture.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Material-passCount.html">passCount</a></td><td class="desc"></td><td class="desc1">How many passes are in this material (Read Only).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Material-renderQueue.html">renderQueue</a></td><td class="desc"></td><td class="desc1">Render queue of this material.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Material-shader.html">shader</a></td><td class="desc"></td><td class="desc1">The shader used by the material.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Material-shaderKeywords.html">shaderKeywords</a></td><td class="desc"></td><td class="desc1">Additional shader keywords set by this material.</td></tr>
+    </table></div><div class="subsection"><h2>Constructors</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Material-ctor.html">Material</a></td><td class="desc"></td><td class="desc1"></td></tr>
+    </table></div><div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Material.ComputeCRC.html">ComputeCRC</a></td><td class="desc"></td><td class="desc1">Computes a CRC hash value from the content of the material.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Material.CopyPropertiesFromMaterial.html">CopyPropertiesFromMaterial</a></td><td class="desc"></td><td class="desc1">Copy properties from other material into this material.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Material.DisableKeyword.html">DisableKeyword</a></td><td class="desc"></td><td class="desc1">Unset a shader keyword.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Material.EnableKeyword.html">EnableKeyword</a></td><td class="desc"></td><td class="desc1">Sets a shader keyword that is enabled by this material.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Material.FindPass.html">FindPass</a></td><td class="desc"></td><td class="desc1">Returns the index of the pass passName.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Material.GetColor.html">GetColor</a></td><td class="desc"></td><td class="desc1">Get a named color value.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Material.GetColorArray.html">GetColorArray</a></td><td class="desc"></td><td class="desc1">Get a named color array.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Material.GetFloat.html">GetFloat</a></td><td class="desc"></td><td class="desc1">Get a named float value.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Material.GetFloatArray.html">GetFloatArray</a></td><td class="desc"></td><td class="desc1">Get a named float array.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Material.GetInt.html">GetInt</a></td><td class="desc"></td><td class="desc1">Get a named integer value.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Material.GetMatrix.html">GetMatrix</a></td><td class="desc"></td><td class="desc1">Get a named matrix value from the shader.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Material.GetMatrixArray.html">GetMatrixArray</a></td><td class="desc"></td><td class="desc1">Get a named matrix array.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Material.GetPassName.html">GetPassName</a></td><td class="desc"></td><td class="desc1">Returns the name of the shader pass at index pass.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Material.GetShaderPassEnabled.html">GetShaderPassEnabled</a></td><td class="desc"></td><td class="desc1">Checks whether a given Shader pass is enabled on this Material.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Material.GetTag.html">GetTag</a></td><td class="desc"></td><td class="desc1">Get the value of material's shader tag.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Material.GetTexture.html">GetTexture</a></td><td class="desc"></td><td class="desc1">Get a named texture.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Material.GetTextureOffset.html">GetTextureOffset</a></td><td class="desc"></td><td class="desc1">Gets the placement offset of texture propertyName.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Material.GetTexturePropertyNameIDs.html">GetTexturePropertyNameIDs</a></td><td class="desc"></td><td class="desc1">Return the name IDs of all texture properties exposed on this material.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Material.GetTexturePropertyNames.html">GetTexturePropertyNames</a></td><td class="desc"></td><td class="desc1">Returns the names of all texture properties exposed on this material.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Material.GetTextureScale.html">GetTextureScale</a></td><td class="desc"></td><td class="desc1">Gets the placement scale of texture propertyName.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Material.GetVector.html">GetVector</a></td><td class="desc"></td><td class="desc1">Get a named vector value.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Material.GetVectorArray.html">GetVectorArray</a></td><td class="desc"></td><td class="desc1">Get a named vector array.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Material.HasProperty.html">HasProperty</a></td><td class="desc"></td><td class="desc1">Checks if material's shader has a property of a given name.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Material.IsKeywordEnabled.html">IsKeywordEnabled</a></td><td class="desc"></td><td class="desc1">Is the shader keyword enabled on this material?</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Material.Lerp.html">Lerp</a></td><td class="desc"></td><td class="desc1">Interpolate properties between two materials.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Material.SetBuffer.html">SetBuffer</a></td><td class="desc"></td><td class="desc1">Sets a named ComputeBuffer value.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Material.SetColor.html">SetColor</a></td><td class="desc"></td><td class="desc1">Sets a named color value.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Material.SetColorArray.html">SetColorArray</a></td><td class="desc"></td><td class="desc1">Sets a color array property.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Material.SetConstantBuffer.html">SetConstantBuffer</a></td><td class="desc"></td><td class="desc1">Sets a ComputeBuffer as a named constant buffer for the material.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Material.SetFloat.html">SetFloat</a></td><td class="desc"></td><td class="desc1">Sets a named float value.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Material.SetFloatArray.html">SetFloatArray</a></td><td class="desc"></td><td class="desc1">Sets a float array property.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Material.SetInt.html">SetInt</a></td><td class="desc"></td><td class="desc1">Sets a named integer value.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Material.SetMatrix.html">SetMatrix</a></td><td class="desc"></td><td class="desc1">Sets a named matrix for the shader.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Material.SetMatrixArray.html">SetMatrixArray</a></td><td class="desc"></td><td class="desc1">Sets a matrix array property.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Material.SetOverrideTag.html">SetOverrideTag</a></td><td class="desc"></td><td class="desc1">Sets an override tag/value on the material.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Material.SetPass.html">SetPass</a></td><td class="desc"></td><td class="desc1">Activate the given pass for rendering.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Material.SetShaderPassEnabled.html">SetShaderPassEnabled</a></td><td class="desc"></td><td class="desc1">Enables or disables a Shader pass on a per-Material level.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Material.SetTexture.html">SetTexture</a></td><td class="desc"></td><td class="desc1">Sets a named texture.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Material.SetTextureOffset.html">SetTextureOffset</a></td><td class="desc"></td><td class="desc1">Sets the placement offset of texture propertyName.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Material.SetTextureScale.html">SetTextureScale</a></td><td class="desc"></td><td class="desc1">Sets the placement scale of texture propertyName.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Material.SetVector.html">SetVector</a></td><td class="desc"></td><td class="desc1">Sets a named vector value.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Material.SetVectorArray.html">SetVectorArray</a></td><td class="desc"></td><td class="desc1">Sets a vector array property.</td></tr>
+    </table></div><div class="subsection"><h2>Inherited Members   继承成员</h2>
+      
+      <div class="subsection"><h2>Properties   属性</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-hideFlags.html">hideFlags</a></td><td class="desc"></td><td class="desc1">Should the object be hidden, saved with the Scene or modifiable by the user?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-name.html">name</a></td><td class="desc"></td><td class="desc1">The name of the object.</td></tr>
+      </table></div>
+      
+      
+      
+      <div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.GetInstanceID.html">GetInstanceID</a></td><td class="desc"></td><td class="desc1">Returns the instance id of the object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.ToString.html">ToString</a></td><td class="desc"></td><td class="desc1">Returns the name of the object.</td></tr>
+      </table></div>
+      
+      <div class="subsection"><h2>Static Methods   静态方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.Destroy.html">Destroy</a></td><td class="desc"></td><td class="desc1">Removes a GameObject, component or asset.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.DestroyImmediate.html">DestroyImmediate</a></td><td class="desc"></td><td class="desc1">Destroys the object obj immediately. You are strongly recommended to use Destroy instead.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.DontDestroyOnLoad.html">DontDestroyOnLoad</a></td><td class="desc"></td><td class="desc1">Do not destroy the target Object when loading a new Scene.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectOfType.html">FindObjectOfType</a></td><td class="desc"></td><td class="desc1">Returns the first active loaded object of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectsOfType.html">FindObjectsOfType</a></td><td class="desc"></td><td class="desc1">Returns a list of all active loaded objects of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.Instantiate.html">Instantiate</a></td><td class="desc"></td><td class="desc1">Clones the object original and returns the clone.</td></tr>
+      </table></div>
+      <div class="subsection"><h2>Operators   运算符</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_Object.html">bool</a></td><td class="desc"></td><td class="desc1">Does the object exist?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_ne.html">operator !=</a></td><td class="desc"></td><td class="desc1">Compares if two objects refer to a different object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_eq.html">operator ==</a></td><td class="desc"></td><td class="desc1">Compares two object references to see if they refer to the same object.</td></tr>
+      </table></div>
+      
+      
+      
+    </div></div></div></div></body></html>

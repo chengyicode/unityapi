@@ -1,0 +1,16 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: SpeedTreeImporter.SearchAndRemapMaterials</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="SpeedTreeImporter.html">SpeedTreeImporter</a>.SearchAndRemapMaterials</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-SpeedTreeImporter.html' title='Go to SpeedTreeImporter Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public bool <span class="sig-kw">SearchAndRemapMaterials</span>(string <span class="sig-kw">materialFolderPath</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">materialFolderPath</td><td class="desc"></td><td class="desc1">The path to search for matching materials.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>bool</strong>
+        Returns true if any materials have been remapped, otherwise false.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Search the project for matching materials and use them instead of the internal materials.</p></div><div class="subsection"><p>Unity follows specific naming conventions when importing SpeedTree materials. This allows Unity to search for matching material assets by name.<br /><br />The <strong>materialFolderPath</strong> is relative to the project folder, for example "Assets/MyModel Materials".<br /><br />Throws <strong>ArgumentNullException</strong> when the path is <em>null</em> and <strong>ArgumentException</strong> when the file path is <em>empty</em>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class MaterialRemapper : <a href="AssetPostprocessor.html">AssetPostprocessor</a>
+{
+    void OnPreprocessModel()
+    {
+        var importer = assetImporter as <a href="SpeedTreeImporter.html">SpeedTreeImporter</a>;
+        importer.SearchAndRemapMaterials(importer.materialFolderPath);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

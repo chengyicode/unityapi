@@ -1,0 +1,45 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: MouseCursor</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">MouseCursor</h1><div class="clear"></div><p class="cl mb0 left mr10">enumeration</p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Custom mouse cursor shapes used with EditorGUIUtility.AddCursorRect.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//Create a folder and name it “<a href="Editor.html">Editor</a>” if this doesn’t already exist
+//Put this script in the folder<br /><br />//This script creates a new menu (“Examples”) and a menu item (“Mouse <a href="Cursor.html">Cursor</a>”). Click on this option. This displays a small window that has a color box in it.
+//Hover over the colored box to cause an Orbit mouse cursor to appear.<br /><br />
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class MouseCursorExample : <a href="EditorWindow.html">EditorWindow</a>
+{
+    [<a href="MenuItem.html">MenuItem</a>("Examples/MouseCursorRect Example")]
+    static void AddCursorRectExample()
+    {
+        MouseCursorExample window =
+            <a href="EditorWindow.GetWindowWithRect.html">EditorWindow.GetWindowWithRect</a>&lt;MouseCursorExample&gt;(new <a href="Rect.html">Rect</a>(0, 0, 180, 80));
+        window.Show();
+    }<br /><br />    void OnGUI()
+    {
+        <a href="EditorGUI.DrawRect.html">EditorGUI.DrawRect</a>(new <a href="Rect.html">Rect</a>(10, 10, 160, 60), new <a href="Color.html">Color</a>(0.5f, 0.5f, 0.85f));
+        <a href="EditorGUI.DrawRect.html">EditorGUI.DrawRect</a>(new <a href="Rect.html">Rect</a>(20, 20, 140, 40), new <a href="Color.html">Color</a>(0.9f, 0.9f, 0.9f));
+        <a href="EditorGUIUtility.AddCursorRect.html">EditorGUIUtility.AddCursorRect</a>(new <a href="Rect.html">Rect</a>(20, 20, 140, 40), <a href="MouseCursor.Orbit.html">MouseCursor.Orbit</a>);
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="MouseCursor.Arrow.html">Arrow</a></td><td class="desc"></td><td class="desc1">Normal pointer arrow.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="MouseCursor.Text.html">Text</a></td><td class="desc"></td><td class="desc1">Text cursor.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="MouseCursor.ResizeVertical.html">ResizeVertical</a></td><td class="desc"></td><td class="desc1">Vertical resize arrows.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="MouseCursor.ResizeHorizontal.html">ResizeHorizontal</a></td><td class="desc"></td><td class="desc1">Horizontal resize arrows.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="MouseCursor.Link.html">Link</a></td><td class="desc"></td><td class="desc1">Arrow with a Link badge (for assigning pointers).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="MouseCursor.SlideArrow.html">SlideArrow</a></td><td class="desc"></td><td class="desc1">Arrow with small arrows for indicating sliding at number fields.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="MouseCursor.ResizeUpRight.html">ResizeUpRight</a></td><td class="desc"></td><td class="desc1">Resize up-right for window edges.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="MouseCursor.ResizeUpLeft.html">ResizeUpLeft</a></td><td class="desc"></td><td class="desc1">Resize up-Left for window edges.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="MouseCursor.MoveArrow.html">MoveArrow</a></td><td class="desc"></td><td class="desc1">Arrow with the move symbol next to it for the sceneview.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="MouseCursor.RotateArrow.html">RotateArrow</a></td><td class="desc"></td><td class="desc1">Arrow with the rotate symbol next to it for the sceneview.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="MouseCursor.ScaleArrow.html">ScaleArrow</a></td><td class="desc"></td><td class="desc1">Arrow with the scale symbol next to it for the sceneview.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="MouseCursor.ArrowPlus.html">ArrowPlus</a></td><td class="desc"></td><td class="desc1">Arrow with the plus symbol next to it.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="MouseCursor.ArrowMinus.html">ArrowMinus</a></td><td class="desc"></td><td class="desc1">Arrow with the minus symbol next to it.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="MouseCursor.Pan.html">Pan</a></td><td class="desc"></td><td class="desc1">Cursor with a dragging hand for pan.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="MouseCursor.Orbit.html">Orbit</a></td><td class="desc"></td><td class="desc1">Cursor with an eye for orbit.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="MouseCursor.Zoom.html">Zoom</a></td><td class="desc"></td><td class="desc1">Cursor with a magnifying glass for zoom.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="MouseCursor.FPS.html">FPS</a></td><td class="desc"></td><td class="desc1">Cursor with an eye and stylized arrow keys for FPS navigation.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="MouseCursor.CustomCursor.html">CustomCursor</a></td><td class="desc"></td><td class="desc1">The current user defined cursor.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="MouseCursor.SplitResizeUpDown.html">SplitResizeUpDown</a></td><td class="desc"></td><td class="desc1">Up-Down resize arrows for window splitters.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="MouseCursor.SplitResizeLeftRight.html">SplitResizeLeftRight</a></td><td class="desc"></td><td class="desc1">Left-Right resize arrows for window splitters.</td></tr>
+    </table></div></div></div></div></body></html>

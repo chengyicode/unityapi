@@ -1,0 +1,26 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Camera.Render</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Camera.html">Camera</a>.Render</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Camera.html' title='Go to Camera Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">Render</span>();
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Render the camera manually.</p></div><div class="subsection"><p>This will render the camera. It will use the camera's clear flags, target texture and all other settings.<br /><br />The camera will send <a href="MonoBehaviour.OnPreCull.html">OnPreCull</a>, <a href="MonoBehaviour.OnPreRender.html">OnPreRender</a> and
+<a href="MonoBehaviour.OnPostRender.html">OnPostRender</a> to any scripts attached, and render any eventual image filters.<br /><br />This is used for taking precise control of render order. To make use of this feature, create a
+camera and disable it. Then call Render on it.<br /><br />You are not able to call the Render function from a camera that is currently rendering. If you wish to
+do this create a copy of the camera, and make it match the original one using <a href="Camera.CopyFrom.html">CopyFrom</a>.<br /><br />See Also: <a href="Camera.RenderWithShader.html">RenderWithShader</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Take a "screenshot" of a camera's Render <a href="Texture.html">Texture</a>.
+    <a href="Texture2D.html">Texture2D</a> RTImage(<a href="Camera.html">Camera</a> camera)
+    {
+        // The Render <a href="Texture.html">Texture</a> in <a href="RenderTexture-active.html">RenderTexture.active</a> is the one
+        // that will be read by ReadPixels.
+        var currentRT = <a href="RenderTexture-active.html">RenderTexture.active</a>;
+        <a href="RenderTexture-active.html">RenderTexture.active</a> = camera.targetTexture;<br /><br />        // Render the camera's view.
+        camera.Render();<br /><br />        // Make a new texture and read the active Render <a href="Texture.html">Texture</a> into it.
+        <a href="Texture2D.html">Texture2D</a> image = new <a href="Texture2D.html">Texture2D</a>(camera.targetTexture.width, camera.targetTexture.height);
+        image.ReadPixels(new <a href="Rect.html">Rect</a>(0, 0, camera.targetTexture.width, camera.targetTexture.height), 0, 0);
+        image.Apply();<br /><br />        // Replace the original active Render <a href="Texture.html">Texture</a>.
+        <a href="RenderTexture-active.html">RenderTexture.active</a> = currentRT;
+        return image;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

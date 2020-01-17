@@ -1,0 +1,51 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AssetDatabase.TryGetGUIDAndLocalFileIdentifier</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="AssetDatabase.html">AssetDatabase</a>.TryGetGUIDAndLocalFileIdentifier</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public static bool <span class="sig-kw">TryGetGUIDAndLocalFileIdentifier</span>(<a href="Object.html">Object</a> <span class="sig-kw">obj</span>,
+out string <span class="sig-kw">guid</span>,
+out int <span class="sig-kw">localId</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public static bool <span class="sig-kw">TryGetGUIDAndLocalFileIdentifier</span>(int <span class="sig-kw">instanceID</span>,
+out string <span class="sig-kw">guid</span>,
+out int <span class="sig-kw">localId</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">TryGetGUIDAndLocalFileIdentifier</span>(<a href="Object.html">Object</a> <span class="sig-kw">obj</span>,
+out string <span class="sig-kw">guid</span>,
+out long <span class="sig-kw">localId</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">TryGetGUIDAndLocalFileIdentifier</span>(int <span class="sig-kw">instanceID</span>,
+out string <span class="sig-kw">guid</span>,
+out long <span class="sig-kw">localId</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">instanceID</td><td class="desc"></td><td class="desc1">InstanceID of the object to retrieve information for.</td></tr><tr><td class="name lbl">obj</td><td class="desc"></td><td class="desc1">The object to retrieve GUID and File Id for.</td></tr><tr><td class="name lbl">guid</td><td class="desc"></td><td class="desc1">The GUID of the asset.</td></tr><tr><td class="name lbl">localId</td><td class="desc"></td><td class="desc1">The local file identifier of this asset.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>bool</strong>
+        True if the guid and file id were successfully found, false if not.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>
+        <strong>Warning</strong> Use the overload with a long <em>localId</em> parameter. Using the overload with an integer <em>localId</em> parameter can cause an integer overflow in <em>localId</em>. This can happen when the object passed to the API is part of a Prefab.<br /><br />Get the GUID and local file id from an object instance id.</p></div><div class="subsection"><p>When Unity serializes an asset reference it points to two things: the GUID and file ID. GUID is a unique hash, and file ID is a value relative to the asset. Both of these values are used when a serialized asset references another asset.<br /><br />If working with a text serialized project (see <a href="../Manual/class-EditorManager.html">Editor Settings</a>) it is possible to manually modify this information. A common use is moving C# script files from a project to a DLL while keeping any GameObjects using these scripts intact. As an example, suppose your project contains a C# MonoBehaviour, a Scene, and a GameObject with this script attached. When serialized the Unity Scene file will contain something that looks like this (reduced to the relevant parts):</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+/* example .unity <a href="SceneManagement.Scene.html">Scene</a> contents:<br /><br />--- !u!1 &amp;65078845
+<a href="GameObject.html">GameObject</a>:
+  m_Component:
+  -component: {fileID : 65078850}
+--- !u!114 &amp;65078850
+<a href="MonoBehaviour.html">MonoBehaviour</a>:
+  m_Script: {fileID : 11500000, guid : 9cbd8cdf99d44b58972fbc7f6f38088f, type : 3}<br /><br />*/
+</pre>
+      </div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.Text;
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />class ShowAssetIds
+{
+    [<a href="MenuItem.html">MenuItem</a>("Assets/Show <a href="VersionControl.Asset.html">Asset</a> Ids")]
+    static void MenuShowIds()
+    {
+        var stringBuilder = new StringBuilder();<br /><br />        foreach (var obj in <a href="AssetDatabase.LoadAllAssetsAtPath.html">AssetDatabase.LoadAllAssetsAtPath</a>(<a href="AssetDatabase.GetAssetPath.html">AssetDatabase.GetAssetPath</a>(<a href="Selection-activeObject.html">Selection.activeObject</a>)))
+        {
+            string guid;
+            long file;<br /><br />            if (<a href="AssetDatabase.TryGetGUIDAndLocalFileIdentifier.html">AssetDatabase.TryGetGUIDAndLocalFileIdentifier</a>(obj, out guid, out file))
+            {
+                stringBuilder.AppendFormat("<a href="VersionControl.Asset.html">Asset</a>: " + obj.name +
+                    "\n  Instance ID: " + obj.GetInstanceID() +
+                    "\n  GUID: " + guid +
+                    "\n  <a href="Windows.File.html">File</a> ID: " + file);
+            }
+        }<br /><br />        <a href="Debug.Log.html">Debug.Log</a>(stringBuilder.ToString());
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

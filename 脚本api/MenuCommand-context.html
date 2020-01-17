@@ -1,0 +1,23 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: MenuCommand.context</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="MenuCommand.html">MenuCommand</a>.context</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public Object <span class="sig-kw">context</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Context is the object that is the target of a menu command.</p></div><div class="subsection"><p>Usually the context is the current selection or the item under
+the mouse when invoking a context menu.  The new menu item is added to the list supplied by
+the selected component.  The component in the Inspector has a clickable circular item at the
+top right.  The image below shows how the Rigidbody has a MenuItem that is accessible with
+a click.  The Context name is "Do Something".  See the script below.<br /><br /><img src="../StaticFiles/ScriptRefImages/MenuCommandContext.png" /><br />
+<em>Context menu location.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Add a context menu item named "Do Something" to the <a href="Rigidbody.html">Rigidbody</a> top right context menu<br /><br />using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class Something : <a href="EditorWindow.html">EditorWindow</a>
+{
+    // Add menu item
+    [<a href="MenuItem.html">MenuItem</a>("CONTEXT/<a href="Rigidbody.html">Rigidbody</a>/Do Something")]
+    static void DoSomething(<a href="MenuCommand.html">MenuCommand</a> command)
+    {
+        <a href="Rigidbody.html">Rigidbody</a> body = (<a href="Rigidbody.html">Rigidbody</a>)command.context;
+        body.mass = 5;
+        <a href="Debug.Log.html">Debug.Log</a>("Changed <a href="Rigidbody.html">Rigidbody</a>'s Mass to " + body.mass + " from Context <a href="Menu.html">Menu</a>...");
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

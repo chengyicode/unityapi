@@ -1,0 +1,47 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: GUILayout.Button</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="GUILayout.html">GUILayout</a>.Button</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">Button</span>(<a href="Texture.html">Texture</a> <span class="sig-kw">image</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">Button</span>(string <span class="sig-kw">text</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">Button</span>(<a href="GUIContent.html">GUIContent</a> <span class="sig-kw">content</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">Button</span>(<a href="Texture.html">Texture</a> <span class="sig-kw">image</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">Button</span>(string <span class="sig-kw">text</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">Button</span>(<a href="GUIContent.html">GUIContent</a> <span class="sig-kw">content</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">text</td><td class="desc"></td><td class="desc1">Text to display on the button.</td></tr><tr><td class="name lbl">image</td><td class="desc"></td><td class="desc1">
+          <a href="Texture.html">Texture</a> to display on the button.</td></tr><tr><td class="name lbl">content</td><td class="desc"></td><td class="desc1">Text, image and tooltip for this button.</td></tr><tr><td class="name lbl">style</td><td class="desc"></td><td class="desc1">The style to use. If left out, the <code class="varname">button</code> style from the current <a href="GUISkin.html">GUISkin</a> is used.</td></tr><tr><td class="name lbl">options</td><td class="desc"></td><td class="desc1">An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the <code class="varname">style</code>.<br />
+See Also: <a href="GUILayout.Width.html">GUILayout.Width</a>, <a href="GUILayout.Height.html">GUILayout.Height</a>, <a href="GUILayout.MinWidth.html">GUILayout.MinWidth</a>, <a href="GUILayout.MaxWidth.html">GUILayout.MaxWidth</a>, <a href="GUILayout.MinHeight.html">GUILayout.MinHeight</a>,
+<a href="GUILayout.MaxHeight.html">GUILayout.MaxHeight</a>, <a href="GUILayout.ExpandWidth.html">GUILayout.ExpandWidth</a>, <a href="GUILayout.ExpandHeight.html">GUILayout.ExpandHeight</a>.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>bool</strong>
+        
+          <code class="varname">true</code> when the users clicks the button.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Make a single press button.</p></div><div class="subsection"><p>Create a <a href="GUILayout.Button.html">Button</a> that can be pressed and released as
+                a normal button.  When this <a href="GUILayout.Button.html">Button</a> is released the Button returns the
+                expected <code class="varname">true</code> value. If the mouse is moved off the button it is not clicked.<br /><br /><img src="../StaticFiles/ScriptRefImages/GUILayoutButton.png" /><br />
+<em>Buttons in the Game View.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Draws a button with an image and a button with text
+    <a href="Texture.html">Texture</a> tex;<br /><br />    void OnGUI()
+    {
+        if (!tex)
+        {
+            <a href="Debug.LogError.html">Debug.LogError</a>("No texture found, please assign a texture on the inspector");
+        }<br /><br />        if (<a href="GUILayout.Button.html">GUILayout.Button</a>(tex))
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("Clicked the image");
+        }
+        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("I am a regular Automatic Layout <a href="UIElements.Button.html">Button</a>"))
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("Clicked <a href="UIElements.Button.html">Button</a>");
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

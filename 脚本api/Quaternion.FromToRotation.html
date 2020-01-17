@@ -1,0 +1,15 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Quaternion.FromToRotation</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Quaternion.html">Quaternion</a>.FromToRotation</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Quaternion.html">Quaternion</a> <span class="sig-kw">FromToRotation</span>(<a href="Vector3.html">Vector3</a> <span class="sig-kw">fromDirection</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">toDirection</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Creates a rotation which rotates from <code class="varname">fromDirection</code> to <code class="varname">toDirection</code>.</p></div><div class="subsection"><p>Usually you use this to rotate a transform so that one of its axes eg. the y-axis - follows a target direction <code class="varname">toDirection</code> in world space.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        // Sets the rotation so that the transform's y-axis goes along the z-axis
+        transform.rotation = <a href="Quaternion.FromToRotation.html">Quaternion.FromToRotation</a>(<a href="Vector3-up.html">Vector3.up</a>, transform.forward);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

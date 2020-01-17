@@ -1,0 +1,18 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: PackageManager.RegistryInfo.isDefault</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="PackageManager.RegistryInfo.html">RegistryInfo</a>.isDefault</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public bool <span class="sig-kw">isDefault</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Whether this is the default, Unity registry or one of the scoped registries configured in the project manifest.</p></div><div class="subsection"><p>The default registry hosts the standard Unity packages. The Package Manager always looks for packages in the default registry unless a project manifest contains one or more scoped registries. When a manifest declares a scoped registry, the Package Manager uses the scope to determine whether to look for a package in that registry. You can configure scoped registries inside a <code class="mono">scopedRegistries</code> element of your Project manifest file. All configured registries must support the npm protocol.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">{
+    "scopedRegistries": [
+        {
+            "name": "RoboCo",
+            "url": "https://roboco.example.com/npm/packages/",
+            "scopes": [ "com.roboco", "com.roboco.experimental"]
+        }
+    ],
+    "dependencies": {
+        "com.unity.cinemachine": "1.0.0",
+        "com.roboco.experimental.physics": "0.0.1",
+        "com.roboco.utilities": "1.0.0"
+    }
+}</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorGUIUtility.AddCursorRect</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorGUIUtility.html">EditorGUIUtility</a>.AddCursorRect</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">AddCursorRect</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+<a href="MouseCursor.html">MouseCursor</a> <span class="sig-kw">mouse</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">AddCursorRect</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+<a href="MouseCursor.html">MouseCursor</a> <span class="sig-kw">mouse</span>,
+int <span class="sig-kw">controlID</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">position</td><td class="desc"></td><td class="desc1">The rectangle the control should be shown within.</td></tr><tr><td class="name lbl">mouse</td><td class="desc"></td><td class="desc1">The mouse cursor to use.</td></tr><tr><td class="name lbl">controlID</td><td class="desc"></td><td class="desc1">ID of a target control.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Add a custom mouse pointer to a control.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Create a small window that has a color box in it.
+// Hovering over it causes a Zoom mouse cursor to appear.  (The window is not
+// zoomed however.)
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class AddCursorRectExample : <a href="EditorWindow.html">EditorWindow</a>
+{
+    [<a href="MenuItem.html">MenuItem</a>("Examples/AddCursorRect Example")]
+    static void addCursorRectExample()
+    {
+        AddCursorRectExample window =
+            <a href="EditorWindow.GetWindowWithRect.html">EditorWindow.GetWindowWithRect</a>&lt;AddCursorRectExample&gt;(new <a href="Rect.html">Rect</a>(0, 0, 180, 80));
+        window.Show();
+    }<br /><br />    void OnGUI()
+    {
+        <a href="EditorGUI.DrawRect.html">EditorGUI.DrawRect</a>(new <a href="Rect.html">Rect</a>(10, 10, 160, 60), new <a href="Color.html">Color</a>(0.5f, 0.5f, 0.85f));
+        <a href="EditorGUI.DrawRect.html">EditorGUI.DrawRect</a>(new <a href="Rect.html">Rect</a>(20, 20, 140, 40), new <a href="Color.html">Color</a>(0.9f, 0.9f, 0.9f));
+        <a href="EditorGUIUtility.AddCursorRect.html">EditorGUIUtility.AddCursorRect</a>(new <a href="Rect.html">Rect</a>(20, 20, 140, 40), <a href="MouseCursor.Zoom.html">MouseCursor.Zoom</a>);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

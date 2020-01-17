@@ -1,0 +1,37 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: GL.LoadPixelMatrix</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="GL.html">GL</a>.LoadPixelMatrix</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">LoadPixelMatrix</span>();
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Setup a matrix for pixel-correct rendering.</p></div><div class="subsection"><p>This sets up modelview and projection matrices so that X, Y coordinates map
+directly to pixels. The (0,0) is at the bottom left corner of current camera's
+viewport. The Z coordinate goes from -1 to +1.<br /><br />This function overrides current camera's parameters, so most often you want
+to save and restore matrices using <a href="GL.PushMatrix.html">GL.PushMatrix</a> and <a href="GL.PopMatrix.html">GL.PopMatrix</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Draws a red triangle using pixels as coordinates to paint on.
+    <a href="Material.html">Material</a> mat;<br /><br />    void OnPostRender()
+    {
+        if (!mat)
+        {
+            <a href="Debug.LogError.html">Debug.LogError</a>("Please Assign a material on the inspector");
+            return;
+        }
+        <a href="GL.PushMatrix.html">GL.PushMatrix</a>();
+        mat.SetPass(0);
+        <a href="GL.LoadPixelMatrix.html">GL.LoadPixelMatrix</a>();
+        <a href="GL.Color.html">GL.Color</a>(<a href="Color-red.html">Color.red</a>);<br /><br />        <a href="GL.Begin.html">GL.Begin</a>(<a href="GL.TRIANGLES.html">GL.TRIANGLES</a>);
+        <a href="GL.Vertex3.html">GL.Vertex3</a>(0, 0, 0);
+        <a href="GL.Vertex3.html">GL.Vertex3</a>(0, <a href="Screen-height.html">Screen.height</a> / 2, 0);
+        <a href="GL.Vertex3.html">GL.Vertex3</a>(<a href="Screen-width.html">Screen.width</a> / 2, <a href="Screen-height.html">Screen.height</a> / 2, 0);
+        <a href="GL.End.html">GL.End</a>();<br /><br />        <a href="GL.PopMatrix.html">GL.PopMatrix</a>();
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">LoadPixelMatrix</span>(float <span class="sig-kw">left</span>,
+float <span class="sig-kw">right</span>,
+float <span class="sig-kw">bottom</span>,
+float <span class="sig-kw">top</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Setup a matrix for pixel-correct rendering.</p></div><div class="subsection"><p>This sets up modelview and projection matrices so that X, Y coordinates map
+directly to pixels. The (left,bottom is at the bottom left corner of current camera's
+viewport; and (top,right) is at the top right corner of current camera's viewport.
+The Z coordinate goes from -1 to +1.<br /><br />This function overrides current camera's parameters, so most often you want
+to save and restore matrices using <a href="GL.PushMatrix.html">GL.PushMatrix</a> and <a href="GL.PopMatrix.html">GL.PopMatrix</a>.<br /><br /></p></div></div></div></div></body></html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AssetModificationProcessor.OnWillSaveAssets(string[])</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="AssetModificationProcessor.html">AssetModificationProcessor</a>.OnWillSaveAssets(string[])</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>This is called by Unity when it is about to write serialized assets or Scene files to disk.</p></div><div class="subsection"><p>If it is implemented, it allows you to override which files are written by returning an array
+containing a subset of the pathnames which have been passed by Unity.  Note that this function is static.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;
+using System.Collections;<br /><br />public class FileModificationWarning : SaveAssetsProcessor
+{
+    static string[] OnWillSaveAssets(string[] paths)
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("OnWillSaveAssets");
+        foreach (string path in paths)
+            <a href="Debug.Log.html">Debug.Log</a>(path);
+        return paths;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

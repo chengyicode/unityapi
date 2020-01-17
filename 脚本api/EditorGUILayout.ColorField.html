@@ -1,0 +1,55 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorGUILayout.ColorField</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorGUILayout.html">EditorGUILayout</a>.ColorField</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Color.html">Color</a> <span class="sig-kw">ColorField</span>(<a href="Color.html">Color</a> <span class="sig-kw">value</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Color.html">Color</a> <span class="sig-kw">ColorField</span>(string <span class="sig-kw">label</span>,
+<a href="Color.html">Color</a> <span class="sig-kw">value</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Color.html">Color</a> <span class="sig-kw">ColorField</span>(<a href="GUIContent.html">GUIContent</a> <span class="sig-kw">label</span>,
+<a href="Color.html">Color</a> <span class="sig-kw">value</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Color.html">Color</a> <span class="sig-kw">ColorField</span>(<a href="GUIContent.html">GUIContent</a> <span class="sig-kw">label</span>,
+<a href="Color.html">Color</a> <span class="sig-kw">value</span>,
+bool <span class="sig-kw">showEyedropper</span>,
+bool <span class="sig-kw">showAlpha</span>,
+bool <span class="sig-kw">hdr</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public static <a href="Color.html">Color</a> <span class="sig-kw">ColorField</span>(<a href="GUIContent.html">GUIContent</a> <span class="sig-kw">label</span>,
+<a href="Color.html">Color</a> <span class="sig-kw">value</span>,
+bool <span class="sig-kw">showEyedropper</span>,
+bool <span class="sig-kw">showAlpha</span>,
+bool <span class="sig-kw">hdr</span>,
+<a href="ColorPickerHDRConfig.html">ColorPickerHDRConfig</a> <span class="sig-kw">hdrConfig</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">label</td><td class="desc"></td><td class="desc1">Optional label to display in front of the field.</td></tr><tr><td class="name lbl">value</td><td class="desc"></td><td class="desc1">The color to edit.</td></tr><tr><td class="name lbl">showEyedropper</td><td class="desc"></td><td class="desc1">If true, the color picker should show the eyedropper control. If false, don't show it.</td></tr><tr><td class="name lbl">showAlpha</td><td class="desc"></td><td class="desc1">If true, allow the user to set an alpha value for the color. If false, hide the alpha component.</td></tr><tr><td class="name lbl">hdr</td><td class="desc"></td><td class="desc1">If true, treat the color as an HDR value. If false, treat it as a standard LDR value.</td></tr><tr><td class="name lbl">options</td><td class="desc"></td><td class="desc1">An optional list of layout options that specify extra layout properties. Any values passed in here will override settings defined by the <code class="varname">style</code>.<br />
+See Also: <a href="GUILayout.Width.html">GUILayout.Width</a>, <a href="GUILayout.Height.html">GUILayout.Height</a>, <a href="GUILayout.MinWidth.html">GUILayout.MinWidth</a>, <a href="GUILayout.MaxWidth.html">GUILayout.MaxWidth</a>, <a href="GUILayout.MinHeight.html">GUILayout.MinHeight</a>,
+<a href="GUILayout.MaxHeight.html">GUILayout.MaxHeight</a>, <a href="GUILayout.ExpandWidth.html">GUILayout.ExpandWidth</a>, <a href="GUILayout.ExpandHeight.html">GUILayout.ExpandHeight</a>.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>Color</strong>
+        The color selected by the user.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Make a field for selecting a <a href="Color.html">Color</a>.</p></div><div class="subsection"><p>
+        <img src="../StaticFiles/ScriptRefImages/MassiveColorChange.png" />
+        <br />
+<em>Change the color of the selected GameObjects.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />// Change the color of the selected GameObjects.<br /><br />public class ExampleClass : <a href="EditorWindow.html">EditorWindow</a>
+{
+    <a href="Color.html">Color</a> matColor = <a href="Color-white.html">Color.white</a>;<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Examples/Mass <a href="Color.html">Color</a> Change")]
+    static void Init()
+    {
+        <a href="EditorWindow.html">EditorWindow</a> window = GetWindow(typeof(ExampleClass));
+        window.Show();
+    }<br /><br />    void OnGUI()
+    {
+        matColor = <a href="EditorGUILayout.ColorField.html">EditorGUILayout.ColorField</a>("New <a href="Color.html">Color</a>", matColor);<br /><br />        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Change!"))
+            ChangeColors();
+    }<br /><br />    private void ChangeColors()
+    {
+        if (<a href="Selection-activeGameObject.html">Selection.activeGameObject</a>)
+            foreach (<a href="GameObject.html">GameObject</a> t in <a href="Selection-gameObjects.html">Selection.gameObjects</a>)
+            {
+                <a href="Renderer.html">Renderer</a> rend = t.GetComponent&lt;<a href="Renderer.html">Renderer</a>&gt;();<br /><br />                if (rend != null)
+                    rend.sharedMaterial.color = matColor;
+            }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

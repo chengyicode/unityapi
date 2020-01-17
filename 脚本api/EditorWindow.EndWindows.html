@@ -1,0 +1,63 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorWindow.EndWindows</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorWindow.html">EditorWindow</a>.EndWindows</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">EndWindows</span>();
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Close a window group started with <a href="EditorWindow.BeginWindows.html">EditorWindow.BeginWindows</a>.</p></div><div class="subsection"><p>
+        <img src="../StaticFiles/ScriptRefImages/GUIWindowDemo.png" />
+        <br />
+<em>Simple editor Window with a window and a button inside.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Create an editor window with a moveable Layout window.
+// This has a button which can be clicked and moved.<br /><br />using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;
+using System.Collections;<br /><br />public class Example : <a href="EditorWindow.html">EditorWindow</a>
+{
+    <a href="Rect.html">Rect</a> windowRect = new <a href="Rect.html">Rect</a>(10, 10, 110, 50);<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Example/EndWindows test")]
+    static void InitWindow()
+    {
+        GetWindowWithRect(typeof(Example), new <a href="Rect.html">Rect</a>(0, 0, 200, 100));
+    }<br /><br />    void OnGUI()
+    {
+        BeginWindows();<br /><br />        // All <a href="GUI.Window.html">GUI.Window</a> or <a href="GUILayout.Window.html">GUILayout.Window</a> must come inside here
+        windowRect = <a href="GUILayout.Window.html">GUILayout.Window</a>(1, windowRect, DoWindow, "Hi There");<br /><br />        EndWindows();
+    }<br /><br />    void DoWindow(int windowID)
+    {
+        <a href="GUILayout.Button.html">GUILayout.Button</a>("Hi");
+        <a href="GUI.DragWindow.html">GUI.DragWindow</a>();
+    }
+}
+</pre>
+      </div><div class="subsection"><p>The placement of the <a href="EditorWindow.BeginWindows.html">BeginWindows</a> / <a href="EditorWindow.EndWindows.html">EndWindows</a> pair determines where popup windows will appear; all windows are clipped to the clipping area
+defined by <a href="GUI.BeginGroup.html">GUI.BeginGroup</a> or <a href="GUI.BeginScrollView.html">GUI.BeginScrollView</a>. A small example of that:<br /><br /><img src="../StaticFiles/ScriptRefImages/GUIWindowDemo2.png" /><br />
+<em>Simple editor window with a window and a button inside using scroll bars.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// The size of the window can be changed using X and Y scroll bars.<br /><br />using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;
+using System.Collections;<br /><br />public class Example : <a href="EditorWindow.html">EditorWindow</a>
+{
+    // The position of the window
+    <a href="Rect.html">Rect</a> windowRect = new <a href="Rect.html">Rect</a>(10, 10, 210, 100);<br /><br />    // Scroll position
+    <a href="Vector2.html">Vector2</a> scrollPos = <a href="Vector2-zero.html">Vector2.zero</a>;<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Example/EndWindows example")]
+    static void InitWindow()
+    {
+        Example window = (Example)GetWindow(typeof(Example));
+        window.Show();
+    }<br /><br />    void OnGUI()
+    {
+        // Set up a scroll view
+        scrollPos = <a href="GUI.BeginScrollView.html">GUI.BeginScrollView</a>(
+            new <a href="Rect.html">Rect</a>(0, 0, position.width, position.height),
+            scrollPos,
+            new <a href="Rect.html">Rect</a>(0, 0, 1000, 1000)
+        );<br /><br />        // Same code as before - make a window. Only now, it's INSIDE the scrollview
+        BeginWindows();
+        windowRect = <a href="GUILayout.Window.html">GUILayout.Window</a>(1, windowRect, DoWindow, "Hi There");
+        EndWindows();<br /><br />        // Close the scroll view
+        <a href="GUI.EndScrollView.html">GUI.EndScrollView</a>();
+    }<br /><br />    void DoWindow(int windowID)
+    {
+        <a href="GUILayout.Button.html">GUILayout.Button</a>("Hi");
+        <a href="GUI.DragWindow.html">GUI.DragWindow</a>();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

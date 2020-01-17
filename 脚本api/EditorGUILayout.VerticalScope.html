@@ -1,0 +1,31 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: VerticalScope</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">VerticalScope</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEditor</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEditor.html" class="cl">UnityEditor</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Disposable helper class for managing <a href="EditorGUILayout.BeginVertical.html">BeginVertical</a> / <a href="EditorGUILayout.EndVertical.html">EndVertical</a>.</p></div><div class="subsection"><p>This is an extension to <a href="GUILayout.VerticalScope.html">GUILayout.VerticalScope</a>. It can be used for making compound controls<br /><br /><img src="../StaticFiles/ScriptRefImages/BeginEndVerticalExample.png" /><br />
+<em>Vertical Compound group.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />// Create a Vertical Compound <a href="UIElements.Button.html">Button</a>
+class VerticalScopeExample : <a href="EditorWindow.html">EditorWindow</a>
+{
+    [<a href="MenuItem.html">MenuItem</a>("Examples/Vertical scope usage")]
+    static void Init()
+    {
+        var window = GetWindow&lt;VerticalScopeExample&gt;();
+        window.Show();
+    }<br /><br />    void OnGUI()
+    {
+        using (var v = new <a href="EditorGUILayout.VerticalScope.html">EditorGUILayout.VerticalScope</a>("<a href="UIElements.Button.html">Button</a>"))
+        {
+            if (<a href="GUI.Button.html">GUI.Button</a>(v.rect, <a href="GUIContent-none.html">GUIContent.none</a>))
+                <a href="Debug.Log.html">Debug.Log</a>("Go here");
+            <a href="GUILayout.Label.html">GUILayout.Label</a>("I'm inside the button");
+            <a href="GUILayout.Label.html">GUILayout.Label</a>("So am I");
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="EditorGUILayout.VerticalScope-rect.html">rect</a></td><td class="desc"></td><td class="desc1">The rect of the vertical group.</td></tr>
+    </table></div><div class="subsection"><h2>Constructors</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="EditorGUILayout.VerticalScope-ctor.html">EditorGUILayout.VerticalScope</a></td><td class="desc"></td><td class="desc1">Create a new VerticalScope and begin the corresponding vertical group.</td></tr>
+    </table></div></div></div></div></body></html>

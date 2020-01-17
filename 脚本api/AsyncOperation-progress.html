@@ -1,0 +1,48 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AsyncOperation.progress</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="AsyncOperation.html">AsyncOperation</a>.progress</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public float <span class="sig-kw">progress</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>What's the operation's progress. (Read Only)</p></div><div class="subsection"><p>Return an operation's progress. (Read Only)
+This returns how close the operation is to finishing. The operation is finished when the progress float reaches 1.0 and isDone is called. If you set allowSceneActivation to false, progress is halted at 0.9 until it is set to true.  This is extremely useful for creating loading bars.<br /><br />See Also: <a href="AsyncOperation-isDone.html">isDone</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//This script lets you load a <a href="SceneManagement.Scene.html">Scene</a> asynchronously. It uses an asyncOperation to calculate the progress and outputs the current progress to Text (could also be used to make progress bars).<br /><br />//Attach this script to a <a href="GameObject.html">GameObject</a>
+//Create a <a href="UIElements.Button.html">Button</a> (<strong>Create</strong>&gt;<strong>UI</strong>&gt;<strong>Button</strong>) and a Text <a href="GameObject.html">GameObject</a> (<strong>Create</strong>&gt;<strong>UI</strong>&gt;<strong>Text</strong>) and attach them both to the Inspector of your <a href="GameObject.html">GameObject</a>
+//In Play <a href="Scripting.GarbageCollector.Mode.html">Mode</a>, press your <a href="UIElements.Button.html">Button</a> to load the <a href="SceneManagement.Scene.html">Scene</a>, and the Text changes depending on progress. Press the space key to activate the <a href="SceneManagement.Scene.html">Scene</a>.
+//<strong>Note:</strong> The progress may look like it goes straight to 100% if your <a href="SceneManagement.Scene.html">Scene</a> doesn’t have a lot to load.<br /><br />using System.Collections;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;<br /><br />public class AsyncOperationProgressExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public Text m_Text;
+    public <a href="UIElements.Button.html">Button</a> m_Button;<br /><br />    void Start()
+    {
+        //Call the LoadButton() function when the user clicks this <a href="UIElements.Button.html">Button</a>
+        m_Button.onClick.AddListener(LoadButton);
+    }<br /><br />    void LoadButton()
+    {
+        //Start loading the <a href="SceneManagement.Scene.html">Scene</a> asynchronously and output the progress bar
+        StartCoroutine(LoadScene());
+    }<br /><br />    IEnumerator LoadScene()
+    {
+        yield return null;<br /><br />        //Begin to load the <a href="SceneManagement.Scene.html">Scene</a> you specify
+        <a href="AsyncOperation.html">AsyncOperation</a> asyncOperation = <a href="SceneManagement.SceneManager.LoadSceneAsync.html">SceneManager.LoadSceneAsync</a>("Scene3");
+        //Don't let the <a href="SceneManagement.Scene.html">Scene</a> activate until you allow it to
+        asyncOperation.allowSceneActivation = false;
+        <a href="Debug.Log.html">Debug.Log</a>("Pro :" + asyncOperation.progress);
+        //When the load is still in progress, output the Text and progress bar
+        while (!asyncOperation.isDone)
+        {
+            //Output the current progress
+            m_Text.text = "Loading progress: " + (asyncOperation.progress * 100) + "%";<br /><br />            // Check if the load has finished
+            if (asyncOperation.progress &gt;= 0.9f)
+            {
+                //Change the Text to show the <a href="SceneManagement.Scene.html">Scene</a> is ready
+                m_Text.text = "Press the space bar to continue";
+                //Wait to you press the space key to activate the <a href="SceneManagement.Scene.html">Scene</a>
+                if (<a href="Input.GetKeyDown.html">Input.GetKeyDown</a>(<a href="KeyCode.Space.html">KeyCode.Space</a>))
+                    //Activate the <a href="SceneManagement.Scene.html">Scene</a>
+                    asyncOperation.allowSceneActivation = true;
+            }<br /><br />            yield return null;
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

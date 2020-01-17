@@ -1,0 +1,21 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ParticleSystemRenderer.allowRoll</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="ParticleSystemRenderer.html">ParticleSystemRenderer</a>.allowRoll</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public bool <span class="sig-kw">allowRoll</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Allow billboard particles to roll around their Z axis.</p></div><div class="subsection"><p>Allows billboards to roll with the camera. It is often useful to disable this option when using VR, to give particles a more believable grounding in the world.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{<br /><br />    private <a href="ParticleSystemRenderer.html">ParticleSystemRenderer</a> psr;
+    public bool allowRoll = true;<br /><br />    void Start()
+    {
+        psr = GetComponent&lt;<a href="ParticleSystemRenderer.html">ParticleSystemRenderer</a>&gt;();
+        psr.material = new <a href="Material.html">Material</a>(<a href="Shader.Find.html">Shader.Find</a>("Sprites/Default"));
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        var psr = GetComponent&lt;<a href="ParticleSystemRenderer.html">ParticleSystemRenderer</a>&gt;();
+        psr.allowRoll = allowRoll;<br /><br />        Camera.main.transform.rotation = <a href="Quaternion.Euler.html">Quaternion.Euler</a>(0.0f, 0.0f, <a href="Mathf.Sin.html">Mathf.Sin</a>(<a href="Time-time.html">Time.time</a> * 0.2f) * 90.0f);
+    }<br /><br />    void OnGUI()
+    {
+        allowRoll = <a href="GUI.Toggle.html">GUI.Toggle</a>(new <a href="Rect.html">Rect</a>(25, 45, 200, 30), allowRoll, "Allow Roll");
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Mathf.Lerp</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Mathf.html">Mathf</a>.Lerp</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static float <span class="sig-kw">Lerp</span>(float <span class="sig-kw">a</span>,
+float <span class="sig-kw">b</span>,
+float <span class="sig-kw">t</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">a</td><td class="desc"></td><td class="desc1">The start value.</td></tr><tr><td class="name lbl">b</td><td class="desc"></td><td class="desc1">The end value.</td></tr><tr><td class="name lbl">t</td><td class="desc"></td><td class="desc1">The interpolation value between the two floats.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>float</strong>
+        The interpolated float result between the two float values.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Linearly interpolates between <code class="varname">a</code> and <code class="varname">b</code> by <code class="varname">t</code>.</p></div><div class="subsection"><p>The parameter <code class="varname">t</code> is clamped to the range [0, 1].<br /><br />When <code class="varname">t</code> = 0 returns <code class="varname">a</code>. <br />
+When <code class="varname">t</code> = 1 return <code class="varname">b</code>. <br />
+When <code class="varname">t</code> = 0.5 returns the midpoint of <code class="varname">a</code> and <code class="varname">b</code>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // animate the game object from -1 to +1 and back
+    public float minimum = -1.0F;
+    public float maximum =  1.0F;<br /><br />    // starting value for the Lerp
+    static float t = 0.0f;<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        // animate the position of the game object...
+        transform.position = new <a href="Vector3.html">Vector3</a>(<a href="Mathf.Lerp.html">Mathf.Lerp</a>(minimum, maximum, t), 0, 0);<br /><br />        // .. and increase the t interpolater
+        t += 0.5f * <a href="Time-deltaTime.html">Time.deltaTime</a>;<br /><br />        // now check if the interpolator has reached 1.0
+        // and swap maximum and minimum so game object moves
+        // in the opposite direction.
+        if (t &gt; 1.0f)
+        {
+            float temp = maximum;
+            maximum = minimum;
+            minimum = temp;
+            t = 0.0f;
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="Mathf.LerpUnclamped.html">LerpUnclamped</a>, <a href="Mathf.LerpAngle.html">LerpAngle</a>.</p></div></div></div></div></body></html>

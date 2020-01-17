@@ -1,0 +1,19 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Mathf.Approximately</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Mathf.html">Mathf</a>.Approximately</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">Approximately</span>(float <span class="sig-kw">a</span>,
+float <span class="sig-kw">b</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Compares two floating point values and returns true if they are similar.</p></div><div class="subsection"><p>Floating point imprecision makes comparing floats using the equals operator inaccurate.
+For example, <code class="mono">(1.0 == 10.0 / 10.0)</code> might not return true every time.
+Approximately() compares two floats and returns true if they are within a small value (<a href="Mathf.Epsilon.html">Epsilon</a>) of each other.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class ScriptExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        if (<a href="Mathf.Approximately.html">Mathf.Approximately</a>(1.0f, 10.0f / 10.0f))
+        {
+            print("The values are approximately the same");
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

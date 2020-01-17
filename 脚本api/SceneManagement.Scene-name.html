@@ -1,0 +1,99 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: SceneManagement.Scene.name</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="SceneManagement.Scene.html">Scene</a>.name</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public string <span class="sig-kw">name</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Returns the name of the Scene that is currently active in the game or app.</p></div><div class="subsection"><p>The <a href="Scene-name.html">Scene.name</a> returns a run-time, read-only, string value. The <a href="SceneManagement.Scene-name.html">name</a> limits to 244 characters. The Scene name defaults to <code class="varname">scene</code>. The user changes the <a href="SceneManagement.Scene-name.html">name</a> during game creation.<br /><br />The following script example changes the Scene depending on <a href="GUI.Button.html">GUI.Button</a> clicks and the name of the Scene. To make this example work:<br />
+1. Create a Project with two Scenes, <code class="varname">scene1</code> and <code class="varname">scene2</code>.<br />
+2. Attach the script below to a <a href="GameObject.html">GameObject</a> added to <code class="varname">scene1</code>.<br />
+3. Attach the same script to a <a href="GameObject.html">GameObject</a> added to <code class="varname">scene2</code>.<br />
+4. Click on the <a href="GameObject.html">GameObject</a> and go to the Inspector. <br />
+5. In the <code class="mono">My First Scene</code> field and <code class="mono">My Second Scene</code> fields, enter the names of the Scenes you would like to switch between, <code class="varname">scene1</code> and <code class="varname">scene2</code>.<br />
+6. Select <code class="varname">scene1</code> by double-clicking it in the Project, and press <code class="varname">Play</code>. The <code class="varname">scene1</code> scene will appear.<br />
+7. Click the <code class="mono">Load Next Scene</code> button and <code class="varname">scene2</code> will be loaded.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // These are the <a href="SceneManagement.Scene.html">Scene</a> names. Make sure to set them in the Inspector window.
+    public string myFirstScene, mySecondScene;<br /><br />    private string nextButton = "Load Next <a href="SceneManagement.Scene.html">Scene</a>";
+    private string nextScene;
+    private static bool created = false;<br /><br />    private <a href="Rect.html">Rect</a> buttonRect;
+    private int width, height;<br /><br />    void Awake()
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("Awake:" + <a href="SceneManagement.SceneManager.GetActiveScene.html">SceneManager.GetActiveScene</a>().name);<br /><br />        // Ensure the script is not deleted while loading.
+        if (!created)
+        {
+            DontDestroyOnLoad(this.gameObject);
+            created = true;
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }<br /><br />        // Specify the items for each scene.
+        Camera.main.clearFlags = <a href="CameraClearFlags.SolidColor.html">CameraClearFlags.SolidColor</a>;
+        width = <a href="Screen-width.html">Screen.width</a>;
+        height = <a href="Screen-height.html">Screen.height</a>;
+        buttonRect = new <a href="Rect.html">Rect</a>(width / 8, height / 3, 3 * width / 4, height / 3);
+    }<br /><br />    void OnGUI()
+    {
+        // Return the current Active <a href="SceneManagement.Scene.html">Scene</a> in order to get the current <a href="SceneManagement.Scene.html">Scene</a> name.
+        <a href="SceneManagement.Scene.html">Scene</a> scene = <a href="SceneManagement.SceneManager.GetActiveScene.html">SceneManager.GetActiveScene</a>();<br /><br />        // Check if the name of the current Active <a href="SceneManagement.Scene.html">Scene</a> is your first <a href="SceneManagement.Scene.html">Scene</a>.
+        if (scene.name == myFirstScene)
+        {
+            nextButton = "Load Next <a href="SceneManagement.Scene.html">Scene</a>";
+            nextScene = mySecondScene;
+        }
+        else
+        {
+            nextButton = "Load Previous <a href="SceneManagement.Scene.html">Scene</a>";
+            nextScene = myFirstScene;
+        }<br /><br />        // <a href="Display.html">Display</a> the button used to swap scenes.
+        <a href="GUIStyle.html">GUIStyle</a> buttonStyle = new <a href="GUIStyle.html">GUIStyle</a>(GUI.skin.GetStyle("button"));
+        buttonStyle.alignment = <a href="TextAnchor.MiddleCenter.html">TextAnchor.MiddleCenter</a>;
+        buttonStyle.fontSize = 12 * (width / 200);<br /><br />        if (<a href="GUI.Button.html">GUI.Button</a>(buttonRect, nextButton, buttonStyle))
+        {
+            <a href="SceneManagement.SceneManager.LoadScene.html">SceneManager.LoadScene</a>(nextScene);
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>The following example using two scenes, and one of them has a long <a href="SceneManagement.Scene.html">Scene</a> name with 244 digits. The other is called <code class="varname">testScene</code>. To make this example work:<br />
+1. Create a new Project.<br />
+2. Change the name of the default scene to <code class="varname">testScene</code> by selecting it and then use Assets-&gt;Rename.<br />
+3. Next, create a second scene and again select it and use Asset-&gt;Rename. Use the name as shown below. (This is the 244 character name "0123456789...0123").<br />
+4. Create a C# Script and call it <code class="varname">Example.cs</code>.<br />
+5. Add the following script text to <code class="varname">Example.cs</code>.<br />
+6. Next add an empty GameObject called <code class="varname">GameObject</code> to each of the two scenes.<br />
+7. Finally copy <code class="varname">Example.cs</code> to each of the two GameObjects.<br />
+Use the <code class="mono">Game</code> button to launch the <code class="varname">testScene</code> scene.  A GUI Button is shown which allows the scenes to swap.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.SceneManagement;<br /><br />// <a href="SceneManagement.SceneManager.html">SceneManagement.SceneManager</a>-name example<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private <a href="SceneManagement.Scene.html">Scene</a> scene;<br /><br />    void Start()
+    {
+        scene = <a href="SceneManagement.SceneManager.GetActiveScene.html">SceneManager.GetActiveScene</a>();
+        <a href="Debug.Log.html">Debug.Log</a>("Name: " + scene.name);
+    }<br /><br />    void OnGUI()
+    {
+        if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(10, 10, 150, 100), "Change <a href="SceneManagement.Scene.html">Scene</a>"))
+        {
+            if (scene.name == "testScene")
+            {
+                // The scene to load has a 244 characters name.
+                <a href="SceneManagement.SceneManager.LoadScene.html">SceneManager.LoadScene</a>("0123456789012345678901234567890123456789"
+                    + "012345678901234567890123456789012345678901234567890123456789"
+                    + "012345678901234567890123456789012345678901234567890123456789"
+                    + "012345678901234567890123456789012345678901234567890123456789"
+                    + "012345678901234567890123");
+            }
+            else
+            {
+                <a href="SceneManagement.SceneManager.LoadScene.html">SceneManager.LoadScene</a>("testScene");
+            }
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: PlayerSettings.SetPlatformIcons</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="PlayerSettings.html">PlayerSettings</a>.SetPlatformIcons</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-PlayerSettings.html' title='Go to PlayerSettings Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">SetPlatformIcons</span>(<a href="BuildTargetGroup.html">BuildTargetGroup</a> <span class="sig-kw">platform</span>,
+<a href="PlatformIconKind.html">PlatformIconKind</a> <span class="sig-kw">kind</span>,
+PlatformIcon[] <span class="sig-kw">icons</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">type</td><td class="desc"></td><td class="desc1">Each platform supports a different set of <a href="PlatformIconKind.html">icon kinds</a>. These can be found in the specific platform namespace (for example iOSPlatformIconKind).</td></tr><tr><td class="name lbl">platform</td><td class="desc"></td><td class="desc1">The full list of platforms that support this API the supported  kinds can be found in <a href="PlatformIconKind.html">icon kinds</a>.</td></tr><tr><td class="name lbl">icons</td><td class="desc"></td><td class="desc1">All available <a href="PlatformIcon.html">PlatformIcon</a> slots must be retrieved with GetPlatformIcons.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Assign a list of icons for the specified platform and icon kind.</p></div><div class="subsection"><p>Most platforms support icons with several different sizes. This methods allows you to set <a href="PlatformIcon.html">Icons</a> for each platform that supports them.  GetPlatformIcons has to be used to retrieve all the supported icons for specified <a href="PlatformIconKind.html">PlatformIconKind</a> and platform.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">// Setting all ‘App’ icons for <a href="PlayerSettings.iOS.html">iOS</a>
+using UnityEditor.iOS;<br /><br />void SetIcons(<a href="Texture2D.html">Texture2D</a>[] textures)
+{
+    var platform = <a href="BuildTargetGroup.iOS.html">BuildTargetGroup.iOS</a>; 
+    var kind = UnityEditor.iOS.iOSPlatformIconKind.Application;<br /><br />    var icons = <a href="PlayerSettings.GetPlatformIcons.html">PlayerSettings.GetPlatformIcons</a>(platform, kind);<br /><br />    //Assign textures to each available icon slot.
+    for (var i = 0; i &lt; icons.Length; i++)
+    {
+        icons[i].SetTexture(textures[0]); 
+    }<br /><br />    <a href="PlayerSettings.SetPlatformIcons.html">PlayerSettings.SetPlatformIcons</a>(platform, kind, icons);
+}<br /><br />// ‘Adaptive’ icons for <a href="PlayerSettings.Android.html">Android</a> require a background and foreground layer for each icon
+using UnityEditor.Android;<br /><br />void SetIcons(<a href="Texture2D.html">Texture2D</a>[][] textures)
+{
+    var platform = <a href="BuildTargetGroup.Android.html">BuildTargetGroup.Android</a>;
+  var kind = UnityEditor.Android.AndroidPlatformIconKind.Adaptive;<br /><br />    var icons = <a href="PlayerSettings.GetPlatformIcons.html">PlayerSettings.GetPlatformIcons</a>(platform, kind);<br /><br />    //Assign textures to each available icon slot.
+    for (var i = 0; i &lt; icons.Length; i++)
+    {
+         icons[i].SetTextures(textures[i]); 
+    }
+    <a href="PlayerSettings.SetPlatformIcons.html">PlayerSettings.SetPlatformIcons</a>(platform, kind, icons);
+}
+</pre>
+      </div></div></div></div></body></html>

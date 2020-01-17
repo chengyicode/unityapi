@@ -1,0 +1,35 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: SceneManagement.SceneManager.GetSceneAt</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="SceneManagement.SceneManager.html">SceneManager</a>.GetSceneAt</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="SceneManagement.Scene.html">SceneManagement.Scene</a> <span class="sig-kw">GetSceneAt</span>(int <span class="sig-kw">index</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">index</td><td class="desc"></td><td class="desc1">Index of the Scene to get. Index must be greater than or equal to 0 and less than SceneManager.sceneCount.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>Scene</strong>
+        A reference to the Scene at the index specified.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Get the Scene at index in the SceneManager's list of loaded Scenes.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine.SceneManagement;
+using UnityEngine;<br /><br />public class Example
+{
+    // adds a menu item which gives a brief summary of currently open Scenes
+    [<a href="MenuItem.html">MenuItem</a>("SceneExample/<a href="SceneManagement.Scene.html">Scene</a> Summary")]
+    public static void ListSceneNames()
+    {
+        string output = "";
+        if (<a href="SceneManagement.SceneManager-sceneCount.html">SceneManager.sceneCount</a> &gt; 0)
+        {
+            for (int n = 0; n &lt; <a href="SceneManagement.SceneManager-sceneCount.html">SceneManager.sceneCount</a>; ++n)
+            {
+                <a href="SceneManagement.Scene.html">Scene</a> scene = <a href="SceneManagement.SceneManager.GetSceneAt.html">SceneManager.GetSceneAt</a>(n);
+                output += scene.name;
+                output += scene.isLoaded ? " (Loaded, " : " (Not Loaded, ";
+                output += scene.isDirty ? "Dirty, " : "Clean, ";
+                output += scene.buildIndex &gt;= 0 ? " in build)\n" : " NOT in build)\n";
+            }
+        }
+        else
+        {
+            output = "No open Scenes.";
+        }
+        <a href="EditorUtility.DisplayDialog.html">EditorUtility.DisplayDialog</a>("<a href="SceneManagement.Scene.html">Scene</a> Summary", output, "Ok");
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

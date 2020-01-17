@@ -1,0 +1,41 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorGUILayout.TextArea</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorGUILayout.html">EditorGUILayout</a>.TextArea</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static string <span class="sig-kw">TextArea</span>(string <span class="sig-kw">text</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static string <span class="sig-kw">TextArea</span>(string <span class="sig-kw">text</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">text</td><td class="desc"></td><td class="desc1">The text to edit.</td></tr><tr><td class="name lbl">style</td><td class="desc"></td><td class="desc1">Optional <a href="GUIStyle.html">GUIStyle</a>.</td></tr><tr><td class="name lbl">options</td><td class="desc"></td><td class="desc1">An optional list of layout options that specify extra layout properties. Any values passed in here will override settings defined by the <code class="varname">style</code>.<br />
+See Also: <a href="GUILayout.Width.html">GUILayout.Width</a>, <a href="GUILayout.Height.html">GUILayout.Height</a>, <a href="GUILayout.MinWidth.html">GUILayout.MinWidth</a>, <a href="GUILayout.MaxWidth.html">GUILayout.MaxWidth</a>, <a href="GUILayout.MinHeight.html">GUILayout.MinHeight</a>,
+<a href="GUILayout.MaxHeight.html">GUILayout.MaxHeight</a>, <a href="GUILayout.ExpandWidth.html">GUILayout.ExpandWidth</a>, <a href="GUILayout.ExpandHeight.html">GUILayout.ExpandHeight</a>.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>string</strong>
+        The text entered by the user.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Make a text area.</p></div><div class="subsection"><p>This works just like <a href="GUILayout.TextArea.html">GUILayout.TextArea</a>, but correctly responds to Select all, Copy, Paste etc. in the editor.<br /><br /><img src="../StaticFiles/ScriptRefImages/EditorGUILayoutTextArea.png" /><br />
+<em>Quick script editor.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Simple script that lets you visualize your scripts in an editor window
+// This can be expanded to save your scripts also in the editor window.<br /><br />using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class TextAreaExample : <a href="EditorWindow.html">EditorWindow</a>
+{
+    string text = "Nothing Opened...";
+    <a href="TextAsset.html">TextAsset</a> txtAsset;
+    <a href="Vector2.html">Vector2</a> scroll;<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Examples/TextArea usage")]
+    static void Init()
+    {
+        TextAreaExample window = (TextAreaExample)GetWindow(typeof(TextAreaExample), true, "<a href="EditorGUILayout.TextArea.html">EditorGUILayout.TextArea</a>");
+        window.Show();
+    }<br /><br />    Object source;<br /><br />    void OnGUI()
+    {
+        source = <a href="EditorGUILayout.ObjectField.html">EditorGUILayout.ObjectField</a>(source, typeof(Object), true);
+        <a href="TextAsset.html">TextAsset</a> newTxtAsset = (<a href="TextAsset.html">TextAsset</a>)source;<br /><br />        if (newTxtAsset != txtAsset)
+            ReadTextAsset(newTxtAsset);<br /><br />        scroll = <a href="EditorGUILayout.BeginScrollView.html">EditorGUILayout.BeginScrollView</a>(scroll);
+        text = <a href="EditorGUILayout.TextArea.html">EditorGUILayout.TextArea</a>(text, <a href="GUILayout.Height.html">GUILayout.Height</a>(position.height - 30));
+        <a href="EditorGUILayout.EndScrollView.html">EditorGUILayout.EndScrollView</a>();
+    }<br /><br />    void ReadTextAsset(<a href="TextAsset.html">TextAsset</a> txt)
+    {
+        text = txt.text;
+        txtAsset = txt;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

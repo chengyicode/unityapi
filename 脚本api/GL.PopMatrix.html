@@ -1,0 +1,29 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: GL.PopMatrix</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="GL.html">GL</a>.PopMatrix</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">PopMatrix</span>();
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Restores both projection and modelview matrices off the top of the matrix stack.</p></div><div class="subsection"><p>Changing modelview or projection matrices overrides current camera's parameters.
+These matrices can be saved and restored using <a href="GL.PushMatrix.html">GL.PushMatrix</a> and <a href="GL.PopMatrix.html">GL.PopMatrix</a>.<br /><br />See Also: <a href="GL.PushMatrix.html">PushMatrix</a> function.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Draw a yellow line from the botton left to the
+    // top right of the screen
+    <a href="Material.html">Material</a> mat;<br /><br />    void OnPostRender()
+    {
+        if (!mat)
+        {
+            <a href="Debug.LogError.html">Debug.LogError</a>("Please Assign a material on the inspector");
+            return;
+        }
+        <a href="GL.PushMatrix.html">GL.PushMatrix</a>(); // Save the current state
+        mat.SetPass(0);
+        <a href="GL.LoadPixelMatrix.html">GL.LoadPixelMatrix</a>();
+        <a href="GL.Color.html">GL.Color</a>(<a href="Color-yellow.html">Color.yellow</a>);
+        <a href="GL.Begin.html">GL.Begin</a>(<a href="GL.LINES.html">GL.LINES</a>);
+        <a href="GL.Vertex3.html">GL.Vertex3</a>(0, 0, 0);
+        <a href="GL.Vertex3.html">GL.Vertex3</a>(<a href="Screen-width.html">Screen.width</a>, <a href="Screen-height.html">Screen.height</a>, 0);
+        <a href="GL.End.html">GL.End</a>();
+        <a href="GL.PopMatrix.html">GL.PopMatrix</a>(); // Pop changes.
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

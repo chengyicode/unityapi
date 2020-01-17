@@ -1,0 +1,98 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: WaitForEndOfFrame</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">WaitForEndOfFrame</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Inherits from:<a href="YieldInstruction.html" class="cl">YieldInstruction</a></p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.CoreModule.html" class="cl">UnityEngine.CoreModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Waits until the end of the frame after Unity has rendererd every Camera and GUI, just before displaying the frame on screen.</p></div><div class="subsection"><p>You can use it to read the display into a Texture, encode it as an image file (see <a href="Texture2D.ReadPixels.html">Texture2D.ReadPixels</a> and <a href="Texture2D.EncodeToPNG.html">Texture2D.Texture2D</a>) and store it on a device.<br /><br />Switching from the Game view to the Scene view causes <a href="WaitForEndOfFrame.html">WaitForEndOfFrame</a> to freeze.  It only continues when the application switches back to the Game view.  This can only happen when the application is working in the Unity editor.<br /><br /><strong>Note:</strong> This coroutine is not invoked on the editor in batch mode. For further details please look at the <a href="../Manual/CommandLineArguments.html">Command line arguments</a> page in the manual.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.IO;
+using UnityEngine;
+using UnityEngine.Networking;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Take a shot immediately
+    IEnumerator Start()
+    {
+        UploadPNG();
+        yield return null;
+    }<br /><br />    IEnumerator UploadPNG()
+    {
+        // We should only read the screen buffer after rendering is complete
+        yield return new <a href="WaitForEndOfFrame.html">WaitForEndOfFrame</a>();<br /><br />        // Create a texture the size of the screen, RGB24 format
+        int width = <a href="Screen-width.html">Screen.width</a>;
+        int height = <a href="Screen-height.html">Screen.height</a>;
+        <a href="Texture2D.html">Texture2D</a> tex = new <a href="Texture2D.html">Texture2D</a>(width, height, <a href="TextureFormat.RGB24.html">TextureFormat.RGB24</a>, false);<br /><br />        // Read screen contents into the texture
+        tex.ReadPixels(new <a href="Rect.html">Rect</a>(0, 0, width, height), 0, 0);
+        tex.Apply();<br /><br />        // Encode texture into PNG
+        byte[] bytes = tex.EncodeToPNG();
+        Destroy(tex);<br /><br />        // For testing purposes, also write to a file in the project folder
+        // <a href="Windows.File.WriteAllBytes.html">File.WriteAllBytes</a>(<a href="Application-dataPath.html">Application.dataPath</a> + "/../SavedScreen.png", bytes);<br /><br />
+        // Create a Web Form
+        <a href="WWWForm.html">WWWForm</a> form = new <a href="WWWForm.html">WWWForm</a>();
+        form.AddField("frameCount", Time.frameCount.ToString());
+        form.AddBinaryData("fileUpload", bytes);<br /><br />        // Upload to a cgi script
+        var w = <a href="Networking.UnityWebRequest.Post.html">UnityWebRequest.Post</a>("http://localhost/cgi-bin/env.cgi?post", form);
+        yield return w.SendWebRequest();
+        if (w.isNetworkError || w.isHttpError)
+            print(w.error);
+        else
+            print("Finished Uploading Screenshot");
+        yield return null;
+    }
+}
+</pre>
+      </div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // A script that shows destination alpha channel in the game view.<br /><br />    <a href="Material.html">Material</a> mat;<br /><br />    void CreateMaterial()
+    {
+        // Unity has a built-in shader that is useful for drawing
+        // simple colored things. In this case, we just want to use
+        // a blend mode that inverts destination colors.
+        var shader = <a href="Shader.Find.html">Shader.Find</a>("Hidden/Internal-Colored");
+        mat = new <a href="Material.html">Material</a>(shader);
+        mat.hideFlags = <a href="HideFlags.HideAndDontSave.html">HideFlags.HideAndDontSave</a>;
+        // Set blend mode to show destination alpha channel.
+        mat.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.DstAlpha);
+        mat.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.Zero);
+        // Turn off backface culling, depth writes, depth test.
+        mat.SetInt("_Cull", (int)UnityEngine.Rendering.CullMode.Off);
+        mat.SetInt("_ZWrite", 0);
+        mat.SetInt("_ZTest", (int)UnityEngine.Rendering.CompareFunction.Always);
+    }<br /><br />    public IEnumerator Start()
+    {
+        CreateMaterial();
+        while (true)
+        {
+            // Wait until all rendering + UI is done.
+            yield return new <a href="WaitForEndOfFrame.html">WaitForEndOfFrame</a>();
+            // Draw a quad that shows alpha channel.
+            <a href="GL.PushMatrix.html">GL.PushMatrix</a>();
+            <a href="GL.LoadOrtho.html">GL.LoadOrtho</a>();
+            mat.SetPass(0);
+            <a href="GL.Begin.html">GL.Begin</a>(<a href="GL.QUADS.html">GL.QUADS</a>);
+            <a href="GL.Vertex3.html">GL.Vertex3</a>(0, 0, 0);
+            <a href="GL.Vertex3.html">GL.Vertex3</a>(1, 0, 0);
+            <a href="GL.Vertex3.html">GL.Vertex3</a>(1, 1, 0);
+            <a href="GL.Vertex3.html">GL.Vertex3</a>(0, 1, 0);
+            <a href="GL.End.html">GL.End</a>();
+            <a href="GL.PopMatrix.html">GL.PopMatrix</a>();
+        }
+        yield return null;
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="AsyncOperation.html">AsyncOperation</a>, <a href="WaitForSeconds.html">WaitForSeconds</a>, <a href="WaitForFixedUpdate.html">WaitForFixedUpdate</a>, <a href="WaitForSecondsRealtime.html">WaitForSecondsRealtime</a>, <a href="WaitUntil.html">WaitUntil</a>,<a href="WaitWhile.html">WaitWhile</a>.</p></div><div class="subsection"><h2>Inherited Members   继承成员</h2>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </div></div></div></div></body></html>

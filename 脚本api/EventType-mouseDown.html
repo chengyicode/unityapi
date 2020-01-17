@@ -1,0 +1,22 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EventType.mouseDown</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Removed in version 2019.2.18</b><br /></div><h1 class="heading inherit"><a href="EventType.html">EventType</a>.mouseDown</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>An event that is called when the mouse is clicked.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//Attach this script to a <a href="GameObject.html">GameObject</a>
+//This script is a basic overview of some of the <a href="Event.html">Event</a> Types available. It outputs messages depending on the current <a href="Event.html">Event</a> Type.<br /><br />using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void OnGUI()
+    {
+        <a href="Event.html">Event</a> m_Event = <a href="Event-current.html">Event.current</a>;<br /><br />        if (m_Event.type == <a href="EventType.MouseDown.html">EventType.MouseDown</a>)
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("Mouse Down.");
+        }<br /><br />        if (m_Event.type == <a href="EventType.MouseDrag.html">EventType.MouseDrag</a>)
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("Mouse Dragged.");
+        }<br /><br />        if (m_Event.type == <a href="EventType.MouseUp.html">EventType.MouseUp</a>)
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("Mouse Up.");
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

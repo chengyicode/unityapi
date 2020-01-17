@@ -1,0 +1,24 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: QualitySettings.shadows</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="QualitySettings.html">QualitySettings</a>.shadows</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-QualitySettings.html' title='Go to QualitySettings Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="ShadowQuality.html">ShadowQuality</a> <span class="sig-kw">shadows</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Realtime Shadows type to be used.</p></div><div class="subsection"><p>This determines which type of shadows should be used. The available options are Hard and Soft Shadows, Hard Shadows Only and Disable Shadows.<br /><br />See Also: <a href="QualitySettings-shadows.html">QualitySettings.shadows</a>, <a href="Light-shadows.html">Light.shadows</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />// Let the shadow quality be selected<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private int selection = 0;
+    private string[] itemName = {"   Disable   ", "   HardOnly   ", "   Hard and Soft   "};<br /><br />    void Start()
+    {
+        <a href="QualitySettings-shadows.html">QualitySettings.shadows</a> = <a href="ShadowQuality.All.html">ShadowQuality.All</a>;
+    }<br /><br />    void OnGUI()
+    {
+        <a href="GUILayout.BeginVertical.html">GUILayout.BeginVertical</a>("<a href="UIElements.Box.html">Box</a>");
+        selection = <a href="GUILayout.SelectionGrid.html">GUILayout.SelectionGrid</a>(selection, itemName, 1, <a href="GUILayout.MinWidth.html">GUILayout.MinWidth</a>(200), <a href="GUILayout.MinHeight.html">GUILayout.MinHeight</a>(100));
+        <a href="GUILayout.EndVertical.html">GUILayout.EndVertical</a>();<br /><br />        switch (selection)
+        {
+            case 0: <a href="QualitySettings-shadows.html">QualitySettings.shadows</a> = <a href="ShadowQuality.Disable.html">ShadowQuality.Disable</a>; break;
+            case 1: <a href="QualitySettings-shadows.html">QualitySettings.shadows</a> = <a href="ShadowQuality.HardOnly.html">ShadowQuality.HardOnly</a>; break;
+            default: <a href="QualitySettings-shadows.html">QualitySettings.shadows</a> = <a href="ShadowQuality.All.html">ShadowQuality.All</a>; break;
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

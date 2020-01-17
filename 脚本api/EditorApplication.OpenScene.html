@@ -1,0 +1,25 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorApplication.OpenScene</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Method group is Obsolete</b><br /></div><h1 class="heading inherit"><a href="EditorApplication.html">EditorApplication</a>.OpenScene</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public static bool <span class="sig-kw">OpenScene</span>(string <span class="sig-kw">path</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Opens the Scene at <code class="varname">path</code>.</p></div><div class="subsection"><p>The Scene that is currently open will not be saved, use SaveSceneIfUserWantsTo for that.
+All paths are relative to the project folder. Like: "Assets/MyScenes/MyScene.unity".</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    [<a href="MenuItem.html">MenuItem</a>("Example/Save <a href="SceneManagement.Scene.html">Scene</a> while on play mode")]
+    static void EditorPlaying()
+    {
+        if (<a href="EditorApplication-isPlaying.html">EditorApplication.isPlaying</a>)
+        {
+            string sceneName = EditorApplication.currentScene;
+            string[] path = sceneName.Split(char.Parse("/"));
+            path[path.Length - 1] = "Temp_" + path[path.Length - 1];
+            var tempScene = string.Join("/", path);<br /><br />            EditorApplication.SaveScene(tempScene);<br /><br />            <a href="EditorApplication-isPaused.html">EditorApplication.isPaused</a> = false;
+            <a href="EditorApplication-isPlaying.html">EditorApplication.isPlaying</a> = false;<br /><br />            <a href="FileUtil.DeleteFileOrDirectory.html">FileUtil.DeleteFileOrDirectory</a>(EditorApplication.currentScene);
+            <a href="FileUtil.MoveFileOrDirectory.html">FileUtil.MoveFileOrDirectory</a>(tempScene, sceneName);
+            <a href="FileUtil.DeleteFileOrDirectory.html">FileUtil.DeleteFileOrDirectory</a>(tempScene);<br /><br />            EditorApplication.OpenScene(sceneName);
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: BuildPipeline.BuildStreamedSceneAssetBundle</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Method group is Obsolete</b><br /></div><h1 class="heading inherit"><a href="BuildPipeline.html">BuildPipeline</a>.BuildStreamedSceneAssetBundle</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public static string <span class="sig-kw">BuildStreamedSceneAssetBundle</span>(string[] <span class="sig-kw">levels</span>,
+string <span class="sig-kw">locationPath</span>,
+<a href="BuildTarget.html">BuildTarget</a> <span class="sig-kw">target</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public static string <span class="sig-kw">BuildStreamedSceneAssetBundle</span>(string[] <span class="sig-kw">levels</span>,
+string <span class="sig-kw">locationPath</span>,
+<a href="BuildTarget.html">BuildTarget</a> <span class="sig-kw">target</span>,
+out uint <span class="sig-kw">crc</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public static string <span class="sig-kw">BuildStreamedSceneAssetBundle</span>(string[] <span class="sig-kw">levels</span>,
+string <span class="sig-kw">locationPath</span>,
+<a href="BuildTarget.html">BuildTarget</a> <span class="sig-kw">target</span>,
+<a href="BuildOptions.html">BuildOptions</a> <span class="sig-kw">options</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public static string <span class="sig-kw">BuildStreamedSceneAssetBundle</span>(string[] <span class="sig-kw">levels</span>,
+string <span class="sig-kw">locationPath</span>,
+<a href="BuildTarget.html">BuildTarget</a> <span class="sig-kw">target</span>,
+out uint <span class="sig-kw">crc</span>,
+<a href="BuildOptions.html">BuildOptions</a> <span class="sig-kw">options</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">levels</td><td class="desc"></td><td class="desc1">Pathnames of levels to include in the asset bundle.</td></tr><tr><td class="name lbl">locationPath</td><td class="desc"></td><td class="desc1">Pathname for the output asset bundle.</td></tr><tr><td class="name lbl">target</td><td class="desc"></td><td class="desc1">Runtime platform on which the asset bundle will be used.</td></tr><tr><td class="name lbl">crc</td><td class="desc"></td><td class="desc1">Output parameter to receive CRC checksum of generated assetbundle.</td></tr><tr><td class="name lbl">options</td><td class="desc"></td><td class="desc1">Build options. See <code class="varname">BuildOptions</code> for possible values.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>string</strong>
+        String with an error message, empty on success.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Builds one or more Scenes and all their dependencies into a compressed asset bundle.</p></div><div class="subsection"><p>The Scene AssetBundle can be built for any target platform and always creates a single compressed unity3d file.<br /><br />The Scene can be downloaded and loaded using the UnityWebRequest class.
+You can use UnityWebRequestAssetBundle.GetAssetBundle to cache the downloaded Scene after it has been downloaded. The optional <code class="varname">crc</code> output parameter can be used to get a CRC checksum for the generated AssetBundle, which can be used to verify content when downloading AssetBundles using UnityWebRequestAssetBundle.GetAssetBundle().</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;
+using System.Collections;<br /><br />public class StreamedSceneLoaderExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Build a streamed unity3d file. This contain one <a href="SceneManagement.Scene.html">Scene</a> that can be downloaded
+    // on demand and loaded once its asset bundle has been loaded.<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Build/BuildWlayerStreamed")]
+    public static void MyBuild()
+    {
+        string[] levels = new string[] {"Assets/Level1.unity"};
+        BuildPipeline.BuildStreamedSceneAssetBundle(levels, "Streamed-Level1.unity3d", <a href="BuildTarget.StandaloneWindows.html">BuildTarget.StandaloneWindows</a>);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>When downloading the built compressed file, you need to call DownloadHandlerAssetBundle.GetContent() in order to make the Scene available to the Application.LoadLevel() and Application.LoadLevelAdditive() functions.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.Networking;
+using System.Collections;<br /><br />public class StreamedSceneLoaderExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    IEnumerator Start()
+    {
+        // Download compressed <a href="SceneManagement.Scene.html">Scene</a>. If version 5 of the file named "Streamed-Level1.unity3d" was previously downloaded and cached.
+        // Then Unity will completely skip the download and load the decompressed <a href="SceneManagement.Scene.html">Scene</a> directly from disk.
+        var download = <a href="Networking.UnityWebRequestAssetBundle.GetAssetBundle.html">UnityWebRequestAssetBundle.GetAssetBundle</a>("http://myWebSite.com/Streamed-Level1.unity3d", 5);
+        yield return download.SendWebRequest();<br /><br />        // Handle error
+        if (download.isNetworkError || download.isHttpError)
+        {
+            <a href="Debug.LogError.html">Debug.LogError</a>(download.error);
+            yield break;
+        }<br /><br />        // In order to make the <a href="SceneManagement.Scene.html">Scene</a> available from LoadLevel, we have to load the asset bundle.
+        // The <a href="AssetBundle.html">AssetBundle</a> class also lets you force unload all assets and file storage once it is no longer needed.
+        var bundle = <a href="Networking.DownloadHandlerAssetBundle.GetContent.html">DownloadHandlerAssetBundle.GetContent</a>(download);<br /><br />        // Load the level we have just downloaded
+        Application.LoadLevel("Level1");
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

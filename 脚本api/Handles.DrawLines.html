@@ -1,0 +1,116 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Handles.DrawLines</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Handles.html">Handles</a>.DrawLines</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">DrawLines</span>(Vector3[] <span class="sig-kw">lineSegments</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">lineSegments</td><td class="desc"></td><td class="desc1">A list of pairs of points that represent the start and end of line segments.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Draw a list of line segments.</p></div><div class="subsection"><p>
+        <img src="../StaticFiles/ScriptRefImages/DrawLines.png" />
+"Draw multiple lines in sceneview.".</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Draw lines to the connected game objects that a script has.
+// if the target object doesn't have any game objects attached
+// then it draws a line from the object to 0,0,0.<br /><br />using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;
+using System.Collections.Generic;<br /><br />[<a href="CustomEditor.html">CustomEditor</a>(typeof(ConnectedObjects))]
+class ConnectLineHandle : <a href="Editor.html">Editor</a>
+{
+    void OnSceneGUI()
+    {
+        ConnectedObjects connectedObjects = target as ConnectedObjects;
+        if (connectedObjects.objs == null ||
+            connectedObjects.objs.Length == 0)
+            return;
+        // we store the start and end points of the line segments in this array
+        <a href="Vector3.html">Vector3</a>[] lineSegments = new <a href="Vector3.html">Vector3</a>[connectedObjects.objs.Length * 2];<br /><br />        int lastObject = connectedObjects.objs.Length - 1;
+        <a href="Vector3.html">Vector3</a> prevPoint;
+        if (connectedObjects.objs[lastObject])
+        {
+            prevPoint = connectedObjects.objs[lastObject].transform.position;
+        }
+        else
+        {
+            prevPoint = <a href="Vector3-zero.html">Vector3.zero</a>;
+        }
+        int pointIndex = 0;
+        for (int currObjectIndex = 0; currObjectIndex &lt; connectedObjects.objs.Length; currObjectIndex++)
+        {
+            // find the position of our connected object and store it
+            <a href="Vector3.html">Vector3</a> currPoint;
+            if (connectedObjects.objs[currObjectIndex])
+            {
+                currPoint = connectedObjects.objs[currObjectIndex].transform.position;
+            }
+            else
+            {
+                currPoint = <a href="Vector3-zero.html">Vector3.zero</a>;
+            }<br /><br />            // store the starting point of the line segment
+            lineSegments[pointIndex] = prevPoint;
+            pointIndex++;<br /><br />            // store the ending point of the line segment
+            lineSegments[pointIndex] = currPoint;
+            pointIndex++;<br /><br />            prevPoint = currPoint;
+        }
+        <a href="Handles.DrawLines.html">Handles.DrawLines</a>(lineSegments);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>And the script attached to this Handle:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ConnectedObjects : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="GameObject.html">GameObject</a>[] objs = null;
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">DrawLines</span>(Vector3[] <span class="sig-kw">points</span>,
+int[] <span class="sig-kw">segmentIndices</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">points</td><td class="desc"></td><td class="desc1">A list of points.</td></tr><tr><td class="name lbl">segmentIndices</td><td class="desc"></td><td class="desc1">A list of pairs of indices to the start and end points of the line segments.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Draw a list of indexed line segments.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Draw lines to the connected game objects that a script has.
+// if the target object doesn't have any game objects attached
+// then it draws a line from the object to 0,0,0.<br /><br />using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;
+using System.Collections.Generic;<br /><br />[<a href="CustomEditor.html">CustomEditor</a>(typeof(ConnectedLinePointsObjects))]
+class ConnectLinePointsHandle : <a href="Editor.html">Editor</a>
+{
+    void OnSceneGUI()
+    {
+        ConnectedLinePointsObjects connectedObjects = target as ConnectedLinePointsObjects;
+        if (connectedObjects.objs == null ||
+            connectedObjects.objs.Length == 0)
+            return;<br /><br />        // we store the points of the line segments in this array
+        <a href="Vector3.html">Vector3</a>[] points = new <a href="Vector3.html">Vector3</a>[connectedObjects.objs.Length];<br /><br />        // for each line segment we need two indices into the points array:
+        // the index to the start and the end point
+        int[] segmentIndices = new int[connectedObjects.objs.Length * 2];<br /><br />        // create the points and line segments indices
+        int prevIndex = connectedObjects.objs.Length - 1;
+        int pointIndex = 0;
+        int segmentIndex = 0;
+        for (int currIndex = 0; currIndex &lt; connectedObjects.objs.Length; currIndex++)
+        {
+            // find the position of our connected object and store it
+            if (connectedObjects.objs[pointIndex])
+            {
+                points[pointIndex] = connectedObjects.objs[currIndex].transform.position;
+            }
+            else
+            {
+                points[pointIndex] = <a href="Vector3-zero.html">Vector3.zero</a>;
+            }<br /><br />            // the index to the start of the line segment
+            segmentIndices[segmentIndex] = prevIndex;
+            segmentIndex++;<br /><br />            // the index to the end of the line segment
+            segmentIndices[segmentIndex] = pointIndex;
+            segmentIndex++;<br /><br />            pointIndex++;
+            prevIndex = currIndex;
+        }
+        <a href="Handles.DrawLines.html">Handles.DrawLines</a>(points, segmentIndices);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>And the script attached to this Handle:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />using System.Collections;
+public class ConnectedLinePointsObjects : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="GameObject.html">GameObject</a>[] objs = null;
+}
+</pre>
+      </div></div></div></div></body></html>

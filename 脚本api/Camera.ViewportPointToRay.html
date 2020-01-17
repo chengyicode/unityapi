@@ -1,0 +1,26 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Camera.ViewportPointToRay</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Camera.html">Camera</a>.ViewportPointToRay</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Camera.html' title='Go to Camera Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Ray.html">Ray</a> <span class="sig-kw">ViewportPointToRay</span>(<a href="Vector3.html">Vector3</a> <span class="sig-kw">pos</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Ray.html">Ray</a> <span class="sig-kw">ViewportPointToRay</span>(<a href="Vector3.html">Vector3</a> <span class="sig-kw">pos</span>,
+<a href="Camera.MonoOrStereoscopicEye.html">Camera.MonoOrStereoscopicEye</a> <span class="sig-kw">eye</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">eye</td><td class="desc"></td><td class="desc1">Optional argument that can be used to specify which eye transform to use. Default is Mono.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Returns a ray going from camera through a viewport point.</p></div><div class="subsection"><p>Resulting ray is in world space, starting on the near plane of the camera and going through
+position's (x,y) coordinates on the viewport (position.z is ignored).<br /><br />Viewport coordinates are normalized and relative to the camera. The bottom-left of the camera is (0,0); the top-right is (1,1).</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Prints the name of the object camera is directly looking at
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="Camera.html">Camera</a> cam;<br /><br />    void Start()
+    {
+        cam = GetComponent&lt;<a href="Camera.html">Camera</a>&gt;();
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        <a href="Ray.html">Ray</a> ray = cam.ViewportPointToRay(new <a href="Vector3.html">Vector3</a>(0.5F, 0.5F, 0));
+        <a href="RaycastHit.html">RaycastHit</a> hit;
+        if (<a href="Physics.Raycast.html">Physics.Raycast</a>(ray, out hit))
+            print("I'm looking at " + hit.transform.name);
+        else
+            print("I'm looking at nothing!");
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

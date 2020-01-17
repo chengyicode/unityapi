@@ -1,0 +1,20 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Behaviour.isActiveAndEnabled</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Behaviour.html">Behaviour</a>.isActiveAndEnabled</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public bool <span class="sig-kw">isActiveAndEnabled</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Has the Behaviour had active and enabled called?</p></div><div class="subsection"><p>A GameObject can be active or not active.  Similarly, a script can be enabled or disabled.  If a GameObject is active and has an enabled script then <a href="Behaviour-isActiveAndEnabled.html">isActiveAndEnabled</a> will return <code class="varname">true</code>. Otherwise <code class="varname">false</code> is returned.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;
+using UnityEngine.UI;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="UIElements.Image.html">Image</a> pauseMenu;<br /><br />    public void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        //Checks if the object is enabled.
+        if (pauseMenu.isActiveAndEnabled)
+        {
+            //If the image is enabled, print "Enabled" in the console. (Stops when the image is disabled).
+            <a href="Debug.Log.html">Debug.Log</a>("Enabled");
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

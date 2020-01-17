@@ -1,0 +1,33 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AudioSource.loop</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="AudioSource.html">AudioSource</a>.loop</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-AudioSource.html' title='Go to AudioSource Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public bool <span class="sig-kw">loop</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Is the audio clip looping?</p></div><div class="subsection"><p>Return or set whether the audio clip replays after it finishes or not.
+Disable looping on a playing AudioSource to stop the sound after the end of the current loop. There is a checkbox in the AudioSource component that allows you to enable or disable looping without code.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//Create an empty <a href="GameObject.html">GameObject</a> and attach this script
+//Attach an <a href="AudioSource.html">AudioSource</a> component. (Click on the <a href="GameObject.html">GameObject</a>, go to its Inspector and click <strong>Add Component</strong> <a href="UIElements.Button.html">Button</a>. Go to <strong>Audio</strong>&gt;<strong>Audio Source</strong>)
+//Attach an Audio clip in the <a href="AudioClip.html">AudioClip</a> field of the <a href="AudioSource.html">AudioSource</a>
+//Create a <a href="UIElements.Button.html">Button</a> (<strong>Create</strong>&gt;<strong>UI</strong>&gt;<strong>Button</strong>) and a <a href="UIElements.Toggle.html">Toggle</a> (<strong>Create</strong>&gt;<strong>UI</strong>&gt;<strong>Toggle</strong>). Attach these in the Inspector of your <a href="GameObject.html">GameObject</a>.<br /><br />//This script allows you to toggle the loop of a sound on or off
+using UnityEngine;
+using UnityEngine.UI;<br /><br />public class AudioSourceLoop : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="AudioSource.html">AudioSource</a> m_AudioSource;<br /><br />    public <a href="UIElements.Toggle.html">Toggle</a> m_Toggle;
+    public <a href="UIElements.Button.html">Button</a> m_Button;<br /><br />    void Start()
+    {
+        //Fetch the <a href="AudioSource.html">AudioSource</a> component of the <a href="GameObject.html">GameObject</a> (make sure there is one in the Inspector)
+        m_AudioSource = GetComponent&lt;<a href="AudioSource.html">AudioSource</a>&gt;();
+        //Stop the Audio playing
+        m_AudioSource.Stop();
+        //Call the PlayButton function when you click this <a href="UIElements.Button.html">Button</a>
+        m_Button.onClick.AddListener(PlayButton);
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        //Turn the loop on and off depending on the <a href="UIElements.Toggle.html">Toggle</a> status
+        m_AudioSource.loop = m_Toggle.isOn;
+    }<br /><br />    //This plays the Audio clip when you press the <a href="UIElements.Button.html">Button</a>
+    void PlayButton()
+    {
+        m_AudioSource.Play();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

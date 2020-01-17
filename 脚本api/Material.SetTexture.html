@@ -1,0 +1,27 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Material.SetTexture</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Material.html">Material</a>.SetTexture</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Material.html' title='Go to Material Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">SetTexture</span>(string <span class="sig-kw">name</span>,
+<a href="Texture.html">Texture</a> <span class="sig-kw">value</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">SetTexture</span>(int <span class="sig-kw">nameID</span>,
+<a href="Texture.html">Texture</a> <span class="sig-kw">value</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">nameID</td><td class="desc"></td><td class="desc1">Property name ID, use <a href="Shader.PropertyToID.html">Shader.PropertyToID</a> to get it.</td></tr><tr><td class="name lbl">name</td><td class="desc"></td><td class="desc1">Property name, e.g. "_MainTex".</td></tr><tr><td class="name lbl">value</td><td class="desc"></td><td class="desc1">Texture to set.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Sets a named texture.</p></div><div class="subsection"><p>Many shaders use more than one texture. Use SetTexture to change the texture (identified by shader property name, or unique property name ID).<br /><br />When setting textures on materials using the Standard Shader, you should be aware that you may need to use <a href="Material.EnableKeyword.html">EnableKeyword</a> to enable features of the shader that were not previously in use. For more detail, read <a href="../Manual/MaterialsAccessingViaScript.html">Accessing Materials via Script</a>.<br /><br />Common texture names used by Unity's builtin shaders: <br />
+<code class="mono">"_MainTex"</code> is the main diffuse texture. This can also be accessed via <a href="Material-mainTexture.html">mainTexture</a> property. <br />
+<code class="mono">"_BumpMap"</code> is the normal map.<br /><br />The shader properties also show some of the keywords needed to set the Texture of a Material. To see this, go to your Material and right click on the <strong>Shader</strong> dropdown at the top. Next, pick <strong>Select Shader</strong>.<br /><br />
+See Also: <a href="Material-mainTexture.html">mainTexture</a> property, <a href="Material.GetTexture.html">GetTexture</a>, <a href="Shader.PropertyToID.html">Shader.PropertyToID</a>, <a href="../Manual/SL-PropertiesInPrograms.html">Properties in Shader Programs</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">//Attach this script to your <a href="GameObject.html">GameObject</a> (make sure it has a <a href="Renderer.html">Renderer</a> component)
+//Click on the <a href="GameObject.html">GameObject</a>. Attach your own Textures in the <a href="GameObject.html">GameObject</a>’s Inspector.<br /><br />//This script takes your <a href="GameObject.html">GameObject</a>’s material and changes its Normal Map, Albedo, and Metallic properties to the Textures you attach in the <a href="GameObject.html">GameObject</a>’s Inspector. This happens when you enter Play <a href="Scripting.GarbageCollector.Mode.html">Mode</a><br /><br />using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a> {<br /><br />    //Set these Textures in the Inspector
+    public <a href="Texture.html">Texture</a> m_MainTexture, m_Normal, m_Metal;
+    <a href="Renderer.html">Renderer</a> m_Renderer;<br /><br />    // Use this for initialization
+    void Start () {
+        //Fetch the <a href="Renderer.html">Renderer</a> from the <a href="GameObject.html">GameObject</a>
+        m_Renderer = GetComponent&lt;<a href="Renderer.html">Renderer</a>&gt; ();<br /><br />        //Make sure to enable the Keywords
+        m_Renderer.material.EnableKeyword ("_NORMALMAP");
+        m_Renderer.material.EnableKeyword ("_METALLICGLOSSMAP");<br /><br />        //Set the <a href="Texture.html">Texture</a> you assign in the Inspector as the main texture (Or Albedo)
+        m_Renderer.material.SetTexture("_MainTex", m_MainTexture);
+        //Set the Normal map using the <a href="Texture.html">Texture</a> you assign in the Inspector
+        m_Renderer.material.SetTexture("_BumpMap", m_Normal);
+        //Set the Metallic <a href="Texture.html">Texture</a> as a <a href="Texture.html">Texture</a> you assign in the Inspector
+        m_Renderer.material.SetTexture ("_MetallicGlossMap", m_Metal);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

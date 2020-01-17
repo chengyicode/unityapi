@@ -1,0 +1,21 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: GUIStyle.CalcSize</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="GUIStyle.html">GUIStyle</a>.CalcSize</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-GUIStyle.html' title='Go to GUIStyle Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Vector2.html">Vector2</a> <span class="sig-kw">CalcSize</span>(<a href="GUIContent.html">GUIContent</a> <span class="sig-kw">content</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Calculate the size of some content if it is rendered with this style.</p></div><div class="subsection"><p>This function does not take word wrapping into account. To do that, you
+        need to determine the allocated width and then call <a href="GUIStyle.CalcHeight.html">CalcHeight</a> to figure out
+        the word wrapped height.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Example for the <a href="GUIStyle.CalcSize.html">GUIStyle.CalcSize</a><br /><br />using UnityEngine;<br /><br />public class CalcSizeExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    string s;<br /><br />    void Start()
+    {
+        s = "A string for <a href="GUIContent.html">GUIContent</a>()";
+    }<br /><br />    void OnGUI()
+    {
+        <a href="GUIContent.html">GUIContent</a> content = new <a href="GUIContent.html">GUIContent</a>(s);<br /><br />        <a href="GUIStyle.html">GUIStyle</a> style = GUI.skin.box;
+        style.alignment = <a href="TextAnchor.MiddleCenter.html">TextAnchor.MiddleCenter</a>;<br /><br />        // Compute how large the button needs to be.
+        <a href="Vector2.html">Vector2</a> size = style.CalcSize(content);<br /><br />        // make the <a href="UIElements.Box.html">Box</a> double sized
+        <a href="GUI.Box.html">GUI.Box</a>(new <a href="Rect.html">Rect</a>(10.0f, 10.0f, 2.0f * size.x, 2.0f * size.y), s);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorWindow.focusedWindow</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorWindow.html">EditorWindow</a>.focusedWindow</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="EditorWindow.html">EditorWindow</a> <span class="sig-kw">focusedWindow</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The EditorWindow which currently has keyboard focus. (Read Only)</p></div><div class="subsection"><p>
+        <code class="varname">focusedWindow</code> can be null if no window has focus.<br /><br />See Also: <a href="EditorWindow-mouseOverWindow.html">mouseOverWindow</a>, <a href="EditorWindow.Focus.html">Focus</a>.<br /><br /><img src="../StaticFiles/ScriptRefImages/focusedWindowEx.png" /><br />
+<em>Focus other windows with a mouse click.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />// Prints the name of the focused window to a label<br /><br />public class FocusedWindow : <a href="EditorWindow.html">EditorWindow</a>
+{
+    [<a href="MenuItem.html">MenuItem</a>("Examples/FocusedWindow")]
+    public static void Init()
+    {
+        GetWindow&lt;FocusedWindow&gt;("FocusedWindow");
+    }<br /><br />    void OnGUI()
+    {
+        <a href="GUILayout.Label.html">GUILayout.Label</a>(EditorWindow.focusedWindow.ToString());
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

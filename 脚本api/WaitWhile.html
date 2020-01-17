@@ -1,0 +1,43 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: WaitWhile</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">WaitWhile</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Inherits from:<a href="CustomYieldInstruction.html" class="cl">CustomYieldInstruction</a></p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.CoreModule.html" class="cl">UnityEngine.CoreModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Suspends the coroutine execution until the supplied delegate evaluates to <code class="varname">false</code>.</p></div><div class="subsection"><p>WaitWhile can only be used with a <code class="varname">yield</code> statement in coroutines.<br /><br />The supplied delegate will be executed each frame after <a href="MonoBehaviour.Update.html">MonoBehaviour.Update</a> and before <a href="MonoBehaviour.LateUpdate.html">MonoBehaviour.LateUpdate</a>. When the delegate finally evaluates to <code class="varname">false</code>, the coroutine will proceed with its execution.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class WaitWhileExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public int frame;<br /><br />    void Start()
+    {
+        StartCoroutine(Example());
+    }<br /><br />    IEnumerator Example()
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("Waiting for prince/princess to rescue me...");
+        yield return new <a href="WaitWhile.html">WaitWhile</a>(() =&gt; frame &lt; 10);
+        <a href="Debug.Log.html">Debug.Log</a>("Finally I have been rescued!");
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        if (frame &lt;= 10)
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("Frame: " + frame);
+            frame++;
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="AsyncOperation.html">AsyncOperation</a>, <a href="WaitForEndOfFrame.html">WaitForEndOfFrame</a>, <a href="WaitForFixedUpdate.html">WaitForFixedUpdate</a>, <a href="WaitForSeconds.html">WaitForSeconds</a>, <a href="WaitForSecondsRealtime.html">WaitForSecondsRealtime</a>, <a href="WaitUntil.html">WaitUntil</a>.</p></div><div class="subsection"><h2>Constructors</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="WaitWhile-ctor.html">WaitWhile</a></td><td class="desc"></td><td class="desc1">Initializes a yield instruction with a given delegate to be evaluated.</td></tr>
+    </table></div><div class="subsection"><h2>Inherited Members   继承成员</h2>
+      
+      <div class="subsection"><h2>Properties   属性</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="CustomYieldInstruction-keepWaiting.html">keepWaiting</a></td><td class="desc"></td><td class="desc1">Indicates if coroutine should be kept suspended.</td></tr>
+      </table></div>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </div></div></div></div></body></html>

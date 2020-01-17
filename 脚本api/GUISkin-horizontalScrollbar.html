@@ -1,0 +1,16 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: GUISkin.horizontalScrollbar</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="GUISkin.html">GUISkin</a>.horizontalScrollbar</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-GUISkin.html' title='Go to GUISkin Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">horizontalScrollbar</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Style used by default for the background part of <a href="GUI.HorizontalScrollbar.html">GUI.HorizontalScrollbar</a> controls.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Modifies only the default background of the
+    // horizontal scrollbar of the current <a href="GUISkin.html">GUISkin</a><br /><br />    float hSbarValue;
+    <a href="GUIStyle.html">GUIStyle</a> style;<br /><br />    void OnGUI()
+    {
+        GUI.skin.horizontalScrollbar = style;
+        hSbarValue = <a href="GUILayout.HorizontalScrollbar.html">GUILayout.HorizontalScrollbar</a>(hSbarValue, 1.0f, 0.0f, 10.0f);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

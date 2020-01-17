@@ -1,0 +1,37 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorPrefs.GetFloat</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorPrefs.html">EditorPrefs</a>.GetFloat</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static float <span class="sig-kw">GetFloat</span>(string <span class="sig-kw">key</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static float <span class="sig-kw">GetFloat</span>(string <span class="sig-kw">key</span>,
+float <span class="sig-kw">defaultValue</span> = 0.0F);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">key</td><td class="desc"></td><td class="desc1">Name of key to read float from.</td></tr><tr><td class="name lbl">defaultValue</td><td class="desc"></td><td class="desc1">Float value to return if the key is not in the storage.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>float</strong>
+        The float value stored in the preference file or the defaultValue id the
+        requested float does not exist.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Returns the float value corresponding to <code class="varname">key</code> if it exists in the preference file.</p></div><div class="subsection"><p>If <code class="varname">GetFloat</code> does not exist in the Preference file the <code class="varname">defaultValue</code> will
+          be returned.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Simple script that allows a float value to be editted
+// in a slider. The start value is selected from the <a href="Editor.html">Editor</a> Preferences.<br /><br />using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;
+using System;<br /><br />public class SetFloatExample : <a href="EditorWindow.html">EditorWindow</a>
+{
+    static float floatValue = 0.0f;<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Examples/Preferences SetFloat Example")]
+    static void Init()
+    {
+        <a href="Rect.html">Rect</a> r = new <a href="Rect.html">Rect</a>(10, 10, 200, 100);
+        SetFloatExample window = (SetFloatExample)<a href="EditorWindow.GetWindowWithRect.html">EditorWindow.GetWindowWithRect</a>(typeof(SetFloatExample), r);
+        window.Show();
+    }<br /><br />    void Awake()
+    {
+        floatValue = <a href="EditorPrefs.GetFloat.html">EditorPrefs.GetFloat</a>("FloatExample", floatValue);
+    }<br /><br />    void OnGUI()
+    {
+        floatValue = <a href="EditorGUILayout.Slider.html">EditorGUILayout.Slider</a>(floatValue, -1.0f, 1.0f);
+        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Save float " + Convert.ToString(floatValue) + "?"))
+        {
+            <a href="EditorPrefs.SetFloat.html">EditorPrefs.SetFloat</a>("FloatExample", floatValue);
+        }
+        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Close"))
+            this.Close();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

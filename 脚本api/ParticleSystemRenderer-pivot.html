@@ -1,0 +1,21 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ParticleSystemRenderer.pivot</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="ParticleSystemRenderer.html">ParticleSystemRenderer</a>.pivot</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Vector3.html">Vector3</a> <span class="sig-kw">pivot</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Modify the pivot point used for rotating particles.</p></div><div class="subsection"><p>The units are expressed as a multiplier of the particle sizes, relative to their diameters. For example, a value of 0.5 would adjust the pivot by the particle radius, allowing particles to rotate around their edges.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a> {<br /><br />    private <a href="ParticleSystem.html">ParticleSystem</a> ps;
+    private <a href="ParticleSystemRenderer.html">ParticleSystemRenderer</a> psr;
+    public <a href="Vector3.html">Vector3</a> pivot;<br /><br />    void Start() {<br /><br />        ps = GetComponent&lt;<a href="ParticleSystem.html">ParticleSystem</a>&gt;();
+        psr = GetComponent&lt;<a href="ParticleSystemRenderer.html">ParticleSystemRenderer</a>&gt;();<br /><br />        psr.material = AssetDatabase.GetBuiltinExtraResource&lt;<a href="Material.html">Material</a>&gt;("Default-Diffuse.mat");  // square material so we can see the pivot more easily<br /><br />        var rotation = ps.rotationOverLifetime;
+        rotation.enabled = true;
+        rotation.zMultiplier = 180.0f;  // spin so we can see the pivot more easily
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>() {<br /><br />        psr.pivot = pivot;
+    }<br /><br />    void OnGUI() {<br /><br />        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, 40, 100, 30), "X");
+        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, 80, 100, 30), "Y");
+        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, 120, 100, 30), "Z");<br /><br />        pivot.x = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(65, 25, 100, 30), pivot.x, -2.0f, 2.0f);
+        pivot.y = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(65, 65, 100, 30), pivot.y, -2.0f, 2.0f);
+        pivot.z = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(65, 105, 100, 30), pivot.z, -2.0f, 2.0f);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorGUIUtility.CommandEvent</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorGUIUtility.html">EditorGUIUtility</a>.CommandEvent</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Event.html">Event</a> <span class="sig-kw">CommandEvent</span>(string <span class="sig-kw">commandName</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">commandName</td><td class="desc"></td><td class="desc1">The command to be sent.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Creates an event that can be sent to another window.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Sends a paste event to an <a href="EditorWindow.html">EditorWindow</a>, as if Paste
+// was selected from the Edit menu.<br /><br />using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class CommandEventExample : <a href="EditorWindow.html">EditorWindow</a>
+{
+    [<a href="MenuItem.html">MenuItem</a>("Examples/CommandEvent example")]
+    static void commandEventExample()
+    {
+        CommandEventExample window = <a href="EditorWindow.GetWindowWithRect.html">EditorWindow.GetWindowWithRect</a>&lt;CommandEventExample&gt;(new <a href="Rect.html">Rect</a>(0, 0, 150, 40));
+        window.Show();
+    }<br /><br />    void OnGUI()
+    {
+        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Paste"))
+        {
+            <a href="Event.html">Event</a> e = <a href="EditorGUIUtility.CommandEvent.html">EditorGUIUtility.CommandEvent</a>("Paste");
+            <a href="EditorWindow.html">EditorWindow</a> ew = <a href="EditorWindow.GetWindow.html">EditorWindow.GetWindow</a>&lt;CommandEventTest&gt;(true);
+            ew.SendEvent(e);
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>The script below receives the Paste message sent from
+          CommandEventExample above.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class CommandEventTest : <a href="EditorWindow.html">EditorWindow</a>
+{
+    private int eventCount = 0;<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Examples/Example that receives a paste event")]
+    static void test()
+    {
+        CommandEventTest window = <a href="EditorWindow.GetWindowWithRect.html">EditorWindow.GetWindowWithRect</a>&lt;CommandEventTest&gt;(new <a href="Rect.html">Rect</a>(0, 0, 100, 40));
+        window.Show();
+    }<br /><br />    void OnGUI()
+    {
+        <a href="EditorGUI.LabelField.html">EditorGUI.LabelField</a>(new <a href="Rect.html">Rect</a>(10, 10, 90, 30), "Paste: " + eventCount.ToString());<br /><br />        if (Event.current.type == <a href="EventType.ExecuteCommand.html">EventType.ExecuteCommand</a>)
+        {
+            <a href="Event.html">Event</a> e = <a href="Event-current.html">Event.current</a>;
+            if (e.commandName == "Paste")
+            {
+                eventCount = eventCount + 1;
+            }
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

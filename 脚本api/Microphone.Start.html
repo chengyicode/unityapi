@@ -1,0 +1,23 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Microphone.Start</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Microphone.html">Microphone</a>.Start</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Microphone.html' title='Go to Microphone Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="AudioClip.html">AudioClip</a> <span class="sig-kw">Start</span>(string <span class="sig-kw">deviceName</span>,
+bool <span class="sig-kw">loop</span>,
+int <span class="sig-kw">lengthSec</span>,
+int <span class="sig-kw">frequency</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">deviceName</td><td class="desc"></td><td class="desc1">The name of the device.</td></tr><tr><td class="name lbl">loop</td><td class="desc"></td><td class="desc1">Indicates whether the recording should continue recording if lengthSec is reached, and wrap around and record from the beginning of the AudioClip.</td></tr><tr><td class="name lbl">lengthSec</td><td class="desc"></td><td class="desc1">Is the length of the AudioClip produced by the recording.</td></tr><tr><td class="name lbl">frequency</td><td class="desc"></td><td class="desc1">The sample rate of the AudioClip produced by the recording.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>AudioClip</strong>
+        The function returns null if the recording fails to start.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Start Recording with device.</p></div><div class="subsection"><p>If you pass a null or empty string for the device name then the default microphone will be used. You can get a list of available microphone devices from the <a href="Microphone-devices.html">devices</a> property. You can find the range of sample rates supported by a microphone using the <a href="Microphone.GetDeviceCaps.html">GetDeviceCaps</a> property.<br /><br />Note that if you want to use the Microphone class in the web player, you need to get the
+user's permission to do so. Call <a href="Application.RequestUserAuthorization.html">Application.RequestUserAuthorization</a> before calling
+any Microphone methods.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Start recording with built-in <a href="Microphone.html">Microphone</a> and play the recorded audio right away
+    void Start()
+    {
+        <a href="AudioSource.html">AudioSource</a> audioSource = GetComponent&lt;<a href="AudioSource.html">AudioSource</a>&gt;();
+        audioSource.clip = <a href="Microphone.Start.html">Microphone.Start</a>("Built-in <a href="Microphone.html">Microphone</a>", true, 10, 44100);
+        audioSource.Play();
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Note that web player is not supported from 5.4.0 onwards.</p></div></div></div></div></body></html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Animations.AnimationLayerMixerPlayable.SetLayerMaskFromAvatarMask</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Animations.AnimationLayerMixerPlayable.html">AnimationLayerMixerPlayable</a>.SetLayerMaskFromAvatarMask</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">SetLayerMaskFromAvatarMask</span>(uint <span class="sig-kw">layerIndex</span>,
+<a href="AvatarMask.html">AvatarMask</a> <span class="sig-kw">mask</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">layerIndex</td><td class="desc"></td><td class="desc1">The layer index.</td></tr><tr><td class="name lbl">mask</td><td class="desc"></td><td class="desc1">The AvatarMask used to create the new LayerMask.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Sets the mask for the current layer.</p></div><div class="subsection"><p>This function generates a layer mask from the specified AvatarMask, and applies it to the specified Layer index. If you change the AvatarMask, you need to call this function again to update the layer mask.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.Collections.Generic;
+using UnityEngine;<br /><br />using UnityEngine.Playables;
+using UnityEngine.Animations;<br /><br />public class LayerMixerPlayable : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="AnimationClip.html">AnimationClip</a> clip1;
+    public <a href="AnimationClip.html">AnimationClip</a> clip2;
+    public <a href="Transform.html">Transform</a> leftShoulder;<br /><br />    <a href="Playables.PlayableGraph.html">PlayableGraph</a> m_Graph;
+    <a href="Animations.AnimationLayerMixerPlayable.html">AnimationLayerMixerPlayable</a> m_Mixer;<br /><br />    public float mixLevel = 0.5f;<br /><br />    <a href="AvatarMask.html">AvatarMask</a> mask;<br /><br />    public void Start()
+    {
+        <a href="Animator.html">Animator</a> animator = GetComponent&lt;<a href="Animator.html">Animator</a>&gt;();<br /><br />        mask = new <a href="AvatarMask.html">AvatarMask</a>();
+        mask.AddTransformPath(leftShoulder, true);<br /><br />        m_Graph = <a href="Playables.PlayableGraph.Create.html">PlayableGraph.Create</a>();
+        var playableOutput = <a href="Animations.AnimationPlayableOutput.Create.html">AnimationPlayableOutput.Create</a>(m_Graph, "LayerMixer", animator);
+        playableOutput.SetSourcePlayable(m_Mixer);<br /><br />        // Create two clip playables
+        var clipPlayable1 = <a href="Animations.AnimationClipPlayable.Create.html">AnimationClipPlayable.Create</a>(m_Graph, clip1);
+        var clipPlayable2 = <a href="Animations.AnimationClipPlayable.Create.html">AnimationClipPlayable.Create</a>(m_Graph, clip2);<br /><br />        // Create mixer playable
+        m_Mixer = <a href="Animations.AnimationLayerMixerPlayable.Create.html">AnimationLayerMixerPlayable.Create</a>(m_Graph, 2);<br /><br />        // Create two layers, second is setup to override the first layer and affect only left shoulder and childs
+        m_Mixer.ConnectInput(0, clipPlayable1, 0, 1.0f);
+        m_Mixer.ConnectInput(1, clipPlayable2, 0, mixLevel);<br /><br />        m_Mixer.SetLayerMaskFromAvatarMask(1, mask);<br /><br />        m_Graph.Play();
+    }<br /><br />    public void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        m_Mixer.SetInputWeight(1, mixLevel);
+    }<br /><br />    public void OnDestroy()
+    {
+        m_Graph.Destroy();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

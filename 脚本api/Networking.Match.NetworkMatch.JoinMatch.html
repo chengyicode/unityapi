@@ -1,0 +1,28 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Networking.Match.NetworkMatch.JoinMatch</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Method group is Obsolete</b><br /></div><h1 class="heading inherit"><a href="Networking.Match.NetworkMatch.html">NetworkMatch</a>.JoinMatch</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public <a href="Coroutine.html">Coroutine</a> <span class="sig-kw">JoinMatch</span>(<a href="Networking.Types.NetworkID.html">Networking.Types.NetworkID</a> <span class="sig-kw">netId</span>,
+string <span class="sig-kw">matchPassword</span>,
+string <span class="sig-kw">publicClientAddress</span>,
+string <span class="sig-kw">privateClientAddress</span>,
+int <span class="sig-kw">eloScoreForClient</span>,
+int <span class="sig-kw">requestDomain</span>,
+DataResponseDelegate&lt;MatchInfo&gt; <span class="sig-kw">callback</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">netId</td><td class="desc"></td><td class="desc1">The NetworkID of the match to join. This is found through calling NetworkMatch.ListMatches and picking a result from the returned list of matches.</td></tr><tr><td class="name lbl">matchPassword</td><td class="desc"></td><td class="desc1">The password of the match. Leave empty if there is no password for the match, and supply the text string password if the match was configured to have one of the NetworkMatch.CreateMatch request.</td></tr><tr><td class="name lbl">publicClientAddress</td><td class="desc"></td><td class="desc1">The optional public client address. This value will be stored on the matchmaker and given to other clients listing matches. You should send this value if you want your players to be able to connect directly with each other over the internet. Alternatively you can pass an empty string and it will not affect the ability to interface with matchmaker or use relay server.</td></tr><tr><td class="name lbl">privateClientAddress</td><td class="desc"></td><td class="desc1">The optional private client address. This value will be stored on the matchmaker and given to other clients listing matches. You should send this value if you want your players to be able to connect directly with each other over a Local Area Network. Alternatively you can pass an empty string and it will not affect the ability to interface with matchmaker or use relay server.</td></tr><tr><td class="name lbl">eloScoreForClient</td><td class="desc"></td><td class="desc1">The Elo score for the client joining the match being created. If this number is set on all clients to indicate relative skill level, this number is used to return matches ordered by those that are most suitable for play given a listing player's skill level. This may be 0 on all clients, which would disable any Elo calculations in the MatchMaker.</td></tr><tr><td class="name lbl">requestDomain</td><td class="desc"></td><td class="desc1">The request domain for this request. Only requests in the same domain can interface with each other. For example if a NetworkMatch.CreateMatch is made with domain 1, only ListMatches that also specify domain 1 will find that match. Use this value to silo different (possibly incompatible) client versions.</td></tr><tr><td class="name lbl">callback</td><td class="desc"></td><td class="desc1">The callback to be invoked when this call completes.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>Coroutine</strong>
+        This function is asynchronous and will complete at some point in the future, when the coroutine has finished communicating with the service backend.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>The function used to tell MatchMaker the current client wishes to join a specific match.</p></div><div class="subsection"><p>This function should be called after getting results from a call to NetworkMatch.ListMatches and picking a match to join. Upon receiving this request, the MatchMaker will reserve a seat on the Relay server this match is talking through and fetch the info needed for this client to connect to that Relay server. Once the callback completes, this client will have the necessary to continue connecting to the chosen match. To do so you then should call StartClient() with the passed in MatchInfo.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.Networking;
+using UnityEngine.Networking.Match;
+using UnityEngine.Networking.Types;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Networking.Types.NetworkID.html">NetworkID</a> netId;<br /><br />    void Start()
+    {
+        NetworkManager.singleton.StartMatchMaker();
+        NetworkManager.singleton.matchMaker.JoinMatch(netId, "" , "", "", 0, 0, OnMatchJoined);
+    }<br /><br />    public void OnMatchJoined(bool success, string extendedInfo, MatchInfo matchInfo)
+    {
+        // ...
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

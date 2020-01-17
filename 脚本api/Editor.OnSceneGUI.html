@@ -1,0 +1,40 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Editor.OnSceneGUI()</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Editor.html">Editor</a>.OnSceneGUI()</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Enables the Editor to handle an event in the Scene view.</p></div><div class="subsection"><p>In the <a href="Editor.OnSceneGUI.html">OnSceneGUI</a> you can do for example mesh editing, terrain
+        painting or advanced gizmos. If <code class="mono">Event.current.Use()</code> is called the event will be "eaten"
+        by the editor and not be used by the Scene view itself.</p></div><div class="subsection"><p>In the following two scripts <a href="Editor.OnSceneGUI.html">OnSceneGUI</a> is used to draw lines
+        between game objects.  The first script shows how <a href="Editor.OnSceneGUI.html">OnSceneGUI</a> is used. In
+        this script a game object is used as a parent.  The position of the parent is
+        obtained and then lines are draw from this to game objects stored in an array.  The
+        <a href="Handles.DrawLine.html">Handles.DrawLine</a> function is used for this.  The documentation for <a href="Handles.DrawLine.html">Handles.DrawLine</a>
+        has a very similar example.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />[<a href="CustomEditor.html">CustomEditor</a>( typeof( DrawLine ) )]
+public class DrawLineEditor : <a href="Editor.html">Editor</a>
+{
+    // draw lines between a chosen game object
+    // and a selection of added game objects<br /><br />    void OnSceneGUI()
+    {
+        // get the chosen game object
+        DrawLine t = target as DrawLine;<br /><br />        if( t == null || t.GameObjects == null )
+            return;<br /><br />        // grab the center of the parent
+        <a href="Vector3.html">Vector3</a> center = t.transform.position;<br /><br />        // iterate over game objects added to the array...
+        for( int i = 0; i &lt; t.GameObjects.Length; i++ )
+        {
+            // ... and draw a line between them
+            if( t.GameObjects[i] != null )
+                <a href="Handles.DrawLine.html">Handles.DrawLine</a>( center, t.GameObjects[i].transform.position );
+        }
+    }
+}</pre>
+      </div><div class="subsection"><p>This script stores the array of game objects which will have a line
+        drawn to them.  This regular script is simply attached to a game object which
+        is considered to be the starting point for all lines.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">using UnityEngine;<br /><br />[<a href="ExecuteInEditMode.html">ExecuteInEditMode</a>]
+public class DrawLine : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // an array of game objects which will have a
+    // line drawn to in the <a href="SceneManagement.Scene.html">Scene</a> editor
+    public <a href="GameObject.html">GameObject</a>[] GameObjects;
+}</pre>
+      </div></div></div></div></body></html>

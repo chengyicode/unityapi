@@ -1,0 +1,19 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: RectTransform.rect</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="RectTransform.html">RectTransform</a>.rect</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-RectTransform.html' title='Go to RectTransform Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Rect.html">Rect</a> <span class="sig-kw">rect</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The calculated rectangle in the local space of the <a href="Transform.html">Transform</a>.</p></div><div class="subsection"><p>Unity automatically attaches these to UI elements. Manipulate aspects of the rectangle in the Inspector such as the position, dimensions, rotation, and scale.
+This is read-only in a script.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="RectTransform.html">RectTransform</a> rectTransform;<br /><br />    void Start()
+    {
+        //Fetch the <a href="RectTransform.html">RectTransform</a> from the <a href="GameObject.html">GameObject</a>
+        rectTransform = GetComponent&lt;<a href="RectTransform.html">RectTransform</a>&gt;();
+    }<br /><br />    void OnGUI()
+    {
+        //The <a href="UIElements.Label.html">Label</a> shows the current <a href="Rect.html">Rect</a> settings on the screen
+        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(20, 20, 150, 80), "<a href="Rect.html">Rect</a> : " + rectTransform.rect);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

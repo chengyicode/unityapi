@@ -1,0 +1,16 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Animations.AnimatorController.parameters</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Animations.AnimatorController.html">AnimatorController</a>.parameters</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public AnimatorControllerParameter[] <span class="sig-kw">parameters</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Parameters are used to communicate between scripting and the controller. They are used to drive transitions and blendtrees for example.</p></div><div class="subsection"><p>It's important to note that the AnimatorControllerParameters are returned as a copy. The array should be set back into the property when changed.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />class ControllerModifier
+{
+    UnityEditor.Animations.AnimatorController controller;<br /><br />    public void ModifyParameters(int parameterIndex, string newName)
+    {
+        <a href="AnimatorControllerParameter.html">AnimatorControllerParameter</a>[] parameters = controller.parameters;
+        parameters[parameterIndex].name = newName;
+        controller.parameters = parameters;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: GUILayout.HorizontalSlider</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="GUILayout.html">GUILayout</a>.HorizontalSlider</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static float <span class="sig-kw">HorizontalSlider</span>(float <span class="sig-kw">value</span>,
+float <span class="sig-kw">leftValue</span>,
+float <span class="sig-kw">rightValue</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static float <span class="sig-kw">HorizontalSlider</span>(float <span class="sig-kw">value</span>,
+float <span class="sig-kw">leftValue</span>,
+float <span class="sig-kw">rightValue</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">slider</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">thumb</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">value</td><td class="desc"></td><td class="desc1">The value the slider shows. This determines the position of the draggable thumb.</td></tr><tr><td class="name lbl">leftValue</td><td class="desc"></td><td class="desc1">The value at the left end of the slider.</td></tr><tr><td class="name lbl">rightValue</td><td class="desc"></td><td class="desc1">The value at the right end of the slider.</td></tr><tr><td class="name lbl">slider</td><td class="desc"></td><td class="desc1">The <a href="GUIStyle.html">GUIStyle</a> to use for displaying the dragging area. If left out, the <code class="varname">horizontalSlider</code> style from the current <a href="GUISkin.html">GUISkin</a> is used.</td></tr><tr><td class="name lbl">thumb</td><td class="desc"></td><td class="desc1">The <a href="GUIStyle.html">GUIStyle</a> to use for displaying draggable thumb. If left out, the <code class="varname">horizontalSliderThumb</code> style from the current <a href="GUISkin.html">GUISkin</a> is used.</td></tr><tr><td class="name lbl">options</td><td class="desc"></td><td class="desc1">An optional list of layout options that specify extra layouting properties. Any values passed in here will override settings defined by the <code class="varname">style</code>.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>float</strong>
+        The value that has been set by the user.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>A horizontal slider the user can drag to change a value between a min and a max.</p></div><div class="subsection"><p>
+        <img src="../StaticFiles/ScriptRefImages/GUILayoutHorizontalSlider.png" />
+        <br />
+<em>Horizontal slider in the GameView.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    float hSbarValue;<br /><br />    void OnGUI()
+    {
+        hSbarValue = <a href="GUILayout.HorizontalScrollbar.html">GUILayout.HorizontalScrollbar</a>(hSbarValue, 1.0f, 0.0f, 10.0f);
+        <a href="GUILayout.Label.html">GUILayout.Label</a>("This is a text that makes space");
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Time.timeScale</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Time.html">Time</a>.timeScale</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static float <span class="sig-kw">timeScale</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The scale at which time passes. This can be used for slow motion effects.</p></div><div class="subsection"><p>When <code class="varname">timeScale</code> is 1.0 time passes as fast as realtime.
+When <code class="varname">timeScale</code> is 0.5 time passes 2x slower than realtime.<br /><br />When <code class="varname">timeScale</code> is set to zero the game is basically paused if all your functions are
+frame rate independent.<br /><br />Except for <a href="Time-realtimeSinceStartup.html">realtimeSinceStartup</a> and <a href="Time-fixedDeltaTime.html">fixedDeltaTime</a>, <code class="varname">timeScale</code> affects all the time and delta time measuring variables of the <a href="Time.html">Time</a> class.<br /><br />If you lower <code class="varname">timeScale</code> it is recommended to also lower <a href="Time-fixedDeltaTime.html">Time.fixedDeltaTime</a> by the same amount.<br /><br /><a href="MonoBehaviour.FixedUpdate.html">FixedUpdate</a> functions will not be called when <code class="varname">timeScale</code> is set to zero.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Toggles the time scale between 1 and 0.7
+    // whenever the user hits the Fire1 button.<br /><br />    private float fixedDeltaTime;<br /><br />    void Awake()
+    {
+        // Make a copy of the fixedDeltaTime, it defaults to 0.02f, but it can be changed in the editor
+        this.fixedDeltaTime = <a href="Time-fixedDeltaTime.html">Time.fixedDeltaTime</a>;
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        if (<a href="Input.GetButtonDown.html">Input.GetButtonDown</a>("Fire1"))
+        {
+            if (<a href="Time-timeScale.html">Time.timeScale</a> == 1.0f)
+                <a href="Time-timeScale.html">Time.timeScale</a> = 0.7f;
+            else
+                <a href="Time-timeScale.html">Time.timeScale</a> = 1.0f;
+            // Adjust fixed delta time according to timescale
+            // The fixed delta time will now be 0.02 frames per real-time second
+            <a href="Time-fixedDeltaTime.html">Time.fixedDeltaTime</a> = this.fixedDeltaTime * <a href="Time-timeScale.html">Time.timeScale</a>;
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

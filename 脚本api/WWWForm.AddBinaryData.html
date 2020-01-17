@@ -1,0 +1,9 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: WWWForm.AddBinaryData</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="WWWForm.html">WWWForm</a>.AddBinaryData</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">AddBinaryData</span>(string <span class="sig-kw">fieldName</span>,
+byte[] <span class="sig-kw">contents</span>,
+string <span class="sig-kw">fileName</span> = null,
+string <span class="sig-kw">mimeType</span> = null);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Add binary data to the form.</p></div><div class="subsection"><p>Use this function to upload files and images to a web server application.
+Note that the data is read from the contents of byte array and not from a file.
+The fileName parameter is for telling the server what filename to use when saving the uploaded file.<br /><br />If <code class="varname">mimeType</code> is not given and first 8 bytes of the data match PNG format header, then the
+data is sent with "<code class="mono">image/png</code>" mimetype. Otherwise it is sent with "<code class="mono">application/octet-stream</code>"
+mimetype.</p></div></div></div></div></body></html>

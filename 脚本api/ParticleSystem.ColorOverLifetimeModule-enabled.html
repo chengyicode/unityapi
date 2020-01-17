@@ -1,0 +1,27 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ParticleSystem.ColorOverLifetimeModule.enabled</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="ParticleSystem.ColorOverLifetimeModule.html">ParticleSystem.ColorOverLifetimeModule</a>.enabled</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-ParticleSystem.html' title='Go to ParticleSystem Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public bool <span class="sig-kw">enabled</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Enable/disable the Color Over Lifetime module.</p></div><div class="subsection"><p>See Also: <a href="ParticleSystem-colorOverLifetime.html">ParticleSystem.colorOverLifetime</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private <a href="ParticleSystem.html">ParticleSystem</a> ps;
+    public float hSliderValue = 1.0f;<br /><br />    void Start()
+    {
+        ps = GetComponent&lt;<a href="ParticleSystem.html">ParticleSystem</a>&gt;();<br /><br />        var colorOverLifetime = ps.colorOverLifetime;
+        colorOverLifetime.enabled = true;<br /><br />        <a href="Gradient.html">Gradient</a> gradient = new <a href="Gradient.html">Gradient</a>();
+        gradient.SetKeys(
+            new <a href="GradientColorKey.html">GradientColorKey</a>[] { new <a href="GradientColorKey.html">GradientColorKey</a>(<a href="Color-green.html">Color.green</a>, 0.0f), new <a href="GradientColorKey.html">GradientColorKey</a>(<a href="Color-red.html">Color.red</a>, 1.0f) },
+            new <a href="GradientAlphaKey.html">GradientAlphaKey</a>[] { new <a href="GradientAlphaKey.html">GradientAlphaKey</a>(1.0f, 0.0f), new <a href="GradientAlphaKey.html">GradientAlphaKey</a>(1.0f, 1.0f) }
+        );<br /><br />        colorOverLifetime.color = new <a href="ParticleSystem.MinMaxGradient.html">ParticleSystem.MinMaxGradient</a>(gradient);
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        var main = ps.main;
+        main.startLifetime = hSliderValue;
+    }<br /><br />    void OnGUI()
+    {
+        hSliderValue = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(25, 45, 100, 30), hSliderValue, 1.0f, 5.0f);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

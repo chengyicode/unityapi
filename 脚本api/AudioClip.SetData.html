@@ -1,0 +1,23 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AudioClip.SetData</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="AudioClip.html">AudioClip</a>.SetData</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-AudioClip.html' title='Go to AudioClip Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public bool <span class="sig-kw">SetData</span>(float[] <span class="sig-kw">data</span>,
+int <span class="sig-kw">offsetSamples</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Set sample data in a clip.</p></div><div class="subsection"><p>The samples should be floats ranging from -1.0f to 1.0f (exceeding these limits will lead to artifacts and undefined behaviour).
+The sample count is determined by the length of the float array.
+Use offsetSamples to write into a random position in the clip. If the length from the offset is longer than the clip length, the write will wrap around
+and write the remaining samples from the start of the clip.<br /><br />Note that for compressed audio, the sample data can only be set when the <em>Load Type</em> is set to <em>Decompress on Load</em> in the audio importer.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Read all the samples from the clip and half the gain
+    void Start()
+    {
+        <a href="AudioSource.html">AudioSource</a> audioSource = GetComponent&lt;<a href="AudioSource.html">AudioSource</a>&gt;();
+        float[] samples = new float[audioSource.clip.samples * audioSource.clip.channels];
+        audioSource.clip.GetData(samples, 0);<br /><br />        for (int i = 0; i &lt; samples.Length; ++i)
+        {
+            samples[i] = samples[i] * 0.5f;
+        }<br /><br />        audioSource.clip.SetData(samples, 0);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

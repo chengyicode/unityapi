@@ -1,0 +1,30 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: PrefabUtility.RecordPrefabInstancePropertyModifications</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="PrefabUtility.html">PrefabUtility</a>.RecordPrefabInstancePropertyModifications</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">RecordPrefabInstancePropertyModifications</span>(<a href="Object.html">Object</a> <span class="sig-kw">targetObject</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">targetObject</td><td class="desc"></td><td class="desc1">Object to process.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Causes modifications made to the Prefab instance to be recorded.</p></div><div class="subsection"><p>Note that the recommended method of enabling instances of Prefabs to record changes is to use SerializedProperty and SerializedObject. This enables instances to record changes and automatically includes changes in the undo system.<br /><br />Call this method after making modifications to an instance of a Prefab to record those changes in the instance. If this method is not called, changes made to the instance are lost. Note that if you are not using SerializedProperty/SerializedObject, changes to the object are not recorded in the undo system whether or not this method is called.<br /><br />See Also: <a href="SerializedObject.html">SerializedObject</a> <a href="SerializedProperty.html">SerializedProperty</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEditor.SceneManagement;<br /><br />// The following <a href="Editor.html">Editor</a> script doubles the scale of the selected <a href="GameObject.html">GameObject</a>,
+// records the property modification and marks the <a href="SceneManagement.Scene.html">Scene</a> as dirty so that
+// the user can save the <a href="SceneManagement.Scene.html">Scene</a> afterwards and keep the changes.
+public class Example
+{
+    [<a href="MenuItem.html">MenuItem</a>("Examples/Double Scale")]
+    static void DoubleScale()
+    {
+        <a href="GameObject.html">GameObject</a> gameObject = <a href="Selection-activeGameObject.html">Selection.activeGameObject</a>;
+        <a href="Undo.RecordObject.html">Undo.RecordObject</a>(gameObject.transform, "Double scale");
+        gameObject.transform.localScale *= 2;<br /><br />        // Notice that if the call to RecordPrefabInstancePropertyModifications is not present,
+        // all changes to scale will be lost when saving the <a href="SceneManagement.Scene.html">Scene</a>, and reopening the <a href="SceneManagement.Scene.html">Scene</a>
+        // would revert the scale back to its previous value.
+        <a href="PrefabUtility.RecordPrefabInstancePropertyModifications.html">PrefabUtility.RecordPrefabInstancePropertyModifications</a>(gameObject.transform);<br /><br />        // Optional step in order to save the <a href="SceneManagement.Scene.html">Scene</a> changes permanently.
+        //<a href="SceneManagement.EditorSceneManager.SaveScene.html">EditorSceneManager.SaveScene</a>(<a href="SceneManagement.SceneManager.GetActiveScene.html">SceneManager.GetActiveScene</a>());
+    }<br /><br />    // Disable the menu item if there is no <a href="UIElements.VisualElement.Hierarchy.html">Hierarchy</a> <a href="GameObject.html">GameObject</a> selection.
+    [<a href="MenuItem.html">MenuItem</a>("Examples/Double Scale", true)]
+    static bool ValidateDoubleScale()
+    {
+        return <a href="Selection-activeGameObject.html">Selection.activeGameObject</a> != null &amp;&amp; !<a href="EditorUtility.IsPersistent.html">EditorUtility.IsPersistent</a>(<a href="Selection-activeGameObject.html">Selection.activeGameObject</a>);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: LineRenderer.numCornerVertices</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="LineRenderer.html">LineRenderer</a>.numCornerVertices</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-LineRenderer.html' title='Go to LineRenderer Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public int <span class="sig-kw">numCornerVertices</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Set this to a value greater than 0, to get rounded corners between each segment of the line.</p></div><div class="subsection"><p>The value controls how many vertices are added to each joint, where a higher value will give a smoother result.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public int numCapVertices = 0;
+    public int numCornerVertices = 0;
+    private <a href="LineRenderer.html">LineRenderer</a> lr;<br /><br />    void Start()
+    {
+        lr = GetComponent&lt;<a href="LineRenderer.html">LineRenderer</a>&gt;();
+        lr.material = new <a href="Material.html">Material</a>(<a href="Shader.Find.html">Shader.Find</a>("Sprites/Default"));<br /><br />        // Set some positions
+        <a href="Vector3.html">Vector3</a>[] positions = new <a href="Vector3.html">Vector3</a>[3];
+        positions[0] = new <a href="Vector3.html">Vector3</a>(-2.0f, -2.0f, 0.0f);
+        positions[1] = new <a href="Vector3.html">Vector3</a>(0.0f, 2.0f, 0.0f);
+        positions[2] = new <a href="Vector3.html">Vector3</a>(2.0f, -2.0f, 0.0f);
+        lr.positionCount = positions.Length;
+        lr.SetPositions(positions);
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        lr.numCapVertices = numCapVertices;
+        lr.numCornerVertices = numCornerVertices;
+    }<br /><br />    void OnGUI()
+    {
+        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, 20, 200, 30), "Num Cap Vertices");
+        numCapVertices = (int)<a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(165, 25, 200, 30), (float)numCapVertices, 0.0f, 20.0f);<br /><br />        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, 60, 200, 30), "Num Corner Vertices");
+        numCornerVertices = (int)<a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(165, 65, 200, 30), (float)numCornerVertices, 0.0f, 20.0f);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

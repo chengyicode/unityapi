@@ -1,0 +1,65 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorGUILayout.ObjectField</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorGUILayout.html">EditorGUILayout</a>.ObjectField</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static Object <span class="sig-kw">ObjectField</span>(<a href="Object.html">Object</a> <span class="sig-kw">obj</span>,
+Type <span class="sig-kw">objType</span>,
+bool <span class="sig-kw">allowSceneObjects</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static Object <span class="sig-kw">ObjectField</span>(string <span class="sig-kw">label</span>,
+<a href="Object.html">Object</a> <span class="sig-kw">obj</span>,
+Type <span class="sig-kw">objType</span>,
+bool <span class="sig-kw">allowSceneObjects</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static Object <span class="sig-kw">ObjectField</span>(<a href="GUIContent.html">GUIContent</a> <span class="sig-kw">label</span>,
+<a href="Object.html">Object</a> <span class="sig-kw">obj</span>,
+Type <span class="sig-kw">objType</span>,
+bool <span class="sig-kw">allowSceneObjects</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">label</td><td class="desc"></td><td class="desc1">Optional label in front of the field.</td></tr><tr><td class="name lbl">obj</td><td class="desc"></td><td class="desc1">The object the field shows.</td></tr><tr><td class="name lbl">objType</td><td class="desc"></td><td class="desc1">The type of the objects that can be assigned.</td></tr><tr><td class="name lbl">allowSceneObjects</td><td class="desc"></td><td class="desc1">Allow assigning Scene objects. See Description for more info.</td></tr><tr><td class="name lbl">options</td><td class="desc"></td><td class="desc1">An optional list of layout options that specify extra layout properties. Any values passed in here will override settings defined by the <code class="varname">style</code>.
+See Also: <a href="GUILayout.Width.html">GUILayout.Width</a>, <a href="GUILayout.Height.html">GUILayout.Height</a>, <a href="GUILayout.MinWidth.html">GUILayout.MinWidth</a>, <a href="GUILayout.MaxWidth.html">GUILayout.MaxWidth</a>, <a href="GUILayout.MinHeight.html">GUILayout.MinHeight</a>,
+<a href="GUILayout.MaxHeight.html">GUILayout.MaxHeight</a>, <a href="GUILayout.ExpandWidth.html">GUILayout.ExpandWidth</a>, <a href="GUILayout.ExpandHeight.html">GUILayout.ExpandHeight</a>.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>Object</strong>
+        The object that has been set by the user.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Make a field to receive any object type.</p></div><div class="subsection"><p>You can assign objects either by drag and drop or by selecting an object using the Object Picker.<br /><br />Ensure that the <strong>allowSceneObjects</strong> parameter is false if the object reference is stored as part of an asset, since assets can't store references to objects in a Scene.<br /><br />If the ObjectField is part of a custom Editor for a script component, use EditorUtility.IsPersistent() to check if the component is on an asset or a Scene object.<br /><br />See the example in the <a href="Editor.html">Editor</a> class for further information.<br /><br /><img src="../StaticFiles/ScriptRefImages/QuickHelperObjectField.png" /><br />
+<em>Search for a help page by selecting the GameObject in the Object Field.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// EditorScript that quickly searches for a help page
+// about the selected Object.
+//
+// If no such page is found in the Manual it opens the Unity forum.<br /><br />using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="EditorWindow.html">EditorWindow</a>
+{
+    public Object source;<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Example/<a href="UIElements.ObjectField.html">ObjectField</a> Example _h")]
+    static void Init()
+    {
+        var window = GetWindowWithRect&lt;ExampleClass&gt;(new <a href="Rect.html">Rect</a>(0, 0, 165, 100));
+        window.Show();
+    }<br /><br />    void OnGUI()
+    {
+        <a href="EditorGUILayout.BeginHorizontal.html">EditorGUILayout.BeginHorizontal</a>();
+        source = <a href="EditorGUILayout.ObjectField.html">EditorGUILayout.ObjectField</a>(source, typeof(Object), true);
+        <a href="EditorGUILayout.EndHorizontal.html">EditorGUILayout.EndHorizontal</a>();<br /><br />        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Search!"))
+        {
+            if (source == null)
+                ShowNotification(new <a href="GUIContent.html">GUIContent</a>("No object selected for searching"));
+            else if (<a href="Help.HasHelpForObject.html">Help.HasHelpForObject</a>(source))
+                <a href="Help.ShowHelpForObject.html">Help.ShowHelpForObject</a>(source);
+            else
+                <a href="Help.BrowseURL.html">Help.BrowseURL</a>("http://forum.unity3d.com/search.php");
+        }
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">ObjectField</span>(<a href="SerializedProperty.html">SerializedProperty</a> <span class="sig-kw">property</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">ObjectField</span>(<a href="SerializedProperty.html">SerializedProperty</a> <span class="sig-kw">property</span>,
+<a href="GUIContent.html">GUIContent</a> <span class="sig-kw">label</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">ObjectField</span>(<a href="SerializedProperty.html">SerializedProperty</a> <span class="sig-kw">property</span>,
+Type <span class="sig-kw">objType</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">ObjectField</span>(<a href="SerializedProperty.html">SerializedProperty</a> <span class="sig-kw">property</span>,
+Type <span class="sig-kw">objType</span>,
+<a href="GUIContent.html">GUIContent</a> <span class="sig-kw">label</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">property</td><td class="desc"></td><td class="desc1">The object reference property the field shows.</td></tr><tr><td class="name lbl">objType</td><td class="desc"></td><td class="desc1">The type of the objects that can be assigned.</td></tr><tr><td class="name lbl">label</td><td class="desc"></td><td class="desc1">Optional label in front of the field. Pass <a href="GUIContent-none.html">GUIContent.none</a> to hide the label.</td></tr><tr><td class="name lbl">options</td><td class="desc"></td><td class="desc1">An optional list of layout options that specify extra layout properties. Any values passed in here will override settings defined by the <code class="varname">style</code>.<br />
+See Also: <a href="GUILayout.Width.html">GUILayout.Width</a>, <a href="GUILayout.Height.html">GUILayout.Height</a>, <a href="GUILayout.MinWidth.html">GUILayout.MinWidth</a>, <a href="GUILayout.MaxWidth.html">GUILayout.MaxWidth</a>, <a href="GUILayout.MinHeight.html">GUILayout.MinHeight</a>,
+<a href="GUILayout.MaxHeight.html">GUILayout.MaxHeight</a>, <a href="GUILayout.ExpandWidth.html">GUILayout.ExpandWidth</a>, <a href="GUILayout.ExpandHeight.html">GUILayout.ExpandHeight</a>.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Make a field to receive any object type.</p></div><div class="subsection"><p>Obsoleted</p></div></div></div></div></body></html>

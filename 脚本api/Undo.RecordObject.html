@@ -1,0 +1,33 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Undo.RecordObject</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Undo.html">Undo</a>.RecordObject</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">RecordObject</span>(<a href="Object.html">Object</a> <span class="sig-kw">objectToUndo</span>,
+string <span class="sig-kw">name</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">objectToUndo</td><td class="desc"></td><td class="desc1">The reference to the object that you will be modifying.</td></tr><tr><td class="name lbl">name</td><td class="desc"></td><td class="desc1">The title of the action to appear in the undo history (i.e. visible in the undo menu).</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Records any changes done on the object after the RecordObject function.</p></div><div class="subsection"><p>Almost all property changes can be recorded with this function. The transform parent, AddComponent, object destruction  can not be recorded with this function, for that you should use the dedicated functions.<br /><br />Internally this creates a temporary copy of the object's state. At the end of the frame Unity diffs the state and detects what has changed. The changed properties are recorded on the undo stack. If nothing has changed (Binary exact comparison is used for all properties), no undo operations are stored on the stack.<br /><br /><strong>Important:</strong> To correctly handle instances where <em>objectToUndo</em> is an instance of a Prefab, <a href="PrefabUtility.RecordPrefabInstancePropertyModifications.html">PrefabUtility.RecordPrefabInstancePropertyModifications</a> must be called after RecordObject.<br /><br />This is an example of an editor script which allows you to change an effect radius variable. The Undo state is recorded, allowing you to revert the change using the undo system.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//Name this script "EffectRadiusEditor"
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />[<a href="CustomEditor.html">CustomEditor</a>(typeof(EffectRadius))]
+public class EffectRadiusEditor : <a href="Editor.html">Editor</a>
+{
+    public void OnSceneGUI()
+    {
+        EffectRadius t = (target as EffectRadius);<br /><br />        <a href="EditorGUI.BeginChangeCheck.html">EditorGUI.BeginChangeCheck</a>();
+        float areaOfEffect = <a href="Handles.RadiusHandle.html">Handles.RadiusHandle</a>(<a href="Quaternion-identity.html">Quaternion.identity</a>, t.transform.position, t.areaOfEffect);
+        if (<a href="EditorGUI.EndChangeCheck.html">EditorGUI.EndChangeCheck</a>())
+        {
+            <a href="Undo.RecordObject.html">Undo.RecordObject</a>(target, "Changed Area Of Effect");
+            t.areaOfEffect = areaOfEffect;
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Place this script on a GameObject to see the area of effect handle, and change the value using the gizmo in the Scene view.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//Name this script "EffectRadius"
+using UnityEngine;
+using System.Collections;<br /><br />public class EffectRadius : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public float areaOfEffect = 1;
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="Undo.RecordObjects.html">Undo.RecordObjects</a></p></div></div></div></div></body></html>

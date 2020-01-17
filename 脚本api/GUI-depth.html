@@ -1,0 +1,52 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: GUI.depth</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="GUI.html">GUI</a>.depth</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static int <span class="sig-kw">depth</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The sorting depth of the currently executing GUI behaviour.</p></div><div class="subsection"><p>Set this to determine ordering when you have different scripts running simultaneously.
+GUI elements drawn with lower depth values will appear on top of elements with higher values (ie, you can think of the depth as "distance" from the camera).<br /><br /><strong>Note:</strong>To see this example working, you will need to create 2
+scripts. Remember to name the scripts with the same name as the class
+names, else it will not work.<br /><br /><img src="../StaticFiles/ScriptRefImages/GUIDepth.png" /><br />
+<em>One Button behind the other.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />// Makes this button go back in depth<br /><br />public class Example1 : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public int guiDepth = 0;
+    public Example2 example2;<br /><br />    private float buttonX, buttonY;<br /><br />    void Start()
+    {
+        buttonX = (<a href="Screen-width.html">Screen.width</a> / 2) - 100;
+        buttonY = (<a href="Screen-height.html">Screen.height</a> / 2) - 100;
+    }<br /><br />    void OnGUI()
+    {
+        <a href="GUI-depth.html">GUI.depth</a> = guiDepth;
+        <a href="GUI-color.html">GUI.color</a> = <a href="Color-yellow.html">Color.yellow</a>;<br /><br />        <a href="GUIStyle.html">GUIStyle</a> size = new <a href="GUIStyle.html">GUIStyle</a>("button");
+        size.fontSize = 16;<br /><br />        if (<a href="GUI.RepeatButton.html">GUI.RepeatButton</a>(new <a href="Rect.html">Rect</a>(buttonX, buttonY, 200, 100), "Go Backwards", size))
+        {
+            guiDepth = 1;
+            example2.guiDepth = 0;
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>And copy this other example to another script:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />// Makes this button go back in depth<br /><br />public class Example2 : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public int guiDepth = 1;
+    public Example1 example1;<br /><br />    private float buttonX, buttonY;<br /><br />    void Start()
+    {
+        buttonX = (<a href="Screen-width.html">Screen.width</a> / 2)  - 50;
+        buttonY = (<a href="Screen-height.html">Screen.height</a> / 2) - 50;
+    }<br /><br />    void OnGUI()
+    {
+        <a href="GUI-depth.html">GUI.depth</a> = guiDepth;
+        <a href="GUI-color.html">GUI.color</a> = <a href="Color-green.html">Color.green</a>;<br /><br />        <a href="GUIStyle.html">GUIStyle</a> size = new <a href="GUIStyle.html">GUIStyle</a>("button");
+        size.fontSize = 16;<br /><br />        if (<a href="GUI.RepeatButton.html">GUI.RepeatButton</a>(new <a href="Rect.html">Rect</a>(buttonX, buttonY, 200, 100), "Go Backwards", size))
+        {
+            guiDepth = 1;
+            example1.guiDepth = 0;
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

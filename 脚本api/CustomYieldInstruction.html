@@ -1,0 +1,77 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: CustomYieldInstruction</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">CustomYieldInstruction</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.CoreModule.html" class="cl">UnityEngine.CoreModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Base class for custom yield instructions to suspend coroutines.</p></div><div class="subsection"><p>
+        <a href="CustomYieldInstruction.html">CustomYieldInstruction</a> lets you implement custom yield instructions
+      to suspend coroutine execution until an event happens. Under the hood, custom yield
+      instruction is just another running coroutine. To implement it, inherit from
+      <a href="CustomYieldInstruction.html">CustomYieldInstruction</a> class and override <a href="CustomYieldInstruction-keepWaiting.html">keepWaiting</a> property. To keep
+      coroutine suspended return <code class="varname">true</code>. To let coroutine proceed with execution return
+      <code class="varname">false</code>. <a href="CustomYieldInstruction-keepWaiting.html">keepWaiting</a> property is queried each frame after <a href="MonoBehaviour.Update.html">MonoBehaviour.Update</a>
+      and before <a href="MonoBehaviour.LateUpdate.html">MonoBehaviour.LateUpdate</a>.<br /><br />This class requires Unity 5.3 or later.<br /><br />To keep coroutine suspended, return <code class="varname">true</code>. To let coroutine proceed
+        with execution, return <code class="varname">false</code>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Example showing how a <a href="CustomYieldInstruction.html">CustomYieldInstruction</a> script file
+// can be used.  This waits for the left button to go up and then
+// waits for the right button to go down.
+using System.Collections;
+using UnityEngine;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        if (<a href="Input.GetMouseButtonUp.html">Input.GetMouseButtonUp</a>(0))
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("Left mouse button up");
+            StartCoroutine(waitForMouseDown());
+        }
+    }<br /><br />    public IEnumerator waitForMouseDown()
+    {
+        yield return new WaitForMouseDown();
+        <a href="Debug.Log.html">Debug.Log</a>("Right mouse button pressed");
+    }
+}
+</pre>
+      </div><div class="subsection"><p>The following script implements the overridable version of
+            <code class="varname">keepWaiting</code>.  This c# implementation can be used by JS.
+            In this case make sure this c# script is in a folder such as <code class="varname">Plugins</code> so it is
+            compiled before the JS script example above.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class WaitForMouseDown : <a href="CustomYieldInstruction.html">CustomYieldInstruction</a>
+{
+    public override bool keepWaiting
+    {
+        get
+        {
+            return !<a href="Input.GetMouseButtonDown.html">Input.GetMouseButtonDown</a>(1);
+        }
+    }<br /><br />    public WaitForMouseDown()
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("Waiting for Mouse right button down");
+    }
+}
+</pre>
+      </div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.Collections;
+using UnityEngine;
+using System;<br /><br />// Implementation of <a href="WaitWhile.html">WaitWhile</a> yield instruction. This can be later used as:
+// yield return new <a href="WaitWhile.html">WaitWhile</a>(() =&gt; Princess.isInCastle);
+class WaitWhile1 : <a href="CustomYieldInstruction.html">CustomYieldInstruction</a>
+{
+    Func&lt;bool&gt; m_Predicate;<br /><br />    public override bool keepWaiting { get { return m_Predicate(); } }<br /><br />    public WaitWhile1(Func&lt;bool&gt; predicate) { m_Predicate = predicate; }
+}
+</pre>
+      </div><div class="subsection"><p>To have more control and implement more complex yield instructions you can inherit directly from <code class="mono">System.Collections.IEnumerator</code> class. In this case, implement <code class="mono">MoveNext()</code> method the same way you would implement <a href="CustomYieldInstruction-keepWaiting.html">keepWaiting</a> property. Additionally to that, you can also return an object in <code class="mono">Current</code> property, that will be processed by Unity's coroutine scheduler after executing <code class="mono">MoveNext()</code> method. So for example if <code class="mono">Current</code> returned another object inheriting from <code class="mono">IEnumerator</code>, then current enumerator would be suspended until the returned one has completed.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System;
+using System.Collections;<br /><br />// Same <a href="WaitWhile.html">WaitWhile</a> implemented by inheriting from IEnumerator.
+class WaitWhile2 : IEnumerator
+{
+    Func&lt;bool&gt; m_Predicate;<br /><br />    public object Current { get { return null; } }<br /><br />    public bool MoveNext() { return m_Predicate(); }<br /><br />    public void Reset() {}<br /><br />    public WaitWhile2(Func&lt;bool&gt; predicate) { m_Predicate = predicate; }
+}
+</pre>
+      </div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="CustomYieldInstruction-keepWaiting.html">keepWaiting</a></td><td class="desc"></td><td class="desc1">Indicates if coroutine should be kept suspended.</td></tr>
+    </table></div></div></div></div></body></html>

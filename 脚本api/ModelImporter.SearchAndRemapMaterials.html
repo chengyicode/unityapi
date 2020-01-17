@@ -1,0 +1,17 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ModelImporter.SearchAndRemapMaterials</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="ModelImporter.html">ModelImporter</a>.SearchAndRemapMaterials</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public bool <span class="sig-kw">SearchAndRemapMaterials</span>(<a href="ModelImporterMaterialName.html">ModelImporterMaterialName</a> <span class="sig-kw">nameOption</span>,
+<a href="ModelImporterMaterialSearch.html">ModelImporterMaterialSearch</a> <span class="sig-kw">searchOption</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">nameOption</td><td class="desc"></td><td class="desc1">The name matching option.</td></tr><tr><td class="name lbl">searchOption</td><td class="desc"></td><td class="desc1">The search type option.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>bool</strong>
+        Returns true if the materials have been successfly remapped, otherwise false.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Search the project for matching materials and use them instead of the internal materials.</p></div><div class="subsection"><p>Unity uses the naming convention specified by nameOption to find and match Material assets in your project and maps them to the model. Use the search option to specify if you want the search to be done project wide, locally or recursive up from the model's location.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class MaterialRemapper : <a href="AssetPostprocessor.html">AssetPostprocessor</a>
+{
+    void OnPreprocessModel()
+    {
+        <a href="ModelImporter.html">ModelImporter</a> modelImporter = assetImporter as <a href="ModelImporter.html">ModelImporter</a>;
+        modelImporter.SearchAndRemapMaterials(<a href="ModelImporterMaterialName.BasedOnMaterialName.html">ModelImporterMaterialName.BasedOnMaterialName</a>, <a href="ModelImporterMaterialSearch.Everywhere.html">ModelImporterMaterialSearch.Everywhere</a>);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

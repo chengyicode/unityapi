@@ -1,0 +1,41 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: TestTools.Coverage.GetStatsForAllCoveredMethods</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="TestTools.Coverage.html">Coverage</a>.GetStatsForAllCoveredMethods</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static CoveredMethodStats[] <span class="sig-kw">GetStatsForAllCoveredMethods</span>();
+    </div></div></div><div class="subsection"><h2>Returns</h2><p><strong>CoveredMethodStats[]</strong>
+        Array of coverage summaries.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Returns the coverage summary for all methods that have been called since either the Unity process was started or Coverage.ResetAll() has been called.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.TestTools;<br /><br />// A simple test class to get coverage information for.
+public class CoverageClass
+{
+    public bool CoveredMethod1()
+    {
+        return true;
+    }<br /><br />    public bool CoveredMethod2()
+    {
+        return false;
+    }
+}<br /><br />public class CoverageExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        // Reset coverage
+        <a href="TestTools.Coverage.ResetAll.html">Coverage.ResetAll</a>();<br /><br />        // Create an instance of the test class and call both test methods
+        // to make sure the class has had some coverage.
+        CoverageClass coverageClasss = new CoverageClass();
+        coverageClasss.CoveredMethod1();
+        coverageClasss.CoveredMethod2();<br /><br />        // Now get coverage statistics for all covered methods. Note that this
+        // will return statistics for all methods that have executed since <a href="TestTools.Coverage.ResetAll.html">Coverage.ResetAll</a>()
+        // was last called, i.e. this method (CoverageExample.Start()), CoverageClass.CoveredMethod1(),
+        // and CoverageClass.CoveredMethod2().
+        <a href="TestTools.CoveredMethodStats.html">CoveredMethodStats</a>[] stats = <a href="TestTools.Coverage.GetStatsForAllCoveredMethods.html">Coverage.GetStatsForAllCoveredMethods</a>();<br /><br />        for (int i = 0; i &lt; stats.Length; i++)
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("Method Name: " + stats[i].method.ToString());
+            <a href="Debug.Log.html">Debug.Log</a>("Method has " + stats[i].totalSequencePoints + " sequence points");
+            int coveredSequencePoints = stats[i].totalSequencePoints - stats[i].uncoveredSequencePoints;
+            <a href="Debug.Log.html">Debug.Log</a>("of which " + coveredSequencePoints + " were covered.");
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

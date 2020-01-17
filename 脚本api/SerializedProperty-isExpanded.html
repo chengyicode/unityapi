@@ -1,0 +1,29 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: SerializedProperty.isExpanded</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="SerializedProperty.html">SerializedProperty</a>.isExpanded</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public bool <span class="sig-kw">isExpanded</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Is this property expanded in the inspector?</p></div><div class="subsection"><p>Serialized properties with child properties (e.g., arrays, custom serializable structs, or custom serializable classes) may be either expanded or folded up in the inspector to reveal or hide their children. The following example displays a note in the inspector when users expand a <a href="Quaternion.html">Quaternion</a> property.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;<br /><br />[<a href="CustomPropertyDrawer.html">CustomPropertyDrawer</a>(typeof(<a href="Quaternion.html">Quaternion</a>))]
+public class QuaternionDrawer : <a href="PropertyDrawer.html">PropertyDrawer</a>
+{
+    public override float GetPropertyHeight(<a href="SerializedProperty.html">SerializedProperty</a> property, <a href="GUIContent.html">GUIContent</a> label)
+    {
+        // use the default property height, which takes into account the expanded state
+        return <a href="EditorGUI.GetPropertyHeight.html">EditorGUI.GetPropertyHeight</a>(property);
+    }<br /><br />    public override void OnGUI(<a href="Rect.html">Rect</a> position, <a href="SerializedProperty.html">SerializedProperty</a> property, <a href="GUIContent.html">GUIContent</a> label)
+    {
+        // draw the default property editor
+        <a href="EditorGUI.PropertyField.html">EditorGUI.PropertyField</a>(position, property, label, true);<br /><br />        // display a warning to discourage users from manually editing child properties on a quaternion
+        if (property.isExpanded)
+        {
+            position.height = <a href="EditorGUIUtility-singleLineHeight.html">EditorGUIUtility.singleLineHeight</a>;
+            position.xMin += <a href="EditorGUIUtility-labelWidth.html">EditorGUIUtility.labelWidth</a>;
+            <a href="EditorGUI.HelpBox.html">EditorGUI.HelpBox</a>(position, "Editing quaternions manually is inadvisable.", <a href="MessageType.Warning.html">MessageType.Warning</a>);
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>
+        <img src="../StaticFiles/ScriptRefImages/SerializedPropertyIsExpanded.png" />
+        <br />
+<em>Displaying a message when a Quaternion property is expanded.</em><br /><br />Note that the value of this flag is shared across all instances of the serialized property in question that have the same property path and target type. For example, folding up a particular property in the inspector for a component will make the same property folded up in the inspector for all other instances of the same component type.</p></div></div></div></div></body></html>

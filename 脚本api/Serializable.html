@@ -1,0 +1,20 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Serializable</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">Serializable</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Indicates that a class or a struct can be serialized.</p></div><div class="subsection"><p>To enable serialization, apply the [Serializable] attribute. For more information on serialization, see <a href="../Manual/script-Serialization.html">Script Serialization</a>.<br /><br /><strong>Note</strong>: Only non-abstract, non-generic custom classes can be serialized.<br /><br />In the following example we create a custom Player struct and give it the [Serializable] attribute to make it serializable. We then create a private field of the Player type and apply [SerializeField] attribute to it to make it show up in the Inspector.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System;
+using UnityEngine;<br /><br />public class Player : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    //Create a custom struct and apply [<a href="Serializable.html">Serializable</a>] attribute to it
+    [<a href="Serializable.html">Serializable</a>]
+    public struct PlayerStats
+    {
+        public int movementSpeed;
+        public int hitPoints;
+        public bool hasHealthPotion;
+    }<br /><br />    //Make the private field of our PlayerStats struct visible in the Inspector
+    //by applying [<a href="SerializeField.html">SerializeField</a>] attribute to it
+    [<a href="SerializeField.html">SerializeField</a>]
+    private PlayerStats stats;
+}
+</pre>
+      </div></div></div></div></body></html>

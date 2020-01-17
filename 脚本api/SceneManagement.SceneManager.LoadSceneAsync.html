@@ -1,0 +1,44 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: SceneManagement.SceneManager.LoadSceneAsync</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="SceneManagement.SceneManager.html">SceneManager</a>.LoadSceneAsync</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="AsyncOperation.html">AsyncOperation</a> <span class="sig-kw">LoadSceneAsync</span>(string <span class="sig-kw">sceneName</span>,
+<a href="SceneManagement.LoadSceneMode.html">SceneManagement.LoadSceneMode</a> <span class="sig-kw">mode</span> = LoadSceneMode.Single);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="AsyncOperation.html">AsyncOperation</a> <span class="sig-kw">LoadSceneAsync</span>(int <span class="sig-kw">sceneBuildIndex</span>,
+<a href="SceneManagement.LoadSceneMode.html">SceneManagement.LoadSceneMode</a> <span class="sig-kw">mode</span> = LoadSceneMode.Single);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="AsyncOperation.html">AsyncOperation</a> <span class="sig-kw">LoadSceneAsync</span>(string <span class="sig-kw">sceneName</span>,
+<a href="SceneManagement.LoadSceneParameters.html">SceneManagement.LoadSceneParameters</a> <span class="sig-kw">parameters</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="AsyncOperation.html">AsyncOperation</a> <span class="sig-kw">LoadSceneAsync</span>(int <span class="sig-kw">sceneBuildIndex</span>,
+<a href="SceneManagement.LoadSceneParameters.html">SceneManagement.LoadSceneParameters</a> <span class="sig-kw">parameters</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">sceneName</td><td class="desc"></td><td class="desc1">Name or path of the Scene to load.</td></tr><tr><td class="name lbl">sceneBuildIndex</td><td class="desc"></td><td class="desc1">Index of the Scene in the Build Settings to load.</td></tr><tr><td class="name lbl">mode</td><td class="desc"></td><td class="desc1">If LoadSceneMode.Single then all current Scenes will be unloaded before loading.</td></tr><tr><td class="name lbl">parameters</td><td class="desc"></td><td class="desc1">Struct that collects the various parameters into a single place except for the name and index.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>AsyncOperation</strong>
+        Use the <a href="AsyncOperation.html">AsyncOperation</a> to determine if the operation has completed.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Loads the Scene asynchronously in the background.</p></div><div class="subsection"><p>The given Scene name can either be the full Scene path, the path shown in the Build Settings window or just the Scene name. If only the Scene name is given this will load the first Scene in the list that matches. If you have multiple Scenes with same name but different paths, you should use the full Scene path in the Build Settings.<br /><br />Examples of supported formats:<br />
+<code class="mono">"Scene1"</code><br />
+<code class="mono">"Scene2"</code><br />
+<code class="mono">"Scenes/Scene3"</code><br />
+<code class="mono">"Scenes/Others/Scene3"</code><br />
+<code class="mono">"Assets/scenes/others/scene3.unity"</code><br /><br /><strong>Note:</strong> The name of the Scene to load can be case insensitive.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.Collections;
+using UnityEngine;
+using UnityEngine.SceneManagement;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        // Press the space key to start coroutine
+        if (<a href="Input.GetKeyDown.html">Input.GetKeyDown</a>(<a href="KeyCode.Space.html">KeyCode.Space</a>))
+        {
+            // Use a coroutine to load the <a href="SceneManagement.Scene.html">Scene</a> in the background
+            StartCoroutine(LoadYourAsyncScene());
+        }
+    }<br /><br />    IEnumerator LoadYourAsyncScene()
+    {
+        // The <a href="Application.html">Application</a> loads the <a href="SceneManagement.Scene.html">Scene</a> in the background as the current <a href="SceneManagement.Scene.html">Scene</a> runs.
+        // This is particularly good for creating loading screens.
+        // You could also load the <a href="SceneManagement.Scene.html">Scene</a> by using sceneBuildIndex. In this case Scene2 has
+        // a sceneBuildIndex of 1 as shown in Build <a href="CameraEditor.Settings.html">Settings</a>.<br /><br />        <a href="AsyncOperation.html">AsyncOperation</a> asyncLoad = <a href="SceneManagement.SceneManager.LoadSceneAsync.html">SceneManager.LoadSceneAsync</a>("Scene2");<br /><br />        // Wait until the asynchronous scene fully loads
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

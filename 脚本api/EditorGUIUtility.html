@@ -1,0 +1,71 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorGUIUtility</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">EditorGUIUtility</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEditor</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Inherits from:<a href="GUIUtility.html" class="cl">GUIUtility</a></p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEditor.html" class="cl">UnityEditor</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Miscellaneous helper stuff for <a href="EditorGUI.html">EditorGUI</a>.</p></div><div class="subsection"><h2>Static Properties</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="EditorGUIUtility-currentViewWidth.html">currentViewWidth</a></td><td class="desc"></td><td class="desc1">The width of the GUI area for the current EditorWindow or other view.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="EditorGUIUtility-editingTextField.html">editingTextField</a></td><td class="desc"></td><td class="desc1">Is a text field currently editing text?</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="EditorGUIUtility-fieldWidth.html">fieldWidth</a></td><td class="desc"></td><td class="desc1">The minimum width in pixels reserved for the fields of Editor GUI controls.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="EditorGUIUtility-hierarchyMode.html">hierarchyMode</a></td><td class="desc"></td><td class="desc1">Is the Editor GUI is hierarchy mode?</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="EditorGUIUtility-isProSkin.html">isProSkin</a></td><td class="desc"></td><td class="desc1">Is the user currently using the pro skin? (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="EditorGUIUtility-labelWidth.html">labelWidth</a></td><td class="desc"></td><td class="desc1">The width in pixels reserved for labels of Editor GUI controls.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="EditorGUIUtility-pixelsPerPoint.html">pixelsPerPoint</a></td><td class="desc"></td><td class="desc1">The scale of GUI points relative to screen pixels for the current viewThis value is the number of screen pixels per point of interface space. For instance, 2.0 on retina displays. Note that the value may differ from one view to the next if the views are on monitors with different UI scales.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="EditorGUIUtility-singleLineHeight.html">singleLineHeight</a></td><td class="desc"></td><td class="desc1">Get the height used for a single Editor control such as a one-line EditorGUI.TextField or EditorGUI.Popup.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="EditorGUIUtility-standardVerticalSpacing.html">standardVerticalSpacing</a></td><td class="desc"></td><td class="desc1">Get the height used by default for vertical spacing between controls.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="EditorGUIUtility-systemCopyBuffer.html">systemCopyBuffer</a></td><td class="desc"></td><td class="desc1">The system copy buffer.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="EditorGUIUtility-textFieldHasSelection.html">textFieldHasSelection</a></td><td class="desc"></td><td class="desc1">True if a text field currently has focused and the text in it is selected.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="EditorGUIUtility-whiteTexture.html">whiteTexture</a></td><td class="desc"></td><td class="desc1">Get a white texture.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="EditorGUIUtility-wideMode.html">wideMode</a></td><td class="desc"></td><td class="desc1">Is the Editor GUI currently in wide mode?</td></tr>
+    </table></div><div class="subsection"><h2>Static Methods   静态方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="EditorGUIUtility.AddCursorRect.html">AddCursorRect</a></td><td class="desc"></td><td class="desc1">Add a custom mouse pointer to a control.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="EditorGUIUtility.CommandEvent.html">CommandEvent</a></td><td class="desc"></td><td class="desc1">Creates an event that can be sent to another window.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="EditorGUIUtility.DrawColorSwatch.html">DrawColorSwatch</a></td><td class="desc"></td><td class="desc1">Draw a color swatch.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="EditorGUIUtility.DrawCurveSwatch.html">DrawCurveSwatch</a></td><td class="desc"></td><td class="desc1">Draw a curve swatch.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="EditorGUIUtility.DrawRegionSwatch.html">DrawRegionSwatch</a></td><td class="desc"></td><td class="desc1">Draw swatch with a filled region between two SerializedProperty curves.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="EditorGUIUtility.FindTexture.html">FindTexture</a></td><td class="desc"></td><td class="desc1">Get a texture from its source filename.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="EditorGUIUtility.GetBuiltinSkin.html">GetBuiltinSkin</a></td><td class="desc"></td><td class="desc1">Get one of the built-in GUI skins, which can be the game view, inspector or Scene view skin as chosen by the parameter.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="EditorGUIUtility.GetFlowLayoutedRects.html">GetFlowLayoutedRects</a></td><td class="desc"></td><td class="desc1">Layout list of string items left to right, top to bottom in the given area.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="EditorGUIUtility.GetIconSize.html">GetIconSize</a></td><td class="desc"></td><td class="desc1">Get the size that has been set using SetIconSize.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="EditorGUIUtility.GetObjectPickerControlID.html">GetObjectPickerControlID</a></td><td class="desc"></td><td class="desc1">The controlID of the currently showing object picker.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="EditorGUIUtility.GetObjectPickerObject.html">GetObjectPickerObject</a></td><td class="desc"></td><td class="desc1">The object currently selected in the object picker.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="EditorGUIUtility.HasObjectThumbnail.html">HasObjectThumbnail</a></td><td class="desc"></td><td class="desc1">Does a given class have per-object thumbnails?</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="EditorGUIUtility.IconContent.html">IconContent</a></td><td class="desc"></td><td class="desc1">Fetch the GUIContent from the Unity builtin resources with the given name.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="EditorGUIUtility.IsDisplayReferencedByCameras.html">IsDisplayReferencedByCameras</a></td><td class="desc"></td><td class="desc1">Check if any enabled camera can render to a particular display.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="EditorGUIUtility.Load.html">Load</a></td><td class="desc"></td><td class="desc1">Load a built-in resource.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="EditorGUIUtility.LoadRequired.html">LoadRequired</a></td><td class="desc"></td><td class="desc1">Load a required built-in resource.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="EditorGUIUtility.LookLikeControls.html">LookLikeControls</a></td><td class="desc"></td><td class="desc1">Make all EditorGUI look like regular controls.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="EditorGUIUtility.ObjectContent.html">ObjectContent</a></td><td class="desc"></td><td class="desc1">Return a GUIContent object with the name and icon of an Object.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="EditorGUIUtility.PingObject.html">PingObject</a></td><td class="desc"></td><td class="desc1">Ping an object in the Scene like clicking it in an inspector.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="EditorGUIUtility.PixelsToPoints.html">PixelsToPoints</a></td><td class="desc"></td><td class="desc1">Convert from pixel space to point space.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="EditorGUIUtility.PointsToPixels.html">PointsToPixels</a></td><td class="desc"></td><td class="desc1">Convert from point space to pixel space.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="EditorGUIUtility.QueueGameViewInputEvent.html">QueueGameViewInputEvent</a></td><td class="desc"></td><td class="desc1">Send an input event into the game.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="EditorGUIUtility.SetIconSize.html">SetIconSize</a></td><td class="desc"></td><td class="desc1">Set icons rendered as part of GUIContent to be rendered at a specific size.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="EditorGUIUtility.ShowObjectPicker.html">ShowObjectPicker</a></td><td class="desc"></td><td class="desc1">Show the object picker from code.</td></tr>
+    </table></div><div class="subsection"><h2>Inherited Members   继承成员</h2>
+      <div class="subsection"><h2>Static Properties</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="GUIUtility-hasModalWindow.html">hasModalWindow</a></td><td class="desc"></td><td class="desc1">A global property, which is true if a ModalWindow is being displayed, false otherwise.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="GUIUtility-hotControl.html">hotControl</a></td><td class="desc"></td><td class="desc1">The controlID of the current hot control.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="GUIUtility-keyboardControl.html">keyboardControl</a></td><td class="desc"></td><td class="desc1">The controlID of the control that has keyboard focus.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="GUIUtility-systemCopyBuffer.html">systemCopyBuffer</a></td><td class="desc"></td><td class="desc1">Get access to the system-wide clipboard.</td></tr>
+      </table></div>
+      
+      
+      
+      
+      
+      
+      <div class="subsection"><h2>Static Methods   静态方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="GUIUtility.AlignRectToDevice.html">AlignRectToDevice</a></td><td class="desc"></td><td class="desc1">Align a local space rectangle to the pixel grid.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="GUIUtility.ExitGUI.html">ExitGUI</a></td><td class="desc"></td><td class="desc1">Puts the GUI in a state that will prevent all subsequent immediate mode GUI functions from evaluating for the remainder of the GUI loop by throwing an ExitGUIException.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="GUIUtility.GetControlID.html">GetControlID</a></td><td class="desc"></td><td class="desc1">Get a unique ID for a control.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="GUIUtility.GetStateObject.html">GetStateObject</a></td><td class="desc"></td><td class="desc1">Get a state object from a controlID.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="GUIUtility.GUIToScreenPoint.html">GUIToScreenPoint</a></td><td class="desc"></td><td class="desc1">Convert a point from GUI position to screen space.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="GUIUtility.GUIToScreenRect.html">GUIToScreenRect</a></td><td class="desc"></td><td class="desc1">Convert a rect from GUI position to screen space.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="GUIUtility.QueryStateObject.html">QueryStateObject</a></td><td class="desc"></td><td class="desc1">Get an existing state object from a controlID.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="GUIUtility.RotateAroundPivot.html">RotateAroundPivot</a></td><td class="desc"></td><td class="desc1">Helper function to rotate the GUI around a point.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="GUIUtility.ScaleAroundPivot.html">ScaleAroundPivot</a></td><td class="desc"></td><td class="desc1">Helper function to scale the GUI around a point.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="GUIUtility.ScreenToGUIPoint.html">ScreenToGUIPoint</a></td><td class="desc"></td><td class="desc1">Convert a point from screen space to GUI position.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="GUIUtility.ScreenToGUIRect.html">ScreenToGUIRect</a></td><td class="desc"></td><td class="desc1">Convert a rect from screen space to GUI position.</td></tr>
+      </table></div>
+      
+      
+      
+      
+    </div></div></div></div></body></html>

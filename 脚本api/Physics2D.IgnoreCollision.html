@@ -1,0 +1,20 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Physics2D.IgnoreCollision</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Physics2D.html">Physics2D</a>.IgnoreCollision</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">IgnoreCollision</span>(<a href="Collider2D.html">Collider2D</a> <span class="sig-kw">collider1</span>,
+<a href="Collider2D.html">Collider2D</a> <span class="sig-kw">collider2</span>,
+bool <span class="sig-kw">ignore</span> = true);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">collider1</td><td class="desc"></td><td class="desc1">The first collider to compare to <code class="varname">collider2</code>.</td></tr><tr><td class="name lbl">collider2</td><td class="desc"></td><td class="desc1">The second collider to compare to <code class="varname">collider1</code>.</td></tr><tr><td class="name lbl">ignore</td><td class="desc"></td><td class="desc1">Whether collisions/triggers between <code class="varname">collider1</code> and <code class="varname">collider2</code> should be ignored or not.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Makes the collision detection system ignore all collisions/triggers between <code class="varname">collider1</code> and <code class="varname">collider2</code>.</p></div><div class="subsection"><p>Ignoring collisions refers to any type of interaction between the selected colliders i.e. no collision or trigger interaction will occur.  Collision layers are first checked to see the two layers can interact and if not then no interactions take place.  Following that, ignoring specific colliders interactions will occur.<br /><br />IgnoreCollision has a few limitations:
+1) It is not persistent. This means that the ignore collision state will not be stored in the editor when saving a Scene.
+2) You can only apply the ignore collision to colliders in active game objects.
+When deactivating the collider the IgnoreCollision state will be lost and you have to call Physics2D.IgnoreCollision again.
+See Also: <a href="Physics2D.GetIgnoreCollision.html">Physics2D.GetIgnoreCollision</a>, <a href="Physics2D.IgnoreLayerCollision.html">Physics2D.IgnoreLayerCollision</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Instantiate a bullet and make it ignore collisions with this object.<br /><br />    <a href="Transform.html">Transform</a> bulletPrefab;<br /><br />    void Start()
+    {
+        var bullet = Instantiate(bulletPrefab) as <a href="Transform.html">Transform</a>;
+        <a href="Physics2D.IgnoreCollision.html">Physics2D.IgnoreCollision</a>(bullet.GetComponent&lt;<a href="Collider2D.html">Collider2D</a>&gt;(), GetComponent&lt;<a href="Collider2D.html">Collider2D</a>&gt;());
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

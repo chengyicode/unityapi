@@ -1,0 +1,33 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Component.GetComponent</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Component.html">Component</a>.GetComponent</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Component.html">Component</a> <span class="sig-kw">GetComponent</span>(Type <span class="sig-kw">type</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">type</td><td class="desc"></td><td class="desc1">The type of Component to retrieve.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Returns the component of Type <code class="varname">type</code> if the game object has one attached, null if it doesn't.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class ScriptExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        // Disable the spring on the <a href="HingeJoint.html">HingeJoint</a> component.
+        <a href="HingeJoint.html">HingeJoint</a> hinge = GetComponent&lt;<a href="HingeJoint.html">HingeJoint</a>&gt;();
+        hinge.useSpring = false;
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public T <span class="sig-kw">GetComponent</span>();
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Generic version. See the <a href="../Manual/GenericFunctions.html">Generic Functions</a> page for more details.</p></div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Component.html">Component</a> <span class="sig-kw">GetComponent</span>(string <span class="sig-kw">type</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Returns the component with name <code class="varname">type</code> if the game object has one attached, null if it doesn't.</p></div><div class="subsection"><p>It is better to use GetComponent with a Type instead of a string for performance reasons.
+Sometimes you might not be able to get to the type however, for example when trying to access a C# script from Javascript.
+In that case you can simply access the component by name instead of type.
+Example:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class ScriptExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        // Disable the spring on the <a href="HingeJoint.html">HingeJoint</a> component.
+        <a href="HingeJoint.html">HingeJoint</a> hinge = GetComponent("<a href="HingeJoint.html">HingeJoint</a>") as <a href="HingeJoint.html">HingeJoint</a>;
+        hinge.useSpring = false;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

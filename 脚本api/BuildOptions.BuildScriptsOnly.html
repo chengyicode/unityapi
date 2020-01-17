@@ -1,0 +1,77 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: BuildOptions.BuildScriptsOnly</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="BuildOptions.html">BuildOptions</a>.BuildScriptsOnly</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Only build the scripts in a Project.</p></div><div class="subsection"><p>Before you can use <a href="BuildOptions.BuildScriptsOnly.html">BuildScriptsOnly</a>, you need to build the whole Project.  Then you can run builds that only have script changes.<br /><br />The following script example uses <a href="BuildOptions.BuildScriptsOnly.html">BuildScriptsOnly</a>. The script builds the entire Project initially. After you've run the script for the first time, you can use the script to only compile the script changes. To use the script create a project and add the Editor script and the game script below.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;<br /><br />public class EditorExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    [<a href="MenuItem.html">MenuItem</a>("Build/Build scripts")]
+    public static void MyBuild()
+    {
+        <a href="BuildPlayerOptions.html">BuildPlayerOptions</a> buildPlayerOptions = new <a href="BuildPlayerOptions.html">BuildPlayerOptions</a>();
+        buildPlayerOptions.scenes = new[] { "Assets/scene.unity" };
+        buildPlayerOptions.locationPathName = "scriptBuilds";
+        buildPlayerOptions.target = <a href="BuildTarget.StandaloneOSX.html">BuildTarget.StandaloneOSX</a>;<br /><br />        // use these options for the first build
+        buildPlayerOptions.options = <a href="BuildOptions.Development.html">BuildOptions.Development</a>;<br /><br />        // use these options for building scripts
+        // buildPlayerOptions.options = <a href="BuildOptions.BuildScriptsOnly.html">BuildOptions.BuildScriptsOnly</a> | <a href="BuildOptions.Development.html">BuildOptions.Development</a>;<br /><br />        <a href="BuildPipeline.BuildPlayer.html">BuildPipeline.BuildPlayer</a>(buildPlayerOptions);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Attach the following simple script to an empty GameObject in the scene:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />// Change the camera to the usual blue color and display a label.<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private <a href="Camera.html">Camera</a> cam;<br /><br />    void Awake()
+    {
+        cam = <a href="Camera-main.html">Camera.main</a>;
+        cam.clearFlags = <a href="CameraClearFlags.SolidColor.html">CameraClearFlags.SolidColor</a>;
+    }<br /><br />    void OnGUI()
+    {
+        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(100, 100, 100, 50), "ExampleClass");
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Now run the <code class="mono">Build/Build scripts</code> example. This builds an executable.  Run that executable and a dark blue window with the label appears. Next add some cubes and spheres to the Project. Make the following script changes:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private <a href="Camera.html">Camera</a> cam;<br /><br />    // added line
+    private float delay;<br /><br />    void Awake()
+    {
+        delay = 0.0f;
+        cam = <a href="Camera-main.html">Camera.main</a>;
+        cam.clearFlags = <a href="CameraClearFlags.SolidColor.html">CameraClearFlags.SolidColor</a>;
+    }<br /><br />    // added script code
+    void <a href="Experimental.PlayerLoop.FixedUpdate.html">FixedUpdate</a>()
+    {
+        delay = delay + <a href="Time-deltaTime.html">Time.deltaTime</a>;<br /><br />        if (delay &gt; 0.5f)
+        {
+            cam.backgroundColor = new <a href="Color.html">Color</a>(0.0f, 0.0f, <a href="Random.Range.html">Random.Range</a>(0.0f, 0.25f));
+            delay = 0.0f;
+        }
+    }<br /><br />    void OnGUI()
+    {
+        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(100, 100, 100, 50), "ExampleClass");
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Finally, swap the commented lines in the <code class="mono">EditorExample</code> script:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;<br /><br />public class EditorExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    [<a href="MenuItem.html">MenuItem</a>("Build/Build scripts")]
+    public static void MyBuild()
+    {
+        <a href="BuildPlayerOptions.html">BuildPlayerOptions</a> buildPlayerOptions = new <a href="BuildPlayerOptions.html">BuildPlayerOptions</a>();
+        buildPlayerOptions.scenes = new[] { "Assets/scene.unity" };
+        buildPlayerOptions.locationPathName = "scriptBuilds";
+        buildPlayerOptions.target = <a href="BuildTarget.StandaloneOSX.html">BuildTarget.StandaloneOSX</a>;<br /><br />        // use these options for the first build
+        // buildPlayerOptions.options = <a href="BuildOptions.Development.html">BuildOptions.Development</a>;<br /><br />        // use these options for building scripts
+        buildPlayerOptions.options = <a href="BuildOptions.BuildScriptsOnly.html">BuildOptions.BuildScriptsOnly</a> | <a href="BuildOptions.Development.html">BuildOptions.Development</a>;<br /><br />        <a href="BuildPipeline.BuildPlayer.html">BuildPipeline.BuildPlayer</a>(buildPlayerOptions);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Use the <code class="mono">Build/Build scripts</code> to regenerate the application and then launch it. The application will now show random changes to the background color. However the added cubes and spheres are not visible.</p></div></div></div></div></body></html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorGUIUtility.systemCopyBuffer</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorGUIUtility.html">EditorGUIUtility</a>.systemCopyBuffer</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static string <span class="sig-kw">systemCopyBuffer</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The system copy buffer.</p></div><div class="subsection"><p>Use this to make Copy and Paste work for your own application. The
+          <a href="EditorGUIUtility-systemCopyBuffer.html">systemCopyBuffer</a> captures any text that is selected on the machine. This does
+          not specifically have to be text that is selected in Unity.  Reading and writing
+          <a href="EditorGUIUtility-systemCopyBuffer.html">systemCopyBuffer</a> is possible.
+<img src="../StaticFiles/ScriptRefImages/EditorGUIUtilitySystemCopyBuffer.png" /><br />
+<em>Have more than 1 saved "copy" command.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Example that shows up to 5 strings.  These strings are captured from Copy
+// commands on the machine.  The Current buffer at the bottom of the window shows whatever string
+// is copied.  The string can be copied to one of the five Save rows when the Load toggle is
+// five Save rows when the Load toggle is off and one of the horizontal buttons is pressed.<br /><br />using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class SystemCopyBufferExample : <a href="EditorWindow.html">EditorWindow</a>
+{
+    string[] savedCopies = new string[5];
+    bool load = false;<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Examples/Example showing systemCopyBuffer")]
+    static void systemCopyBufferExample()
+    {
+        SystemCopyBufferExample window =
+            <a href="EditorWindow.GetWindow.html">EditorWindow.GetWindow</a>&lt;SystemCopyBufferExample&gt;();
+        window.Show();
+    }<br /><br />    void OnGUI()
+    {
+        load = <a href="EditorGUILayout.Toggle.html">EditorGUILayout.Toggle</a>("Load:", load);<br /><br />        <a href="EditorGUILayout.BeginHorizontal.html">EditorGUILayout.BeginHorizontal</a>();
+        for (int i = 0; i &lt; savedCopies.Length; i++)
+            if (<a href="GUILayout.Button.html">GUILayout.Button</a>(i.ToString()))
+                if (load)
+                    <a href="EditorGUIUtility-systemCopyBuffer.html">EditorGUIUtility.systemCopyBuffer</a> = savedCopies[i];
+                else
+                    savedCopies[i] = <a href="EditorGUIUtility-systemCopyBuffer.html">EditorGUIUtility.systemCopyBuffer</a>;
+        <a href="EditorGUILayout.EndHorizontal.html">EditorGUILayout.EndHorizontal</a>();<br /><br />        for (int j = 0; j &lt; savedCopies.Length; j++)
+            <a href="EditorGUILayout.LabelField.html">EditorGUILayout.LabelField</a>("Saved " + j, savedCopies[j]);<br /><br />        <a href="EditorGUILayout.LabelField.html">EditorGUILayout.LabelField</a>("Current buffer:", <a href="EditorGUIUtility-systemCopyBuffer.html">EditorGUIUtility.systemCopyBuffer</a>);
+        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Clear all saves"))
+            for (int s = 0; s &lt; savedCopies.Length; s++)
+                savedCopies[s] = "";
+    }<br /><br />    void OnInspectorUpdate()
+    {
+        this.Repaint();
+    }
+}
+</pre>
+      </div><div class="subsection"><p>
+        <strong>Note:</strong> iOS and Android do not support this feature.</p></div></div></div></div></body></html>

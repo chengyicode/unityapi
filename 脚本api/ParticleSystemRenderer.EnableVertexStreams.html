@@ -1,0 +1,97 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ParticleSystemRenderer.EnableVertexStreams</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Method group is Obsolete</b><br /></div><h1 class="heading inherit"><a href="ParticleSystemRenderer.html">ParticleSystemRenderer</a>.EnableVertexStreams</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public void <span class="sig-kw">EnableVertexStreams</span>(<a href="ParticleSystemVertexStreams.html">ParticleSystemVertexStreams</a> <span class="sig-kw">streams</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">streams</td><td class="desc"></td><td class="desc1">Streams to enable.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Enable a set of vertex shader streams on the Particle System renderer.</p></div><div class="subsection"><p>See Also: ParticleSystemRenderer.DisableVertexStreams, <a href="ParticleSystem.SetCustomParticleData.html">ParticleSystem.SetCustomParticleData</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;
+using System.Collections.Generic;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a> {<br /><br />    private <a href="ParticleSystem.html">ParticleSystem</a> ps;
+    private <a href="ParticleSystemRenderer.html">ParticleSystemRenderer</a> psr;
+    private List&lt;<a href="Vector4.html">Vector4</a>&gt; customData = new List&lt;<a href="Vector4.html">Vector4</a>&gt;();
+    public float minDist = 30.0f;<br /><br />    void Start() {<br /><br />        ps = GetComponent&lt;<a href="ParticleSystem.html">ParticleSystem</a>&gt;();
+        psr = GetComponent&lt;<a href="ParticleSystemRenderer.html">ParticleSystemRenderer</a>&gt;();<br /><br />        // emit in a sphere with no speed
+        var main = ps.main;
+        main.startSpeedMultiplier = 0.0f;
+        main.simulationSpace = <a href="ParticleSystemSimulationSpace.World.html">ParticleSystemSimulationSpace.World</a>; // so our particle positions don't require any extra transformation, to compare with the mouse position
+        var emission = ps.emission;
+        emission.rateOverTimeMultiplier = 200.0f;
+        var shape = ps.shape;
+        shape.shapeType = <a href="ParticleSystemShapeType.Sphere.html">ParticleSystemShapeType.Sphere</a>;
+        shape.radius = 4.0f;
+        psr.sortMode = <a href="ParticleSystemSortMode.YoungestInFront.html">ParticleSystemSortMode.YoungestInFront</a>;<br /><br />        // send custom data to the shader
+        psr.EnableVertexStreams(ParticleSystemVertexStreams.Custom1);
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>() {<br /><br />        <a href="Camera.html">Camera</a> mainCam = <a href="Camera-main.html">Camera.main</a>;<br /><br />        ps.GetCustomParticleData(customData, <a href="ParticleSystemCustomData.Custom1.html">ParticleSystemCustomData.Custom1</a>);<br /><br />        int particleCount = ps.particleCount;
+        <a href="ParticleSystem.Particle.html">ParticleSystem.Particle</a>[] particles = new <a href="ParticleSystem.Particle.html">ParticleSystem.Particle</a>[particleCount];
+        ps.GetParticles(particles);<br /><br />        for (int i = 0; i &lt; particles.Length; i++)
+        {
+            <a href="Vector3.html">Vector3</a> sPos = mainCam.WorldToScreenPoint(particles[i].position + ps.transform.position);<br /><br />            // set custom data to 1, if close enough to the mouse
+            if (<a href="Vector2.Distance.html">Vector2.Distance</a>(sPos, <a href="Input-mousePosition.html">Input.mousePosition</a>) &lt; minDist)
+            {
+                customData[i] = new <a href="Vector4.html">Vector4</a>(1, 0, 0, 0);
+            }
+            // otherwise, fade the custom data back to 0
+            else
+            {
+                float particleLife = particles[i].remainingLifetime / ps.main.startLifetimeMultiplier;<br /><br />                if (customData[i].x &gt; 0)
+                {
+                    float x = customData[i].x;
+                    x = <a href="Mathf.Max.html">Mathf.Max</a>(x - <a href="Time-deltaTime.html">Time.deltaTime</a>, 0.0f);
+                    customData[i] = new <a href="Vector4.html">Vector4</a>(x, 0, 0, 0);
+                }
+            }
+        }<br /><br />        ps.SetCustomParticleData(customData, <a href="ParticleSystemCustomData.Custom1.html">ParticleSystemCustomData.Custom1</a>);
+    }<br /><br />    void OnGUI() {<br /><br />        minDist = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(25, 40, 100, 30), minDist, 0.0f, 100.0f);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Here is an example of a custom shader that can be used with the above script:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+          <a href="Shader.html">Shader</a> "Particles/CustomVertexStream" {
+Properties {
+    _TintColor ("Tint <a href="Color.html">Color</a>", <a href="Color.html">Color</a>) = (0.5,0.5,0.5,0.5)
+    _MainTex ("<a href="ParticleSystem.Particle.html">Particle</a> <a href="Texture.html">Texture</a>", 2D) = "white" {}
+    _OffsetValue("Offset Value", <a href="SocialPlatforms.Range.html">Range</a>(0,1)) = 0.4
+}<br /><br />Category {
+    Tags { "Queue"="Transparent" "IgnoreProjector"="True" "RenderType"="Transparent" }
+    Blend SrcAlpha OneMinusSrcAlpha
+    ColorMask RGB
+    Cull Off Lighting Off ZWrite Off<br /><br />    SubShader {
+        <a href="ShaderData.Pass.html">Pass</a> {<br /><br />            CGPROGRAM
+            #pragma vertex vert
+            #pragma fragment frag
+            #pragma multi_compile_particles
+            #pragma multi_compile_fog<br /><br />            #include "UnityCG.cginc"<br /><br />            sampler2D _MainTex;
+            fixed4 _TintColor;
+            float _OffsetValue;<br /><br />            struct appdata_t {
+                float4 vertex : POSITION;
+                float3 normal : NORMAL;
+                fixed4 color : COLOR;
+                float2 texcoord : TEXCOORD0;
+                float4 customData : TEXCOORD1;
+            };<br /><br />            struct v2f {
+                float4 vertex : SV_POSITION;
+                fixed4 color : COLOR;
+                float2 texcoord : TEXCOORD0;
+                float4 customData : TEXCOORD1;
+                UNITY_FOG_COORDS(2)
+            };<br /><br />            float4 _MainTex_ST;<br /><br />            v2f vert (appdata_t v)
+            {
+                v.vertex.y = lerp(v.vertex.y, v.vertex.y + _OffsetValue, v.customData.x);<br /><br />                v2f o;
+                o.vertex = UnityObjectToClipPos(v.vertex);<br /><br />                float4 offsetX = float4(-1, 1, 1, -1);
+                float4 offsetY = float4(1, 1, -1, -1);<br /><br />                o.color = v.color;
+                o.texcoord = TRANSFORM_TEX(v.texcoord,_MainTex);
+                o.customData = v.customData;
+                UNITY_TRANSFER_FOG(o,o.vertex);<br /><br />                return o;
+            }<br /><br />            fixed4 frag (v2f i) : SV_Target
+            {
+                fixed4 col = 2.0f * i.color * _TintColor * tex2D(_MainTex, i.texcoord);
+                fixed4 col2 = fixed4(i.customData.x, i.customData.y, i.customData.z, col.a);
+                fixed4 final = lerp(col, col*col2, i.customData.x);<br /><br />                UNITY_APPLY_FOG(i.fogCoord, final);
+                return final;
+            }
+            ENDCG
+        }
+    }
+}
+}
+</pre>
+      </div></div></div></div></body></html>

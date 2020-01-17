@@ -1,0 +1,42 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: CollisionDetectionMode.ContinuousDynamic</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="CollisionDetectionMode.html">CollisionDetectionMode</a>.ContinuousDynamic</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Continuous collision detection is on for colliding with static and dynamic geometry.</p></div><div class="subsection"><p>Prevent this Rigidbody from passing through static mesh geometry, and through other
+Rigidbodies which have continuous collision detection enabled, when it is moving fast.
+This is the slowest collision detection mode, and should only be used for selected fast moving objects.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//This script allows you to switch collision detection mode at the press of the space key
+//Attach this script to a <a href="GameObject.html">GameObject</a>
+//Click the <a href="GameObject.html">GameObject</a>, go to its Inspector and click the <strong>Add Component</strong> <a href="UIElements.Button.html">Button</a>. Then, go to <strong>Physics</strong>&gt;<strong>Rigidbody</strong>.<br /><br />using UnityEngine;
+using UnityEngine.UI;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="Rigidbody.html">Rigidbody</a> m_Rigidbody;<br /><br />    void Start()
+    {
+        m_Rigidbody = GetComponent&lt;<a href="Rigidbody.html">Rigidbody</a>&gt;();
+    }<br /><br />    public void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        //Press the space key to switch the collision detection mode
+        if (<a href="Input.GetKeyDown.html">Input.GetKeyDown</a>(<a href="KeyCode.Space.html">KeyCode.Space</a>))
+            SwitchCollisionDetectionMode();
+    }<br /><br />    //<a href="PlayerSettings.Switch.html">Switch</a> between the different <a href="Collision.html">Collision</a> Detection Modes
+    void SwitchCollisionDetectionMode()
+    {
+        switch (m_Rigidbody.collisionDetectionMode)
+        {
+            //If the current mode is continuous, switch it to continuous dynamic mode
+            case <a href="CollisionDetectionMode.Continuous.html">CollisionDetectionMode.Continuous</a>:
+                m_Rigidbody.collisionDetectionMode = <a href="CollisionDetectionMode.ContinuousDynamic.html">CollisionDetectionMode.ContinuousDynamic</a>;
+                break;
+            //If the current mode is continuous dynamic, switch it to continuous speculative
+            case <a href="CollisionDetectionMode.ContinuousDynamic.html">CollisionDetectionMode.ContinuousDynamic</a>:
+                m_Rigidbody.collisionDetectionMode = <a href="CollisionDetectionMode.ContinuousSpeculative.html">CollisionDetectionMode.ContinuousSpeculative</a>;
+                break;<br /><br />            // If the curren mode is continuous speculative, switch it to discrete mode
+            case <a href="CollisionDetectionMode.ContinuousSpeculative.html">CollisionDetectionMode.ContinuousSpeculative</a>:
+                m_Rigidbody.collisionDetectionMode = <a href="CollisionDetectionMode.Discrete.html">CollisionDetectionMode.Discrete</a>;
+                break;<br /><br />            //If the current mode is discrete, switch it to continuous mode
+            case <a href="CollisionDetectionMode.Discrete.html">CollisionDetectionMode.Discrete</a>:
+                m_Rigidbody.collisionDetectionMode = <a href="CollisionDetectionMode.Continuous.html">CollisionDetectionMode.Continuous</a>;
+                break;
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

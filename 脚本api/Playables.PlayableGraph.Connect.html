@@ -1,0 +1,38 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Playables.PlayableGraph.Connect</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Playables.PlayableGraph.html">PlayableGraph</a>.Connect</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public bool <span class="sig-kw">Connect</span>(U <span class="sig-kw">source</span>,
+int <span class="sig-kw">sourceOutputPort</span>,
+V <span class="sig-kw">destination</span>,
+int <span class="sig-kw">destinationInputPort</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">source</td><td class="desc"></td><td class="desc1">The source playable or its handle.</td></tr><tr><td class="name lbl">sourceOutputPort</td><td class="desc"></td><td class="desc1">The port used in the source playable.</td></tr><tr><td class="name lbl">destination</td><td class="desc"></td><td class="desc1">The destination playable or its handle.</td></tr><tr><td class="name lbl">destinationInputPort</td><td class="desc"></td><td class="desc1">The port used in the destination playable.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>bool</strong>
+        Returns true if connection is successful.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Connects two <a href="Playables.Playable.html">Playable</a> instances.</p></div><div class="subsection"><p>The connections determine the topology of the <a href="Playables.PlayableGraph.html">PlayableGraph</a> and how it is evaluated.<br /><br />Playables can be connected together to form a tree structure. Each Playable has a set of inputs and a set of outputs. These can be viewed as “slots” where other Playables can be attached to.<br /><br />                    When a Playable is first created, its input count is reset to 0, meaning that it has no children Playables attached. Outputs behave a little differently—every Playable has a default output created when first created.<br /><br />                    You connect Playables together using the method <a href="Playables.PlayableGraph.Connect.html">PlayableGraph.Connect</a>, and you can disconnect them from each other using <a href="Playables.PlayableGraph.Disconnect.html">PlayableGraph.Disconnect</a>.<br /><br />                    There is no limit set on the amount of inputs a Playable can have.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.Animations;
+using UnityEngine.Playables;<br /><br />public class GraphCreationSample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="Playables.PlayableGraph.html">PlayableGraph</a> m_Graph;
+    public <a href="AnimationClip.html">AnimationClip</a> clipA;
+    public <a href="AnimationClip.html">AnimationClip</a> clipB;<br /><br />    void Start()
+    {
+        // Create the <a href="Playables.PlayableGraph.html">PlayableGraph</a>.
+        m_Graph = <a href="Playables.PlayableGraph.Create.html">PlayableGraph.Create</a>();<br /><br />        // Add an <a href="Animations.AnimationPlayableOutput.html">AnimationPlayableOutput</a> to the graph.
+        var animOutput = <a href="Animations.AnimationPlayableOutput.Create.html">AnimationPlayableOutput.Create</a>(m_Graph, "AnimationOutput", GetComponent&lt;<a href="Animator.html">Animator</a>&gt;());<br /><br />        // Add an <a href="Animations.AnimationMixerPlayable.html">AnimationMixerPlayable</a> to the graph.
+        var mixerPlayable = <a href="Animations.AnimationMixerPlayable.Create.html">AnimationMixerPlayable.Create</a>(m_Graph, 2, false);<br /><br />        // Add two <a href="Animations.AnimationClipPlayable.html">AnimationClipPlayable</a> to the graph.
+        var clipPlayableA = <a href="Animations.AnimationClipPlayable.Create.html">AnimationClipPlayable.Create</a>(m_Graph, clipA);
+        var clipPlayableB = <a href="Animations.AnimationClipPlayable.Create.html">AnimationClipPlayable.Create</a>(m_Graph, clipB);<br /><br />        // Create the topology, connect the <a href="Animations.AnimationClipPlayable.html">AnimationClipPlayable</a> to the
+        // <a href="Animations.AnimationMixerPlayable.html">AnimationMixerPlayable</a>.
+        m_Graph.Connect(clipPlayableA, 0, mixerPlayable, 0);
+        m_Graph.Connect(clipPlayableB, 0, mixerPlayable, 1);<br /><br />        // Use the <a href="Animations.AnimationMixerPlayable.html">AnimationMixerPlayable</a> as the source for the <a href="Animations.AnimationPlayableOutput.html">AnimationPlayableOutput</a>.
+        animOutput.SetSourcePlayable(mixerPlayable);<br /><br />        // Set the weight for both inputs of the mixer.
+        mixerPlayable.SetInputWeight(0, 1);
+        mixerPlayable.SetInputWeight(1, 1);<br /><br />        // Play the graph.
+        m_Graph.Play();
+    }<br /><br />    private void OnDestroy()
+    {
+        // Destroy the graph once done with it.
+        m_Graph.Destroy();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

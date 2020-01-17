@@ -1,0 +1,21 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Animator.leftFeetBottomHeight</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Animator.html">Animator</a>.leftFeetBottomHeight</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Animator.html' title='Go to Animator Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public float <span class="sig-kw">leftFeetBottomHeight</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Get left foot bottom height.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="Animator.html">Animator</a> animator;<br /><br />    void Start()
+    {
+        animator = GetComponent&lt;<a href="Animator.html">Animator</a>&gt;();
+    }<br /><br />    void LateUpdate()
+    {
+        if (animator)
+        {
+            <a href="Vector3.html">Vector3</a> leftFootT = animator.GetIKPosition(<a href="AvatarIKGoal.LeftFoot.html">AvatarIKGoal.LeftFoot</a>);
+            <a href="Quaternion.html">Quaternion</a> leftFootQ = animator.GetIKRotation(<a href="AvatarIKGoal.LeftFoot.html">AvatarIKGoal.LeftFoot</a>);<br /><br />            <a href="Vector3.html">Vector3</a> leftFootH = new <a href="Vector3.html">Vector3</a>(0, -animator.leftFeetBottomHeight, 0);<br /><br />            <a href="Vector3.html">Vector3</a> pos = leftFootT + leftFootQ * leftFootH;
+            <a href="Debug.Log.html">Debug.Log</a>(pos);
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

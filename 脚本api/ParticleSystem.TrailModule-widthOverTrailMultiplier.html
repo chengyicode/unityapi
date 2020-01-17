@@ -1,0 +1,30 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ParticleSystem.TrailModule.widthOverTrailMultiplier</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="ParticleSystem.TrailModule.html">ParticleSystem.TrailModule</a>.widthOverTrailMultiplier</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-ParticleSystem.html' title='Go to ParticleSystem Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public float <span class="sig-kw">widthOverTrailMultiplier</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Change the width multiplier.</p></div><div class="subsection"><p>This is more efficient than accessing the whole curve, if you only want to change the overall width multiplier.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private <a href="ParticleSystem.html">ParticleSystem</a> ps;
+    public bool widthOverTrail = true;<br /><br />    void Start()
+    {
+        ps = GetComponent&lt;<a href="ParticleSystem.html">ParticleSystem</a>&gt;();<br /><br />        var main = ps.main;
+        main.startColor = new <a href="ParticleSystem.MinMaxGradient.html">ParticleSystem.MinMaxGradient</a>(<a href="Color-red.html">Color.red</a>, <a href="Color-yellow.html">Color.yellow</a>);
+        main.startSize = new <a href="ParticleSystem.MinMaxCurve.html">ParticleSystem.MinMaxCurve</a>(0.01f, 1.0f);
+        main.startLifetime = 1.5f;<br /><br />        var trails = ps.trails;
+        trails.enabled = true;<br /><br />        var psr = GetComponent&lt;<a href="ParticleSystemRenderer.html">ParticleSystemRenderer</a>&gt;();
+        psr.trailMaterial = new <a href="Material.html">Material</a>(<a href="Shader.Find.html">Shader.Find</a>("Sprites/Default"));
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        var trails = ps.trails;
+        if (widthOverTrail)
+            trails.widthOverTrailMultiplier = 0.2f;
+        else
+            trails.widthOverTrailMultiplier = 1.0f;
+    }<br /><br />    void OnGUI()
+    {
+        widthOverTrail = <a href="GUI.Toggle.html">GUI.Toggle</a>(new <a href="Rect.html">Rect</a>(25, 25, 200, 30), widthOverTrail, "Width over Trail");
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

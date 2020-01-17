@@ -1,0 +1,29 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: GUILayout.FlexibleSpace</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="GUILayout.html">GUILayout</a>.FlexibleSpace</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">FlexibleSpace</span>();
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Insert a flexible space element.</p></div><div class="subsection"><p>Flexible spaces use up any leftover space in a layout.<br /><br /><strong>Note:</strong> This will override the <a href="GUILayout.ExpandWidth.html">GUILayout.ExpandWidth</a> and <a href="GUILayout.ExpandHeight.html">GUILayout.ExpandHeight</a><br /><br /><img src="../StaticFiles/ScriptRefImages/GUILayoutFlexibleSpace.png" /><br />
+<em>Flexible Space in a GUILayout Area.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    float sliderValue = 1.0f;<br /><br />    void OnGUI()
+    {
+        // <a href="UIElements.Wrap.html">Wrap</a> everything in the designated <a href="GUI.html">GUI</a> Area
+        <a href="GUILayout.BeginArea.html">GUILayout.BeginArea</a>(new <a href="Rect.html">Rect</a>(0, 0, 200, 60));
+        // Begin the singular Horizontal <a href="Experimental.GraphView.Group.html">Group</a>
+        <a href="GUILayout.BeginHorizontal.html">GUILayout.BeginHorizontal</a>();
+        // Place a <a href="UIElements.Button.html">Button</a> normally
+        <a href="GUILayout.RepeatButton.html">GUILayout.RepeatButton</a>("A button with\ntwo lines");
+        // Place a space between the button and the vertical area
+        // so it fits the whole area
+        <a href="GUILayout.FlexibleSpace.html">GUILayout.FlexibleSpace</a>();
+        // Arrange two more Controls vertically beside the <a href="UIElements.Button.html">Button</a>
+        <a href="GUILayout.BeginVertical.html">GUILayout.BeginVertical</a>();
+        <a href="GUILayout.Box.html">GUILayout.Box</a>("Value:" + <a href="Mathf.Round.html">Mathf.Round</a>(sliderValue));
+        sliderValue = <a href="GUILayout.HorizontalSlider.html">GUILayout.HorizontalSlider</a>(sliderValue, 0.0f, 10f);<br /><br />        // End the Groups and Area
+        <a href="GUILayout.EndVertical.html">GUILayout.EndVertical</a>();
+        <a href="GUILayout.EndHorizontal.html">GUILayout.EndHorizontal</a>();
+        <a href="GUILayout.EndArea.html">GUILayout.EndArea</a>();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Renderer.sortingOrder</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Renderer.html">Renderer</a>.sortingOrder</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public int <span class="sig-kw">sortingOrder</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Renderer's order within a sorting layer.</p></div><div class="subsection"><p>You can group GameObjects into layers in their <a href="SpriteRenderer.html">SpriteRenderer</a> component. This is called the <a href="SortingLayer.html">SortingLayer</a>.
+The sorting order decides what priority each GameObject has to the Renderer within each Sorting Layer.
+The lower the number you give it, the further back the GameObject appears. The higher the number, the closer the GameObject looks to the Camera. This is very effective when creating 2D scroller games, as you may want certain GameObjects on the same layer but certain parts to appear in front of others, for example, layering clouds and making them appear in front of the sky.<br /><br /><strong>Note</strong>: The value must be between -32768 and 32767.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//Attach a script like this to a <a href="Sprite.html">Sprite</a> <a href="GameObject.html">GameObject</a> (<strong>Create</strong>&gt;<strong>2D Object</strong>&gt;<strong>Sprite</strong>). Assign a <a href="Sprite.html">Sprite</a> to it in the <a href="Sprite.html">Sprite</a> field.
+//Repeat the first step for another two Sprites and make them overlap each other slightly. This shows how the order number changes the view of the Sprites.<br /><br />using UnityEngine;
+public class MyScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public int MyOrder;
+    public string MyName;
+}
+</pre>
+      </div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//Create a folder named “<a href="Editor.html">Editor</a>” (Right click in your Assets folder, <strong>Create</strong>&gt;<strong>Folder</strong>)
+//Put this script in the folder.
+//This script adds fields to the Inspector of your GameObjects with the MyScript script attached. Edit the fields to change the layer and order number each <a href="Sprite.html">Sprite</a> belongs to.<br /><br />using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />// Custom <a href="Editor.html">Editor</a> using SerializedProperties.<br /><br />[<a href="CustomEditor.html">CustomEditor</a>(typeof(MyScript))]
+public class MeshSortingOrderExample : <a href="Editor.html">Editor</a>
+{
+    <a href="SerializedProperty.html">SerializedProperty</a> m_Name;
+    <a href="SerializedProperty.html">SerializedProperty</a> m_Order;<br /><br />    private <a href="SpriteRenderer.html">SpriteRenderer</a> rend;<br /><br />    void OnEnable()
+    {
+        // Fetch the properties from the MyScript script and set up the SerializedProperties.
+        m_Name = serializedObject.FindProperty("MyName");
+        m_Order = serializedObject.FindProperty("MyOrder");
+    }<br /><br />    void CheckRenderer()
+    {
+        //Check that the <a href="GameObject.html">GameObject</a> you select in the hierarchy has a <a href="SpriteRenderer.html">SpriteRenderer</a> component
+        if (Selection.activeGameObject.GetComponent&lt;<a href="SpriteRenderer.html">SpriteRenderer</a>&gt;())
+        {
+            //Fetch the <a href="SpriteRenderer.html">SpriteRenderer</a> from the selected <a href="GameObject.html">GameObject</a>
+            rend = Selection.activeGameObject.GetComponent&lt;<a href="SpriteRenderer.html">SpriteRenderer</a>&gt;();
+            //Change the sorting layer to the name you specify in the <a href="UIElements.TextField.html">TextField</a>
+            //Changes to Default if the name you enter doesn't exist
+            rend.sortingLayerName = m_Name.stringValue;
+            //Change the order (or priority) of the layer
+            rend.sortingOrder = m_Order.intValue;
+        }
+    }<br /><br />    public override void OnInspectorGUI()
+    {
+        // <a href="Experimental.PlayerLoop.Update.html">Update</a> the serializedProperty - always do this in the beginning of OnInspectorGUI.
+        serializedObject.Update();
+        //Create fields for each <a href="SerializedProperty.html">SerializedProperty</a>
+        <a href="EditorGUILayout.PropertyField.html">EditorGUILayout.PropertyField</a>(m_Name, new <a href="GUIContent.html">GUIContent</a>("Name"));
+        <a href="EditorGUILayout.PropertyField.html">EditorGUILayout.PropertyField</a>(m_Order, new <a href="GUIContent.html">GUIContent</a>("Order"));
+        //<a href="Experimental.PlayerLoop.Update.html">Update</a> the name and order of the <a href="Renderer.html">Renderer</a> properties
+        CheckRenderer();<br /><br />        // Apply changes to the serializedProperty - always do this in the end of OnInspectorGUI.
+        serializedObject.ApplyModifiedProperties();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

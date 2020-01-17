@@ -1,0 +1,26 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: WWW.audioClip</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Removed in version 2019.2.18</b><br /></div><h1 class="heading inherit"><a href="WWW.html">WWW</a>.audioClip</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public Object <span class="sig-kw">audioClip</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Returns a <a href="AudioClip.html">AudioClip</a> generated from the downloaded data (Read Only).</p></div><div class="subsection"><p>The data must be an audio clip in Ogg(Standalones), MP3(phones), WAV, XM, IT, MOD or S3M format.
+The clip will be downloaded completely before it's ready to play.
+Use the overloaded GetAudioClip (bool threeD, bool stream) to stream the audio, instead of downloading the entire clip.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public string url;
+    public <a href="AudioSource.html">AudioSource</a> source;<br /><br />    IEnumerator Start()
+    {
+        source = GetComponent&lt;<a href="AudioSource.html">AudioSource</a>&gt;();
+        using (var www = new WWW(url))
+        {
+            yield return www;
+            source.clip = www.GetAudioClip();
+        }
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        if (!source.isPlaying &amp;&amp; source.clip.isReadyToPlay)
+            source.Play();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

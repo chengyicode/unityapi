@@ -1,0 +1,35 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Debug.developerConsoleVisible</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Debug.html">Debug</a>.developerConsoleVisible</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">developerConsoleVisible</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Reports whether the development console is visible. The development console cannot be made to appear using:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class OpenDevConsoleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        <a href="Debug-developerConsoleVisible.html">Debug.developerConsoleVisible</a> = true;
+    }
+}
+</pre>
+      </div><div class="subsection"><p>As it will automatically appear once an error has been logged. For example:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class LogErrorScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        <a href="Debug.LogError.html">Debug.LogError</a>("I am an <a href="PackageManager.Error.html">Error</a>");
+    }
+}
+</pre>
+      </div><div class="subsection"><p>However, you can close the development console once opened by using:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class CloseDevConsoleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        <a href="Debug-developerConsoleVisible.html">Debug.developerConsoleVisible</a> = false;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

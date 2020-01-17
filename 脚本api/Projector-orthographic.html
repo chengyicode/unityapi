@@ -1,0 +1,16 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Projector.orthographic</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Projector.html">Projector</a>.orthographic</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Projector.html' title='Go to Projector Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public bool <span class="sig-kw">orthographic</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Is the projection orthographic (<em>true</em>) or perspective (<em>false</em>)?</p></div><div class="subsection"><p>When orthographic is <em>true</em>, projection is defined by <a href="Projector-orthographicSize.html">orthographicSize</a>.<br />
+When orthographic is <em>false</em>, projection is defined by <a href="Projector-fieldOfView.html">fieldOfView</a>.
+See Also: <a href="../Manual/class-Projector.html">projector component</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        <a href="Projector.html">Projector</a> proj = GetComponent&lt;<a href="Projector.html">Projector</a>&gt;();
+        proj.orthographic = true;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

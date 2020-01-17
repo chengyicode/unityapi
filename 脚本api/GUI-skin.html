@@ -1,0 +1,35 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: GUI.skin</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="GUI.html">GUI</a>.skin</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="GUISkin.html">GUISkin</a> <span class="sig-kw">skin</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The global skin to use.</p></div><div class="subsection"><p>You can set this at any point to change the look of your GUI. If you set it to null, the skin will revert to the default Unity skin.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Press space to change between added <a href="GUI.html">GUI</a> skins.<br /><br />using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="GUISkin.html">GUISkin</a>[] s1;<br /><br />    private float hSliderValue = 0.0F;
+    private float vSliderValue = 0.0F;
+    private float hSValue = 0.0F;
+    private float vSValue = 0.0F;
+    private int cont = 0;<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        if (<a href="Input.GetKeyDown.html">Input.GetKeyDown</a>(<a href="KeyCode.Space.html">KeyCode.Space</a>))
+        {
+            cont++;
+        }
+    }<br /><br />    void OnGUI()
+    {
+        <a href="GUI-skin.html">GUI.skin</a> = s1[cont % s1.Length];<br /><br />        if (s1.Length == 0)
+        {
+            <a href="Debug.LogError.html">Debug.LogError</a>("Assign at least 1 skin on the array");
+            return;
+        }<br /><br />        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(10, 10, 100, 20), "Hello World!");
+        <a href="GUI.Box.html">GUI.Box</a>(new <a href="Rect.html">Rect</a>(10, 50, 50, 50), "A BOX");<br /><br />        if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(10, 110, 70, 30), "A button"))
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("<a href="UIElements.Button.html">Button</a> has been pressed");
+        }<br /><br />        hSliderValue = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(10, 150, 100, 30), hSliderValue, 0.0F, 10.0F);
+        vSliderValue = <a href="GUI.VerticalSlider.html">GUI.VerticalSlider</a>(new <a href="Rect.html">Rect</a>(10, 170, 100, 30), vSliderValue, 10.0F, 0.0F);
+        hSValue = <a href="GUI.HorizontalScrollbar.html">GUI.HorizontalScrollbar</a>(new <a href="Rect.html">Rect</a>(10, 210, 100, 30), hSValue, 1.0F, 0.0F, 10.0F);
+        vSValue = <a href="GUI.VerticalScrollbar.html">GUI.VerticalScrollbar</a>(new <a href="Rect.html">Rect</a>(10, 230, 100, 30), vSValue, 1.0F, 10.0F, 0.0F);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

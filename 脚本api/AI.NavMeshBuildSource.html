@@ -1,0 +1,26 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: NavMeshBuildSource</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">NavMeshBuildSource</h1><div class="clear"></div><p class="cl mb0 left mr10">struct in
+          UnityEngine.AI</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.AIModule.html" class="cl">UnityEngine.AIModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>The input to the NavMesh builder is a list of NavMesh build sources.</p></div><div class="subsection"><p>Their shape can be one of the following: mesh, terrain, box, sphere, or capsule. Each of them is described by a NavMeshBuildSource struct.<br /><br />You can specify a build source by filling a NavMeshBuildSource struct and adding that to the list of sources that are passed to the bake function. Alternatively, you can use the collect API to quickly create NavMesh build sources from available render meshes or physics colliders. See <a href="AI.NavMeshBuilder.CollectSources.html">NavMeshBuilder.CollectSources</a>.<br /><br />If you use this function at runtime, any meshes with read/write access disabled will not be processed or included in the final NavMesh. See <a href="Mesh-isReadable.html">Mesh.isReadable</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.AI;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Make a build source for a box in local space
+    public <a href="AI.NavMeshBuildSource.html">NavMeshBuildSource</a> BoxSource10x10()
+    {
+        var src = new <a href="AI.NavMeshBuildSource.html">NavMeshBuildSource</a>();
+        src.transform = transform.localToWorldMatrix;
+        src.shape = <a href="AI.NavMeshBuildSourceShape.Box.html">NavMeshBuildSourceShape.Box</a>;
+        src.size = new <a href="Vector3.html">Vector3</a>(10.0f, 0.1f, 10.0f);
+        return src;
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Properties 属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="AI.NavMeshBuildSource-area.html">area</a></td><td class="desc"></td><td class="desc1">Describes the area type of the NavMesh surface for this object.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AI.NavMeshBuildSource-component.html">component</a></td><td class="desc"></td><td class="desc1">Points to the owning component - if available, otherwise null.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AI.NavMeshBuildSource-shape.html">shape</a></td><td class="desc"></td><td class="desc1">The type of the shape this source describes. See Also: NavMeshBuildSourceShape.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AI.NavMeshBuildSource-size.html">size</a></td><td class="desc"></td><td class="desc1">Describes the dimensions of the shape.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AI.NavMeshBuildSource-sourceObject.html">sourceObject</a></td><td class="desc"></td><td class="desc1">Describes the object referenced for Mesh and Terrain types of input sources.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AI.NavMeshBuildSource-transform.html">transform</a></td><td class="desc"></td><td class="desc1">Describes the local to world transformation matrix of the build source. That is, position and orientation and scale of the shape.</td></tr>
+    </table></div></div></div></div></body></html>

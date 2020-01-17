@@ -1,0 +1,19 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Rigidbody.AddForceAtPosition</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Rigidbody.html">Rigidbody</a>.AddForceAtPosition</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Rigidbody.html' title='Go to Rigidbody Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">AddForceAtPosition</span>(<a href="Vector3.html">Vector3</a> <span class="sig-kw">force</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">position</span>,
+<a href="ForceMode.html">ForceMode</a> <span class="sig-kw">mode</span> = ForceMode.Force);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">force</td><td class="desc"></td><td class="desc1">Force vector in world coordinates.</td></tr><tr><td class="name lbl">position</td><td class="desc"></td><td class="desc1">Position in world coordinates.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Applies <code class="varname">force</code> at <code class="varname">position</code>. As a result this will apply a torque and force on the object.</p></div><div class="subsection"><p>For realistic effects <code class="varname">position</code> should be approximately in the range of the surface of the rigidbody.
+This is most commonly used for explosions. When applying explosions it is best to apply forces over several frames instead of just one.
+Note that when <code class="varname">position</code> is far away from the center of the rigidbody the applied torque will be unrealistically large.<br /><br />Force can be applied only to an active rigidbody. If a GameObject is inactive, AddForceAtPosition has no effect.<br /><br />Wakes up the Rigidbody by default. If the force size is zero then the Rigidbody will not be woken up.<br /><br />See Also: <a href="Rigidbody.AddForce.html">AddForce</a>, <a href="Rigidbody.AddRelativeForce.html">AddRelativeForce</a>, <a href="Rigidbody.AddTorque.html">AddTorque</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void ApplyForce(<a href="Rigidbody.html">Rigidbody</a> body)
+    {
+        <a href="Vector3.html">Vector3</a> direction = body.transform.position - transform.position;
+        body.AddForceAtPosition(direction.normalized, transform.position);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

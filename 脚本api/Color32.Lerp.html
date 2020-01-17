@@ -1,0 +1,18 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Color32.Lerp</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Color32.html">Color32</a>.Lerp</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Color32.html">Color32</a> <span class="sig-kw">Lerp</span>(<a href="Color32.html">Color32</a> <span class="sig-kw">a</span>,
+<a href="Color32.html">Color32</a> <span class="sig-kw">b</span>,
+float <span class="sig-kw">t</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Linearly interpolates between colors <code class="varname">a</code> and <code class="varname">b</code> by <code class="varname">t</code>.</p></div><div class="subsection"><p>
+        <code class="varname">t</code> is clamped between 0 and 1. When <code class="varname">t</code> is 0 returns <code class="varname">a</code>. When <code class="varname">t</code> is 1 returns <code class="varname">b</code>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="Color32.html">Color32</a> lerpedColor = <a href="Color-white.html">Color.white</a>;
+    <a href="Color32.html">Color32</a> white32 = <a href="Color-white.html">Color.white</a>;
+    <a href="Color32.html">Color32</a> black32 = <a href="Color-black.html">Color.black</a>;<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        lerpedColor = <a href="Color32.Lerp.html">Color32.Lerp</a>(white32, black32, <a href="Time-time.html">Time.time</a>);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="Color32.LerpUnclamped.html">LerpUnclamped</a>.</p></div></div></div></div></body></html>

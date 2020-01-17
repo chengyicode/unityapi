@@ -1,0 +1,78 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Input</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">Input</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.InputLegacyModule.html" class="cl">UnityEngine.InputLegacyModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Interface into the Input system.</p></div><div class="subsection"><p>Use this class to read the axes set up in the <a href="../Manual/ConventionalGameInput.html">Conventional Game Input</a>, and to access multi-touch/accelerometer data on mobile devices.<br /><br />To read an axis use <a href="Input.GetAxis.html">Input.GetAxis</a> with one of the following default axes:
+"Horizontal" and "Vertical" are mapped to joystick, <code class="varname">A</code>, <code class="varname">W</code>, <code class="varname">S</code>, <code class="varname">D</code> and the arrow keys.
+"Mouse X" and "Mouse Y" are mapped to the mouse delta.
+"Fire1", "Fire2" "Fire3" are mapped to <code class="varname">Ctrl</code>, <code class="varname">Alt</code>, <code class="varname">Cmd</code> keys and three mouse or joystick buttons.
+New input axes can be added. See <a href="../Manual/class-InputManager.html">Input Manager</a> for this.<br /><br />If you are using input for any kind of movement behaviour use <a href="Input.GetAxis.html">Input.GetAxis</a>.
+It gives you smoothed and configurable input that can be mapped to keyboard, joystick or mouse.
+Use <a href="Input.GetButton.html">Input.GetButton</a> for action like events only. Do not use it for movement. <a href="Input.GetAxis.html">Input.GetAxis</a> will make the script code more small and simple.<br /><br />Note also that the <a href="Input.html">Input</a> flags are not reset until <code class="varname">Update</code>. It is suggested you make all the <a href="Input.html">Input</a> calls in the <code class="varname">Update</code> Loop.<br /><br />See Also: <a href="KeyCode.html">KeyCode</a> which lists all of the key press, mouse and joystick options.<br /><br /><strong>Mobile Devices:</strong><br /><br />iOS and Android devices are capable of tracking multiple fingers touching the screen simultaneously.
+You can access data on the status of each finger touching screen during the last frame by accessing the <a href="Input-touches.html">Input.touches</a> property array.<br /><br />As a device moves, its accelerometer hardware reports linear acceleration changes along the three primary axes in three-dimensional space.
+You can use this data to detect both the current orientation of the device (relative to the ground) and any immediate changes to that orientation.<br /><br />Acceleration along each axis is reported directly by the hardware as G-force values.
+A value of 1.0 represents a load of about +1g along a given axis while a value of -1.0 represents -1g.
+If you hold the device upright (with the home button at the bottom) in front of you, the X axis is positive along the right,
+the Y axis is positive directly up, and the Z axis is positive pointing toward you.<br /><br />You can read the <a href="Input-acceleration.html">Input.acceleration</a> property to get the accelerometer reading.
+You can also use the <a href="Input-deviceOrientation.html">Input.deviceOrientation</a> property to get a discrete evaluation of the device's orientation in three-dimensional space.
+Detecting a change in orientation can be useful if you want to create game behaviors when the user rotates the device to hold it differently.<br /><br />Note that the accelerometer hardware can be polled more than once per frame.
+To access all accelerometer samples since the last frame, you can read the <a href="Input-accelerationEvents.html">Input.accelerationEvents</a> property array.
+This can be useful when reconstructing player motions, feeding acceleration data into a predictor, or implementing other precise motion analysis.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        if (<a href="Input.GetButtonDown.html">Input.GetButtonDown</a>("Fire1"))
+        {
+            <a href="Debug.Log.html">Debug.Log</a>(<a href="Input-mousePosition.html">Input.mousePosition</a>);
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>This component relates to legacy methods for drawing UI textures and images to
+the screen. You should instead use UI system. This is also
+unrelated to the IMGUI system.</p></div><div class="subsection"><h2>Static Properties</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Input-acceleration.html">acceleration</a></td><td class="desc"></td><td class="desc1">Last measured linear acceleration of a device in three-dimensional space. (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Input-accelerationEventCount.html">accelerationEventCount</a></td><td class="desc"></td><td class="desc1">Number of acceleration measurements which occurred during last frame.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Input-accelerationEvents.html">accelerationEvents</a></td><td class="desc"></td><td class="desc1">Returns list of acceleration measurements which occurred during the last frame. (Read Only) (Allocates temporary variables).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Input-anyKey.html">anyKey</a></td><td class="desc"></td><td class="desc1">Is any key or mouse button currently held down? (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Input-anyKeyDown.html">anyKeyDown</a></td><td class="desc"></td><td class="desc1">Returns true the first frame the user hits any key or mouse button. (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Input-backButtonLeavesApp.html">backButtonLeavesApp</a></td><td class="desc"></td><td class="desc1">Should  Back button quit the application?Only usable on Android, Windows Phone or Windows Tablets.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Input-compass.html">compass</a></td><td class="desc"></td><td class="desc1">Property for accessing compass (handheld devices only). (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Input-compensateSensors.html">compensateSensors</a></td><td class="desc"></td><td class="desc1">This property controls if input sensors should be compensated for screen orientation.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Input-compositionCursorPos.html">compositionCursorPos</a></td><td class="desc"></td><td class="desc1">The current text input position used by IMEs to open windows.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Input-compositionString.html">compositionString</a></td><td class="desc"></td><td class="desc1">The current IME composition string being typed by the user.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Input-deviceOrientation.html">deviceOrientation</a></td><td class="desc"></td><td class="desc1">Device physical orientation as reported by OS. (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Input-gyro.html">gyro</a></td><td class="desc"></td><td class="desc1">Returns default gyroscope.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Input-imeCompositionMode.html">imeCompositionMode</a></td><td class="desc"></td><td class="desc1">Controls enabling and disabling of IME input composition.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Input-imeIsSelected.html">imeIsSelected</a></td><td class="desc"></td><td class="desc1">Does the user have an IME keyboard input source selected?</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Input-inputString.html">inputString</a></td><td class="desc"></td><td class="desc1">Returns the keyboard input entered this frame. (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Input-location.html">location</a></td><td class="desc"></td><td class="desc1">Property for accessing device location (handheld devices only). (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Input-mousePosition.html">mousePosition</a></td><td class="desc"></td><td class="desc1">The current mouse position in pixel coordinates. (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Input-mousePresent.html">mousePresent</a></td><td class="desc"></td><td class="desc1">Indicates if a mouse device is detected.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Input-mouseScrollDelta.html">mouseScrollDelta</a></td><td class="desc"></td><td class="desc1">The current mouse scroll delta. (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Input-multiTouchEnabled.html">multiTouchEnabled</a></td><td class="desc"></td><td class="desc1">Property indicating whether the system handles multiple touches.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Input-simulateMouseWithTouches.html">simulateMouseWithTouches</a></td><td class="desc"></td><td class="desc1">Enables/Disables mouse simulation with touches. By default this option is enabled.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Input-stylusTouchSupported.html">stylusTouchSupported</a></td><td class="desc"></td><td class="desc1">Returns true when Stylus Touch is supported by a device or platform.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Input-touchCount.html">touchCount</a></td><td class="desc"></td><td class="desc1">Number of touches. Guaranteed not to change throughout the frame. (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Input-touches.html">touches</a></td><td class="desc"></td><td class="desc1">Returns list of objects representing status of all touches during last frame. (Read Only) (Allocates temporary variables).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Input-touchPressureSupported.html">touchPressureSupported</a></td><td class="desc"></td><td class="desc1">Bool value which let's users check if touch pressure is supported.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Input-touchSupported.html">touchSupported</a></td><td class="desc"></td><td class="desc1">Returns whether the device on which application is currently running supports touch input.</td></tr>
+    </table></div><div class="subsection"><h2>Static Methods   静态方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Input.GetAccelerationEvent.html">GetAccelerationEvent</a></td><td class="desc"></td><td class="desc1">Returns specific acceleration measurement which occurred during last frame. (Does not allocate temporary variables).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Input.GetAxis.html">GetAxis</a></td><td class="desc"></td><td class="desc1">Returns the value of the virtual axis identified by axisName.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Input.GetAxisRaw.html">GetAxisRaw</a></td><td class="desc"></td><td class="desc1">Returns the value of the virtual axis identified by axisName with no smoothing filtering applied.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Input.GetButton.html">GetButton</a></td><td class="desc"></td><td class="desc1">Returns true while the virtual button identified by buttonName is held down.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Input.GetButtonDown.html">GetButtonDown</a></td><td class="desc"></td><td class="desc1">Returns true during the frame the user pressed down the virtual button identified by buttonName.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Input.GetButtonUp.html">GetButtonUp</a></td><td class="desc"></td><td class="desc1">Returns true the first frame the user releases the virtual button identified by buttonName.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Input.GetJoystickNames.html">GetJoystickNames</a></td><td class="desc"></td><td class="desc1">Returns an array of strings describing the connected joysticks.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Input.GetKey.html">GetKey</a></td><td class="desc"></td><td class="desc1">Returns true while the user holds down the key identified by name.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Input.GetKeyDown.html">GetKeyDown</a></td><td class="desc"></td><td class="desc1">Returns true during the frame the user starts pressing down the key identified by name.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Input.GetKeyUp.html">GetKeyUp</a></td><td class="desc"></td><td class="desc1">Returns true during the frame the user releases the key identified by name.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Input.GetMouseButton.html">GetMouseButton</a></td><td class="desc"></td><td class="desc1">Returns whether the given mouse button is held down.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Input.GetMouseButtonDown.html">GetMouseButtonDown</a></td><td class="desc"></td><td class="desc1">Returns true during the frame the user pressed the given mouse button.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Input.GetMouseButtonUp.html">GetMouseButtonUp</a></td><td class="desc"></td><td class="desc1">Returns true during the frame the user releases the given mouse button.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Input.GetTouch.html">GetTouch</a></td><td class="desc"></td><td class="desc1">Call Input.GetTouch to obtain a Touch struct.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Input.IsJoystickPreconfigured.html">IsJoystickPreconfigured</a></td><td class="desc"></td><td class="desc1">Determine whether a particular joystick model has been preconfigured by Unity. (Linux-only).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Input.ResetInputAxes.html">ResetInputAxes</a></td><td class="desc"></td><td class="desc1">Resets all input. After ResetInputAxes all axes return to 0 and all buttons return to 0 for one frame.</td></tr>
+    </table></div></div></div></div></body></html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorUtility.DisplayProgressBar</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorUtility.html">EditorUtility</a>.DisplayProgressBar</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">DisplayProgressBar</span>(string <span class="sig-kw">title</span>,
+string <span class="sig-kw">info</span>,
+float <span class="sig-kw">progress</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Displays or updates a progress bar.</p></div><div class="subsection"><p>The window title will be set to <code class="varname">title</code> and the info will be set to <code class="varname">info</code>.
+Progress should be set to a value between 0.0 and 1.0, where 0 means nothing done and 1.0 means 100% completed.<br /><br />This is useful if you perform any lengthy operations in your editor scripts or wizards,
+and want to notify the user about the progress.<br /><br />See Also: <a href="EditorUtility.DisplayCancelableProgressBar.html">DisplayCancelableProgressBar</a>, <a href="EditorUtility.ClearProgressBar.html">ClearProgressBar</a> functions.<br /><br /><img src="../StaticFiles/ScriptRefImages/EditorUtilityDisplayProgressBar.png" /><br />
+<em>Progress bar in the editor.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;
+using System.Collections;<br /><br />// Simple <a href="Editor.html">Editor</a> Script that fills a bar in the given seconds.
+public class EditorUtilityDisplayProgressBar : <a href="EditorWindow.html">EditorWindow</a>
+{
+    public float secs = 10f;
+    public float startVal = 0f;
+    public float progress = 0f;
+    [<a href="MenuItem.html">MenuItem</a>("Examples/Progress Bar Usage")]
+    static void Init()
+    {
+        UnityEditor.EditorWindow window = GetWindow(typeof(EditorUtilityDisplayProgressBar));
+        window.Show();
+    }<br /><br />    void OnGUI()
+    {
+        secs = <a href="EditorGUILayout.FloatField.html">EditorGUILayout.FloatField</a>("<a href="Time.html">Time</a> to wait:", secs);
+        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("<a href="Display.html">Display</a> bar"))
+        {
+            if (secs &lt; 1)
+            {
+                <a href="Debug.LogError.html">Debug.LogError</a>("Seconds should be bigger than 1");
+                return;
+            }
+            startVal = (float)<a href="EditorApplication-timeSinceStartup.html">EditorApplication.timeSinceStartup</a>;
+        }
+        if (progress &lt; secs)
+            <a href="EditorUtility.DisplayProgressBar.html">EditorUtility.DisplayProgressBar</a>("Simple Progress Bar", "Shows a progress bar for the given seconds", progress / secs);
+        else
+            <a href="EditorUtility.ClearProgressBar.html">EditorUtility.ClearProgressBar</a>();
+        progress = (float)(<a href="EditorApplication-timeSinceStartup.html">EditorApplication.timeSinceStartup</a> - startVal);
+    }<br /><br />    void OnInspectorUpdate()
+    {
+        Repaint();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

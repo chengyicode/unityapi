@@ -1,0 +1,16 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Analytics.Analytics.SetUserBirthYear</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Analytics.Analytics.html">Analytics</a>.SetUserBirthYear</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Analytics.AnalyticsResult.html">Analytics.AnalyticsResult</a> <span class="sig-kw">SetUserBirthYear</span>(int <span class="sig-kw">birthYear</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">birthYear</td><td class="desc"></td><td class="desc1">Birth year of user. Must be 4-digit year format, only.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>User Demographics (optional).</p></div><div class="subsection"><p>Depending on the genre of your project, creating custom segments around gender and age of your users may interest you. Whether you're receiving this information on signup of your project, or from a third-party SDK, eg: Facebook, you can send these demographics to Unity Analytics.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System;
+using UnityEngine;
+using UnityEngine.Analytics;<br /><br />public class GameLoginMonoBehaviour : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public void OnLogin()
+    {
+        int birthYear = 2015;
+        <a href="Analytics.Analytics.SetUserBirthYear.html">Analytics.SetUserBirthYear</a>(birthYear);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

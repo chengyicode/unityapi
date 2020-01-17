@@ -1,0 +1,25 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AudioSource.spread</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="AudioSource.html">AudioSource</a>.spread</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-AudioSource.html' title='Go to AudioSource Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public float <span class="sig-kw">spread</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Sets the spread angle (in degrees) of a 3d stereo or multichannel sound in speaker space.</p></div><div class="subsection"><p>0 = all sound channels are located at the same speaker location and is 'mono'. 360 = all subchannels are located at the opposite speaker location to the speaker location that it should be according to 3D position. Default = 0.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // when any <a href="AudioSource.html">AudioSource</a> goes trough this transform, it will set it as 'mono'
+    // and will restore the value to 3D effect after exiting
+    // Make sure the audio source has a collider.
+    void OnTriggerEnter(<a href="Collider.html">Collider</a> other)
+    {
+        <a href="AudioSource.html">AudioSource</a> audio = other.GetComponent&lt;<a href="AudioSource.html">AudioSource</a>&gt;();<br /><br />        if (audio)
+        {
+            audio.spread = 0;
+        }
+    }<br /><br />    void OnTriggerExit(<a href="Collider.html">Collider</a> other)
+    {
+        <a href="AudioSource.html">AudioSource</a> audio = other.GetComponent&lt;<a href="AudioSource.html">AudioSource</a>&gt;();<br /><br />        if (audio)
+        {
+            audio.spread = 360;
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

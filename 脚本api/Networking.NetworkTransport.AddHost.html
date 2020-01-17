@@ -1,0 +1,25 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Networking.NetworkTransport.AddHost</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Method group is Obsolete</b><br /></div><h1 class="heading inherit"><a href="Networking.NetworkTransport.html">NetworkTransport</a>.AddHost</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public static int <span class="sig-kw">AddHost</span>(HostTopology <span class="sig-kw">topology</span>,
+int <span class="sig-kw">port</span>,
+string <span class="sig-kw">ip</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">topology</td><td class="desc"></td><td class="desc1">The Networking.HostTopology associated with the host.</td></tr><tr><td class="name lbl">port</td><td class="desc"></td><td class="desc1">Port to bind to (when 0 is selected, the OS will choose a port at random).</td></tr><tr><td class="name lbl">ip</td><td class="desc"></td><td class="desc1">IP address to bind to.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>int</strong>
+        Returns the ID of the host that was created.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Creates a host based on Networking.HostTopology.</p></div><div class="subsection"><p>An optional host IP address can be provided. This is usually useful on machines where multiple Ethernet cards are available.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.Networking;<br /><br />public class AddHostExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    int channelId;
+    int hostId;
+    void Start()
+    {
+        // Init Transport using default values.
+        NetworkTransport.Init();<br /><br />        // Create a connection_config and add a Channel.
+        ConnectionConfig connection_config = new ConnectionConfig();
+        channelId = connection_config.AddChannel(<a href="Networking.QosType.Reliable.html">QosType.Reliable</a>);<br /><br />        // Create a topology based on the connection config.
+        HostTopology topology = new HostTopology(connection_config, 10);<br /><br />        // Create a host based on the topology we just created, and bind the socket to port 12345.
+        hostId = NetworkTransport.AddHost(topology, 12345);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

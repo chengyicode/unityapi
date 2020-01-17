@@ -1,0 +1,78 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AssetBundle</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">AssetBundle</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Inherits from:<a href="Object.html" class="cl">Object</a></p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.AssetBundleModule.html" class="cl">UnityEngine.AssetBundleModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>AssetBundles let you stream additional assets via the UnityWebRequest class and instantiate them at runtime. AssetBundles are created via BuildPipeline.BuildAssetBundle.</p></div><div class="subsection"><p>Note that bundles are not compatible between platforms. A bundle built for any of the standalone
+platforms can only be loaded on that platform but not others.
+Further example, a bundle built for iOS is not compatible with Android and vice versa. One difference
+is shaders which are different between devices, as are textures.<br /><br />See Also: <a href="Networking.UnityWebRequestAssetBundle.GetAssetBundle.html">UnityWebRequestAssetBundle.GetAssetBundle</a>, <a href="../Manual/LoadingResourcesatRuntime.html">Loading Resources at Runtime</a>, <a href="BuildPipeline.BuildAssetBundle.html">BuildPipeline.BuildAssetBundle</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.Collections;
+using UnityEngine;
+using UnityEngine.Networking;<br /><br />public class SampleBehaviour : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    IEnumerator Start()
+    {
+        var uwr = <a href="Networking.UnityWebRequestAssetBundle.GetAssetBundle.html">UnityWebRequestAssetBundle.GetAssetBundle</a>("http://myserver/myBundle.unity3d");
+        yield return uwr.SendWebRequest();<br /><br />        // Get an asset from the bundle and instantiate it.
+        <a href="AssetBundle.html">AssetBundle</a> bundle = <a href="Networking.DownloadHandlerAssetBundle.GetContent.html">DownloadHandlerAssetBundle.GetContent</a>(uwr);
+        var loadAsset = bundle.LoadAssetAsync&lt;<a href="GameObject.html">GameObject</a>&gt;("Assets/Players/MainPlayer.prefab");
+        yield return loadAsset;<br /><br />        Instantiate(loadAsset.asset);
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Properties 属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="AssetBundle-isStreamedSceneAssetBundle.html">isStreamedSceneAssetBundle</a></td><td class="desc"></td><td class="desc1">Return true if the AssetBundle is a streamed Scene AssetBundle.</td></tr>
+    </table></div><div class="subsection"><h2>Public Methods 公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="AssetBundle.Contains.html">Contains</a></td><td class="desc"></td><td class="desc1">Check if an AssetBundle contains a specific object.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AssetBundle.GetAllAssetNames.html">GetAllAssetNames</a></td><td class="desc"></td><td class="desc1">Return all asset names in the AssetBundle.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AssetBundle.GetAllScenePaths.html">GetAllScenePaths</a></td><td class="desc"></td><td class="desc1">Return all the Scene asset paths (paths to *.unity assets) in the AssetBundle.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AssetBundle.LoadAllAssets.html">LoadAllAssets</a></td><td class="desc"></td><td class="desc1">Loads all assets contained in the asset bundle that inherit from type.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AssetBundle.LoadAllAssetsAsync.html">LoadAllAssetsAsync</a></td><td class="desc"></td><td class="desc1">Loads all assets contained in the asset bundle asynchronously.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AssetBundle.LoadAsset.html">LoadAsset</a></td><td class="desc"></td><td class="desc1">Loads asset with name from the bundle.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AssetBundle.LoadAssetAsync.html">LoadAssetAsync</a></td><td class="desc"></td><td class="desc1">Asynchronously loads asset with name from the bundle.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AssetBundle.LoadAssetWithSubAssets.html">LoadAssetWithSubAssets</a></td><td class="desc"></td><td class="desc1">Loads asset and sub assets with name from the bundle.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AssetBundle.LoadAssetWithSubAssetsAsync.html">LoadAssetWithSubAssetsAsync</a></td><td class="desc"></td><td class="desc1">Loads asset with sub assets with name from the bundle asynchronously.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AssetBundle.Unload.html">Unload</a></td><td class="desc"></td><td class="desc1">Unloads all assets in the bundle.</td></tr>
+    </table></div><div class="subsection"><h2>Static Methods 静态方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="AssetBundle.GetAllLoadedAssetBundles.html">GetAllLoadedAssetBundles</a></td><td class="desc"></td><td class="desc1">To use when you need to get a list of all the currently loaded Asset Bundles.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AssetBundle.LoadFromFile.html">LoadFromFile</a></td><td class="desc"></td><td class="desc1">Synchronously loads an AssetBundle from a file on disk.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AssetBundle.LoadFromFileAsync.html">LoadFromFileAsync</a></td><td class="desc"></td><td class="desc1">Asynchronously loads an AssetBundle from a file on disk.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AssetBundle.LoadFromMemory.html">LoadFromMemory</a></td><td class="desc"></td><td class="desc1">Synchronously create an AssetBundle from a memory region.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AssetBundle.LoadFromMemoryAsync.html">LoadFromMemoryAsync</a></td><td class="desc"></td><td class="desc1">Asynchronously create an AssetBundle from a memory region.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AssetBundle.LoadFromStream.html">LoadFromStream</a></td><td class="desc"></td><td class="desc1">Synchronously loads an AssetBundle from a managed Stream.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AssetBundle.LoadFromStreamAsync.html">LoadFromStreamAsync</a></td><td class="desc"></td><td class="desc1">Asynchronously loads an AssetBundle from a managed Stream.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AssetBundle.RecompressAssetBundleAsync.html">RecompressAssetBundleAsync</a></td><td class="desc"></td><td class="desc1">Asynchronously recompress a downloaded/stored AssetBundle from one BuildCompression to another.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="AssetBundle.UnloadAllAssetBundles.html">UnloadAllAssetBundles</a></td><td class="desc"></td><td class="desc1">Unloads all currently loaded Asset Bundles.</td></tr>
+    </table></div><div class="subsection"><h2>Inherited Members 继承成员</h2>
+      
+      <div class="subsection"><h2>Properties 属性</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-hideFlags.html">hideFlags</a></td><td class="desc"></td><td class="desc1">Should the object be hidden, saved with the Scene or modifiable by the user?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-name.html">name</a></td><td class="desc"></td><td class="desc1">The name of the object.</td></tr>
+      </table></div>
+      
+      
+      
+      <div class="subsection"><h2>Public Methods 公共方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.GetInstanceID.html">GetInstanceID</a></td><td class="desc"></td><td class="desc1">Returns the instance id of the object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.ToString.html">ToString</a></td><td class="desc"></td><td class="desc1">Returns the name of the object.</td></tr>
+      </table></div>
+      
+      <div class="subsection"><h2>Static Methods 静态方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.Destroy.html">Destroy</a></td><td class="desc"></td><td class="desc1">Removes a GameObject, component or asset.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.DestroyImmediate.html">DestroyImmediate</a></td><td class="desc"></td><td class="desc1">Destroys the object obj immediately. You are strongly recommended to use Destroy instead.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.DontDestroyOnLoad.html">DontDestroyOnLoad</a></td><td class="desc"></td><td class="desc1">Do not destroy the target Object when loading a new Scene.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectOfType.html">FindObjectOfType</a></td><td class="desc"></td><td class="desc1">Returns the first active loaded object of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectsOfType.html">FindObjectsOfType</a></td><td class="desc"></td><td class="desc1">Returns a list of all active loaded objects of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.Instantiate.html">Instantiate</a></td><td class="desc"></td><td class="desc1">Clones the object original and returns the clone.</td></tr>
+      </table></div>
+      <div class="subsection"><h2>Operators   运算符</h2>
+<h2>Operators   运算符</h2>
+
+<h2>Operators   运算符</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_Object.html">bool</a></td><td class="desc"></td><td class="desc1">Does the object exist?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_ne.html">operator !=</a></td><td class="desc"></td><td class="desc1">Compares if two objects refer to a different object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_eq.html">operator ==</a></td><td class="desc"></td><td class="desc1">Compares two object references to see if they refer to the same object.</td></tr>
+      </table></div>
+      
+      
+      
+    </div></div></div></div></body></html>

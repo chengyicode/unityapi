@@ -1,0 +1,28 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: GUI.ModalWindow</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="GUI.html">GUI</a>.ModalWindow</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Rect.html">Rect</a> <span class="sig-kw">ModalWindow</span>(int <span class="sig-kw">id</span>,
+<a href="Rect.html">Rect</a> <span class="sig-kw">clientRect</span>,
+<a href="GUI.WindowFunction.html">GUI.WindowFunction</a> <span class="sig-kw">func</span>,
+string <span class="sig-kw">text</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Rect.html">Rect</a> <span class="sig-kw">ModalWindow</span>(int <span class="sig-kw">id</span>,
+<a href="Rect.html">Rect</a> <span class="sig-kw">clientRect</span>,
+<a href="GUI.WindowFunction.html">GUI.WindowFunction</a> <span class="sig-kw">func</span>,
+<a href="Texture.html">Texture</a> <span class="sig-kw">image</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Rect.html">Rect</a> <span class="sig-kw">ModalWindow</span>(int <span class="sig-kw">id</span>,
+<a href="Rect.html">Rect</a> <span class="sig-kw">clientRect</span>,
+<a href="GUI.WindowFunction.html">GUI.WindowFunction</a> <span class="sig-kw">func</span>,
+<a href="GUIContent.html">GUIContent</a> <span class="sig-kw">content</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Rect.html">Rect</a> <span class="sig-kw">ModalWindow</span>(int <span class="sig-kw">id</span>,
+<a href="Rect.html">Rect</a> <span class="sig-kw">clientRect</span>,
+<a href="GUI.WindowFunction.html">GUI.WindowFunction</a> <span class="sig-kw">func</span>,
+string <span class="sig-kw">text</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Rect.html">Rect</a> <span class="sig-kw">ModalWindow</span>(int <span class="sig-kw">id</span>,
+<a href="Rect.html">Rect</a> <span class="sig-kw">clientRect</span>,
+<a href="GUI.WindowFunction.html">GUI.WindowFunction</a> <span class="sig-kw">func</span>,
+<a href="Texture.html">Texture</a> <span class="sig-kw">image</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Rect.html">Rect</a> <span class="sig-kw">ModalWindow</span>(int <span class="sig-kw">id</span>,
+<a href="Rect.html">Rect</a> <span class="sig-kw">clientRect</span>,
+<a href="GUI.WindowFunction.html">GUI.WindowFunction</a> <span class="sig-kw">func</span>,
+<a href="GUIContent.html">GUIContent</a> <span class="sig-kw">content</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span></div><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">id</td><td class="desc"></td><td class="desc1">A unique id number.</td></tr><tr><td class="name lbl">clientRect</td><td class="desc"></td><td class="desc1">Position and size of the window.</td></tr><tr><td class="name lbl">func</td><td class="desc"></td><td class="desc1">A function which contains the immediate mode GUI code to draw the contents of your window.</td></tr><tr><td class="name lbl">text</td><td class="desc"></td><td class="desc1">Text to appear in the title-bar area of the window, if any.</td></tr><tr><td class="name lbl">image</td><td class="desc"></td><td class="desc1">An image to appear in the title bar of the window, if any.</td></tr><tr><td class="name lbl">content</td><td class="desc"></td><td class="desc1">GUIContent to appear in the title bar of the window, if any.</td></tr><tr><td class="name lbl">style</td><td class="desc"></td><td class="desc1">Style to apply to the window.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Show a Modal Window.</p></div><div class="subsection"><p>Similar to <a href="GUI.Window.html">GUI.Window</a>, however the window will always be on top of all other GUI, and while displayed, is guaranteed to be sole recipient of all GUI input and events. While a ModalWindow is being displayed, other controls will not be processing input. Note that only one ModalWindow can be displayed at a time.</p></div></div></div></div></body></html>

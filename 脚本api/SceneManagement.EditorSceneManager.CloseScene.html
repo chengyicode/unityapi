@@ -1,0 +1,19 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: SceneManagement.EditorSceneManager.CloseScene</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="SceneManagement.EditorSceneManager.html">EditorSceneManager</a>.CloseScene</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">CloseScene</span>(<a href="SceneManagement.Scene.html">SceneManagement.Scene</a> <span class="sig-kw">scene</span>,
+bool <span class="sig-kw">removeScene</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">scene</td><td class="desc"></td><td class="desc1">The Scene to be closed/removed.</td></tr><tr><td class="name lbl">removeScene</td><td class="desc"></td><td class="desc1">Bool flag to indicate if the Scene should be removed after closing.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>bool</strong>
+        Returns true if the Scene is closed/removed.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Close the Scene. If removeScene flag is true, the closed Scene will also be removed from EditorSceneManager.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;
+using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;<br /><br />public class ExampleClass
+{
+    void Example()
+    {
+        <a href="SceneManagement.EditorSceneManager.CloseScene.html">EditorSceneManager.CloseScene</a>(<a href="SceneManagement.SceneManager.GetSceneByName.html">SceneManager.GetSceneByName</a>("Title <a href="Screen.html">Screen</a>"), true);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

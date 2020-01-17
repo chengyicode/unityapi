@@ -1,0 +1,19 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: MeshCollider.sharedMesh</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="MeshCollider.html">MeshCollider</a>.sharedMesh</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-MeshCollider.html' title='Go to MeshCollider Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Mesh.html">Mesh</a> <span class="sig-kw">sharedMesh</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The mesh object used for collision detection.</p></div><div class="subsection"><p>If prior to setting <a href="MeshCollider-sharedMesh.html">sharedMesh</a> any of the vertices, indices or triangles of the mesh have been changed then the shapes of the MeshCollider will be rebuilt.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Assigns an arbitrary mesh collider to the current transform<br /><br />    <a href="Mesh.html">Mesh</a> meshToCollide;<br /><br />    void Start()
+    {
+        if (!meshToCollide)
+        {
+            <a href="Debug.LogError.html">Debug.LogError</a>("Assign a mesh in the inspector");
+            return;
+        }
+        <a href="MeshCollider.html">MeshCollider</a> meshCollider = gameObject.AddComponent&lt;<a href="MeshCollider.html">MeshCollider</a>&gt;();
+        meshCollider.sharedMesh = meshToCollide;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

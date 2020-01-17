@@ -1,0 +1,45 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AssetBundle.LoadFromStreamAsync</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="AssetBundle.html">AssetBundle</a>.LoadFromStreamAsync</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="AssetBundleCreateRequest.html">AssetBundleCreateRequest</a> <span class="sig-kw">LoadFromStreamAsync</span>(Stream <span class="sig-kw">stream</span>,
+uint <span class="sig-kw">crc</span>,
+uint <span class="sig-kw">managedReadBufferSize</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">stream</td><td class="desc"></td><td class="desc1">The managed Stream object. Unity calls Read(), Seek() and the Length property on this object to load the AssetBundle data.</td></tr><tr><td class="name lbl">crc</td><td class="desc"></td><td class="desc1">An optional CRC-32 checksum of the uncompressed content.</td></tr><tr><td class="name lbl">managedReadBufferSize</td><td class="desc"></td><td class="desc1">You can use this to override the size of the read buffer Unity uses while loading data. The default size is 32KB.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>AssetBundleCreateRequest</strong>
+        Asynchronous create request for an AssetBundle. Use <a href="AssetBundleCreateRequest-assetBundle.html">assetBundle</a> property to get an AssetBundle once it is loaded.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Asynchronously loads an AssetBundle from a managed Stream.</p></div><div class="subsection"><p>The function supports bundles of any compression type.
+<strong>lzma</strong> compressed data is decompressed to memory, while uncompressed and chunk-compressed bundles are read directly from the Stream.<br /><br />Unlike <a href="AssetBundle.LoadFromStream.html">LoadFromStream</a>, this function is asynchronous.<br /><br />Unlike <a href="AssetBundle.LoadFromFileAsync.html">LoadFromFileAsync</a>, the data for the AssetBundle is supplied by a managed Stream object.<br /><br />The following are restrictions on a Stream object to optimize AssetBundle data loading:
+<br />
+1. The AssetBundle data must start at stream position zero.<br />
+2. Unity sets the seek position to zero before it loads the AssetBundle data.<br />
+3. Unity assumes the read position in the stream is not altered by any other process. This allows the Unity process to read from the stream without having to call Seek() before every read.<br />
+4. stream.CanRead must return true.<br />
+5. stream.CanSeek must return true.<br />
+6. It must be accessible from threads different to the main thread. Seek() and Read() can be called from any Unity native thread.<br />
+7. In certain circumstances Unity will try to read passed the size of the AssetBundle data. The Stream implementation must gracefully handle this without throwing exceptions. The Stream implementation must also return the actual number of bytes read (not including any bytes passed the end of the AssetBundle data).<br />
+8. When starting at the end of the AssetBundle data and trying to read data the Stream implementation must return 0 bytes read and not throw exceptions.<br /><br />To reduce the number of calls from native to managed code the data is read from the Stream using a buffered reader with a buffer size of <strong>managedReadBufferSize</strong>.<br />
+* Changing <strong>managedReadBufferSize</strong> may change the loading performance, especially on mobile devices.<br />
+* The optimal value for <strong>managedReadBufferSize</strong> varies from project to project and potentially from Asset Bundle to Asset Bundle.<br />
+* A good range of values to experiment with is: 8KB, 16KB, 32KB, 64KB, 128KB.<br />
+* Larger values might be better for compressed Asset Bundles or if the Asset Bundle contains large sized assets or if the Asset Bundle does not contain many assets and they are loaded sequentially from the Asset Bundle.<br />
+* Smaller values might be better for uncompressed Asset Bundles and reading lots of small assets or if the Asset Bundles has lots of assets in it and the asset are loaded in a random order.<br /><br /><br />Do not dispose the Stream object while loading the AssetBundle or any assets from the bundle. Its lifetime should be longer than the AssetBundle. This means you dispose the Stream object after calling <a href="AssetBundle.Unload.html">AssetBundle.Unload</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;
+using System.IO;
+using System;<br /><br />public class LoadFromFileAsyncExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    IEnumerator Start()
+    {
+        var fileStream = new FileStream(<a href="Application-streamingAssetsPath.html">Application.streamingAssetsPath</a>, FileMode.Open, FileAccess.Read);
+        var bundleLoadRequest = <a href="AssetBundle.LoadFromStreamAsync.html">AssetBundle.LoadFromStreamAsync</a>(fileStream);
+        yield return bundleLoadRequest;<br /><br />        var myLoadedAssetBundle = bundleLoadRequest.assetBundle;
+        if (myLoadedAssetBundle == null)
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("Failed to load <a href="AssetBundle.html">AssetBundle</a>!");
+            yield break;
+        }<br /><br />        var assetLoadRequest = myLoadedAssetBundle.LoadAssetAsync&lt;<a href="GameObject.html">GameObject</a>&gt;("MyObject");
+        yield return assetLoadRequest;<br /><br />        <a href="GameObject.html">GameObject</a> prefab = assetLoadRequest.asset as <a href="GameObject.html">GameObject</a>;
+        Instantiate(prefab);<br /><br />        myLoadedAssetBundle.Unload(false);
+        fileStream.Close();
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="AssetBundle.html">AssetBundle</a>, <a href="AssetBundle.LoadFromStream.html">LoadFromStream</a> <a href="AssetBundle.LoadFromFileAsync.html">LoadFromFileAsync</a>.</p></div></div></div></div></body></html>

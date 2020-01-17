@@ -1,0 +1,20 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: U2D.SpriteAtlasManager.atlasRequested</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="U2D.SpriteAtlasManager.html">SpriteAtlasManager</a>.atlasRequested</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Trigger when any <a href="Sprite.html">Sprite</a> was bound to <a href="U2D.SpriteAtlas.html">SpriteAtlas</a> but couldn't locate the atlas asset during runtime.</p></div><div class="subsection"><p>This usually means the sprite was packed to an atlas which is not included in build<br /><br />This callback does not expect an immediate response from the user. Instead, it passes on a System.Action. The user can load the atlas object later and use this System.Action to pass back the loaded atlas.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.U2D;<br /><br />public class AtlasLoader : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void OnEnable()
+    {
+        <a href="U2D.SpriteAtlasManager-atlasRequested.html">SpriteAtlasManager.atlasRequested</a> += RequestAtlas;
+    }<br /><br />    void OnDisable()
+    {
+        <a href="U2D.SpriteAtlasManager-atlasRequested.html">SpriteAtlasManager.atlasRequested</a> -= RequestAtlas;
+    }<br /><br />    void RequestAtlas(string tag, System.Action&lt;<a href="U2D.SpriteAtlas.html">SpriteAtlas</a>&gt; callback)
+    {
+        var sa = <a href="Resources.Load.html">Resources.Load</a>&lt;<a href="U2D.SpriteAtlas.html">SpriteAtlas</a>&gt;(tag);
+        callback(sa);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: U2D.SpriteAtlasManager.RequestAtlasCallback.</p></div></div></div></div></body></html>

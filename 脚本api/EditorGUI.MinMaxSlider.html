@@ -1,0 +1,72 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorGUI.MinMaxSlider</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorGUI.html">EditorGUI</a>.MinMaxSlider</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public static void <span class="sig-kw">MinMaxSlider</span>(<a href="GUIContent.html">GUIContent</a> <span class="sig-kw">label</span>,
+<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+ref float <span class="sig-kw">minValue</span>,
+ref float <span class="sig-kw">maxValue</span>,
+float <span class="sig-kw">minLimit</span>,
+float <span class="sig-kw">maxLimit</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">MinMaxSlider</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+ref float <span class="sig-kw">minValue</span>,
+ref float <span class="sig-kw">maxValue</span>,
+float <span class="sig-kw">minLimit</span>,
+float <span class="sig-kw">maxLimit</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">MinMaxSlider</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+string <span class="sig-kw">label</span>,
+ref float <span class="sig-kw">minValue</span>,
+ref float <span class="sig-kw">maxValue</span>,
+float <span class="sig-kw">minLimit</span>,
+float <span class="sig-kw">maxLimit</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">MinMaxSlider</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+<a href="GUIContent.html">GUIContent</a> <span class="sig-kw">label</span>,
+ref float <span class="sig-kw">minValue</span>,
+ref float <span class="sig-kw">maxValue</span>,
+float <span class="sig-kw">minLimit</span>,
+float <span class="sig-kw">maxLimit</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">position</td><td class="desc"></td><td class="desc1">Rectangle on the screen to use for the slider.</td></tr><tr><td class="name lbl">label</td><td class="desc"></td><td class="desc1">Optional label in front of the slider.</td></tr><tr><td class="name lbl">minValue</td><td class="desc"></td><td class="desc1">The lower value of the range the slider shows, passed by reference.</td></tr><tr><td class="name lbl">maxValue</td><td class="desc"></td><td class="desc1">The upper value at the range the slider shows, passed by reference.</td></tr><tr><td class="name lbl">minLimit</td><td class="desc"></td><td class="desc1">The limit at the left end of the slider.</td></tr><tr><td class="name lbl">maxLimit</td><td class="desc"></td><td class="desc1">The limit at the right end of the slider.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Makes a special slider the user can use to specify a range between a min and a max.</p></div><div class="subsection"><p>
+        <img src="../StaticFiles/ScriptRefImages/EditorGUIMinMaxSlider.png" />
+        <br />
+<em>MinMax Slider in an Editor Window.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />
+// Place the selected object randomly between the interval of the Min Max <a href="UIElements.Slider.html">Slider</a>
+// in the X,Y,Z coords<br /><br />class EditorGUIMinMaxSlider : <a href="EditorWindow.html">EditorWindow</a>
+{
+    float minVal = -10;
+    float minLimit = -20;
+    float maxVal = 10;
+    float maxLimit = 20;<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Examples/<a href="Editor.html">Editor</a> <a href="GUI.html">GUI</a> Move Object Randomly")]
+    static void Init()
+    {
+        var window = GetWindow&lt;EditorGUIMinMaxSlider&gt;();
+        window.Show();
+    }<br /><br />    void OnGUI()
+    {
+        <a href="EditorGUI.MinMaxSlider.html">EditorGUI.MinMaxSlider</a>(
+            new <a href="Rect.html">Rect</a>(0, 0, position.width, 20),
+            new <a href="GUIContent.html">GUIContent</a>("<a href="Random.html">Random</a> range:"),
+            ref minVal, ref maxVal,
+            minLimit, maxLimit);
+        if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(0, 25, position.width, position.height - 25), "Randomize!"))
+        {
+            PlaceRandomly();
+        }
+    }<br /><br />    void PlaceRandomly()
+    {
+        if (<a href="Selection-activeTransform.html">Selection.activeTransform</a>)
+        {
+            Selection.activeTransform.position =
+                new <a href="Vector3.html">Vector3</a>(
+                    <a href="Random.Range.html">Random.Range</a>(minVal, maxVal),
+                    <a href="Random.Range.html">Random.Range</a>(minVal, maxVal),
+                    <a href="Random.Range.html">Random.Range</a>(minVal, maxVal)
+                );
+        }
+        else
+        {
+            <a href="Debug.LogError.html">Debug.LogError</a>("Select a <a href="GameObject.html">GameObject</a> to randomize its position.");
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

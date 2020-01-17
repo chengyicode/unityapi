@@ -1,0 +1,58 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Windows.WebCam.PhotoCapture.TakePhotoAsync</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Windows.WebCam.PhotoCapture.html">PhotoCapture</a>.TakePhotoAsync</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">TakePhotoAsync</span>(string <span class="sig-kw">filename</span>,
+<a href="Windows.WebCam.PhotoCaptureFileOutputFormat.html">Windows.WebCam.PhotoCaptureFileOutputFormat</a> <span class="sig-kw">fileOutputFormat</span>,
+<a href="Windows.WebCam.PhotoCapture.OnCapturedToDiskCallback.html">Windows.WebCam.PhotoCapture.OnCapturedToDiskCallback</a> <span class="sig-kw">onCapturedPhotoToDiskCallback</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">TakePhotoAsync</span>(<a href="Windows.WebCam.PhotoCapture.OnCapturedToMemoryCallback.html">Windows.WebCam.PhotoCapture.OnCapturedToMemoryCallback</a> <span class="sig-kw">onCapturedPhotoToMemoryCallback</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">filename</td><td class="desc"></td><td class="desc1">The location where the photo should be saved.  The filename must end with a png or jpg file extension.</td></tr><tr><td class="name lbl">fileOutputFormat</td><td class="desc"></td><td class="desc1">The encoding format that should be used.</td></tr><tr><td class="name lbl">onCapturedPhotoToDiskCallback</td><td class="desc"></td><td class="desc1">Invoked once the photo has been saved to disk.</td></tr><tr><td class="name lbl">onCapturedPhotoToMemoryCallback</td><td class="desc"></td><td class="desc1">Invoked once the photo has been copied to the target texture.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Asynchronously captures a photo from the web camera and saves it to disk.</p></div><div class="subsection"><p>This method can either be used in two ways.
+You can use this method to capture a photo from the web camera directly into CPU memory.  You can then apply the image
+data to a texture for use in Unity or pass the image data to an external plugin.  When capturing a photo directly to memory,
+you will also be provided with spatial information that will allow you to know where the image was taken spatially.
+You can also capture a photo directly to disk as either a png or jpg.<br /><br /><a href="https://en.wikipedia.org/wiki/Exchangeable_image_file_format">EXIF</a> metadata will be encoded into the captured image when saving the image in the JPEG format.  You may save
+the captured image in the JPEG format when using the BGRA32 and NV12 pixel formats.  You may only save the captured image as a PNG when using the BGRA32 pixel format.<br /><br />This example will capture an Image from the Web Camera and save it to disk.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;
+using System.Linq;
+using UnityEngine.Windows.WebCam;<br /><br />public class PhotoCaptureToDiskExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="Windows.WebCam.PhotoCapture.html">PhotoCapture</a> photoCaptureObject = null;<br /><br />    static readonly int TotalImagesToCapture = 3;
+    int capturedImageCount = 0;<br /><br />    // Use this for initialization
+    void Start()
+    {
+        <a href="Resolution.html">Resolution</a> cameraResolution = PhotoCapture.SupportedResolutions.OrderByDescending((res) =&gt; res.width * res.height).First();
+        <a href="Texture2D.html">Texture2D</a> targetTexture = new <a href="Texture2D.html">Texture2D</a>(cameraResolution.width, cameraResolution.height);<br /><br />        <a href="Windows.WebCam.PhotoCapture.CreateAsync.html">PhotoCapture.CreateAsync</a>(false, delegate(<a href="Windows.WebCam.PhotoCapture.html">PhotoCapture</a> captureObject) {
+            <a href="Debug.Log.html">Debug.Log</a>("Created <a href="Windows.WebCam.PhotoCapture.html">PhotoCapture</a> Object");
+            photoCaptureObject = captureObject;<br /><br />            <a href="Windows.WebCam.CameraParameters.html">CameraParameters</a> c = new <a href="Windows.WebCam.CameraParameters.html">CameraParameters</a>();
+            c.hologramOpacity = 0.0f;
+            c.cameraResolutionWidth = targetTexture.width;
+            c.cameraResolutionHeight = targetTexture.height;
+            c.pixelFormat = <a href="Windows.WebCam.CapturePixelFormat.BGRA32.html">CapturePixelFormat.BGRA32</a>;<br /><br />            captureObject.StartPhotoModeAsync(c, delegate(PhotoCapture.PhotoCaptureResult result) {
+                <a href="Debug.Log.html">Debug.Log</a>("Started Photo Capture <a href="Scripting.GarbageCollector.Mode.html">Mode</a>");
+                TakePicture();
+            });
+        });
+    }<br /><br />    void OnCapturedPhotoToDisk(PhotoCapture.PhotoCaptureResult result)
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("Saved Picture To Disk!");<br /><br />        if (capturedImageCount &lt; TotalImagesToCapture)
+        {
+            TakePicture();
+        }
+        else
+        {
+            photoCaptureObject.StopPhotoModeAsync(OnStoppedPhotoMode);
+        }
+    }<br /><br />    void TakePicture()
+    {
+        capturedImageCount++;
+        <a href="Debug.Log.html">Debug.Log</a>(string.Format("Taking Picture ({0}/{1})...", capturedImageCount, TotalImagesToCapture));
+        string filename = string.Format(@"CapturedImage{0}.jpg", capturedImageCount);
+        string filePath = System.IO.Path.Combine(<a href="Application-persistentDataPath.html">Application.persistentDataPath</a>, filename);<br /><br />        photoCaptureObject.TakePhotoAsync(filePath, <a href="Windows.WebCam.PhotoCaptureFileOutputFormat.JPG.html">PhotoCaptureFileOutputFormat.JPG</a>, OnCapturedPhotoToDisk);
+    }<br /><br />    void OnStoppedPhotoMode(PhotoCapture.PhotoCaptureResult result)
+    {
+        photoCaptureObject.Dispose();
+        photoCaptureObject = null;<br /><br />        <a href="Debug.Log.html">Debug.Log</a>("Captured images have been saved at the following path.");
+        <a href="Debug.Log.html">Debug.Log</a>(<a href="Application-persistentDataPath.html">Application.persistentDataPath</a>);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

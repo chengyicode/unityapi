@@ -1,0 +1,34 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ISerializationCallbackReceiver</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">ISerializationCallbackReceiver</h1><div class="clear"></div><p class="cl mb0 left mr10">interface in
+          UnityEngine</p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Interface to receive callbacks upon serialization and deserialization.</p></div><div class="subsection"><p>Unity's serializer is able to serialize most datatypes, but not all of them. In these cases, there are two callbacks available for you to manually process these datatypes so that Unity can serialize and deserialise them.<br /><br />
+Care needs to be taken whilst within these callbacks, as Unity's serializer runs on a different thread to most of the Unity API. It's advisable to only process the manipulation of datatypes, keeping the processing burden as low as possible.<br /><br />Serialization can occur during all kinds of operations. For example, when using Instantiate() to clone an object, Unity serializes and deserializes the original object in order to find internal references to the original object, so that it can replace them with references to the cloned object. In this situation, you can also employ the callbacks to update any internal references using types that Unity can't serialize.<br /><br />Currently the callback interface only works with classes; it won't work with structs.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System;
+using System.Collections.Generic;<br /><br />public class SerializationCallbackScript : <a href="MonoBehaviour.html">MonoBehaviour</a>, <a href="ISerializationCallbackReceiver.html">ISerializationCallbackReceiver</a>
+{
+    public List&lt;int&gt; _keys = new List&lt;int&gt; { 3, 4, 5 };
+    public List&lt;string&gt; _values = new List&lt;string&gt; { "I", "Love", "Unity" };<br /><br />    //Unity doesn't know how to serialize a Dictionary
+    public Dictionary&lt;int, string&gt;  _myDictionary = new Dictionary&lt;int, string&gt;();<br /><br />    public void OnBeforeSerialize()
+    {
+        _keys.Clear();
+        _values.Clear();<br /><br />        foreach (var kvp in _myDictionary)
+        {
+            _keys.Add(kvp.Key);
+            _values.Add(kvp.Value);
+        }
+    }<br /><br />    public void OnAfterDeserialize()
+    {
+        _myDictionary = new Dictionary&lt;int, string&gt;();<br /><br />        for (int i = 0; i != Math.Min(_keys.Count, _values.Count); i++)
+            _myDictionary.Add(_keys[i], _values[i]);
+    }<br /><br />    void OnGUI()
+    {
+        foreach (var kvp in _myDictionary)
+            <a href="GUILayout.Label.html">GUILayout.Label</a>("Key: " + kvp.Key + " value: " + kvp.Value);
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="ISerializationCallbackReceiver.OnAfterDeserialize.html">OnAfterDeserialize</a></td><td class="desc"></td><td class="desc1">Implement this method to receive a callback after Unity deserializes your object.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="ISerializationCallbackReceiver.OnBeforeSerialize.html">OnBeforeSerialize</a></td><td class="desc"></td><td class="desc1">Implement this method to receive a callback before Unity serializes your object.</td></tr>
+    </table></div></div></div></div></body></html>

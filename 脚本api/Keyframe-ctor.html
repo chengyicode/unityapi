@@ -1,0 +1,76 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Keyframe.Keyframe</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">Keyframe Constructor</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <span class="sig-kw">Keyframe</span>(float <span class="sig-kw">time</span>,
+float <span class="sig-kw">value</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Create a keyframe.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Make a <a href="GameObject.html">GameObject</a> follow a Sinus function
+    // Over the X and Y axis.<br /><br />    <a href="AnimationCurve.html">AnimationCurve</a> anim;
+    <a href="Keyframe.html">Keyframe</a>[] ks;<br /><br />    void Start()
+    {
+        ks = new <a href="Keyframe.html">Keyframe</a>[50];
+        for (var i = 0; i &lt; ks.Length; i++)
+        {
+            ks[i] = new <a href="Keyframe.html">Keyframe</a>(i, <a href="Mathf.Sin.html">Mathf.Sin</a>(i));
+        }
+        anim = new <a href="AnimationCurve.html">AnimationCurve</a>(ks);
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        transform.position = new <a href="Vector3.html">Vector3</a>(<a href="Time-time.html">Time.time</a>, anim.Evaluate(<a href="Time-time.html">Time.time</a>), 0);
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <span class="sig-kw">Keyframe</span>(float <span class="sig-kw">time</span>,
+float <span class="sig-kw">value</span>,
+float <span class="sig-kw">inTangent</span>,
+float <span class="sig-kw">outTangent</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Create a keyframe.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Make a <a href="GameObject.html">GameObject</a> follow a Sinus function
+    // Over the X and Y axis.<br /><br />    <a href="AnimationCurve.html">AnimationCurve</a> anim;
+    <a href="Keyframe.html">Keyframe</a>[] ks;<br /><br />    void Start()
+    {
+        ks = new <a href="Keyframe.html">Keyframe</a>[50];
+        for (var i = 0; i &lt; ks.Length; i++)
+        {
+            ks[i] = new <a href="Keyframe.html">Keyframe</a>(i, <a href="Mathf.Sin.html">Mathf.Sin</a>(i), 90, 90);
+        }
+        anim = new <a href="AnimationCurve.html">AnimationCurve</a>(ks);
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        transform.position = new <a href="Vector3.html">Vector3</a>(<a href="Time-time.html">Time.time</a>, anim.Evaluate(<a href="Time-time.html">Time.time</a>), 0);
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <span class="sig-kw">Keyframe</span>(float <span class="sig-kw">time</span>,
+float <span class="sig-kw">value</span>,
+float <span class="sig-kw">inTangent</span>,
+float <span class="sig-kw">outTangent</span>,
+float <span class="sig-kw">inWeight</span>,
+float <span class="sig-kw">outWeight</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Create a keyframe.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Make a <a href="GameObject.html">GameObject</a> follow a Sinus function
+    // Over the X and Y axis.<br /><br />    <a href="AnimationCurve.html">AnimationCurve</a> anim;
+    <a href="Keyframe.html">Keyframe</a>[] ks;<br /><br />    void Start()
+    {
+        ks = new <a href="Keyframe.html">Keyframe</a>[50];
+        for (var i = 0; i &lt; ks.Length; i++)
+        {
+            ks[i] = new <a href="Keyframe.html">Keyframe</a>(i, <a href="Mathf.Sin.html">Mathf.Sin</a>(i), 0, 0, 0, 0);
+        }
+        anim = new <a href="AnimationCurve.html">AnimationCurve</a>(ks);
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        transform.position = new <a href="Vector3.html">Vector3</a>(<a href="Time-time.html">Time.time</a>, anim.Evaluate(<a href="Time-time.html">Time.time</a>), 0);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorUtility.DisplayDialog</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorUtility.html">EditorUtility</a>.DisplayDialog</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">DisplayDialog</span>(string <span class="sig-kw">title</span>,
+string <span class="sig-kw">message</span>,
+string <span class="sig-kw">ok</span>,
+string <span class="sig-kw">cancel</span> = "");
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">title</td><td class="desc"></td><td class="desc1">The title of the message box.</td></tr><tr><td class="name lbl">message</td><td class="desc"></td><td class="desc1">The text of the message.</td></tr><tr><td class="name lbl">ok</td><td class="desc"></td><td class="desc1">Label displayed on the OK dialog button.</td></tr><tr><td class="name lbl">cancel</td><td class="desc"></td><td class="desc1">Label displayed on the Cancel dialog button.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Displays a modal dialog.</p></div><div class="subsection"><p>Use it for displaying message boxes in the editor.<br /><br /><code class="varname">ok</code> and <code class="varname">cancel</code> are labels to be displayed on the dialog buttons. If <code class="varname">cancel</code> is empty (the default), then only
+one button is displayed. DisplayDialog returns <code class="varname">true</code> if <code class="varname">ok</code> button is pressed.<br /><br />See Also: <a href="EditorUtility.DisplayDialogComplex.html">DisplayDialogComplex</a> function.<br /><br /><img src="../StaticFiles/ScriptRefImages/PlaceSelectionOnSurface.png" /><br />
+<em>Dialog box that shows info on the number of objects to be placed on the surface.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Places the selected Objects on the surface of a terrain.<br /><br />using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class PlaceSelectionOnSurface : <a href="ScriptableObject.html">ScriptableObject</a>
+{
+    [<a href="MenuItem.html">MenuItem</a>("Example/Place <a href="Selection.html">Selection</a> On Surface")]
+    static void CreateWizard()
+    {
+        <a href="Transform.html">Transform</a>[] transforms = <a href="Selection.GetTransforms.html">Selection.GetTransforms</a>(<a href="SelectionMode.Deep.html">SelectionMode.Deep</a> |
+            <a href="SelectionMode.ExcludePrefab.html">SelectionMode.ExcludePrefab</a> | <a href="SelectionMode.Editable.html">SelectionMode.Editable</a>);<br /><br />        if (transforms.Length &gt; 0 &amp;&amp;
+            <a href="EditorUtility.DisplayDialog.html">EditorUtility.DisplayDialog</a>("Place <a href="Selection.html">Selection</a> On Surface?",
+                "Are you sure you want to place " + transforms.Length
+                + " on the surface?", "Place", "Do Not Place"))
+        {
+            foreach (<a href="Transform.html">Transform</a> transform in transforms)
+            {
+                <a href="RaycastHit.html">RaycastHit</a> hit;
+                if (<a href="Physics.Raycast.html">Physics.Raycast</a>(transform.position, -<a href="Vector3-up.html">Vector3.up</a>, out hit))
+                {
+                    transform.position = hit.point;
+                    <a href="Vector3.html">Vector3</a> randomized = <a href="Random-onUnitSphere.html">Random.onUnitSphere</a>;
+                    randomized = new <a href="Vector3.html">Vector3</a>(randomized.x, 0F, randomized.z);
+                    transform.rotation = <a href="Quaternion.LookRotation.html">Quaternion.LookRotation</a>(randomized, hit.normal);
+                }
+            }
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

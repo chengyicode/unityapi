@@ -1,0 +1,17 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: FileUtil.CopyFileOrDirectoryFollowSymlinks</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="FileUtil.html">FileUtil</a>.CopyFileOrDirectoryFollowSymlinks</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">CopyFileOrDirectoryFollowSymlinks</span>(string <span class="sig-kw">source</span>,
+string <span class="sig-kw">dest</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Copies the file or directory.</p></div><div class="subsection"><p>Copies from <em>from</em> path to the destination, <em>to</em>, path.<br /><br />In presence of symbolic links (macOS only), the actual files to
+which symbolic links point to are copied, not the symbolic links themselves.<br /><br />See Also: <a href="FileUtil.CopyFileOrDirectory.html">FileUtil.CopyFileOrDirectory</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class CopyFileSymLink : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    [<a href="MenuItem.html">MenuItem</a>("Example/Copy Something SymLink")]
+    static void CopySomethingSymLink()
+    {
+        <a href="FileUtil.CopyFileOrDirectoryFollowSymlinks.html">FileUtil.CopyFileOrDirectoryFollowSymlinks</a>("sourcepath/YourFileOrFolder", "destpath/YourFileOrFolder");
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: MonoBehaviour.IsInvoking</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="MonoBehaviour.html">MonoBehaviour</a>.IsInvoking</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public bool <span class="sig-kw">IsInvoking</span>(string <span class="sig-kw">methodName</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Is any invoke on <code class="varname">methodName</code> pending?</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections.Generic;<br /><br />// Instantiates a project after 2 seconds when <a href="Space.html">Space</a> key was pressed.
+// LaunchProjectile is called when a previous RigidBody has finished the Invoke.<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Rigidbody.html">Rigidbody</a> projectile;<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        if (<a href="Input.GetKeyDown.html">Input.GetKeyDown</a>(<a href="KeyCode.Space.html">KeyCode.Space</a>) &amp;&amp; !IsInvoking("LaunchProjectile"))
+            Invoke("LaunchProjectile", 2.0f);
+    }<br /><br />    void LaunchProjectile()
+    {
+        <a href="Rigidbody.html">Rigidbody</a> instance = Instantiate(projectile);
+        instance.velocity = <a href="Random-insideUnitSphere.html">Random.insideUnitSphere</a> * 5;
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public bool <span class="sig-kw">IsInvoking</span>();
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Is any invoke pending on this MonoBehaviour?</p></div></div></div></div></body></html>

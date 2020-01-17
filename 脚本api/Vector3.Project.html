@@ -1,0 +1,20 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Vector3.Project</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Vector3.html">Vector3</a>.Project</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Vector3.html">Vector3</a> <span class="sig-kw">Project</span>(<a href="Vector3.html">Vector3</a> <span class="sig-kw">vector</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">onNormal</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Projects a vector onto another vector.</p></div><div class="subsection"><p>To understand vector projection, imagine that <code class="varname">onNormal</code> is resting on a line pointing in its
+direction. Somewhere along that line will be the nearest point to the tip of <code class="varname">vector</code>. The
+projection is just <code class="varname">onNormal</code> rescaled so that it reaches that point on the line.<br /><br /><img src="../StaticFiles/ScriptRefImages/Vec3ProjectDiagram.png" /><br /><br />The function will return a zero vector if <code class="varname">onNormal</code> is almost zero.<br /><br />An example of the usage of projection is a rail-mounted gun that should slide so that it gets
+as close as possible to a target object. The projection of the target heading along the
+direction of the rail can be used to move the gun by applying a force to a rigidbody, say.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Slide(<a href="Transform.html">Transform</a> target, <a href="Vector3.html">Vector3</a> railDirection)
+    {
+        <a href="Vector3.html">Vector3</a> heading = target.position - transform.position;
+        <a href="Vector3.html">Vector3</a> force = <a href="Vector3.Project.html">Vector3.Project</a>(heading, railDirection);<br /><br />        GetComponent&lt;<a href="Rigidbody.html">Rigidbody</a>&gt;().AddForce(force);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

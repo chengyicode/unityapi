@@ -1,0 +1,30 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Material.shader</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Material.html">Material</a>.shader</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Material.html' title='Go to Material Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Shader.html">Shader</a> <span class="sig-kw">shader</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The shader used by the material.</p></div><div class="subsection"><p>See Also: <a href="Shader.Find.html">Shader.Find</a> method, <a href="../Manual/Materials.html">Materials</a>, <a href="../Manual/Shaders.html">ShaderLab documentation</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // <a href="UIElements.Toggle.html">Toggle</a> between Diffuse and Transparent/Diffuse shaders
+    // when space key is pressed<br /><br />    <a href="Shader.html">Shader</a> shader1;
+    <a href="Shader.html">Shader</a> shader2;
+    <a href="Renderer.html">Renderer</a> rend;<br /><br />
+    void Start()
+    {
+        rend = GetComponent&lt;<a href="Renderer.html">Renderer</a>&gt; ();
+        shader1 = <a href="Shader.Find.html">Shader.Find</a>("Diffuse");
+        shader2 = <a href="Shader.Find.html">Shader.Find</a>("Transparent/Diffuse");
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        if (<a href="Input.GetButtonDown.html">Input.GetButtonDown</a>("Jump"))
+        {
+            if (rend.material.shader == shader1)
+            {
+                rend.material.shader = shader2;
+            }
+            else
+            {
+                rend.material.shader = shader1;
+            }
+        }
+    }
+}</pre>
+      </div></div></div></div></body></html>

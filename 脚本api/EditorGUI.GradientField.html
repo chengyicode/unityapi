@@ -1,0 +1,36 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorGUI.GradientField</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorGUI.html">EditorGUI</a>.GradientField</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Gradient.html">Gradient</a> <span class="sig-kw">GradientField</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+<a href="Gradient.html">Gradient</a> <span class="sig-kw">gradient</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Gradient.html">Gradient</a> <span class="sig-kw">GradientField</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+string <span class="sig-kw">label</span>,
+<a href="Gradient.html">Gradient</a> <span class="sig-kw">gradient</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Gradient.html">Gradient</a> <span class="sig-kw">GradientField</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+<a href="GUIContent.html">GUIContent</a> <span class="sig-kw">label</span>,
+<a href="Gradient.html">Gradient</a> <span class="sig-kw">gradient</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Gradient.html">Gradient</a> <span class="sig-kw">GradientField</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+<a href="GUIContent.html">GUIContent</a> <span class="sig-kw">label</span>,
+<a href="Gradient.html">Gradient</a> <span class="sig-kw">gradient</span>,
+bool <span class="sig-kw">hdr</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">position</td><td class="desc"></td><td class="desc1">Rectangle on the screen to use for the field.</td></tr><tr><td class="name lbl">label</td><td class="desc"></td><td class="desc1">Optional label to display in front of the field.</td></tr><tr><td class="name lbl">gradient</td><td class="desc"></td><td class="desc1">The gradient to edit.</td></tr><tr><td class="name lbl">hdr</td><td class="desc"></td><td class="desc1">Display the HDR Gradient Editor.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>Gradient</strong>
+        The gradient edited by the user.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Makes a field for editing a <a href="Gradient.html">Gradient</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class EditorGUIGradientField : <a href="EditorWindow.html">EditorWindow</a>
+{
+    <a href="Gradient.html">Gradient</a> gradient = new <a href="Gradient.html">Gradient</a>();<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Examples/<a href="Gradient.html">Gradient</a> Field demo")]
+    static void Init()
+    {
+        <a href="EditorWindow.html">EditorWindow</a> window = GetWindow(typeof(EditorGUIGradientField));
+        window.position = new <a href="Rect.html">Rect</a>(0, 0, 400, 199);
+        window.Show();
+    }<br /><br />    void OnGUI()
+    {
+        gradient = <a href="EditorGUI.GradientField.html">EditorGUI.GradientField</a>(
+            new <a href="Rect.html">Rect</a>(3, 3, position.width - 6, 50), "<a href="Gradient.html">Gradient</a>", gradient);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

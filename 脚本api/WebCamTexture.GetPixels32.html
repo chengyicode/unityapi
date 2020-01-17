@@ -1,0 +1,26 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: WebCamTexture.GetPixels32</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="WebCamTexture.html">WebCamTexture</a>.GetPixels32</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public Color32[] <span class="sig-kw">GetPixels32</span>(Color32[] <span class="sig-kw">colors</span> = null);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">colors</td><td class="desc"></td><td class="desc1">Optional array to receive pixel data.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Returns the pixels data in raw format.</p></div><div class="subsection"><p>This can be faster then calling <code class="varname">GetPixels</code>, as pixel data does not have to be converted to color structs,
+so you may want to use it if you need to do continuous processing on the video feed.
+You can optionally pass in an array of Color32s to use in <code class="varname">colors</code> to avoid allocating new memory each frame,
+which is faster when you are continuously reading data from the camera.
+The array needs to be initialized to a length matching width * height of the texture. If you don't pass an
+array, GetPixels32 will allocate one for you and return it.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="WebCamTexture.html">WebCamTexture</a> webcamTexture;
+    <a href="Color32.html">Color32</a>[] data;<br /><br />    void Start()
+    {
+        // Start web cam feed
+        webcamTexture = new <a href="WebCamTexture.html">WebCamTexture</a>();
+        webcamTexture.Play();
+        data = new <a href="Color32.html">Color32</a>[webcamTexture.width * webcamTexture.height];
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        webcamTexture.GetPixels32(data);
+        // Do processing of data here.
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

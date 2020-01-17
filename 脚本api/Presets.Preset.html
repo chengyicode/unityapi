@@ -1,0 +1,74 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Preset</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">Preset</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEditor.Presets</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Inherits from:<a href="Object.html" class="cl">Object</a></p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEditor.html" class="cl">UnityEditor</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>A Preset contains default values for an Object.</p></div><div class="subsection"><p>The Preset class contains the type of the Object used to create it and a list of each serialized property/value pair of this Object.
+It can be used to store informations from any serializable Object in the Editor and apply them back to this Object or any other Object of the same type.
+Presets can also be saved as Assets using the .preset extension in order to.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEditor.Presets;
+using UnityEngine;<br /><br />public static class PresetUsageExample
+{
+    // This method uses a <a href="Presets.Preset.html">Preset</a> to copy the serialized values from the source to the target and return true if the copy succeed.
+    public static bool CopyObjectSerialization(Object source, Object target)
+    {
+        <a href="Presets.Preset.html">Preset</a> preset = new <a href="Presets.Preset.html">Preset</a>(source);
+        return preset.ApplyTo(target);
+    }<br /><br />    // This method creates a <a href="Presets.Preset.html">Preset</a> from a given Object and save it as an asset in the project.
+    public static void CreatePresetAsset(Object source, string name)
+    {
+        <a href="Presets.Preset.html">Preset</a> preset = new <a href="Presets.Preset.html">Preset</a>(source);
+        <a href="AssetDatabase.CreateAsset.html">AssetDatabase.CreateAsset</a>(preset, "Assets/" + name + ".preset");
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Presets.Preset.PropertyModifications.html">PropertyModifications</a></td><td class="desc"></td><td class="desc1">Returns a copy of the PropertyModification array owned by this Preset.</td></tr>
+    </table></div><div class="subsection"><h2>Constructors</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Presets.Preset-ctor.html">Preset</a></td><td class="desc"></td><td class="desc1">Constructs a new Preset from a given Object.</td></tr>
+    </table></div><div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Presets.Preset.ApplyTo.html">ApplyTo</a></td><td class="desc"></td><td class="desc1">Applies this Preset to the target object.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Presets.Preset.CanBeAppliedTo.html">CanBeAppliedTo</a></td><td class="desc"></td><td class="desc1">Returns true if this Preset can be applied to the target Object.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Presets.Preset.DataEquals.html">DataEquals</a></td><td class="desc"></td><td class="desc1">Determines if the target object has the same serialized values as the Preset.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Presets.Preset.GetTargetFullTypeName.html">GetTargetFullTypeName</a></td><td class="desc"></td><td class="desc1">Returns a human readable string of this Preset's target fulltype, including namespace.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Presets.Preset.GetTargetTypeName.html">GetTargetTypeName</a></td><td class="desc"></td><td class="desc1">Returns a human readable string of this Preset's target type.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Presets.Preset.IsValid.html">IsValid</a></td><td class="desc"></td><td class="desc1">Returns true if the Preset type of this Preset is valid.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Presets.Preset.UpdateProperties.html">UpdateProperties</a></td><td class="desc"></td><td class="desc1">Updates this Preset's properties from the given Object's values. The given Object's type must match this Preset's type.</td></tr>
+    </table></div><div class="subsection"><h2>Static Methods   静态方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Presets.Preset.GetDefaultForObject.html">GetDefaultForObject</a></td><td class="desc"></td><td class="desc1">Returns the current default Preset assigned to the same Object type. Returns null if there is no matching default.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Presets.Preset.GetDefaultForPreset.html">GetDefaultForPreset</a></td><td class="desc"></td><td class="desc1">Returns the current default Preset assigned to the same Preset type. Returns null if there is no matching default.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Presets.Preset.IsObjectExcludedFromDefaultPresets.html">IsObjectExcludedFromDefaultPresets</a></td><td class="desc"></td><td class="desc1">Returns true if this Object cannot have a default Preset.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Presets.Preset.IsObjectExcludedFromPresets.html">IsObjectExcludedFromPresets</a></td><td class="desc"></td><td class="desc1">Returns true if this Object is not available in the Preset system.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Presets.Preset.IsPresetExcludedFromDefaultPresets.html">IsPresetExcludedFromDefaultPresets</a></td><td class="desc"></td><td class="desc1">Returns true if this Preset cannot be set as the default.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Presets.Preset.RemoveFromDefault.html">RemoveFromDefault</a></td><td class="desc"></td><td class="desc1">Remove the Preset type from having default values in the project.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Presets.Preset.SetAsDefault.html">SetAsDefault</a></td><td class="desc"></td><td class="desc1">Sets the Preset as the default for its target type in the project.</td></tr>
+    </table></div><div class="subsection"><h2>Inherited Members   继承成员</h2>
+      
+      <div class="subsection"><h2>Properties   属性</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-hideFlags.html">hideFlags</a></td><td class="desc"></td><td class="desc1">Should the object be hidden, saved with the Scene or modifiable by the user?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-name.html">name</a></td><td class="desc"></td><td class="desc1">The name of the object.</td></tr>
+      </table></div>
+      
+      
+      
+      <div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.GetInstanceID.html">GetInstanceID</a></td><td class="desc"></td><td class="desc1">Returns the instance id of the object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.ToString.html">ToString</a></td><td class="desc"></td><td class="desc1">Returns the name of the object.</td></tr>
+      </table></div>
+      
+      <div class="subsection"><h2>Static Methods   静态方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.Destroy.html">Destroy</a></td><td class="desc"></td><td class="desc1">Removes a GameObject, component or asset.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.DestroyImmediate.html">DestroyImmediate</a></td><td class="desc"></td><td class="desc1">Destroys the object obj immediately. You are strongly recommended to use Destroy instead.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.DontDestroyOnLoad.html">DontDestroyOnLoad</a></td><td class="desc"></td><td class="desc1">Do not destroy the target Object when loading a new Scene.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectOfType.html">FindObjectOfType</a></td><td class="desc"></td><td class="desc1">Returns the first active loaded object of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectsOfType.html">FindObjectsOfType</a></td><td class="desc"></td><td class="desc1">Returns a list of all active loaded objects of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.Instantiate.html">Instantiate</a></td><td class="desc"></td><td class="desc1">Clones the object original and returns the clone.</td></tr>
+      </table></div>
+      <div class="subsection"><h2>Operators   运算符</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_Object.html">bool</a></td><td class="desc"></td><td class="desc1">Does the object exist?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_ne.html">operator !=</a></td><td class="desc"></td><td class="desc1">Compares if two objects refer to a different object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_eq.html">operator ==</a></td><td class="desc"></td><td class="desc1">Compares two object references to see if they refer to the same object.</td></tr>
+      </table></div>
+      
+      
+      
+    </div></div></div></div></body></html>

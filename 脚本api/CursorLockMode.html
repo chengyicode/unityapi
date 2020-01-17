@@ -1,0 +1,29 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: CursorLockMode</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">CursorLockMode</h1><div class="clear"></div><p class="cl mb0 left mr10">enumeration</p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>How the cursor should behave.</p></div><div class="subsection"><p>These are a various modes that control the behaviour of the Cursor. A default cursor must be set in <strong>PlayerSettings</strong> &gt; <strong>Default Cursor</strong>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//This script makes Buttons that control the <a href="Cursor.html">Cursor</a>'s lock state. Note that the Confined mode only works on Windows and Linux Standalone platform build.<br /><br />using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        //Press the space bar to apply no locking to the <a href="Cursor.html">Cursor</a>
+        if (<a href="Input.GetKey.html">Input.GetKey</a>(<a href="KeyCode.Space.html">KeyCode.Space</a>))
+            <a href="Cursor-lockState.html">Cursor.lockState</a> = <a href="CursorLockMode.None.html">CursorLockMode.None</a>;
+    }<br /><br />    void OnGUI()
+    {
+        //Press this button to lock the <a href="Cursor.html">Cursor</a>
+        if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(0, 0, 100, 50), "Lock <a href="Cursor.html">Cursor</a>"))
+        {
+            <a href="Cursor-lockState.html">Cursor.lockState</a> = <a href="CursorLockMode.Locked.html">CursorLockMode.Locked</a>;
+        }<br /><br />        //Press this button to confine the <a href="Cursor.html">Cursor</a> within the screen
+        if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(125, 0, 100, 50), "Confine <a href="Cursor.html">Cursor</a>"))
+        {
+            <a href="Cursor-lockState.html">Cursor.lockState</a> = <a href="CursorLockMode.Confined.html">CursorLockMode.Confined</a>;
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="CursorLockMode.None.html">None</a></td><td class="desc"></td><td class="desc1">Cursor behavior is unmodified.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="CursorLockMode.Locked.html">Locked</a></td><td class="desc"></td><td class="desc1">Lock cursor to the center of the game window.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="CursorLockMode.Confined.html">Confined</a></td><td class="desc"></td><td class="desc1">Confine cursor to the game window.</td></tr>
+    </table></div></div></div></div></body></html>

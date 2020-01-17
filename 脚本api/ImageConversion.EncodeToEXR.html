@@ -1,0 +1,27 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ImageConversion.EncodeToEXR</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="ImageConversion.html">ImageConversion</a>.EncodeToEXR</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static byte[] <span class="sig-kw">EncodeToEXR</span>(<a href="Texture2D.html">Texture2D</a> <span class="sig-kw">tex</span>,
+<a href="Texture2D.EXRFlags.html">Texture2D.EXRFlags</a> <span class="sig-kw">flags</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">tex</td><td class="desc"></td><td class="desc1">The texture to convert.</td></tr><tr><td class="name lbl">flags</td><td class="desc"></td><td class="desc1">Flags used to control compression and the output format.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Encodes this texture into the EXR format.</p></div><div class="subsection"><p>
+                    This function returns a byte array which is the EXR file data. Write this data to disk to get the data in the EXR file format.<br /><br />                    It is best to use this function for HDR texture formats (either 16-bit or 32-bit floats). The default output format is 16-bit float EXR. For the texture pass in, you must enable the <a href="TextureImporter-isReadable.html">Read/Write enabled</a> flag set in the <a href="../Manual/class-TextureImporter.html">Texture Import Settings</a>.<br /><br />                    The encoded EXR data will always contain an alpha channel.<br /><br />                    See Also: <a href="Texture2D.EXRFlags.html">EXRFlags</a>, <a href="ImageConversion.EncodeToJPG.html">EncodeToJPG</a>, <a href="ImageConversion.EncodeToPNG.html">EncodeToPNG</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Saves HDR <a href="RenderTexture.html">RenderTexture</a> as an EXR file.
+using UnityEngine;
+using System.Collections;
+using System.IO;<br /><br />public class SaveRenderTextureToEXR : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="RenderTexture.html">RenderTexture</a> m_InputTexture;<br /><br />    void SaveRenderTexture()
+    {
+        if (m_InputTexture != null)
+        {
+            int width = m_InputTexture.width;
+            int height = m_InputTexture.height;<br /><br />            <a href="Texture2D.html">Texture2D</a> tex = new <a href="Texture2D.html">Texture2D</a>(width, height, <a href="TextureFormat.RGBAFloat.html">TextureFormat.RGBAFloat</a>, false);<br /><br />            // Read screen contents into the texture
+            <a href="Graphics.SetRenderTarget.html">Graphics.SetRenderTarget</a>(m_InputTexture);
+            tex.ReadPixels(new <a href="Rect.html">Rect</a>(0, 0, width, height), 0, 0);
+            tex.Apply();<br /><br />            // Encode texture into the EXR
+            byte[] bytes = tex.EncodeToEXR(<a href="Texture2D.EXRFlags.CompressZIP.html">Texture2D.EXRFlags.CompressZIP</a>);
+            <a href="Windows.File.WriteAllBytes.html">File.WriteAllBytes</a>(<a href="Application-dataPath.html">Application.dataPath</a> + "/../SavedRenderTexture.exr", bytes);<br /><br />            <a href="Object.DestroyImmediate.html">Object.DestroyImmediate</a>(tex);
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

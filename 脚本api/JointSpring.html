@@ -1,0 +1,22 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: JointSpring</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">JointSpring</h1><div class="clear"></div><p class="cl mb0 left mr10">struct in
+          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.PhysicsModule.html" class="cl">UnityEngine.PhysicsModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>JointSpring is used add a spring force to <a href="HingeJoint.html">HingeJoint</a> and <a href="PhysicMaterial.html">PhysicMaterial</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        <a href="HingeJoint.html">HingeJoint</a> hinge = GetComponent&lt;<a href="HingeJoint.html">HingeJoint</a>&gt;();<br /><br />        // Make the spring reach shoot for a 70 degree angle.
+        // This could be used to fire off a catapult.<br /><br />        <a href="JointSpring.html">JointSpring</a> spring = hinge.spring;
+        spring.spring = 10;
+        spring.damper = 3;
+        spring.targetPosition = 70;
+        hinge.spring = spring;
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="JointSpring-damper.html">damper</a></td><td class="desc"></td><td class="desc1">The damper force uses to dampen the spring.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="JointSpring-spring.html">spring</a></td><td class="desc"></td><td class="desc1">The spring forces used to reach the target position.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="JointSpring-targetPosition.html">targetPosition</a></td><td class="desc"></td><td class="desc1">The target position the joint attempts to reach.</td></tr>
+    </table></div></div></div></div></body></html>

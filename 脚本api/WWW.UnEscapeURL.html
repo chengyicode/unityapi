@@ -1,0 +1,16 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: WWW.UnEscapeURL</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Method group is Obsolete</b><br /></div><h1 class="heading inherit"><a href="WWW.html">WWW</a>.UnEscapeURL</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public static string <span class="sig-kw">UnEscapeURL</span>(string <span class="sig-kw">s</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public static string <span class="sig-kw">UnEscapeURL</span>(string <span class="sig-kw">s</span>,
+Encoding <span class="sig-kw">e</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">s</td><td class="desc"></td><td class="desc1">A string containing escaped characters.</td></tr><tr><td class="name lbl">e</td><td class="desc"></td><td class="desc1">The text encoding to use.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Converts URL-friendly escape sequences back to normal text.</p></div><div class="subsection"><p>Certain text characters have special meanings when present in URLs. If you need to include those characters in URL parameters then you must represent them with escape sequences. This function takes a string containing these escape sequences and converts them back to normal text.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        // Plain name is "Fish &amp; Chips".
+        var plainName = WWW.UnEscapeURL("Fish+%26+Chips");
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: EscapeURL.</p></div></div></div></div></body></html>

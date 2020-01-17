@@ -1,0 +1,48 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: UnityEvent&lt;T0&gt;</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">UnityEvent&lt;T0&gt;</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine.Events</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Inherits from:<a href="Events.UnityEventBase.html" class="cl">Events.UnityEventBase</a></p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.CoreModule.html" class="cl">UnityEngine.CoreModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>One argument version of <a href="Events.UnityEvent.html">UnityEvent</a>.</p></div><div class="subsection"><p>If you wish to use a generic UnityEvent type you must override the class type.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.Events;<br /><br />[System.Serializable]
+public class MyIntEvent : <a href="Events.UnityEvent.html">UnityEvent</a>&lt;int&gt;
+{
+}<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public MyIntEvent m_MyEvent;<br /><br />    void Start()
+    {
+        if (m_MyEvent == null)
+            m_MyEvent = new MyIntEvent();<br /><br />        m_MyEvent.AddListener(<a href="Ping.html">Ping</a>);
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        if (<a href="Input-anyKeyDown.html">Input.anyKeyDown</a> &amp;&amp; m_MyEvent != null)
+        {
+            m_MyEvent.Invoke(5);
+        }
+    }<br /><br />    void <a href="Ping.html">Ping</a>(int i)
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("<a href="Ping.html">Ping</a>" + i);
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Inherited Members   继承成员</h2>
+      
+      
+      
+      
+      
+      <div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Events.UnityEventBase.GetPersistentEventCount.html">GetPersistentEventCount</a></td><td class="desc"></td><td class="desc1">Get the number of registered persistent listeners.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Events.UnityEventBase.GetPersistentMethodName.html">GetPersistentMethodName</a></td><td class="desc"></td><td class="desc1">Get the target method name of the listener at index index.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Events.UnityEventBase.GetPersistentTarget.html">GetPersistentTarget</a></td><td class="desc"></td><td class="desc1">Get the target component of the listener at index index.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Events.UnityEventBase.RemoveAllListeners.html">RemoveAllListeners</a></td><td class="desc"></td><td class="desc1">Remove all non-persisent (ie created from script) listeners  from the event.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Events.UnityEventBase.SetPersistentListenerState.html">SetPersistentListenerState</a></td><td class="desc"></td><td class="desc1">Modify the execution state of a persistent listener.</td></tr>
+      </table></div>
+      
+      <div class="subsection"><h2>Static Methods   静态方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Events.UnityEventBase.GetValidMethodInfo.html">GetValidMethodInfo</a></td><td class="desc"></td><td class="desc1">Given an object, function name, and a list of argument types; find the method that matches.</td></tr>
+      </table></div>
+      
+      
+      
+      
+    </div></div></div></div></body></html>

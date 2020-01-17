@@ -1,0 +1,60 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorWindow.OnLostFocus()</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorWindow.html">EditorWindow</a>.OnLostFocus()</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Called when the window loses keyboard focus.</p></div><div class="subsection"><p>See Also: <a href="EditorWindow.OnFocus.html">OnFocus</a>.<br /><br /><img src="../StaticFiles/ScriptRefImages/OrthographicPreviewer.png" /><br />
+<em>Restores normal view when you lose focus on this window.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Simple script that lets you preview your main camera in
+// Orthographic view when selected.<br /><br />using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class ExampleClass : <a href="EditorWindow.html">EditorWindow</a>
+{
+    <a href="RenderTexture.html">RenderTexture</a> renderTexture;
+    <a href="Camera.html">Camera</a> camera;<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Examples/Orthographic Previewer")]
+    static void Init()
+    {
+        ExampleClass window =
+            (ExampleClass)<a href="EditorWindow.GetWindow.html">EditorWindow.GetWindow</a>(typeof(ExampleClass), true, "My Empty Window");
+        window.Show();
+    }<br /><br />    void OnEnable()
+    {
+        int w = (int)this.position.width;
+        int h = (int)this.position.height;<br /><br />        renderTexture = new <a href="RenderTexture.html">RenderTexture</a>(w, h, 32, <a href="RenderTextureFormat.ARGB32.html">RenderTextureFormat.ARGB32</a>);
+        camera = <a href="Camera-main.html">Camera.main</a>;
+    }<br /><br />    void OnInspectorUpdate()
+    {
+        this.Repaint();
+    }<br /><br />    void OnGUI()
+    {
+        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Close"))
+        {
+            camera.orthographic = false;
+            this.Close();
+        }
+        if (renderTexture != null)
+        {
+            float w = this.position.width;
+            float h = this.position.height;
+            <a href="GUI.DrawTexture.html">GUI.DrawTexture</a>(new <a href="Rect.html">Rect</a>(0.0f, 50.0f, w, h), renderTexture);
+        }
+    }<br /><br />    void OnFocus()
+    {
+        <a href="Selection-activeTransform.html">Selection.activeTransform</a> = camera.transform;
+        camera.orthographic = true;
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        if (camera != null)
+        {
+            camera.targetTexture = renderTexture;
+            camera.Render();
+            camera.targetTexture = null;
+        }<br /><br />        int w = (int)this.position.width;
+        int h = (int)this.position.height;
+        if (renderTexture.width != w || renderTexture.height != h)
+        {
+            renderTexture = new <a href="RenderTexture.html">RenderTexture</a>(w, h, 32, <a href="RenderTextureFormat.ARGB32.html">RenderTextureFormat.ARGB32</a>);
+        }
+    }<br /><br />    void OnLostFocus()
+    {
+        camera.orthographic = false;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

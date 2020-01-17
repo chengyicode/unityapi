@@ -1,0 +1,31 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Texture2D.SetPixel</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Texture2D.html">Texture2D</a>.SetPixel</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">SetPixel</span>(int <span class="sig-kw">x</span>,
+int <span class="sig-kw">y</span>,
+<a href="Color.html">Color</a> <span class="sig-kw">color</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Sets pixel color at coordinates (x,y).</p></div><div class="subsection"><p>Call <a href="Texture2D.Apply.html">Apply</a> to actually upload the changed pixels to the graphics card.
+Uploading is an expensive operation, so you'll want to change as many pixels
+as possible between <code class="varname">Apply</code> calls.<br /><br />If you're constantly regenerating a texture at runtime, it may be faster
+to generate an array of pixel colors and set all of them at once with <a href="Texture2D.SetPixels.html">SetPixels</a>.<br /><br />This function works only on <code class="varname">RGBA32</code>, <code class="varname">ARGB32</code>, <code class="varname">RGB24</code> and <code class="varname">Alpha8</code> texture formats.
+For other formats <code class="varname">SetPixel</code> is ignored.
+The texture also has to have <a href="TextureImporter-isReadable.html">read/write enabled</a> flag set in the <a href="../Manual/Textures.html">texture import settings</a>.
+See Also: <a href="Texture2D.SetPixels.html">SetPixels</a>, <a href="Texture2D.GetPixel.html">GetPixel</a>, <a href="Texture2D.Apply.html">Apply</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        <a href="Texture2D.html">Texture2D</a> texture = new <a href="Texture2D.html">Texture2D</a>(128, 128);
+        GetComponent&lt;<a href="Renderer.html">Renderer</a>&gt;().material.mainTexture = texture;<br /><br />        for (int y = 0; y &lt; texture.height; y++)
+        {
+            for (int x = 0; x &lt; texture.width; x++)
+            {
+                <a href="Color.html">Color</a> color = ((x &amp; y) != 0 ? <a href="Color-white.html">Color.white</a> : <a href="Color-gray.html">Color.gray</a>);
+                texture.SetPixel(x, y, color);
+            }
+        }
+        texture.Apply();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

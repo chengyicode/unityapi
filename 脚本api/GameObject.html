@@ -1,0 +1,64 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: GameObject</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">GameObject</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Inherits from:<a href="Object.html" class="cl">Object</a></p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.CoreModule.html" class="cl">UnityEngine.CoreModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-GameObject.html' title='Go to GameObject Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Base class for all entities in Unity Scenes.</p></div><div class="subsection"><p>
+      <strong>Note:</strong> Many variables in the <a href="GameObject.html">GameObject</a> class have been removed.  To access,
+      for example GameObject.renderer in csharp use GetComponent&lt;Renderer&gt;() instead.<br /><br />      See Also: Component.
+      </p></div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="GameObject-activeInHierarchy.html">activeInHierarchy</a></td><td class="desc"></td><td class="desc1">Defines whether the GameObject is active in the Scene.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GameObject-activeSelf.html">activeSelf</a></td><td class="desc"></td><td class="desc1">The local active state of this GameObject. (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GameObject-isStatic.html">isStatic</a></td><td class="desc"></td><td class="desc1">Editor only API that specifies if a game object is static.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GameObject-layer.html">layer</a></td><td class="desc"></td><td class="desc1">The layer the game object is in.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GameObject-scene.html">scene</a></td><td class="desc"></td><td class="desc1">Scene that the GameObject is part of.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GameObject-tag.html">tag</a></td><td class="desc"></td><td class="desc1">The tag of this game object.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GameObject-transform.html">transform</a></td><td class="desc"></td><td class="desc1">The Transform attached to this GameObject.</td></tr>
+    </table></div><div class="subsection"><h2>Constructors</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="GameObject-ctor.html">GameObject</a></td><td class="desc"></td><td class="desc1">Creates a new game object, named name.</td></tr>
+    </table></div><div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="GameObject.AddComponent.html">AddComponent</a></td><td class="desc"></td><td class="desc1">Adds a component class named className to the game object.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GameObject.BroadcastMessage.html">BroadcastMessage</a></td><td class="desc"></td><td class="desc1">Calls the method named methodName on every MonoBehaviour in this game object or any of its children.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GameObject.CompareTag.html">CompareTag</a></td><td class="desc"></td><td class="desc1">Is this game object tagged with tag ?</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GameObject.GetComponent.html">GetComponent</a></td><td class="desc"></td><td class="desc1">Returns the component of Type type if the game object has one attached, null if it doesn't.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GameObject.GetComponentInChildren.html">GetComponentInChildren</a></td><td class="desc"></td><td class="desc1">Returns the component of Type type in the GameObject or any of its children using depth first search.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GameObject.GetComponentInParent.html">GetComponentInParent</a></td><td class="desc"></td><td class="desc1">Returns the component of Type type in the GameObject or any of its parents.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GameObject.GetComponents.html">GetComponents</a></td><td class="desc"></td><td class="desc1">Returns all components of Type type in the GameObject.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GameObject.GetComponentsInChildren.html">GetComponentsInChildren</a></td><td class="desc"></td><td class="desc1">Returns all components of Type type in the GameObject or any of its children.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GameObject.GetComponentsInParent.html">GetComponentsInParent</a></td><td class="desc"></td><td class="desc1">Returns all components of Type type in the GameObject or any of its parents.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GameObject.SendMessage.html">SendMessage</a></td><td class="desc"></td><td class="desc1">Calls the method named methodName on every MonoBehaviour in this game object.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GameObject.SendMessageUpwards.html">SendMessageUpwards</a></td><td class="desc"></td><td class="desc1">Calls the method named methodName on every MonoBehaviour in this game object and on every ancestor of the behaviour.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GameObject.SetActive.html">SetActive</a></td><td class="desc"></td><td class="desc1">Activates/Deactivates the GameObject, depending on the given true or false value.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GameObject.TryGetComponent.html">TryGetComponent</a></td><td class="desc"></td><td class="desc1">Gets the component of the specified type, if it exists.</td></tr>
+    </table></div><div class="subsection"><h2>Static Methods   静态方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="GameObject.CreatePrimitive.html">CreatePrimitive</a></td><td class="desc"></td><td class="desc1">Creates a game object with a primitive mesh renderer and appropriate collider.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GameObject.Find.html">Find</a></td><td class="desc"></td><td class="desc1">Finds a GameObject by name and returns it.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GameObject.FindGameObjectsWithTag.html">FindGameObjectsWithTag</a></td><td class="desc"></td><td class="desc1">Returns an array of active GameObjects tagged tag. Returns empty array if no GameObject was found.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="GameObject.FindWithTag.html">FindWithTag</a></td><td class="desc"></td><td class="desc1">Returns one active GameObject tagged tag. Returns null if no GameObject was found.</td></tr>
+    </table></div><div class="subsection"><h2>Inherited Members   继承成员</h2>
+      
+      <div class="subsection"><h2>Properties   属性</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-hideFlags.html">hideFlags</a></td><td class="desc"></td><td class="desc1">Should the object be hidden, saved with the Scene or modifiable by the user?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-name.html">name</a></td><td class="desc"></td><td class="desc1">The name of the object.</td></tr>
+      </table></div>
+      
+      
+      
+      <div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.GetInstanceID.html">GetInstanceID</a></td><td class="desc"></td><td class="desc1">Returns the instance id of the object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.ToString.html">ToString</a></td><td class="desc"></td><td class="desc1">Returns the name of the object.</td></tr>
+      </table></div>
+      
+      <div class="subsection"><h2>Static Methods   静态方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.Destroy.html">Destroy</a></td><td class="desc"></td><td class="desc1">Removes a GameObject, component or asset.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.DestroyImmediate.html">DestroyImmediate</a></td><td class="desc"></td><td class="desc1">Destroys the object obj immediately. You are strongly recommended to use Destroy instead.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.DontDestroyOnLoad.html">DontDestroyOnLoad</a></td><td class="desc"></td><td class="desc1">Do not destroy the target Object when loading a new Scene.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectOfType.html">FindObjectOfType</a></td><td class="desc"></td><td class="desc1">Returns the first active loaded object of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectsOfType.html">FindObjectsOfType</a></td><td class="desc"></td><td class="desc1">Returns a list of all active loaded objects of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.Instantiate.html">Instantiate</a></td><td class="desc"></td><td class="desc1">Clones the object original and returns the clone.</td></tr>
+      </table></div>
+      <div class="subsection"><h2>Operators   运算符</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_Object.html">bool</a></td><td class="desc"></td><td class="desc1">Does the object exist?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_ne.html">operator !=</a></td><td class="desc"></td><td class="desc1">Compares if two objects refer to a different object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_eq.html">operator ==</a></td><td class="desc"></td><td class="desc1">Compares two object references to see if they refer to the same object.</td></tr>
+      </table></div>
+      
+      
+      
+    </div></div></div></div></body></html>

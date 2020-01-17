@@ -1,0 +1,87 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: IScriptableBakedReflectionSystem</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Experimental</b>: this API is experimental and might be changed or removed in the future.</div><h1 class="heading inherit">IScriptableBakedReflectionSystem</h1><div class="clear"></div><p class="cl mb0 left mr10">interface in
+          UnityEditor.Experimental.Rendering</p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Defines the required members for a ScriptableBakedReflectionSystem implementation.</p></div><div class="subsection"><p>You can use the empty implementation as base class, see <a href="Experimental.Rendering.ScriptableBakedReflectionSystem.html">ScriptableBakedReflectionSystem</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEditor.Experimental.Rendering;<br /><br />public interface IBakeJobs
+{
+    // Add job counts + remove jobs count
+    int count { get; }
+    int toAddCount { get; }
+    int toRemoveCount { get; }
+}<br /><br />public interface IBaker&lt;TProbe&gt;
+{
+    IBakeJobs PrepareBakeJobsFor(<a href="Experimental.Rendering.SceneStateHash.html">SceneStateHash</a> sceneStateHash);
+    void IssueJobs(IBakeJobs jobs);
+    List&lt;TProbe&gt; bakedProbes { get; set; }
+    void StopRunningJobs();
+}<br /><br />abstract class CustomScriptableBakedReflectionSystem : <a href="Experimental.Rendering.ScriptableBakedReflectionSystem.html">ScriptableBakedReflectionSystem</a>
+{
+    enum Stage
+    {
+        None,
+        BakeReflectionProbes
+    }<br /><br />    IBaker&lt;<a href="ReflectionProbe.html">ReflectionProbe</a>&gt; m_ReflectionProbeBaker;<br /><br />    public CustomScriptableBakedReflectionSystem(
+        IBaker&lt;<a href="ReflectionProbe.html">ReflectionProbe</a>&gt; reflectionProbeBaker)
+    // Our custom system processes in 1 stage: reflection probes
+        : base(1)
+    {
+        m_ReflectionProbeBaker = reflectionProbeBaker;
+    }<br /><br />    public override void Tick(
+        <a href="Experimental.Rendering.SceneStateHash.html">SceneStateHash</a> sceneStateHash,
+        <a href="Experimental.Rendering.IScriptableBakedReflectionSystemStageNotifier.html">IScriptableBakedReflectionSystemStageNotifier</a> handle)
+    {
+        // Reflection Probes
+        {
+            // Calculate reflection probes to remove and to bake and add
+            var jobs = m_ReflectionProbeBaker.PrepareBakeJobsFor(sceneStateHash);
+            if (jobs.count &gt; 0)
+            {
+                // <a href="Experimental.PlayerLoop.Update.html">Update</a> progression information of current stage
+                // Progress is the progression of to bake and add jobs
+                handle.EnterStage(
+                    (int)Stage.BakeReflectionProbes,
+                    string.Format("Reflection Probes | {0} jobs", jobs.toAddCount),
+                    1 - (jobs.toAddCount / (float)m_ReflectionProbeBaker.bakedProbes.Count));<br /><br />                // Perform removal of remove jobs
+                // Issue baking of add jobs if they are not in progress
+                m_ReflectionProbeBaker.IssueJobs(jobs);<br /><br />                return;
+            }
+            handle.ExitStage((int)Stage.BakeReflectionProbes);
+        }<br /><br />        // <a href="Experimental.PlayerLoop.Update.html">Update</a> the hash of the reflection system
+        stateHashes = CalculateStateHash();
+        // Baking is complete for this sceneStateHash
+        handle.SetIsDone(true);
+    }<br /><br />    public override void SynchronizeReflectionProbes()
+    {
+        // Synchronize Reflection Probes
+        for (int i = 0, c = m_ReflectionProbeBaker.bakedProbes.Count; i &lt; c; ++i)
+        {
+            var probe = m_ReflectionProbeBaker.bakedProbes[i];
+            probe.bakedTexture = GetReflectionProbeBakedTexture(probe);
+        }
+    }<br /><br />    public override void Clear()
+    {
+        m_ReflectionProbeBaker.bakedProbes.Clear();
+        DeleteBakedReflectionProbeTextures();
+    }<br /><br />    public override void Cancel()
+    {
+        m_ReflectionProbeBaker.StopRunningJobs();
+    }<br /><br />    <a href="Cubemap.html">Cubemap</a> GetReflectionProbeBakedTexture(<a href="ReflectionProbe.html">ReflectionProbe</a> probe)
+    {
+        throw new System.NotImplementedException();
+    }<br /><br />    protected abstract void DeleteBakedReflectionProbeTextures();
+    protected abstract <a href="Hash128.html">Hash128</a>[] CalculateStateHash();
+}
+</pre>
+      </div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.Rendering.IScriptableBakedReflectionSystem-stageCount.html">stageCount</a></td><td class="desc"></td><td class="desc1">Number of stages of the baking process.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.Rendering.IScriptableBakedReflectionSystem-stateHashes.html">stateHashes</a></td><td class="desc"></td><td class="desc1">The hashes of the current baked state of the ScriptableBakedReflectionSystem.</td></tr>
+    </table></div><div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.Rendering.IScriptableBakedReflectionSystem.BakeAllReflectionProbes.html">BakeAllReflectionProbes</a></td><td class="desc"></td><td class="desc1">Implement this method to bake all of the loaded reflection probes.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.Rendering.IScriptableBakedReflectionSystem.Cancel.html">Cancel</a></td><td class="desc"></td><td class="desc1">Cancel the running bake jobs.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.Rendering.IScriptableBakedReflectionSystem.Clear.html">Clear</a></td><td class="desc"></td><td class="desc1">Clear the state of the ScriptableBakedReflectionSystem.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.Rendering.IScriptableBakedReflectionSystem.SynchronizeReflectionProbes.html">SynchronizeReflectionProbes</a></td><td class="desc"></td><td class="desc1">Synchronize the baked data with the actual components and rendering settings.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.Rendering.IScriptableBakedReflectionSystem.Tick.html">Tick</a></td><td class="desc"></td><td class="desc1">This method is called every Editor update until the ScriptableBakedReflectionSystem indicates that the baking is complete, with handle.SetIsDone(true). (See IScriptableBakedReflectionSystemStageNotifier.SetIsDone).</td></tr>
+    </table></div></div></div></div></body></html>

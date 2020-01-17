@@ -1,0 +1,23 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: GameObject.CreatePrimitive</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="GameObject.html">GameObject</a>.CreatePrimitive</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-GameObject.html' title='Go to GameObject Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="GameObject.html">GameObject</a> <span class="sig-kw">CreatePrimitive</span>(<a href="PrimitiveType.html">PrimitiveType</a> <span class="sig-kw">type</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">type</td><td class="desc"></td><td class="desc1">The type of primitive object to create.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Creates a game object with a primitive mesh renderer and appropriate collider.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Create a plane, sphere and cube in the <a href="SceneManagement.Scene.html">Scene</a>.<br /><br />    void Start()
+    {
+        <a href="GameObject.html">GameObject</a> plane  = <a href="GameObject.CreatePrimitive.html">GameObject.CreatePrimitive</a>(<a href="PrimitiveType.Plane.html">PrimitiveType.Plane</a>);<br /><br />        <a href="GameObject.html">GameObject</a> cube = <a href="GameObject.CreatePrimitive.html">GameObject.CreatePrimitive</a>(<a href="PrimitiveType.Cube.html">PrimitiveType.Cube</a>);
+        cube.transform.position = new <a href="Vector3.html">Vector3</a>(0, 0.5f, 0);<br /><br />        <a href="GameObject.html">GameObject</a> sphere = <a href="GameObject.CreatePrimitive.html">GameObject.CreatePrimitive</a>(<a href="PrimitiveType.Sphere.html">PrimitiveType.Sphere</a>);
+        sphere.transform.position = new <a href="Vector3.html">Vector3</a>(0, 1.5f, 0);<br /><br />        <a href="GameObject.html">GameObject</a> capsule = <a href="GameObject.CreatePrimitive.html">GameObject.CreatePrimitive</a>(<a href="PrimitiveType.Capsule.html">PrimitiveType.Capsule</a>);
+        capsule.transform.position = new <a href="Vector3.html">Vector3</a>(2, 1, 0);<br /><br />        <a href="GameObject.html">GameObject</a> cylinder = <a href="GameObject.CreatePrimitive.html">GameObject.CreatePrimitive</a>(<a href="PrimitiveType.Cylinder.html">PrimitiveType.Cylinder</a>);
+        cylinder.transform.position = new <a href="Vector3.html">Vector3</a>(-2, 1, 0);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>
+        <strong>Note:</strong> <a href="GameObject.CreatePrimitive.html">CreatePrimitive</a> may fail at runtime.  This will happen if your
+        project does not reference the following components: <a href="MeshFilter.html">MeshFilter</a>, <a href="MeshRenderer.html">MeshRenderer</a>,
+        and <a href="BoxCollider.html">BoxCollider</a> or <a href="SphereCollider.html">SphereCollider</a> at runtime.  The recommended way to avoid this
+        crash is to declare private properties of these types. The stripping system
+        will recognise their use which include them in the build so will not delete these
+        components.</p></div></div></div></div></body></html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Networking.UnityWebRequestAssetBundle.GetAssetBundle</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Networking.UnityWebRequestAssetBundle.html">UnityWebRequestAssetBundle</a>.GetAssetBundle</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Networking.UnityWebRequest.html">Networking.UnityWebRequest</a> <span class="sig-kw">GetAssetBundle</span>(string <span class="sig-kw">uri</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Networking.UnityWebRequest.html">Networking.UnityWebRequest</a> <span class="sig-kw">GetAssetBundle</span>(Uri <span class="sig-kw">uri</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Networking.UnityWebRequest.html">Networking.UnityWebRequest</a> <span class="sig-kw">GetAssetBundle</span>(string <span class="sig-kw">uri</span>,
+uint <span class="sig-kw">crc</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Networking.UnityWebRequest.html">Networking.UnityWebRequest</a> <span class="sig-kw">GetAssetBundle</span>(Uri <span class="sig-kw">uri</span>,
+uint <span class="sig-kw">crc</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Networking.UnityWebRequest.html">Networking.UnityWebRequest</a> <span class="sig-kw">GetAssetBundle</span>(string <span class="sig-kw">uri</span>,
+uint <span class="sig-kw">version</span>,
+uint <span class="sig-kw">crc</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Networking.UnityWebRequest.html">Networking.UnityWebRequest</a> <span class="sig-kw">GetAssetBundle</span>(Uri <span class="sig-kw">uri</span>,
+uint <span class="sig-kw">version</span>,
+uint <span class="sig-kw">crc</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Networking.UnityWebRequest.html">Networking.UnityWebRequest</a> <span class="sig-kw">GetAssetBundle</span>(string <span class="sig-kw">uri</span>,
+<a href="Hash128.html">Hash128</a> <span class="sig-kw">hash</span>,
+uint <span class="sig-kw">crc</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Networking.UnityWebRequest.html">Networking.UnityWebRequest</a> <span class="sig-kw">GetAssetBundle</span>(Uri <span class="sig-kw">uri</span>,
+<a href="Hash128.html">Hash128</a> <span class="sig-kw">hash</span>,
+uint <span class="sig-kw">crc</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Networking.UnityWebRequest.html">Networking.UnityWebRequest</a> <span class="sig-kw">GetAssetBundle</span>(string <span class="sig-kw">uri</span>,
+<a href="CachedAssetBundle.html">CachedAssetBundle</a> <span class="sig-kw">cachedAssetBundle</span>,
+uint <span class="sig-kw">crc</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Networking.UnityWebRequest.html">Networking.UnityWebRequest</a> <span class="sig-kw">GetAssetBundle</span>(Uri <span class="sig-kw">uri</span>,
+<a href="CachedAssetBundle.html">CachedAssetBundle</a> <span class="sig-kw">cachedAssetBundle</span>,
+uint <span class="sig-kw">crc</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">uri</td><td class="desc"></td><td class="desc1">The URI of the asset bundle to download.</td></tr><tr><td class="name lbl">crc</td><td class="desc"></td><td class="desc1">If nonzero, this number will be compared to the checksum of the downloaded asset bundle data. If the CRCs do not match, an error will be logged and the asset bundle will not be loaded. If set to zero, CRC checking will be skipped.</td></tr><tr><td class="name lbl">version</td><td class="desc"></td><td class="desc1">An integer version number, which will be compared to the cached version of the asset bundle to download. Increment this number to force Unity to redownload a cached asset bundle.<br /><br />Analogous to the <code class="varname">version</code> parameter for WWW.LoadFromCacheOrDownload.</td></tr><tr><td class="name lbl">hash</td><td class="desc"></td><td class="desc1">A version hash. If this hash does not match the hash for the cached version of this asset bundle, the asset bundle will be redownloaded.</td></tr><tr><td class="name lbl">cachedAssetBundle</td><td class="desc"></td><td class="desc1">A structure used to download a given version of AssetBundle to a customized cache path.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>UnityWebRequest</strong>
+        A UnityWebRequest configured to downloading a Unity Asset Bundle.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Creates a UnityWebRequest optimized for downloading a Unity Asset Bundle via HTTP GET.</p></div><div class="subsection"><p>This method creates a UnityWebRequest, sets the method to <code class="mono">GET</code> and sets the target URL to the string <code class="varname">uri</code> argument. Sets no other flags or custom headers.<br /><br />This method attaches a <a href="Networking.DownloadHandlerAssetBundle.html">DownloadHandlerAssetBundle</a> to the <a href="Networking.UnityWebRequest.html">UnityWebRequest</a>. This <a href="Networking.DownloadHandler.html">DownloadHandler</a> has a special <a href="Networking.DownloadHandlerAssetBundle-assetBundle.html">DownloadHandlerAssetBundle.assetBundle</a> property, which can be used to extract the asset bundle once enough data has been downloaded and decoded to permit access to the resources inside the bundle.<br /><br />In addition, the <a href="Networking.DownloadHandlerAssetBundle.html">DownloadHandlerAssetBundle</a> streams data into a ringbuffer and decompresses the data on a worker thread, saving many memory allocations compared to downloading the data all at once.<br /><br />If supplied with an integer <code class="varname">version</code> or Hash128 <code class="varname">hash</code> argument, the <a href="Networking.DownloadHandlerAssetBundle.html">DownloadHandlerAssetBundle</a> will employ the Asset Bundle caching system. If an Asset Bundle has been cached and does not need to be redownloaded, then the <a href="Networking.UnityWebRequest.html">UnityWebRequest</a> will complete once the Asset Bundle has finished loading from the cache.<br /><br />Cached AssetBundles are uniquely identified solely by the filename and version. All domain and path information in <code class="varname">url</code> is ignored by Caching. Since cached AssetBundles are identified by filename instead of the full URL, you can change the directory from where the asset bundle is downloaded at any time. This is useful for pushing out new versions of the game and ensuring that files are not cached incorrectly by the browser or by a CDN.<br /><br />Usually using the filename of the AssetBundle to generate the cache path is fine. But if there are different AssetBundles with the same last file name, cache conflicts happens. With CachedAssetBundle struct, you can use <a href="CachedAssetBundle-name.html">CachedAssetBundle.name</a> to customized the cache path to avoid the cache conflicts. You can also utilize this to organize the cache data structure.<br /><br /><strong>Note</strong>, that while you can use this API to load Asset Bundle from local storage (using file:// URI or jar:file// on Android), this is not recommended, use <a href="AssetBundle.LoadFromFileAsync.html">AssetBundle.LoadFromFileAsync</a> instead.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.Networking;
+using System.Collections;<br /><br />public class MyBehaviour : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        StartCoroutine(GetText());
+    }<br /><br />    IEnumerator GetText()
+    {
+        using (<a href="Networking.UnityWebRequest.html">UnityWebRequest</a> uwr = <a href="Networking.UnityWebRequestAssetBundle.GetAssetBundle.html">UnityWebRequestAssetBundle.GetAssetBundle</a>("http://www.my-server.com/mybundle"))
+        {
+            yield return uwr.SendWebRequest();<br /><br />            if (uwr.isNetworkError || uwr.isHttpError)
+            {
+                <a href="Debug.Log.html">Debug.Log</a>(uwr.error);
+            }
+            else
+            {
+                // Get downloaded asset bundle
+                <a href="AssetBundle.html">AssetBundle</a> bundle = <a href="Networking.DownloadHandlerAssetBundle.GetContent.html">DownloadHandlerAssetBundle.GetContent</a>(uwr);
+            }
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

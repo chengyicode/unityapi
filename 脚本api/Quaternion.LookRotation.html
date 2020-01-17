@@ -1,0 +1,19 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Quaternion.LookRotation</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Quaternion.html">Quaternion</a>.LookRotation</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Quaternion.html">Quaternion</a> <span class="sig-kw">LookRotation</span>(<a href="Vector3.html">Vector3</a> <span class="sig-kw">forward</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">upwards</span> = Vector3.up);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">forward</td><td class="desc"></td><td class="desc1">The direction to look in.</td></tr><tr><td class="name lbl">upwards</td><td class="desc"></td><td class="desc1">The vector that defines in which direction up is.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Creates a rotation with the specified <code class="varname">forward</code> and <code class="varname">upwards</code> directions.</p></div><div class="subsection"><p>Z axis will be aligned with <code class="varname">forward</code>, X axis aligned with cross product between <code class="varname">forward</code> and <code class="varname">upwards</code>, and Y axis aligned with cross product between Z and X.<br />
+<br />Returns identity if <code class="varname">forward</code> or <code class="varname">upwards</code> magnitude is zero.
+<br />Returns identity if <code class="varname">forward</code> and <code class="varname">upwards</code> are colinear.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// You can also use transform.LookAt<br /><br />using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Transform.html">Transform</a> target;<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        <a href="Vector3.html">Vector3</a> relativePos = target.position - transform.position;<br /><br />        // the second argument, upwards, defaults to <a href="Vector3-up.html">Vector3.up</a>
+        <a href="Quaternion.html">Quaternion</a> rotation = <a href="Quaternion.LookRotation.html">Quaternion.LookRotation</a>(relativePos, <a href="Vector3-up.html">Vector3.up</a>);
+        transform.rotation = rotation;
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="Quaternion.SetLookRotation.html">SetLookRotation</a>.</p></div></div></div></div></body></html>

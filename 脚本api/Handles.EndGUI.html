@@ -1,0 +1,52 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Handles.EndGUI</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Handles.html">Handles</a>.EndGUI</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">EndGUI</span>();
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>End a 2D GUI block and get back to the 3D handle GUI.</p></div><div class="subsection"><p>See Also: <a href="Handles.BeginGUI.html">Handles.BeginGUI</a>.<br /><br /><img src="../StaticFiles/ScriptRefImages/BeginEndGUI2.png" /><br />
+<em>GUI in the Scene View.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Change the transform values for the selected object.
+// When selected this script starts and the handleExample is managed.
+// The HandlesGUI.BeginGUI() and EndGUI() functions allow the shieldArea
+// to be changed back to five, which is the starting value.<br /><br />using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;<br /><br />[<a href="CustomEditor.html">CustomEditor</a>(typeof(HandleExample))]
+class HandleExampleEditor : <a href="Editor.html">Editor</a>
+{
+    protected virtual void OnSceneGUI()
+    {
+        HandleExample handleExample = (HandleExample)target;<br /><br />        if (handleExample == null)
+        {
+            return;
+        }<br /><br />        <a href="Handles-color.html">Handles.color</a> = <a href="Color-yellow.html">Color.yellow</a>;<br /><br />        <a href="GUIStyle.html">GUIStyle</a> style = new <a href="GUIStyle.html">GUIStyle</a>();
+        style.normal.textColor = <a href="Color-green.html">Color.green</a>;<br /><br />        <a href="Vector3.html">Vector3</a> position = handleExample.transform.position + <a href="Vector3-up.html">Vector3.up</a> * 2f;
+        string posString = position.ToString();<br /><br />        <a href="Handles.Label.html">Handles.Label</a>(position,
+            posString + "\nShieldArea: " +
+            handleExample.shieldArea.ToString(),
+            style
+        );<br /><br />        <a href="Handles.BeginGUI.html">Handles.BeginGUI</a>();
+        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Reset Area", <a href="GUILayout.Width.html">GUILayout.Width</a>(100)))
+        {
+            handleExample.shieldArea = 5;
+        }
+        <a href="Handles.EndGUI.html">Handles.EndGUI</a>();<br /><br />        <a href="Handles.DrawWireArc.html">Handles.DrawWireArc</a>(
+            handleExample.transform.position,
+            handleExample.transform.up,
+            -handleExample.transform.right,
+            180,
+            handleExample.shieldArea);<br /><br />        handleExample.shieldArea =
+            <a href="Handles.ScaleValueHandle.html">Handles.ScaleValueHandle</a>(handleExample.shieldArea,
+                handleExample.transform.position + handleExample.transform.forward * handleExample.shieldArea,
+                handleExample.transform.rotation,
+                1, <a href="Handles.ConeHandleCap.html">Handles.ConeHandleCap</a>, 1);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Add a script that specifies the object that can be animated
+                in the SceneView.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />[<a href="ExecuteInEditMode.html">ExecuteInEditMode</a>]
+public class HandleExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public float shieldArea = 5.0f;
+}
+</pre>
+      </div></div></div></div></body></html>

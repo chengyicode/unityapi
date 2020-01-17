@@ -1,0 +1,77 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: PlayableDirector</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">PlayableDirector</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine.Playables</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Inherits from:<a href="Behaviour.html" class="cl">Behaviour</a></p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.DirectorModule.html" class="cl">UnityEngine.DirectorModule</a></p><br /><p class="cl mb0 left">Implements interfaces:<a href="IExposedPropertyTable.html" class="cl">IExposedPropertyTable</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Instantiates a <a href="Playables.PlayableAsset.html">PlayableAsset</a> and controls playback of <a href="Playables.Playable.html">Playable</a> objects.</p></div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableDirector-duration.html">duration</a></td><td class="desc"></td><td class="desc1">The duration of the Playable in seconds.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableDirector-extrapolationMode.html">extrapolationMode</a></td><td class="desc"></td><td class="desc1">Controls how the time is incremented when it goes beyond the duration of the playable.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableDirector-initialTime.html">initialTime</a></td><td class="desc"></td><td class="desc1">The time at which the Playable should start when first played.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableDirector-playableAsset.html">playableAsset</a></td><td class="desc"></td><td class="desc1">The PlayableAsset that is used to instantiate a playable for playback.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableDirector-playableGraph.html">playableGraph</a></td><td class="desc"></td><td class="desc1">The PlayableGraph created by the PlayableDirector.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableDirector-playOnAwake.html">playOnAwake</a></td><td class="desc"></td><td class="desc1">Whether the playable asset will start playing back as soon as the component awakes.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableDirector-state.html">state</a></td><td class="desc"></td><td class="desc1">The current playing state of the component. (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableDirector-time.html">time</a></td><td class="desc"></td><td class="desc1">The component's current time. This value is incremented according to the PlayableDirector.timeUpdateMode when it is playing. You can also change this value manually.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableDirector-timeUpdateMode.html">timeUpdateMode</a></td><td class="desc"></td><td class="desc1">Controls how time is incremented when playing back.</td></tr>
+    </table></div><div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableDirector.ClearGenericBinding.html">ClearGenericBinding</a></td><td class="desc"></td><td class="desc1">Clears the binding of a reference object.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableDirector.ClearReferenceValue.html">ClearReferenceValue</a></td><td class="desc"></td><td class="desc1">Clears an exposed reference value.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableDirector.DeferredEvaluate.html">DeferredEvaluate</a></td><td class="desc"></td><td class="desc1">Tells the PlayableDirector to evaluate it's PlayableGraph on the next update.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableDirector.Evaluate.html">Evaluate</a></td><td class="desc"></td><td class="desc1">Evaluates the currently playing Playable at  the current time.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableDirector.GetGenericBinding.html">GetGenericBinding</a></td><td class="desc"></td><td class="desc1">Returns a binding to a reference object.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableDirector.GetReferenceValue.html">GetReferenceValue</a></td><td class="desc"></td><td class="desc1">Retreives an ExposedReference binding.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableDirector.Pause.html">Pause</a></td><td class="desc"></td><td class="desc1">Pauses playback of the currently running playable.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableDirector.Play.html">Play</a></td><td class="desc"></td><td class="desc1">Instatiates a Playable using the provided PlayableAsset and starts playback.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableDirector.RebindPlayableGraphOutputs.html">RebindPlayableGraphOutputs</a></td><td class="desc"></td><td class="desc1">Rebinds each PlayableOutput of the PlayableGraph.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableDirector.RebuildGraph.html">RebuildGraph</a></td><td class="desc"></td><td class="desc1">Discards the existing PlayableGraph and creates a new instance.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableDirector.Resume.html">Resume</a></td><td class="desc"></td><td class="desc1">Resume playing a paused playable.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableDirector.SetGenericBinding.html">SetGenericBinding</a></td><td class="desc"></td><td class="desc1">Sets the binding of a reference object from a PlayableBinding.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableDirector.SetReferenceValue.html">SetReferenceValue</a></td><td class="desc"></td><td class="desc1">Sets an ExposedReference value.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableDirector.Stop.html">Stop</a></td><td class="desc"></td><td class="desc1">Stops playback of the current Playable and destroys the corresponding graph.</td></tr>
+    </table></div><div class="subsection"><h2>Events</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableDirector-paused.html">paused</a></td><td class="desc"></td><td class="desc1">Event that is raised when a PlayableDirector component has paused.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableDirector-played.html">played</a></td><td class="desc"></td><td class="desc1">Event that is raised when a PlayableDirector component has begun playing.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableDirector-stopped.html">stopped</a></td><td class="desc"></td><td class="desc1">Event that is raised when a PlayableDirector component has stopped.</td></tr>
+    </table></div><div class="subsection"><h2>Inherited Members   继承成员</h2>
+      
+      <div class="subsection"><h2>Properties   属性</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Behaviour-enabled.html">enabled</a></td><td class="desc"></td><td class="desc1">Enabled Behaviours are Updated, disabled Behaviours are not.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Behaviour-isActiveAndEnabled.html">isActiveAndEnabled</a></td><td class="desc"></td><td class="desc1">Has the Behaviour had active and enabled called?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component-gameObject.html">gameObject</a></td><td class="desc"></td><td class="desc1">The game object this component is attached to. A component is always attached to a game object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component-tag.html">tag</a></td><td class="desc"></td><td class="desc1">The tag of this game object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component-transform.html">transform</a></td><td class="desc"></td><td class="desc1">The Transform attached to this GameObject.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-hideFlags.html">hideFlags</a></td><td class="desc"></td><td class="desc1">Should the object be hidden, saved with the Scene or modifiable by the user?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-name.html">name</a></td><td class="desc"></td><td class="desc1">The name of the object.</td></tr>
+      </table></div>
+      
+      
+      
+      <div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.BroadcastMessage.html">BroadcastMessage</a></td><td class="desc"></td><td class="desc1">Calls the method named methodName on every MonoBehaviour in this game object or any of its children.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.CompareTag.html">CompareTag</a></td><td class="desc"></td><td class="desc1">Is this game object tagged with tag ?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponent.html">GetComponent</a></td><td class="desc"></td><td class="desc1">Returns the component of Type type if the game object has one attached, null if it doesn't.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponentInChildren.html">GetComponentInChildren</a></td><td class="desc"></td><td class="desc1">Returns the component of Type type in the GameObject or any of its children using depth first search.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponentInParent.html">GetComponentInParent</a></td><td class="desc"></td><td class="desc1">Returns the component of Type type in the GameObject or any of its parents.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponents.html">GetComponents</a></td><td class="desc"></td><td class="desc1">Returns all components of Type type in the GameObject.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponentsInChildren.html">GetComponentsInChildren</a></td><td class="desc"></td><td class="desc1">Returns all components of Type type in the GameObject or any of its children.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.GetComponentsInParent.html">GetComponentsInParent</a></td><td class="desc"></td><td class="desc1">Returns all components of Type type in the GameObject or any of its parents.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.SendMessage.html">SendMessage</a></td><td class="desc"></td><td class="desc1">Calls the method named methodName on every MonoBehaviour in this game object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.SendMessageUpwards.html">SendMessageUpwards</a></td><td class="desc"></td><td class="desc1">Calls the method named methodName on every MonoBehaviour in this game object and on every ancestor of the behaviour.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Component.TryGetComponent.html">TryGetComponent</a></td><td class="desc"></td><td class="desc1">Gets the component of the specified type, if it exists.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.GetInstanceID.html">GetInstanceID</a></td><td class="desc"></td><td class="desc1">Returns the instance id of the object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.ToString.html">ToString</a></td><td class="desc"></td><td class="desc1">Returns the name of the object.</td></tr>
+      </table></div>
+      
+      <div class="subsection"><h2>Static Methods   静态方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.Destroy.html">Destroy</a></td><td class="desc"></td><td class="desc1">Removes a GameObject, component or asset.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.DestroyImmediate.html">DestroyImmediate</a></td><td class="desc"></td><td class="desc1">Destroys the object obj immediately. You are strongly recommended to use Destroy instead.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.DontDestroyOnLoad.html">DontDestroyOnLoad</a></td><td class="desc"></td><td class="desc1">Do not destroy the target Object when loading a new Scene.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectOfType.html">FindObjectOfType</a></td><td class="desc"></td><td class="desc1">Returns the first active loaded object of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectsOfType.html">FindObjectsOfType</a></td><td class="desc"></td><td class="desc1">Returns a list of all active loaded objects of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.Instantiate.html">Instantiate</a></td><td class="desc"></td><td class="desc1">Clones the object original and returns the clone.</td></tr>
+      </table></div>
+      <div class="subsection"><h2>Operators   运算符</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_Object.html">bool</a></td><td class="desc"></td><td class="desc1">Does the object exist?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_ne.html">operator !=</a></td><td class="desc"></td><td class="desc1">Compares if two objects refer to a different object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_eq.html">operator ==</a></td><td class="desc"></td><td class="desc1">Compares two object references to see if they refer to the same object.</td></tr>
+      </table></div>
+      
+      
+      
+    </div></div></div></div></body></html>

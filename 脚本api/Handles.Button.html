@@ -1,0 +1,34 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Handles.Button</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Handles.html">Handles</a>.Button</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">Button</span>(<a href="Vector3.html">Vector3</a> <span class="sig-kw">position</span>,
+<a href="Quaternion.html">Quaternion</a> <span class="sig-kw">direction</span>,
+float <span class="sig-kw">size</span>,
+float <span class="sig-kw">pickSize</span>,
+<a href="Handles.CapFunction.html">Handles.CapFunction</a> <span class="sig-kw">capFunction</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">position</td><td class="desc"></td><td class="desc1">The position to draw the button in the space of <a href="Handles-matrix.html">Handles.matrix</a>.</td></tr><tr><td class="name lbl">direction</td><td class="desc"></td><td class="desc1">The rotation of the button in the space of <a href="Handles-matrix.html">Handles.matrix</a>.</td></tr><tr><td class="name lbl">size</td><td class="desc"></td><td class="desc1">The visual size of the handle. Use <a href="HandleUtility.GetHandleSize.html">HandleUtility.GetHandleSize</a> if you want a constant screen-space size.</td></tr><tr><td class="name lbl">pickSize</td><td class="desc"></td><td class="desc1">The size of the button for the purpose of detecting a click. Use <a href="HandleUtility.GetHandleSize.html">HandleUtility.GetHandleSize</a> if you want a constant screen-space size.</td></tr><tr><td class="name lbl">capFunction</td><td class="desc"></td><td class="desc1">The draw style of the button.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>bool</strong>
+        True when the user clicks the button.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Make a 3D Button.</p></div><div class="subsection"><p>This button works like one drawn with <a href="GUI.Button.html">GUI.Button</a>, but it has a 3D position and is drawn by a handle function.<br />
+<br />
+<img src="../StaticFiles/ScriptRefImages/ButtonHandle.png" /><br />
+<em>Button Handle as a rectangle in the Scene View.</em><br />
+<br />
+Add the following script to your Assets folder as ButtonExample.cs and add the ButtonExample component to an object in a Scene.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class ButtonExample : <a href="MonoBehaviour.html">MonoBehaviour</a> {}
+</pre>
+      </div><div class="subsection"><p>Add the following script to Assets/Editor as ButtonExampleEditor.cs and select the object with the ButtonExample component.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;<br /><br />[<a href="CustomEditor.html">CustomEditor</a>(typeof(ButtonExample)), <a href="CanEditMultipleObjects.html">CanEditMultipleObjects</a>]
+class ButtonExampleEditor : <a href="Editor.html">Editor</a>
+{
+    protected virtual void OnSceneGUI()
+    {
+        ButtonExample buttonExample = (ButtonExample)target;<br /><br />        <a href="Vector3.html">Vector3</a> position = buttonExample.transform.position + <a href="Vector3-up.html">Vector3.up</a> * 2f;
+        float size = 2f;
+        float pickSize = size * 2f;<br /><br />        if (<a href="Handles.Button.html">Handles.Button</a>(position, <a href="Quaternion-identity.html">Quaternion.identity</a>, size, pickSize, <a href="Handles.RectangleHandleCap.html">Handles.RectangleHandleCap</a>))
+            <a href="Debug.Log.html">Debug.Log</a>("The button was pressed!");
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

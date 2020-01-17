@@ -1,0 +1,78 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: String</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">String</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Represents text as a series of Unicode characters.</p></div><div class="subsection"><p>Unity uses the .Net <code class="mono">System.String</code> class for strings.  See the Microsoft MSDN
+documentation for <a href="http://msdn.microsoft.com/en-us/library/system.string.aspx">Strings</a>
+for more details.<br /><br /><strong>Note:</strong> In c# <code class="mono">string</code> is an alias for <code class="mono">System.String</code>.  This means that you
+can use either <code class="mono">string</code> or <code class="mono">String</code> in your code (if you have added <code class="mono">using System</code>
+to the top of your script.)
+<strong>Note:</strong> In Javascript strings are represented using <code class="mono">String</code> which you should use
+in your Unity script code.
+Here are some basic uses of the String class.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        // prints hello
+        string s = "hello";
+        <a href="Debug.Log.html">Debug.Log</a>(s);<br /><br />
+        // prints hello world
+        s = string.Format("{0} {1}", s, "world");
+        <a href="Debug.Log.html">Debug.Log</a>(s);<br /><br />        // prints helloworld
+        s = string.Concat("hello", "world");
+        <a href="Debug.Log.html">Debug.Log</a>(s);<br /><br />        // prints HELLOWORLD
+        s = s.ToUpper();
+        <a href="Debug.Log.html">Debug.Log</a>(s);<br /><br />        // prints helloworld
+        s = s.ToLower();
+        <a href="Debug.Log.html">Debug.Log</a>(s);<br /><br />        // prints 'e'
+        <a href="Debug.Log.html">Debug.Log</a>(s[1]);<br /><br />        // prints 42
+        int i = 42;
+        s = i.ToString();
+        <a href="Debug.Log.html">Debug.Log</a>(s);<br /><br />        // prints -43
+        s = "-43";
+        i = int.Parse(s);
+        <a href="Debug.Log.html">Debug.Log</a>(i);<br /><br />        // prints 3.141593 (an approximation)
+        float f = 3.14159265359F;
+        s = f.ToString();
+        <a href="Debug.Log.html">Debug.Log</a>(s);<br /><br />        // prints -7.141593 (an approximation)
+        s = "-7.14159265358979";
+        f = float.Parse(s);
+        <a href="Debug.Log.html">Debug.Log</a>(f);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>This example shows how you can examine the String class and see the methods it
+contains.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System;
+using System.Reflection;
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        Type t = typeof(System.String);<br /><br />        // Iterate over all the methods from the System.String class and display
+        // return type and parameters.
+        // This reveals all the things you can do with a String.
+        foreach (MethodInfo mi in t.GetMethods())
+        {
+            System.String s = System.String.Format("{0} {1} (", mi.ReturnType, mi.Name);
+            ParameterInfo[] pars = mi.GetParameters();<br /><br />            for (int j = 0; j &lt; pars.Length; j++)
+            {
+                s = String.Concat(s, String.Format("{0}{1}", pars[j].ParameterType, ((j == pars.Length - 1) ? "" : ", ")));
+            }
+            s = String.Concat(s, ")");
+            <a href="Debug.Log.html">Debug.Log</a>(s);
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="String.Empty.html">Empty</a></td><td class="desc"></td><td class="desc1">Represents the empty string. (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="String.Length.html">Length</a></td><td class="desc"></td><td class="desc1">Gets the number of characters in this instance (Read Only).</td></tr>
+    </table></div></div></div></div></body></html>

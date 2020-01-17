@@ -1,0 +1,24 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Networking.Match.NetworkMatch.DestroyMatch</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Method group is Obsolete</b><br /></div><h1 class="heading inherit"><a href="Networking.Match.NetworkMatch.html">NetworkMatch</a>.DestroyMatch</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public <a href="Coroutine.html">Coroutine</a> <span class="sig-kw">DestroyMatch</span>(<a href="Networking.Types.NetworkID.html">Networking.Types.NetworkID</a> <span class="sig-kw">netId</span>,
+int <span class="sig-kw">requestDomain</span>,
+BasicResponseDelegate <span class="sig-kw">callback</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">netId</td><td class="desc"></td><td class="desc1">The NetworkID of the match to terminate.</td></tr><tr><td class="name lbl">requestDomain</td><td class="desc"></td><td class="desc1">The request domain for this request. Only requests in the same domain can interface with each other. For example if a NetworkMatch.CreateMatch is made with domain 1, only ListMatches that also specify domain 1 will find that match. Use this value to silo different (possibly incompatible) client versions.</td></tr><tr><td class="name lbl">callback</td><td class="desc"></td><td class="desc1">The callback to be called when the request completes.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>Coroutine</strong>
+        This function is asynchronous and will complete at some point in the future, when the coroutine has finished communicating with the service backend.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>This function is used to tell MatchMaker to destroy a match in progress, regardless of who is connected.</p></div><div class="subsection"><p>This function is not part of the normal MatchMaker flow and is there to allow termination of a match immediatly. For normal flow, each client disconnecting should call NetworkMatch.DropConnection with their own information; Once the last client leaves a match, the match will be immediately cleaned up.<br /><br />This function is protected by the authentication token given to the client when it creates the match. Only a host (which is automatically granted admin rights) is allowed to call NetworkMatch.DestroyMatch. Anyone else will be denied access.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.Networking;
+using UnityEngine.Networking.Match;
+using UnityEngine.Networking.Types;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Networking.Types.NetworkID.html">NetworkID</a> netId;<br /><br />    void Start()
+    {
+        NetworkManager.singleton.StartMatchMaker();
+        NetworkManager.singleton.matchMaker.DestroyMatch(netId, 0, OnMatchDestroy);
+    }<br /><br />    public void OnMatchDestroy(bool success, string extendedInfo)
+    {
+        // ...
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

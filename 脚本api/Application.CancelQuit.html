@@ -1,0 +1,34 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Application.CancelQuit</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Method group is Obsolete</b><br /></div><h1 class="heading inherit"><a href="Application.html">Application</a>.CancelQuit</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public static void <span class="sig-kw">CancelQuit</span>();
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Cancels quitting the application. This is useful for showing a splash screen at the end of a game.</p></div><div class="subsection"><p>This function only works in the player.<br /><br /><strong>Note:</strong> <a href="Application.CancelQuit.html">CancelQuit</a> has been deprecated. Please use <a href="Application-wantsToQuit.html">Application.wantsToQuit</a> instead.<br /><br /><strong>Note:</strong> This function has no effect on iPhone. Application can not prevent termination under iPhone OS.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Delays quitting for 2 seconds and
+    // loads the finalsplash level during that time.<br /><br />    float showSplashTimeout = 2.0f;
+    bool  allowQuitting = false;<br /><br />    void Awake()
+    {
+        // This game object needs to survive multiple levels
+        Application.DontDestroyOnLoad(this.gameObject);
+    }<br /><br />    void OnApplicationQuit()
+    {
+        // If we haven't already load up the final splash screen level
+        if (Application.loadedLevelName.ToLower() != "finalsplash")
+        {
+            StartCoroutine("DelayedQuit");
+        }<br /><br />        // Don't allow the user to exit until we got permission in
+        if (!allowQuitting)
+        {
+            Application.CancelQuit();
+        }
+    }<br /><br />    IEnumerator DelayedQuit()
+    {
+        Application.LoadLevel("finalsplash");<br /><br />        // Wait for showSplashTimeout
+        yield return new <a href="WaitForSeconds.html">WaitForSeconds</a>(showSplashTimeout);<br /><br />        // then quit for real
+        allowQuitting = true;
+        <a href="Application.Quit.html">Application.Quit</a>();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

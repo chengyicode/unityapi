@@ -1,0 +1,21 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AnimationCurve.AnimationCurve</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">AnimationCurve Constructor</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <span class="sig-kw">AnimationCurve</span>(params Keyframe[] <span class="sig-kw">keys</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">keys</td><td class="desc"></td><td class="desc1">An array of Keyframes used to define the curve.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Creates an animation curve from an arbitrary number of keyframes.</p></div><div class="subsection"><p>This creates a curve from variable number of <a href="Keyframe.html">Keyframe</a> parameters. If you want to create curve
+from an array of keyframes, create an empty curve and assign <a href="AnimationCurve-keys.html">keys</a> property.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class AnimCurveExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="AnimationCurve.html">AnimationCurve</a> curve;<br /><br />    void Start()
+    {
+        curve = new <a href="AnimationCurve.html">AnimationCurve</a>(new <a href="Keyframe.html">Keyframe</a>(0, 0), new <a href="Keyframe.html">Keyframe</a>(1, 1));
+        curve.preWrapMode = <a href="WrapMode.PingPong.html">WrapMode.PingPong</a>;
+        curve.postWrapMode = <a href="WrapMode.PingPong.html">WrapMode.PingPong</a>;
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        transform.position = new <a href="Vector3.html">Vector3</a>(transform.position.x, curve.Evaluate(<a href="Time-time.html">Time.time</a>), transform.position.z);
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <span class="sig-kw">AnimationCurve</span>();
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Creates an empty animation curve.</p></div></div></div></div></body></html>

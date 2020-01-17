@@ -1,0 +1,27 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: SceneManagement.SceneManager.UnloadSceneAsync</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="SceneManagement.SceneManager.html">SceneManager</a>.UnloadSceneAsync</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="AsyncOperation.html">AsyncOperation</a> <span class="sig-kw">UnloadSceneAsync</span>(int <span class="sig-kw">sceneBuildIndex</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="AsyncOperation.html">AsyncOperation</a> <span class="sig-kw">UnloadSceneAsync</span>(string <span class="sig-kw">sceneName</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="AsyncOperation.html">AsyncOperation</a> <span class="sig-kw">UnloadSceneAsync</span>(<a href="SceneManagement.Scene.html">SceneManagement.Scene</a> <span class="sig-kw">scene</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="AsyncOperation.html">AsyncOperation</a> <span class="sig-kw">UnloadSceneAsync</span>(int <span class="sig-kw">sceneBuildIndex</span>,
+<a href="SceneManagement.UnloadSceneOptions.html">SceneManagement.UnloadSceneOptions</a> <span class="sig-kw">options</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="AsyncOperation.html">AsyncOperation</a> <span class="sig-kw">UnloadSceneAsync</span>(string <span class="sig-kw">sceneName</span>,
+<a href="SceneManagement.UnloadSceneOptions.html">SceneManagement.UnloadSceneOptions</a> <span class="sig-kw">options</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="AsyncOperation.html">AsyncOperation</a> <span class="sig-kw">UnloadSceneAsync</span>(<a href="SceneManagement.Scene.html">SceneManagement.Scene</a> <span class="sig-kw">scene</span>,
+<a href="SceneManagement.UnloadSceneOptions.html">SceneManagement.UnloadSceneOptions</a> <span class="sig-kw">options</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">sceneBuildIndex</td><td class="desc"></td><td class="desc1">Index of the Scene in BuildSettings.</td></tr><tr><td class="name lbl">sceneName</td><td class="desc"></td><td class="desc1">Name or path of the Scene to unload.</td></tr><tr><td class="name lbl">scene</td><td class="desc"></td><td class="desc1">Scene to unload.</td></tr><tr><td class="name lbl">options</td><td class="desc"></td><td class="desc1">Scene unloading options.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>AsyncOperation</strong>
+        Use the <a href="AsyncOperation.html">AsyncOperation</a> to determine if the operation has completed.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Destroys all GameObjects associated with the given Scene and removes the Scene from the SceneManager.</p></div><div class="subsection"><p>The given Scene name can either be the full Scene path, the path
+                shown in the Build Settings window or just the Scene name. If only the Scene name
+                is given this will unload the first Scene in the list that matches. If you have
+                multiple Scenes with same name but different paths, you should use the full Scene path.
+Examples of supported formats:<br />
+<code class="mono">"Scene1"</code><br />
+<code class="mono">"Scene2"</code><br />
+<code class="mono">"Scenes/Scene3"</code><br />
+<code class="mono">"Scenes/Others/Scene3"</code><br />
+<code class="mono">"Assets/scenes/others/scene3.unity"</code><br />
+<br />
+<strong>Note:</strong> This is case-insensitive and due to it being async there are no guarantees about completion time.
+<br />
+<strong>Note:</strong> Assets are currently not unloaded. In order to free up asset memory call <a href="Resources.UnloadUnusedAssets.html">Resources.UnloadUnusedAssets</a>.
+<br />
+<strong>Note:</strong> It is not possible to <a href="SceneManagement.SceneManager.UnloadSceneAsync.html">UnloadSceneAsync</a> if there are no scenes to load.  For example, a project that has a single scene cannot use this static member.</p></div></div></div></div></body></html>

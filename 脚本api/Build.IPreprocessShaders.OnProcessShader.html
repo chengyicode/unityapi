@@ -1,0 +1,26 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Build.IPreprocessShaders.OnProcessShader</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Build.IPreprocessShaders.html">IPreprocessShaders</a>.OnProcessShader</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">OnProcessShader</span>(<a href="Shader.html">Shader</a> <span class="sig-kw">shader</span>,
+<a href="Rendering.ShaderSnippetData.html">Rendering.ShaderSnippetData</a> <span class="sig-kw">snippet</span>,
+IList&lt;ShaderCompilerData&gt; <span class="sig-kw">data</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">shader</td><td class="desc"></td><td class="desc1">Shader that is being compiled.</td></tr><tr><td class="name lbl">snippet</td><td class="desc"></td><td class="desc1">Details about the specific shader code being compiled.</td></tr><tr><td class="name lbl">data</td><td class="desc"></td><td class="desc1">List of variants to be compiled for the specific shader code.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Implement this interface to receive a callback before a shader snippet is compiled.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.Collections.Generic;
+using UnityEditor.Build;
+using UnityEditor.Rendering;
+using UnityEngine;
+using UnityEngine.Rendering;<br /><br />class MyCustomBuildProcessor : <a href="Build.IPreprocessShaders.html">IPreprocessShaders</a>
+{
+    <a href="Rendering.ShaderKeyword.html">ShaderKeyword</a> m_Blue;<br /><br />    public MyCustomBuildProcessor()
+    {
+        m_Blue = new <a href="Rendering.ShaderKeyword.html">ShaderKeyword</a>("_BLUE");
+    }<br /><br />    public int callbackOrder { get { return 0; } }<br /><br />    public void OnProcessShader(<a href="Shader.html">Shader</a> shader, <a href="Rendering.ShaderSnippetData.html">ShaderSnippetData</a> snippet, IList&lt;<a href="Rendering.ShaderCompilerData.html">ShaderCompilerData</a>&gt; data)
+    {
+        for (int i = data.Count - 1; i &gt;= 0; --i)
+        {
+            if (!data[i].shaderKeywordSet.IsEnabled(m_Blue))
+                continue;<br /><br />            data.RemoveAt(i);
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AnimationClip.legacy</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="AnimationClip.html">AnimationClip</a>.legacy</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-AnimationClip.html' title='Go to AnimationClip Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public bool <span class="sig-kw">legacy</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Set to true if the AnimationClip will be used with the Legacy Animation component ( instead of the Animator ).</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class animFov : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        <a href="AnimationClip.html">AnimationClip</a> fovc = new <a href="AnimationClip.html">AnimationClip</a>();
+        <a href="AnimationCurve.html">AnimationCurve</a> curve = <a href="AnimationCurve.Linear.html">AnimationCurve.Linear</a>(0.0f, 60.0f, 10.0f, 90.0f);
+        fovc.SetCurve("", typeof(<a href="Camera.html">Camera</a>), "field of view", curve);
+        fovc.legacy = true;
+        GetComponent&lt;<a href="Animation.html">Animation</a>&gt;().AddClip(fovc, "animfov");<br /><br />        GetComponent&lt;<a href="Animation.html">Animation</a>&gt;().Play("animfov");
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

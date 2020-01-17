@@ -1,0 +1,25 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: JointLimits</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">JointLimits</h1><div class="clear"></div><p class="cl mb0 left mr10">struct in
+          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.PhysicsModule.html" class="cl">UnityEngine.PhysicsModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>JointLimits is used by the <a href="HingeJoint.html">HingeJoint</a> to limit the joints angle.</p></div><div class="subsection"><p>See Also: <a href="HingeJoint.html">HingeJoint</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        // Set the hinge limits for a door.
+        <a href="HingeJoint.html">HingeJoint</a> hinge = GetComponent&lt;<a href="HingeJoint.html">HingeJoint</a>&gt;();<br /><br />        <a href="JointLimits.html">JointLimits</a> limits = hinge.limits;
+        limits.min = 0;
+        limits.max = 90;
+        limits.bounciness = 0;
+        limits.bounceMinVelocity = 0;
+        hinge.limits = limits;
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="JointLimits-bounceMinVelocity.html">bounceMinVelocity</a></td><td class="desc"></td><td class="desc1">The minimum impact velocity which will cause the joint to bounce.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="JointLimits-bounciness.html">bounciness</a></td><td class="desc"></td><td class="desc1">Determines the size of the bounce when the joint hits it's limit. Also known as restitution.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="JointLimits-contactDistance.html">contactDistance</a></td><td class="desc"></td><td class="desc1">Distance inside the limit value at which the limit will be considered to be active by the solver.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="JointLimits-max.html">max</a></td><td class="desc"></td><td class="desc1">The upper angular limit (in degrees) of the joint.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="JointLimits-min.html">min</a></td><td class="desc"></td><td class="desc1">The lower angular limit (in degrees) of the joint.</td></tr>
+    </table></div></div></div></div></body></html>

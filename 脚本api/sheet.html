@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		
+<script type="text/javascript" src="./js/jquery.min.js"></script>
+<script type="text/javascript" src="./js/jquery.autocomplete.js"></script>
+<script type="text/javascript" src="./js/dtree.js"></script>
+<script type="text/javascript" src="./js/Script.js"></script> 
+		
+		<script type="text/javascript">
+			
+			
+			$(function(){ 
+							$("#btn").click(function(){ 
+									$.getJSON("jsonData.json",function(data){ 
+										var well = $(".well"); 
+										var strHtml = "";    
+										well.empty();      
+										
+
+			 
+										
+										$.each(data,function(i,item){ 
+											
+											
+											
+											strHtml += "姓名："+item["name"]+"<br>"; 							
+/* 											strHtml += "性别："+item["sex"]+"<br>"; 
+											strHtml += "邮箱："+item["email"]+"<br>"; 
+											strHtml += "<hr>" */
+
+										}) 
+
+									well.html(strHtml.name);
+								}) 
+							}) 
+							}) 
+
+		</script>
+		
+
+	</head>
+	<body>
+		
+		<input type="button" value="获取数据" id="btn"/> 
+		<div class="well">张国立</div> 
+		
+		
+		<br>
+		已更新：
+		
+		<br>1.UnityEngine.Tilemaps  部分类
+			<br>
+		<br>
+		正在更新：
+		<br>1.UnityEngine.Tilemaps剩下内容
+		
+		
+			<br>	<br>	<br>	<br>
+		<h1>描述：自制unity中文api</h1>
+		版本：2019.2
+		<br>注意事项：此项目为自娱自乐，意在学习与提高，能力有限，所以代码混乱同时翻译为机翻且会添加部分自我理解内容 ，如有需求自行修改。（根据学习进度持续更新）
+		
+		<h2>要点</h2>
+		<br>1.为html项目
+		<br>2.页面主体分为左侧菜单页面与右侧内容页面
+		<br>3.左侧菜单借鉴于蛮牛官方网站主题（菜单内容已同步于unity官方）
+		<br>4.右侧内容页面借鉴于unity官方文档（需要修改部分内容）
+		
+		
+		
+		<h2>新增修改内容页面</h2>
+		打开unity官方文档，选择要添加的内容页面，然后鼠标移至菜单到对于菜单栏超链接上后，记录左下角页面名称，然后在工程根目录下新建网页并命名记录的名称。
+		
+		
+		
+		<br>然后在新html< head >的标签内插入      < link href="./css/stylesheet.css" rel="stylesheet" type="text/css" >
+		
+		
+		接着在unity官方文档页面右键检查，选择页面元素的< div class="content" >标签内所有内容，复制到新html的< body >内。
+		<br>
+		<br>
+		插入表格： 
+		<br>第1竖插入  用< td class="lbl" > 全部替换为 < td class="descn" >< /td>< td class="lbl" >
+		<br>第3竖插入  用< td class="desc" > 全部替换为 < td class="desc" >< /td >< td class="desc1" >
+		
+		
+		
+
+		
+		
+
+	</body>
+</html>

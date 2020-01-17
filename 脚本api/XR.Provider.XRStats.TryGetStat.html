@@ -1,0 +1,39 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: XR.Provider.XRStats.TryGetStat</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="XR.Provider.XRStats.html">XRStats</a>.TryGetStat</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">TryGetStat</span>(<a href="IntegratedSubsystem.html">IntegratedSubsystem</a> <span class="sig-kw">xrSubsystem</span>,
+string <span class="sig-kw">tag</span>,
+out float <span class="sig-kw">value</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">xrSubsystem</td><td class="desc"></td><td class="desc1">The subsystem with which the stat is registered.</td></tr><tr><td class="name lbl">tag</td><td class="desc"></td><td class="desc1">The tag used to query for a statistic.</td></tr><tr><td class="name lbl">value</td><td class="desc"></td><td class="desc1">Receives the current value of the requested statistic. Contains a valid value when this method returns true.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>bool</strong>
+        True, if the requested statistic is available, false otherwise.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Retrieve a statistic for an XR subsystem.</p></div><div class="subsection"><p>The TryGetStat method queries an XR subsystem for the specified statistic and, if available, sets the output <code class="mono">value</code> parameter to the current statistic value. TryGetStat returns true to indicate that the output parameter contains a valid statistic value. If the specified tag is not defined for the subsystem or the subsystem itself is not ready, TryGetStat returns false.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine.XR.Provider;
+using System.Collections.Generic;
+using UnityEngine.Experimental.XR;
+using UnityEngine.Experimental;
+using UnityEngine;<br /><br />public static class OpenVRStats
+{
+    public static float GPUFrameTime()
+    {
+        float tmp;
+        <a href="XR.Provider.XRStats.TryGetStat.html">XRStats.TryGetStat</a>(GetFirstDisplaySubsystem(), "OpenVR.Display.GPUFrameTime", out tmp);
+        return tmp;
+    }<br /><br />    public static float MotionToPhoton()
+    {
+        float tmp;
+        <a href="XR.Provider.XRStats.TryGetStat.html">XRStats.TryGetStat</a>(GetFirstDisplaySubsystem(), "MotionToPhoton", out tmp);
+        return tmp;
+    }<br /><br />    // etc...
+    private static <a href="IntegratedSubsystem.html">IntegratedSubsystem</a> GetFirstDisplaySubsystem()
+    {
+        List&lt;<a href="Experimental.XR.XRDisplaySubsystem.html">XRDisplaySubsystem</a>&gt; displays = new List&lt;<a href="Experimental.XR.XRDisplaySubsystem.html">XRDisplaySubsystem</a>&gt;();
+        <a href="SubsystemManager.GetInstances.html">SubsystemManager.GetInstances</a>(displays);
+        if (displays.Count == 0)
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("No display subsystem found.");
+            return null;
+        }
+        return displays[0];
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

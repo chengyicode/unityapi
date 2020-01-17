@@ -1,0 +1,24 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Tilemaps.Tilemap.SetTiles</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Tilemaps.Tilemap.html">Tilemap</a>.SetTiles</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">SetTiles</span>(Vector3Int[] <span class="sig-kw">positionArray</span>,
+TileBase[] <span class="sig-kw">tileArray</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">positionArray</td><td class="desc"></td><td class="desc1">An array of positions of Tiles on the <a href="Tilemaps.Tilemap.html">Tilemap</a>.</td></tr><tr><td class="name lbl">tileArray</td><td class="desc"></td><td class="desc1">An array of <a href="../Manual/Tilemap-ScriptableTiles-TileBase.html">Tiles</a> to be placed.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Sets an array of <a href="../Manual/Tilemap-ScriptableTiles-TileBase.html">tiles</a> at the given XYZ coordinates of the corresponding cells in the <a href="../Manual/class-Tilemap.html">tile map</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Fills tilemap area with checkerboard pattern of tileA and tileB
+using UnityEngine;
+using UnityEngine.Tilemaps;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Tilemaps.TileBase.html">TileBase</a> tileA;
+    public <a href="Tilemaps.TileBase.html">TileBase</a> tileB;
+    public <a href="Vector2Int.html">Vector2Int</a> size;<br /><br />    void Start()
+    {
+        <a href="Vector3Int.html">Vector3Int</a>[] positions = new <a href="Vector3Int.html">Vector3Int</a>[size.x * size.y];
+        <a href="Tilemaps.TileBase.html">TileBase</a>[] tileArray = new <a href="Tilemaps.TileBase.html">TileBase</a>[positions.Length];<br /><br />        for (int index = 0; index &lt; positions.Length; index++)
+        {
+            positions[index] = new <a href="Vector3Int.html">Vector3Int</a>(index % size.x, index / size.y, 0);
+            tileArray[index] = index % 2 == 0 ? tileA : tileB;
+        }<br /><br />        <a href="Tilemaps.Tilemap.html">Tilemap</a> tilemap = GetComponent&lt;<a href="Tilemaps.Tilemap.html">Tilemap</a>&gt;();
+        tilemap.SetTiles(positions, tileArray);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

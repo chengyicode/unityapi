@@ -1,0 +1,22 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Rigidbody.MoveRotation</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Rigidbody.html">Rigidbody</a>.MoveRotation</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Rigidbody.html' title='Go to Rigidbody Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">MoveRotation</span>(<a href="Quaternion.html">Quaternion</a> <span class="sig-kw">rot</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">rot</td><td class="desc"></td><td class="desc1">The new rotation for the Rigidbody.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Rotates the rigidbody to <code class="varname">rotation</code>.</p></div><div class="subsection"><p>Use <a href="Rigidbody.MoveRotation.html">Rigidbody.MoveRotation</a> to rotate a <a href="Rigidbody.html">Rigidbody</a>, complying with the Rigidbody's interpolation setting.<br /><br />If Rigidbody interpolation is enabled on the <a href="Rigidbody.html">Rigidbody</a>, calling <a href="Rigidbody.MoveRotation.html">Rigidbody.MoveRotation</a> will resulting in a smooth transition between the two rotations in any intermediate frames rendered. This should be used if you want to continuously rotate a rigidbody in each <a href="Experimental.PlayerLoop.FixedUpdate.html">FixedUpdate</a>.<br /><br />Set <a href="Rigidbody-rotation.html">Rigidbody.rotation</a> instead, if you want to teleport a rigidbody from one rotation to another, with no intermediate positions being rendered.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//Attach this script and a <a href="Rigidbody.html">Rigidbody</a> to your <a href="GameObject.html">GameObject</a>. To do this click the <a href="GameObject.html">GameObject</a>, click the <strong>Add Component</strong> button in its Inspector, and go to <strong>Physics</strong>&gt;<strong>Rigidbody</strong>.<br /><br />using UnityEngine;
+using System.Collections;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    //Make sure you attach a <a href="Rigidbody.html">Rigidbody</a> in the Inspector of this <a href="GameObject.html">GameObject</a>
+    <a href="Rigidbody.html">Rigidbody</a> m_Rigidbody;
+    <a href="Vector3.html">Vector3</a> m_EulerAngleVelocity;<br /><br />    void Start()
+    {
+        //Set the axis the <a href="Rigidbody.html">Rigidbody</a> rotates in (100 in the y axis)
+        m_EulerAngleVelocity = new <a href="Vector3.html">Vector3</a>(0, 100, 0);<br /><br />        //Fetch the <a href="Rigidbody.html">Rigidbody</a> from the <a href="GameObject.html">GameObject</a> with this script attached
+        m_Rigidbody = GetComponent&lt;<a href="Rigidbody.html">Rigidbody</a>&gt;();
+    }<br /><br />    void <a href="Experimental.PlayerLoop.FixedUpdate.html">FixedUpdate</a>()
+    {
+        <a href="Quaternion.html">Quaternion</a> deltaRotation = <a href="Quaternion.Euler.html">Quaternion.Euler</a>(m_EulerAngleVelocity * <a href="Time-deltaTime.html">Time.deltaTime</a>);
+        m_Rigidbody.MoveRotation(m_Rigidbody.rotation * deltaRotation);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Teleports the object (rather than a smooth transition) if it has <code class="mono">isKinematic</code> set false.</p></div></div></div></div></body></html>

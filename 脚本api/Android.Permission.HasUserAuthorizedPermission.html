@@ -1,0 +1,17 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Android.Permission.HasUserAuthorizedPermission</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Android.Permission.html">Permission</a>.HasUserAuthorizedPermission</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">HasUserAuthorizedPermission</span>(string <span class="sig-kw">permission</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">permission</td><td class="desc"></td><td class="desc1">A string representing the permission to request. For permissions which Unity has not predefined you may also manually provide the constant value obtained from the Android documentation here: https://developer.android.com/guide/topics/permissions/overview#permission-groups such as "android.permission.READ_CONTACTS".</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>bool</strong>
+        Whether the requested permission has been granted.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Check if the user has granted access to a device resource or information that requires authorization.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.Android;<br /><br />public class CheckPermissionScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        if (<a href="Android.Permission.HasUserAuthorizedPermission.html">Permission.HasUserAuthorizedPermission</a>(<a href="Android.Permission.Microphone.html">Permission.Microphone</a>))
+            <a href="Debug.Log.html">Debug.Log</a>("<a href="Microphone.html">Microphone</a> permission has been granted.");
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

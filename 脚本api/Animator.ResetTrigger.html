@@ -1,0 +1,33 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Animator.ResetTrigger</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Animator.html">Animator</a>.ResetTrigger</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Animator.html' title='Go to Animator Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">ResetTrigger</span>(string <span class="sig-kw">name</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">ResetTrigger</span>(int <span class="sig-kw">id</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">name</td><td class="desc"></td><td class="desc1">The parameter name.</td></tr><tr><td class="name lbl">id</td><td class="desc"></td><td class="desc1">The parameter ID.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Resets the value of the given trigger parameter.</p></div><div class="subsection"><p>Use this to reset a Trigger <a href="../Manual/AnimationParameters.html">parameter</a> in an Animator Controller that could still be active. Make sure to create a parameter in the Animator Controller with the same name. See <a href="Animator.SetTrigger.html">Animator.SetTrigger</a> for more information about how to set a Trigger.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//Attach this script to a <a href="GameObject.html">GameObject</a> with an <a href="Animator.html">Animator</a> component attached.
+//For this example, create parameters in the <a href="Animator.html">Animator</a> and name them “Crouch” and “Jump”
+//Apply these parameters to your transitions between states<br /><br />//This script allows you to trigger an <a href="Animator.html">Animator</a> parameter and reset the other that could possibly still be active. Press the up and down arrow keys to do this.<br /><br />using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="Animator.html">Animator</a> m_Animator;<br /><br />    void Start()
+    {
+        //Get the <a href="Animator.html">Animator</a> attached to the <a href="GameObject.html">GameObject</a> you are intending to animate.
+        m_Animator = gameObject.GetComponent&lt;<a href="Animator.html">Animator</a>&gt;();
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        //Press the up arrow button to reset the trigger and set another one
+        if (<a href="Input.GetKey.html">Input.GetKey</a>(<a href="KeyCode.UpArrow.html">KeyCode.UpArrow</a>))
+        {
+            //Reset the "Crouch" trigger
+            m_Animator.ResetTrigger("Crouch");
+            //Send the message to the <a href="Animator.html">Animator</a> to activate the trigger parameter named "Jump"
+            m_Animator.SetTrigger("Jump");
+        }<br /><br />        if (<a href="Input.GetKey.html">Input.GetKey</a>(<a href="KeyCode.DownArrow.html">KeyCode.DownArrow</a>))
+        {
+            //Reset the "Jump" trigger
+            m_Animator.ResetTrigger("Jump");
+            //Send the message to the <a href="Animator.html">Animator</a> to activate the trigger parameter named "Crouch"
+            m_Animator.SetTrigger("Crouch");
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

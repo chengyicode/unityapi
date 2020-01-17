@@ -1,0 +1,20 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Profiling.Sampler.Get</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Profiling.Sampler.html">Sampler</a>.Get</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Profiling.Sampler.html">Profiling.Sampler</a> <span class="sig-kw">Get</span>(string <span class="sig-kw">name</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">name</td><td class="desc"></td><td class="desc1">Profiler Sampler name.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>Sampler</strong>
+        
+          <a href="Profiling.Sampler.html">Sampler</a> object which represents specific profiler label.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Returns <a href="Profiling.Sampler.html">Sampler</a> object for the specific CPU Profiler label.</p></div><div class="subsection"><p>You can use this function to get a Sampler associated with a built-in or custom label. The <em>name</em> parameter is the same you can see in Hierarchy view of the <a href="../Manual/ProfilerCPU.html">Profiler Window</a>.
+If label with the specified <em>name</em> parameter does not exist or not available in the Player, an invalid Sampler object will be returned. You can use <a href="Profiling.Sampler-isValid.html">Sampler.isValid</a> to verify if Sampler is valid.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.Profiling;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="Profiling.Sampler.html">Sampler</a> sampler;
+    void Start()
+    {
+        sampler = <a href="Profiling.Sampler.Get.html">Sampler.Get</a>("BehaviourUpdate");
+    }
+}
+</pre>
+      </div><div class="subsection"><p>
+        <strong>Get</strong> can be used to obtain any existing Sampler including custom Sampler. Return value is always Sampler type and can not be casted to CustomSampler.<br /><br /><strong>Note:</strong> At the moment all built-in counters are available only in the Editor and Development Players. <strong>Get</strong> in non-Development Players returns invalid Sampler.<br /><br />See Also: <a href="Profiling.Sampler.html">Sampler</a>, <a href="Profiling.Sampler-isValid.html">Sampler.isValid</a>,  <a href="../Manual/ProfilerCPU.html">CPU Usage Profiler</a>.</p></div></div></div></div></body></html>

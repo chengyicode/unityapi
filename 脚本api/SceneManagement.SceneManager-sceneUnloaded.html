@@ -1,0 +1,44 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: SceneManagement.SceneManager.sceneUnloaded</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="SceneManagement.SceneManager.html">SceneManager</a>.sceneUnloaded</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">value</td><td class="desc"></td><td class="desc1">Use a subscription of either a UnityAction&lt;<a href="SceneManagement.Scene.html">Scene</a>&gt; or a method that takes a <a href="SceneManagement.Scene.html">Scene</a> type argument.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Add a delegate to this to get notifications when a Scene has unloaded.</p></div><div class="subsection"><p>Rather than being called directly this script code shows use of a delegate. This means the <a href="SceneManagement.SceneManager-sceneUnloaded.html">sceneUnloaded</a> value is added into a list of delegates.<br /><br />In the script example below a method call is shown.  Specifically a function called OnSceneUnloaded is added to sceneUnloaded.  SceneUnloaded is called when the Scene it is associated with is closed.  At this point SceneUnloaded should be removed from the <a href="SceneManagement.SceneManager-sceneUnloaded.html">sceneUnloaded</a> list.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.SceneManagement;<br /><br />public class SceneLoaded1 : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public void Start()
+    {
+        <a href="SceneManagement.SceneManager-sceneUnloaded.html">SceneManager.sceneUnloaded</a> += OnSceneUnloaded;
+        <a href="Debug.Log.html">Debug.Log</a>("Start: SceneLoaded1");
+    }<br /><br />    private void OnSceneUnloaded(<a href="SceneManagement.Scene.html">Scene</a> current)
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("OnSceneUnloaded: " + current);
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        if (<a href="Input.GetKey.html">Input.GetKey</a>("space"))
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("Quitting Scene1");
+            ChangeScene();
+        }
+    }<br /><br />    void ChangeScene()
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("Changing to Scene2");<br /><br />        <a href="SceneManagement.SceneManager.LoadScene.html">SceneManager.LoadScene</a>("Scene2");
+    }<br /><br />    void OnDestroy()
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("OnDestroy");
+    }
+}
+</pre>
+      </div><div class="subsection"><p>
+        <code class="varname">SceneLoaded2</code> simply announces that this is the active Scene.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;<br /><br />public class SceneLoaded2 : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public void Start()
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("SceneLoaded2");
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

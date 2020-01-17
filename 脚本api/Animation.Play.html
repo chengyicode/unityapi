@@ -1,0 +1,60 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Animation.Play</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Animation.html">Animation</a>.Play</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Animation.html' title='Go to Animation Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public bool <span class="sig-kw">Play</span>(<a href="PlayMode.html">PlayMode</a> <span class="sig-kw">mode</span> = PlayMode.StopSameLayer);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public bool <span class="sig-kw">Play</span>(string <span class="sig-kw">animation</span>,
+<a href="PlayMode.html">PlayMode</a> <span class="sig-kw">mode</span> = PlayMode.StopSameLayer);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Plays an animation without blending.</p></div><div class="subsection"><p>If no name is supplied then the default animation will be played. In cases where the animation can not be played
+(for example when there is no default animation or no animation with the specified name), the function will return <code class="varname">false</code>. The optional <a href="PlayMode.html">PlayMode</a> lets you choose how this animation will affect others already playing.<br /><br />If the specified animation is already playing then other animations will be stopped but the animation will not rewind to the beginning. When the end of the animation is reached it will automatically be stopped and rewound to the start unless the <a href="PlayMode.html">PlayMode</a> is set to Loop. If <a href="Animation.Play.html">Animation.Play</a> is called on an object during a frame update where the object is also <a href="../Manual/DeactivatingGameObjects.html">deactivated</a> then the call will effectively be cancelled. The animation will not start playing when the object is later reactivated. However, if a call on a subsequent frame (while the object is still inactive) then the animation will start playing after reactivation.<br /><br />To use <a href="Animation.Play.html">Animation.Play</a> the animation data must be visible in the Inpsector window. This window contains all animations for a <a href="GameObject.html">GameObject</a> in an array. As an example two animations <code class="varname">jump</code> and <code class="varname">spin</code> are stored in the Animations list. <a href="Animation.Play.html">Animation.Play</a> can play each of these animations. <a href="Animation.html">Animation</a> can also combine animations. An (unsupported and undocumented) <a href="AnimationState.html">AnimationState</a>.<code class="varname">layer</code> is used for this. For example leaving <code class="varname">jump</code> at layer zero and moving <code class="varname">spin</code> to layer 123 will allow them to be played together.<br /><br />Animations must be marked as ‘Legacy’ in the Inspector for the animations to be found by this method. This option appears after switching the Inspector Window to ‘Debug’.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />// <a href="Animation.Play.html">Animation.Play</a> example. Let the S and J keys start
+// a spin or jump animation. Let <a href="Space.html">Space</a> play back spin and
+// jump at the same time. Let Z play spin and jump with
+// spin doubled in speed.
+//
+// Spin: rotate the cube 360 degrees in half or one second
+// Jump: bounce up to 2 units and down in one second
+//
+// Note: AnimationState.layer is no longer supported, but still exists.<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private <a href="Animation.html">Animation</a> anim;<br /><br />    void Start()
+    {
+        anim = gameObject.GetComponent&lt;<a href="Animation.html">Animation</a>&gt;();
+        anim["spin"].layer = 123;
+    }<br /><br />    // double the spin speed when true
+    private bool fastSpin = false;<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        // leave spin or jump to complete before changing
+        if (anim.isPlaying)
+        {
+            return;
+        }<br /><br />        if (<a href="Input.GetKeyDown.html">Input.GetKeyDown</a>(<a href="KeyCode.S.html">KeyCode.S</a>))
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("Spinning");
+            anim.Play("spin");
+        }<br /><br />        if (<a href="Input.GetKeyDown.html">Input.GetKeyDown</a>(<a href="KeyCode.J.html">KeyCode.J</a>))
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("Jumping");
+            anim.Play("jump");
+        }<br /><br />        // combine jump and spin
+        if (<a href="Input.GetKeyDown.html">Input.GetKeyDown</a>(<a href="KeyCode.Space.html">KeyCode.Space</a>))
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("Jumping and spinning");
+            anim.Play("jump");
+            anim.Play("spin");
+        }<br /><br />        // have spin speed reverted to 1.0 second
+        if (fastSpin == true)
+        {
+            anim["spin"].speed = 1.0f;
+            fastSpin = false;
+        }<br /><br />        if (<a href="Input.GetKeyDown.html">Input.GetKeyDown</a>(<a href="KeyCode.Z.html">KeyCode.Z</a>))
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("Jumping and spinning in half a second");
+            anim.Play("jump");
+            anim["spin"].speed = 2.0f;
+            anim.Play("spin");<br /><br />            // we've used spin at a speed of two, now mark
+            // the spin speed to revert back to one
+            fastSpin = true;
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

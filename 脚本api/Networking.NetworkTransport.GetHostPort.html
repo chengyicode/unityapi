@@ -1,0 +1,28 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Networking.NetworkTransport.GetHostPort</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Method group is Obsolete</b><br /></div><h1 class="heading inherit"><a href="Networking.NetworkTransport.html">NetworkTransport</a>.GetHostPort</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public static int <span class="sig-kw">GetHostPort</span>(int <span class="sig-kw">hostId</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">hostId</td><td class="desc"></td><td class="desc1">Host ID.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>int</strong>
+        The UDP port number, or -1 if an error occurred.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Returns the port number assigned to the host.</p></div><div class="subsection"><p>NOTE: this function is not supported for Xbox One and web sockets.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.Networking;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    int channelId;
+    int hostId;
+    void Start()
+    {
+        // Init Transport using default values.
+        NetworkTransport.Init();<br /><br />        // Create a connection_config and add a Channel.
+        ConnectionConfig connection_config = new ConnectionConfig();
+        channelId = connection_config.AddChannel(<a href="Networking.QosType.Reliable.html">QosType.Reliable</a>);<br /><br />        // Create a topology based on the connection config.
+        HostTopology topology = new HostTopology(connection_config, 10);<br /><br />        // Create a host based on the topology we just created, and bind the socket to port assigned buy OS.
+        hostId = NetworkTransport.AddHost(topology, 0);<br /><br />
+        int assignedPort =  NetworkTransport.GetHostPort(hostId);
+        if (assignedPort == -1)
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("GetHostPort returns error");
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: GL.LINES</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="GL.html">GL</a>.LINES</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static int <span class="sig-kw">LINES</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Mode for <a href="GL.Begin.html">Begin</a>: draw lines.</p></div><div class="subsection"><p>Draws lines between each pair of vertices passed. If you pass four vertices, A, B, C and D, two lines are drawn: one between A and B, and one between C and D.<br /><br />To set up the screen for drawing in 2D, use <a href="GL.LoadOrtho.html">GL.LoadOrtho</a> or <a href="GL.LoadPixelMatrix.html">GL.LoadPixelMatrix</a>.
+To set up the screen for drawing in 3D, use <a href="GL.LoadIdentity.html">GL.LoadIdentity</a> followed by <a href="GL.MultMatrix.html">GL.MultMatrix</a> with the desired transformation matrix.<br /><br />See Also: <a href="GL.Begin.html">GL.Begin</a>, <a href="GL.End.html">GL.End</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Draws a line from "startVertex" var to the curent mouse position.
+    <a href="Material.html">Material</a> mat;
+    <a href="Vector3.html">Vector3</a> startVertex;
+    <a href="Vector3.html">Vector3</a> mousePos;<br /><br />    void Start()
+    {
+        startVertex = <a href="Vector3-zero.html">Vector3.zero</a>;
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        mousePos = <a href="Input-mousePosition.html">Input.mousePosition</a>;
+        // Press space to update startVertex
+        if (<a href="Input.GetKeyDown.html">Input.GetKeyDown</a>(<a href="KeyCode.Space.html">KeyCode.Space</a>))
+        {
+            startVertex = new <a href="Vector3.html">Vector3</a>(mousePos.x / <a href="Screen-width.html">Screen.width</a>, mousePos.y / <a href="Screen-height.html">Screen.height</a>, 0);
+        }
+    }<br /><br />    void OnPostRender()
+    {
+        if (!mat)
+        {
+            <a href="Debug.LogError.html">Debug.LogError</a>("Please Assign a material on the inspector");
+            return;
+        }
+        <a href="GL.PushMatrix.html">GL.PushMatrix</a>();
+        mat.SetPass(0);
+        <a href="GL.LoadOrtho.html">GL.LoadOrtho</a>();<br /><br />        <a href="GL.Begin.html">GL.Begin</a>(<a href="GL.LINES.html">GL.LINES</a>);
+        <a href="GL.Color.html">GL.Color</a>(<a href="Color-red.html">Color.red</a>);
+        <a href="GL.Vertex.html">GL.Vertex</a>(startVertex);
+        <a href="GL.Vertex.html">GL.Vertex</a>(new <a href="Vector3.html">Vector3</a>(mousePos.x / <a href="Screen-width.html">Screen.width</a>, mousePos.y / <a href="Screen-height.html">Screen.height</a>, 0));
+        <a href="GL.End.html">GL.End</a>();<br /><br />        <a href="GL.PopMatrix.html">GL.PopMatrix</a>();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

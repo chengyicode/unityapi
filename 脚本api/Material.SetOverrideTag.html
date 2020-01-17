@@ -1,0 +1,32 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Material.SetOverrideTag</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Material.html">Material</a>.SetOverrideTag</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Material.html' title='Go to Material Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">SetOverrideTag</span>(string <span class="sig-kw">tag</span>,
+string <span class="sig-kw">val</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">tag</td><td class="desc"></td><td class="desc1">Name of the tag to set.</td></tr><tr><td class="name lbl">val</td><td class="desc"></td><td class="desc1">Name of the value to set. Empty string to clear the override flag.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Sets an override tag/value on the material.</p></div><div class="subsection"><p>Will set a tag/value on the material that overrides the value of said tag from the shader. This can be used to make sure replacement shaders (such as rendering DepthNormals) work even if the original shader only supports a certain render type. For example if a shader only supports a specific render type but renders in many ways using keywords, SetOverrideTag can be used fom a custom material inspector to ensure that the material renders correctly even if the shader is replaced.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public static class MaterialUtils
+{
+    public enum <a href="Rendering.BlendMode.html">BlendMode</a>
+    {
+         Opaque,
+         Cutout,
+         Fade,
+         Transparent
+    }<br /><br />    public static void SetupBlendMode(<a href="Material.html">Material</a> material, <a href="Rendering.BlendMode.html">BlendMode</a> blendMode)
+    {
+        switch (blendMode)
+        {
+            case BlendMode.Opaque:
+                material.SetOverrideTag("RenderType", "");
+                material.DisableKeyword("_ALPHATEST_ON");
+                material.renderQueue = -1;
+                break;
+            case BlendMode.Cutout:
+                material.SetOverrideTag("RenderType", "TransparentCutout");
+                material.EnableKeyword("_ALPHATEST_ON");
+                material.renderQueue = 2450;
+                break;
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

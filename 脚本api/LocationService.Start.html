@@ -1,0 +1,53 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: LocationService.Start</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="LocationService.html">LocationService</a>.Start</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">Start</span>();
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">Start</span>(float <span class="sig-kw">desiredAccuracyInMeters</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">Start</span>(float <span class="sig-kw">desiredAccuracyInMeters</span>,
+float <span class="sig-kw">updateDistanceInMeters</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Starts location service updates.  Last location coordinates could be.</p></div><div class="subsection"><p>Retrieved via <code class="mono">Input.location.lastData</code>.
+Service does not start to send location data immediately. Code should
+check <code class="mono">Input.location.status</code> for current service status.
+desiredAccuracyInMeters - desired service accuracy in meters. Using
+higher value like 500 usually does not require to turn GPS chip on and
+thus saves battery power. Values like 5-10 could be used for getting
+best accuracy. Default value is 10 meters.
+updateDistanceInMeters - the minimum distance (measured in meters) a
+device must move laterally before <code class="mono">Input.location</code> property is
+updated. Higher values like 500 imply less overhead. Default is 10
+meters.
+On Android using this method in your scripts will automatically add ACCESS_FINE_LOCATION permission to the android manifest. If you use low accuracy values like 500 or higher, you can select "Low Accuracy Location" in Player Settings to add ACCESS_COARSE_LOCATION permission instead.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class TestLocationService : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    IEnumerator Start()
+    {
+        // First, check if user has location service enabled
+        if (!Input.location.isEnabledByUser)
+            yield break;<br /><br />        // Start service before querying location
+        Input.location.Start();<br /><br />        // Wait until service initializes
+        int maxWait = 20;
+        while (Input.location.status == <a href="LocationServiceStatus.Initializing.html">LocationServiceStatus.Initializing</a> &amp;&amp; maxWait &gt; 0)
+        {
+            yield return new <a href="WaitForSeconds.html">WaitForSeconds</a>(1);
+            maxWait--;
+        }<br /><br />        // Service didn't initialize in 20 seconds
+        if (maxWait &lt; 1)
+        {
+            print("Timed out");
+            yield break;
+        }<br /><br />        // <a href="MemoryProfiler.Connection.html">Connection</a> has failed
+        if (Input.location.status == <a href="LocationServiceStatus.Failed.html">LocationServiceStatus.Failed</a>)
+        {
+            print("Unable to determine device location");
+            yield break;
+        }
+        else
+        {
+            // Access granted and location value could be retrieved
+            print("Location: " + Input.location.lastData.latitude + " " + Input.location.lastData.longitude + " " + Input.location.lastData.altitude + " " + Input.location.lastData.horizontalAccuracy + " " + Input.location.lastData.timestamp);
+        }<br /><br />        // Stop service if there is no need to query location updates continuously
+        Input.location.Stop();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

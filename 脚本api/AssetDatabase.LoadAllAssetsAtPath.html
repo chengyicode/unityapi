@@ -1,0 +1,26 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AssetDatabase.LoadAllAssetsAtPath</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="AssetDatabase.html">AssetDatabase</a>.LoadAllAssetsAtPath</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static Object[] <span class="sig-kw">LoadAllAssetsAtPath</span>(string <span class="sig-kw">assetPath</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">assetPath</td><td class="desc"></td><td class="desc1">Filesystem path to the asset.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Returns an array of all Assets at <code class="varname">assetPath</code>.</p></div><div class="subsection"><p>Some Asset files may contain multiple sub Assets (such as a Maya file which may contain multiple Meshes and GameObjects).<br />
+All paths are relative to the project folder, for example: "Assets/MyTextures/hello.png".<br />
+This function returns the <a href="AssetDatabase.LoadMainAssetAtPath.html">main Asset</a> and all <a href="AssetDatabase.LoadAllAssetRepresentationsAtPath.html">sub Assets</a> at a given path, including those hidden in the Project view.<br /><br /><strong>Note</strong>: The main asset is not guaranteed to be at index 0 in the array<br /><br />See Also: <a href="AssetDatabase.LoadMainAssetAtPath.html">AssetDatabase.LoadMainAssetAtPath</a>, <a href="AssetDatabase.LoadAllAssetRepresentationsAtPath.html">AssetDatabase.LoadAllAssetRepresentationsAtPath</a>, <a href="AssetDatabase.AddObjectToAsset.html">AssetDatabase.AddObjectToAsset</a>, <a href="HideFlags.HideInHierarchy.html">HideFlags.HideInHierarchy</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    [<a href="MenuItem.html">MenuItem</a>("<a href="AssetDatabase.html">AssetDatabase</a>/LoadAllAssetsAtPath")]
+    private static void PrintAssets()
+    {
+        Object[] data = <a href="AssetDatabase.LoadAllAssetsAtPath.html">AssetDatabase.LoadAllAssetsAtPath</a>("Assets/MySpriteTexture.png");<br /><br />        <a href="Debug.Log.html">Debug.Log</a>(data.Length + " Assets");<br /><br />        foreach (Object o in data)
+        {
+            <a href="Debug.Log.html">Debug.Log</a>(o);
+        }<br /><br />        // outputs:
+        //  5 Assets
+        //  MySpriteTexture (UnityEngine.Texture2D)
+        //  MyTexture_0 (UnityEngine.Sprite)
+        //  MyTexture_1 (UnityEngine.Sprite)
+        //  MyTexture_2 (UnityEngine.Sprite)
+        //  MyTexture_3 (UnityEngine.Sprite)
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="AssetDatabase.LoadAssetAtPath.html">AssetDatabase.LoadAssetAtPath</a>.</p></div></div></div></div></body></html>

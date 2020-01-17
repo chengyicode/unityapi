@@ -1,0 +1,33 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: RaycastCommand</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">RaycastCommand</h1><div class="clear"></div><p class="cl mb0 left mr10">struct in
+          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.PhysicsModule.html" class="cl">UnityEngine.PhysicsModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Struct used to set up a raycast command to be performed asynchronously during a job.</p></div><div class="subsection"><p>When you use this struct to schedule a batch of raycasts, they will be performed asynchronously and in parallel to each other. The results of the raycasts are written to the results buffer. Since the results are written asynchronously the results buffer cannot be accessed until the job has been completed.<br /><br />The result for a command at index N in the command buffer will be stored at index N * maxHits in the results buffer.<br /><br />If maxHits is larger than the actual number of results for the command the result buffer will contain some invalid results which did not hit anything. The first invalid result is identified by the collider being null. The second and later invalid results are not written to by the raycast command so their colliders are not guaranteed to be null. When iterating over the results the loop should stop when the first invalid result is found.<br /><br />See Also: <a href="Physics.Raycast.html">Physics.Raycast</a>, <a href="Physics.RaycastAll.html">Physics.RaycastAll</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using Unity.Collections;
+using Unity.Jobs;
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private void RaycasExample()
+    {
+        // Perform a single raycast using <a href="RaycastCommand.html">RaycastCommand</a> and wait for it to complete
+        // Setup the command and result buffers
+        var results = new NativeArray&lt;<a href="RaycastHit.html">RaycastHit</a>&gt;(1, <a href="Unity.Collections.Allocator.Temp.html">Allocator.Temp</a>);<br /><br />        var commands = new NativeArray&lt;<a href="RaycastCommand.html">RaycastCommand</a>&gt;(1, <a href="Unity.Collections.Allocator.Temp.html">Allocator.Temp</a>);<br /><br />        // Set the data of the first command
+        <a href="Vector3.html">Vector3</a> origin = <a href="Vector3-forward.html">Vector3.forward</a> * -10;<br /><br />        <a href="Vector3.html">Vector3</a> direction = <a href="Vector3-forward.html">Vector3.forward</a>;<br /><br />        commands[0] = new <a href="RaycastCommand.html">RaycastCommand</a>(origin, direction);<br /><br />        // Schedule the batch of raycasts
+        <a href="Unity.Jobs.JobHandle.html">JobHandle</a> handle = <a href="RaycastCommand.ScheduleBatch.html">RaycastCommand.ScheduleBatch</a>(commands, results, 1, default(<a href="Unity.Jobs.JobHandle.html">JobHandle</a>));<br /><br />        // Wait for the batch processing job to complete
+        handle.Complete();<br /><br />        // Copy the result. If batchedHit.collider is null there was no hit
+        <a href="RaycastHit.html">RaycastHit</a> batchedHit = results[0];<br /><br />        // Dispose the buffers
+        results.Dispose();
+        commands.Dispose();
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="RaycastCommand-direction.html">direction</a></td><td class="desc"></td><td class="desc1">The direction of the ray.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="RaycastCommand-distance.html">distance</a></td><td class="desc"></td><td class="desc1">The maximum distance the ray should check for collisions.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="RaycastCommand-from.html">from</a></td><td class="desc"></td><td class="desc1">The starting point of the ray in world coordinates.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="RaycastCommand-layerMask.html">layerMask</a></td><td class="desc"></td><td class="desc1">A LayerMask that is used to selectively ignore Colliders when casting a ray.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="RaycastCommand-maxHits.html">maxHits</a></td><td class="desc"></td><td class="desc1">The maximum number of Colliders the ray can hit.</td></tr>
+    </table></div><div class="subsection"><h2>Constructors</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="RaycastCommand-ctor.html">RaycastCommand</a></td><td class="desc"></td><td class="desc1">Create a RaycastCommand.</td></tr>
+    </table></div><div class="subsection"><h2>Static Methods   静态方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="RaycastCommand.ScheduleBatch.html">ScheduleBatch</a></td><td class="desc"></td><td class="desc1">Schedule a batch of raycasts which are performed in a job.</td></tr>
+    </table></div></div></div></div></body></html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: WebCamTexture.didUpdateThisFrame</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="WebCamTexture.html">WebCamTexture</a>.didUpdateThisFrame</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public bool <span class="sig-kw">didUpdateThisFrame</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Did the video buffer update this frame?</p></div><div class="subsection"><p>Use this to check if the video buffer has changed since the last frame. When setting a low frame rate,
+it is likely that the video will update slower than the game. Since it would not make sense to do expensive video
+processing in each Update call, check this value before doing any processing.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="WebCamTexture.html">WebCamTexture</a> webcamTexture;
+    <a href="Color32.html">Color32</a>[] data;<br /><br />    void Start()
+    {
+        // Start web cam feed
+        webcamTexture =  new <a href="WebCamTexture.html">WebCamTexture</a>();
+        webcamTexture.Play();
+        data = new <a href="Color32.html">Color32</a>[webcamTexture.width * webcamTexture.height];
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        if (webcamTexture.didUpdateThisFrame)
+        {
+            webcamTexture.GetPixels32(data);
+            // Do processing of data here.
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

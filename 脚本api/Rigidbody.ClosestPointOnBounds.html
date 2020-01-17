@@ -1,0 +1,23 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Rigidbody.ClosestPointOnBounds</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Rigidbody.html">Rigidbody</a>.ClosestPointOnBounds</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Rigidbody.html' title='Go to Rigidbody Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Vector3.html">Vector3</a> <span class="sig-kw">ClosestPointOnBounds</span>(<a href="Vector3.html">Vector3</a> <span class="sig-kw">position</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The closest point to the bounding box of the attached colliders.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Subtract damage from a character's hit points when an
+// explosion occurs.<br /><br />using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public float hitPoints = 10.0F;
+    public <a href="Rigidbody.html">Rigidbody</a> rb;<br /><br />    void Start()
+    {
+        rb = GetComponent&lt;<a href="Rigidbody.html">Rigidbody</a>&gt;();
+    }<br /><br />    void ApplyDamage(<a href="Vector3.html">Vector3</a> explosionPos, float radius)
+    {
+        <a href="Vector3.html">Vector3</a> closestPoint = rb.ClosestPointOnBounds(explosionPos);
+        float distance = <a href="Vector3.Distance.html">Vector3.Distance</a>(closestPoint, explosionPos);
+        float damage = 1.0F - <a href="Mathf.Clamp01.html">Mathf.Clamp01</a>(distance / radius);
+        damage *= 10;
+        hitPoints -= damage;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Rigidbody2D.MovePosition</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Rigidbody2D.html">Rigidbody2D</a>.MovePosition</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Rigidbody2D.html' title='Go to Rigidbody2D Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">MovePosition</span>(<a href="Vector2.html">Vector2</a> <span class="sig-kw">position</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">position</td><td class="desc"></td><td class="desc1">The new position for the Rigidbody object.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Moves the rigidbody to <code class="varname">position</code>.</p></div><div class="subsection"><p>Moves the rigidbody to the specified <code class="varname">position</code> by calculating the appropriate linear velocity required to move the rigidbody to that position during the next physics update.  During the move, neither gravity or linear drag will affect the body.  This causes the object to rapidly move from the existing position, through the world, to the specified <code class="varname">position</code>.<br /><br />Because this feature allows a rigidbody to be moved rapidly to the specified <code class="varname">position</code> through the world, any colliders attached to the rigidbody will react as expected i.e. they will produce collisions and/or triggers.  This also means that if the colliders produce a collision then it will affect the rigidbody movement and potentially stop it from reaching the specified <code class="varname">position</code> during the next physics update.  If the rigidbody is kinematic then any collisions won't affect the rigidbody itself and will only affect any other dynamic colliders.<br /><br />2D rigidbodies have a fixed limit on how fast they can move therefore attempting to move large distances over short time-scales can result in the rigidbody not reaching the specified <code class="varname">position</code> during the next physics update.  It is recommended that you use this for relatively small distance movements only.<br /><br />It is important to understand that the actual position change will only occur during the next
+physics update therefore calling this method repeatedly without waiting for the next physics
+update will result in the last call being used.  For this reason, it is recommended that it
+is called during the FixedUpdate callback.<br /><br /><strong>Note:</strong> <a href="Rigidbody2D.MovePosition.html">MovePosition</a> is  intended for use with kinematic rigidbodies.
+</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Move sprite bottom left to upper right.  It does not stop moving.
+// The <a href="Rigidbody2D.html">Rigidbody2D</a> gives the position for the cube.<br /><br />using UnityEngine;
+using System.Collections;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Texture2D.html">Texture2D</a> tex;<br /><br />    private <a href="Vector2.html">Vector2</a> velocity;
+    private <a href="Rigidbody2D.html">Rigidbody2D</a> rb2D;
+    private <a href="Sprite.html">Sprite</a> mySprite;
+    private <a href="SpriteRenderer.html">SpriteRenderer</a> sr;<br /><br />    void Awake()
+    {
+        sr = gameObject.AddComponent&lt;<a href="SpriteRenderer.html">SpriteRenderer</a>&gt;();
+        rb2D = gameObject.AddComponent&lt;<a href="Rigidbody2D.html">Rigidbody2D</a>&gt;();
+    }<br /><br />    void Start()
+    {
+        mySprite = <a href="Sprite.Create.html">Sprite.Create</a>(tex, new <a href="Rect.html">Rect</a>(0.0f, 0.0f, tex.width, tex.height), new <a href="Vector2.html">Vector2</a>(0.5f, 0.5f), 100.0f);
+        velocity = new <a href="Vector2.html">Vector2</a>(1.75f, 1.1f);
+        sr.color = new <a href="Color.html">Color</a>(0.9f, 0.9f, 0.0f, 1.0f);<br /><br />        transform.position = new <a href="Vector3.html">Vector3</a>(-2.0f, -2.0f, 0.0f);
+        sr.sprite = mySprite;
+    }<br /><br />    void <a href="Experimental.PlayerLoop.FixedUpdate.html">FixedUpdate</a>()
+    {
+        rb2D.MovePosition(rb2D.position + velocity * <a href="Time-fixedDeltaTime.html">Time.fixedDeltaTime</a>);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

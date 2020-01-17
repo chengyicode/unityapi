@@ -1,0 +1,49 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Transform.forward</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Transform.html">Transform</a>.forward</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Transform.html' title='Go to Transform Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Vector3.html">Vector3</a> <span class="sig-kw">forward</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Returns a normalized vector representing the blue axis of the transform in world space.</p></div><div class="subsection"><p>The example below shows how to manipulate a GameObject’s position on the Z axis (blue axis) of the transform in world space. Unlike <a href="Vector3-forward.html">Vector3.forward</a>, <a href="Transform-forward.html">Transform.forward</a> moves the GameObject while also considering its rotation.<br /><br />When a GameObject is rotated, the blue arrow representing the Z axis of the GameObject also changes direction. <a href="Transform-forward.html">Transform.forward</a> moves the GameObject in the blue arrow’s axis (Z).<br /><br />For moving the GameObject on the Z axis while ignoring rotation, see <a href="Vector3-forward.html">Vector3.forward</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="Rigidbody.html">Rigidbody</a> m_Rigidbody;
+    float m_Speed;<br /><br />    void Start()
+    {
+        //Fetch the <a href="Rigidbody.html">Rigidbody</a> component you attach from your <a href="GameObject.html">GameObject</a>
+        m_Rigidbody = GetComponent&lt;<a href="Rigidbody.html">Rigidbody</a>&gt;();
+        //Set the speed of the <a href="GameObject.html">GameObject</a>
+        m_Speed = 10.0f;
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        if (<a href="Input.GetKey.html">Input.GetKey</a>(<a href="KeyCode.UpArrow.html">KeyCode.UpArrow</a>))
+        {
+            //Move the <a href="Rigidbody.html">Rigidbody</a> forwards constantly at speed you define (the blue arrow axis in <a href="SceneManagement.Scene.html">Scene</a> view)
+            m_Rigidbody.velocity = transform.forward * m_Speed;
+        }<br /><br />        if (<a href="Input.GetKey.html">Input.GetKey</a>(<a href="KeyCode.DownArrow.html">KeyCode.DownArrow</a>))
+        {
+            //Move the <a href="Rigidbody.html">Rigidbody</a> backwards constantly at the speed you define (the blue arrow axis in <a href="SceneManagement.Scene.html">Scene</a> view)
+            m_Rigidbody.velocity = -transform.forward * m_Speed;
+        }<br /><br />        if (<a href="Input.GetKey.html">Input.GetKey</a>(<a href="KeyCode.RightArrow.html">KeyCode.RightArrow</a>))
+        {
+            //Rotate the sprite about the Y axis in the positive direction
+            transform.Rotate(new <a href="Vector3.html">Vector3</a>(0, 1, 0) * <a href="Time-deltaTime.html">Time.deltaTime</a> * m_Speed, <a href="Space.World.html">Space.World</a>);
+        }<br /><br />        if (<a href="Input.GetKey.html">Input.GetKey</a>(<a href="KeyCode.LeftArrow.html">KeyCode.LeftArrow</a>))
+        {
+            //Rotate the sprite about the Y axis in the negative direction
+            transform.Rotate(new <a href="Vector3.html">Vector3</a>(0, -1, 0) * <a href="Time-deltaTime.html">Time.deltaTime</a> * m_Speed, <a href="Space.World.html">Space.World</a>);
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Another example:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />// Computes the angle between the target transform and this object<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public float angleBetween = 0.0f;
+    public <a href="Transform.html">Transform</a> target;<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        <a href="Vector3.html">Vector3</a> targetDir = target.position - transform.position;
+        angleBetween = <a href="Vector3.Angle.html">Vector3.Angle</a>(transform.forward, targetDir);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

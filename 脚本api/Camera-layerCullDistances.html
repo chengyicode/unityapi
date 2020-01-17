@@ -1,0 +1,21 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Camera.layerCullDistances</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Camera.html">Camera</a>.layerCullDistances</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Camera.html' title='Go to Camera Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public float[] <span class="sig-kw">layerCullDistances</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Per-layer culling distances.</p></div><div class="subsection"><p>Normally Camera skips rendering of objects that are further away than <a href="Camera-farClipPlane.html">farClipPlane</a>.
+You can set up some <a href="../Manual/Layers.html">Layers</a> to use smaller culling distances using layerCullDistances.
+This is very useful to cull small objects early on, if you put them into appropriate layers.<br /><br />When assigning layerCullDistances, you need to assign float array that has 32 values.
+Zero values in cull distances means "use far plane distance".<br /><br />By default, per-layer culling will use a plane aligned with the camera. You can change this to
+a sphere by setting layerCullSpherical on the Camera to true.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        <a href="Camera.html">Camera</a> camera = GetComponent&lt;<a href="Camera.html">Camera</a>&gt;();
+        float[] distances = new float[32];
+        distances[10] = 15;
+        camera.layerCullDistances = distances;
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="Camera-farClipPlane.html">farClipPlane</a>, <a href="Camera-layerCullSpherical.html">layerCullSpherical</a>.</p></div></div></div></div></body></html>

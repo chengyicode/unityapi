@@ -1,0 +1,25 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: WWW.responseHeaders</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Method group is Obsolete</b><br /></div><h1 class="heading inherit"><a href="WWW.html">WWW</a>.responseHeaders</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public Dictionary&lt;string,string&gt; <span class="sig-kw">responseHeaders</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Dictionary of headers returned by the request.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public string url = "http://unity3d.com";
+    IEnumerator Start()
+    {
+        using (WWW www = new WWW(url))
+        {
+            yield return www;<br /><br />            if (www.responseHeaders.Count &gt; 0)
+            {
+                foreach (KeyValuePair&lt;string, string&gt; entry in www.responseHeaders)
+                {
+                    <a href="Debug.Log.html">Debug.Log</a>(entry.Value + "=" + entry.Key);
+                }
+            }
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Note when using these code examples you will want to set the WWW Security Emulation  Host URL to "http://unity3d.com" in  Editor Settings.  Failure to do this may give you security exceptions.</p></div></div></div></div></body></html>

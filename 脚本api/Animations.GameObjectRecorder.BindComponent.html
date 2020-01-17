@@ -1,0 +1,17 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Animations.GameObjectRecorder.BindComponent</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Animations.GameObjectRecorder.html">GameObjectRecorder</a>.BindComponent</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">BindComponent</span>(<a href="Component.html">Component</a> <span class="sig-kw">component</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">component</td><td class="desc"></td><td class="desc1">The component to bind.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Adds bindings for all the properties of <strong>component</strong>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEditor.Animations;<br /><br />public class BindComponentScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        var recorder = new <a href="Animations.GameObjectRecorder.html">GameObjectRecorder</a>(gameObject);<br /><br />        // Add bindings for all the properties of the <a href="Transform.html">Transform</a> and <a href="BoxCollider.html">BoxCollider</a> components.
+        recorder.BindComponent(transform);
+        recorder.BindComponent(GetComponent&lt;<a href="BoxCollider.html">BoxCollider</a>&gt;());
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Experimental.Networking.PlayerConnection.EditorGUILayout.AttachToPlayerDropdown</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Experimental</b>: this API is experimental and might be changed or removed in the future.</div><h1 class="heading inherit"><a href="Experimental.Networking.PlayerConnection.EditorGUILayout.html">EditorGUILayout</a>.AttachToPlayerDropdown</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">AttachToPlayerDropdown</span>(<a href="Experimental.Networking.PlayerConnection.IConnectionState.html">Experimental.Networking.PlayerConnection.IConnectionState</a> <span class="sig-kw">state</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">state</td><td class="desc"></td><td class="desc1">The state for the connection that is used in the <a href="EditorWindow.html">EditorWindow</a> displaying this drop-down. Use <a href="Experimental.Networking.PlayerConnection.EditorGUIUtility.GetAttachToPlayerState.html">EditorGUIUtility.GetAttachToPlayerState</a> to get a state in OnEnable and remember to dispose of that state in OnDisable.</td></tr><tr><td class="name lbl">style</td><td class="desc"></td><td class="desc1">Define the <a href="GUIStyle.html">GUIStyle</a> the drop-down button should be drawn in. A default drop-down button will be drawn if non is specified.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Display a drop-down button and menu for the user to choose and establish a connection to a Player.</p></div><div class="subsection"><p>This is the same control that is used in the toolbars of the <a href="../Manual/ProfilerWindow.html">Profiler Window</a>, <a href="../Manual/FrameDebugger.html">Frame Debugger</a> or <a href="../Manual/Console.html">Console Window</a>. The drop-down will list all available Players and Editors that your Editor can connect to and that are discoverable. It also offers an entry to directly connect to an IP address.
+You will need to provide the state of the connection used for your <a href="EditorWindow.html">EditorWindow</a>. To get one, use <a href="Experimental.Networking.PlayerConnection.EditorGUIUtility.GetAttachToPlayerState.html">EditorGUIUtility.GetAttachToPlayerState</a> in OnEnable and remember to dispose of the state in OnDisable of the <a href="EditorWindow.html">EditorWindow</a> you're using it in.<br /><br />This class is experimental because it currently only works for the connection that the Profiling tools and the Console use. In a future release this will work with <a href="Networking.PlayerConnection.PlayerConnection.html">PlayerConnection</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.Profiling;
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine.Experimental.Networking.PlayerConnection;
+using PlayerConnectionGUILayout = UnityEditor.Experimental.Networking.PlayerConnection.EditorGUILayout;
+using PlayerConnectionGUIUtility = UnityEditor.Experimental.Networking.PlayerConnection.EditorGUIUtility;<br /><br />public class MyWindow : <a href="EditorWindow.html">EditorWindow</a>
+{
+    // The state can survive for the life time of the <a href="EditorWindow.html">EditorWindow</a> so it's best to store it here and just renew/dispose of it in OnEnable and OnDisable, rather than fetching repeatedly it in OnGUI.
+    <a href="Experimental.Networking.PlayerConnection.IConnectionState.html">IConnectionState</a> attachProfilerState;<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Window/My Window")]
+    static void Init()
+    {
+        MyWindow window = (MyWindow)GetWindow(typeof(MyWindow));
+        window.Show();
+    }<br /><br />    private void OnEnable()
+    {
+        // The state of the connection is not getting serialized and needs to be disposed of.
+        // Therefore, it's recommended to fetch it in OnEnable and call Dispose() on it in OnDisable.
+        attachProfilerState = PlayerConnectionGUIUtility.GetAttachToPlayerState(this, OnConnected);
+    }<br /><br />    private void OnConnected(string player)
+    {
+        <a href="Debug.Log.html">Debug.Log</a>(string.Format("MyWindow connected to {0}", player));
+    }<br /><br />    private void OnGUI()
+    {
+        // Draw a toolbar across the top of the window and draw the drop-down in the toolbar drop-down style too
+        <a href="EditorGUILayout.BeginHorizontal.html">EditorGUILayout.BeginHorizontal</a>(<a href="EditorStyles-toolbar.html">EditorStyles.toolbar</a>);
+        PlayerConnectionGUILayout.AttachToPlayerDropdown(attachProfilerState, <a href="EditorStyles-toolbarDropDown.html">EditorStyles.toolbarDropDown</a>);<br /><br />        switch (attachProfilerState.connectedToTarget)
+        {
+            case <a href="Experimental.Networking.PlayerConnection.ConnectionTarget.None.html">ConnectionTarget.None</a>:
+                //This case can never happen within the <a href="Editor.html">Editor</a>, since the <a href="Editor.html">Editor</a> will always fall back onto a connection to itself.
+                break;
+            case <a href="Experimental.Networking.PlayerConnection.ConnectionTarget.Player.html">ConnectionTarget.Player</a>:
+                <a href="Profiling.Profiler-enabled.html">Profiler.enabled</a> = <a href="GUILayout.Toggle.html">GUILayout.Toggle</a>(<a href="Profiling.Profiler-enabled.html">Profiler.enabled</a>, string.Format("Profile the attached Player ({0})", attachProfilerState.connectionName), <a href="EditorStyles-toolbarButton.html">EditorStyles.toolbarButton</a>);
+                break;
+            case <a href="Experimental.Networking.PlayerConnection.ConnectionTarget.Editor.html">ConnectionTarget.Editor</a>:
+                // The name of the <a href="Editor.html">Editor</a> or the <a href="PlayMode.html">PlayMode</a> Player would be "<a href="Editor.html">Editor</a>" so adding the connectionName here would not add anything.
+                <a href="Profiling.Profiler-enabled.html">Profiler.enabled</a> = <a href="GUILayout.Toggle.html">GUILayout.Toggle</a>(<a href="Profiling.Profiler-enabled.html">Profiler.enabled</a>, "Profile the Player in the <a href="Editor.html">Editor</a>", <a href="EditorStyles-toolbarButton.html">EditorStyles.toolbarButton</a>);
+                break;
+            default:
+                break;
+        }
+        <a href="EditorGUILayout.EndHorizontal.html">EditorGUILayout.EndHorizontal</a>();
+    }<br /><br />    private void OnDisable()
+    {
+        // Remember to always dispose of the state!
+        attachProfilerState.Dispose();
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Also see <a href="Experimental.Networking.PlayerConnection.EditorGUI.AttachToPlayerDropdown.html">EditorGUI.AttachToPlayerDropdown</a> for manual positioning as well as <a href="Experimental.Networking.PlayerConnection.EditorGUIUtility.GetAttachToPlayerState.html">EditorGUIUtility.GetAttachToPlayerState</a> and <a href="Experimental.Networking.PlayerConnection.IConnectionState.html">IConnectionState</a> for details of the state handling for this UI control.</p></div></div></div></div></body></html>

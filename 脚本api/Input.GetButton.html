@@ -1,0 +1,28 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Input.GetButton</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Input.html">Input</a>.GetButton</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">GetButton</span>(string <span class="sig-kw">buttonName</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">buttonName</td><td class="desc"></td><td class="desc1">The name of the button such as Jump.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>bool</strong>
+        True when an axis has been pressed and not released.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Returns true while the virtual button identified by <code class="varname">buttonName</code> is held down.</p></div><div class="subsection"><p>Think auto fire - this will return true as long as the button is held down.
+                Use this only when implementing events that trigger an action, eg, shooting a weapon.
+                The <code class="varname">buttonName</code> argument will normally be one of the names in <a href="../Manual/class-InputManager.html">InputManager</a> such as Jump or
+                Fire1.  <a href="Input.GetButton.html">GetButton</a> will return to <code class="varname">false</code> when it is released.<br /><br /><strong>Note:</strong> Use <a href="Input.GetAxis.html">GetAxis</a> for input that controls continuous movement.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Instantiates a projectile every 0.5 seconds,
+// if the Fire1 button (default is Ctrl) is pressed.<br /><br />using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="GameObject.html">GameObject</a> projectile;
+    public float fireDelta = 0.5F;<br /><br />    private float nextFire = 0.5F;
+    private <a href="GameObject.html">GameObject</a> newProjectile;
+    private float myTime = 0.0F;<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        myTime = myTime + <a href="Time-deltaTime.html">Time.deltaTime</a>;<br /><br />        if (<a href="Input.GetButton.html">Input.GetButton</a>("Fire1") &amp;&amp; myTime &gt; nextFire)
+        {
+            nextFire = myTime + fireDelta;
+            newProjectile = Instantiate(projectile, transform.position, transform.rotation) as <a href="GameObject.html">GameObject</a>;<br /><br />            // create code here that animates the newProjectile<br /><br />            nextFire = nextFire - myTime;
+            myTime = 0.0F;
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

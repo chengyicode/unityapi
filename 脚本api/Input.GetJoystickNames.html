@@ -1,0 +1,26 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Input.GetJoystickNames</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Input.html">Input</a>.GetJoystickNames</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static string[] <span class="sig-kw">GetJoystickNames</span>();
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Returns an array of strings describing the connected joysticks.</p></div><div class="subsection"><p>This can be useful in user input configuration screens
+- this way, instead of showing labels like "Joystick 1", you can show more meaningful names like "Logitech WingMan".
+To read values from different joysticks, you need to assign respective axes for the number of joysticks you
+want to support in the Input Manager.<br /><br />The position of a joystick in this array corresponds to the joystick number, i.e. the name in position 0 of this array is
+for the joystick that feeds data into 'Joystick 1' in the Input Manager, the name in position 1 corresponds to 'Joystick 2',
+and so on. Note that some entries in the array may be blank if no device is connected for that joystick number.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Prints a joystick name if movement is detected.<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        // requires you to set up axes "Joy0X" - "Joy3X" and "Joy0Y" - "Joy3Y" in the <a href="Input.html">Input</a> Manger
+        for (int i = 0; i &lt; 4; i++)
+        {
+            if (<a href="Mathf.Abs.html">Mathf.Abs</a>(<a href="Input.GetAxis.html">Input.GetAxis</a>("Joy" + i + "X")) &gt; 0.2 ||
+                <a href="Mathf.Abs.html">Mathf.Abs</a>(<a href="Input.GetAxis.html">Input.GetAxis</a>("Joy" + i + "Y")) &gt; 0.2)
+            {
+                <a href="Debug.Log.html">Debug.Log</a>(<a href="Input.GetJoystickNames.html">Input.GetJoystickNames</a>()[i] + " is moved");
+            }
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

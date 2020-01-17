@@ -1,0 +1,41 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: IndentLevelScope</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">IndentLevelScope</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEditor</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEditor.html" class="cl">UnityEditor</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Scope for managing the indent level of the field labels.</p></div><div class="subsection"><p>See <a href="EditorGUI-indentLevel.html">EditorGUI.indentLevel</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;<br /><br />class EditorGUIIndent : <a href="EditorWindow.html">EditorWindow</a>
+{
+    [<a href="MenuItem.html">MenuItem</a>("Examples/Indent usage")]
+    static void Init()
+    {
+        var window = GetWindow&lt;EditorGUIIndent&gt;();
+        window.position = new <a href="Rect.html">Rect</a>(0, 0, 100, 100);
+        window.Show();
+    }<br /><br />    void OnGUI()
+    {
+        var obj = <a href="Selection-activeTransform.html">Selection.activeTransform</a>;
+        <a href="EditorGUILayout.LabelField.html">EditorGUILayout.LabelField</a>("Name:", obj ? obj.name : "Select an Object");
+        if (obj)
+        {
+            // Indent block
+            using (new <a href="EditorGUI.IndentLevelScope.html">EditorGUI.IndentLevelScope</a>())
+            {
+                <a href="EditorGUILayout.LabelField.html">EditorGUILayout.LabelField</a>("<a href="UIElements.Position.html">Position</a>:", obj.position.ToString());
+                <a href="EditorGUILayout.LabelField.html">EditorGUILayout.LabelField</a>("Rotation:", obj.rotation.eulerAngles.ToString());
+                // Indent inner block even more
+                using (new <a href="EditorGUI.IndentLevelScope.html">EditorGUI.IndentLevelScope</a>())
+                {
+                    <a href="EditorGUILayout.LabelField.html">EditorGUILayout.LabelField</a>("X:", obj.rotation.x.ToString());
+                    <a href="EditorGUILayout.LabelField.html">EditorGUILayout.LabelField</a>("Y:", obj.rotation.y.ToString());
+                    <a href="EditorGUILayout.LabelField.html">EditorGUILayout.LabelField</a>("Z:", obj.rotation.z.ToString());
+                    <a href="EditorGUILayout.LabelField.html">EditorGUILayout.LabelField</a>("W:", obj.rotation.w.ToString());
+                }
+                <a href="EditorGUILayout.LabelField.html">EditorGUILayout.LabelField</a>("Scale:", obj.localScale.ToString());
+            }
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Constructors</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="EditorGUI.IndentLevelScope-ctor.html">EditorGUI.IndentLevelScope</a></td><td class="desc"></td><td class="desc1">Creates an IndentLevelScope and increases the EditorGUI indent level.</td></tr>
+    </table></div></div></div></div></body></html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Camera.pixelRect</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Camera.html">Camera</a>.pixelRect</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Camera.html' title='Go to Camera Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Rect.html">Rect</a> <span class="sig-kw">pixelRect</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Where on the screen is the camera rendered in pixel coordinates.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//Attach this script to an empty <a href="GameObject.html">GameObject</a>
+//Create a new <a href="Camera.html">Camera</a> (<strong>Create</strong>&gt;<strong>Camera</strong>) and position it appropriately. Attach it to the Second <a href="Camera.html">Camera</a> field in the Inspector of the <a href="GameObject.html">GameObject</a>
+//Press the space key to enable and disable the second <a href="Camera.html">Camera</a><br /><br />using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    //Attach a new <a href="Camera.html">Camera</a> in the Inspector window
+    public <a href="Camera.html">Camera</a> m_SecondCamera;
+    //This is set as the main <a href="Camera.html">Camera</a> in this script
+    <a href="Camera.html">Camera</a> m_FirstCamera;<br /><br />    void Start()
+    {
+        //Disable the second <a href="Camera.html">Camera</a>
+        m_SecondCamera.enabled = false;
+        //Set where to place the second <a href="Camera.html">Camera</a> along with its width and height
+        m_SecondCamera.pixelRect = new <a href="Rect.html">Rect</a>(0, 0, 400, 200);
+        //Set the first <a href="Camera.html">Camera</a> as the main <a href="Camera.html">Camera</a>
+        m_FirstCamera = <a href="Camera-main.html">Camera.main</a>;
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        //Press the space key to toggle the second <a href="Camera.html">Camera</a> and output camera pixel width and height
+        if (<a href="Input.GetKeyDown.html">Input.GetKeyDown</a>(<a href="KeyCode.Space.html">KeyCode.Space</a>))
+        {
+            //Check if the second camera is enabled yet
+            if (!m_SecondCamera.enabled)
+            {
+                //<a href="UIElements.Toggle.html">Toggle</a> the second <a href="Camera.html">Camera</a> and output the second <a href="Camera.html">Camera</a>'s details
+                ToggleCamera(m_SecondCamera, m_SecondCamera);
+            }
+            else
+            {
+                //<a href="UIElements.Toggle.html">Toggle</a> the second <a href="Camera.html">Camera</a> and output the first <a href="Camera.html">Camera</a>'s details
+                ToggleCamera(m_SecondCamera, m_FirstCamera);
+            }
+        }
+    }<br /><br />    //<a href="UIElements.Toggle.html">Toggle</a> the <a href="Camera.html">Camera</a> and output the <a href="Camera.html">Camera</a> specified
+    void ToggleCamera(<a href="Camera.html">Camera</a> cameraToggle, <a href="Camera.html">Camera</a> cameraOutput)
+    {
+        //Set <a href="Camera.html">Camera</a> on and off
+        cameraToggle.enabled = !cameraToggle.enabled;<br /><br />        //Output the <a href="Camera.html">Camera</a>'s new Pixel width
+        <a href="Debug.Log.html">Debug.Log</a>("Pixel width :" + cameraOutput.pixelWidth + " Pixel height : " + cameraOutput.pixelHeight);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

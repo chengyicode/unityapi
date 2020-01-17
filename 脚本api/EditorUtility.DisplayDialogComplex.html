@@ -1,0 +1,47 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorUtility.DisplayDialogComplex</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorUtility.html">EditorUtility</a>.DisplayDialogComplex</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static int <span class="sig-kw">DisplayDialogComplex</span>(string <span class="sig-kw">title</span>,
+string <span class="sig-kw">message</span>,
+string <span class="sig-kw">ok</span>,
+string <span class="sig-kw">cancel</span>,
+string <span class="sig-kw">alt</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">title</td><td class="desc"></td><td class="desc1">Title for dialog.</td></tr><tr><td class="name lbl">message</td><td class="desc"></td><td class="desc1">Purpose for the dialog.</td></tr><tr><td class="name lbl">ok</td><td class="desc"></td><td class="desc1">Dialog function chosen.</td></tr><tr><td class="name lbl">cancel</td><td class="desc"></td><td class="desc1">Close dialog with no operation.</td></tr><tr><td class="name lbl">alt</td><td class="desc"></td><td class="desc1">Choose alternative dialog purpose.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>int</strong>
+        The id of the chosen button.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Displays a modal dialog with three buttons.</p></div><div class="subsection"><p>Use it for displaying message boxes in the editor.<br /><br /><code class="varname">DisplayDialogComplex</code> is similar to <a href="EditorUtility.DisplayDialog.html">DisplayDialog</a>. This <code class="varname">DisplayDialogComplex</code> member
+shows a dialog with three buttons. These buttons represent <code class="varname">ok</code>, <code class="varname">cancel</code> and <code class="varname">alt</code>.
+<code class="varname">DisplayDialogComplex</code> returns an integer 0, 1 or 2 corresponding to the <code class="varname">ok</code>, <code class="varname">cancel</code> and <code class="varname">alt</code> buttons.<br /><br />The <code class="varname">ok</code> button is the default option, and can also be activated by pressing Enter.<br /><br />The <code class="varname">cancel</code> button is considered the "cancel" button and should usually not perform any action. On a PC, this can also be activated by pressing Escape or by clicking the dialog window close button. On a Mac, this can also be activated by pressing Escape, provided the button is called "Cancel".<br /><br />The <code class="varname">alt</code> button allows you to provide the user with an alternative choice in addition to the <code class="varname">ok</code> and <code class="varname">cancel</code> buttons. This button does not have a fixed keyboard shortcut.<br /><br />For compliance with normal platform UI guidelines the actual display order of the buttons
+is platform-dependent. On Windows, the order is <code class="varname">ok</code>, <code class="varname">alt</code>, <code class="varname">alt</code>;
+on macOS, the order is <code class="varname">alt</code>, <code class="varname">cancel</code>, <code class="varname">ok</code>.<br /><br />See Also: <a href="EditorUtility.DisplayDialog.html">DisplayDialog</a>.<br /><br /><img src="../StaticFiles/ScriptRefImages/EditorUtilityDisplayDialogComplex-osx.png" /><br />
+<em>macOS display dialog buttons for the example below.</em><br /><br /><br /><img src="../StaticFiles/ScriptRefImages/EditorUtilityDisplayDialogComplex-pc.png" /><br />
+<em>PC display dialog buttons for the example below.</em><br /><br />The script reference example below creates a complex display dialog.  The chosen button
+causes a Unity <a href="EditorApplication.html">EditorApplication</a> static function to be called.
+</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class DisplayDlgComplexExample : <a href="EditorWindow.html">EditorWindow</a>
+{
+    // Lets you save or not before quitting, or cancel.<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Example/Quit")]
+    static void Init()
+    {
+        int option = <a href="EditorUtility.DisplayDialogComplex.html">EditorUtility.DisplayDialogComplex</a>("Unsaved Changes",
+            "Do you want to save the changes you made before quitting?",
+            "Save",
+            "Cancel",
+            "Don't Save");<br /><br />        switch (option)
+        {
+            // Save.
+            case 0:
+                EditorApplication.SaveScene(EditorApplication.currentScene);
+                <a href="EditorApplication.Exit.html">EditorApplication.Exit</a>(0);
+                break;<br /><br />            // Cancel.
+            case 1:
+                break;<br /><br />            // Don't Save.
+            case 2:
+                <a href="EditorApplication.Exit.html">EditorApplication.Exit</a>(0);
+                break;<br /><br />            default:
+                <a href="Debug.LogError.html">Debug.LogError</a>("Unrecognized option.");
+                break;
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

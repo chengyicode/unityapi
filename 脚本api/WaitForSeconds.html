@@ -1,0 +1,38 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: WaitForSeconds</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">WaitForSeconds</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Inherits from:<a href="YieldInstruction.html" class="cl">YieldInstruction</a></p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.CoreModule.html" class="cl">UnityEngine.CoreModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Suspends the coroutine execution for the given amount of seconds using scaled time.</p></div><div class="subsection"><p>The real time suspended is equal to the given time divided by <a href="Time-timeScale.html">Time.timeScale</a>. See <a href="WaitForSecondsRealtime.html">WaitForSecondsRealtime</a> if you wish to wait using unscaled time. <a href="WaitForSeconds.html">WaitForSeconds</a> can only be used with a <code class="varname">yield</code> statement in coroutines.<br /><br />There are some factors which can mean the actual amount of time waited does not precisely match the amount of time specified:<br />
+<strong>1.</strong> Start waiting at the <code class="varname">end</code> of the current frame. If you start <a href="WaitForSeconds.html">WaitForSeconds</a> with duration 't' in a long frame (for example, one which has a long operation which blocks the main thread such as some synchronous loading), the coroutine will return 't' seconds after the end of the frame, not 't' seconds after it was called.<br />
+<strong>2.</strong> Allow the coroutine to resume on the first frame after 't' seconds has passed, not exactly after 't' seconds has passed.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class WaitForSecondsExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        //Start the coroutine we define below named ExampleCoroutine.
+        StartCoroutine(ExampleCoroutine());
+    }<br /><br />    IEnumerator ExampleCoroutine()
+    {
+        //Print the time of when the function is first called.
+        <a href="Debug.Log.html">Debug.Log</a>("Started <a href="Coroutine.html">Coroutine</a> at timestamp : " + <a href="Time-time.html">Time.time</a>);<br /><br />        //yield on a new <a href="YieldInstruction.html">YieldInstruction</a> that waits for 5 seconds.
+        yield return new <a href="WaitForSeconds.html">WaitForSeconds</a>(5);<br /><br />        //After we have waited 5 seconds print the time again.
+        <a href="Debug.Log.html">Debug.Log</a>("Finished <a href="Coroutine.html">Coroutine</a> at timestamp : " + <a href="Time-time.html">Time.time</a>);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="MonoBehaviour.StartCoroutine.html">MonoBehaviour.StartCoroutine</a>, <a href="AsyncOperation.html">AsyncOperation</a>, <a href="WaitForEndOfFrame.html">WaitForEndOfFrame</a>, <a href="WaitForFixedUpdate.html">WaitForFixedUpdate</a>, <a href="WaitForSecondsRealtime.html">WaitForSecondsRealtime</a>, <a href="WaitUntil.html">WaitUntil</a>, <a href="WaitWhile.html">WaitWhile</a>.</p></div><div class="subsection"><h2>Constructors</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="WaitForSeconds-ctor.html">WaitForSeconds</a></td><td class="desc"></td><td class="desc1">Suspends the coroutine execution for the given amount of seconds using scaled time.</td></tr>
+    </table></div><div class="subsection"><h2>Inherited Members   继承成员</h2>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </div></div></div></div></body></html>

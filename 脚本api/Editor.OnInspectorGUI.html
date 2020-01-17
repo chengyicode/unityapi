@@ -1,0 +1,20 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Editor.OnInspectorGUI</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Editor.html">Editor</a>.OnInspectorGUI</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">OnInspectorGUI</span>();
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Implement this function to make a custom inspector.</p></div><div class="subsection"><p>Inside this function you can add your own custom IMGUI based GUI for the inspector
+        of a specific object class.
+        DrawPropertiesExcluding(SerializedObject,string[])Draw all properties from the given SerializedObject excluding the propertyToExclude ones.SerializedObject to draw.List of properties to do not draw.<br /><br /><strong>Note:</strong> This function has to be overridden in order to work.<br /><br />See Also: <a href="Editor.DrawDefaultInspector.html">Editor.DrawDefaultInspector</a>.<br /><br />The example below shows how a custom label can be created by using <code class="mono">override</code>:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">using UnityEngine;
+using System.Collections;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />// Creates a custom <a href="UIElements.Label.html">Label</a> on the inspector for all the scripts named ScriptName
+// Make sure you have a ScriptName script in your
+// project, else this will not work.
+[<a href="CustomEditor.html">CustomEditor</a>(typeof(ScriptName))]
+public class TestOnInspector : <a href="Editor.html">Editor</a>
+{
+    public override void OnInspectorGUI()
+    {
+        <a href="GUILayout.Label.html">GUILayout.Label</a> ("This is a <a href="UIElements.Label.html">Label</a> in a Custom <a href="Editor.html">Editor</a>");
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

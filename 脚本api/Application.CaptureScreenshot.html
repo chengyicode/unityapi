@@ -1,0 +1,20 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Application.CaptureScreenshot</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Removed in version 2019.2.18</b><br /></div><h1 class="heading inherit"><a href="Application.html">Application</a>.CaptureScreenshot</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public static void <span class="sig-kw">CaptureScreenshot</span>(string <span class="sig-kw">filename</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public static void <span class="sig-kw">CaptureScreenshot</span>(string <span class="sig-kw">filename</span>,
+int <span class="sig-kw">superSize</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">filename</td><td class="desc"></td><td class="desc1">Pathname to save the screenshot file to.</td></tr><tr><td class="name lbl">superSize</td><td class="desc"></td><td class="desc1">Factor by which to increase resolution.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Captures a screenshot at path <code class="varname">filename</code> as a PNG file.</p></div><div class="subsection"><p>Use <a href="ScreenCapture.CaptureScreenshot.html">ScreenCapture.CaptureScreenshot</a> instead of obsolete Application.CaptureScreenshot.<br /><br />If the image file exists already, it will be overwritten. The location
+        where the image is written to can include a directory/folder list.  For example on
+        macOS the PNG file could be written to <code class="mono">/tmp/ScreenGrab.png</code>.  With no directory/folder
+        list the image will be written into the Project folder. CaptureScreenshot() can also be
+        used from the Editor, for example in a custom <code class="mono">EditorWindow</code>.  By default the
+        screen grabbed image will also be written into the Project folder.  Also, the Game view
+        must be selected in order for the Editor screen capture to work.<br /><br />When <code class="varname">superSize</code> parameter is larger than 1, a larger resolution screenshot will be
+produced. For example, passing 4 will make the screenshot be 4x4 larger than it would normally
+be. This is useful to produce screenshots for printing.<br /><br />On mobile platforms the filename is appended to the persistent data path.
+        See <a href="Application-persistentDataPath.html">Application.persistentDataPath</a> for more information.
+On Android this function returns immediately.  The resulting screenshot is available later.<br /><br /><strong>Note:</strong> Screenshots can be made from the Editor as described above. In this
+            case only the Game view can be captured.  If the Scene view is selected any
+            screenshot will not be written.  Switching to the Game view will cause the
+            most recent captured image to be written.  See <a href="EditorWindow.html">EditorWindow</a> for how an editor-based
+            capture window can be created. If the Game view is current and the Editor button
+            is clicked multiple times the first generated screenshot will be written.
+            <code class="mono">Application.CaptureScreenshot</code> is a Game specific function.</p></div></div></div></div></body></html>

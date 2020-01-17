@@ -1,0 +1,31 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Selection.activeGameObject</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Selection.html">Selection</a>.activeGameObject</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="GameObject.html">GameObject</a> <span class="sig-kw">activeGameObject</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Returns the active game object. (The one shown in the inspector).</p></div><div class="subsection"><p>It will also return game objects that might be Prefabs or non-modifiable objects.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />class Example : <a href="EditorWindow.html">EditorWindow</a>
+{
+    // Rotates the selected Game Object +45 degrees if the user presses 'g'
+    // or -45 degrees if the user presses 'Shift + g'
+    // If no object is selected, the Menus are grayed out.<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Example/Rotate Green +45 _g")]
+    static void RotateGreenPlus45()
+    {
+        <a href="GameObject.html">GameObject</a> obj = <a href="Selection-activeGameObject.html">Selection.activeGameObject</a>;
+        obj.transform.Rotate(<a href="Vector3-up.html">Vector3.up</a> * 45);
+    }<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Example/Rotate Green +45 _g", true)]
+    static bool ValidatePlus45()
+    {
+        return <a href="Selection-activeGameObject.html">Selection.activeGameObject</a> != null;
+    }<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Example/Rotate green -45 #g")]
+    static void RotateGreenMinus45()
+    {
+        <a href="GameObject.html">GameObject</a> obj = <a href="Selection-activeGameObject.html">Selection.activeGameObject</a>;
+        obj.transform.Rotate(<a href="Vector3-down.html">Vector3.down</a> * 45);
+    }<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Example/Rotate green -45 #g", true)]
+    static bool ValidateMinus45()
+    {
+        return <a href="Selection-activeGameObject.html">Selection.activeGameObject</a> != null;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

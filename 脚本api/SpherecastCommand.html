@@ -1,0 +1,50 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: SpherecastCommand</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">SpherecastCommand</h1><div class="clear"></div><p class="cl mb0 left mr10">struct in
+          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.PhysicsModule.html" class="cl">UnityEngine.PhysicsModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Use this struct to set up a sphere cast command that is performed asynchronously during a job.</p></div><div class="subsection"><p>When you use this struct to schedule a batch of sphere casts, the sphere casts are performed asynchronously and in parallel. The results of each sphere casts are written to the results buffer. Since the results are written asynchronously, you cannot access the results buffer until the job is completed.<br /><br />The result for a command at index N in the command buffer is stored at index N in the results buffer.<br /><br />See Also: Physics.Spherecast.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using Unity.Collections;
+using Unity.Jobs;
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private void SpherecastExample()
+    {
+        // Perform a single sphere cast using <a href="SpherecastCommand.html">SpherecastCommand</a> and wait for it to complete
+        // Set up the command and result buffers
+        var results = new NativeArray&lt;<a href="RaycastHit.html">RaycastHit</a>&gt;(1, <a href="Unity.Collections.Allocator.Temp.html">Allocator.Temp</a>);
+        var commands = new NativeArray&lt;<a href="SpherecastCommand.html">SpherecastCommand</a>&gt;(1, <a href="Unity.Collections.Allocator.Temp.html">Allocator.Temp</a>);<br /><br />        // Set the data of the first command
+        <a href="Vector3.html">Vector3</a> origin = <a href="Vector3-forward.html">Vector3.forward</a> * -10;
+        <a href="Vector3.html">Vector3</a> direction = <a href="Vector3-forward.html">Vector3.forward</a>;
+        float radius = 0.5f;<br /><br />        commands[0] = new <a href="SpherecastCommand.html">SpherecastCommand</a>(origin, radius, direction);<br /><br />        // Schedule the batch of sphere casts
+        var handle = <a href="SpherecastCommand.ScheduleBatch.html">SpherecastCommand.ScheduleBatch</a>(commands, results, 1, default(<a href="Unity.Jobs.JobHandle.html">JobHandle</a>));<br /><br />        // Wait for the batch processing job to complete
+        handle.Complete();<br /><br />        // Copy the result. If batchedHit.collider is null, there was no hit
+        <a href="RaycastHit.html">RaycastHit</a> batchedHit = results[0];<br /><br />        // Dispose the buffers
+        results.Dispose();
+        commands.Dispose();
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SpherecastCommand-direction.html">direction</a></td><td class="desc"></td><td class="desc1">The direction of the sphere cast.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SpherecastCommand-distance.html">distance</a></td><td class="desc"></td><td class="desc1">The maximum distance the sphere should check for collisions.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SpherecastCommand-layerMask.html">layerMask</a></td><td class="desc"></td><td class="desc1">The LayerMask that selectively ignores Colliders when casting a sphere.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SpherecastCommand-origin.html">origin</a></td><td class="desc"></td><td class="desc1">The starting point of the sphere cast in world coordinates.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SpherecastCommand-radius.html">radius</a></td><td class="desc"></td><td class="desc1">The radius of the casting sphere.</td></tr>
+    </table></div><div class="subsection"><h2>Constructors</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SpherecastCommand-ctor.html">SpherecastCommand</a></td><td class="desc"></td><td class="desc1">Creates a SpherecastCommand.</td></tr>
+    </table></div><div class="subsection"><h2>Static Methods   静态方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="SpherecastCommand.ScheduleBatch.html">ScheduleBatch</a></td><td class="desc"></td><td class="desc1">Schedules a batch of sphere casts to perform in a job.</td></tr>
+    </table></div></div></div></div></body></html>

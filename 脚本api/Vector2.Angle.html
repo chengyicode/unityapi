@@ -1,0 +1,32 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Vector2.Angle</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Vector2.html">Vector2</a>.Angle</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static float <span class="sig-kw">Angle</span>(<a href="Vector2.html">Vector2</a> <span class="sig-kw">from</span>,
+<a href="Vector2.html">Vector2</a> <span class="sig-kw">to</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">from</td><td class="desc"></td><td class="desc1">The vector from which the angular difference is measured.</td></tr><tr><td class="name lbl">to</td><td class="desc"></td><td class="desc1">The vector to which the angular difference is measured.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Returns the unsigned angle in degrees between <code class="varname">from</code> and <code class="varname">to</code>.</p></div><div class="subsection"><p>The angle returned is the unsigned acute angle between the two vectors. This means the smaller of the two possible angles between the two vectors is used. The result is never greater than 180 degrees.<br /><br />See Also: <a href="Vector2.SignedAngle.html">SignedAngle</a> function.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Vector2Angle : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    //Use these to get the <a href="GameObject.html">GameObject</a>'s positions
+    <a href="Vector2.html">Vector2</a> m_MyFirstVector;
+    <a href="Vector2.html">Vector2</a> m_MySecondVector;<br /><br />    float m_Angle;<br /><br />    //You must assign to these two GameObjects in the Inspector
+    public <a href="GameObject.html">GameObject</a> m_MyObject;
+    public <a href="GameObject.html">GameObject</a> m_MyOtherObject;<br /><br />    void Start()
+    {
+        //Initialise the Vector
+        m_MyFirstVector = <a href="Vector2-zero.html">Vector2.zero</a>;
+        m_Angle = 0.0f;
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        //Fetch the first <a href="GameObject.html">GameObject</a>'s position
+        m_MyFirstVector = m_MyObject.transform.position;
+        //Fetch the second <a href="GameObject.html">GameObject</a>'s position
+        m_MySecondVector = m_MyOtherObject.transform.position;
+        //Find the angle for the two Vectors
+        m_Angle = <a href="Vector2.Angle.html">Vector2.Angle</a>(m_MyFirstVector, m_MySecondVector);
+    }<br /><br />    void OnGUI()
+    {
+        //Output the angle found above
+        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(25, 25, 200, 40), "Angle Between Objects" + m_Angle);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

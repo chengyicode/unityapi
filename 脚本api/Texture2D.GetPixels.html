@@ -1,0 +1,46 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Texture2D.GetPixels</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Texture2D.html">Texture2D</a>.GetPixels</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public Color[] <span class="sig-kw">GetPixels</span>(int <span class="sig-kw">miplevel</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">miplevel</td><td class="desc"></td><td class="desc1">The mipmap level to fetch the pixels from. Defaults to zero.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>Color[]</strong>
+        The array of all pixels in the mipmap level of the texture.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Get the pixel colors from the texture.</p></div><div class="subsection"><p>This function returns an array of pixel colors of the whole
+mip level of the texture.<br /><br />The returned array is a flattened 2D array, where pixels are laid out left to right,
+bottom to top (i.e. row after row). Array size is width by height of the mip level used.
+The default mip level is zero (the base texture) in which case the size is just the size of the texture.
+In general case, mip level size is <code class="mono">mipWidth=max(1,width&gt;&gt;miplevel)</code>
+and similarly for height.<br /><br />The texture must have the <a href="TextureImporter-isReadable.html">read/write enabled</a> flag set in the <a href="../Manual/Textures.html">texture import settings</a>, otherwise this function will fail. GetPixels is not available on Textures using Crunch texture compression.<br /><br />Using <code class="varname">GetPixels</code> can be faster than calling <a href="Texture2D.GetPixel.html">GetPixel</a> repeatedly, especially
+for large textures. In addition, <code class="varname">GetPixels</code> can access individual mipmap levels. For most textures,
+even faster is to use <a href="Texture2D.GetPixels32.html">GetPixels32</a> which returns low precision color data without costly
+integer-to-float conversions.</p></div><div class="subsection"><p>See Also: <a href="Texture2D.SetPixels.html">SetPixels</a>, <a href="Texture2D-mipmapCount.html">mipmapCount</a>, <a href="Texture2D.GetPixels32.html">GetPixels32</a>.</p></div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public Color[] <span class="sig-kw">GetPixels</span>(int <span class="sig-kw">x</span>,
+int <span class="sig-kw">y</span>,
+int <span class="sig-kw">blockWidth</span>,
+int <span class="sig-kw">blockHeight</span>,
+int <span class="sig-kw">miplevel</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">x</td><td class="desc"></td><td class="desc1">The x position of the pixel array to fetch.</td></tr><tr><td class="name lbl">y</td><td class="desc"></td><td class="desc1">The y position of the pixel array to fetch.</td></tr><tr><td class="name lbl">blockWidth</td><td class="desc"></td><td class="desc1">The width length of the pixel array to fetch.</td></tr><tr><td class="name lbl">blockHeight</td><td class="desc"></td><td class="desc1">The height length of the pixel array to fetch.</td></tr><tr><td class="name lbl">miplevel</td><td class="desc"></td><td class="desc1">The mipmap level to fetch the pixels. Defaults to zero, and is
+        optional.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>Color[]</strong>
+        The array of pixels in the texture that have been selected.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Get a block of pixel colors.</p></div><div class="subsection"><p>This function is an extended version of <code class="varname">GetPixels</code> above; it does not return the whole
+mip level but only <code class="varname">blockWidth</code> by <code class="varname">blockHeight</code> region starting at <em>x,y</em>.
+The block must fit into the used mip level. The returned array is <em>blockWidth*blockHeight</em> size.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Get a rectangular area of a texture and place it into
+// a new texture the size of the rectangle.
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Source texture and the rectangular area we want to extract.
+    public <a href="Texture2D.html">Texture2D</a> sourceTex;
+    public <a href="Rect.html">Rect</a> sourceRect;<br /><br />    void Start()
+    {
+        int x = <a href="Mathf.FloorToInt.html">Mathf.FloorToInt</a>(sourceRect.x);
+        int y = <a href="Mathf.FloorToInt.html">Mathf.FloorToInt</a>(sourceRect.y);
+        int width = <a href="Mathf.FloorToInt.html">Mathf.FloorToInt</a>(sourceRect.width);
+        int height = <a href="Mathf.FloorToInt.html">Mathf.FloorToInt</a>(sourceRect.height);<br /><br />        <a href="Color.html">Color</a>[] pix = sourceTex.GetPixels(x, y, width, height);
+        <a href="Texture2D.html">Texture2D</a> destTex = new <a href="Texture2D.html">Texture2D</a>(width, height);
+        destTex.SetPixels(pix);
+        destTex.Apply();<br /><br />        // Set the current object's texture to show the
+        // extracted rectangle.
+        GetComponent&lt;<a href="Renderer.html">Renderer</a>&gt;().material.mainTexture = destTex;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

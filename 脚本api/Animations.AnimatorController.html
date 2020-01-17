@@ -1,0 +1,103 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AnimatorController</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">AnimatorController</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEditor.Animations</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Inherits from:<a href="RuntimeAnimatorController.html" class="cl">RuntimeAnimatorController</a></p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEditor.html" class="cl">UnityEditor</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>The Animator Controller controls animation through layers with state machines, controlled by parameters.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEditor.Animations;
+using System.Collections;<br /><br />// Create a menu item that causes a new controller and statemachine to be created.<br /><br />public class SM : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    [<a href="MenuItem.html">MenuItem</a>("MyMenu/Create Controller")]
+    static void CreateController()
+    {
+        // Creates the controller
+        var controller = UnityEditor.Animations.AnimatorController.CreateAnimatorControllerAtPath("Assets/Mecanim/StateMachineTransitions.controller");<br /><br />        // Add parameters
+        controller.AddParameter("TransitionNow", <a href="AnimatorControllerParameterType.Trigger.html">AnimatorControllerParameterType.Trigger</a>);
+        controller.AddParameter("Reset", <a href="AnimatorControllerParameterType.Trigger.html">AnimatorControllerParameterType.Trigger</a>);
+        controller.AddParameter("GotoB1", <a href="AnimatorControllerParameterType.Trigger.html">AnimatorControllerParameterType.Trigger</a>);
+        controller.AddParameter("GotoC", <a href="AnimatorControllerParameterType.Trigger.html">AnimatorControllerParameterType.Trigger</a>);<br /><br />        // Add StateMachines
+        var rootStateMachine = controller.layers[0].stateMachine;
+        var stateMachineA = rootStateMachine.AddStateMachine("smA");
+        var stateMachineB = rootStateMachine.AddStateMachine("smB");
+        var stateMachineC = stateMachineB.AddStateMachine("smC");<br /><br />        // Add <a href="VersionControl.Asset.States.html">States</a>
+        var stateA1 = stateMachineA.AddState("stateA1");
+        var stateB1 = stateMachineB.AddState("stateB1");
+        var stateB2 = stateMachineB.AddState("stateB2");
+        stateMachineC.AddState("stateC1");
+        var stateC2 = stateMachineC.AddState("stateC2"); // don’t add an entry transition, should entry to state by default<br /><br />        // Add Transitions
+        var exitTransition = stateA1.AddExitTransition();
+        exitTransition.AddCondition(UnityEditor.Animations.AnimatorConditionMode.If, 0, "TransitionNow");
+        exitTransition.duration = 0;<br /><br />        var resetTransition = rootStateMachine.AddAnyStateTransition(stateA1);
+        resetTransition.AddCondition(UnityEditor.Animations.AnimatorConditionMode.If, 0, "Reset");
+        resetTransition.duration = 0;<br /><br />        var transitionB1 = stateMachineB.AddEntryTransition(stateB1);
+        transitionB1.AddCondition(UnityEditor.Animations.AnimatorConditionMode.If, 0, "GotoB1");
+        stateMachineB.AddEntryTransition(stateB2);
+        stateMachineC.defaultState = stateC2;
+        var exitTransitionC2 = stateC2.AddExitTransition();
+        exitTransitionC2.AddCondition(UnityEditor.Animations.AnimatorConditionMode.If, 0, "TransitionNow");
+        exitTransitionC2.duration = 0;<br /><br />        var stateMachineTransition = rootStateMachine.AddStateMachineTransition(stateMachineA, stateMachineC);
+        stateMachineTransition.AddCondition(UnityEditor.Animations.AnimatorConditionMode.If, 0, "GotoC");
+        rootStateMachine.AddStateMachineTransition(stateMachineA, stateMachineB);
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Properties 属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorController-layers.html">layers</a></td><td class="desc"></td><td class="desc1">The layers in the controller.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorController-parameters.html">parameters</a></td><td class="desc"></td><td class="desc1">Parameters are used to communicate between scripting and the controller. They are used to drive transitions and blendtrees for example.</td></tr>
+    </table></div><div class="subsection"><h2>Constructors</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorController-ctor.html">AnimatorController</a></td><td class="desc"></td><td class="desc1">Constructor.</td></tr>
+    </table></div><div class="subsection"><h2>Public Methods 公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorController.AddEffectiveStateMachineBehaviour.html">AddEffectiveStateMachineBehaviour</a></td><td class="desc"></td><td class="desc1">Adds a state machine behaviour class of type stateMachineBehaviourType to the AnimatorState for layer layerIndex. This function should be used when you are dealing with synchronized layer and would like to add a state machine behaviour on a synchronized layer. C# Users can use a generic version.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorController.AddLayer.html">AddLayer</a></td><td class="desc"></td><td class="desc1">Utility function to add a layer to the controller.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorController.AddMotion.html">AddMotion</a></td><td class="desc"></td><td class="desc1">Utility function that creates a new state  with the motion in it.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorController.AddParameter.html">AddParameter</a></td><td class="desc"></td><td class="desc1">Utility function to add a parameter to the controller.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorController.CreateBlendTreeInController.html">CreateBlendTreeInController</a></td><td class="desc"></td><td class="desc1">Creates a BlendTree in a new AnimatorState.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorController.GetBehaviours.html">GetBehaviours</a></td><td class="desc"></td><td class="desc1">Returns all StateMachineBehaviour that match type T or are derived from T.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorController.GetStateEffectiveBehaviours.html">GetStateEffectiveBehaviours</a></td><td class="desc"></td><td class="desc1">Gets the effective state machine behaviour list for the AnimatorState. Behaviours are either stored in the AnimatorStateMachine or in the AnimatorLayer's ovverrides. Use this function to get Behaviour list that is effectively used.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorController.GetStateEffectiveMotion.html">GetStateEffectiveMotion</a></td><td class="desc"></td><td class="desc1">Gets the effective Motion for the AnimatorState. The Motion is either stored in the AnimatorStateMachine or in the AnimatorLayer's ovverrides. Use this function to get the Motion that is effectively used.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorController.MakeUniqueLayerName.html">MakeUniqueLayerName</a></td><td class="desc"></td><td class="desc1">Creates a unique name for the layers.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorController.MakeUniqueParameterName.html">MakeUniqueParameterName</a></td><td class="desc"></td><td class="desc1">Creates a unique name for the parameter.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorController.RemoveLayer.html">RemoveLayer</a></td><td class="desc"></td><td class="desc1">Utility function to remove a layer from the controller.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorController.RemoveParameter.html">RemoveParameter</a></td><td class="desc"></td><td class="desc1">Utility function to remove a parameter from the controller.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorController.SetStateEffectiveBehaviours.html">SetStateEffectiveBehaviours</a></td><td class="desc"></td><td class="desc1">Sets the effective state machine Behaviour list for the AnimatorState. The Behaviour list is either stored in the AnimatorStateMachine or in the AnimatorLayer's ovverrides. Use this function to set the Behaviour list that is effectively used.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorController.SetStateEffectiveMotion.html">SetStateEffectiveMotion</a></td><td class="desc"></td><td class="desc1">Sets the effective Motion for the AnimatorState. The Motion is either stored in the AnimatorStateMachine or in the AnimatorLayer's ovverrides. Use this function to set the Motion that is effectively used.</td></tr>
+    </table></div><div class="subsection"><h2>Static Methods 静态方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorController.CreateAnimatorControllerAtPath.html">CreateAnimatorControllerAtPath</a></td><td class="desc"></td><td class="desc1">Creates an AnimatorController at the given path.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorController.CreateAnimatorControllerAtPathWithClip.html">CreateAnimatorControllerAtPathWithClip</a></td><td class="desc"></td><td class="desc1">Creates an AnimatorController at the given path, and automatically create an AnimatorLayer  with an AnimatorStateMachine that will add a State with the AnimationClip in it.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorController.CreateStateMachineBehaviour.html">CreateStateMachineBehaviour</a></td><td class="desc"></td><td class="desc1">This function will create a StateMachineBehaviour instance based on the class define in this script.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Animations.AnimatorController.FindStateMachineBehaviourContext.html">FindStateMachineBehaviourContext</a></td><td class="desc"></td><td class="desc1">Use this function to retrieve the owner of this behaviour.</td></tr>
+    </table></div><div class="subsection"><h2>Inherited Members 继承成员</h2>
+      
+      <div class="subsection"><h2>Properties 属性</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-hideFlags.html">hideFlags</a></td><td class="desc"></td><td class="desc1">Should the object be hidden, saved with the Scene or modifiable by the user?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-name.html">name</a></td><td class="desc"></td><td class="desc1">The name of the object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="RuntimeAnimatorController-animationClips.html">animationClips</a></td><td class="desc"></td><td class="desc1">Retrieves all AnimationClip used by the controller.</td></tr>
+      </table></div>
+      
+      
+      
+      <div class="subsection"><h2>Public Methods 公共方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.GetInstanceID.html">GetInstanceID</a></td><td class="desc"></td><td class="desc1">Returns the instance id of the object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.ToString.html">ToString</a></td><td class="desc"></td><td class="desc1">Returns the name of the object.</td></tr>
+      </table></div>
+      
+      <div class="subsection"><h2>Static Methods 静态方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.Destroy.html">Destroy</a></td><td class="desc"></td><td class="desc1">Removes a GameObject, component or asset.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.DestroyImmediate.html">DestroyImmediate</a></td><td class="desc"></td><td class="desc1">Destroys the object obj immediately. You are strongly recommended to use Destroy instead.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.DontDestroyOnLoad.html">DontDestroyOnLoad</a></td><td class="desc"></td><td class="desc1">Do not destroy the target Object when loading a new Scene.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectOfType.html">FindObjectOfType</a></td><td class="desc"></td><td class="desc1">Returns the first active loaded object of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectsOfType.html">FindObjectsOfType</a></td><td class="desc"></td><td class="desc1">Returns a list of all active loaded objects of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.Instantiate.html">Instantiate</a></td><td class="desc"></td><td class="desc1">Clones the object original and returns the clone.</td></tr>
+      </table></div>
+      <div class="subsection"><h2>Operators   运算符</h2>
+<h2>Operators   运算符</h2>
+
+<h2>Operators   运算符</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_Object.html">bool</a></td><td class="desc"></td><td class="desc1">Does the object exist?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_ne.html">operator !=</a></td><td class="desc"></td><td class="desc1">Compares if two objects refer to a different object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_eq.html">operator ==</a></td><td class="desc"></td><td class="desc1">Compares two object references to see if they refer to the same object.</td></tr>
+      </table></div>
+      
+      
+      
+    </div></div></div></div></body></html>

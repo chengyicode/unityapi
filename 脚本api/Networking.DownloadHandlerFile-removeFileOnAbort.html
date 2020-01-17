@@ -1,0 +1,31 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Networking.DownloadHandlerFile.removeFileOnAbort</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Networking.DownloadHandlerFile.html">DownloadHandlerFile</a>.removeFileOnAbort</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public bool <span class="sig-kw">removeFileOnAbort</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Should the created file be removed if download is aborted (manually or due to an error). Default: false.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.Collections;
+using System.IO;
+using UnityEngine;
+using UnityEngine.Networking;<br /><br />public class DownloadHandlerFileSample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        StartCoroutine(Download());
+    }<br /><br />    IEnumerator Download()
+    {
+        var uwr = new <a href="Networking.UnityWebRequest.html">UnityWebRequest</a>("http://unity3d.com/");
+        uwr.method = <a href="Networking.UnityWebRequest-kHttpVerbGET.html">UnityWebRequest.kHttpVerbGET</a>;
+        var resultFile = <a href="Path.Combine.html">Path.Combine</a>(<a href="Application-persistentDataPath.html">Application.persistentDataPath</a>, "result.txt");
+        var dh = new <a href="Networking.DownloadHandlerFile.html">DownloadHandlerFile</a>(resultFile);
+        dh.removeFileOnAbort = true;
+        uwr.downloadHandler = dh;
+        yield return uwr.Send();
+        if (uwr.isNetworkError || uwr.isHttpError)
+            <a href="Debug.Log.html">Debug.Log</a>(uwr.error);
+        else
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("Download saved to: " + resultFile);
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

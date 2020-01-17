@@ -1,0 +1,135 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AssetDatabase.FindAssets</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="AssetDatabase.html">AssetDatabase</a>.FindAssets</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static string[] <span class="sig-kw">FindAssets</span>(string <span class="sig-kw">filter</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static string[] <span class="sig-kw">FindAssets</span>(string <span class="sig-kw">filter</span>,
+string[] <span class="sig-kw">searchInFolders</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">filter</td><td class="desc"></td><td class="desc1">The filter string can contain search data.  See below for details about this string.</td></tr><tr><td class="name lbl">searchInFolders</td><td class="desc"></td><td class="desc1">The folders where the search will start.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>string[]</strong>
+        Array of matching asset. Note that GUIDs will be returned.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Search the asset database using the search filter string.</p></div><div class="subsection"><p>FindAssets allows you to search for Assets.  The <code class="mono">string</code> argument can
+        provide names, labels or types (classnames).  The filter string can include:<br />
+<br />
+<strong>Name</strong>: Filter assets by their filename (without extension). Words separated by whitespace
+are treated as a separate name searches. So, for example <code class="mono">"test asset"</code>, is a name of an Asset which will
+be searched for.  Note that <code class="mono">name:</code> can be used to identify an asset.  Further, the name
+used in the filter <code class="mono">string</code> can be specified as a subsection.  For example the <code class="mono">test asset</code> example
+above can be matched using <code class="mono">test</code>.<br />
+<br />
+<strong>Labels</strong>: Assets can have labels attached to them. Assets with particular labels can be
+found use the keyword 'l:' before each label. This indicates that the string is
+searching for labels.<br />
+<br />
+<strong>Types</strong>: Find assets based on explicitly identified types.  The keyword 't:' is used as a
+way to specify that typed assets are being looked for.  If more than one type is included
+in the filter <code class="mono">string</code> then assets that match one class will be returned.  Types can
+either be builtin types such as <code class="mono">Texture2D</code> or user created script classes.  User created
+classes are assets created from a ScriptableObject class in the project. If all assets are
+wanted use <code class="mono">Object</code> as all assets derive from Object.  Specifying one or more folders
+using the <code class="mono">searchInFolders</code> argument  will limit the searching to these folders and their
+child folders. This is faster than searching all assets in all folders.<br />
+<br />
+<strong>Note:</strong> Searching is case insensitive.<br />
+<br />
+Use <a href="AssetDatabase.GUIDToAssetPath.html">AssetDatabase.GUIDToAssetPath</a> to get asset paths and <a href="AssetDatabase.LoadAssetAtPath.html">AssetDatabase.LoadAssetAtPath</a>
+to load an asset.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class Example
+{
+    [<a href="MenuItem.html">MenuItem</a>("Example/FindAssets Example")]
+    static void ExampleScript()
+    {
+        // Find all assets labelled with 'architecture' :
+        string[] guids1 = <a href="AssetDatabase.FindAssets.html">AssetDatabase.FindAssets</a>("l:architecture", null);<br /><br />        foreach (string guid1 in guids1)
+        {
+            <a href="Debug.Log.html">Debug.Log</a>(<a href="AssetDatabase.GUIDToAssetPath.html">AssetDatabase.GUIDToAssetPath</a>(guid1));
+        }<br /><br />        // Find all Texture2Ds that have 'co' in their filename, that are labelled with 'architecture' and are placed in 'MyAwesomeProps' folder
+        string[] guids2 = <a href="AssetDatabase.FindAssets.html">AssetDatabase.FindAssets</a>("co l:architecture t:texture2D", new[] {"Assets/MyAwesomeProps"});<br /><br />        foreach (string guid2 in guids2)
+        {
+            <a href="Debug.Log.html">Debug.Log</a>(<a href="AssetDatabase.GUIDToAssetPath.html">AssetDatabase.GUIDToAssetPath</a>(guid2));
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>The following script example shows how the Names, Labels and Types details added
+          to Assets can be located.  The <a href="AssetDatabase.FindAssets.html">FindAssets</a> function is demonstrated.  The
+          assets created in this example use the <code class="mono">ScriptObj</code> class.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// This script file has two CS classes.  The first is a simple Unity <a href="ScriptableObject.html">ScriptableObject</a> script.
+// The class it defines is used by the Example class below.
+// (This is a single Unity script file. You could split this file into a ScriptObj.cs and an
+// Example.cs file which is more structured.)<br /><br />using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class ScriptObj : <a href="ScriptableObject.html">ScriptableObject</a>
+{
+    public void Awake()
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("ScriptObj created");
+    }
+}<br /><br />// Use ScriptObj to show how AssetDabase.FindAssets can be used<br /><br />public class Example
+{
+    static ScriptObj testI;
+    static ScriptObj testJ;
+    static ScriptObj testK;<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Examples/FindAssets Example two")]
+    static void ExampleScript()
+    {
+        CreateAssets();
+        NamesExample();
+        LabelsExample();
+        TypesExample();
+    }<br /><br />    static void CreateAssets()
+    {
+        testI = (ScriptObj)<a href="ScriptableObject.CreateInstance.html">ScriptableObject.CreateInstance</a>(typeof(ScriptObj));
+        <a href="AssetDatabase.CreateAsset.html">AssetDatabase.CreateAsset</a>(testI, "Assets/AssetFolder/testI.asset");<br /><br />        testJ = (ScriptObj)<a href="ScriptableObject.CreateInstance.html">ScriptableObject.CreateInstance</a>(typeof(ScriptObj));
+        <a href="AssetDatabase.CreateAsset.html">AssetDatabase.CreateAsset</a>(testJ, "Assets/AssetFolder/testJ.asset");<br /><br />        // create an asset in a sub-folder and with a name which contains a space
+        testK = (ScriptObj)<a href="ScriptableObject.CreateInstance.html">ScriptableObject.CreateInstance</a>(typeof(ScriptObj));
+        <a href="AssetDatabase.CreateAsset.html">AssetDatabase.CreateAsset</a>(testK, "Assets/AssetFolder/SpecialFolder/testK example.asset");<br /><br />        // an asset with a material will be used later
+        <a href="Material.html">Material</a> material = new <a href="Material.html">Material</a>(<a href="Shader.Find.html">Shader.Find</a>("Standard"));
+        <a href="AssetDatabase.CreateAsset.html">AssetDatabase.CreateAsset</a>(material, "Assets/AssetFolder/SpecialFolder/MyMaterial.mat");
+    }<br /><br />    static void NamesExample()
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("*** FINDING ASSETS BY NAME ***");<br /><br />        string[] results;<br /><br />        results = <a href="AssetDatabase.FindAssets.html">AssetDatabase.FindAssets</a>("testI");
+        foreach (string guid in results)
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("testI: " + <a href="AssetDatabase.GUIDToAssetPath.html">AssetDatabase.GUIDToAssetPath</a>(guid));
+        }<br /><br />        results = <a href="AssetDatabase.FindAssets.html">AssetDatabase.FindAssets</a>("testJ");
+        foreach (string guid in results)
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("testJ: " + <a href="AssetDatabase.GUIDToAssetPath.html">AssetDatabase.GUIDToAssetPath</a>(guid));
+        }<br /><br />        results = <a href="AssetDatabase.FindAssets.html">AssetDatabase.FindAssets</a>("testK example");
+        foreach (string guid in results)
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("testK example: " + <a href="AssetDatabase.GUIDToAssetPath.html">AssetDatabase.GUIDToAssetPath</a>(guid));
+        }<br /><br />        <a href="Debug.Log.html">Debug.Log</a>("*** More complex asset search ***");<br /><br />        // find all assets that contain test (which is all assets)
+        results = <a href="AssetDatabase.FindAssets.html">AssetDatabase.FindAssets</a>("test");
+        foreach (string guid in results)
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("name:test - " + <a href="AssetDatabase.GUIDToAssetPath.html">AssetDatabase.GUIDToAssetPath</a>(guid));
+        }
+    }<br /><br />    static void LabelsExample()
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("*** FINDING ASSETS BY LABELS ***");<br /><br />        string[] setLabels;<br /><br />        setLabels = new string[] {"wrapper"};
+        <a href="AssetDatabase.SetLabels.html">AssetDatabase.SetLabels</a>(testI, setLabels);<br /><br />        setLabels = new string[] {"bottle", "banana", "carrot"};
+        <a href="AssetDatabase.SetLabels.html">AssetDatabase.SetLabels</a>(testJ, setLabels);<br /><br />        setLabels = new string[] {"swappable", "helmet"};
+        <a href="AssetDatabase.SetLabels.html">AssetDatabase.SetLabels</a>(testK, setLabels);<br /><br />        // label searching:
+        //   testI has wrapper, testK has swappable, so both have 'app'
+        //   testJ has bottle, so have a label searched as 'bot'
+        string[] getGuids = <a href="AssetDatabase.FindAssets.html">AssetDatabase.FindAssets</a>("l:app l:bot");
+        foreach (string guid in getGuids)
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("label lookup: " + <a href="AssetDatabase.GUIDToAssetPath.html">AssetDatabase.GUIDToAssetPath</a>(guid));
+        }
+    }<br /><br />    static void TypesExample()
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("*** FINDING ASSETS BY TYPE ***");<br /><br />        string[] guids;<br /><br />        // search for a ScriptObject called ScriptObj
+        guids = <a href="AssetDatabase.FindAssets.html">AssetDatabase.FindAssets</a>("t:ScriptObj");
+        foreach (string guid in guids)
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("ScriptObj: " + <a href="AssetDatabase.GUIDToAssetPath.html">AssetDatabase.GUIDToAssetPath</a>(guid));
+        }<br /><br />        guids = <a href="AssetDatabase.FindAssets.html">AssetDatabase.FindAssets</a>("t:ScriptObj l:helmet");
+        foreach (string guid in guids)
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("ScriptObj+bottle: " + <a href="AssetDatabase.GUIDToAssetPath.html">AssetDatabase.GUIDToAssetPath</a>(guid));
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

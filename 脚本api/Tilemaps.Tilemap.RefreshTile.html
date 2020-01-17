@@ -1,0 +1,47 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Tilemaps.Tilemap.RefreshTile</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Tilemaps.Tilemap.html">Tilemap</a>.RefreshTile</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">RefreshTile</span>(<a href="Vector3Int.html">Vector3Int</a> <span class="sig-kw">position</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">position</td><td class="desc"></td><td class="desc1">Position of the Tile on the <a href="Tilemaps.Tilemap.html">Tilemap</a>.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Refreshes a <a href="../Manual/Tilemap-ScriptableTiles-TileBase.html">tile</a> at the given coordinates of a cell in the <a href="../Manual/class-Tilemap.html">tile map</a>.</p></div><div class="subsection"><p>The tile map will retrieve the rendering data, animation data and other data for the tile and update all relevant components.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.Tilemaps;<br /><br />// <a href="Tilemaps.Tile.html">Tile</a> that displays a <a href="Sprite.html">Sprite</a> when it is alone and a different <a href="Sprite.html">Sprite</a> when it is orthogonally adjacent to the same NeighourTile
+[CreateAssetMenu]
+public class NeighbourTile : <a href="Tilemaps.TileBase.html">TileBase</a>
+{
+    public <a href="Sprite.html">Sprite</a> spriteA;
+    public <a href="Sprite.html">Sprite</a> spriteB;<br /><br />    public override void RefreshTile(<a href="Vector3Int.html">Vector3Int</a> position, <a href="Tilemaps.ITilemap.html">ITilemap</a> tilemap)
+    {
+        for (int yd = -1; yd &lt;= 1; yd++)
+        {
+            <a href="Vector3Int.html">Vector3Int</a> location = new <a href="Vector3Int.html">Vector3Int</a>(position.x, position.y + yd, position.z);
+            if (IsNeighbour(location, tilemap))
+                tilemap.RefreshTile(location);
+        }
+        for (int xd = -1; xd &lt;= 1; xd++)
+        {
+            <a href="Vector3Int.html">Vector3Int</a> location = new <a href="Vector3Int.html">Vector3Int</a>(position.x + xd, position.y, position.z);
+            if (IsNeighbour(location, tilemap))
+                tilemap.RefreshTile(location);
+        }
+    }<br /><br />    public override void GetTileData(<a href="Vector3Int.html">Vector3Int</a> position, <a href="Tilemaps.ITilemap.html">ITilemap</a> tilemap, ref <a href="Tilemaps.TileData.html">TileData</a> tileData)
+    {
+        tileData.sprite = spriteA;
+        for (int yd = -1; yd &lt;= 1; yd += 2)
+        {
+            <a href="Vector3Int.html">Vector3Int</a> location = new <a href="Vector3Int.html">Vector3Int</a>(position.x, position.y + yd, position.z);
+            if (IsNeighbour(location, tilemap))
+                tileData.sprite = spriteB;
+        }
+        for (int xd = -1; xd &lt;= 1; xd += 2)
+        {
+            <a href="Vector3Int.html">Vector3Int</a> location = new <a href="Vector3Int.html">Vector3Int</a>(position.x + xd, position.y, position.z);
+            if (IsNeighbour(location, tilemap))
+                tileData.sprite = spriteB;
+        }
+    }<br /><br />    private bool IsNeighbour(<a href="Vector3Int.html">Vector3Int</a> position, <a href="Tilemaps.ITilemap.html">ITilemap</a> tilemap)
+    {
+        <a href="Tilemaps.TileBase.html">TileBase</a> tile = tilemap.GetTile(position);
+        return (tile != null &amp;&amp; tile == this);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

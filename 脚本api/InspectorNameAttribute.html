@@ -1,0 +1,33 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: InspectorNameAttribute</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">InspectorNameAttribute</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Inherits from:<a href="PropertyAttribute.html" class="cl">PropertyAttribute</a></p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.CoreModule.html" class="cl">UnityEngine.CoreModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Use this attribute on enum value declarations to change the display name shown in the Inspector.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public enum <a href="ModelImporterIndexFormat.html">ModelImporterIndexFormat</a>
+{
+    Auto = 0,
+    [InspectorName("16 bits")]
+    UInt16 = 1,
+    [InspectorName("32 bits")]
+    UInt32 = 2,
+}
+</pre>
+      </div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="InspectorNameAttribute-displayName.html">displayName</a></td><td class="desc"></td><td class="desc1">Name to display in the Inspector.</td></tr>
+    </table></div><div class="subsection"><h2>Constructors</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="InspectorNameAttribute-ctor.html">InspectorNameAttribute</a></td><td class="desc"></td><td class="desc1">Specify a display name for an enum value.</td></tr>
+    </table></div><div class="subsection"><h2>Inherited Members   继承成员</h2>
+      
+      <div class="subsection"><h2>Properties   属性</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="PropertyAttribute-order.html">order</a></td><td class="desc"></td><td class="desc1">Optional field to specify the order that multiple DecorationDrawers should be drawn in.</td></tr>
+      </table></div>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </div></div></div></div></body></html>

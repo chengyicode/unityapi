@@ -1,0 +1,34 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorGUIUtility.ObjectContent</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorGUIUtility.html">EditorGUIUtility</a>.ObjectContent</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="GUIContent.html">GUIContent</a> <span class="sig-kw">ObjectContent</span>(<a href="Object.html">Object</a> <span class="sig-kw">obj</span>,
+Type <span class="sig-kw">type</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Return a GUIContent object with the name and icon of an Object.</p></div><div class="subsection"><p>If the object is null, the icon will be picked according to type.<br /><br /><img src="../StaticFiles/ScriptRefImages/EditorGUIUtilityObjectContent.png" /><br />
+<em>Object Content usage.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Simple <a href="Editor.html">Editor</a> Script that shows the icons of <a href="Transform.html">Transform</a>,
+// rigidbody and <a href="GameObject.html">GameObject</a> in 3 buttons.<br /><br />using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;<br /><br />public class ObjectContentExample : <a href="EditorWindow.html">EditorWindow</a>
+{
+    [<a href="MenuItem.html">MenuItem</a>("Examples/ObjectContent usage")]
+    static void Init()
+    {
+        ObjectContentExample window = (ObjectContentExample)GetWindow(typeof(ObjectContentExample));
+        window.Show();
+    }<br /><br />    void OnGUI()
+    {
+        <a href="EditorGUILayout.PrefixLabel.html">EditorGUILayout.PrefixLabel</a>("Select a type:");
+        <a href="EditorGUILayout.BeginHorizontal.html">EditorGUILayout.BeginHorizontal</a>();
+        if (<a href="GUILayout.Button.html">GUILayout.Button</a>(<a href="EditorGUIUtility.ObjectContent.html">EditorGUIUtility.ObjectContent</a>(null, typeof(<a href="Transform.html">Transform</a>)).image))
+            DoSomething("<a href="Transform.html">Transform</a>");
+        if (<a href="GUILayout.Button.html">GUILayout.Button</a>(<a href="EditorGUIUtility.ObjectContent.html">EditorGUIUtility.ObjectContent</a>(null, typeof(<a href="Rigidbody.html">Rigidbody</a>)).image))
+            DoSomething("RigidBody");
+        if (<a href="GUILayout.Button.html">GUILayout.Button</a>(<a href="EditorGUIUtility.ObjectContent.html">EditorGUIUtility.ObjectContent</a>(null, typeof(<a href="GameObject.html">GameObject</a>)).image))
+            DoSomething("<a href="GameObject.html">GameObject</a>");
+        <a href="EditorGUILayout.EndHorizontal.html">EditorGUILayout.EndHorizontal</a>();<br /><br />        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Close"))
+            this.Close();
+    }<br /><br />    private void DoSomething(string obj)
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("Hello there " + obj + "!");
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

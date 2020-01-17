@@ -1,0 +1,45 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Physics.ComputePenetration</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Physics.html">Physics</a>.ComputePenetration</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static bool <span class="sig-kw">ComputePenetration</span>(<a href="Collider.html">Collider</a> <span class="sig-kw">colliderA</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">positionA</span>,
+<a href="Quaternion.html">Quaternion</a> <span class="sig-kw">rotationA</span>,
+<a href="Collider.html">Collider</a> <span class="sig-kw">colliderB</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">positionB</span>,
+<a href="Quaternion.html">Quaternion</a> <span class="sig-kw">rotationB</span>,
+out <a href="Vector3.html">Vector3</a> <span class="sig-kw">direction</span>,
+out float <span class="sig-kw">distance</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">colliderA</td><td class="desc"></td><td class="desc1">The first collider.</td></tr><tr><td class="name lbl">positionA</td><td class="desc"></td><td class="desc1">Position of the first collider.</td></tr><tr><td class="name lbl">rotationA</td><td class="desc"></td><td class="desc1">Rotation of the first collider.</td></tr><tr><td class="name lbl">colliderB</td><td class="desc"></td><td class="desc1">The second collider.</td></tr><tr><td class="name lbl">positionB</td><td class="desc"></td><td class="desc1">Position of the second collider.</td></tr><tr><td class="name lbl">rotationB</td><td class="desc"></td><td class="desc1">Rotation of the second collider.</td></tr><tr><td class="name lbl">direction</td><td class="desc"></td><td class="desc1">Direction along which the translation required to separate the colliders apart is minimal.</td></tr><tr><td class="name lbl">distance</td><td class="desc"></td><td class="desc1">The distance along direction that is required to separate the colliders apart.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>bool</strong>
+        True, if the colliders overlap at the given poses.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Compute the minimal translation required to separate the given colliders apart at specified poses.</p></div><div class="subsection"><p>Translating the first collider by direction * distance will separate the colliders apart if the function returned true. Otherwise, direction and distance are not defined.<br /><br />One of the colliders has to be BoxCollider, SphereCollider CapsuleCollider or a convex MeshCollider. The other one can be any type.<br /><br />Note that you aren't restricted to the position and rotation the colliders have at the moment of the call. Passing position or rotation that is different from the currently set one doesn't have an effect of physically moving any colliders thus has no side effects on the Scene.<br /><br />Doesn't depend on any spatial structures to be updated first, so is not bound to be used only within FixedUpdate timeframe.<br /><br />Ignores backfaced triangles and doesn't respect <a href="Physics-queriesHitBackfaces.html">Physics.queriesHitBackfaces</a>.<br /><br />This function is useful to write custom depenetration functions. One particular example is an implementation of a character controller where a specific reaction to collision with the surrounding physics objects is required. In this case, one would first query for the colliders nearby using OverlapSphere and then adjust the character's position using the data returned by ComputePenetration.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />// Visualises the minimum translation vectors required to separate apart from other colliders found in a given radius
+// Attach to a <a href="GameObject.html">GameObject</a> that has a <a href="Collider.html">Collider</a> attached.
+[<a href="ExecuteInEditMode.html">ExecuteInEditMode</a>()]
+public class ShowPenetration : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public float radius = 3f; // show penetration into the colliders located inside a sphere of this radius
+    public int maxNeighbours = 16; // maximum amount of neighbours visualised<br /><br />    private <a href="Collider.html">Collider</a>[] neighbours;<br /><br />    public void Start()
+    {
+        neighbours = new <a href="Collider.html">Collider</a>[maxNeighbours];
+    }<br /><br />    public void OnDrawGizmos()
+    {
+        var thisCollider = GetComponent&lt;<a href="Collider.html">Collider</a>&gt;();<br /><br />        if (!thisCollider)
+            return; // nothing to do without a <a href="Collider.html">Collider</a> attached<br /><br />        int count = <a href="Physics.OverlapSphereNonAlloc.html">Physics.OverlapSphereNonAlloc</a>(transform.position, radius, neighbours);<br /><br />        for (int i = 0; i &lt; count; ++i)
+        {
+            var collider = neighbours[i];<br /><br />            if (collider == thisCollider)
+                continue; // skip ourself<br /><br />            <a href="Vector3.html">Vector3</a> otherPosition = collider.gameObject.transform.position;
+            <a href="Quaternion.html">Quaternion</a> otherRotation = collider.gameObject.transform.rotation;<br /><br />            <a href="Vector3.html">Vector3</a> direction;
+            float distance;<br /><br />            bool overlapped = <a href="Physics.ComputePenetration.html">Physics.ComputePenetration</a>(
+                thisCollider, transform.position, transform.rotation,
+                collider, otherPosition, otherRotation,
+                out direction, out distance
+            );<br /><br />            // draw a line showing the depenetration direction if overlapped
+            if (overlapped)
+            {
+                <a href="Gizmos-color.html">Gizmos.color</a> = <a href="Color-red.html">Color.red</a>;
+                <a href="Gizmos.DrawRay.html">Gizmos.DrawRay</a>(otherPosition, direction * distance);
+            }
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

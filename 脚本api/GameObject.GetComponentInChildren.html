@@ -1,0 +1,45 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: GameObject.GetComponentInChildren</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="GameObject.html">GameObject</a>.GetComponentInChildren</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-GameObject.html' title='Go to GameObject Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Component.html">Component</a> <span class="sig-kw">GetComponentInChildren</span>(Type <span class="sig-kw">type</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Component.html">Component</a> <span class="sig-kw">GetComponentInChildren</span>(Type <span class="sig-kw">type</span>,
+bool <span class="sig-kw">includeInactive</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">type</td><td class="desc"></td><td class="desc1">The type of Component to retrieve.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>Component</strong>
+        A component of the matching type, if found.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Returns the component of Type <code class="varname">type</code> in the GameObject or any of its children using depth first search.</p></div><div class="subsection"><p>A component is returned only if it is found on an active GameObject.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class GetComponentInChildrenExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Disable the spring on the first <a href="HingeJoint.html">HingeJoint</a> component found on any child object<br /><br />    void Start()
+    {
+        <a href="HingeJoint.html">HingeJoint</a> hinge = gameObject.GetComponentInChildren(typeof(<a href="HingeJoint.html">HingeJoint</a>)) as <a href="HingeJoint.html">HingeJoint</a>;<br /><br />        if (hinge != null)
+            hinge.useSpring = false;
+        else
+        {
+            // Try again, looking for inactive GameObjects
+            <a href="HingeJoint.html">HingeJoint</a> hingeInactive = gameObject.GetComponentInChildren(typeof(<a href="HingeJoint.html">HingeJoint</a>), true) as <a href="HingeJoint.html">HingeJoint</a>;<br /><br />            if (hingeInactive != null)
+                hingeInactive.useSpring = false;
+        }
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public T <span class="sig-kw">GetComponentInChildren</span>(bool <span class="sig-kw">includeInactive</span> = false);
+    </div></div></div><div class="subsection"><h2>Returns</h2><p><strong>T</strong>
+        A component of the matching type, if found.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Generic version. See the <a href="../Manual/GenericFunctions.html">Generic Functions</a> page for more details.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class GetComponentInChildrenExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Disable the spring on the first <a href="HingeJoint.html">HingeJoint</a> component found on any child object<br /><br />    void Start()
+    {
+        <a href="HingeJoint.html">HingeJoint</a> hinge = gameObject.GetComponentInChildren&lt;<a href="HingeJoint.html">HingeJoint</a>&gt;();<br /><br />        if (hinge != null)
+            hinge.useSpring = false;
+        else
+        {
+            // Try again, looking for inactive GameObjects
+            <a href="HingeJoint.html">HingeJoint</a> hingeInactive = gameObject.GetComponentInChildren&lt;<a href="HingeJoint.html">HingeJoint</a>&gt;(true) as <a href="HingeJoint.html">HingeJoint</a>;<br /><br />            if (hingeInactive != null)
+                hingeInactive.useSpring = false;
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

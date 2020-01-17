@@ -1,0 +1,38 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ScrollViewScope</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">ScrollViewScope</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEditor</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEditor.html" class="cl">UnityEditor</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Disposable helper class for managing <a href="EditorGUILayout.BeginScrollView.html">BeginScrollView</a> / <a href="EditorGUILayout.EndScrollView.html">EndScrollView</a>.</p></div><div class="subsection"><p>These work just like <a href="GUILayout.ScrollViewScope.html">ScrollViewScope</a> but feel more application-like and should be used in the editor<br /><br /><img src="../StaticFiles/ScriptRefImages/BeginEndScrollView.png" /><br />
+<em>Label inside a scroll view.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />// Simple <a href="Editor.html">Editor</a> Window that creates a scroll view with a <a href="UIElements.Label.html">Label</a> inside
+class BeginEndScrollView : <a href="EditorWindow.html">EditorWindow</a>
+{
+    <a href="Vector2.html">Vector2</a> scrollPos;
+    string t = "This is a string inside a Scroll view!";<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Examples/Write text on <a href="UIElements.ScrollView.html">ScrollView</a>")]
+    static void Init()
+    {
+        var window = GetWindow&lt;BeginEndScrollView&gt;();
+        window.Show();
+    }<br /><br />    void OnGUI()
+    {
+        using (var h = new <a href="EditorGUILayout.HorizontalScope.html">EditorGUILayout.HorizontalScope</a>())
+        {
+            using (var scrollView = new <a href="EditorGUILayout.ScrollViewScope.html">EditorGUILayout.ScrollViewScope</a>(scrollPos, <a href="GUILayout.Width.html">GUILayout.Width</a>(100), <a href="GUILayout.Height.html">GUILayout.Height</a>(100)))
+            {
+                scrollPos = scrollView.scrollPosition;
+                <a href="GUILayout.Label.html">GUILayout.Label</a>(t);
+            }
+            if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Add More Text", <a href="GUILayout.Width.html">GUILayout.Width</a>(100), <a href="GUILayout.Height.html">GUILayout.Height</a>(100)))
+                t += " \nAnd this is more text!";
+        }
+        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Clear"))
+            t = "";
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="EditorGUILayout.ScrollViewScope-handleScrollWheel.html">handleScrollWheel</a></td><td class="desc"></td><td class="desc1">Whether this ScrollView should handle scroll wheel events. (default: true).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="EditorGUILayout.ScrollViewScope-scrollPosition.html">scrollPosition</a></td><td class="desc"></td><td class="desc1">The modified scrollPosition. Feed this back into the variable you pass in, as shown in the example.</td></tr>
+    </table></div><div class="subsection"><h2>Constructors</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="EditorGUILayout.ScrollViewScope-ctor.html">EditorGUILayout.ScrollViewScope</a></td><td class="desc"></td><td class="desc1">Create a new ScrollViewScope and begin the corresponding ScrollView.</td></tr>
+    </table></div></div></div></div></body></html>

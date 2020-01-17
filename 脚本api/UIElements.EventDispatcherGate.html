@@ -1,0 +1,20 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EventDispatcherGate</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">EventDispatcherGate</h1><div class="clear"></div><p class="cl mb0 left mr10">struct in
+          UnityEngine.UIElements</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.UIElementsModule.html" class="cl">UnityEngine.UIElementsModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Gates control when the dispatcher processes events.</p></div><div class="subsection"><p>Here is an example of using a gate:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+public class MyElement : <a href="UIElements.VisualElement.html">VisualElement</a>
+{
+    void Foo()
+    {
+        using (new <a href="UIElements.EventDispatcherGate.html">EventDispatcherGate</a>(dispatcher))
+        {
+            // do something that sends events
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>When the gate is instantiated, it closes automatically, causing the dispatcher to store the events it receives in a queue. At the end of the <code class="mono">using</code> block, <a href="UIElements.EventDispatcherGate.Dispose.html">Dispose</a> is called, which triggers opening the gate. When all gates on a dispatcher open, the events stored in the queue are processed. Closing a gate while the event queue is processed does not stop it from being processed. Instead, a new queue is created to store new events.</p></div><div class="subsection"><h2>Constructors</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="UIElements.EventDispatcherGate-ctor.html">EventDispatcherGate</a></td><td class="desc"></td><td class="desc1">Constructor.</td></tr>
+    </table></div><div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="UIElements.EventDispatcherGate.Dispose.html">Dispose</a></td><td class="desc"></td><td class="desc1">Implementation of IDisposable.Dispose. Opens the gate. If all gates are open, events in the queue are processed.</td></tr>
+    </table></div></div></div></div></body></html>

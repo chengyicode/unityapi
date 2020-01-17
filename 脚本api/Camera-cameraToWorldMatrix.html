@@ -1,0 +1,21 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Camera.cameraToWorldMatrix</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Camera.html">Camera</a>.cameraToWorldMatrix</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Camera.html' title='Go to Camera Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Matrix4x4.html">Matrix4x4</a> <span class="sig-kw">cameraToWorldMatrix</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Matrix that transforms from camera space to world space (Read Only).</p></div><div class="subsection"><p>Use this to calculate where in the world a specific camera space point is.<br /><br />Note that camera space matches OpenGL convention: camera's forward is the negative
+Z axis. This is different from Unity's convention, where forward is the positive Z
+axis.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Draw a yellow sphere in <a href="SceneManagement.Scene.html">Scene</a> view at <code class="varname">distance/</code>
+// units along camera's viewing direction.<br /><br />using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public float distance = -1.0F;
+    void OnDrawGizmosSelected()
+    {
+        <a href="Matrix4x4.html">Matrix4x4</a> m = Camera.main.cameraToWorldMatrix;
+        <a href="Vector3.html">Vector3</a> p = m.MultiplyPoint(new <a href="Vector3.html">Vector3</a>(0, 0, distance));
+        <a href="Gizmos-color.html">Gizmos.color</a> = <a href="Color-yellow.html">Color.yellow</a>;
+        <a href="Gizmos.DrawSphere.html">Gizmos.DrawSphere</a>(p, 0.2F);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

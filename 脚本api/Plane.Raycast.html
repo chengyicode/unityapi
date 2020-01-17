@@ -1,0 +1,38 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Plane.Raycast</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Plane.html">Plane</a>.Raycast</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public bool <span class="sig-kw">Raycast</span>(<a href="Ray.html">Ray</a> <span class="sig-kw">ray</span>,
+out float <span class="sig-kw">enter</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Intersects a ray with the plane.</p></div><div class="subsection"><p>This function sets <code class="varname">enter</code> to the distance along the ray, where it intersects the plane.
+If the ray is parallel to the plane, function returns <code class="varname">false</code> and sets <code class="varname">enter</code> to zero.
+If the ray is pointing in the opposite direction than the plane, function returns <code class="varname">false/</code>
+and sets <code class="varname">enter</code> to the distance along the ray (negative value).</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//This script detects mouse clicks on a plane using <a href="Plane.Raycast.html">Plane.Raycast</a>.
+//In this example, the plane is set to the <a href="Camera.html">Camera</a>'s x and y position, but you can set the z position so the plane is in front of your <a href="Camera.html">Camera</a>.
+//The normal of the plane is set to facing forward so it is facing the <a href="Camera.html">Camera</a>, but you can change this to suit your own needs.<br /><br />//In your <a href="GameObject.html">GameObject</a>'s Inspector, set your clickable distance and attach a cube <a href="GameObject.html">GameObject</a> in the appropriate fields<br /><br />using UnityEngine;<br /><br />public class PlaneRayExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    //Attach a cube <a href="GameObject.html">GameObject</a> in the Inspector before entering Play <a href="Scripting.GarbageCollector.Mode.html">Mode</a>
+    public <a href="GameObject.html">GameObject</a> m_Cube;<br /><br />    //This is the distance the clickable plane is from the camera. Set it in the Inspector before running.
+    public float m_DistanceZ;<br /><br />    <a href="Plane.html">Plane</a> m_Plane;
+    <a href="Vector3.html">Vector3</a> m_DistanceFromCamera;<br /><br />    void Start()
+    {
+        //This is how far away from the <a href="Camera.html">Camera</a> the plane is placed
+        m_DistanceFromCamera = new <a href="Vector3.html">Vector3</a>(Camera.main.transform.position.x, Camera.main.transform.position.y, Camera.main.transform.position.z - m_DistanceZ);<br /><br />        //Create a new plane with normal (0,0,1) at the position away from the camera you define in the Inspector. This is the plane that you can click so make sure it is reachable.
+        m_Plane = new <a href="Plane.html">Plane</a>(<a href="Vector3-forward.html">Vector3.forward</a>, m_DistanceFromCamera);
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        //Detect when there is a mouse click
+        if (<a href="Input.GetMouseButton.html">Input.GetMouseButton</a>(0))
+        {
+            //Create a ray from the Mouse click position
+            <a href="Ray.html">Ray</a> ray = Camera.main.ScreenPointToRay(<a href="Input-mousePosition.html">Input.mousePosition</a>);<br /><br />            //Initialise the enter variable
+            float enter = 0.0f;<br /><br />            if (m_Plane.Raycast(ray, out enter))
+            {
+                //Get the point that is clicked
+                <a href="Vector3.html">Vector3</a> hitPoint = ray.GetPoint(enter);<br /><br />                //Move your cube <a href="GameObject.html">GameObject</a> to the point where you clicked
+                m_Cube.transform.position = hitPoint;
+            }
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="Physics.Raycast.html">Physics.Raycast</a>.</p></div></div></div></div></body></html>

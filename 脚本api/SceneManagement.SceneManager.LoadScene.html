@@ -1,0 +1,119 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: SceneManagement.SceneManager.LoadScene</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="SceneManagement.SceneManager.html">SceneManager</a>.LoadScene</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">LoadScene</span>(int <span class="sig-kw">sceneBuildIndex</span>,
+<a href="SceneManagement.LoadSceneMode.html">SceneManagement.LoadSceneMode</a> <span class="sig-kw">mode</span> = LoadSceneMode.Single);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">LoadScene</span>(string <span class="sig-kw">sceneName</span>,
+<a href="SceneManagement.LoadSceneMode.html">SceneManagement.LoadSceneMode</a> <span class="sig-kw">mode</span> = LoadSceneMode.Single);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">sceneName</td><td class="desc"></td><td class="desc1">Name or path of the Scene to load.</td></tr><tr><td class="name lbl">sceneBuildIndex</td><td class="desc"></td><td class="desc1">Index of the Scene in the Build Settings to load.</td></tr><tr><td class="name lbl">mode</td><td class="desc"></td><td class="desc1">Allows you to specify whether or not to load the Scene additively. See <a href="SceneManagement.LoadSceneMode.html">LoadSceneMode</a> for more information about the options.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Loads the Scene by its name or index in Build Settings.</p></div><div class="subsection"><p>
+        <strong>Note:</strong> In most cases, to avoid pauses or performance hiccups while
+        loading, you should use the asynchronous version of this command which is:
+        <a href="SceneManagement.SceneManager.LoadSceneAsync.html">LoadSceneAsync</a>.<br /><br />When using <a href="SceneManagement.SceneManager.LoadScene.html">SceneManager.LoadScene</a>, the scene loads in the next frame, that is it does not load immediately. This semi-asynchronous behavior can cause frame stuttering and can be confusing because load does not complete immediately.<br /><br />Because loading is set to complete in the next rendered frame, calling <a href="SceneManagement.SceneManager.LoadScene.html">SceneManager.LoadScene</a> forces all previous AsyncOperations to complete, even if <a href="AsyncOperation-allowSceneActivation.html">AsyncOperation.allowSceneActivation</a> is set to false. To avoid this, use <a href="SceneManagement.SceneManager.LoadSceneAsync.html">LoadSceneAsync</a> instead.<br /><br />The given <code class="mono">sceneName</code> can either be the Scene name only, without the <code class="mono">.unity</code> extension, or the path as shown in the BuildSettings window still without the <code class="mono">.unity</code> extension. If only the Scene name is given this will load the first Scene in the list that matches. If you have multiple Scenes with the same name but different paths, you should use the full path.<br /><br />Note that <code class="mono">sceneName</code> is case insensitive, except when you load the Scene from an <a href="AssetBundle.html">AssetBundle</a>.<br /><br />For opening Scenes in the Editor see <a href="SceneManagement.EditorSceneManager.OpenScene.html">EditorSceneManager.OpenScene</a>.
+<code class="varname">SceneA</code> can additively load <code class="varname">SceneB</code> multiple times.  The regular name is used for each loaded scene.  If <code class="varname">SceneA</code> loads <code class="varname">SceneB</code> ten times each <code class="varname">SceneB</code> will have the same name.  Finding a particular added scene is not possible.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.SceneManagement;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        // Only specifying the sceneName or sceneBuildIndex will load the <a href="SceneManagement.Scene.html">Scene</a> with the Single mode
+        <a href="SceneManagement.SceneManager.LoadScene.html">SceneManager.LoadScene</a>("OtherSceneName", <a href="SceneManagement.LoadSceneMode.Additive.html">LoadSceneMode.Additive</a>);
+    }
+}
+</pre>
+      </div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Load an assetbundle which contains Scenes.
+// When the user clicks a button the first <a href="SceneManagement.Scene.html">Scene</a> in the assetbundle is
+// loaded and replaces the current <a href="SceneManagement.Scene.html">Scene</a>.<br /><br />using UnityEngine;
+using UnityEngine.SceneManagement;<br /><br />public class LoadScene : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private <a href="AssetBundle.html">AssetBundle</a> myLoadedAssetBundle;
+    private string[] scenePaths;<br /><br />    // Use this for initialization
+    void Start()
+    {
+        myLoadedAssetBundle = <a href="AssetBundle.LoadFromFile.html">AssetBundle.LoadFromFile</a>("Assets/AssetBundles/scenes");
+        scenePaths = myLoadedAssetBundle.GetAllScenePaths();
+    }<br /><br />    void OnGUI()
+    {
+        if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(10, 10, 100, 30), "Change <a href="SceneManagement.Scene.html">Scene</a>"))
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("Scene2 loading: " + scenePaths[0]);
+            <a href="SceneManagement.SceneManager.LoadScene.html">SceneManager.LoadScene</a>(scenePaths[0], <a href="SceneManagement.LoadSceneMode.Single.html">LoadSceneMode.Single</a>);
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>The following two script examples show how <a href="SceneManagement.SceneManager.LoadScene.html">LoadScene</a> can load Scenes from Build Settings. <code class="varname">LoadSceneA</code> uses the name of the Scene to load. <code class="varname">LoadSceneB</code> uses the number of the Scene to load. The scripts work together.<br /><br /><code class="varname">LoadSceneA</code> file.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// SceneA.
+// SceneA is given the sceneName which will
+// load SceneB from the Build <a href="CameraEditor.Settings.html">Settings</a><br /><br />using UnityEngine;
+using UnityEngine.SceneManagement;<br /><br />public class LoadScenesA : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("LoadSceneA");
+    }<br /><br />    public void LoadA(string scenename)
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("sceneName to load: " + scenename);
+        <a href="SceneManagement.SceneManager.LoadScene.html">SceneManager.LoadScene</a>(scenename);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>
+        <code class="varname">LoadSceneB</code> file.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// SceneB.
+// SceneB is given the sceneBuildIndex of 0 which will
+// load SceneA from the Build <a href="CameraEditor.Settings.html">Settings</a><br /><br />using UnityEngine;
+using UnityEngine.SceneManagement;<br /><br />public class LoadScenesB : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("LoadSceneB");
+    }<br /><br />    public void LoadB(int sceneANumber)
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("sceneBuildIndex to load: " + sceneANumber);
+        <a href="SceneManagement.SceneManager.LoadScene.html">SceneManager.LoadScene</a>(sceneANumber);
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="SceneManagement.Scene.html">SceneManagement.Scene</a> <span class="sig-kw">LoadScene</span>(int <span class="sig-kw">sceneBuildIndex</span>,
+<a href="SceneManagement.LoadSceneParameters.html">SceneManagement.LoadSceneParameters</a> <span class="sig-kw">parameters</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="SceneManagement.Scene.html">SceneManagement.Scene</a> <span class="sig-kw">LoadScene</span>(string <span class="sig-kw">sceneName</span>,
+<a href="SceneManagement.LoadSceneParameters.html">SceneManagement.LoadSceneParameters</a> <span class="sig-kw">parameters</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">sceneName</td><td class="desc"></td><td class="desc1">Name or path of the Scene to load.</td></tr><tr><td class="name lbl">sceneBuildIndex</td><td class="desc"></td><td class="desc1">Index of the Scene in the Build Settings to load.</td></tr><tr><td class="name lbl">parameters</td><td class="desc"></td><td class="desc1">Various parameters used to load the Scene.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>Scene</strong>
+        A handle to the Scene being loaded.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Loads the Scene by its name or index in Build Settings.</p></div><div class="subsection"><p>An example using two scenes called <code class="varname">Scene1</code> and <code class="varname">Scene2</code>. ExampleScript1.cs is for <code class="varname">scene1</code> and ExampleScript2.cs is for <code class="varname">scene2</code>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.SceneManagement;<br /><br />// This is scene1.  It loads 3 copies of scene2.
+// Each copy has the same name.<br /><br />public class ExampleScript1 : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private <a href="SceneManagement.Scene.html">Scene</a> scene;<br /><br />    private void Start()
+    {
+        var parameters = new <a href="SceneManagement.LoadSceneParameters.html">LoadSceneParameters</a>(<a href="SceneManagement.LoadSceneMode.Additive.html">LoadSceneMode.Additive</a>);<br /><br />        scene = <a href="SceneManagement.SceneManager.LoadScene.html">SceneManager.LoadScene</a>("scene2", parameters);
+        <a href="Debug.Log.html">Debug.Log</a>("Load 1 of scene2: " + scene.name);
+        scene = <a href="SceneManagement.SceneManager.LoadScene.html">SceneManager.LoadScene</a>("scene2", parameters);
+        <a href="Debug.Log.html">Debug.Log</a>("Load 2 of scene2: " + scene.name);
+        scene = <a href="SceneManagement.SceneManager.LoadScene.html">SceneManager.LoadScene</a>("scene2", parameters);
+        <a href="Debug.Log.html">Debug.Log</a>("Load 3 of scene2: " + scene.name);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Scene2:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />// create a randomly placed cube<br /><br />public class ExampleScript2 : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private void Start()
+    {
+        <a href="GameObject.html">GameObject</a> cube = <a href="GameObject.CreatePrimitive.html">GameObject.CreatePrimitive</a>(<a href="PrimitiveType.Cube.html">PrimitiveType.Cube</a>);
+        cube.transform.position = new <a href="Vector3.html">Vector3</a>(<a href="Random.Range.html">Random.Range</a>(-5.0f, 5.0f), 0.0f, <a href="Random.Range.html">Random.Range</a>(-5.0f, 5.0f));
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

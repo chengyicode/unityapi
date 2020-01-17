@@ -1,0 +1,53 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorGUI.IntField</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorGUI.html">EditorGUI</a>.IntField</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static int <span class="sig-kw">IntField</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+int <span class="sig-kw">value</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span> = EditorStyles.numberField);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static int <span class="sig-kw">IntField</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+string <span class="sig-kw">label</span>,
+int <span class="sig-kw">value</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span> = EditorStyles.numberField);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static int <span class="sig-kw">IntField</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">position</span>,
+<a href="GUIContent.html">GUIContent</a> <span class="sig-kw">label</span>,
+int <span class="sig-kw">value</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span> = EditorStyles.numberField);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">position</td><td class="desc"></td><td class="desc1">Rectangle on the screen to use for the int field.</td></tr><tr><td class="name lbl">label</td><td class="desc"></td><td class="desc1">Optional label to display in front of the int field.</td></tr><tr><td class="name lbl">value</td><td class="desc"></td><td class="desc1">The value to edit.</td></tr><tr><td class="name lbl">style</td><td class="desc"></td><td class="desc1">Optional <a href="GUIStyle.html">GUIStyle</a>.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>int</strong>
+        The value entered by the user.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Makes a text field for entering integers.</p></div><div class="subsection"><p>
+        <img src="../StaticFiles/ScriptRefImages/EditorGUIIntField.png" />
+        <br />
+<em>Int Field in an Editor Window.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//Create a folder and name it "<a href="Editor.html">Editor</a>" (Right click in your Project <a href="VersionControl.Asset.html">Asset</a> folder and go to Create&gt;<a href="WSA.Folder.html">Folder</a>) if you don't already have one
+//Place this script in the <a href="Editor.html">Editor</a> folder
+//This script creates a new menu at the top of the <a href="Editor.html">Editor</a> named "Examples" with one item "Clone Object".<br /><br />using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />class Example : <a href="EditorWindow.html">EditorWindow</a>
+{
+    int clones = 1;<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Examples/Clone Object")]
+    static void Init()
+    {
+        //Create the new <a href="Editor.html">Editor</a> window and show it
+        <a href="EditorWindow.html">EditorWindow</a> window = GetWindow(typeof(Example));
+        window.Show();
+    }<br /><br />    void OnGUI()
+    {
+        //The field which allows you to input the amount of clones of a <a href="GameObject.html">GameObject</a> you want
+        clones = <a href="EditorGUI.IntField.html">EditorGUI.IntField</a>(new <a href="Rect.html">Rect</a>(0, 35, position.width, 15), "Number of clones:", clones);<br /><br />        //If there isn't a currently selected <a href="GameObject.html">GameObject</a>, this message appears
+        if (<a href="Selection-activeGameObject.html">Selection.activeGameObject</a> == null)
+            <a href="EditorGUI.LabelField.html">EditorGUI.LabelField</a>(new <a href="Rect.html">Rect</a>(3, 3, position.width, 20), "Please click on a <a href="GameObject.html">GameObject</a> in your <a href="SceneManagement.Scene.html">Scene</a>!");<br /><br />        //Press the clone <a href="UIElements.Button.html">Button</a>
+        if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(0, 55, position.width, 20), "Clone!"))
+        {
+            //Check that you have a <a href="GameObject.html">GameObject</a> selected
+            if (<a href="Selection-activeGameObject.html">Selection.activeGameObject</a> != null)
+            {
+                //Loop until the number of clones is reached
+                for (int i = 0; i &lt; clones; i++)
+                {
+                    //Spawn each of the clones
+                    Instantiate(<a href="Selection-activeGameObject.html">Selection.activeGameObject</a>, <a href="Vector3-zero.html">Vector3.zero</a>, <a href="Quaternion-identity.html">Quaternion.identity</a>);
+                }
+            }
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

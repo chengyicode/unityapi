@@ -1,0 +1,58 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: PlayerSettings.defaultIsFullScreen</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Method group is Obsolete</b><br /></div><h1 class="heading inherit"><a href="PlayerSettings.html">PlayerSettings</a>.defaultIsFullScreen</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-PlayerSettings.html' title='Go to PlayerSettings Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span>public static bool <span class="sig-kw">defaultIsFullScreen</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>If enabled, the game will default to fullscreen mode.</p></div><div class="subsection"><p>The <strong>Windowed</strong> checkbox on the Resolution Dialog will be disabled by default when this setting is enabled.<br /><br /><img src="../StaticFiles/ScriptRefImages/PlayerSettingsCustomSettings.png" /><br />
+<em>Custom player settings.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class CustomSettings : <a href="EditorWindow.html">EditorWindow</a>
+{
+    string compName;
+    string prodName;
+    int screenWidth = 640;
+    int screenHeight = 480;
+    int webScreenWidth = 640;
+    int webScreenHeight = 480;
+    bool fullScreen = false;<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Examples/Custom <a href="CameraEditor.Settings.html">Settings</a>")]
+    static void Init()
+    {
+        <a href="EditorWindow.html">EditorWindow</a> window = <a href="EditorWindow.GetWindow.html">EditorWindow.GetWindow</a>&lt;CustomSettings&gt;();
+        window.Show();
+    }<br /><br />    void OnGUI()
+    {
+        compName = <a href="EditorGUILayout.TextField.html">EditorGUILayout.TextField</a>("Company Name:", compName);
+        prodName = <a href="EditorGUILayout.TextField.html">EditorGUILayout.TextField</a>("Product Name:", prodName);<br /><br />        <a href="EditorGUILayout.BeginHorizontal.html">EditorGUILayout.BeginHorizontal</a>();
+        screenWidth = <a href="EditorGUILayout.IntField.html">EditorGUILayout.IntField</a>("Width:", screenWidth);
+        screenHeight = <a href="EditorGUILayout.IntField.html">EditorGUILayout.IntField</a>("Web Height:", screenHeight);
+        <a href="EditorGUILayout.EndHorizontal.html">EditorGUILayout.EndHorizontal</a>();<br /><br />        <a href="EditorGUILayout.Space.html">EditorGUILayout.Space</a>();<br /><br />        <a href="EditorGUILayout.BeginHorizontal.html">EditorGUILayout.BeginHorizontal</a>();
+        webScreenWidth = <a href="EditorGUILayout.IntField.html">EditorGUILayout.IntField</a>("Web Width:", webScreenWidth);
+        webScreenHeight = <a href="EditorGUILayout.IntField.html">EditorGUILayout.IntField</a>("Web Height:", webScreenHeight);
+        <a href="EditorGUILayout.EndHorizontal.html">EditorGUILayout.EndHorizontal</a>();<br /><br />        fullScreen = <a href="EditorGUILayout.Toggle.html">EditorGUILayout.Toggle</a>("Full <a href="Screen.html">Screen</a>:", fullScreen);
+        <a href="EditorGUILayout.BeginHorizontal.html">EditorGUILayout.BeginHorizontal</a>();<br /><br />        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Save Values"))
+            SaveSettings();<br /><br />        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Load Values"))
+            LoadSettings();<br /><br />        <a href="EditorGUILayout.EndHorizontal.html">EditorGUILayout.EndHorizontal</a>();
+    }<br /><br />    void SaveSettings()
+    {
+        <a href="PlayerSettings-companyName.html">PlayerSettings.companyName</a> = compName;
+        <a href="PlayerSettings-productName.html">PlayerSettings.productName</a> = prodName;
+        <a href="PlayerSettings-defaultScreenWidth.html">PlayerSettings.defaultScreenWidth</a> =  screenWidth;
+        <a href="PlayerSettings-defaultScreenHeight.html">PlayerSettings.defaultScreenHeight</a> = screenHeight;
+        <a href="PlayerSettings-defaultWebScreenWidth.html">PlayerSettings.defaultWebScreenWidth</a> = webScreenWidth;
+        <a href="PlayerSettings-defaultWebScreenHeight.html">PlayerSettings.defaultWebScreenHeight</a> = webScreenHeight;
+        PlayerSettings.defaultIsFullScreen = fullScreen;<br /><br />        <a href="EditorPrefs.SetString.html">EditorPrefs.SetString</a>("CompName", compName);
+        <a href="EditorPrefs.SetString.html">EditorPrefs.SetString</a>("ProdName", prodName);
+        <a href="EditorPrefs.SetInt.html">EditorPrefs.SetInt</a>("ScreenWidth", screenWidth);
+        <a href="EditorPrefs.SetInt.html">EditorPrefs.SetInt</a>("ScreenHeight", screenHeight);
+        <a href="EditorPrefs.SetInt.html">EditorPrefs.SetInt</a>("WebScreenWidth", webScreenWidth);
+        <a href="EditorPrefs.SetInt.html">EditorPrefs.SetInt</a>("WebScreenHeight", webScreenHeight);
+    }<br /><br />    void LoadSettings()
+    {
+        compName = <a href="EditorPrefs.GetString.html">EditorPrefs.GetString</a>("CompName", "");
+        prodName = <a href="EditorPrefs.GetString.html">EditorPrefs.GetString</a>("ProdName", "");
+        screenWidth = <a href="EditorPrefs.GetInt.html">EditorPrefs.GetInt</a>("ScreenWidth", 640);
+        screenHeight = <a href="EditorPrefs.GetInt.html">EditorPrefs.GetInt</a>("ScreenHeight", 480);
+        webScreenWidth = <a href="EditorPrefs.GetInt.html">EditorPrefs.GetInt</a>("WebScreenWidth", 640);
+        webScreenHeight = <a href="EditorPrefs.GetInt.html">EditorPrefs.GetInt</a>("WebScreenHeiht", 480);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

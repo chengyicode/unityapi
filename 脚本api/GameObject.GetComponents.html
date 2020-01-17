@@ -1,0 +1,68 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: GameObject.GetComponents</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="GameObject.html">GameObject</a>.GetComponents</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-GameObject.html' title='Go to GameObject Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public Component[] <span class="sig-kw">GetComponents</span>(Type <span class="sig-kw">type</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">type</td><td class="desc"></td><td class="desc1">The type of component to retrieve.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Returns all components of Type <code class="varname">type</code> in the GameObject.</p></div><div class="subsection"><p>
+        <strong>Note:</strong> If the type you request is a derivative of <a href="MonoBehaviour.html">MonoBehaviour</a> and the <strong>associated script can not be loaded</strong> then this function will return `null` for that component.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Disable the spring on all HingeJoints in this game object
+using UnityEngine;<br /><br />public class GetComponentsExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Disable the spring on all HingeJoints in this game object<br /><br />    void Start()
+    {
+        <a href="Component.html">Component</a>[] hingeJoints;<br /><br />        hingeJoints = GetComponents(typeof(<a href="HingeJoint.html">HingeJoint</a>));<br /><br />        foreach (<a href="HingeJoint.html">HingeJoint</a> joint in hingeJoints)
+            joint.useSpring = false;
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public T[] <span class="sig-kw">GetComponents</span>();
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Generic version. See the <a href="../Manual/GenericFunctions.html">Generic Functions</a> page for more details.</p></div><div class="subsection"><p>
+        <strong>Note:</strong> If the type you request is a derivative of <a href="MonoBehaviour.html">MonoBehaviour</a> and the <strong>associated script can not be loaded</strong> then this function will return `null` for that component.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Disable the spring on all HingeJoints in this game object
+using UnityEngine;<br /><br />public class GetComponentsExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Disable the spring on all HingeJoints in this game object<br /><br />
+    void Start()
+    {
+        <a href="HingeJoint.html">HingeJoint</a>[] hingeJoints;<br /><br />        hingeJoints = GetComponents&lt;<a href="HingeJoint.html">HingeJoint</a>&gt;();<br /><br />        foreach (<a href="HingeJoint.html">HingeJoint</a> joint in hingeJoints)
+            joint.useSpring = false;
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">GetComponents</span>(Type <span class="sig-kw">type</span>,
+List&lt;Component&gt; <span class="sig-kw">results</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">type</td><td class="desc"></td><td class="desc1">The type of Component to retrieve.</td></tr><tr><td class="name lbl">results</td><td class="desc"></td><td class="desc1">List to receive the results.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Returns all components of Type <code class="varname">type</code> in the GameObject into List <code class="varname">results</code>. Note that <code class="varname">results</code> is of type <code class="varname">Component</code>, not the type of the component retrieved.</p></div><div class="subsection"><p>
+        <strong>Note:</strong> If the type you request is a derivative of <a href="MonoBehaviour.html">MonoBehaviour</a> and the <strong>associated script can not be loaded</strong> then this function will return `null` for that component.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Disable the spring on all HingeJoints in this game object
+using UnityEngine;
+using System.Collections.Generic;<br /><br />public class GetComponentsExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Disable the spring on all HingeJoints in this game object<br /><br />    void Start()
+    {
+        // Disable the spring on all HingeJoints in this game object
+        List&lt;<a href="Component.html">Component</a>&gt; hingeJoints = new List&lt;<a href="Component.html">Component</a>&gt;();<br /><br />        GetComponents(typeof(<a href="HingeJoint.html">HingeJoint</a>), hingeJoints);<br /><br />        foreach (<a href="HingeJoint.html">HingeJoint</a> joint in hingeJoints)
+            joint.useSpring = false;
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">GetComponents</span>(List&lt;T&gt; <span class="sig-kw">results</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">results</td><td class="desc"></td><td class="desc1">List of type <code class="varname">T</code> to receive the results.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Returns all components of Type <code class="varname">type</code> in the GameObject into List <code class="varname">results</code>.</p></div><div class="subsection"><p>
+        <strong>Note:</strong> If the type you request is a derivative of <a href="MonoBehaviour.html">MonoBehaviour</a> and the <strong>associated script can not be loaded</strong> then this function will return `null` for that component.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Disable the spring on all HingeJoints in this game object
+using UnityEngine;
+using System.Collections.Generic;<br /><br />public class GetComponentsExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Disable the spring on all HingeJoints in this game object<br /><br />
+    void Start()
+    {
+        // Disable the spring on all HingeJoints in this game object
+        List&lt;<a href="HingeJoint.html">HingeJoint</a>&gt; hingeJoints = new List&lt;<a href="HingeJoint.html">HingeJoint</a>&gt;();<br /><br />        GetComponents(hingeJoints);<br /><br />        foreach (<a href="HingeJoint.html">HingeJoint</a> joint in hingeJoints)
+            joint.useSpring = false;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

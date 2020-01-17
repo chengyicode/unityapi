@@ -1,0 +1,23 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: SettingsService.NotifySettingsProviderChanged</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="SettingsService.html">SettingsService</a>.NotifySettingsProviderChanged</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">NotifySettingsProviderChanged</span>();
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Use this function to notify the SettingsService that a SettingsProvider changed.</p></div><div class="subsection"><p>The client managing the SettingsProvider should call this function when a SettingsProvider is added, removed, or modified and the Settings window needs to be refreshed.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.Linq;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />class MyCustomSettingsProcessor : <a href="AssetPostprocessor.html">AssetPostprocessor</a>
+{
+    const string k_MyCustomSettingsPath = "<a href="Resources.html">Resources</a>/MyCustomSettings.asset";
+    static void OnPostprocessAllAssets(string[] importedAssets, string[] deletedAssets, string[] movedAssets, string[] movedFromAssetPaths)
+    {
+        var settingsTouched = importedAssets.Any(a =&gt; a.Contains(k_MyCustomSettingsPath));
+        settingsTouched = settingsTouched || deletedAssets.Any(a =&gt; a.Contains(k_MyCustomSettingsPath));
+        settingsTouched = settingsTouched || movedAssets.Any(a =&gt; a.Contains(k_MyCustomSettingsPath));
+        settingsTouched = settingsTouched || movedFromAssetPaths.Any(a =&gt; a.Contains(k_MyCustomSettingsPath));<br /><br />        if (settingsTouched)
+        {
+            // Notify the SettingsWindow that MyCustomSettings has been removed or added. This tells the SettingsWindow to Add/Remove
+            // a new <a href="CameraEditor.Settings.html">Settings</a> section.
+            <a href="SettingsService.NotifySettingsProviderChanged.html">SettingsService.NotifySettingsProviderChanged</a>();
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

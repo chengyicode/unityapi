@@ -1,0 +1,81 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: VideoClipImporter</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">VideoClipImporter</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEditor</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Inherits from:<a href="AssetImporter.html" class="cl">AssetImporter</a></p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEditor.html" class="cl">UnityEditor</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>VideoClipImporter lets you modify <a href="Video.VideoClip.html">VideoClip</a> import settings from Editor scripts.</p></div><div class="subsection"><p>
+            See the <strong>Movie File Format Support Notes</strong> section in the <a href="Video.VideoPlayer.html">VideoPlayer</a> class documentation for supported movie file formats and encoding guidelines.
+            </p></div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="VideoClipImporter-defaultTargetSettings.html">defaultTargetSettings</a></td><td class="desc"></td><td class="desc1">Default values for the platform-specific import settings.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="VideoClipImporter-deinterlaceMode.html">deinterlaceMode</a></td><td class="desc"></td><td class="desc1">Images are deinterlaced during transcode.  This tells the importer how to interpret fields in the source, if any.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="VideoClipImporter-flipHorizontal.html">flipHorizontal</a></td><td class="desc"></td><td class="desc1">Apply a horizontal flip during import.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="VideoClipImporter-flipVertical.html">flipVertical</a></td><td class="desc"></td><td class="desc1">Apply a vertical flip during import.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="VideoClipImporter-frameCount.html">frameCount</a></td><td class="desc"></td><td class="desc1">Number of frames in the clip.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="VideoClipImporter-frameRate.html">frameRate</a></td><td class="desc"></td><td class="desc1">Frame rate of the clip.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="VideoClipImporter-importAudio.html">importAudio</a></td><td class="desc"></td><td class="desc1">Import audio tracks from source file.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="VideoClipImporter-isPlayingPreview.html">isPlayingPreview</a></td><td class="desc"></td><td class="desc1">Whether the preview is currently playing.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="VideoClipImporter-keepAlpha.html">keepAlpha</a></td><td class="desc"></td><td class="desc1">Whether to keep the alpha from the source into the transcoded clip.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="VideoClipImporter-linearColor.html">linearColor</a></td><td class="desc"></td><td class="desc1">Used in legacy import mode.  Same as MovieImport.linearTexture.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="VideoClipImporter-outputFileSize.html">outputFileSize</a></td><td class="desc"></td><td class="desc1">Size in bytes of the file once imported.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="VideoClipImporter-pixelAspectRatioDenominator.html">pixelAspectRatioDenominator</a></td><td class="desc"></td><td class="desc1">Denominator of the pixel aspect ratio (num:den).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="VideoClipImporter-pixelAspectRatioNumerator.html">pixelAspectRatioNumerator</a></td><td class="desc"></td><td class="desc1">Numerator of the pixel aspect ratio (num:den).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="VideoClipImporter-quality.html">quality</a></td><td class="desc"></td><td class="desc1">Used in legacy import mode.  Same as MovieImport.quality.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="VideoClipImporter-sourceAudioTrackCount.html">sourceAudioTrackCount</a></td><td class="desc"></td><td class="desc1">Number of audio tracks in the source file.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="VideoClipImporter-sourceFileSize.html">sourceFileSize</a></td><td class="desc"></td><td class="desc1">Size in bytes of the file before importing.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="VideoClipImporter-sourceHasAlpha.html">sourceHasAlpha</a></td><td class="desc"></td><td class="desc1">True if the source file has a channel for per-pixel transparency.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="VideoClipImporter-sRGBClip.html">sRGBClip</a></td><td class="desc"></td><td class="desc1">Whether the imported clip contains sRGB color data.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="VideoClipImporter-transcodeSkipped.html">transcodeSkipped</a></td><td class="desc"></td><td class="desc1">Returns true if transcoding was skipped during import, false otherwise. (Read Only)When VideoImporterTargetSettings.enableTranscoding is set to true, the resulting transcoding operation done at import time may be quite long, up to many hours depending on source resolution and content duration. An option to skip this process is offered in the asset import progress bar. When skipped, the transcoding instead provides a non-transcoded verision of the asset. However, the importer settings stay intact so this property can be inspected to detect the incoherence with the generated artifact.Re-importing without stopping the transcode process, or with transcode turned off, causes this property to become false.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="VideoClipImporter-useLegacyImporter.html">useLegacyImporter</a></td><td class="desc"></td><td class="desc1">True to import a MovieTexture (deprecated), false for a VideoClip (preferred).</td></tr>
+    </table></div><div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="VideoClipImporter.ClearTargetSettings.html">ClearTargetSettings</a></td><td class="desc"></td><td class="desc1">Clear the platform-specific import settings for the specified platform, causing them to go back to the default settings.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="VideoClipImporter.Equals.html">Equals</a></td><td class="desc"></td><td class="desc1">Performs a value comparison with another VideoClipImporter.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="VideoClipImporter.GetPreviewTexture.html">GetPreviewTexture</a></td><td class="desc"></td><td class="desc1">Returns a texture with the transcoded clip's current frame.
+Returns frame 0 when not playing, and frame at current time when playing.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="VideoClipImporter.GetResizeHeight.html">GetResizeHeight</a></td><td class="desc"></td><td class="desc1">Get the resulting height of the resize operation for the specified resize mode.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="VideoClipImporter.GetResizeModeName.html">GetResizeModeName</a></td><td class="desc"></td><td class="desc1">Get the full name of the resize operation for the specified resize mode.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="VideoClipImporter.GetResizeWidth.html">GetResizeWidth</a></td><td class="desc"></td><td class="desc1">Get the resulting width of the resize operation for the specified resize mode.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="VideoClipImporter.GetSourceAudioChannelCount.html">GetSourceAudioChannelCount</a></td><td class="desc"></td><td class="desc1">Number of audio channels in the specified source track.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="VideoClipImporter.GetSourceAudioSampleRate.html">GetSourceAudioSampleRate</a></td><td class="desc"></td><td class="desc1">Sample rate of the specified audio track.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="VideoClipImporter.GetTargetSettings.html">GetTargetSettings</a></td><td class="desc"></td><td class="desc1">Returns the platform-specific import settings for the specified platform.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="VideoClipImporter.PlayPreview.html">PlayPreview</a></td><td class="desc"></td><td class="desc1">Starts preview playback.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="VideoClipImporter.SetTargetSettings.html">SetTargetSettings</a></td><td class="desc"></td><td class="desc1">Sets the platform-specific import settings for the specified platform.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="VideoClipImporter.StopPreview.html">StopPreview</a></td><td class="desc"></td><td class="desc1">Stops preview playback.</td></tr>
+    </table></div><div class="subsection"><h2>Inherited Members   继承成员</h2>
+      
+      <div class="subsection"><h2>Properties   属性</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="AssetImporter-assetBundleName.html">assetBundleName</a></td><td class="desc"></td><td class="desc1">Get or set the AssetBundle name.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="AssetImporter-assetBundleVariant.html">assetBundleVariant</a></td><td class="desc"></td><td class="desc1">Get or set the AssetBundle variant.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="AssetImporter-assetPath.html">assetPath</a></td><td class="desc"></td><td class="desc1">The path name of the asset for this importer. (Read Only)</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="AssetImporter-importSettingsMissing.html">importSettingsMissing</a></td><td class="desc"></td><td class="desc1">The value is true when no meta file is provided with the imported asset.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="AssetImporter-userData.html">userData</a></td><td class="desc"></td><td class="desc1">Get or set any user data.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-hideFlags.html">hideFlags</a></td><td class="desc"></td><td class="desc1">Should the object be hidden, saved with the Scene or modifiable by the user?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-name.html">name</a></td><td class="desc"></td><td class="desc1">The name of the object.</td></tr>
+      </table></div>
+      
+      
+      
+      <div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="AssetImporter.AddRemap.html">AddRemap</a></td><td class="desc"></td><td class="desc1">Map a sub-asset from an imported asset (such as an FBX file) to an external Asset of the same type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="AssetImporter.GetExternalObjectMap.html">GetExternalObjectMap</a></td><td class="desc"></td><td class="desc1">Gets a copy of the external object map used by the AssetImporter.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="AssetImporter.RemoveRemap.html">RemoveRemap</a></td><td class="desc"></td><td class="desc1">Removes an item from the map of external objects.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="AssetImporter.SaveAndReimport.html">SaveAndReimport</a></td><td class="desc"></td><td class="desc1">Save asset importer settings if asset importer is dirty.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="AssetImporter.SetAssetBundleNameAndVariant.html">SetAssetBundleNameAndVariant</a></td><td class="desc"></td><td class="desc1">Set the AssetBundle name and variant.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="AssetImporter.SupportsRemappedAssetType.html">SupportsRemappedAssetType</a></td><td class="desc"></td><td class="desc1">Checks if the AssetImporter supports remapping the given asset type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.GetInstanceID.html">GetInstanceID</a></td><td class="desc"></td><td class="desc1">Returns the instance id of the object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.ToString.html">ToString</a></td><td class="desc"></td><td class="desc1">Returns the name of the object.</td></tr>
+      </table></div>
+      
+      <div class="subsection"><h2>Static Methods   静态方法</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="AssetImporter.GetAtPath.html">GetAtPath</a></td><td class="desc"></td><td class="desc1">Retrieves the asset importer for the asset at path.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.Destroy.html">Destroy</a></td><td class="desc"></td><td class="desc1">Removes a GameObject, component or asset.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.DestroyImmediate.html">DestroyImmediate</a></td><td class="desc"></td><td class="desc1">Destroys the object obj immediately. You are strongly recommended to use Destroy instead.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.DontDestroyOnLoad.html">DontDestroyOnLoad</a></td><td class="desc"></td><td class="desc1">Do not destroy the target Object when loading a new Scene.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectOfType.html">FindObjectOfType</a></td><td class="desc"></td><td class="desc1">Returns the first active loaded object of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.FindObjectsOfType.html">FindObjectsOfType</a></td><td class="desc"></td><td class="desc1">Returns a list of all active loaded objects of Type type.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object.Instantiate.html">Instantiate</a></td><td class="desc"></td><td class="desc1">Clones the object original and returns the clone.</td></tr>
+      </table></div>
+      <div class="subsection"><h2>Operators   运算符</h2><table class="list">
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_Object.html">bool</a></td><td class="desc"></td><td class="desc1">Does the object exist?</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_ne.html">operator !=</a></td><td class="desc"></td><td class="desc1">Compares if two objects refer to a different object.</td></tr>
+        <tr><td class="descn"></td><td class="lbl"><a href="Object-operator_eq.html">operator ==</a></td><td class="desc"></td><td class="desc1">Compares two object references to see if they refer to the same object.</td></tr>
+      </table></div>
+      
+      
+      
+    </div></div></div></div></body></html>

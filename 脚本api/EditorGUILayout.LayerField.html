@@ -1,0 +1,56 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorGUILayout.LayerField</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorGUILayout.html">EditorGUILayout</a>.LayerField</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static int <span class="sig-kw">LayerField</span>(int <span class="sig-kw">layer</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static int <span class="sig-kw">LayerField</span>(int <span class="sig-kw">layer</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static int <span class="sig-kw">LayerField</span>(string <span class="sig-kw">label</span>,
+int <span class="sig-kw">layer</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static int <span class="sig-kw">LayerField</span>(string <span class="sig-kw">label</span>,
+int <span class="sig-kw">layer</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static int <span class="sig-kw">LayerField</span>(<a href="GUIContent.html">GUIContent</a> <span class="sig-kw">label</span>,
+int <span class="sig-kw">layer</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static int <span class="sig-kw">LayerField</span>(<a href="GUIContent.html">GUIContent</a> <span class="sig-kw">label</span>,
+int <span class="sig-kw">layer</span>,
+<a href="GUIStyle.html">GUIStyle</a> <span class="sig-kw">style</span>,
+params GUILayoutOption[] <span class="sig-kw">options</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">label</td><td class="desc"></td><td class="desc1">Optional label in front of the field.</td></tr><tr><td class="name lbl">layer</td><td class="desc"></td><td class="desc1">The layer shown in the field.</td></tr><tr><td class="name lbl">style</td><td class="desc"></td><td class="desc1">Optional <a href="GUIStyle.html">GUIStyle</a>.</td></tr><tr><td class="name lbl">options</td><td class="desc"></td><td class="desc1">An optional list of layout options that specify extra layout properties. Any values passed in here will override settings defined by the <code class="varname">style</code>.<br />
+See Also: <a href="GUILayout.Width.html">GUILayout.Width</a>, <a href="GUILayout.Height.html">GUILayout.Height</a>, <a href="GUILayout.MinWidth.html">GUILayout.MinWidth</a>, <a href="GUILayout.MaxWidth.html">GUILayout.MaxWidth</a>, <a href="GUILayout.MinHeight.html">GUILayout.MinHeight</a>,
+<a href="GUILayout.MaxHeight.html">GUILayout.MaxHeight</a>, <a href="GUILayout.ExpandWidth.html">GUILayout.ExpandWidth</a>, <a href="GUILayout.ExpandHeight.html">GUILayout.ExpandHeight</a>.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>int</strong>
+        The layer selected by the user.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Make a layer selection field.</p></div><div class="subsection"><p>
+        <img src="../StaticFiles/ScriptRefImages/EditorGUILayoutLayerField.png" />
+        <br />
+<em>Set the layer of the selected GameObjects.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Simple editor script that lets you set the layer for the
+// selected GameObjects.<br /><br />using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class LayerFieldExample : <a href="EditorWindow.html">EditorWindow</a>
+{
+    static int selectedLayer = 0;<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Examples/Layer Field usage")]
+    static void Init()
+    {
+        LayerFieldExample window = (LayerFieldExample)GetWindow(typeof(LayerFieldExample));
+        window.Show();
+    }<br /><br />    // Disable menu if we dont have at least 1 gameobject selected
+    [<a href="MenuItem.html">MenuItem</a>("Examples/Layer Field usage", true)]
+    static bool ValidateSelection()
+    {
+        return <a href="Selection-activeGameObject.html">Selection.activeGameObject</a> != null;
+    }<br /><br />    void OnGUI()
+    {
+        selectedLayer = <a href="EditorGUILayout.LayerField.html">EditorGUILayout.LayerField</a>("Layer for Objects:", selectedLayer);
+        if (<a href="GUILayout.Button.html">GUILayout.Button</a>("Set Layer!"))
+            SetLayer();
+    }<br /><br />    static void SetLayer()
+    {
+        foreach (var go in <a href="Selection-gameObjects.html">Selection.gameObjects</a>)
+            go.layer = selectedLayer;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

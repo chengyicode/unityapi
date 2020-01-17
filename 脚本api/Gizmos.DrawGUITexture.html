@@ -1,0 +1,29 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Gizmos.DrawGUITexture</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Gizmos.html">Gizmos</a>.DrawGUITexture</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">DrawGUITexture</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">screenRect</span>,
+<a href="Texture.html">Texture</a> <span class="sig-kw">texture</span>,
+<a href="Material.html">Material</a> <span class="sig-kw">mat</span> = null);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">DrawGUITexture</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">screenRect</span>,
+<a href="Texture.html">Texture</a> <span class="sig-kw">texture</span>,
+int <span class="sig-kw">leftBorder</span>,
+int <span class="sig-kw">rightBorder</span>,
+int <span class="sig-kw">topBorder</span>,
+int <span class="sig-kw">bottomBorder</span>,
+<a href="Material.html">Material</a> <span class="sig-kw">mat</span> = null);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">screenRect</td><td class="desc"></td><td class="desc1">The size and position of the texture on the "screen" defined by the XY plane.</td></tr><tr><td class="name lbl">texture</td><td class="desc"></td><td class="desc1">The texture to be displayed.</td></tr><tr><td class="name lbl">mat</td><td class="desc"></td><td class="desc1">An optional material to apply the texture.</td></tr><tr><td class="name lbl">leftBorder</td><td class="desc"></td><td class="desc1">Inset from the rectangle's left edge.</td></tr><tr><td class="name lbl">rightBorder</td><td class="desc"></td><td class="desc1">Inset from the rectangle's right edge.</td></tr><tr><td class="name lbl">topBorder</td><td class="desc"></td><td class="desc1">Inset from the rectangle's top edge.</td></tr><tr><td class="name lbl">bottomBorder</td><td class="desc"></td><td class="desc1">Inset from the rectangle's bottom edge.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Draw a texture in the Scene.</p></div><div class="subsection"><p>The chosen texture is drawn in 3D space on a "screen" defined by the XY plane (ie,
+the plane where the Z coordinate is zero). The values of the texture rectangle are given in Scene
+units. The optional border values specify an inset from each edge within the rectangle in Scene units; the texture
+is drawn inside the inset rectangle and the edge pixels are repeated outwards. This is a useful quick way
+to create a large background region around the main texture when its edges are of a single colour.<br /><br />This function can be useful for creating GUI backgrounds in conjunction with a camera
+pointing directly at the texture.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Texture.html">Texture</a> myTexture;<br /><br />    void OnDrawGizmosSelected()
+    {
+        // Draw a semitransparent blue cube at the transforms position
+        <a href="Gizmos.DrawGUITexture.html">Gizmos.DrawGUITexture</a>(new <a href="Rect.html">Rect</a>(10, 10, 20, 20), myTexture);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

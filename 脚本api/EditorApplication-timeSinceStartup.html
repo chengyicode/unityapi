@@ -1,0 +1,37 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorApplication.timeSinceStartup</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorApplication.html">EditorApplication</a>.timeSinceStartup</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static double <span class="sig-kw">timeSinceStartup</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The time since the editor was started. (Read Only)</p></div><div class="subsection"><p>This property contains the time since the editor was started, in seconds.
+Unlike <a href="Time-realtimeSinceStartup.html">Time.realtimeSinceStartup</a>, this is not reset when starting play mode.<br /><br />See Also: <a href="Time-realtimeSinceStartup.html">Time.realtimeSinceStartup</a><br /><br /><img src="../StaticFiles/ScriptRefImages/SimpleAutoSave.png" /><br />
+<em>Simple Editor Window that saves each 300 seconds the current Scene.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Simple editor window that autosaves the working <a href="SceneManagement.Scene.html">Scene</a>
+// Make sure to have this window opened to be able to execute the auto save.<br /><br />using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine.SceneManagement;
+using UnityEditor.SceneManagement;<br /><br />public class SimpleAutoSave : <a href="EditorWindow.html">EditorWindow</a>
+{
+    static float saveTime = 300.0f;
+    static double nextSave = 0;<br /><br />    static int autoSaveLabel = 1;<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Examples/Simple autoSave")]
+    static void Init()
+    {
+        SimpleAutoSave window = (SimpleAutoSave)GetWindowWithRect(
+            typeof(SimpleAutoSave),
+            new <a href="Rect.html">Rect</a>(0, 0, 160, 60));
+        window.Show();
+    }<br /><br />    void OnGUI()
+    {
+        <a href="EditorGUI.LabelField.html">EditorGUI.LabelField</a>(new <a href="Rect.html">Rect</a>(10, 10, 80, 20), "Save Each:");
+        <a href="EditorGUI.LabelField.html">EditorGUI.LabelField</a>(new <a href="Rect.html">Rect</a>(80, 10, 80, 20), saveTime + " secs");<br /><br />        double timeToSave = nextSave - <a href="EditorApplication-timeSinceStartup.html">EditorApplication.timeSinceStartup</a>;<br /><br />
+        <a href="EditorGUI.LabelField.html">EditorGUI.LabelField</a>(new <a href="Rect.html">Rect</a>(10, 30, 80, 20), "Next Save:");
+        <a href="EditorGUI.LabelField.html">EditorGUI.LabelField</a>(new <a href="Rect.html">Rect</a>(80, 30, 80, 20), timeToSave.ToString("N1") + " secs");<br /><br />        this.Repaint();<br /><br />        // when time has reach zero then save the <a href="SceneManagement.Scene.html">Scene</a>
+        if (<a href="EditorApplication-timeSinceStartup.html">EditorApplication.timeSinceStartup</a> &gt; nextSave)
+        {
+            <a href="SceneManagement.Scene.html">Scene</a> scene = <a href="SceneManagement.SceneManager.GetActiveScene.html">SceneManager.GetActiveScene</a>();
+            string name = scene.name + autoSaveLabel;<br /><br />            <a href="SceneManagement.EditorSceneManager.SaveScene.html">EditorSceneManager.SaveScene</a>(scene, "Assets/wibble/" + name + ".unity", true);
+            autoSaveLabel = autoSaveLabel + 1;
+            nextSave = <a href="EditorApplication-timeSinceStartup.html">EditorApplication.timeSinceStartup</a> + saveTime;<br /><br />            <a href="Debug.Log.html">Debug.Log</a>("Saved <a href="SceneManagement.Scene.html">Scene</a>: " + name);
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

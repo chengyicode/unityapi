@@ -1,0 +1,23 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: MustExtensions</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Method group is Obsolete</b><br /></div><h1 class="heading inherit">MustExtensions</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine.Assertions.Must</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.CoreModule.html" class="cl">UnityEngine.CoreModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;">Obsolete </span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>An extension class that serves as a wrapper for the Assert class.</p></div><div class="subsection"><p>The MustExtension class wraps the Assertion.Assert into a more readable and shorter syntax.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.Assertions;
+using UnityEngine.Assertions.Must;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public int health;
+    public <a href="GameObject.html">GameObject</a> go;
+    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        //This assertion
+        <a href="Assertions.Assert.AreNotEqual.html">Assert.AreNotEqual</a>(0, health);
+        //can be also written like this
+        health.MustNotBeEqual(0);<br /><br />        //Same with this assertion
+        <a href="Assertions.Assert.IsTrue.html">Assert.IsTrue</a>(go.activeInHierarchy);
+        //can be also written like this
+        go.activeInHierarchy.MustBeTrue();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

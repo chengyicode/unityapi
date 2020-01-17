@@ -1,0 +1,31 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: GeometryUtility.CalculateBounds</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="GeometryUtility.html">GeometryUtility</a>.CalculateBounds</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Bounds.html">Bounds</a> <span class="sig-kw">CalculateBounds</span>(Vector3[] <span class="sig-kw">positions</span>,
+<a href="Matrix4x4.html">Matrix4x4</a> <span class="sig-kw">transform</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">positions</td><td class="desc"></td><td class="desc1">An array that stores the location of 3d positions.</td></tr><tr><td class="name lbl">transform</td><td class="desc"></td><td class="desc1">A matrix that changes the position, rotation and size of the bounds calculation.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>Bounds</strong>
+        Calculates the axis-aligned bounding box.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Calculates the bounding box from the given array of <a href="GeometryUtility-positions.html">positions</a> and the transformation matrix.</p></div><div class="subsection"><p>
+        <a href="GeometryUtility.CalculateBounds.html">GeometryUtility.CalculateBounds</a> generates a <a href="Bounds.html">Bounds</a> bounding box. The <a href="GeometryUtility-positions.html">positions</a> parameter stores a 3d point array. Each point is inside the generated axis-aligned bounding box. The <a href="GeometryUtility-transform.html">transform</a> parameter provides a transformation <a href="Matrix4x4.html">Matrix4x4</a> that uses a Vector3 position, Quaternion rotation, and Vector3 scale.<br /><br />The example below shows how to use <a href="GeometryUtility.CalculateBounds.html">CalculateBounds</a>. A <a href="LightProbeGroup.html">LightProbeGroup</a> passes <a href="GeometryUtility-positions.html">positions</a> into <a href="GeometryUtility.CalculateBounds.html">CalculateBounds</a>. The example code creates a bounding box with eight Light Probes. By default, the Light Probes are one unit from each corner of a unit cube.<br /><br />To run the example:<br />
+1. Create a Project and add an empty <a href="GameObject.html">GameObject</a> called <code class="mono">GameObject</code>.<br />
+2. Add a 3D cube as a child of <code class="mono">GameObject</code> and call it <code class="mono">Cube</code>.<br />
+3. Add a <a href="LightProbeGroup.html">LightProbeGroup</a> component to <code class="mono">Cube</code>.<br />
+4. Add the script below to <code class="mono">Cube</code>.<br />
+5. Run the <code class="varname">Project</code> and switch back to the <code class="varname">Scene</code> view.<br /><br />In the <code class="varname">Scene</code> view, you can see the <a href="LightProbeGroup.html">LightProbeGroup</a>. When the game runs, the rotation changes in <code class="varname">Awake</code>. The eight yellow spheres that indicate the <a href="LightProbeGroup.html">LightProbeGroup</a> change position and the Cube appears rotated. <code class="varname">Scene</code> mode shows the <code class="varname">Cube</code> rotated in the x, y and z axes, and shows in the <code class="mono">Local tool handle</code>. Rotating the <code class="varname">Cube</code> changes the positions of the eight <a href="LightProbeGroup.html">LightProbeGroup</a> Light Probes. The <code class="varname">Scene</code> mode rotates and zooms to show the Light Probes. Also, the <code class="varname">Cube</code> rotates and the <a href="LightProbeGroup.html">LightProbeGroup</a> updates. If you rescale the <code class="varname">Cube</code>, the <a href="LightProbeGroup.html">LightProbeGroup</a> changes size.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />// <a href="GeometryUtility.CalculateBounds.html">GeometryUtility.CalculateBounds</a> - example<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Awake()
+    {
+        transform.position = new <a href="Vector3.html">Vector3</a>(0.0f, 0.0f, 0.0f);
+        transform.Rotate(10.0f, 30.0f, -50.0f, <a href="Space.Self.html">Space.Self</a>);<br /><br />        <a href="Debug.Log.html">Debug.Log</a>(transform.localToWorldMatrix);
+    }<br /><br />    void OnDrawGizmosSelected()
+    {
+        <a href="LightProbeGroup.html">LightProbeGroup</a> lightProbeGroup = GetComponent&lt;<a href="LightProbeGroup.html">LightProbeGroup</a>&gt;();<br /><br />        <a href="Vector3.html">Vector3</a> center = transform.position;
+        <a href="Bounds.html">Bounds</a> bounds = <a href="GeometryUtility.CalculateBounds.html">GeometryUtility.CalculateBounds</a>(lightProbeGroup.probePositions, transform.localToWorldMatrix);
+        <a href="Gizmos-color.html">Gizmos.color</a> = new <a href="Color.html">Color</a>(1, 1, 1, 0.25f);
+        <a href="Gizmos.DrawCube.html">Gizmos.DrawCube</a>(center, bounds.size);
+        <a href="Gizmos.DrawWireCube.html">Gizmos.DrawWireCube</a>(center, bounds.size);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

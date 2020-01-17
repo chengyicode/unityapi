@@ -1,0 +1,18 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Transform.localPosition</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Transform.html">Transform</a>.localPosition</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Transform.html' title='Go to Transform Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Vector3.html">Vector3</a> <span class="sig-kw">localPosition</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Position of the transform relative to the parent transform.</p></div><div class="subsection"><p>If the transform has no parent, it is the same as <a href="Transform-position.html">Transform.position</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Example()
+    {
+        // Move the object to the same position as the parent:
+        transform.localPosition = new <a href="Vector3.html">Vector3</a>(0, 0, 0);<br /><br />        // Get the y component of the position relative to the parent
+        // and print it to the Console
+        print(transform.localPosition.y);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Note that the parent transform's world rotation and scale are applied to the local position when calculating the world position.
+This means that while 1 unit in <a href="Transform-position.html">Transform.position</a> is always 1 unit, 1 unit in <a href="Transform-localPosition.html">Transform.localPosition</a> will get scaled by the scale of all ancestors.</p></div></div></div></div></body></html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AssetImporter.AddRemap</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="AssetImporter.html">AssetImporter</a>.AddRemap</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">AddRemap</span>(<a href="AssetImporter.SourceAssetIdentifier.html">AssetImporter.SourceAssetIdentifier</a> <span class="sig-kw">identifier</span>,
+<a href="Object.html">Object</a> <span class="sig-kw">externalObject</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">identifier</td><td class="desc"></td><td class="desc1">The identifier of the sub-asset.</td></tr><tr><td class="name lbl">externalObject</td><td class="desc"></td><td class="desc1">The object to be mapped to the internal object. Can belong to another Prefab or Asset, but not the Asset that is being changed.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Map a sub-asset from an imported asset (such as an FBX file) to an external Asset of the same type.</p></div><div class="subsection"><p>Apply changes by writing the metadata and reimporting the Asset. Instances of the Asset automatically use the mapped object once you have reimported the Asset.<br /><br />If the type of the external asset does not match the type of the sub-asset, or if the reference is null, instances of the Asset will continue to use the internal asset without producing an error.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class Extractor
+{
+    public static void ExtractFromAsset(Object subAsset, string destinationPath)
+    {
+        string assetPath = <a href="AssetDatabase.GetAssetPath.html">AssetDatabase.GetAssetPath</a>(subAsset);<br /><br />        var clone = <a href="Object.Instantiate.html">Object.Instantiate</a>(subAsset);
+        <a href="AssetDatabase.CreateAsset.html">AssetDatabase.CreateAsset</a>(clone, destinationPath);<br /><br />        var assetImporter = <a href="AssetImporter.GetAtPath.html">AssetImporter.GetAtPath</a>(assetPath);
+        assetImporter.AddRemap(new <a href="AssetImporter.SourceAssetIdentifier.html">AssetImporter.SourceAssetIdentifier</a>(subAsset), clone);<br /><br />        <a href="AssetDatabase.WriteImportSettingsIfDirty.html">AssetDatabase.WriteImportSettingsIfDirty</a>(assetPath);
+        <a href="AssetDatabase.ImportAsset.html">AssetDatabase.ImportAsset</a>(assetPath, <a href="ImportAssetOptions.ForceUpdate.html">ImportAssetOptions.ForceUpdate</a>);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="AssetImporter.RemoveRemap.html">AssetImporter.RemoveRemap</a>.</p></div></div></div></div></body></html>

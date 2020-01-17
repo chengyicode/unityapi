@@ -1,0 +1,37 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: LineRenderer.SetPositions</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="LineRenderer.html">LineRenderer</a>.SetPositions</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-LineRenderer.html' title='Go to LineRenderer Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">SetPositions</span>(Vector3[] <span class="sig-kw">positions</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">positions</td><td class="desc"></td><td class="desc1">The array of positions to set.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Set the positions of all vertices in the line.</p></div><div class="subsection"><p>This method is preferred to <a href="LineRenderer.SetPosition.html">SetPosition</a> when setting all positions, as it is more efficient to set all positions using a single command than to set each position individually.  Note that <a href="LineRenderer-positionCount.html">positionCount</a> must be called before <a href="LineRenderer.SetPositions.html">SetPositions</a>. Also <a href="LineRenderer.SetPositions.html">SetPositions</a> ignores points with indices beyond <a href="LineRenderer-positionCount.html">positionCount</a>.<br /><br />See Also: <a href="LineRenderer-positionCount.html">positionCount</a> property, <a href="LineRenderer.SetPosition.html">SetPosition</a> function.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Creates a line renderer that follows a Sin() function
+    // and animates it.<br /><br />    public <a href="Color.html">Color</a> c1 = <a href="Color-yellow.html">Color.yellow</a>;
+    public <a href="Color.html">Color</a> c2 = <a href="Color-red.html">Color.red</a>;
+    public int lengthOfLineRenderer = 20;<br /><br />    void Start()
+    {
+        <a href="LineRenderer.html">LineRenderer</a> lineRenderer = gameObject.AddComponent&lt;<a href="LineRenderer.html">LineRenderer</a>&gt;();
+        lineRenderer.material = new <a href="Material.html">Material</a>(<a href="Shader.Find.html">Shader.Find</a>("Sprites/Default"));
+        lineRenderer.widthMultiplier = 0.2f;
+        lineRenderer.positionCount = lengthOfLineRenderer;<br /><br />        // A simple 2 color gradient with a fixed alpha of 1.0f.
+        float alpha = 1.0f;
+        <a href="Gradient.html">Gradient</a> gradient = new <a href="Gradient.html">Gradient</a>();
+        gradient.SetKeys(
+            new <a href="GradientColorKey.html">GradientColorKey</a>[] { new <a href="GradientColorKey.html">GradientColorKey</a>(c1, 0.0f), new <a href="GradientColorKey.html">GradientColorKey</a>(c2, 1.0f) },
+            new <a href="GradientAlphaKey.html">GradientAlphaKey</a>[] { new <a href="GradientAlphaKey.html">GradientAlphaKey</a>(alpha, 0.0f), new <a href="GradientAlphaKey.html">GradientAlphaKey</a>(alpha, 1.0f) }
+        );
+        lineRenderer.colorGradient = gradient;
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        <a href="LineRenderer.html">LineRenderer</a> lineRenderer = GetComponent&lt;<a href="LineRenderer.html">LineRenderer</a>&gt;();
+        var points = new <a href="Vector3.html">Vector3</a>[lengthOfLineRenderer];
+        var t = <a href="Time-time.html">Time.time</a>;
+        for (int i = 0; i &lt; lengthOfLineRenderer; i++)
+        {
+            points[i] = new <a href="Vector3.html">Vector3</a>(i * 0.5f, <a href="Mathf.Sin.html">Mathf.Sin</a>(i + t), 0.0f);
+        }
+        lineRenderer.SetPositions(points);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

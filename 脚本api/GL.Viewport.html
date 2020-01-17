@@ -1,0 +1,59 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: GL.Viewport</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="GL.html">GL</a>.Viewport</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">Viewport</span>(<a href="Rect.html">Rect</a> <span class="sig-kw">pixelRect</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Set the rendering viewport.</p></div><div class="subsection"><p>All rendering is constrained to be inside the passed <code class="varname">pixelRect</code>.
+If the Viewport is modified, all the rendered content inside of it gets stretched.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Draw a red Quad that covers all the view port, and the when space is pressed
+    // the viewport gets expanded to the whole screen and stretch the contents inside
+    <a href="Material.html">Material</a> mat;
+    bool stretch = false;<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        if (<a href="Input.GetKeyDown.html">Input.GetKeyDown</a>(<a href="KeyCode.Space.html">KeyCode.Space</a>))
+        {
+            if (stretch)
+            {
+                stretch = false;
+            }
+            else
+            {
+                stretch = true;
+            }
+        }
+    }<br /><br />    void OnPostRender()
+    {
+        if (!mat)
+        {
+            <a href="Debug.LogError.html">Debug.LogError</a>("Please Assign a material on the inspector");
+            return;
+        }
+        <a href="GL.PushMatrix.html">GL.PushMatrix</a>();
+        mat.SetPass(0);
+        <a href="GL.LoadPixelMatrix.html">GL.LoadPixelMatrix</a>();
+        if (stretch)
+        {
+            <a href="GL.Viewport.html">GL.Viewport</a>(new <a href="Rect.html">Rect</a>(0, 0, <a href="Screen-width.html">Screen.width</a>, <a href="Screen-height.html">Screen.height</a>));
+        }
+        else
+        {
+            <a href="GL.Viewport.html">GL.Viewport</a>(new <a href="Rect.html">Rect</a>(0, 0, <a href="Screen-width.html">Screen.width</a> / 2, <a href="Screen-height.html">Screen.height</a>));
+        }
+        <a href="GL.Color.html">GL.Color</a>(<a href="Color-red.html">Color.red</a>);
+        <a href="GL.Begin.html">GL.Begin</a>(<a href="GL.QUADS.html">GL.QUADS</a>);
+        <a href="GL.Vertex3.html">GL.Vertex3</a>(0, 0, 0);
+        <a href="GL.Vertex3.html">GL.Vertex3</a>(0, <a href="Screen-height.html">Screen.height</a>, 0);
+        <a href="GL.Vertex3.html">GL.Vertex3</a>(<a href="Screen-width.html">Screen.width</a>, <a href="Screen-height.html">Screen.height</a>, 0);
+        <a href="GL.Vertex3.html">GL.Vertex3</a>(<a href="Screen-width.html">Screen.width</a>, 0, 0);
+        <a href="GL.Color.html">GL.Color</a>(<a href="Color-yellow.html">Color.yellow</a>);
+        <a href="GL.End.html">GL.End</a>();
+        <a href="GL.Begin.html">GL.Begin</a>(<a href="GL.TRIANGLES.html">GL.TRIANGLES</a>);
+        <a href="GL.Vertex3.html">GL.Vertex3</a>(<a href="Screen-width.html">Screen.width</a> / 2, <a href="Screen-height.html">Screen.height</a> / 4, 1);
+        <a href="GL.Vertex3.html">GL.Vertex3</a>(<a href="Screen-width.html">Screen.width</a> / 4, <a href="Screen-height.html">Screen.height</a> / 2, 1);
+        <a href="GL.Vertex3.html">GL.Vertex3</a>(<a href="Screen-width.html">Screen.width</a> - <a href="Screen-width.html">Screen.width</a> / 4, <a href="Screen-height.html">Screen.height</a> / 2, 1);
+        <a href="GL.End.html">GL.End</a>();
+        <a href="GL.PopMatrix.html">GL.PopMatrix</a>();
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

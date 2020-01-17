@@ -1,0 +1,21 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: MonoBehaviour.OnWillRenderObject()</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="MonoBehaviour.html">MonoBehaviour</a>.OnWillRenderObject()</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>OnWillRenderObject is called for each camera if the object is visible and not a UI element.</p></div><div class="subsection"><p>The function is not called if the MonoBehaviour is disabled.<br /><br />The function is called during the culling process just before rendering each culled object.
+For usage in a proper context, see the script <code class="varname">Water.cs</code> in <em>Assets-&gt;Import Package-&gt;Effects</em><br /><br />Note that <a href="Camera-current.html">Camera.current</a> will be set to the camera that will render the object.<br /><br /><strong>Note:</strong> This has no effect when called from a UI element.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Renderer.html">Renderer</a> rend;<br /><br />    private float timePass = 0.0f;<br /><br />    void Start()
+    {
+        rend = GetComponent&lt;<a href="Renderer.html">Renderer</a>&gt;();
+    }<br /><br />    void OnWillRenderObject()
+    {
+        timePass += <a href="Time-deltaTime.html">Time.deltaTime</a>;<br /><br />        if (timePass &gt; 1.0f)
+        {
+            timePass = 0.0f;
+            print(gameObject.name + " is being rendered by " + Camera.current.name + " at " + <a href="Time-time.html">Time.time</a>);
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>This is called multiple times per frame.</p></div></div></div></div></body></html>

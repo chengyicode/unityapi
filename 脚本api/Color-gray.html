@@ -1,0 +1,23 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Color.gray</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Color.html">Color</a>.gray</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Color.html">Color</a> <span class="sig-kw">gray</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Gray. RGBA is (0.5, 0.5, 0.5, 1).</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//Attach this script to a <a href="GameObject.html">GameObject</a> with a <a href="Renderer.html">Renderer</a> (go to <strong>Create</strong>&gt;<strong>3D Object</strong> and select one of the first 6 options to create a <a href="GameObject.html">GameObject</a> with a <a href="Renderer.html">Renderer</a> automatically attached).
+//This script changes the <a href="Color.html">Color</a> of your <a href="GameObject.html">GameObject</a>’s <a href="Material.html">Material</a> when your mouse hovers over it in Play <a href="Scripting.GarbageCollector.Mode.html">Mode</a>.<br /><br />using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="Renderer.html">Renderer</a> m_Renderer;<br /><br />    void Start()
+    {
+        //Fetch the <a href="Renderer.html">Renderer</a> component of the <a href="GameObject.html">GameObject</a>
+        m_Renderer = GetComponent&lt;<a href="Renderer.html">Renderer</a>&gt;();
+    }<br /><br />    //Run your mouse over the <a href="GameObject.html">GameObject</a> to change the <a href="Renderer.html">Renderer</a>'s material color to gray
+    void OnMouseOver()
+    {
+        m_Renderer.material.color = <a href="Color-gray.html">Color.gray</a>;
+    }<br /><br />    //Change the <a href="Material.html">Material</a>'s <a href="Color.html">Color</a> back to white when the mouse exits the <a href="GameObject.html">GameObject</a>
+    void OnMouseExit()
+    {
+        m_Renderer.material.color = <a href="Color-white.html">Color.white</a>;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

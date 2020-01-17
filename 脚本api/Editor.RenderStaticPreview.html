@@ -1,0 +1,69 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Editor.RenderStaticPreview</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Editor.html">Editor</a>.RenderStaticPreview</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Texture2D.html">Texture2D</a> <span class="sig-kw">RenderStaticPreview</span>(string <span class="sig-kw">assetPath</span>,
+Object[] <span class="sig-kw">subAssets</span>,
+int <span class="sig-kw">width</span>,
+int <span class="sig-kw">height</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">assetPath</td><td class="desc"></td><td class="desc1">The asset to operate on.</td></tr><tr><td class="name lbl">subAssets</td><td class="desc"></td><td class="desc1">An array of all Assets at assetPath.</td></tr><tr><td class="name lbl">width</td><td class="desc"></td><td class="desc1">Width of the created texture.</td></tr><tr><td class="name lbl">height</td><td class="desc"></td><td class="desc1">Height of the created texture.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>Texture2D</strong>
+        Generated texture or null.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Override this method if you want to render a static preview.</p></div><div class="subsection"><p>When overridden <a href="Editor.RenderStaticPreview.html">RenderStaticPreview</a> can be used to render a list
+                    of assets converted into a single texture.  This function will need user
+                    supplied source code that can merge the assets together.  The size of the
+                    create texture can be supplied by the provided width and height.<br />
+                If null is returned the builtin icon for the class type is used.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Render the provided asset texture into an Inspector thumbnail.
+using UnityEngine;
+using System.Collections;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />using System.IO;<br /><br />public class Example : <a href="ScriptableObject.html">ScriptableObject</a>
+{
+    public <a href="Texture2D.html">Texture2D</a> PreviewIcon;
+}<br /><br />
+[<a href="CustomEditor.html">CustomEditor</a>(typeof(Example))]
+public class ExampleEditor : UnityEditor.Editor
+{
+    public static void CreateAsset&lt;Example&gt;() where Example : <a href="ScriptableObject.html">ScriptableObject</a>
+    {
+        Example asset = <a href="ScriptableObject.CreateInstance.html">ScriptableObject.CreateInstance</a>&lt;Example&gt;();<br /><br />        string path = <a href="AssetDatabase.GetAssetPath.html">AssetDatabase.GetAssetPath</a>(<a href="Selection-activeObject.html">Selection.activeObject</a>);<br /><br />        if (path == "")
+        {
+            path = "Assets";
+        }
+        else if (<a href="Path.GetExtension.html">Path.GetExtension</a>(path) != "")
+        {
+            path = path.Replace(<a href="Path.GetFileName.html">Path.GetFileName</a>(<a href="AssetDatabase.GetAssetPath.html">AssetDatabase.GetAssetPath</a>(<a href="Selection-activeObject.html">Selection.activeObject</a>)), "");
+        }<br /><br />        string assetPathAndName = <a href="AssetDatabase.GenerateUniqueAssetPath.html">AssetDatabase.GenerateUniqueAssetPath</a>(path + "/New " + typeof(Example).ToString() + ".asset");<br /><br />        <a href="AssetDatabase.CreateAsset.html">AssetDatabase.CreateAsset</a>(asset, assetPathAndName);
+        <a href="AssetDatabase.SaveAssets.html">AssetDatabase.SaveAssets</a>();
+        <a href="AssetDatabase.Refresh.html">AssetDatabase.Refresh</a>();
+        <a href="EditorUtility.FocusProjectWindow.html">EditorUtility.FocusProjectWindow</a>();
+        <a href="Selection-activeObject.html">Selection.activeObject</a> = asset;
+    }<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Examples/RenderStaticPreview example")]
+    public static void CreateAsset()
+    {
+        CreateAsset&lt;Example&gt;();
+    }<br /><br />    public override void OnInspectorGUI()
+    {
+        Example e = (Example)target;<br /><br />        <a href="EditorGUI.BeginChangeCheck.html">EditorGUI.BeginChangeCheck</a>();<br /><br />        // Example has a single arg called PreviewIcon which is a <a href="Texture2D.html">Texture2D</a>
+        e.PreviewIcon = (<a href="Texture2D.html">Texture2D</a>)
+                <a href="EditorGUILayout.ObjectField.html">EditorGUILayout.ObjectField</a>(
+                    "Thumbnail",                    // string
+                    e.PreviewIcon,                  // <a href="Texture2D.html">Texture2D</a>
+                    typeof(<a href="Texture2D.html">Texture2D</a>),              // <a href="Texture2D.html">Texture2D</a> object, of course
+                    false                           // allowSceneObjects
+                );<br /><br />        if (<a href="EditorGUI.EndChangeCheck.html">EditorGUI.EndChangeCheck</a>())
+        {
+            <a href="EditorUtility.SetDirty.html">EditorUtility.SetDirty</a>(e);
+            <a href="AssetDatabase.SaveAssets.html">AssetDatabase.SaveAssets</a>();
+            Repaint();
+        }
+    }<br /><br />    public override <a href="Texture2D.html">Texture2D</a> RenderStaticPreview(string assetPath, Object[] subAssets, int width, int height)
+    {
+        Example example = (Example)target;<br /><br />        if (example == null || example.PreviewIcon == null)
+            return null;<br /><br />        // example.PreviewIcon must be a supported format: ARGB32, RGBA32, RGB24,
+        // Alpha8 or one of float formats
+        <a href="Texture2D.html">Texture2D</a> tex = new <a href="Texture2D.html">Texture2D</a> (width, height);
+        <a href="EditorUtility.CopySerialized.html">EditorUtility.CopySerialized</a> (example.PreviewIcon, tex);<br /><br />        return tex;
+    }
+}</pre>
+      </div><div class="subsection">
+        
+        <pre class="codeExampleCS">no example available in C#</pre>
+      </div></div></div></div></body></html>

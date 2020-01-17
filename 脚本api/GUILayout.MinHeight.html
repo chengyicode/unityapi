@@ -1,0 +1,36 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: GUILayout.MinHeight</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="GUILayout.html">GUILayout</a>.MinHeight</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="GUILayoutOption.html">GUILayoutOption</a> <span class="sig-kw">MinHeight</span>(float <span class="sig-kw">minHeight</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Option passed to a control to specify a minimum height.</p></div><div class="subsection"><p>
+        <img src="../StaticFiles/ScriptRefImages/GUILayoutMinHeight.png" />
+        <br />
+<em>Minimum height for a window.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Draws a window you can resize between 80px and 200px height
+    // Just click the box inside the window and move your mouse
+    <a href="Rect.html">Rect</a> windowRect = new <a href="Rect.html">Rect</a>(10, 10, 100, 100);
+    bool scaling = false;<br /><br />    void OnGUI()
+    {
+        windowRect = <a href="GUILayout.Window.html">GUILayout.Window</a>(0, windowRect, ScalingWindow, "resizeable",
+            <a href="GUILayout.MinHeight.html">GUILayout.MinHeight</a>(80), <a href="GUILayout.MaxHeight.html">GUILayout.MaxHeight</a>(200));
+    }<br /><br />    void ScalingWindow(int windowID)
+    {
+        <a href="GUILayout.Box.html">GUILayout.Box</a>("", <a href="GUILayout.Width.html">GUILayout.Width</a>(20), <a href="GUILayout.Height.html">GUILayout.Height</a>(20));
+        if (Event.current.type == <a href="EventType.MouseUp.html">EventType.MouseUp</a>)
+        {
+            scaling = false;
+        }
+        else if (Event.current.type == <a href="EventType.MouseDown.html">EventType.MouseDown</a> &amp;&amp;
+                 <a href="GUILayoutUtility.GetLastRect.html">GUILayoutUtility.GetLastRect</a>().Contains(Event.current.mousePosition))
+        {
+            scaling = true;
+        }<br /><br />        if (scaling)
+        {
+            windowRect = new <a href="Rect.html">Rect</a>(windowRect.x, windowRect.y,
+                windowRect.width + Event.current.delta.x, windowRect.height + Event.current.delta.y);
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

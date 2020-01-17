@@ -1,0 +1,53 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Resources.LoadAll</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Resources.html">Resources</a>.LoadAll</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static Object[] <span class="sig-kw">LoadAll</span>(string <span class="sig-kw">path</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static Object[] <span class="sig-kw">LoadAll</span>(string <span class="sig-kw">path</span>,
+Type <span class="sig-kw">systemTypeInstance</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">path</td><td class="desc"></td><td class="desc1">Pathname of the target folder. When using the empty string (i.e., ""), the function will load the entire contents of the Resources folder.</td></tr><tr><td class="name lbl">systemTypeInstance</td><td class="desc"></td><td class="desc1">Type filter for objects returned.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Loads all assets in a folder or file at <code class="varname">path</code> in a Resources folder.</p></div><div class="subsection"><p>If <code class="varname">path</code> refers to a folder, all assets in the folder will be returned.
+If <code class="varname">path</code> refers to a file, only that asset will be returned.
+The <code class="varname">path</code> is relative to any Resources folder inside the Assets folder of your project.<br /><br /><strong>Note:</strong> All asset names and paths in Unity use forward slashes. Paths using backslashes will <strong>not</strong> work.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Loads all assets in the "<a href="Resources.html">Resources</a>/Textures" folder
+// Then picks a random one from the list.
+// Note: <a href="Random.Range.html">Random.Range</a> in this case returns [low,high)
+// range, i.e. the high value is not included in the range.
+using UnityEngine;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private Object[] textures;
+    private <a href="GameObject.html">GameObject</a> go;<br /><br />    void Start()
+    {
+        textures = <a href="Resources.LoadAll.html">Resources.LoadAll</a>("Textures", typeof(<a href="Texture2D.html">Texture2D</a>));<br /><br />        foreach (var t in textures)
+        {
+            <a href="Debug.Log.html">Debug.Log</a>(t.name);
+        }<br /><br />        go = <a href="GameObject.CreatePrimitive.html">GameObject.CreatePrimitive</a>(<a href="PrimitiveType.Cube.html">PrimitiveType.Cube</a>);
+    }<br /><br />    void OnGUI()
+    {
+        if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(10, 70, 150, 30), "Change texture"))
+        {
+            // change texture on cube
+            <a href="Texture2D.html">Texture2D</a> texture = (<a href="Texture2D.html">Texture2D</a>)textures[<a href="Random.Range.html">Random.Range</a>(0, textures.Length)];
+            go.GetComponent&lt;<a href="Renderer.html">Renderer</a>&gt;().material.mainTexture = texture;
+        }
+    }
+}
+</pre>
+      </div><hr class="section" /><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static T[] <span class="sig-kw">LoadAll</span>(string <span class="sig-kw">path</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">path</td><td class="desc"></td><td class="desc1">Pathname of the target folder. When using the empty string (i.e., ""), the function will load the entire contents of the Resources folder.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Loads all assets in a folder or file at <code class="varname">path</code> in a Resources folder.</p></div><div class="subsection"><p>If <code class="varname">path</code> refers to a folder, all assets in the folder will be returned.
+If <code class="varname">path</code> refers to a file, only that asset will be returned.
+Only objects of type <code class="varname">T</code> will be returned.
+The <code class="varname">path</code> is relative to any Resources folder inside the Assets folder of your project.<br /><br />The script example below shows how <a href="Resources.LoadAll.html">LoadAll</a> can be used with Linq.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Loads all assets in the "<a href="Resources.html">Resources</a>/Textures" folder
+// using Linq.
+using UnityEngine;
+using System.Linq;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        var textures = <a href="Resources.LoadAll.html">Resources.LoadAll</a>("Textures", typeof(<a href="Texture2D.html">Texture2D</a>)).Cast&lt;<a href="Texture2D.html">Texture2D</a>&gt;().ToArray();
+        foreach (var t in textures)
+            <a href="Debug.Log.html">Debug.Log</a>(t.name);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

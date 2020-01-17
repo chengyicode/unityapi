@@ -1,0 +1,33 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: PlayableOutputExtensions</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">PlayableOutputExtensions</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine.Playables</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.CoreModule.html" class="cl">UnityEngine.CoreModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Extensions for all the types that implements <a href="Playables.IPlayableOutput.html">IPlayableOutput</a>.</p></div><div class="subsection"><p>Extension methods are static methods that can be called as if they were instance methods on the extended type.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.Playables;<br /><br />public class ExamplePlayableBehaviour : <a href="Playables.PlayableBehaviour.html">PlayableBehaviour</a>
+{
+    void Start()
+    {
+        <a href="Playables.PlayableGraph.html">PlayableGraph</a> graph = <a href="Playables.PlayableGraph.Create.html">PlayableGraph.Create</a>();
+        <a href="Playables.ScriptPlayableOutput.html">ScriptPlayableOutput</a> scriptOutput = <a href="Playables.ScriptPlayableOutput.Create.html">ScriptPlayableOutput.Create</a>(graph, "MyOutput");<br /><br />        // Calling method PlayableExtensions.SetWeight on <a href="Playables.ScriptPlayableOutput.html">ScriptPlayableOutput</a> as if it was an instance method.
+        scriptOutput.SetWeight(10);<br /><br />        // The line above is the same as calling directly <a href="Playables.PlayableExtensions.SetDuration.html">PlayableExtensions.SetDuration</a>, but it is more compact and readable.
+        <a href="Playables.PlayableOutputExtensions.SetWeight.html">PlayableOutputExtensions.SetWeight</a>(scriptOutput, 10);
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Static Methods   静态方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableOutputExtensions.AddNotificationReceiver.html">AddNotificationReceiver</a></td><td class="desc"></td><td class="desc1">Registers a new receiver that listens for notifications.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableOutputExtensions.GetNotificationReceivers.html">GetNotificationReceivers</a></td><td class="desc"></td><td class="desc1">Retrieves the list of notification receivers currently registered on the output.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableOutputExtensions.GetSourceOutputPort.html">GetSourceOutputPort</a></td><td class="desc"></td><td class="desc1">Returns the source playable's output connection index.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableOutputExtensions.GetSourcePlayable.html">GetSourcePlayable</a></td><td class="desc"></td><td class="desc1">Returns the source playable.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableOutputExtensions.GetUserData.html">GetUserData</a></td><td class="desc"></td><td class="desc1">Returns the opaque user data. This is the same value as the last last argument of ProcessFrame.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableOutputExtensions.GetWeight.html">GetWeight</a></td><td class="desc"></td><td class="desc1">Returns the weight of the connection from the PlayableOutput to the source playable.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableOutputExtensions.IsOutputNull.html">IsOutputNull</a></td><td class="desc"></td><td class="desc1">Returns true if the PlayableOutput is null, false otherwise.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableOutputExtensions.IsOutputValid.html">IsOutputValid</a></td><td class="desc"></td><td class="desc1"></td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableOutputExtensions.PushNotification.html">PushNotification</a></td><td class="desc"></td><td class="desc1">Queues a notification to be sent through the Playable system.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableOutputExtensions.RemoveNotificationReceiver.html">RemoveNotificationReceiver</a></td><td class="desc"></td><td class="desc1">Unregisters a receiver on the output.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableOutputExtensions.SetReferenceObject.html">SetReferenceObject</a></td><td class="desc"></td><td class="desc1">Sets the bound object to a new value. Used to associate an output to an object (Track asset in case of Timeline).</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableOutputExtensions.SetSourceOutputPort.html">SetSourceOutputPort</a></td><td class="desc"></td><td class="desc1">Sets the source playable's output connection index. For playables with multiple outputs, this determines which sub-branch of the source playable generates this output.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableOutputExtensions.SetSourcePlayable.html">SetSourcePlayable</a></td><td class="desc"></td><td class="desc1">Sets which playable that computes the output and which sub-tree index.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableOutputExtensions.SetUserData.html">SetUserData</a></td><td class="desc"></td><td class="desc1">Sets the opaque user data. This same data is passed as the last argument to ProcessFrame.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableOutputExtensions.SetWeight.html">SetWeight</a></td><td class="desc"></td><td class="desc1">Sets the weight of the connection from the PlayableOutput to the source playable.</td></tr>
+    </table></div></div></div></div></body></html>

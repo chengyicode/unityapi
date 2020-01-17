@@ -1,0 +1,131 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: SettingsProvider.SettingsProvider</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">SettingsProvider Constructor</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <span class="sig-kw">SettingsProvider</span>(string <span class="sig-kw">path</span>,
+<a href="SettingsScope.html">SettingsScope</a> <span class="sig-kw">scopes</span>,
+IEnumerable&lt;string&gt; <span class="sig-kw">keywords</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">path</td><td class="desc"></td><td class="desc1">Path of the settings in the Settings window. Uses "/" as separator. The last token becomes the settings label if none is provided.</td></tr><tr><td class="name lbl">scope</td><td class="desc"></td><td class="desc1">Scope of the Settings. The Scope determines where the setting appears: in the Settings or the Preferences windows.</td></tr><tr><td class="name lbl">keywords</td><td class="desc"></td><td class="desc1">List of keywords to compare against what the user is searching for. When the user enters values in the search box on the Settings window, <a href="SettingsProvider.HasSearchInterest.html">SettingsProvider.HasSearchInterest</a> tries to match those keywords to this list.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Creates a new SettingsProvider.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;
+using UnityEngine.UIElements;<br /><br />// Create a new type of <a href="CameraEditor.Settings.html">Settings</a> asset.
+class MyCustomSettings : <a href="ScriptableObject.html">ScriptableObject</a>
+{
+    public const string k_MyCustomSettingsPath = "Assets/<a href="Editor.html">Editor</a>/MyCustomSettings.asset";<br /><br />    [<a href="SerializeField.html">SerializeField</a>]
+    private int m_Number;<br /><br />    [<a href="SerializeField.html">SerializeField</a>]
+    private string m_SomeString;<br /><br />    internal static MyCustomSettings GetOrCreateSettings()
+    {
+        var settings = <a href="AssetDatabase.LoadAssetAtPath.html">AssetDatabase.LoadAssetAtPath</a>&lt;MyCustomSettings&gt;(k_MyCustomSettingsPath);
+        if (settings == null)
+        {
+            settings = <a href="ScriptableObject.CreateInstance.html">ScriptableObject.CreateInstance</a>&lt;MyCustomSettings&gt;();
+            settings.m_Number = 42;
+            settings.m_SomeString = "The answer to the universe";
+            <a href="AssetDatabase.CreateAsset.html">AssetDatabase.CreateAsset</a>(settings, k_MyCustomSettingsPath);
+            <a href="AssetDatabase.SaveAssets.html">AssetDatabase.SaveAssets</a>();
+        }
+        return settings;
+    }<br /><br />    internal static <a href="SerializedObject.html">SerializedObject</a> GetSerializedSettings()
+    {
+        return new <a href="SerializedObject.html">SerializedObject</a>(GetOrCreateSettings());
+    }
+}<br /><br />// Register a <a href="SettingsProvider.html">SettingsProvider</a> using IMGUI for the drawing framework:
+static class MyCustomSettingsIMGUIRegister
+{
+    [<a href="SettingsProvider.html">SettingsProvider</a>]
+    public static <a href="SettingsProvider.html">SettingsProvider</a> CreateMyCustomSettingsProvider()
+    {
+        // First parameter is the path in the <a href="CameraEditor.Settings.html">Settings</a> window.
+        // Second parameter is the scope of this setting: it only appears in the Project <a href="CameraEditor.Settings.html">Settings</a> window.
+        var provider = new <a href="SettingsProvider.html">SettingsProvider</a>("Project/MyCustomIMGUISettings", <a href="SettingsScope.Project.html">SettingsScope.Project</a>)
+        {
+            // By default the last token of the path is used as display name if no label is provided.
+            label = "Custom IMGUI",
+            // Create the <a href="SettingsProvider.html">SettingsProvider</a> and initialize its drawing (IMGUI) function in place:
+            guiHandler = (searchContext) =&gt;
+            {
+                var settings = MyCustomSettings.GetSerializedSettings();
+                <a href="EditorGUILayout.PropertyField.html">EditorGUILayout.PropertyField</a>(settings.FindProperty("m_Number"), new <a href="GUIContent.html">GUIContent</a>("My Number"));
+                <a href="EditorGUILayout.PropertyField.html">EditorGUILayout.PropertyField</a>(settings.FindProperty("m_SomeString"), new <a href="GUIContent.html">GUIContent</a>("My String"));
+            },<br /><br />            // Populate the search keywords to enable smart search filtering and label highlighting:
+            keywords = new HashSet&lt;string&gt;(new[] { "Number", "Some String" })
+        };<br /><br />        return provider;
+    }
+}<br /><br />// Register a <a href="SettingsProvider.html">SettingsProvider</a> using UIElements for the drawing framework:
+static class MyCustomSettingsUIElementsRegister
+{
+    [<a href="SettingsProvider.html">SettingsProvider</a>]
+    public static <a href="SettingsProvider.html">SettingsProvider</a> CreateMyCustomSettingsProvider()
+    {
+        // First parameter is the path in the <a href="CameraEditor.Settings.html">Settings</a> window.
+        // Second parameter is the scope of this setting: it only appears in the <a href="CameraEditor.Settings.html">Settings</a> window for the Project scope.
+        var provider = new <a href="SettingsProvider.html">SettingsProvider</a>("Project/MyCustomUIElementsSettings", <a href="SettingsScope.Project.html">SettingsScope.Project</a>)
+        {
+            label = "Custom UI Elements",
+            // activateHandler is called when the user clicks on the <a href="CameraEditor.Settings.html">Settings</a> item in the <a href="CameraEditor.Settings.html">Settings</a> window.
+            activateHandler = (searchContext, rootElement) =&gt;
+            {
+                var settings = MyCustomSettings.GetSerializedSettings();<br /><br />                // rootElement is a <a href="UIElements.VisualElement.html">VisualElement</a>. If you add any children to it, the OnGUI function
+                // isn't called because the <a href="SettingsProvider.html">SettingsProvider</a> uses the UIElements drawing framework.
+                var styleSheet = <a href="AssetDatabase.LoadAssetAtPath.html">AssetDatabase.LoadAssetAtPath</a>&lt;<a href="UIElements.StyleSheet.html">StyleSheet</a>&gt;("Assets/<a href="Editor.html">Editor</a>/settings_ui.uss");
+                rootElement.styleSheets.Add(styleSheet);
+                var title = new <a href="UIElements.Label.html">Label</a>()
+                {
+                    text = "Custom UI Elements"
+                };
+                title.AddToClassList("title");
+                rootElement.Add(title);<br /><br />                var properties = new <a href="UIElements.VisualElement.html">VisualElement</a>()
+                {
+                    style =
+                    {
+                        flexDirection = <a href="UIElements.FlexDirection.Column.html">FlexDirection.Column</a>
+                    }
+                };
+                properties.AddToClassList("property-list");
+                rootElement.Add(properties);<br /><br />                var tf = new <a href="UIElements.TextField.html">TextField</a>()
+                {
+                    value = settings.FindProperty("m_SomeString").stringValue
+                };
+                tf.AddToClassList("property-value");
+                properties.Add(tf);
+            },<br /><br />            // Populate the search keywords to enable smart search filtering and label highlighting:
+            keywords = new HashSet&lt;string&gt;(new[] { "Number", "Some String" })
+        };<br /><br />        return provider;
+    }
+}<br /><br />// Create MyCustomSettingsProvider by deriving from <a href="SettingsProvider.html">SettingsProvider</a>:
+class MyCustomSettingsProvider : <a href="SettingsProvider.html">SettingsProvider</a>
+{
+    private <a href="SerializedObject.html">SerializedObject</a> m_CustomSettings;<br /><br />    class Styles
+    {
+        public static <a href="GUIContent.html">GUIContent</a> number = new <a href="GUIContent.html">GUIContent</a>("My Number");
+        public static <a href="GUIContent.html">GUIContent</a> someString = new <a href="GUIContent.html">GUIContent</a>("Some string");
+    }<br /><br />    const string k_MyCustomSettingsPath = "Assets/<a href="Editor.html">Editor</a>/MyCustomSettings.asset";
+    public MyCustomSettingsProvider(string path, <a href="SettingsScope.html">SettingsScope</a> scope = <a href="SettingsScope.User.html">SettingsScope.User</a>)
+        : base(path, scope) {}<br /><br />    public static bool IsSettingsAvailable()
+    {
+        return <a href="Windows.File.Exists.html">File.Exists</a>(k_MyCustomSettingsPath);
+    }<br /><br />    public override void OnActivate(string searchContext, <a href="UIElements.VisualElement.html">VisualElement</a> rootElement)
+    {
+        // This function is called when the user clicks on the MyCustom element in the <a href="CameraEditor.Settings.html">Settings</a> window.
+        m_CustomSettings = MyCustomSettings.GetSerializedSettings();
+    }<br /><br />    public override void OnGUI(string searchContext)
+    {
+        // Use IMGUI to display UI:
+        <a href="EditorGUILayout.PropertyField.html">EditorGUILayout.PropertyField</a>(m_CustomSettings.FindProperty("m_Number"), Styles.number);
+        <a href="EditorGUILayout.PropertyField.html">EditorGUILayout.PropertyField</a>(m_CustomSettings.FindProperty("m_SomeString"), Styles.someString);
+    }<br /><br />    // Register the <a href="SettingsProvider.html">SettingsProvider</a>
+    [<a href="SettingsProvider.html">SettingsProvider</a>]
+    public static <a href="SettingsProvider.html">SettingsProvider</a> CreateMyCustomSettingsProvider()
+    {
+        if (IsSettingsAvailable())
+        {
+            var provider = new MyCustomSettingsProvider("Project/MyCustomSettingsProvider", <a href="SettingsScope.Project.html">SettingsScope.Project</a>);<br /><br />            // Automatically extract all keywords from the Styles.
+            provider.keywords = GetSearchKeywordsFromGUIContentProperties&lt;Styles&gt;();
+            return provider;
+        }<br /><br />        // <a href="CameraEditor.Settings.html">Settings</a> <a href="VersionControl.Asset.html">Asset</a> doesn't exist yet; no need to display anything in the <a href="CameraEditor.Settings.html">Settings</a> window.
+        return null;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

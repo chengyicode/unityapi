@@ -1,0 +1,49 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AudioSource.pitch</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="AudioSource.html">AudioSource</a>.pitch</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-AudioSource.html' title='Go to AudioSource Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public float <span class="sig-kw">pitch</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The pitch of the audio source.</p></div><div class="subsection"><p>Pitch is a quality that makes a melody go higher or lower.  As an example imagine playing an audio clip with pitch set to one.  Increasing the pitch as the clip plays will make the clip sound like it is higher.  Similarly decreasing the pitch less than one makes the clip sound lower.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//Attach this script to a <a href="GameObject.html">GameObject</a>.
+//Attach an <a href="AudioSource.html">AudioSource</a> to your <a href="GameObject.html">GameObject</a> (Click <strong>Add Component</strong> and go to <strong>Audio</strong>&gt;<strong>Audio Source</strong>). Choose an audio clip in the <strong>AudioClip</strong> field.
+//This script sets the pitch of the audio at the start, and then gradually turns it down to 0 as time passes.<br /><br />using UnityEngine;<br /><br />//Make sure there is an Audio Source component on the <a href="GameObject.html">GameObject</a>
+[<a href="RequireComponent.html">RequireComponent</a>(typeof(<a href="AudioSource.html">AudioSource</a>))]<br /><br />public class ExampleScript : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public int startingPitch = 4;
+    public int timeToDecrease = 5;
+    <a href="AudioSource.html">AudioSource</a> audioSource;<br /><br />    void Start()
+    {
+        //Fetch the <a href="AudioSource.html">AudioSource</a> from the <a href="GameObject.html">GameObject</a>
+        audioSource = GetComponent&lt;<a href="AudioSource.html">AudioSource</a>&gt;();<br /><br />        //Initialize the pitch
+        audioSource.pitch = startingPitch;
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        //While the pitch is over 0, decrease it as time passes.
+        if (audioSource.pitch &gt; 0)
+        {
+            audioSource.pitch -= <a href="Time-deltaTime.html">Time.deltaTime</a> * startingPitch / timeToDecrease;
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Another example:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />// A script that plays your chosen song.  The pitch starts at 1.0.
+// You can increase and decrease the pitch and hear the change
+// that is made.<br /><br />public class AudioExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public float pitchValue = 1.0f;
+    public <a href="AudioClip.html">AudioClip</a> mySong;<br /><br />    private <a href="AudioSource.html">AudioSource</a> audioSource;
+    private float low = 0.75f;
+    private float high = 1.25f;<br /><br />    void Awake()
+    {
+        audioSource = GetComponent&lt;<a href="AudioSource.html">AudioSource</a>&gt;();
+        audioSource.clip = mySong;
+        audioSource.loop = true;
+    }<br /><br />    void OnGUI()
+    {
+        pitchValue = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(25, 75, 100, 30), pitchValue, low, high);
+        audioSource.pitch = pitchValue;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

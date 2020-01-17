@@ -1,0 +1,22 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ParticleSystem.CollisionModule.SetPlane</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="ParticleSystem.CollisionModule.html">ParticleSystem.CollisionModule</a>.SetPlane</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-ParticleSystem.html' title='Go to ParticleSystem Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">SetPlane</span>(int <span class="sig-kw">index</span>,
+<a href="Transform.html">Transform</a> <span class="sig-kw">transform</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">index</td><td class="desc"></td><td class="desc1">Specifies which plane to set.</td></tr><tr><td class="name lbl">transform</td><td class="desc"></td><td class="desc1">The plane to set.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Set a collision plane to be used with this Particle System.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private <a href="ParticleSystem.html">ParticleSystem</a> ps;<br /><br />    void Start()
+    {
+        ps = GetComponent&lt;<a href="ParticleSystem.html">ParticleSystem</a>&gt;();<br /><br />        var collision = ps.collision;
+        collision.enabled = true;
+        collision.type = <a href="ParticleSystemCollisionType.Planes.html">ParticleSystemCollisionType.Planes</a>;
+        collision.mode = <a href="ParticleSystemCollisionMode.Collision3D.html">ParticleSystemCollisionMode.Collision3D</a>;<br /><br />        var collider = <a href="GameObject.CreatePrimitive.html">GameObject.CreatePrimitive</a>(<a href="PrimitiveType.Plane.html">PrimitiveType.Plane</a>);
+        collider.transform.parent = ps.transform;
+        collider.transform.localPosition = new <a href="Vector3.html">Vector3</a>(0.0f, 0.0f, 5.0f);
+        collider.transform.localScale = new <a href="Vector3.html">Vector3</a>(20.0f, 20.0f, 20.0f);
+        collider.transform.localRotation = <a href="Quaternion.Euler.html">Quaternion.Euler</a>(new <a href="Vector3.html">Vector3</a>(-90.0f, 0.0f, 0.0f));<br /><br />        collision.SetPlane(0, collider.transform);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

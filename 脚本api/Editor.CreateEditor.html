@@ -1,0 +1,67 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Editor.CreateEditor</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Editor.html">Editor</a>.CreateEditor</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Editor.html">Editor</a> <span class="sig-kw">CreateEditor</span>(<a href="Object.html">Object</a> <span class="sig-kw">targetObject</span>,
+Type <span class="sig-kw">editorType</span> = null);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Editor.html">Editor</a> <span class="sig-kw">CreateEditor</span>(Object[] <span class="sig-kw">targetObjects</span>,
+Type <span class="sig-kw">editorType</span> = null);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">objects</td><td class="desc"></td><td class="desc1">All objects must be of the same type.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Make a custom editor for <code class="varname">targetObject</code> or <code class="varname">targetObjects</code>.</p></div><div class="subsection"><p>By default, an appropriate editor is created that has a matching CustomEditor attribute.
+If an editorType is specified, an editor of that type is created instead.
+Use this if you have created multiple custom editors where each editor shows different properties of the object.
+Returns NULL if <code class="varname">objects</code> are of different types or if no approprate editor was found.<br /><br />Consider a script WaypointPathEditor for editing  the Transforms of a wayPoint array.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;
+using System.Collections;<br /><br />
+[<a href="CustomEditor.html">CustomEditor</a>(typeof(WaypointPath))]
+public class WaypointPathEditor : <a href="Editor.html">Editor</a>
+{<br /><br />    <a href="Editor.html">Editor</a> currentTransformEditor;
+    <a href="Transform.html">Transform</a>[] waypoints;
+    <a href="Transform.html">Transform</a> selectedTransform;
+    string[] optionsList;
+    int index = 0;
+    WaypointPath myWayPath;<br /><br />    void GetWaypoints()
+    {
+        myWayPath = target as WaypointPath;<br /><br />        if (myWayPath.wayPointArray != null)
+        {
+            optionsList = new string[myWayPath.wayPointArray.Length];<br /><br />            for (int i = 0; i &lt; optionsList.Length; i++)
+            {
+                optionsList[i] = myWayPath.wayPointArray[i].name;
+            }
+        }
+    }<br /><br />    public override void OnInspectorGUI()
+    {
+        GetWaypoints ();
+        DrawDefaultInspector ();
+        <a href="EditorGUILayout.Space.html">EditorGUILayout.Space</a> ();
+        <a href="EditorGUI.BeginChangeCheck.html">EditorGUI.BeginChangeCheck</a> ();<br /><br />        if (optionsList != null)
+            index = <a href="EditorGUILayout.Popup.html">EditorGUILayout.Popup</a> ("Select Waypoint", index, optionsList);<br /><br />        if (<a href="EditorGUI.EndChangeCheck.html">EditorGUI.EndChangeCheck</a>())
+        {
+            <a href="Editor.html">Editor</a> tmpEditor = null;<br /><br />            if (index &lt; myWayPath.wayPointArray.Length)
+            {
+                selectedTransform = myWayPath.wayPointArray[index];<br /><br />                //Creates an <a href="Editor.html">Editor</a> for selected <a href="Component.html">Component</a> from a Popup
+                tmpEditor = <a href="Editor.CreateEditor.html">Editor.CreateEditor</a>(selectedTransform);
+            } else {
+                selectedTransform = null;
+            }<br /><br />            // If there isn't a <a href="Transform.html">Transform</a> currently selected then destroy the existing editor
+            if (currentTransformEditor != null)
+            {
+                DestroyImmediate (currentTransformEditor);
+            }<br /><br />            currentTransformEditor = tmpEditor;
+        }<br /><br />        // Shows the created <a href="Editor.html">Editor</a> beneath <a href="CustomEditor.html">CustomEditor</a>
+        if (currentTransformEditor != null &amp;&amp; selectedTransform != null)
+        {
+            currentTransformEditor.OnInspectorGUI ();
+        }
+    }
+}
+</pre>
+      </div><div class="subsection"><p>The script attached to a waypath GameObject:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />// Note: this is not an editor script.
+public class WaypointPath : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Transform.html">Transform</a>[] wayPointArray;
+}
+</pre>
+      </div></div></div></div></body></html>

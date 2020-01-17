@@ -1,0 +1,28 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: CharacterController.velocity</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="CharacterController.html">CharacterController</a>.velocity</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-CharacterController.html' title='Go to CharacterController Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Vector3.html">Vector3</a> <span class="sig-kw">velocity</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The current relative velocity of the Character (see notes).</p></div><div class="subsection"><p>This allows you to track how fast the character is actually walking, for example
+when it is stuck at a wall this value will be the zero vector.<br /><br />Note: The velocity returned is simply the difference in distance for the current timestep
+before and after a call to <a href="CharacterController.Move.html">CharacterController.Move</a> or <a href="CharacterController.SimpleMove.html">CharacterController.SimpleMove</a>.
+The velocity is relative because it won't track movements to the transform that happen
+outside of the CharacterController (e.g. character parented under another moving Transform,
+such as a moving vehicle).</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="CharacterController.html">CharacterController</a> controller;
+    void Start()
+    {
+        controller = GetComponent&lt;<a href="CharacterController.html">CharacterController</a>&gt;();
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        <a href="Vector3.html">Vector3</a> horizontalVelocity = controller.velocity;
+        horizontalVelocity = new <a href="Vector3.html">Vector3</a>(controller.velocity.x, 0, controller.velocity.z);<br /><br />        // The speed on the x-z plane ignoring any speed
+        float horizontalSpeed = horizontalVelocity.magnitude;
+        // The speed from gravity or jumping
+        float verticalSpeed  = controller.velocity.y;
+        // The overall speed
+        float overallSpeed = controller.velocity.magnitude;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

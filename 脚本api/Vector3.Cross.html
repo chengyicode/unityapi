@@ -1,0 +1,23 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Vector3.Cross</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Vector3.html">Vector3</a>.Cross</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Vector3.html">Vector3</a> <span class="sig-kw">Cross</span>(<a href="Vector3.html">Vector3</a> <span class="sig-kw">lhs</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">rhs</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Cross Product of two vectors.</p></div><div class="subsection"><p>The cross product of two vectors results in a third vector which is perpendicular
+to the two input vectors. The result's magnitude is equal to the magnitudes of the
+two inputs multiplied together and then multiplied by the sine of the angle between
+the inputs. You can determine the direction of the result vector using the "left hand rule".<br /><br /><img src="../StaticFiles/ScriptRefImages/LeftHandRuleDiagram.png" /><br />
+<em>The left hand rule applied to Cross(a, b).</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Get the normal to a triangle from the three corner points, a, b and c.
+    <a href="Vector3.html">Vector3</a> GetNormal(<a href="Vector3.html">Vector3</a> a, <a href="Vector3.html">Vector3</a> b, <a href="Vector3.html">Vector3</a> c)
+    {
+        // Find vectors corresponding to two of the sides of the triangle.
+        <a href="Vector3.html">Vector3</a> side1 = b - a;
+        <a href="Vector3.html">Vector3</a> side2 = c - a;<br /><br />        // Cross the vectors to get a perpendicular vector, then normalize it.
+        return <a href="Vector3.Cross.html">Vector3.Cross</a>(side1, side2).normalized;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

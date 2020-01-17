@@ -1,0 +1,28 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: PostProcessBuildAttribute</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">PostProcessBuildAttribute</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEditor.Callbacks</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Inherits from:<a href="CallbackOrderAttribute.html" class="cl">CallbackOrderAttribute</a></p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEditor.html" class="cl">UnityEditor</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Add this attribute to a method to get a notification just after building the player.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// C# example:
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEditor.Callbacks;<br /><br />public class MyBuildPostprocessor {
+    [<a href="Callbacks.PostProcessBuildAttribute.html">PostProcessBuildAttribute</a>(1)]
+    public static void OnPostprocessBuild(<a href="BuildTarget.html">BuildTarget</a> target, string pathToBuiltProject) {
+        <a href="Debug.Log.html">Debug.Log</a>( pathToBuiltProject );
+        }
+}
+</pre>
+      </div><div class="subsection"><p>PostProcessBuildAttribute has an option to provide an order index in the callback, starting at 0. This is useful if you have more than one PostProcessBuildAttribute callback, and you would like them to be called in a certain order. Callbacks are called in order, starting at zero.</p></div><div class="subsection"><h2>Inherited Members   继承成员</h2>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </div></div></div></div></body></html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: LineRenderer.generateLightingData</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="LineRenderer.html">LineRenderer</a>.generateLightingData</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-LineRenderer.html' title='Go to LineRenderer Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public bool <span class="sig-kw">generateLightingData</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Configures a line to generate Normals and Tangents. With this data, Scene lighting can affect the line via Normal Maps and the Unity Standard Shader, or your own custom-built Shaders.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private <a href="LineRenderer.html">LineRenderer</a> lr;<br /><br />    void Start()
+    {
+        lr = GetComponent&lt;<a href="LineRenderer.html">LineRenderer</a>&gt;();
+        lr.material = new <a href="Material.html">Material</a>(<a href="Shader.Find.html">Shader.Find</a>("Standard"));
+        lr.generateLightingData = true;<br /><br />        // Set some positions
+        <a href="Vector3.html">Vector3</a>[] positions = new <a href="Vector3.html">Vector3</a>[3];
+        positions[0] = new <a href="Vector3.html">Vector3</a>(-2.0f, -2.0f, 0.0f);
+        positions[1] = new <a href="Vector3.html">Vector3</a>(0.0f, 2.0f, 0.0f);
+        positions[2] = new <a href="Vector3.html">Vector3</a>(2.0f, -2.0f, 0.0f);
+        lr.positionCount = positions.Length;
+        lr.SetPositions(positions);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

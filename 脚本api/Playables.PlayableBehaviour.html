@@ -1,0 +1,59 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: PlayableBehaviour</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">PlayableBehaviour</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEngine.Playables</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.CoreModule.html" class="cl">UnityEngine.CoreModule</a></p><br /><p class="cl mb0 left">Implements interfaces:<a href="Playables.IPlayableBehaviour.html" class="cl">IPlayableBehaviour</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>PlayableBehaviour is the base class from which every custom playable script derives.</p></div><div class="subsection"><p>A PlayableBehaviour can be used to add user-defined behaviour to a <a href="Playables.PlayableGraph.html">PlayableGraph</a>.<br /><br />A PlayableBehaviour must be part of a branch of a <a href="Playables.PlayableGraph.html">PlayableGraph</a> that is connected to an output to be active.<br /><br />In the following example, two <a href="AnimationClip.html">AnimationClip</a> are controlled by two <a href="Animations.AnimationClipPlayable.html">AnimationClipPlayable</a>, which are blended by a <a href="Animations.AnimationMixerPlayable.html">AnimationMixerPlayable</a>.  A custom BlenderPlayableBehaviour is modifying the inputs weigth of the <a href="Animations.AnimationMixerPlayable.html">AnimationMixerPlayable</a> every frame.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.Animations;
+using UnityEngine.Playables;<br /><br />public class BlenderPlayableBehaviour : <a href="Playables.PlayableBehaviour.html">PlayableBehaviour</a>
+{
+    public <a href="Animations.AnimationMixerPlayable.html">AnimationMixerPlayable</a> mixerPlayable;<br /><br />    public override void PrepareFrame(<a href="Playables.Playable.html">Playable</a> playable, <a href="Playables.FrameData.html">FrameData</a> info)
+    {
+        float blend = <a href="Mathf.PingPong.html">Mathf.PingPong</a>((float)playable.GetTime(), 1.0f);<br /><br />        mixerPlayable.SetInputWeight(0, blend);
+        mixerPlayable.SetInputWeight(1, 1.0f - blend);<br /><br />        base.PrepareFrame(playable, info);
+    }
+}<br /><br />public class PlayableBehaviourSample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="Playables.PlayableGraph.html">PlayableGraph</a> m_Graph;
+    public <a href="AnimationClip.html">AnimationClip</a> clipA;
+    public <a href="AnimationClip.html">AnimationClip</a> clipB;<br /><br />    // Use this for initialization
+    void Start()
+    {
+        // Create the <a href="Playables.PlayableGraph.html">PlayableGraph</a>.
+        m_Graph = <a href="Playables.PlayableGraph.Create.html">PlayableGraph.Create</a>();<br /><br />        // Add an <a href="Animations.AnimationPlayableOutput.html">AnimationPlayableOutput</a> to the graph.
+        var animOutput = <a href="Animations.AnimationPlayableOutput.Create.html">AnimationPlayableOutput.Create</a>(m_Graph, "AnimationOutput", GetComponent&lt;<a href="Animator.html">Animator</a>&gt;());<br /><br />        // Add an <a href="Animations.AnimationMixerPlayable.html">AnimationMixerPlayable</a> to the graph.
+        var mixerPlayable = <a href="Animations.AnimationMixerPlayable.Create.html">AnimationMixerPlayable.Create</a>(m_Graph, 2, false);<br /><br />        // Add two <a href="Animations.AnimationClipPlayable.html">AnimationClipPlayable</a> to the graph.
+        var clipPlayableA = <a href="Animations.AnimationClipPlayable.Create.html">AnimationClipPlayable.Create</a>(m_Graph, clipA);
+        var clipPlayableB = <a href="Animations.AnimationClipPlayable.Create.html">AnimationClipPlayable.Create</a>(m_Graph, clipB);<br /><br />        // Add a custom <a href="Playables.PlayableBehaviour.html">PlayableBehaviour</a> to the graph.
+        // This behavior will change the weights of the mixer dynamically.
+        var blenderPlayable = ScriptPlayable&lt;BlenderPlayableBehaviour&gt;.Create(m_Graph, 1);
+        blenderPlayable.GetBehaviour().mixerPlayable = mixerPlayable;<br /><br />        // Create the topology, connect the <a href="Animations.AnimationClipPlayable.html">AnimationClipPlayable</a> to the
+        // <a href="Animations.AnimationMixerPlayable.html">AnimationMixerPlayable</a>.  Also add the BlenderPlayableBehaviour.
+        m_Graph.Connect(clipPlayableA, 0, mixerPlayable, 0);
+        m_Graph.Connect(clipPlayableB, 0, mixerPlayable, 1);
+        m_Graph.Connect(mixerPlayable, 0, blenderPlayable, 0);<br /><br />        // Use the ScriptPlayable as the source for the <a href="Animations.AnimationPlayableOutput.html">AnimationPlayableOutput</a>.
+        // Since it's a ScriptPlayable, also set the source input port to make the
+        // passthrough to the <a href="Animations.AnimationMixerPlayable.html">AnimationMixerPlayable</a>.
+        animOutput.SetSourcePlayable(blenderPlayable);
+        animOutput.SetSourceInputPort(0);<br /><br />        // Play the graph.
+        m_Graph.Play();
+    }<br /><br />    private void OnDestroy()
+    {
+        // Destroy the graph once done with it.
+        m_Graph.Destroy();
+    }
+}
+</pre>
+      </div><div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableBehaviour.OnBehaviourPause.html">OnBehaviourPause</a></td><td class="desc"></td><td class="desc1">This method is invoked when one of the following situations occurs:
+
+     The effective play state during traversal is changed to PlayState.Paused. This state is indicated by FrameData.effectivePlayState.
+     The PlayableGraph is stopped while the playable play state is Playing. This state is indicated by PlayableGraph.IsPlaying returning true.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableBehaviour.OnBehaviourPlay.html">OnBehaviourPlay</a></td><td class="desc"></td><td class="desc1">This function is called when the Playable play state is changed to PlayState.Playing.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableBehaviour.OnGraphStart.html">OnGraphStart</a></td><td class="desc"></td><td class="desc1">This function is called when the PlayableGraph that owns this PlayableBehaviour starts.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableBehaviour.OnGraphStop.html">OnGraphStop</a></td><td class="desc"></td><td class="desc1">This function is called when the PlayableGraph that owns this PlayableBehaviour stops.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableBehaviour.OnPlayableCreate.html">OnPlayableCreate</a></td><td class="desc"></td><td class="desc1">This function is called when the Playable that owns the PlayableBehaviour is created.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableBehaviour.OnPlayableDestroy.html">OnPlayableDestroy</a></td><td class="desc"></td><td class="desc1">This function is called when the Playable that owns the PlayableBehaviour is destroyed.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableBehaviour.PrepareData.html">PrepareData</a></td><td class="desc"></td><td class="desc1">This function is called during the PrepareData phase of the PlayableGraph.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableBehaviour.PrepareFrame.html">PrepareFrame</a></td><td class="desc"></td><td class="desc1">This function is called during the PrepareFrame phase of the PlayableGraph.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Playables.PlayableBehaviour.ProcessFrame.html">ProcessFrame</a></td><td class="desc"></td><td class="desc1">This function is called during the ProcessFrame phase of the PlayableGraph.</td></tr>
+    </table></div></div></div></div></body></html>

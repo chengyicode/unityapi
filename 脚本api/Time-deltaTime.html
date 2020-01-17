@@ -1,0 +1,57 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Time.deltaTime</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Time.html">Time</a>.deltaTime</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static float <span class="sig-kw">deltaTime</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The completion time in seconds since the last frame (Read Only).</p></div><div class="subsection"><p>This property provides the time between the current and previous frame.<br /><br />Use <a href="Time-deltaTime.html">Time.deltaTime</a> to move a <a href="GameObject.html">GameObject</a> in the <code class="varname">y</code> direction, at <code class="varname">n</code> units per second. Multiply <code class="varname">n</code> by <a href="Time-deltaTime.html">Time.deltaTime</a> and add to the <code class="varname">y</code> component.<br /><br /><a href="MonoBehaviour.FixedUpdate.html">MonoBehaviour.FixedUpdate</a> uses <a href="Time-fixedDeltaTime.html">fixedDeltaTime</a> instead of <a href="Time-deltaTime.html">deltaTime</a>. Do not rely on <a href="Time-deltaTime.html">Time.deltaTime</a> inside <a href="MonoBehaviour.OnGUI.html">MonoBehaviour.OnGUI</a>. Unity can call <a href="Time.OnGUI.html">OnGUI</a> multiple times per frame. The application use the same <a href="Time-deltaTime.html">deltaTime</a> value per call.<br /><br />The following example implements a <code class="varname">timer</code>. The <code class="varname">timer</code> adds <a href="Time-deltaTime.html">deltaTime</a> each frame. The example announces the <code class="varname">timer</code> value and resets it to zero when it reaches 2 seconds. The <code class="varname">timer</code> does not hit 2.0 when <a href="MonoBehaviour.Update.html">MonoBehaviour.Update</a> adds <a href="Time-deltaTime.html">deltaTime</a>. The test is for the <code class="varname">timer</code> moving 2 seconds. The script code removes the reported time, and the <code class="varname">timer</code> restarts. The restart is not always exactly 0.0. The speed changes between 0.5 and 2.0 seconds. <a href="Time-timeScale.html">Time.timeScale</a> stores the chosen time-is-passing scale.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;<br /><br />// <a href="Time-deltaTime.html">Time.deltaTime</a> example.
+//
+// Wait two seconds and display waited time.
+// This is typically just beyond 2 seconds.
+// Allow the speed of the time to be increased or decreased.
+// It can range between 0.5 and 2.0. These changes only
+// happen when the timer restarts.<br /><br />public class ScriptExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private float waitTime = 2.0f;
+    private float timer = 0.0f;
+    private float visualTime = 0.0f;
+    private int width, height;
+    private float value = 10.0f;
+    private float scrollBar = 1.0f;<br /><br />    void Awake()
+    {
+        width = <a href="Screen-width.html">Screen.width</a>;
+        height = <a href="Screen-height.html">Screen.height</a>;
+        <a href="Time-timeScale.html">Time.timeScale</a> = scrollBar;
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        timer += <a href="Time-deltaTime.html">Time.deltaTime</a>;<br /><br />        // Check if we have reached beyond 2 seconds.
+        // Subtracting two is more accurate over time than resetting to zero.
+        if (timer &gt; waitTime)
+        {
+            visualTime = timer;<br /><br />            // Remove the recorded 2 seconds.
+            timer = timer - waitTime;
+            <a href="Time-timeScale.html">Time.timeScale</a> = scrollBar;
+        }
+    }<br /><br />    void OnGUI()
+    {
+        <a href="GUIStyle.html">GUIStyle</a> sliderDetails = new <a href="GUIStyle.html">GUIStyle</a>(GUI.skin.GetStyle("horizontalSlider"));
+        <a href="GUIStyle.html">GUIStyle</a> sliderThumbDetails = new <a href="GUIStyle.html">GUIStyle</a>(GUI.skin.GetStyle("horizontalSliderThumb"));
+        <a href="GUIStyle.html">GUIStyle</a> labelDetails = new <a href="GUIStyle.html">GUIStyle</a>(GUI.skin.GetStyle("label"));<br /><br />        // Set the size of the fonts and the width/height of the slider.
+        labelDetails.fontSize = 6 * (width / 200);
+        sliderDetails.fixedHeight = height / 32;
+        sliderDetails.fontSize = 12 * (width / 200);
+        sliderThumbDetails.fixedHeight = height / 32;
+        sliderThumbDetails.fixedWidth = width / 32;<br /><br />        // Show the slider. Make the scale to be ten times bigger than the needed size.
+        value = <a href="GUI.HorizontalSlider.html">GUI.HorizontalSlider</a>(new <a href="Rect.html">Rect</a>(width / 8, height / 4, width - (4 * width / 8), height - (2 * height / 4)),
+            value, 5.0f, 20.0f, sliderDetails, sliderThumbDetails);<br /><br />        // Show the value from the slider. Make sure that 0.5, 0.6... 1.9, 2.0 are shown.
+        float v = ((float)<a href="Mathf.RoundToInt.html">Mathf.RoundToInt</a>(value)) / 10.0f;
+        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(width / 8, height / 3.25f, width - (2 * width / 8), height - (2 * height / 4)),
+            "timeScale: " + v.ToString("f1"), labelDetails);
+        scrollBar = v;<br /><br />        // <a href="Display.html">Display</a> the recorded time in a certain size.
+        labelDetails.fontSize = 14 * (width / 200);
+        <a href="GUI.Label.html">GUI.Label</a>(new <a href="Rect.html">Rect</a>(width / 8, height / 2, width - (2 * width / 8), height - (2 * height / 4)),
+            "Timer value is: " + visualTime.ToString("f4") + " seconds.", labelDetails);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

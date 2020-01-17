@@ -1,0 +1,16 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AssetModificationProcessor.OnWillMoveAsset(string,string)</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="AssetModificationProcessor.html">AssetModificationProcessor</a>.OnWillMoveAsset(string,string)</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Unity calls this method when it is about to move an Asset on disk.</p></div><div class="subsection"><p>Implement this method to customize the actions Unity performs when moving an Asset inside the Editor. This method allows you to move the Asset yourself but, if you do, please remember to return the correct enum. Alternatively, you can perform some processing and let Unity move the file.
+The moving of the asset can be prevented by returning <a href="AssetMoveResult.FailedMove.html">AssetMoveResult.FailedMove</a>
+You should not call any Unity AssetDatabase API from within this callback, preferably restrict yourself to the usage of file operations or VCS APIs.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;<br /><br />public class CustomAssetModificationProcessor : UnityEditor.AssetModificationProcessor
+{
+    private static <a href="AssetMoveResult.html">AssetMoveResult</a> OnWillMoveAsset(string sourcePath, string destinationPath)
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("Source path: " + sourcePath + ". Destination path: " + destinationPath + ".");
+        <a href="AssetMoveResult.html">AssetMoveResult</a> assetMoveResult = <a href="AssetMoveResult.DidMove.html">AssetMoveResult.DidMove</a>;<br /><br />        // Perform operations on the asset and set the value of 'assetMoveResult' accordingly.<br /><br />        return assetMoveResult;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AudioClip.length</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="AudioClip.html">AudioClip</a>.length</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-AudioClip.html' title='Go to AudioClip Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public float <span class="sig-kw">length</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The length of the audio clip in seconds. (Read Only)</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//Attach an <a href="AudioSource.html">AudioSource</a> component to a <a href="GameObject.html">GameObject</a> along with this script.
+//Click and drag or choose an Audio clip to the <strong>AudioClip</strong> field in the <a href="AudioSource.html">AudioSource</a>.
+//Click and drag or choose a different Audio clip for the Audio Clip 2 field in the Inspector window.<br /><br />//This script switches between two Audio clips and outputs each of their lengths in the console
+//In Play <a href="Scripting.GarbageCollector.Mode.html">Mode</a>, press the space key to switch between the Audio clips<br /><br />using UnityEngine;
+using UnityEngine.Audio;<br /><br />public class AudioClipLengthExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    //Make sure your <a href="GameObject.html">GameObject</a> has an <a href="AudioSource.html">AudioSource</a> component first
+    <a href="AudioSource.html">AudioSource</a> m_AudioSource;<br /><br />    //Make sure to set an Audio Clip in the <a href="AudioSource.html">AudioSource</a> component
+    <a href="AudioClip.html">AudioClip</a> m_AudioClip;<br /><br />    //Make sure you set an <a href="AudioClip.html">AudioClip</a> in the Inspector window
+    public <a href="AudioClip.html">AudioClip</a> m_AudioClip2;<br /><br />    void Start()
+    {
+        //Fetch the <a href="AudioSource.html">AudioSource</a> from the <a href="GameObject.html">GameObject</a>
+        m_AudioSource = GetComponent&lt;<a href="AudioSource.html">AudioSource</a>&gt;();<br /><br />        //Set the original <a href="AudioClip.html">AudioClip</a> as this clip
+        m_AudioClip = m_AudioSource.clip;<br /><br />        //Output the current clip's length
+        <a href="Debug.Log.html">Debug.Log</a>("Audio clip length : " + m_AudioSource.clip.length);
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        //Press this key to switch Audio Clips
+        if (<a href="Input.GetKeyDown.html">Input.GetKeyDown</a>(<a href="KeyCode.Space.html">KeyCode.Space</a>))
+        {
+            SwitchAudio();
+        }
+    }<br /><br />    void SwitchAudio()
+    {
+        //If the current Audio clip is the original Audio clip, switch to the second clip
+        if (m_AudioSource.clip == m_AudioClip)
+        {
+            //<a href="PlayerSettings.Switch.html">Switch</a> to the second clip
+            m_AudioSource.clip = m_AudioClip2;<br /><br />            //Play the second clip
+            m_AudioSource.Play();
+        }
+        //Otherwise, if the current Audio clip is the second clip, switch back
+        else if (m_AudioSource.clip == m_AudioClip2)
+        {
+            //<a href="PlayerSettings.Switch.html">Switch</a> back to the original Audio clip
+            m_AudioSource.clip = m_AudioClip;<br /><br />            //Play the original clip
+            m_AudioSource.Play();
+        }<br /><br />        //Ouput the length of the current Audio clip
+        <a href="Debug.Log.html">Debug.Log</a>("Audio clip length : " + m_AudioSource.clip.length);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

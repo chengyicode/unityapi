@@ -1,0 +1,20 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: LayerMask.GetMask</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="LayerMask.html">LayerMask</a>.GetMask</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static int <span class="sig-kw">GetMask</span>(params string[] <span class="sig-kw">layerNames</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">layerNames</td><td class="desc"></td><td class="desc1">List of layer names to convert to a layer mask.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>int</strong>
+        The layer mask created from the <code class="varname">layerNames</code>.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Given a set of layer names as defined by either a Builtin or a User Layer in the <a href="../Manual/class-TagManager.html">Tags and Layers manager</a>, returns the equivalent layer mask for all of them.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        <a href="Debug.Log.html">Debug.Log</a>(<a href="LayerMask.GetMask.html">LayerMask.GetMask</a>("UserLayerA", "UserLayerB"));
+    }
+}
+</pre>
+      </div><div class="subsection"><p>
+<strong>Note:</strong> Suppose <code class="varname">UserLayerA</code> and <code class="varname">UserLayerB</code> are the tenth and eleventh layers.
+These will have a User Layer values of 10 and 11.  To obtain their layer mask value
+their names can be passed into <a href="LayerMask.GetMask.html">GetMask</a>.  The argument can either be a
+list of their names or an array of strings storing their names. In this case the
+return value will be 2^10 + 2^11 = 3072.</p></div></div></div></div></body></html>

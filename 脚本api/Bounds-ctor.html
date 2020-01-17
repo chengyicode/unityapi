@@ -1,0 +1,18 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Bounds.Bounds</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">Bounds Constructor</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <span class="sig-kw">Bounds</span>(<a href="Vector3.html">Vector3</a> <span class="sig-kw">center</span>,
+<a href="Vector3.html">Vector3</a> <span class="sig-kw">size</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">center</td><td class="desc"></td><td class="desc1">The location of the origin of the Bounds.</td></tr><tr><td class="name lbl">size</td><td class="desc"></td><td class="desc1">The dimensions of the Bounds.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Creates a new Bounds.</p></div><div class="subsection"><p>Create a new Bounds with the given center and total size. Bound extents
+        will be half the given size.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Create bounding box centered at the origin
+using UnityEngine;
+using System.Collections;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    <a href="Bounds.html">Bounds</a> b;<br /><br />    void Start()
+    {
+        b = new <a href="Bounds.html">Bounds</a>(new <a href="Vector3.html">Vector3</a>(0, 0, 0), new <a href="Vector3.html">Vector3</a>(1, 2, 1));
+    }
+}
+</pre>
+      </div><div class="subsection"><p>When no parameters are given to the constructor, the bounds created
+        has a center of (0,0,0) and an extent of (0,0,0).</p></div></div></div></div></body></html>

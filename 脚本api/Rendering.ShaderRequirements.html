@@ -1,0 +1,67 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ShaderRequirements</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">ShaderRequirements</h1><div class="clear"></div><p class="cl mb0 left mr10">enumeration</p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Required shader features for some particular shader. Features are bit flags.</p></div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.ShaderRequirements.None.html">None</a></td><td class="desc"></td><td class="desc1">No shader requirements.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.ShaderRequirements.BaseShaders.html">BaseShaders</a></td><td class="desc"></td><td class="desc1">Indicates that basic shader capability, Shader Model 2.0 level is required.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.ShaderRequirements.Interpolators10.html">Interpolators10</a></td><td class="desc"></td><td class="desc1">Indicates the shader must have 10 interpolators.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.ShaderRequirements.Interpolators32.html">Interpolators32</a></td><td class="desc"></td><td class="desc1">Indicates the shader must have 32 interpolators</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.ShaderRequirements.MRT4.html">MRT4</a></td><td class="desc"></td><td class="desc1">Indicates the shader must have multiple render targets (at least 4), as in support a fragment shader that can output up to 4 values.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.ShaderRequirements.MRT8.html">MRT8</a></td><td class="desc"></td><td class="desc1">Indicates the shader must have multiple render targets (at least 8), as in support a fragment shader that can output up to 4 values.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.ShaderRequirements.Derivatives.html">Derivatives</a></td><td class="desc"></td><td class="desc1">Indicates that derivative (ddx/ddy) instructions support is required in the fragment shader.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.ShaderRequirements.SampleLOD.html">SampleLOD</a></td><td class="desc"></td><td class="desc1">Indicates the shader requires the support of texture sampling in a fragment shader with an explicit mipmap level.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.ShaderRequirements.FragCoord.html">FragCoord</a></td><td class="desc"></td><td class="desc1">Indicates that pixel position (SV_Position) input support is required in the fragment shader.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.ShaderRequirements.Interpolators15Integers.html">Interpolators15Integers</a></td><td class="desc"></td><td class="desc1">Indicates the shader must have 15 integers and interpolators in total. Unity bundles them together because it is extremely unlikely a GPU/API will ever exist that only has part of that.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.ShaderRequirements.Texture2DArray.html">Texture2DArray</a></td><td class="desc"></td><td class="desc1">Indicates the shader requires 2D array textures.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.ShaderRequirements.Instancing.html">Instancing</a></td><td class="desc"></td><td class="desc1">Indicates the shader must support SV_InstanceID shader input.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.ShaderRequirements.Geometry.html">Geometry</a></td><td class="desc"></td><td class="desc1">Indicates that geometry shader support is required.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.ShaderRequirements.CubeArray.html">CubeArray</a></td><td class="desc"></td><td class="desc1">Indicates the shader requires cubemap array support.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.ShaderRequirements.Compute.html">Compute</a></td><td class="desc"></td><td class="desc1">
+                    Indicates that compute shader support is required.
+                </td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.ShaderRequirements.RandomWrite.html">RandomWrite</a></td><td class="desc"></td><td class="desc1">Indicates the shader requires have random-write textures (UAVs) support.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.ShaderRequirements.TessellationCompute.html">TessellationCompute</a></td><td class="desc"></td><td class="desc1">Indicates the shader requires the support of tessellation using a compute shader for control points processing. Metal graphics API requires this feature for tessellation.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.ShaderRequirements.TessellationShaders.html">TessellationShaders</a></td><td class="desc"></td><td class="desc1">Indicates the shader requires the support of tessellation using the hull and domain shader stages.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.ShaderRequirements.SparseTexelResident.html">SparseTexelResident</a></td><td class="desc"></td><td class="desc1">Indicates the shader requires the support of sparse textures with sampling instructions that return residency information.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.ShaderRequirements.FramebufferFetch.html">FramebufferFetch</a></td><td class="desc"></td><td class="desc1">Indicates the shader must support framebuffer fetch, which is the ability to have in+out fragment shader color params.</td></tr>
+      <tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl">
+<tr><td class="descn"></td><td class="lbl"><a href="Rendering.ShaderRequirements.MSAATextureSamples.html">MSAATextureSamples</a></td><td class="desc"></td><td class="desc1">Indicates the shader requires access to MSAA texture samples.</td></tr>
+    </table></div></div></div></div></body></html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: SceneManagement.SceneManager.activeSceneChanged</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="SceneManagement.SceneManager.html">SceneManager</a>.activeSceneChanged</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">value</td><td class="desc"></td><td class="desc1">Use a subscription of either a UnityAction&lt;<a href="SceneManagement.Scene.html">Scene</a>, <a href="SceneManagement.Scene.html">Scene</a>&gt; or a method that takes two <a href="SceneManagement.Scene.html">Scene</a> types arguments.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Subscribe to this event to get notified when the active Scene has changed.</p></div><div class="subsection"><p>This script added to <a href="SceneManagement.SceneManager-activeSceneChanged.html">activeSceneChanged</a> takes two hidden arguments.  These are the replaced Scene and the next Scene.  The arguments are not visible.<br /><br />In the Editor this event is sent only in Play mode (not in Edit mode). If the event is needed for Edit mode then use
+EditorSceneManager.activeSceneChanged.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// <a href="SceneManagement.SceneManager-activeSceneChanged.html">SceneManager.activeSceneChanged</a>
+//
+// This example configures Scene1 to wait for 1.5 seconds before switching to Scene2.
+// Scene1 is the replaced <a href="SceneManagement.Scene.html">Scene</a>; Scene2 is the new loaded <a href="SceneManagement.Scene.html">Scene</a>.<br /><br />using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;<br /><br />public class ScriptExample1 : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public delegate void Change();
+    public static event Change TimeChanged;<br /><br />    public void Start()
+    {
+        <a href="SceneManagement.SceneManager-activeSceneChanged.html">SceneManager.activeSceneChanged</a> += ChangedActiveScene;<br /><br />        // wait 1.5 seconds before change to Scene2
+        StartCoroutine(TimeChangedScene());
+    }<br /><br />    IEnumerator TimeChangedScene()
+    {
+        print(<a href="Time-time.html">Time.time</a> + " seconds");
+        yield return new <a href="WaitForSeconds.html">WaitForSeconds</a>(1.5f);
+        print(<a href="Time-time.html">Time.time</a> + " seconds");<br /><br />        // call the event
+        TimeChanged();
+    }<br /><br />    private void ChangedActiveScene(<a href="SceneManagement.Scene.html">Scene</a> current, <a href="SceneManagement.Scene.html">Scene</a> next)
+    {
+        string currentName = current.name;<br /><br />        if (currentName == null)
+        {
+            // Scene1 has been removed
+            currentName = "Replaced";
+        }<br /><br />        <a href="Debug.Log.html">Debug.Log</a>("Scenes: " + currentName + ", " + next.name);
+    }<br /><br />    void OnEnable()
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("OnEnable");
+        ScriptExample1.TimeChanged += ChangeScene;
+    }<br /><br />    void ChangeScene()
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("Changing to Scene2");
+        <a href="SceneManagement.SceneManager.LoadScene.html">SceneManager.LoadScene</a>("Scene2");<br /><br />        <a href="SceneManagement.Scene.html">Scene</a> scene = <a href="SceneManagement.SceneManager.GetSceneByName.html">SceneManager.GetSceneByName</a>("Scene2");
+        <a href="SceneManagement.SceneManager.SetActiveScene.html">SceneManager.SetActiveScene</a>(scene);
+    }<br /><br />    void OnDisable()
+    {
+        ScriptExample1.TimeChanged -= ChangeScene;
+        <a href="Debug.Log.html">Debug.Log</a>("OnDisable happened for Scene1");
+    }
+}
+</pre>
+      </div><div class="subsection"><p>
+        <code class="varname">ScriptExample2</code> simply announces that this is the active Scene.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;<br /><br />public class ScriptExample2 : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("Script2 starting");
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: AI.NavMeshAgent.destination</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="AI.NavMeshAgent.html">NavMeshAgent</a>.destination</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Vector3.html">Vector3</a> <span class="sig-kw">destination</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Gets or attempts to set the destination of the agent in world-space units.</p></div><div class="subsection"><p>Getting:<br /><br />Returns the destination set for this agent.<br /><br />• If a destination is set but the path is not yet processed the position returned will be valid navmesh position that's closest to the previously set position.<br />
+• If the agent has no path or requested path - returns the agents position on the navmesh.<br />
+• If the agent is not mapped to the navmesh (e.g. Scene has no navmesh) - returns a position at infinity.<br /><br />Setting:<br /><br />Requests the agent to move to the valid navmesh position that's closest to the requested destination.<br /><br />• The path result may not become available until after a few frames. Use <a href="AI.NavMeshAgent-pathPending.html">pathPending</a> to query for outstanding results.<br />
+• If it's not possible to find a valid nearby navmesh position (e.g. Scene has no navmesh) no path is requested. Use <a href="AI.NavMeshAgent.SetDestination.html">SetDestination</a> and check return value if you need to handle this case explicitly.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.AI;<br /><br />[<a href="RequireComponent.html">RequireComponent</a>(typeof(<a href="AI.NavMeshAgent.html">NavMeshAgent</a>))]
+public class FollowTarget : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Transform.html">Transform</a> target;
+    <a href="Vector3.html">Vector3</a> destination;
+    <a href="AI.NavMeshAgent.html">NavMeshAgent</a> agent;<br /><br />    void Start()
+    {
+        // <a href="Cache.html">Cache</a> agent component and destination
+        agent = GetComponent&lt;<a href="AI.NavMeshAgent.html">NavMeshAgent</a>&gt;();
+        destination = agent.destination;
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        // <a href="Experimental.PlayerLoop.Update.html">Update</a> destination if the target moves one unit
+        if (<a href="Vector3.Distance.html">Vector3.Distance</a>(destination, target.position) &gt; 1.0f)
+        {
+            destination = target.position;
+            agent.destination = destination;
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

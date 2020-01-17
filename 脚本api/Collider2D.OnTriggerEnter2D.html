@@ -1,0 +1,66 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Collider2D.OnTriggerEnter2D(Collider2D)</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Collider2D.html">Collider2D</a>.OnTriggerEnter2D(Collider2D)</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">other</td><td class="desc"></td><td class="desc1">The other <a href="Collider2D.html">Collider2D</a> involved in this collision.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Sent when another object enters a trigger collider attached to this object (2D physics only).</p></div><div class="subsection"><p>Further information about the other collider is reported in the <a href="Collider2D.html">Collider2D</a> parameter passed during the call.<br /><br />Trigger events will be sent to disabled <a href="MonoBehaviour.html">MonoBehaviour</a>s, to allow enabling <a href="Behaviour.html">Behaviour</a>s in response to collisions.<br /><br />See Also: The <a href="Collider2D.html">Collider2D</a> class and the <a href="Collider2D.OnTriggerExit2D.html">OnTriggerExit2D</a> and <a href="Collider2D.OnTriggerStay2D.html">OnTriggerStay2D</a> messages.<br /><br />An <a href="Collider2D.OnTriggerEnter2D.html">OnTriggerEnter2D</a> example is shown.  This example has two empty <a href="GameObject.html">GameObject</a>s, called <code class="varname">GameObject1</code> and <code class="varname">GameObject2</code>.  These both have script files which makes the example work.  The first script, <code class="varname">Example1</code>, creates a <a href="Sprite.html">Sprite</a> and adds a <a href="BoxCollider2D.html">BoxCollider2D</a> and a <a href="Rigidbody2D.html">Rigidbody2D</a>.  This object falls under gravity and collides with <code class="varname">Example2</code>.  <code class="varname">Example2</code> has no visibility.  (The rectangle it creates is visible in the Scene window.) Both <a href="GameObject.html">GameObject</a>s report the collision.<br /><br />The script below is Example1.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;<br /><br />// Create GameObject1 that falls under gravity.  It will pass through
+// Example2 and cause a collision.  GameObject1 is moved back to
+// the start position and it will again start to fall under gravity.<br /><br />public class Example1 : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Awake()
+    {
+        <a href="SpriteRenderer.html">SpriteRenderer</a> sr;
+        sr = gameObject.AddComponent&lt;<a href="SpriteRenderer.html">SpriteRenderer</a>&gt;() as <a href="SpriteRenderer.html">SpriteRenderer</a>;
+        sr.color = new <a href="Color.html">Color</a>(0.9f, 0.9f, 0.1f, 1.0f);<br /><br />        <a href="BoxCollider2D.html">BoxCollider2D</a> bc;
+        bc = gameObject.AddComponent&lt;<a href="BoxCollider2D.html">BoxCollider2D</a>&gt;() as <a href="BoxCollider2D.html">BoxCollider2D</a>;
+        bc.size = new <a href="Vector2.html">Vector2</a>(1.0f, 1.0f);<br /><br />        <a href="Rigidbody2D.html">Rigidbody2D</a> rb;
+        rb = gameObject.AddComponent&lt;<a href="Rigidbody2D.html">Rigidbody2D</a>&gt;() as <a href="Rigidbody2D.html">Rigidbody2D</a>;
+        rb.gravityScale = 1.0f;<br /><br />        // A square in the <a href="Resources.html">Resources</a> folder is used.
+        gameObject.GetComponent&lt;<a href="SpriteRenderer.html">SpriteRenderer</a>&gt;().sprite = <a href="Resources.Load.html">Resources.Load</a>&lt;<a href="Sprite.html">Sprite</a>&gt;("square");<br /><br />        // GameObject1 starts 3 units in the Up direction.
+        gameObject.transform.position = new <a href="Vector3.html">Vector3</a>(0.0f, 3.0f, 0.0f);
+        gameObject.transform.localScale = new <a href="Vector3.html">Vector3</a>(0.5f, 0.5f, 1.0f);
+    }<br /><br />    private float timer = 0.0f;
+    private bool restart = false;<br /><br />    void <a href="Experimental.PlayerLoop.FixedUpdate.html">FixedUpdate</a>()
+    {
+        if (restart == true)
+        {
+            timer = timer + <a href="Time-deltaTime.html">Time.deltaTime</a>;
+            if (timer &gt; 0.25f)
+            {
+                gameObject.transform.position = new <a href="Vector3.html">Vector3</a>(0.0f, 3.0f, 0.0f);
+                gameObject.GetComponent&lt;<a href="Rigidbody2D.html">Rigidbody2D</a>&gt;().velocity = new <a href="Vector2.html">Vector2</a>(0.0f, 0.0f);
+                restart = false;
+            }
+        }
+    }<br /><br />    // called when this <a href="GameObject.html">GameObject</a> collides with GameObject2.
+    void OnTriggerEnter2D(<a href="Collider2D.html">Collider2D</a> col)
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("GameObject1 collided with " + col.name);
+        restart = true;
+        timer = 0.0f;
+    }
+}
+</pre>
+      </div><div class="subsection"><p>This is <code class="varname">Example2</code> which is the collide script for the second <a href="GameObject.html">GameObject</a>:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;<br /><br />// Create a rectangle that the other <a href="GameObject.html">GameObject</a> will collide with.
+// Note that this <a href="GameObject.html">GameObject</a> has no visibility.
+// (View in the <a href="SceneManagement.Scene.html">Scene</a> view to see this <a href="GameObject.html">GameObject</a>.)<br /><br />public class Example2 : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Awake()
+    {
+        <a href="BoxCollider2D.html">BoxCollider2D</a> bc;
+        bc = gameObject.AddComponent&lt;<a href="BoxCollider2D.html">BoxCollider2D</a>&gt;() as <a href="BoxCollider2D.html">BoxCollider2D</a>;
+        bc.size = new <a href="Vector2.html">Vector2</a>(3.0f, 1.0f);
+        bc.isTrigger = true;<br /><br />        gameObject.transform.localScale = new <a href="Vector3.html">Vector3</a>(3.0f, 1.0f, 1.0f);
+        gameObject.transform.position = new <a href="Vector3.html">Vector3</a>(0.0f, -2.0f, 0.0f);
+    }<br /><br />    void OnTriggerEnter2D(<a href="Collider2D.html">Collider2D</a> col)
+    {
+        <a href="Debug.Log.html">Debug.Log</a>("GameObject2 collided with " + col.name);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorWindow.SendEvent</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorWindow.html">EditorWindow</a>.SendEvent</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public bool <span class="sig-kw">SendEvent</span>(<a href="Event.html">Event</a> <span class="sig-kw">e</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Sends an Event to a window.</p></div><div class="subsection"><p>
+        The <a href="EditorWindow.SendEvent.html">SendEvent</a> public function passes a selected
+        <a href="Event.html">Event</a> to a chosen visible window. The <a href="Event.html">Event</a> can be
+        found in the <a href="EventType.html">EventType</a> list.<br />
+<br />
+In the following scripts <code class="varname">sendEvent</code> looks up the <code class="varname">receiveEvent</code> window.
+A <code class="varname">Paste</code> event is then sent over when the button is pressed.
+        </p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Send an event to another editor window.  This second
+// window needs to be visible to receive the event.<br /><br />using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class sendEvent : <a href="EditorWindow.html">EditorWindow</a>
+{
+    [<a href="MenuItem.html">MenuItem</a>("Examples/Send <a href="Event.html">Event</a>")]
+    static void Init()
+    {
+        sendEvent window =
+            <a href="EditorWindow.GetWindow.html">EditorWindow.GetWindow</a>&lt;sendEvent&gt;(true, "Send <a href="Event.html">Event</a> Window");
+        window.Show();
+    }<br /><br />    void OnGUI()
+    {
+        if (<a href="GUI.Button.html">GUI.Button</a>(new <a href="Rect.html">Rect</a>(10.0f, 10.0f, 100.0f, 30.0f), "Send <a href="Event.html">Event</a>"))
+        {
+            <a href="EditorWindow.html">EditorWindow</a> win = GetWindow&lt;receiveEvent&gt;();
+            win.SendEvent(<a href="EditorGUIUtility.CommandEvent.html">EditorGUIUtility.CommandEvent</a>("Paste"));
+        }
+    }
+}
+</pre>
+      </div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// A small editor window that receives sent events.<br /><br />using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />public class receiveEvent : <a href="EditorWindow.html">EditorWindow</a>
+{
+    [<a href="MenuItem.html">MenuItem</a>("Examples/Receive <a href="Event.html">Event</a>")]
+    static void Init()
+    {
+        receiveEvent window =
+            <a href="EditorWindow.GetWindow.html">EditorWindow.GetWindow</a>&lt;receiveEvent&gt;(true, "Receive <a href="Event.html">Event</a> Window");
+        window.Show();
+    }<br /><br />    void OnGUI()
+    {
+        <a href="Event.html">Event</a> e = <a href="Event-current.html">Event.current</a>;<br /><br />        if (e.commandName == "Paste")
+            <a href="Debug.Log.html">Debug.Log</a>("Paste received");
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

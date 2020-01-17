@@ -1,0 +1,16 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: WWWForm.headers</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="WWWForm.html">WWWForm</a>.headers</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public Dictionary&lt;string,string&gt; <span class="sig-kw">headers</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>(Read Only) Returns the correct request headers for posting the form using the WWW class.</p></div><div class="subsection"><p>This field only contains one header, /"Content-Type"/,
+which is set to the correct mime type for the form: "<code class="mono">application/x-www-form-urlencoded</code>" for normal
+forms and "<code class="mono">multipart/form-data</code>" for forms containing data added using <a href="WWWForm.AddBinaryData.html">AddBinaryData</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a> {<br /><br />    IEnumerator Start () {
+        Dictionary&lt;string, string&gt; headers = new Dictionary&lt;string,string&gt;();
+        headers.Add("header-name", "header content");
+        WWW www = new WWW("https://example.com", null, headers);
+        yield return www;
+        <a href="Debug.Log.html">Debug.Log</a> (www.text);
+    }<br /><br />}
+</pre>
+      </div></div></div></div></body></html>

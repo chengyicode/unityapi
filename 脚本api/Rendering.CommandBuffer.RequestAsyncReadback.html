@@ -1,0 +1,35 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Rendering.CommandBuffer.RequestAsyncReadback</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Rendering.CommandBuffer.html">CommandBuffer</a>.RequestAsyncReadback</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">RequestAsyncReadback</span>(<a href="ComputeBuffer.html">ComputeBuffer</a> <span class="sig-kw">src</span>,
+Action&lt;AsyncGPUReadbackRequest&gt; <span class="sig-kw">callback</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">RequestAsyncReadback</span>(<a href="ComputeBuffer.html">ComputeBuffer</a> <span class="sig-kw">src</span>,
+int <span class="sig-kw">size</span>,
+int <span class="sig-kw">offset</span>,
+Action&lt;AsyncGPUReadbackRequest&gt; <span class="sig-kw">callback</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">RequestAsyncReadback</span>(<a href="Texture.html">Texture</a> <span class="sig-kw">src</span>,
+Action&lt;AsyncGPUReadbackRequest&gt; <span class="sig-kw">callback</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">RequestAsyncReadback</span>(<a href="Texture.html">Texture</a> <span class="sig-kw">src</span>,
+int <span class="sig-kw">mipIndex</span>,
+Action&lt;AsyncGPUReadbackRequest&gt; <span class="sig-kw">callback</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">RequestAsyncReadback</span>(<a href="Texture.html">Texture</a> <span class="sig-kw">src</span>,
+int <span class="sig-kw">mipIndex</span>,
+<a href="TextureFormat.html">TextureFormat</a> <span class="sig-kw">dstFormat</span>,
+Action&lt;AsyncGPUReadbackRequest&gt; <span class="sig-kw">callback</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">RequestAsyncReadback</span>(<a href="Texture.html">Texture</a> <span class="sig-kw">src</span>,
+int <span class="sig-kw">mipIndex</span>,
+int <span class="sig-kw">x</span>,
+int <span class="sig-kw">width</span>,
+int <span class="sig-kw">y</span>,
+int <span class="sig-kw">height</span>,
+int <span class="sig-kw">z</span>,
+int <span class="sig-kw">depth</span>,
+Action&lt;AsyncGPUReadbackRequest&gt; <span class="sig-kw">callback</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public void <span class="sig-kw">RequestAsyncReadback</span>(<a href="Texture.html">Texture</a> <span class="sig-kw">src</span>,
+int <span class="sig-kw">mipIndex</span>,
+int <span class="sig-kw">x</span>,
+int <span class="sig-kw">width</span>,
+int <span class="sig-kw">y</span>,
+int <span class="sig-kw">height</span>,
+int <span class="sig-kw">z</span>,
+int <span class="sig-kw">depth</span>,
+<a href="TextureFormat.html">TextureFormat</a> <span class="sig-kw">dstFormat</span>,
+Action&lt;AsyncGPUReadbackRequest&gt; <span class="sig-kw">callback</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">src</td><td class="desc"></td><td class="desc1">The resource to read the data from.</td></tr><tr><td class="name lbl">size</td><td class="desc"></td><td class="desc1">Size in bytes of the data to be retrieved from the <a href="ComputeBuffer.html">ComputeBuffer</a>.</td></tr><tr><td class="name lbl">offset</td><td class="desc"></td><td class="desc1">Offset in bytes in the <a href="ComputeBuffer.html">ComputeBuffer</a>.</td></tr><tr><td class="name lbl">mipIndex</td><td class="desc"></td><td class="desc1">The index of the mipmap to be fetched.</td></tr><tr><td class="name lbl">dstFormat</td><td class="desc"></td><td class="desc1">The target <a href="TextureFormat.html">TextureFormat</a> of the data. Conversion will happen automatically if format is different from the format stored on GPU.</td></tr><tr><td class="name lbl">x</td><td class="desc"></td><td class="desc1">Starting X coordinate in pixels of the Texture data to be fetched.</td></tr><tr><td class="name lbl">y</td><td class="desc"></td><td class="desc1">Starting Y coordinate in pixels of the Texture data to be fetched.</td></tr><tr><td class="name lbl">z</td><td class="desc"></td><td class="desc1">Start Z coordinate in pixels for the <a href="Texture3D.html">Texture3D</a> being fetched. Index of Start layer for TextureCube, <a href="Texture2DArray.html">Texture2DArray</a> and TextureCubeArray being fetched.</td></tr><tr><td class="name lbl">depth</td><td class="desc"></td><td class="desc1">Depth in pixels for <a href="Texture3D.html">Texture3D</a> being fetched. Number of layers for TextureCube, TextureArray and TextureCubeArray.</td></tr><tr><td class="name lbl">width</td><td class="desc"></td><td class="desc1">Width in pixels of the Texture data to be fetched.</td></tr><tr><td class="name lbl">height</td><td class="desc"></td><td class="desc1">Height in pixels of the Texture data to be fetched.</td></tr><tr><td class="name lbl">callback</td><td class="desc"></td><td class="desc1">A delegate System.Action called once the request is fullfilled. The done request is passed as parameter to the System.Action.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Adds an asynchonous GPU readback request command to the command buffer.</p></div><div class="subsection"><p>See Also: <a href="Rendering.AsyncGPUReadback.Request.html">AsyncGPUReadback.Request</a>.</p></div></div></div></div></body></html>

@@ -1,0 +1,14 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Physics.defaultSolverIterations</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Physics.html">Physics</a>.defaultSolverIterations</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static int <span class="sig-kw">defaultSolverIterations</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The defaultSolverIterations determines how accurately Rigidbody joints and collision contacts are resolved. (default 6). Must be positive.</p></div><div class="subsection"><p>If you are having trouble with connected Rigidbodies oscillating and behaving erratically setting
+a higher solver iteration count may improve their stability (but is slower).<br /><br />This value is usually changed in <code class="mono">Edit-&gt;Project Settings-&gt;Physics</code> inspector instead of from scripts.<br /><br /><strong>Note:</strong> Changing the defaultSolverIterations does not affect already created Rigidbodies. To change an existing Rigidbody please use <a href="Rigidbody-solverIterations.html">Rigidbody.solverIterations</a>.<br /><br />See Also: <a href="Physics-defaultSolverVelocityIterations.html">Physics.defaultSolverVelocityIterations</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        <a href="Physics-defaultSolverIterations.html">Physics.defaultSolverIterations</a> = 10;
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

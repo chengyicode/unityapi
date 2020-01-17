@@ -1,0 +1,38 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Unity.IO.LowLevel.Unsafe.AsyncReadManager.Read</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Unity.IO.LowLevel.Unsafe.AsyncReadManager.html">AsyncReadManager</a>.Read</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Unity.IO.LowLevel.Unsafe.ReadHandle.html">Unity.IO.LowLevel.Unsafe.ReadHandle</a> <span class="sig-kw">Read</span>(string <span class="sig-kw">filename</span>,
+ReadCommand* <span class="sig-kw">readCmds</span>,
+uint <span class="sig-kw">readCmdCount</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">filename</td><td class="desc"></td><td class="desc1">The filename to read from.</td></tr><tr><td class="name lbl">readCmds</td><td class="desc"></td><td class="desc1">A pointer to an array of ReadCommand structs that specify offset, size, and destination buffer.</td></tr><tr><td class="name lbl">readCmdCount</td><td class="desc"></td><td class="desc1">The number of read commands pointed to by readCmds.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>ReadHandle</strong>
+        Used to monitor the progress and status of the read command.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Issues an asynchronous file read operation. Returns a ReadHandle.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.IO;
+using Unity.Collections;
+using Unity.IO.LowLevel.Unsafe;
+using Unity.Collections.LowLevel.Unsafe;
+using UnityEngine;<br /><br />class AsyncReadSample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private <a href="Unity.IO.LowLevel.Unsafe.ReadHandle.html">ReadHandle</a> readHandle;
+    NativeArray&lt;<a href="Unity.IO.LowLevel.Unsafe.ReadCommand.html">ReadCommand</a>&gt; cmds;<br /><br />    public unsafe void Start()
+    {
+        string filePath = <a href="Path.Combine.html">Path.Combine</a>(<a href="Application-streamingAssetsPath.html">Application.streamingAssetsPath</a>, "myfile.bin");
+        cmds = new NativeArray&lt;<a href="Unity.IO.LowLevel.Unsafe.ReadCommand.html">ReadCommand</a>&gt;(1, <a href="Unity.Collections.Allocator.Persistent.html">Allocator.Persistent</a>);
+        <a href="Unity.IO.LowLevel.Unsafe.ReadCommand.html">ReadCommand</a> cmd;
+        cmd.Offset = 0;
+        cmd.Size = 1024;
+        cmd.Buffer = (byte*)<a href="Unity.Collections.LowLevel.Unsafe.UnsafeUtility.Malloc.html">UnsafeUtility.Malloc</a>(cmd.Size, 16, <a href="Unity.Collections.Allocator.Persistent.html">Allocator.Persistent</a>);
+        cmds[0] = cmd;
+        readHandle = <a href="Unity.IO.LowLevel.Unsafe.AsyncReadManager.Read.html">AsyncReadManager.Read</a>(filePath, (<a href="Unity.IO.LowLevel.Unsafe.ReadCommand.html">ReadCommand</a>*)cmds.GetUnsafePtr(), 1);
+    }<br /><br />    public unsafe void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        if (readHandle.IsValid() &amp;&amp; readHandle.Status != <a href="Unity.IO.LowLevel.Unsafe.ReadStatus.InProgress.html">ReadStatus.InProgress</a>)
+        {
+            <a href="Debug.LogFormat.html">Debug.LogFormat</a>("Read {0}", readHandle.Status == <a href="Unity.IO.LowLevel.Unsafe.ReadStatus.Complete.html">ReadStatus.Complete</a> ? "Successful" : "Failed");
+            readHandle.Dispose();
+            <a href="Unity.Collections.LowLevel.Unsafe.UnsafeUtility.Free.html">UnsafeUtility.Free</a>(cmds[0].Buffer, <a href="Unity.Collections.Allocator.Persistent.html">Allocator.Persistent</a>);
+            cmds.Dispose();
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

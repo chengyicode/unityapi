@@ -1,0 +1,19 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Transform.localEulerAngles</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Transform.html">Transform</a>.localEulerAngles</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href='../Manual/class-Transform.html' title='Go to Transform Component in the Manual' class='switch-link gray-btn sbtn left show'>Switch to Manual</a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public <a href="Vector3.html">Vector3</a> <span class="sig-kw">localEulerAngles</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>The rotation as Euler angles in degrees relative to the parent transform's rotation.</p></div><div class="subsection"><p>The x, y, and z angles represent a rotation z degrees around the z axis, x degrees around the x axis, and y degrees around the y axis (in that order).<br /><br />Only use this variable to read and set the angles to absolute values. Don't increment them, as it will fail when the angle exceeds 360 degrees.
+Use <a href="Transform.Rotate.html">Transform.Rotate</a> instead.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        // Print the rotation around the parent's X <a href="Animations.Axis.html">Axis</a>
+        print(transform.localEulerAngles.x);
+        // Print the rotation around the parent's Y <a href="Animations.Axis.html">Axis</a>
+        print(transform.localEulerAngles.y);
+        // Print the rotation around the parent's Z <a href="Animations.Axis.html">Axis</a>
+        print(transform.localEulerAngles.z);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Unity automatically converts the angles to and from the rotation stored in <a href="Transform-localRotation.html">Transform.localRotation</a>.</p></div></div></div></div></body></html>

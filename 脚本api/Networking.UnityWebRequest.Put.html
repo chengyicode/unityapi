@@ -1,0 +1,34 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Networking.UnityWebRequest.Put</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Networking.UnityWebRequest.html">UnityWebRequest</a>.Put</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Networking.UnityWebRequest.html">Networking.UnityWebRequest</a> <span class="sig-kw">Put</span>(string <span class="sig-kw">uri</span>,
+byte[] <span class="sig-kw">bodyData</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static <a href="Networking.UnityWebRequest.html">Networking.UnityWebRequest</a> <span class="sig-kw">Put</span>(string <span class="sig-kw">uri</span>,
+string <span class="sig-kw">bodyData</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">uri</td><td class="desc"></td><td class="desc1">The URI to which the data will be sent.</td></tr><tr><td class="name lbl">bodyData</td><td class="desc"></td><td class="desc1">The data to transmit to the remote server.<br /><br />If a string, the string will be converted to raw bytes via <a href="http://msdn.microsoft.com/en-us/library/system.text.encoding.utf8">System.Text.Encoding.UTF8</a>.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>UnityWebRequest</strong>
+        A UnityWebRequest configured to transmit <code class="varname">bodyData</code> to <code class="varname">uri</code> via HTTP PUT.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Creates a UnityWebRequest configured to upload raw data to a remote server via HTTP PUT.</p></div><div class="subsection"><p>This method creates a UnityWebRequest, sets the target URL to the string <code class="varname">uri</code> argument and the <code class="varname">method</code> to <code class="mono">PUT</code>. It also sets the <code class="mono">Content-Type</code> header to <code class="mono">application/octet-stream</code>.<br /><br />This method attaches a standard <a href="Networking.DownloadHandlerBuffer.html">DownloadHandlerBuffer</a> to the UnityWebRequest. This is for convenience during development, as well as for applications which return status information regarding the uploaded data in the HTTP response body.<br /><br />This method stores the input upload data in an <a href="Networking.UploadHandlerRaw.html">UploadHandlerRaw</a> object and attaches it to the <a href="Networking.UnityWebRequest.html">UnityWebRequest</a>. <a href="Networking.UploadHandlerRaw.html">UploadHandlerRaw</a> copies the input data into a buffer. Therefore, changes to the <code class="varname">bodyData</code> array performed after the call to this method will not be reflected in the data sent to the server.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.Networking;
+using System.Collections;<br /><br />public class MyBehavior : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void Start()
+    {
+        StartCoroutine(Upload());
+    }<br /><br />    IEnumerator Upload()
+    {
+        byte[] myData = System.Text.Encoding.UTF8.GetBytes("This is some test data");
+        using (<a href="Networking.UnityWebRequest.html">UnityWebRequest</a> www = <a href="Networking.UnityWebRequest.Put.html">UnityWebRequest.Put</a>("http://www.my-server.com/upload", myData))
+        {
+            yield return www.Send();<br /><br />            if (www.isNetworkError || www.isHttpError)
+            {
+                <a href="Debug.Log.html">Debug.Log</a>(www.error);
+            }
+            else
+            {
+                <a href="Debug.Log.html">Debug.Log</a>("Upload complete!");
+            }
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Assertions.Assert.AreApproximatelyEqual</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Assertions.Assert.html">Assert</a>.AreApproximatelyEqual</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">AreApproximatelyEqual</span>(float <span class="sig-kw">expected</span>,
+float <span class="sig-kw">actual</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">AreApproximatelyEqual</span>(float <span class="sig-kw">expected</span>,
+float <span class="sig-kw">actual</span>,
+string <span class="sig-kw">message</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">AreApproximatelyEqual</span>(float <span class="sig-kw">expected</span>,
+float <span class="sig-kw">actual</span>,
+float <span class="sig-kw">tolerance</span>);
+    </div><div class="signature-CS sig-block"><span style="color:red;"></span>public static void <span class="sig-kw">AreApproximatelyEqual</span>(float <span class="sig-kw">expected</span>,
+float <span class="sig-kw">actual</span>,
+float <span class="sig-kw">tolerance</span>,
+string <span class="sig-kw">message</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">tolerance</td><td class="desc"></td><td class="desc1">Tolerance of approximation.</td></tr><tr><td class="name lbl">expected</td><td class="desc"></td><td class="desc1">The assumed <a href="Assertions.Assert.html">Assert</a> value.</td></tr><tr><td class="name lbl">actual</td><td class="desc"></td><td class="desc1">The exact <a href="Assertions.Assert.html">Assert</a> value.</td></tr><tr><td class="name lbl">message</td><td class="desc"></td><td class="desc1">The string used to describe the <a href="Assertions.Assert.html">Assert</a>.</td></tr></table></div><div class="subsection"><h2>Description   描述</h2><p>Assert the values are approximately equal.</p></div><div class="subsection"><p>An absolute error check is used for approximate equality check (|a-b| &lt; <code class="varname">tolerance</code>). Default <code class="varname">tolerance</code> is 0.00001f.<br /><br />Note: Every time you call the method with tolerance specified, a new instance of <a href="Assertions.Comparers.FloatComparer.html">FloatComparer</a> is created. For performance reasons you might want to instance your own comparer and pass it to the <a href="Assertions.Assert.AreApproximatelyEqual.html">AreApproximatelyEqual</a> method. If the tolerance is not specifies, a default comparer is used and the issue does not occur.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.Assertions;<br /><br />public class AssertionExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        // Make sure the position of the <a href="GameObject.html">GameObject</a> is always in the center of the <a href="SceneManagement.Scene.html">Scene</a>.
+        // AreApproximatelyEqual should be used for comparing floating point variables.
+        // Unless specified, default error tolerance will be used.
+        <a href="Assertions.Assert.AreApproximatelyEqual.html">Assert.AreApproximatelyEqual</a>(0.0f, transform.position.x);
+        <a href="Assertions.Assert.AreApproximatelyEqual.html">Assert.AreApproximatelyEqual</a>(0.0f, transform.position.y);
+        <a href="Assertions.Assert.AreApproximatelyEqual.html">Assert.AreApproximatelyEqual</a>(0.0f, transform.position.z);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

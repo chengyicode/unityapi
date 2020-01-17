@@ -1,0 +1,50 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: String.Length</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="String.html">String</a>.Length</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Gets the number of characters in this instance (Read Only).</p></div><div class="subsection"><p>Returns the number of characters in the string. This is read-only.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    string m_MyString;
+    // Use this for initialization
+    void Start()
+    {
+        //Set the string to this message
+        m_MyString = "Hi there!";
+        //Output the number of characters in the string
+        <a href="Debug.Log.html">Debug.Log</a>("<a href="UIElements.Length.html">Length</a> : " + m_MyString.Length);
+    }
+}
+</pre>
+      </div><div class="subsection"><p>The next example allows you to type in a password and check if the password is less than 8 characters using String.Length.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+//Create an <a href="Input.html">Input</a> Field ( Create&gt;UI&gt;<a href="Input.html">Input</a> Field) and a Text <a href="GameObject.html">GameObject</a> (<strong>Create</strong>&gt;<strong>UI</strong>&gt;<strong>Text</strong>).
+//Attach this script to a <a href="GameObject.html">GameObject</a>
+//Click on the <a href="GameObject.html">GameObject</a> and attach each of the Sliders and Texts to the fields in the Inspector.<br /><br />using UnityEngine;
+using UnityEngine.UI;<br /><br />public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    string m_MyString;<br /><br />    public InputField m_MyInputField;
+    public <a href="UIElements.Button.html">Button</a> m_MyButton;<br /><br />    void Start()
+    {
+        //Call SubmitPasswordButton function when the user clicks the <a href="UIElements.Button.html">Button</a>
+        m_MyButton.onClick.AddListener(SubmitPasswordButton);
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        //Set the string to be that of the InputField
+        m_MyString = m_MyInputField.text;
+    }<br /><br />    //Check the length of the string and output a message to the console window
+    void SubmitPasswordButton()
+    {
+        //Check if length of the string is less than 8
+        if (m_MyString.Length &lt; 8)
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("Password not long enough!");
+        }
+        //Check if the length of the string is more than or equal to 8
+        if (m_MyString.Length &gt;= 8)
+        {
+            <a href="Debug.Log.html">Debug.Log</a>("Password Accepted!");
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

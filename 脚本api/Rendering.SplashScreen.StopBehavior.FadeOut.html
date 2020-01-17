@@ -1,0 +1,28 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Rendering.SplashScreen.StopBehavior.FadeOut</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Rendering.SplashScreen.StopBehavior.html">SplashScreen.StopBehavior</a>.FadeOut</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Jumps to the final stage of the Splash Screen and performs a fade from the background to the game.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System.Collections;
+using UnityEngine;
+using UnityEngine.Rendering;<br /><br />// This example shows how the Splash <a href="Screen.html">Screen</a> can be canceled early via the user pressing any key.
+public class Example : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public SplashScreen.StopBehavior stopBehavior;<br /><br />    void Start()
+    {
+        StartCoroutine(SplashScreenController());
+    }<br /><br />    IEnumerator SplashScreenController()
+    {
+        <a href="Rendering.SplashScreen.Begin.html">SplashScreen.Begin</a>();
+        while (!<a href="Rendering.SplashScreen-isFinished.html">SplashScreen.isFinished</a>)
+        {
+            // Fade to the background if the user presses any key during the Splash <a href="Screen.html">Screen</a> rendering.
+            if (<a href="Input-anyKeyDown.html">Input.anyKeyDown</a>)
+            {
+                <a href="Rendering.SplashScreen.Stop.html">SplashScreen.Stop</a>(stopBehavior);
+                break;
+            }
+            yield return null;
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

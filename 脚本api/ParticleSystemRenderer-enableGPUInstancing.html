@@ -1,0 +1,24 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ParticleSystemRenderer.enableGPUInstancing</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="ParticleSystemRenderer.html">ParticleSystemRenderer</a>.enableGPUInstancing</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public bool <span class="sig-kw">enableGPUInstancing</span>;
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Enables GPU Instancing on platforms where it is supported.</p></div><div class="subsection"><p>To be able to render a Particle System using GPU Instancing, it must also use a shader that contains a Procedural Instancing pass (that is, it contains the <code class="mono">#pragma instancing_options procedural</code> directive).</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">using UnityEngine;
+using System.Collections;
+public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    private <a href="ParticleSystem.html">ParticleSystem</a> ps;
+    private <a href="ParticleSystemRenderer.html">ParticleSystemRenderer</a> psr;
+    private bool enableGPUInstancing = true;<br /><br />    void Start()
+    {
+        ps = GetComponent&lt;<a href="ParticleSystem.html">ParticleSystem</a>&gt;();
+        psr = GetComponent&lt;<a href="ParticleSystemRenderer.html">ParticleSystemRenderer</a>&gt;();<br /><br />        psr.renderMode = <a href="ParticleSystemRenderMode.Mesh.html">ParticleSystemRenderMode.Mesh</a>;
+        psr.SetMeshes(new <a href="Mesh.html">Mesh</a>[] { Resources.GetBuiltinResource&lt;<a href="Mesh.html">Mesh</a>&gt;("Capsule.fbx"), Resources.GetBuiltinResource&lt;<a href="Mesh.html">Mesh</a>&gt;("Cube.fbx"), Resources.GetBuiltinResource&lt;<a href="Mesh.html">Mesh</a>&gt;("Sphere.fbx") });<br /><br />        psr.sharedMaterial = new <a href="Material.html">Material</a>(<a href="Shader.Find.html">Shader.Find</a>("Particles/Standard Surface"));
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        psr.enableGPUInstancing = enableGPUInstancing;
+    }<br /><br />    void OnGUI()
+    {
+        enableGPUInstancing = <a href="GUI.Toggle.html">GUI.Toggle</a>(new <a href="Rect.html">Rect</a>(25, 45, 200, 30), enableGPUInstancing, "Enabled");
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

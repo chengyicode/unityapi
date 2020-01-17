@@ -1,0 +1,68 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: TransformStreamHandle</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><div class="message message-error mb20"><b>Experimental</b>: this API is experimental and might be changed or removed in the future.</div><h1 class="heading inherit">TransformStreamHandle</h1><div class="clear"></div><p class="cl mb0 left mr10">struct in
+          UnityEngine.Experimental.Animations</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.AnimationModule.html" class="cl">UnityEngine.AnimationModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Position, rotation and scale of an object in the <a href="Experimental.Animations.AnimationStream.html">AnimationStream</a>.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using UnityEngine.Playables;
+using UnityEngine.Animations;<br /><br />using UnityEngine.Experimental.Animations;<br /><br />public struct TransformStreamHandleJob : <a href="Experimental.Animations.IAnimationJob.html">IAnimationJob</a>
+{
+    public <a href="Experimental.Animations.TransformStreamHandle.html">TransformStreamHandle</a> handle;
+    public <a href="Vector3.html">Vector3</a> position;
+    public <a href="Vector3.html">Vector3</a> rotation;
+    public <a href="Vector3.html">Vector3</a> scale;<br /><br />    public void ProcessRootMotion(<a href="Experimental.Animations.AnimationStream.html">AnimationStream</a> stream)
+    {
+        // Set the new local position.
+        handle.SetLocalPosition(stream, position);<br /><br />        // Set the new local rotation (converted from euler).
+        handle.SetLocalRotation(stream, <a href="Quaternion.Euler.html">Quaternion.Euler</a>(rotation));<br /><br />        // Set the new local scale.
+        handle.SetLocalScale(stream, scale);
+    }<br /><br />    public void ProcessAnimation(<a href="Experimental.Animations.AnimationStream.html">AnimationStream</a> stream)
+    {
+    }
+}<br /><br />[<a href="RequireComponent.html">RequireComponent</a>(typeof(<a href="Animator.html">Animator</a>))]
+public class TransformStreamHandleExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public <a href="Vector3.html">Vector3</a> position;
+    public <a href="Vector3.html">Vector3</a> rotation;
+    public <a href="Vector3.html">Vector3</a> scale = <a href="Vector3-one.html">Vector3.one</a>;<br /><br />    <a href="Playables.PlayableGraph.html">PlayableGraph</a> m_Graph;
+    <a href="Experimental.Animations.AnimationScriptPlayable.html">AnimationScriptPlayable</a> m_AnimationScriptPlayable;<br /><br />    void Start()
+    {
+        var animator = GetComponent&lt;<a href="Animator.html">Animator</a>&gt;();<br /><br />        m_Graph = <a href="Playables.PlayableGraph.Create.html">PlayableGraph.Create</a>("TransformStreamHandleExample");
+        var output = <a href="Animations.AnimationPlayableOutput.Create.html">AnimationPlayableOutput.Create</a>(m_Graph, "output", animator);<br /><br />        var animationJob = new TransformStreamHandleJob();
+        animationJob.handle = animator.BindStreamTransform(gameObject.transform);
+        m_AnimationScriptPlayable = <a href="Experimental.Animations.AnimationScriptPlayable.Create.html">AnimationScriptPlayable.Create</a>(m_Graph, animationJob);<br /><br />        output.SetSourcePlayable(m_AnimationScriptPlayable);
+        m_Graph.Play();
+    }<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
+    {
+        var animationJob = m_AnimationScriptPlayable.GetJobData&lt;TransformStreamHandleJob&gt;();
+        animationJob.position = position;
+        animationJob.rotation = rotation;
+        animationJob.scale = scale;
+        m_AnimationScriptPlayable.SetJobData(animationJob);
+    }<br /><br />    void OnDisable()
+    {
+        m_Graph.Destroy();
+    }
+}
+</pre>
+      </div><div class="subsection"><p>See Also: <a href="Experimental.Animations.AnimatorJobExtensions.BindStreamTransform.html">AnimatorJobExtensions.BindStreamTransform</a>, <a href="Experimental.Animations.PropertyStreamHandle.html">PropertyStreamHandle</a>, <a href="Experimental.Animations.PropertySceneHandle.html">PropertySceneHandle</a>, and <a href="Experimental.Animations.TransformSceneHandle.html">TransformSceneHandle</a>.</p></div><div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.Animations.TransformStreamHandle.GetGlobalTR.html">GetGlobalTR</a></td><td class="desc"></td><td class="desc1">Gets the position and scaled rotation of the transform in world space.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.Animations.TransformStreamHandle.GetLocalPosition.html">GetLocalPosition</a></td><td class="desc"></td><td class="desc1">Gets the position of the transform relative to the parent.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.Animations.TransformStreamHandle.GetLocalRotation.html">GetLocalRotation</a></td><td class="desc"></td><td class="desc1">Gets the rotation of the transform relative to the parent.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.Animations.TransformStreamHandle.GetLocalScale.html">GetLocalScale</a></td><td class="desc"></td><td class="desc1">Gets the scale of the transform relative to the parent.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.Animations.TransformStreamHandle.GetLocalTRS.html">GetLocalTRS</a></td><td class="desc"></td><td class="desc1">Gets the position, rotation and scale of the transform relative to the parent.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.Animations.TransformStreamHandle.GetPosition.html">GetPosition</a></td><td class="desc"></td><td class="desc1">Gets the position of the transform in world space.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.Animations.TransformStreamHandle.GetPositionReadMask.html">GetPositionReadMask</a></td><td class="desc"></td><td class="desc1">Gets the position read mask of the transform.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.Animations.TransformStreamHandle.GetRotation.html">GetRotation</a></td><td class="desc"></td><td class="desc1">Gets the rotation of the transform in world space.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.Animations.TransformStreamHandle.GetRotationReadMask.html">GetRotationReadMask</a></td><td class="desc"></td><td class="desc1">Gets the rotation read mask of the transform.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.Animations.TransformStreamHandle.GetScaleReadMask.html">GetScaleReadMask</a></td><td class="desc"></td><td class="desc1">Gets the scale read mask of the transform.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.Animations.TransformStreamHandle.IsResolved.html">IsResolved</a></td><td class="desc"></td><td class="desc1">Returns whether this handle is resolved.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.Animations.TransformStreamHandle.IsValid.html">IsValid</a></td><td class="desc"></td><td class="desc1">Returns whether this is a valid handle.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.Animations.TransformStreamHandle.Resolve.html">Resolve</a></td><td class="desc"></td><td class="desc1">Bind this handle with an animated values from the AnimationStream.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.Animations.TransformStreamHandle.SetGlobalTR.html">SetGlobalTR</a></td><td class="desc"></td><td class="desc1">Sets the position and rotation of the transform in world space.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.Animations.TransformStreamHandle.SetLocalPosition.html">SetLocalPosition</a></td><td class="desc"></td><td class="desc1">Sets the position of the transform relative to the parent.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.Animations.TransformStreamHandle.SetLocalRotation.html">SetLocalRotation</a></td><td class="desc"></td><td class="desc1">Sets the rotation of the transform relative to the parent.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.Animations.TransformStreamHandle.SetLocalScale.html">SetLocalScale</a></td><td class="desc"></td><td class="desc1">Sets the scale of the transform relative to the parent.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.Animations.TransformStreamHandle.SetLocalTRS.html">SetLocalTRS</a></td><td class="desc"></td><td class="desc1">Sets the position, rotation and scale of the transform relative to the parent.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.Animations.TransformStreamHandle.SetPosition.html">SetPosition</a></td><td class="desc"></td><td class="desc1">Sets the position of the transform in world space.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="Experimental.Animations.TransformStreamHandle.SetRotation.html">SetRotation</a></td><td class="desc"></td><td class="desc1">Sets the rotation of the transform in world space.</td></tr>
+    </table></div></div></div></div></body></html>

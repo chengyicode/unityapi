@@ -1,0 +1,38 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: EditorUtility.SaveFilePanel</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="EditorUtility.html">EditorUtility</a>.SaveFilePanel</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static string <span class="sig-kw">SaveFilePanel</span>(string <span class="sig-kw">title</span>,
+string <span class="sig-kw">directory</span>,
+string <span class="sig-kw">defaultName</span>,
+string <span class="sig-kw">extension</span>);
+    </div></div></div><div class="subsection"><h2>Description   描述</h2><p>Displays the "save file" dialog and returns the selected path name.</p></div><div class="subsection"><p>
+        <strong>Note:</strong> The dialog has a Save button and a Cancel button.  The Cancel button closes the window without saving the texture.<br /><br />See Also: <a href="EditorUtility.OpenFilePanel.html">OpenFilePanel</a> function.<br /><br /><img src="../StaticFiles/ScriptRefImages/EditorUtilitySaveFilePanel.png" /><br />
+<em>Save File Panel.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// Opens a file selection dialog for a PNG file and saves a selected texture to the file.<br /><br />using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;
+using System.IO;<br /><br />public class EditorUtilitySaveFilePanel : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    [<a href="MenuItem.html">MenuItem</a>("Examples/Save <a href="Texture.html">Texture</a> to file")]
+    static void Apply()
+    {
+        <a href="Texture2D.html">Texture2D</a> texture = <a href="Selection-activeObject.html">Selection.activeObject</a> as <a href="Texture2D.html">Texture2D</a>;
+        if (texture == null)
+        {
+            <a href="EditorUtility.DisplayDialog.html">EditorUtility.DisplayDialog</a>(
+                "Select <a href="Texture.html">Texture</a>",
+                "You Must Select a <a href="Texture.html">Texture</a> first!",
+                "Ok");
+            return;
+        }<br /><br />        var path = <a href="EditorUtility.SaveFilePanel.html">EditorUtility.SaveFilePanel</a>(
+            "Save texture as PNG",
+            "",
+            texture.name + ".png",
+            "png");<br /><br />        if (path.Length != 0)
+        {
+            var pngData = texture.EncodeToPNG();
+            if (pngData != null)
+                <a href="Windows.File.WriteAllBytes.html">File.WriteAllBytes</a>(path, pngData);
+        }
+    }
+}
+</pre>
+      </div></div></div></div></body></html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: PropertyDrawer</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">PropertyDrawer</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
+          UnityEditor</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Inherits from:<a href="GUIDrawer.html" class="cl">GUIDrawer</a></p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEditor.html" class="cl">UnityEditor</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Base class to derive custom property drawers from. Use this to create custom drawers for your own <a href="Serializable.html">Serializable</a> classes or for script variables with custom <a href="PropertyAttribute.html">PropertyAttribute</a>s.</p></div><div class="subsection"><p>PropertyDrawers have two uses:<br />
+- Customize the GUI of every instance of a <a href="Serializable.html">Serializable</a> class.<br />
+- Customize the GUI of script members with custom <a href="PropertyAttribute.html">PropertyAttribute</a>s.<br /><br />If you have a custom <a href="Serializable.html">Serializable</a> class, you can use a PropertyDrawer to control how it looks in the Inspector.
+Consider the Serializable class Ingredient in the script below:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using System;
+using UnityEngine;<br /><br />public enum IngredientUnit { Spoon, Cup, Bowl, Piece }<br /><br />// Custom serializable class
+[<a href="Serializable.html">Serializable</a>]
+public class Ingredient
+{
+    public string name;
+    public int amount = 1;
+    public IngredientUnit unit;
+}<br /><br />public class Recipe : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    public Ingredient potionResult;
+    public Ingredient[] potionIngredients;
+}
+</pre>
+      </div><div class="subsection"><p>Using a custom PropertyDrawer, every appearance of the Ingredient class in the Inspector can be changed.<br /><br />You can attach the PropertyDrawer to a Serializable class by using the <a href="CustomPropertyDrawer.html">CustomPropertyDrawer</a> attribute and pass in the type of the Serializable class that it's a drawer for.<br /><br />You can either use UIElements to build your custom PropertyDrawer or you can use IMGUI. To create a custom PropertyDrawer using UIElements, you have to override the <a href="PropertyDrawer.CreatePropertyGUI.html">PropertyDrawer.CreatePropertyGUI</a> on the PropertyDrawer class. To create a custom PropertyDrawer using IMGUI, you have to override the <a href="PropertyDrawer.OnGUI.html">PropertyDrawer.OnGUI</a> on the PropertyDrawer class.<br /><br />If the PropertyDrawer is used inside a UIElements-based inspector or <a href="EditorWindow.html">EditorWindow</a>, the UIElements implementation will be used if <a href="PropertyDrawer.CreatePropertyGUI.html">PropertyDrawer.CreatePropertyGUI</a> is overwritten with a fallback on any IMGUI implementation. If the PropertyDrawer is used inside an IMGUI-based inspector or <a href="EditorWindow.html">EditorWindow</a>, only the IMGUI implementation will display. You cannot have UIElements running inside IMGUI.<br /><br />Here's an example of a custom PropertyDrawer written using UIElements:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEditor.UIElements;
+using UnityEngine.UIElements;<br /><br />// IngredientDrawerUIE
+[<a href="CustomPropertyDrawer.html">CustomPropertyDrawer</a>(typeof(Ingredient))]
+public class IngredientDrawerUIE : <a href="PropertyDrawer.html">PropertyDrawer</a>
+{
+    public override <a href="UIElements.VisualElement.html">VisualElement</a> CreatePropertyGUI(<a href="SerializedProperty.html">SerializedProperty</a> property)
+    {
+        // Create property container element.
+        var container = new <a href="UIElements.VisualElement.html">VisualElement</a>();<br /><br />        // Create property fields.
+        var amountField = new <a href="UIElements.PropertyField.html">PropertyField</a>(property.FindPropertyRelative("amount"));
+        var unitField = new <a href="UIElements.PropertyField.html">PropertyField</a>(property.FindPropertyRelative("unit"));
+        var nameField = new <a href="UIElements.PropertyField.html">PropertyField</a>(property.FindPropertyRelative("name"), "Fancy Name");<br /><br />        // Add fields to the container.
+        container.Add(amountField);
+        container.Add(unitField);
+        container.Add(nameField);<br /><br />        return container;
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Here's an example of custom PropertyDrawer written using IMGUI. Compare the look of the Ingredient properties in the Inspector without and with a custom PropertyDrawer:<br /><br /><img src="../StaticFiles/ScriptRefImages/CustomPropertyDrawer_Class.png" /><br />
+<em>Class in the Inspector without (left) and with (right) custom PropertyDrawer.</em></p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;<br /><br />// IngredientDrawer
+[<a href="CustomPropertyDrawer.html">CustomPropertyDrawer</a>(typeof(Ingredient))]
+public class IngredientDrawer : <a href="PropertyDrawer.html">PropertyDrawer</a>
+{
+    // Draw the property inside the given rect
+    public override void OnGUI(<a href="Rect.html">Rect</a> position, <a href="SerializedProperty.html">SerializedProperty</a> property, <a href="GUIContent.html">GUIContent</a> label)
+    {
+        // Using BeginProperty / EndProperty on the parent property means that
+        // prefab override logic works on the entire property.
+        <a href="EditorGUI.BeginProperty.html">EditorGUI.BeginProperty</a>(position, label, property);<br /><br />        // Draw label
+        position = <a href="EditorGUI.PrefixLabel.html">EditorGUI.PrefixLabel</a>(position, <a href="GUIUtility.GetControlID.html">GUIUtility.GetControlID</a>(<a href="FocusType.Passive.html">FocusType.Passive</a>), label);<br /><br />        // Don't make child fields be indented
+        var indent = <a href="EditorGUI-indentLevel.html">EditorGUI.indentLevel</a>;
+        <a href="EditorGUI-indentLevel.html">EditorGUI.indentLevel</a> = 0;<br /><br />        // Calculate rects
+        var amountRect = new <a href="Rect.html">Rect</a>(position.x, position.y, 30, position.height);
+        var unitRect = new <a href="Rect.html">Rect</a>(position.x + 35, position.y, 50, position.height);
+        var nameRect = new <a href="Rect.html">Rect</a>(position.x + 90, position.y, position.width - 90, position.height);<br /><br />        // Draw fields - passs <a href="GUIContent-none.html">GUIContent.none</a> to each so they are drawn without labels
+        <a href="EditorGUI.PropertyField.html">EditorGUI.PropertyField</a>(amountRect, property.FindPropertyRelative("amount"), <a href="GUIContent-none.html">GUIContent.none</a>);
+        <a href="EditorGUI.PropertyField.html">EditorGUI.PropertyField</a>(unitRect, property.FindPropertyRelative("unit"), <a href="GUIContent-none.html">GUIContent.none</a>);
+        <a href="EditorGUI.PropertyField.html">EditorGUI.PropertyField</a>(nameRect, property.FindPropertyRelative("name"), <a href="GUIContent-none.html">GUIContent.none</a>);<br /><br />        // Set indent back to what it was
+        <a href="EditorGUI-indentLevel.html">EditorGUI.indentLevel</a> = indent;<br /><br />        <a href="EditorGUI.EndProperty.html">EditorGUI.EndProperty</a>();
+    }
+}
+</pre>
+      </div><div class="subsection"><p>The other use of PropertyDrawer is to alter the appearance of members in a script that have custom <a href="PropertyAttribute.html">PropertyAttribute</a>s.
+Say you want to limit floats or integers in your script to a certain range and show them as sliders in the Inspector.
+Using the built-in <a href="PropertyAttribute.html">PropertyAttribute</a> called <a href="RangeAttribute.html">RangeAttribute</a> you can do just that:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using UnityEngine;
+using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
+{
+    // Show this float in the Inspector as a slider between 0 and 10
+    [<a href="SocialPlatforms.Range.html">Range</a>(0.0F, 10.0F)]
+    public float myFloat = 0.0F;
+}
+</pre>
+      </div><div class="subsection"><p>You can make your own <a href="PropertyAttribute.html">PropertyAttribute</a> as well. We'll use the code for the <a href="RangeAttribute.html">RangeAttribute</a> as an example.
+The attribute must extend the PropertyAttribute class. If you want, your property can take parameters and store them as public member variables.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// This is not an editor script. The property attribute class should be placed in a regular script file.
+using UnityEngine;<br /><br />public class <a href="RangeAttribute.html">RangeAttribute</a> : <a href="PropertyAttribute.html">PropertyAttribute</a>
+{
+    public float min;
+    public float max;<br /><br />    public <a href="RangeAttribute.html">RangeAttribute</a>(float min, float max)
+    {
+        this.min = min;
+        this.max = max;
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Now that you have the attribute, you need to make a PropertyDrawer that draws properties that have that attribute.
+The drawer must extend the PropertyDrawer class, and it must have a <a href="CustomPropertyDrawer.html">CustomPropertyDrawer</a> attribute to tell it which attribute it's a drawer for. Here's an example using IMGUI:</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+// The property drawer class should be placed in an editor script, inside a folder called <a href="Editor.html">Editor</a>.<br /><br />// Tell the RangeDrawer that it is a drawer for properties with the <a href="RangeAttribute.html">RangeAttribute</a>.
+using UnityEngine;
+using <a href="UnityEditor.html">UnityEditor</a>;<br /><br />[<a href="CustomPropertyDrawer.html">CustomPropertyDrawer</a>(typeof(<a href="RangeAttribute.html">RangeAttribute</a>))]
+public class RangeDrawer : <a href="PropertyDrawer.html">PropertyDrawer</a>
+{
+    // Draw the property inside the given rect
+    public override void OnGUI(<a href="Rect.html">Rect</a> position, <a href="SerializedProperty.html">SerializedProperty</a> property, <a href="GUIContent.html">GUIContent</a> label)
+    {
+        // First get the attribute since it contains the range for the slider
+        <a href="RangeAttribute.html">RangeAttribute</a> range = attribute as <a href="RangeAttribute.html">RangeAttribute</a>;<br /><br />        // Now draw the property as a <a href="UIElements.Slider.html">Slider</a> or an IntSlider based on whether it's a float or integer.
+        if (property.propertyType == <a href="SerializedPropertyType.Float.html">SerializedPropertyType.Float</a>)
+            <a href="EditorGUI.Slider.html">EditorGUI.Slider</a>(position, property, range.min, range.max, label);
+        else if (property.propertyType == <a href="SerializedPropertyType.Integer.html">SerializedPropertyType.Integer</a>)
+            <a href="EditorGUI.IntSlider.html">EditorGUI.IntSlider</a>(position, property, Convert.ToInt32(range.min), Convert.ToInt32(range.max), label);
+        else
+            <a href="EditorGUI.LabelField.html">EditorGUI.LabelField</a>(position, label.text, "Use <a href="SocialPlatforms.Range.html">Range</a> with float or int.");
+    }
+}
+</pre>
+      </div><div class="subsection"><p>Note that for performance reasons, EditorGUILayout functions are not usable with PropertyDrawers.<br /><br />See Also: <a href="PropertyAttribute.html">PropertyAttribute</a> class, <a href="CustomPropertyDrawer.html">CustomPropertyDrawer</a> class.</p></div><div class="subsection"><h2>Properties   属性</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="PropertyDrawer-attribute.html">attribute</a></td><td class="desc"></td><td class="desc1">The PropertyAttribute for the property. Not applicable for custom class drawers. (Read Only)</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="PropertyDrawer-fieldInfo.html">fieldInfo</a></td><td class="desc"></td><td class="desc1">The reflection FieldInfo for the member this property represents. (Read Only)</td></tr>
+    </table></div><div class="subsection"><h2>Public Methods   公共方法</h2><table class="list">
+      <tr><td class="descn"></td><td class="lbl"><a href="PropertyDrawer.CanCacheInspectorGUI.html">CanCacheInspectorGUI</a></td><td class="desc"></td><td class="desc1">Override this method to determine whether the inspector GUI for your property can be cached.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="PropertyDrawer.CreatePropertyGUI.html">CreatePropertyGUI</a></td><td class="desc"></td><td class="desc1">Override this method to make your own UIElements based GUI for the property.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="PropertyDrawer.GetPropertyHeight.html">GetPropertyHeight</a></td><td class="desc"></td><td class="desc1">Override this method to specify how tall the GUI for this field is in pixels.</td></tr>
+      <tr><td class="descn"></td><td class="lbl"><a href="PropertyDrawer.OnGUI.html">OnGUI</a></td><td class="desc"></td><td class="desc1">Override this method to make your own IMGUI based GUI for the property.</td></tr>
+    </table></div><div class="subsection"><h2>Inherited Members   继承成员</h2>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </div></div></div></div></body></html>

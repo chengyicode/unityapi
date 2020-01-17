@@ -1,0 +1,122 @@
+<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Accessibility.VisionUtility.GetColorBlindSafePalette</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit"><a href="Accessibility.VisionUtility.html">VisionUtility</a>.GetColorBlindSafePalette</h1><div class="clear"></div><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span>public static int <span class="sig-kw">GetColorBlindSafePalette</span>(Color[] <span class="sig-kw">palette</span>,
+float <span class="sig-kw">minimumLuminance</span>,
+float <span class="sig-kw">maximumLuminance</span>);
+    </div></div></div><div class="subsection"><h2>Parameters</h2><table class="list"><tr><td class="name lbl">palette</td><td class="desc"></td><td class="desc1">An array of colors to populate with a palette.</td></tr><tr><td class="name lbl">minimumLuminance</td><td class="desc"></td><td class="desc1">Minimum allowable perceived luminance from 0 to 1. A value of 0.2 or greater is recommended for dark backgrounds.</td></tr><tr><td class="name lbl">maximumLuminance</td><td class="desc"></td><td class="desc1">Maximum allowable perceived luminance from 0 to 1. A value of 0.8 or less is recommended for light backgrounds.</td></tr></table></div><div class="subsection"><h2>Returns</h2><p><strong>int</strong>
+        The number of unambiguous colors in the palette.
+      </p></div><div class="subsection"><h2>Description   描述</h2><p>Gets a palette of colors that should be distinguishable for normal vision, deuteranopia, protanopia, and tritanopia.</p></div><div class="subsection"><p>
+        <img src="../StaticFiles/ScriptRefImages/ColorBlindSafePaletteTable.png" />
+<em>The set of colors from which to draw, along with their perceived luminance values.</em><br /><br />Allocate the size of your palette before passing it to this method to specify how many colors you need. The return value indicates how many unambiguous colors exist in the palette. If this value is less than the size of the palette, then the palette repeats colors in order.<br /><br /><img src="../StaticFiles/ScriptRefImages/ColorBlindSafePalette.png" />
+<em>A window to preview swatches that should be distinguishable for most vision conditions.</em><br /><br />Add the following script to Assets/Editor as ColorSwatchExample.cs and navigate to the menu option Window -&gt; Color Swatch Example.</p></div><div class="subsection">
+        
+        <pre class="codeExampleCS">
+using <a href="UnityEditor.html">UnityEditor</a>;
+using UnityEngine;
+using UnityEngine.Accessibility;<br /><br />public class ColorSwatchExample : <a href="EditorWindow.html">EditorWindow</a>
+{
+    // size of swatch background textures to generate
+    private const int k_SwatchTextureSize = 16;
+    // the maximum number of swatches for this example
+    private const int k_MaxPaletteSize = 10;<br /><br />    [<a href="MenuItem.html">MenuItem</a>("Window/<a href="Color.html">Color</a> Swatch Example")]
+    private static void CreateWindow()
+    {
+        var window = GetWindow&lt;ColorSwatchExample&gt;();
+        window.position = new <a href="Rect.html">Rect</a>(0f, 0f, 400f, 80f);
+    }<br /><br />    // the background textures to use for the swatches
+    private <a href="Texture2D.html">Texture2D</a>[] m_SwatchBackgrounds = new <a href="Texture2D.html">Texture2D</a>[k_MaxPaletteSize];<br /><br />    // the desired number of swatches
+    [<a href="SerializeField.html">SerializeField</a>]
+    private int m_PaletteSize = 8;
+    // the range of desired luminance values
+    [<a href="SerializeField.html">SerializeField</a>]
+    private <a href="Vector2.html">Vector2</a> m_DesiredLuminance = new <a href="Vector2.html">Vector2</a>(0.2f, 0.9f);
+    // the colors obtained
+    [<a href="SerializeField.html">SerializeField</a>]
+    private <a href="Color.html">Color</a>[] m_Palette;
+    // the number of unique colors in the palette before they repeat
+    [<a href="SerializeField.html">SerializeField</a>]
+    private int m_NumUniqueColors;<br /><br />    // create swatch background textures when window first opens
+    protected virtual void OnEnable()
+    {
+        titleContent = new <a href="GUIContent.html">GUIContent</a>("<a href="Color.html">Color</a> Swatches");<br /><br />        // create background swatches with different patterns for repeated colors
+        m_SwatchBackgrounds[0] = CreateSwatchBackground(k_SwatchTextureSize, 0, 0);
+        m_SwatchBackgrounds[1] = CreateSwatchBackground(k_SwatchTextureSize, 1, 4);
+        m_SwatchBackgrounds[2] = CreateSwatchBackground(k_SwatchTextureSize, 1, 3);
+        m_SwatchBackgrounds[3] = CreateSwatchBackground(k_SwatchTextureSize, 6, 1);
+        m_SwatchBackgrounds[4] = CreateSwatchBackground(k_SwatchTextureSize, 4, 3);
+        m_SwatchBackgrounds[5] = CreateSwatchBackground(k_SwatchTextureSize, 6, 6);
+        m_SwatchBackgrounds[6] = CreateSwatchBackground(k_SwatchTextureSize, 4, 2);
+        m_SwatchBackgrounds[7] = CreateSwatchBackground(k_SwatchTextureSize, 6, 4);
+        m_SwatchBackgrounds[8] = CreateSwatchBackground(k_SwatchTextureSize, 2, 5);
+        m_SwatchBackgrounds[9] = CreateSwatchBackground(k_SwatchTextureSize, 1, 2);<br /><br />        UpdatePalette();
+    }<br /><br />    // clean up textures when window is closed
+    protected virtual void OnDisable()
+    {
+        for (int i = 0, count = m_SwatchBackgrounds.Length; i &lt; count; ++i)
+            DestroyImmediate(m_SwatchBackgrounds[i]);
+    }<br /><br />    protected virtual void OnGUI()
+    {
+        // input desired number of colors and luminance values
+        <a href="EditorGUI.BeginChangeCheck.html">EditorGUI.BeginChangeCheck</a>();<br /><br />        m_PaletteSize = <a href="EditorGUILayout.IntSlider.html">EditorGUILayout.IntSlider</a>("Palette Size", m_PaletteSize, 0, k_MaxPaletteSize);<br /><br />        float min = m_DesiredLuminance.x;
+        float max = m_DesiredLuminance.y;
+        <a href="EditorGUILayout.MinMaxSlider.html">EditorGUILayout.MinMaxSlider</a>("Luminance <a href="SocialPlatforms.Range.html">Range</a>", ref min, ref max, 0f, 1f);
+        m_DesiredLuminance = new <a href="Vector2.html">Vector2</a>(min, max);<br /><br />        if (<a href="EditorGUI.EndChangeCheck.html">EditorGUI.EndChangeCheck</a>())
+        {
+            UpdatePalette();
+        }<br /><br />        // display warning message if parameters are out of range
+        if (m_NumUniqueColors == 0)
+        {
+            string warningMessage = "Unable to generate any unique colors with the specified luminance requirements.";
+            <a href="EditorGUILayout.HelpBox.html">EditorGUILayout.HelpBox</a>(warningMessage, <a href="MessageType.Warning.html">MessageType.Warning</a>);
+        }
+        // otherwise display swatches in a row
+        else
+        {
+            using (new <a href="GUILayout.HorizontalScope.html">GUILayout.HorizontalScope</a>())
+            {
+                <a href="GUILayout.FlexibleSpace.html">GUILayout.FlexibleSpace</a>();
+                <a href="Color.html">Color</a> oldColor = <a href="GUI-color.html">GUI.color</a>;<br /><br />                int swatchBackgroundIndex = 0;
+                for (int i = 0; i &lt; m_PaletteSize; ++i)
+                {
+                    // change swatch background pattern when reaching a repeated color
+                    if (i &gt; 0 &amp;&amp; i % m_NumUniqueColors == 0)
+                        ++swatchBackgroundIndex;<br /><br />                    <a href="Rect.html">Rect</a> rect = <a href="GUILayoutUtility.GetRect.html">GUILayoutUtility.GetRect</a>(k_SwatchTextureSize * 2, k_SwatchTextureSize * 2);
+                    rect.width = k_SwatchTextureSize * 2;<br /><br />                    <a href="GUI-color.html">GUI.color</a> = m_Palette[i];
+                    <a href="GUI.DrawTexture.html">GUI.DrawTexture</a>(rect, m_SwatchBackgrounds[swatchBackgroundIndex], <a href="ScaleMode.ScaleToFit.html">ScaleMode.ScaleToFit</a>, true);
+                }<br /><br />                <a href="GUI-color.html">GUI.color</a> = oldColor;
+                <a href="GUILayout.FlexibleSpace.html">GUILayout.FlexibleSpace</a>();
+            }
+        }
+    }<br /><br />    // create a white texture with some pixels discarded to make a pattern
+    private <a href="Texture2D.html">Texture2D</a> CreateSwatchBackground(int size, int discardPixelCount, int discardPixelStep)
+    {
+        var swatchBackground = new <a href="Texture2D.html">Texture2D</a>(size, size);
+        swatchBackground.hideFlags = <a href="HideFlags.HideAndDontSave.html">HideFlags.HideAndDontSave</a>;
+        swatchBackground.filterMode = <a href="FilterMode.Point.html">FilterMode.Point</a>;<br /><br />        var pixels = swatchBackground.GetPixels32();
+        int counter = 0;
+        bool discard = false;
+        for (int i = 0, count = pixels.Length; i &lt; count; ++i)
+        {
+            pixels[i] = new <a href="Color32.html">Color32</a>(255, 255, 255, (byte)(discard ? 0 : 255));
+            ++counter;
+            if (discard &amp;&amp; counter == discardPixelCount)
+            {
+                discard = false;
+                counter = 0;
+            }
+            else if (!discard &amp;&amp; counter == discardPixelStep)
+            {
+                discard = true;
+                counter = 0;
+            }
+        }
+        swatchBackground.SetPixels32(pixels);<br /><br />        swatchBackground.Apply();
+        return swatchBackground;
+    }<br /><br />    // request new palette
+    private void UpdatePalette()
+    {
+        m_Palette = new <a href="Color.html">Color</a>[m_PaletteSize];
+        m_NumUniqueColors =
+            <a href="Accessibility.VisionUtility.GetColorBlindSafePalette.html">VisionUtility.GetColorBlindSafePalette</a>(m_Palette, m_DesiredLuminance.x, m_DesiredLuminance.y);
+    }
+}
+</pre>
+      </div></div></div></div></body></html>
