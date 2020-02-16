@@ -1,0 +1,333 @@
+<!DOCTYPE html><html lang="en" class="no-js">
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+<script>var offline=(location.href.indexOf('docs.unity3d.com')==-1)?true:false;if(!offline){(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);  })(window,document,'script','dataLayer','GTM-5V25JL6');}</script><link href="https://fonts.googleapis.com/css?family=Roboto&amp;display=swap" rel="stylesheet">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unity - Manual:  Low-level native plug-in Profiler API</title>
+<meta property="og:image" content="https://unity3d.com/files/images/ogimg.jpg">
+<meta name="author" content="Unity Technologies">
+<link rel="shortcut icon" href="https://unity.com/themes/contrib/unity_base/images/favicons/favicon.ico">
+<link rel="icon" type="image/png" href="../StaticFilesManual/images/favicons/favicon.png">
+<link rel="apple-touch-icon-precomposed" sizes="152x152" href="../StaticFilesManual/images/favicons/apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../StaticFilesManual/images/favicons/apple-touch-icon-144x144.png">
+<link rel="apple-touch-icon-precomposed" sizes="120x120" href="../StaticFilesManual/images/favicons/apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="../StaticFilesManual/images/favicons/apple-touch-icon-114x114.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="../StaticFilesManual/images/favicons/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon-precomposed" href="../StaticFilesManual/images/favicons/apple-touch-icon.png">
+<meta name="msapplication-TileColor" content="#222c37">
+<meta name="msapplication-TileImage" content="../StaticFilesManual/images/favicons/tileicon-144x144.png">
+<script type="text/javascript" src="https://docs.unity3d.com/StaticFilesConfig/UnityVersionsInfo.js"></script><script type="text/javascript" src="../StaticFilesManual/js/jquery.js?ts=1576442311"></script><script type="text/javascript" src="../StaticFilesManual/js/core.js?ts=1576442311"></script><script type="text/javascript" src="docdata/toc.js?ts=1576442311"></script><script type="text/javascript" src="docdata/global_toc.js?ts=1576442311"></script><link rel="stylesheet" type="text/css" href="../StaticFilesManual/css/core.css?ts=1576442311">
+<link rel="stylesheet" href="../StaticFilesManual/js/feedback/five-star-rating-master/css/rating.min.css">
+<link rel="stylesheet" href="../StaticFilesManual/css/prism.css">
+<script src="../StaticFilesManual/js/prism.js"></script><script src="../StaticFilesManual/js/feedback/five-star-rating-master/js/src/rating.js"></script><script src="../StaticFilesManual/js/jquery.sidebar.min.js"></script><link rel="stylesheet" href="../StaticFilesManual/css/mobileoptimisation.css">
+<script src="../StaticFilesManual/js/mobileoptimisation.js"></script>
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5V25JL6" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<div id="DocsAnalyticsData" data-area="UnityOverview" data-pagetype="normal"></div>
+<div class="header-wrapper">
+<div id="header" class="header"><div class="content">
+<div class="spacer"><div class="menu">
+<div id="nav-open" for="nav-input"><span></span></div>
+<div class="logo"><a href="https://docs.unity3d.com"></a></div>
+<div class="search-form"><form action="30_search.html" method="get" class="apisearch">
+<input type="text" name="q" placeholder="Search manual..." autosave="Unity Reference" results="5" class="sbox field" id="q"><input type="submit" class="submit">
+</form></div>
+<ul>
+<li><a href="../Manual/index.html" class="selected">Manual</a></li>
+<li><a href="../ScriptReference/index.html">Scripting API</a></li>
+</ul>
+</div></div>
+<div class="more">
+<div class="filler"></div>
+<ul><li><a href="https://unity3d.com/">unity3d.com</a></li></ul>
+</div>
+</div></div>
+<div class="toolbar"><div class="content">
+<div class="toggle version-number" id="VersionNumber" data-target=".otherversionscontent">
+                                Version: <b>2019.2</b><div class="otherversionscontent" id="OtherVersionsContent" style="display: none;">
+<ul id="OtherVersionsContentUl"></ul>
+<div id="otherVersionsLegend"><ul>
+<li>
+<div id="supportedColour" class="legendBox"></div>Supported</li>
+<li>
+<div id="notFoundColour" class="legendBox"></div>Legacy</li>
+</ul></div>
+</div>
+<div id="VersionSwitcherArrow" class="arrow versionSwitcherArrow"></div>
+</div>
+<div class="lang-switcher"><div class="current toggle" data-target=".lang-list">
+<div class="lbl">Language
+:                <span class="b">English</span>
+</div>
+<div class="arrow"></div>
+<div class="lang-list" style="display:none;"><ul>
+<li><a href="/Manual/LowLevelNativePluginProfiler.html">English</a></li>
+<li><a href="/ja/current/Manual/LowLevelNativePluginProfiler.html">日本語</a></li>
+<li><a href="/es/current/Manual/LowLevelNativePluginProfiler.html">Español</a></li>
+<li><a href="/kr/current/Manual/LowLevelNativePluginProfiler.html">한국어</a></li>
+<li><a href="/ru/current/Manual/LowLevelNativePluginProfiler.html">Русский</a></li>
+</ul></div>
+</div></div>
+</div></div>
+<div class="mobileLogo"><a href="https://docs.unity3d.com"></a></div>
+</div>
+<div id="master-wrapper" class="master-wrapper clear">
+<div id="sidebar" class="sidebar"><div class="sidebar-wrap"><div class="content"><div class="sidebar-menu"><div class="toc" id="customScrollbar">
+<h2>Unity Manual</h2>
+<div class="search-form sidebar-search-form"><form action="30_search.html" method="get" class="apisearch">
+<input type="text" name="q" placeholder="Search manual..." autosave="Unity Reference" results="5" class="sbox field" id="q"><input type="submit" id="mobileSearchBtn" class="submit" value="Search">
+</form></div>
+<div class="toggle version-number sidebar-version-switcher" id="VersionNumber" data-target=".otherversionscontent"><form id="otherVersionsContentMobileForm"><div class="ui-field-contain">
+<label for="select-native-4">Version: 2019.2</label><select name="select-native-4" id="versionsSelectMobile"><option>Select a different version</option>
+<optgroup id="versionsWithThisPageMobile" label="Versions with this page"></optgroup>
+<optgroup id="versionsWithoutThisPageMobile" label="Versions without this page"></optgroup></select>
+</div></form></div>
+<div class="lang-switcher"><div class="current toggle" data-target=".lang-list">
+<div class="lbl">Language
+:                <span class="b">English</span>
+</div>
+<div class="arrow"></div>
+<div class="lang-list" style="display:none;"><ul>
+<li><a href="/Manual/LowLevelNativePluginProfiler.html">English</a></li>
+<li><a href="/ja/current/Manual/LowLevelNativePluginProfiler.html">日本語</a></li>
+<li><a href="/es/current/Manual/LowLevelNativePluginProfiler.html">Español</a></li>
+<li><a href="/kr/current/Manual/LowLevelNativePluginProfiler.html">한국어</a></li>
+<li><a href="/ru/current/Manual/LowLevelNativePluginProfiler.html">Русский</a></li>
+</ul></div>
+</div></div>
+</div></div></div></div></div>
+<div id="content-wrap" class="content-wrap"><div class="content-block">
+<div class="darkCover"></div>
+<div class="content">
+<div class="section">
+<div class="breadcrumbs clear"><ul>
+<li><a href="UnityManual.html">Unity User Manual (2019.2)</a></li>
+<li><a href="UnityOverview.html">Working in Unity</a></li>
+<li><a href="AdvancedDevelopment.html">Advanced Development</a></li>
+<li><a href="Plugins.html">Plug-ins</a></li>
+<li><a href="NativePluginInterface.html">Low-level native plug-in interface</a></li>
+<li> Low-level native plug-in Profiler API</li>
+</ul></div>
+<div class="mb20"><div class="nextprev clear">
+<div class="icon tt left mr1" data-distance="-40|-30|top">
+<span class="prev"><a href="NativePluginInterface.html"></a></span><div class="tip">Low-level native plug-in interface</div>
+</div>
+<div class="icon tt right" data-distance="-40|-30|top">
+<span class="next"><a href="LowLevelNativePluginRenderingExtensions.html"></a></span><div class="tip">Low-level native plug-in rendering extensions</div>
+</div>
+</div></div>
+<div class="scrollToFeedback"><a id="scrollToFeedback">Leave feedback</a></div>
+<h1>Low-level native plug-in Profiler API</h1>
+<!--BeginSwitchLink--><!--EndSwitchLink-->
+<div class="clear"></div>
+
+<p>The <a href="Profiler.html">Unity Profiler</a> native <span class="tooltip"><strong>plug-in</strong><span class="tooltiptext">A set of code created outside of Unity that creates functionality in Unity. There are two kinds of plug-ins you can use in Unity: Managed plug-ins (managed .NET assemblies created with tools like Visual Studio) and Native plug-ins (platform-specific native code libraries). <a href="Plugins.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#Plug-in">Glossary</a></span></span></span> enables you to extract data from Unity via script for analysis in an external tool, such as <span class="tooltip"><strong>Razor</strong><span class="tooltiptext">A CPU/GPU chip set used in PS4 hardware. <a href="BestPracticeUnderstandingPerformanceInUnity1.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#Razor">Glossary</a></span></span></span> (PS4), PIX (Xbox, Windows), Chrome Tracing, ETW, ITT, Vtune and Telemetry. The Unity <span class="tooltip"><strong>Profiler</strong><span class="tooltiptext">A window that helps you to optimize your game. It shows how much time is spent in the various areas of your game. For example, it can report the percentage of time spent rendering, animating or in your game logic. <a href="Profiler.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#Profiler">Glossary</a></span></span></span> records events, and the <strong>Profiler</strong> <span class="tooltip"><a href="NativePlugins.html">native plug-in</a><span class="tooltiptext">A platform-specific native code library that is created outside of Unity for use in Unity. Allows you can access features like OS calls and third-party code libraries that would otherwise not be available to Unity. <a href="Plugins.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#Nativeplug-in">Glossary</a></span></span></span><a href="NativePlugins.html"> API</a> exposes these events to a third-party profiling API, which passes them to the relevant analysis tool.</p>
+
+<p>The following Unity Profiler features help capture instrumentation data for performance analysis:</p>
+
+<ul>
+<li><p><span class="tooltip"><strong>Categories</strong><span class="tooltiptext">A Profiler category identifies the workload data for a Unity subsystem (for example, Rendering, Scripting and Animation categories). Unity applies colour-coding to categories to help visually distinguish the types of data in the Profiler window. <a href="ProfilerWindow.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#category">Glossary</a></span></span></span>: Unity groups profile data into categories (such as Rendering, Scripting and Animation), and assigns a color to each category. This helps you visually distinguish the types of data in the Profiler window. The Profiler native plug-in API enables you to retrieve these colors so you can use them in an external profiler.</p></li>
+<li>
+<p>
+<strong>Usage flags</strong>: The Unity Profiler applies the following usage flags to event markers to help filter the data:</p>
+
+<ul>
+<li><p>Availability flags that describe whether a marker is available in the Unity Editor, or a Development or Release Player.</p></li>
+<li><p>Verbosity levels that correlate to the type of the task you are doing in the Editor, and the level of information that task requires (for example, internal, debug, or user level). </p></li>
+</ul>
+
+<p>Usage flags allow you to filter the data before you pass it to an external tool to reduce the amount of generated data, and filter the data in an external tool to reduce noise in the information.</p>
+</li>
+<li><p>
+<strong>Frame events</strong>: The Profiler native plug-in API enables you to do frame time analysis in an external profiler.</p></li>
+<li><p>
+<strong>Thread profiling</strong>: Unity does a significant amount of work on threads (for example, the main thread, render thread and job system worker thread). You can use the Profiler native plug-in API to enable profiling on any thread.</p></li>
+</ul>
+
+<h2>Plug-in API callbacks</h2>
+
+<p>The native Profiler plug-in API provides the interface between Unity’s subsystems and third-party profiling APIs. The API is exposed by the <em>IUnityProfilerCallbacks</em> header, which Unity stores in the <em>&lt;UnityInstallPath&gt;\Editor\Data\PluginAPI</em> folder of your Unity installation.</p>
+
+<p>To use the instrumentation data that the Unity Profiler generates in an external profiler, use this minimal set of callbacks:</p>
+
+<ol>
+<li><p>
+<code>RegisterCreateCategoryCallback</code>: Whenever Unity creates a category, the Profiler gets the category name and color, and registers this callback .</p></li>
+<li><p>
+<code>RegisterCreateMarkerCallback</code>: Whenever Unity creates a marker, the Profiler gets the marker name, category and usage flags, and registers this callback. UnityProfilerMarkerDesc represents a persistent pointer which you can use to filter markers in RegisterMarkerEventCallback. </p></li>
+<li><p>
+<code>RegisterMarkerEventCallback</code>: Tracks the external profiler push/pop markers with the Unity Profiler equivalents, and registers an event callback for the given marker. The Unity Profiler runs the specified callback when a scoped instrumentation event or a single-shot event occurs. You can also track memory allocation and garbage collection events as markers. Unity represents these events as <code>GC.Alloc</code> and <code>GC.Collect</code> respectively.</p></li>
+<li><p>
+<code>RegisterFrameCallback</code>: Encapsulates samples into logical frames for use in external profilers that don’t have a concept of frames, and registers a callback that the Unity Profiler runs when Unity starts the next logical CPU frame.</p></li>
+<li><p>
+<code>RegisterCreateThreadCallback</code>: Whenever Unity registers a thread for profiling, the Profiler gets the internal thread name, and registers this callback for that thread.</p></li>
+</ol>
+
+<h2>Usage examples</h2>
+
+<h3>Minimal example</h3>
+
+<p>The following example shows you how to send begin and end events to an external profiler:</p>
+
+<pre><code>| #include &lt;IUnityInterface.h&gt;
+#include &lt;IUnityProfilerCallbacks.h&gt;&lt;br/&gt;
+static IUnityProfilerCallbacks* s_UnityProfilerCallbacks = NULL;
+static void UNITY_INTERFACE_API MyProfilerEventCallback(
+    const UnityProfilerMarkerDesc* markerDesc,
+    UnityProfilerMarkerEventType eventType,
+    unsigned short eventDataCount,
+    const UnityProfilerMarkerData* eventData, void* userData)
+{
+    switch (eventType)
+    {
+        case kUnityProfilerMarkerEventTypeBegin:
+        {
+            MyProfilerPushMarker(markerDesc-&gt;name);
+            break;
+        }
+        case kUnityProfilerMarkerEventTypeEnd:
+        {
+            MyProfilerPopMarker(markerDesc-&gt;name);
+            break;
+        }
+    }
+}
+static void UNITY_INTERFACE_API MyProfilerCreateEventCallback(
+    const UnityProfilerMarkerDesc* markerDesc, void* userData)
+{
+    s_UnityProfilerCallbacks-&gt;
+      RegisterEventCallback(markerDesc, MyProfilerEventCallback, NULL);
+}
+extern &quot;C&quot; void UNITY_INTERFACE_EXPORT UNITY_INTERFACE_API UnityPluginLoad(IUnityInterfaces* unityInterfaces)
+{
+    s_UnityProfilerCallbacks = unityInterfaces-&gt;Get&lt;IUnityProfilerCallbacks&gt;();
+    s_UnityProfilerCallbacks-&gt;
+      RegisterCreateEventCallback(&amp;MyProfilerCreateEventCallback, NULL);
+}
+extern &quot;C&quot; void UNITY_INTERFACE_EXPORT UNITY_INTERFACE_API UnityPluginUnload()
+{
+    s_UnityProfilerCallbacks-&gt;
+      UnregisterCreateEventCallback(&amp;MyProfilerCreateEventCallback, NULL);
+    s_UnityProfilerCallbacks-&gt;
+      UnregisterEventCallback(NULL, &amp;MyProfilerEventCallback, NULL);
+}
+</code></pre>
+
+<p>
+<strong>Note</strong>: To unregister the given callback from all markers, run UnregisterEventCallback with the first parameter set to NULL.</p>
+
+<h3>UnitySystracePlugin example</h3>
+
+<p>You can register and unregister marker callbacks dynamically, once every frame. The following example shows you how to minimize profiling overhead by enabling and disabling callbacks, depending on a third party profile state. </p>
+
+<pre><code>| static void UNITY_INTERFACE_API SystraceFrameCallback(void* userData)
+{
+    bool isCapturing = ATrace_isEnabled();
+    if (isCapturing != s_isCapturing)
+    {
+        s_isCapturing = isCapturing;
+        if (isCapturing)
+        {
+            s_UnityProfilerCallbacks-&gt;&lt;br/&gt;              RegisterCreateMarkerCallback(SystraceCreateEventCallback, NULL);
+        }
+        else
+        {
+            s_UnityProfilerCallbacks-&gt;
+              UnregisterCreateMarkerCallback(SystraceCreateEventCallback, NULL);
+            s_UnityProfilerCallbacks-&gt;
+              UnregisterMarkerEventCallback(NULL, SystraceEventCallback, NULL);
+        }
+    }
+}
+</code></pre>
+
+<p>
+<strong>Note</strong>: To minimize callback overhead, you can register callbacks only for the duration of the capture.</p>
+
+<p>The Systrace API provides the ATrace_isEnabled API, which determines whether capturing is enabled. You can check this on a per-frame basis to enable or disable callbacks dynamically. For a more advanced usage example, see the <a href="https://github.com/Over17/UnitySystracePlugin">UnitySystracePlugin repository</a>.</p>
+
+<h2>Useful markers</h2>
+
+<p>Unity has the following markers that contain useful metadata:</p>
+
+<h3>Profiler.DefaultMarker</h3>
+
+<p>A marker that Unity reserves for <a href="../ScriptReference/Profiling.Profiler.BeginSample.html">Profiler.BeginSample</a> and <a href="../ScriptReference/Profiling.Profiler.EndSample.html">Profiler.EndSample</a> events. <code>kUnityProfilerMarkerEventTypeBegin eventType</code> corresponds to the <code>Profiler.BeginSample</code> event and has the following data:</p>
+
+<ul>
+<li><p>Int32: The <code>UnityEngine.Object</code> instance id or 0 if the object is not specified. </p></li>
+<li><p>UInt16 array: The UTF16 string that is passed to <code>Profiler.BeginSample</code>. The size is in bytes.</p></li>
+<li><p>UInt32: The category index.</p></li>
+</ul>
+
+<h3>GC.Alloc</h3>
+
+<p>A marker that corresponds to garbage collection allocation. It has the following data: </p>
+
+<ul>
+<li>Int64: The size of the allocation.</li>
+</ul>
+
+<hr>
+
+<ul>
+<li><p><span class="page-edit">2019–02–14 Page published
+</span></p></li>
+<li><p><span class="page-history">Low-level Profiler native plug-in added in Unity <a href="../Manual/30_search.html?q=newin20183">2018.3</a> <span class="search-words">NewIn20183</span></span></p></li>
+</ul>
+<div class="feedbackbox" id="feedbackbox">
+<div id="rating"><p>Did you find this page useful? Please give it a rating:<br><div id="ratecontent" class="c-rating"></div>
+</p></div>
+<div id="ratingThanks" style="display:none"><p>Thanks for rating this page!</p></div>
+<div id="problem"><p><a name="problem">Report a problem on this page</a></p></div>
+<div id="problemType" style="display:none"><p>What kind of problem would you like to report?<ul type="problems">
+<li><a name="needcode" id="problemneedcode">This page needs code samples</a></li>
+<li><a name="code" id="problemcode">Code samples do not work</a></li>
+<li><a name="missing" id="problemmissing">Information is missing</a></li>
+<li><a name="incorrect" id="problemincorrect">Information is incorrect</a></li>
+<li><a name="unclear" id="problemunclear">Information is unclear or confusing</a></li>
+<li><a name="language" id="problemlanguage">There is a spelling/grammar error on this page</a></li>
+<li><a name="other" id="problemother">Something else</a></li>
+</ul>
+<p><known_issues><p>Is something described here not working as you expect it to? It might be a <b>Known Issue</b>. Please check with the Issue Tracker at <a href="https://issuetracker.unity3d.com">issuetracker.unity3d.com</a>.</p></known_issues></p>
+</p></div>
+<div id="problemThanks" style="display:none"><p>Thanks for letting us know! This page has been marked for review based on your feedback.<br><br>If you have time, you can provide more information to help us fix the problem faster.<br><br><a id="problemThanksMoreInfoButton">Provide more information</a><br>
+</p></div>
+<div id="problemMoreInfo" style="display:none">
+<p id="problemNeedCodeForm" style="display:none">You've told us this page needs code samples. If you'd like to help us further, you could provide a code sample, or tell us about what kind of code sample you'd like to see:</p>
+<p id="problemCodeForm" style="display:none">You've told us there are code samples on this page which don't work. If you know how to fix it, or have something better we could use instead, please let us know:</p>
+<p id="problemMissingForm" style="display:none">You've told us there is information missing from this page. Please tell us more about what's missing:</p>
+<p id="problemIncorrectForm" style="display:none">You've told us there is incorrect information on this page. If you know what we should change to make it correct, please tell us:</p>
+<p id="problemUnclearForm" style="display:none">You've told us this page has unclear or confusing information. Please tell us more about what you found unclear or confusing, or let us know how we could make it clearer:</p>
+<p id="problemLanguageForm" style="display:none">You've told us there is a spelling or grammar error on this page. Please tell us what's wrong:</p>
+<p id="problemOtherForm" style="display:none">You've told us this page has a problem. Please tell us more about what's wrong:</p>
+<form>
+<textarea id="problemFormSuggestionField" cols="40" rows="5"></textarea><input type="hidden" id="problemFormDescription"><input type="submit" id="problemFormDescriptionSubmit" value="Submit">
+</form>
+</div>
+<div id="problemMoreInfoThanks" style="display:none"><p>Thanks for helping to make the Unity documentation better!</p></div>
+<script>InitialiseStarRating();</script>
+</div>
+<div class="nextprev clear">
+<div class="icon tt left mr1" data-distance="-40|-30|top">
+<span class="prev"><a href="NativePluginInterface.html"></a></span><div class="tip">Low-level native plug-in interface</div>
+</div>
+<div class="icon tt right" data-distance="-40|-30|top">
+<span class="next"><a href="LowLevelNativePluginRenderingExtensions.html"></a></span><div class="tip">Low-level native plug-in rendering extensions</div>
+</div>
+</div>
+</div>
+<div class="footer-wrapper"><div class="footer clear">
+<div class="copy">Copyright © 2019 Unity Technologies. Publication: 2019.2-003J. Built: 2019-12-16.</div>
+<div class="menu">
+<a href="https://unity3d.com/learn">Tutorials</a><a href="https://answers.unity3d.com">Community Answers</a><a href="https://support.unity3d.com/hc/en-us">Knowledge Base</a><a href="https://forum.unity3d.com">Forums</a><a href="https://unity3d.com/asset-store">Asset Store</a>
+</div>
+</div></div>
+</div>
+</div></div>
+</div>
+</body>
+</html>

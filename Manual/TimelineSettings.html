@@ -1,0 +1,262 @@
+<!DOCTYPE html><html lang="en" class="no-js">
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+<script>var offline=(location.href.indexOf('docs.unity3d.com')==-1)?true:false;if(!offline){(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);  })(window,document,'script','dataLayer','GTM-5V25JL6');}</script><link href="https://fonts.googleapis.com/css?family=Roboto&amp;display=swap" rel="stylesheet">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unity - Manual:  Timeline Settings</title>
+<meta property="og:image" content="https://unity3d.com/files/images/ogimg.jpg">
+<meta name="author" content="Unity Technologies">
+<link rel="shortcut icon" href="https://unity.com/themes/contrib/unity_base/images/favicons/favicon.ico">
+<link rel="icon" type="image/png" href="../StaticFilesManual/images/favicons/favicon.png">
+<link rel="apple-touch-icon-precomposed" sizes="152x152" href="../StaticFilesManual/images/favicons/apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../StaticFilesManual/images/favicons/apple-touch-icon-144x144.png">
+<link rel="apple-touch-icon-precomposed" sizes="120x120" href="../StaticFilesManual/images/favicons/apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="../StaticFilesManual/images/favicons/apple-touch-icon-114x114.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="../StaticFilesManual/images/favicons/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon-precomposed" href="../StaticFilesManual/images/favicons/apple-touch-icon.png">
+<meta name="msapplication-TileColor" content="#222c37">
+<meta name="msapplication-TileImage" content="../StaticFilesManual/images/favicons/tileicon-144x144.png">
+<script type="text/javascript" src="https://docs.unity3d.com/StaticFilesConfig/UnityVersionsInfo.js"></script><script type="text/javascript" src="../StaticFilesManual/js/jquery.js?ts=1576442311"></script><script type="text/javascript" src="../StaticFilesManual/js/core.js?ts=1576442311"></script><script type="text/javascript" src="docdata/toc.js?ts=1576442311"></script><script type="text/javascript" src="docdata/global_toc.js?ts=1576442311"></script><link rel="stylesheet" type="text/css" href="../StaticFilesManual/css/core.css?ts=1576442311">
+<link rel="stylesheet" href="../StaticFilesManual/js/feedback/five-star-rating-master/css/rating.min.css">
+<link rel="stylesheet" href="../StaticFilesManual/css/prism.css">
+<script src="../StaticFilesManual/js/prism.js"></script><script src="../StaticFilesManual/js/feedback/five-star-rating-master/js/src/rating.js"></script><script src="../StaticFilesManual/js/jquery.sidebar.min.js"></script><link rel="stylesheet" href="../StaticFilesManual/css/mobileoptimisation.css">
+<script src="../StaticFilesManual/js/mobileoptimisation.js"></script>
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5V25JL6" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<div id="DocsAnalyticsData" data-area="TimelineSection" data-pagetype="normal"></div>
+<div class="header-wrapper">
+<div id="header" class="header"><div class="content">
+<div class="spacer"><div class="menu">
+<div id="nav-open" for="nav-input"><span></span></div>
+<div class="logo"><a href="https://docs.unity3d.com"></a></div>
+<div class="search-form"><form action="30_search.html" method="get" class="apisearch">
+<input type="text" name="q" placeholder="Search manual..." autosave="Unity Reference" results="5" class="sbox field" id="q"><input type="submit" class="submit">
+</form></div>
+<ul>
+<li><a href="../Manual/index.html" class="selected">Manual</a></li>
+<li><a href="../ScriptReference/index.html">Scripting API</a></li>
+</ul>
+</div></div>
+<div class="more">
+<div class="filler"></div>
+<ul><li><a href="https://unity3d.com/">unity3d.com</a></li></ul>
+</div>
+</div></div>
+<div class="toolbar"><div class="content">
+<div class="toggle version-number" id="VersionNumber" data-target=".otherversionscontent">
+                                Version: <b>2019.2</b><div class="otherversionscontent" id="OtherVersionsContent" style="display: none;">
+<ul id="OtherVersionsContentUl"></ul>
+<div id="otherVersionsLegend"><ul>
+<li>
+<div id="supportedColour" class="legendBox"></div>Supported</li>
+<li>
+<div id="notFoundColour" class="legendBox"></div>Legacy</li>
+</ul></div>
+</div>
+<div id="VersionSwitcherArrow" class="arrow versionSwitcherArrow"></div>
+</div>
+<div class="lang-switcher"><div class="current toggle" data-target=".lang-list">
+<div class="lbl">Language
+:                <span class="b">English</span>
+</div>
+<div class="arrow"></div>
+<div class="lang-list" style="display:none;"><ul>
+<li><a href="/Manual/TimelineSettings.html">English</a></li>
+<li><a href="/ja/current/Manual/TimelineSettings.html">日本語</a></li>
+<li><a href="/es/current/Manual/TimelineSettings.html">Español</a></li>
+<li><a href="/kr/current/Manual/TimelineSettings.html">한국어</a></li>
+<li><a href="/ru/current/Manual/TimelineSettings.html">Русский</a></li>
+</ul></div>
+</div></div>
+</div></div>
+<div class="mobileLogo"><a href="https://docs.unity3d.com"></a></div>
+</div>
+<div id="master-wrapper" class="master-wrapper clear">
+<div id="sidebar" class="sidebar"><div class="sidebar-wrap"><div class="content"><div class="sidebar-menu"><div class="toc" id="customScrollbar">
+<h2>Unity Manual</h2>
+<div class="search-form sidebar-search-form"><form action="30_search.html" method="get" class="apisearch">
+<input type="text" name="q" placeholder="Search manual..." autosave="Unity Reference" results="5" class="sbox field" id="q"><input type="submit" id="mobileSearchBtn" class="submit" value="Search">
+</form></div>
+<div class="toggle version-number sidebar-version-switcher" id="VersionNumber" data-target=".otherversionscontent"><form id="otherVersionsContentMobileForm"><div class="ui-field-contain">
+<label for="select-native-4">Version: 2019.2</label><select name="select-native-4" id="versionsSelectMobile"><option>Select a different version</option>
+<optgroup id="versionsWithThisPageMobile" label="Versions with this page"></optgroup>
+<optgroup id="versionsWithoutThisPageMobile" label="Versions without this page"></optgroup></select>
+</div></form></div>
+<div class="lang-switcher"><div class="current toggle" data-target=".lang-list">
+<div class="lbl">Language
+:                <span class="b">English</span>
+</div>
+<div class="arrow"></div>
+<div class="lang-list" style="display:none;"><ul>
+<li><a href="/Manual/TimelineSettings.html">English</a></li>
+<li><a href="/ja/current/Manual/TimelineSettings.html">日本語</a></li>
+<li><a href="/es/current/Manual/TimelineSettings.html">Español</a></li>
+<li><a href="/kr/current/Manual/TimelineSettings.html">한국어</a></li>
+<li><a href="/ru/current/Manual/TimelineSettings.html">Русский</a></li>
+</ul></div>
+</div></div>
+</div></div></div></div></div>
+<div id="content-wrap" class="content-wrap"><div class="content-block">
+<div class="darkCover"></div>
+<div class="content">
+<div class="section">
+<div class="breadcrumbs clear"><ul>
+<li><a href="UnityManual.html">Unity User Manual (2019.2)</a></li>
+<li><a href="TimelineSection.html"> Timeline</a></li>
+<li><a href="TimelineEditorWindow.html"> Timeline window</a></li>
+<li> Timeline Settings</li>
+</ul></div>
+<div class="mb20"><div class="nextprev clear">
+<div class="icon tt left mr1" data-distance="-40|-30|top">
+<span class="prev"><a href="TimelineDeletingKeys.html"></a></span><div class="tip"> Deleting keys</div>
+</div>
+<div class="icon tt right" data-distance="-40|-30|top">
+<span class="next"><a href="TimelineInspector.html"></a></span><div class="tip"> Timeline properties in the Inspector window</div>
+</div>
+</div></div>
+<div class="scrollToFeedback"><a id="scrollToFeedback">Leave feedback</a></div>
+<h1>Timeline Settings</h1>
+<!--BeginSwitchLink--><!--EndSwitchLink-->
+<div class="clear"></div>
+
+<p>Use the <span class="tooltip"><strong>Timeline</strong><span class="tooltiptext">Generic term within Unity that refers to all features, windows, editors, and components related to creating, modifying, or reusing cut-scenes, cinematics, and game-play sequences. <a href="TimelineSection.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#Timeline">Glossary</a></span></span></span> Settings to choose the <strong>Timeline</strong> window and <strong>Timeline</strong> Asset settings such as the unit of measurement, the duration mode, audio waveform, and window snap settings.</p>
+
+<figure>
+<img src="../uploads/Main/timeline_cog_menu.png" alt="Click the Cog icon in the Timeline window to view the Timeline Settings menu">
+<figcaption>Click the Cog icon in the Timeline window to view the Timeline Settings menu</figcaption>
+</figure>
+
+<h2>Seconds or Frames</h2>
+
+<p>Select either <strong>Seconds</strong> or <strong>Frames</strong> to set the Timeline window to display time as either seconds or frames.</p>
+
+<h2>Duration Mode</h2>
+
+<p>Use the <strong>Duration Mode</strong> to set whether the duration of the <span class="tooltip"><strong>Timeline Asset</strong><span class="tooltiptext">Refers to the tracks, clips, and recorded animation that comprise a cinematic, cut-scene, game-play sequence, or other effect created with the Timeline Editor window. A Timeline Asset does not include bindings to the GameObjects animated by the Timeline Asset. The bindings to scene GameObjects are stored in the Timeline instance. The Timeline Asset is Project-based. <a href="TimelineOverview.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#TimelineAsset">Glossary</a></span></span></span> extends to the end of the last clip (<strong>Based On Clips</strong>), or ends at a specific time or frame (<strong>Fixed Length</strong>). When the <strong>Duration Mode</strong> is set to <strong>Fixed Length</strong>, use one of the following methods to change the length of the Timeline Asset:</p>
+
+<ul>
+<li><p>Select the Timeline Asset in the Project window and use the <span class="tooltip"><strong>Inspector</strong><span class="tooltiptext">A Unity window that displays information about the currently selected GameObject, Asset or Project Settings, alowing you to inspect and edit the values. <a href="UsingTheInspector.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#Inspector">Glossary</a></span></span></span> window to set the Duration in seconds or frames. </p></li>
+<li><p>In the Timeline window, drag the blue marker on the timeline. The blue marker indicates the end of the Timeline Asset. A blue line indicates the duration of the Timeline Asset.</p></li>
+</ul>
+
+<figure>
+<img src="../uploads/Main/timeline_duration_mode.png" alt="Timeline Asset duration (red rectangle) and end marker (green circle)">
+<figcaption>Timeline Asset duration (red rectangle) and end marker (green circle)</figcaption>
+</figure>
+
+<h2>Frame Rate</h2>
+
+<p>Select one of the options under <strong>Frame Rate</strong> to set the unit of measurement for the Timeline ruler. Change the Frame Rate to align clips at precise frames but changing the Frame Rate is only visual and has no effect on play speed, keys, tracks, or clips. The following standard frame rates are listed: Film (24 fps), PAL (25 fps), NTSC (29.97 fps), 30, 50, or 60.</p>
+
+<p>Timeline supports custom frame rates from 1e–6 to 1000. To set a custom frame rate, you must use the <strong>Frame Rate</strong> property in the <a href="script-TimelineAsset.html">Timeline Asset settings</a>. When the Timeline Asset is set to a custom frame rate, the Custom menu item is enabled and is automatically selected for the <span class="tooltip"><strong>Timeline instance</strong><span class="tooltiptext">Refers to the link between a Timeline Asset and the GameObjects that the Timeline Asset animates in the scene. You create a Timeline instance by associating a Timeline Asset to a GameObject through a Playable Director component. The Timeline instance is scene-based. <a href="TimelineOverview.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#Timelineinstance">Glossary</a></span></span></span>. The Custom menu item shows the custom frame rate in parentheses.</p>
+
+<h2>Play Range Mode</h2>
+
+<p>Select one of the options under <strong>Play Range Mode</strong> to set the behaviour of the Timeline window when the <a href="TimelinePlaybackControls.html">Play Range button</a> is enabled.</p>
+
+<ul>
+<li><p>When <strong>Play Range Mode</strong> is set to <strong>Loop</strong>, the Timeline instance plays the defined Play Range repeatedly, until playback is interrupted.</p></li>
+<li><p>When <strong>Play Range Mode</strong> is set to <strong>Hold</strong>, the Timeline instance plays the defined Play Range once and stops at the end of the Play Range.</p></li>
+</ul>
+
+<p>You can only set a play range when previewing a Timeline instance within the Timeline window. Unity ignores the play range in <a href="GameView.html">Play Mode</a>. </p>
+
+<h2>Show Audio Waveforms</h2>
+
+<p>Enable <strong>Show Audio Waveforms</strong> to draw the waveforms for all <span class="tooltip"><strong>audio clips</strong><span class="tooltiptext">A container for audio data in Unity. Unity supports mono, stereo and multichannel audio assets (up to eight channels). Unity can import .aif, .wav, .mp3, and .ogg audio file format, and .xm, .mod, .it, and .s3m tracker module formats. <a href="class-AudioClip.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#AudioClip">Glossary</a></span></span></span> on all audio tracks. For example, use an audio waveform as a guide when manually positioning an Audio clip of footsteps with the <span class="tooltip"><strong>Animation clip</strong><span class="tooltiptext">Animation data that can be used for animated characters or simple animations. It is a simple “unit” piece of motion, such as (one specific instance of) “Idle”, “Walk” or “Run”. <a href="class-AnimationClip.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#AnimationClip">Glossary</a></span></span></span> of a humanoid walking. Disable <strong>Show Audio Waveform</strong> to hide audio waveforms. <strong>Show Audio Waveforms</strong> is enabled by default.</p>
+
+<h2>Enable Audio Scrubbing</h2>
+
+<p>
+<strong>Enable Audio Scrubbing</strong> to play audio while dragging the <span class="tooltip"><strong>Timeline Playhead</strong><span class="tooltiptext">The white marker and line that indicates the exact point in time being previewed in the Timeline Editor window. <a href="TimelinePositioningClips.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#TimelinePlayhead">Glossary</a></span></span></span>. </p>
+
+<p>Disable <strong>Enable Audio Scrubbing</strong> to stop playing audio while dragging the Timeline Playhead. When disabled, Timeline only plays audio when in <span class="tooltip"><a href="TimelinePlaybackControls.html">Timeline Playback mode</a><span class="tooltiptext">The mode that previews the Timeline instance in the Timeline Editor window. Timeline Playback mode is a simulation of Play mode. Timeline Playback mode does not support audio playback. <a href="TimelinePlaybackControls.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#TimelinePlaybackmode">Glossary</a></span></span></span>.</p>
+
+<h2>Snap to Frame</h2>
+
+<p>Enable <strong>Snap to Frame</strong> to manipulate clips, preview Timeline instances, drag the Timeline Playhead, and position the Timeline Playhead using frames. Disable <strong>Snap to Frame</strong> to use subframes. <strong>Snap to Frame</strong> is enabled by default.</p>
+
+<figure>
+<img src="../uploads/Main/timeline_frames_subframes.png" alt="Disable Snap to Frame to position clips and drag the playhead between frames">
+<figcaption>Disable <strong>Snap to Frame</strong> to position clips and drag the playhead between frames</figcaption>
+</figure>
+
+<p>For example, when <strong>Snap to Frame</strong> is disabled and you drag the Timeline Playhead, it moves the playhead between frames. The format of <a href="TimelinePlaybackControls.html">Playhead Location</a> displays differently depending on whether the Timeline window is set to <strong>Seconds</strong> or <strong>Frames</strong>:</p>
+
+<ul>
+<li><p>When the Timeline window is set to <strong>Frames</strong>, the Playhead Location shows frames and subframes. For example, 8 frames and 34 subframes displays as 8.34.</p></li>
+<li><p>When the Timeline window is set to <strong>Seconds</strong>, the Playhead Location shows seconds, frames, and subframes. For example, 6 seconds, 17 frames, and 59 subframes displays as 6:17 [.59].</p></li>
+</ul>
+
+<p>Manipulating clips, previewing Timeline instances, and positioning the playhead at the subframes level is useful when attempting to synchronize animation and effects with audio. Many high-end audio processing software products create audio waveforms with subframe accuracy. </p>
+
+<h2>Edge Snap</h2>
+
+<p>Enable the <strong>Edge Snap</strong> option to snap clips when you position, trim, and create blends. </p>
+
+<p>When enabled, the Timeline window snaps the start or end of a clip when dragged within 10 <span class="tooltip"><strong>pixels</strong><span class="tooltiptext">The smallest unit in a computer image. Pixel size depends on your screen resolution. Pixel lighting is calculated at every screen pixel. <a href="LightPerformance.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#pixel">Glossary</a></span></span></span> of the Timeline Playhead, the start or end of a clip on the same track, the start or end of a clip on another track, or the start or end of the entire Timeline instance. The start guide or end guide is redrawn in white to indicate that the clip has snapped to the edge of another clip or the Timeline Playhead.</p>
+
+<p>Disable <strong>Edge Snap</strong> to create more accurate blends, ease-ins, or ease-outs. <strong>Edge Snap</strong> is enabled by default.</p>
+
+<hr>
+
+<ul>
+<li><span class="page-edit">2019–08–20 Page published
+</span></li>
+</ul>
+<div class="feedbackbox" id="feedbackbox">
+<div id="rating"><p>Did you find this page useful? Please give it a rating:<br><div id="ratecontent" class="c-rating"></div>
+</p></div>
+<div id="ratingThanks" style="display:none"><p>Thanks for rating this page!</p></div>
+<div id="problem"><p><a name="problem">Report a problem on this page</a></p></div>
+<div id="problemType" style="display:none"><p>What kind of problem would you like to report?<ul type="problems">
+<li><a name="needcode" id="problemneedcode">This page needs code samples</a></li>
+<li><a name="code" id="problemcode">Code samples do not work</a></li>
+<li><a name="missing" id="problemmissing">Information is missing</a></li>
+<li><a name="incorrect" id="problemincorrect">Information is incorrect</a></li>
+<li><a name="unclear" id="problemunclear">Information is unclear or confusing</a></li>
+<li><a name="language" id="problemlanguage">There is a spelling/grammar error on this page</a></li>
+<li><a name="other" id="problemother">Something else</a></li>
+</ul>
+<p><known_issues><p>Is something described here not working as you expect it to? It might be a <b>Known Issue</b>. Please check with the Issue Tracker at <a href="https://issuetracker.unity3d.com">issuetracker.unity3d.com</a>.</p></known_issues></p>
+</p></div>
+<div id="problemThanks" style="display:none"><p>Thanks for letting us know! This page has been marked for review based on your feedback.<br><br>If you have time, you can provide more information to help us fix the problem faster.<br><br><a id="problemThanksMoreInfoButton">Provide more information</a><br>
+</p></div>
+<div id="problemMoreInfo" style="display:none">
+<p id="problemNeedCodeForm" style="display:none">You've told us this page needs code samples. If you'd like to help us further, you could provide a code sample, or tell us about what kind of code sample you'd like to see:</p>
+<p id="problemCodeForm" style="display:none">You've told us there are code samples on this page which don't work. If you know how to fix it, or have something better we could use instead, please let us know:</p>
+<p id="problemMissingForm" style="display:none">You've told us there is information missing from this page. Please tell us more about what's missing:</p>
+<p id="problemIncorrectForm" style="display:none">You've told us there is incorrect information on this page. If you know what we should change to make it correct, please tell us:</p>
+<p id="problemUnclearForm" style="display:none">You've told us this page has unclear or confusing information. Please tell us more about what you found unclear or confusing, or let us know how we could make it clearer:</p>
+<p id="problemLanguageForm" style="display:none">You've told us there is a spelling or grammar error on this page. Please tell us what's wrong:</p>
+<p id="problemOtherForm" style="display:none">You've told us this page has a problem. Please tell us more about what's wrong:</p>
+<form>
+<textarea id="problemFormSuggestionField" cols="40" rows="5"></textarea><input type="hidden" id="problemFormDescription"><input type="submit" id="problemFormDescriptionSubmit" value="Submit">
+</form>
+</div>
+<div id="problemMoreInfoThanks" style="display:none"><p>Thanks for helping to make the Unity documentation better!</p></div>
+<script>InitialiseStarRating();</script>
+</div>
+<div class="nextprev clear">
+<div class="icon tt left mr1" data-distance="-40|-30|top">
+<span class="prev"><a href="TimelineDeletingKeys.html"></a></span><div class="tip"> Deleting keys</div>
+</div>
+<div class="icon tt right" data-distance="-40|-30|top">
+<span class="next"><a href="TimelineInspector.html"></a></span><div class="tip"> Timeline properties in the Inspector window</div>
+</div>
+</div>
+</div>
+<div class="footer-wrapper"><div class="footer clear">
+<div class="copy">Copyright © 2019 Unity Technologies. Publication: 2019.2-003J. Built: 2019-12-16.</div>
+<div class="menu">
+<a href="https://unity3d.com/learn">Tutorials</a><a href="https://answers.unity3d.com">Community Answers</a><a href="https://support.unity3d.com/hc/en-us">Knowledge Base</a><a href="https://forum.unity3d.com">Forums</a><a href="https://unity3d.com/asset-store">Asset Store</a>
+</div>
+</div></div>
+</div>
+</div></div>
+</div>
+</body>
+</html>

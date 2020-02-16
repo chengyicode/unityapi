@@ -1,0 +1,364 @@
+<!DOCTYPE html><html lang="en" class="no-js">
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+<script>var offline=(location.href.indexOf('docs.unity3d.com')==-1)?true:false;if(!offline){(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);  })(window,document,'script','dataLayer','GTM-5V25JL6');}</script><link href="https://fonts.googleapis.com/css?family=Roboto&amp;display=swap" rel="stylesheet">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unity - Manual:  Universal Windows Platform (UWP) build settings</title>
+<meta property="og:image" content="https://unity3d.com/files/images/ogimg.jpg">
+<meta name="author" content="Unity Technologies">
+<link rel="shortcut icon" href="https://unity.com/themes/contrib/unity_base/images/favicons/favicon.ico">
+<link rel="icon" type="image/png" href="../StaticFilesManual/images/favicons/favicon.png">
+<link rel="apple-touch-icon-precomposed" sizes="152x152" href="../StaticFilesManual/images/favicons/apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../StaticFilesManual/images/favicons/apple-touch-icon-144x144.png">
+<link rel="apple-touch-icon-precomposed" sizes="120x120" href="../StaticFilesManual/images/favicons/apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="../StaticFilesManual/images/favicons/apple-touch-icon-114x114.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="../StaticFilesManual/images/favicons/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon-precomposed" href="../StaticFilesManual/images/favicons/apple-touch-icon.png">
+<meta name="msapplication-TileColor" content="#222c37">
+<meta name="msapplication-TileImage" content="../StaticFilesManual/images/favicons/tileicon-144x144.png">
+<script type="text/javascript" src="https://docs.unity3d.com/StaticFilesConfig/UnityVersionsInfo.js"></script><script type="text/javascript" src="../StaticFilesManual/js/jquery.js?ts=1576442311"></script><script type="text/javascript" src="../StaticFilesManual/js/core.js?ts=1576442311"></script><script type="text/javascript" src="docdata/toc.js?ts=1576442311"></script><script type="text/javascript" src="docdata/global_toc.js?ts=1576442311"></script><link rel="stylesheet" type="text/css" href="../StaticFilesManual/css/core.css?ts=1576442311">
+<link rel="stylesheet" href="../StaticFilesManual/js/feedback/five-star-rating-master/css/rating.min.css">
+<link rel="stylesheet" href="../StaticFilesManual/css/prism.css">
+<script src="../StaticFilesManual/js/prism.js"></script><script src="../StaticFilesManual/js/feedback/five-star-rating-master/js/src/rating.js"></script><script src="../StaticFilesManual/js/jquery.sidebar.min.js"></script><link rel="stylesheet" href="../StaticFilesManual/css/mobileoptimisation.css">
+<script src="../StaticFilesManual/js/mobileoptimisation.js"></script>
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5V25JL6" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<div id="DocsAnalyticsData" data-area="PlatformSpecific" data-pagetype="normal"></div>
+<div class="header-wrapper">
+<div id="header" class="header"><div class="content">
+<div class="spacer"><div class="menu">
+<div id="nav-open" for="nav-input"><span></span></div>
+<div class="logo"><a href="https://docs.unity3d.com"></a></div>
+<div class="search-form"><form action="30_search.html" method="get" class="apisearch">
+<input type="text" name="q" placeholder="Search manual..." autosave="Unity Reference" results="5" class="sbox field" id="q"><input type="submit" class="submit">
+</form></div>
+<ul>
+<li><a href="../Manual/index.html" class="selected">Manual</a></li>
+<li><a href="../ScriptReference/index.html">Scripting API</a></li>
+</ul>
+</div></div>
+<div class="more">
+<div class="filler"></div>
+<ul><li><a href="https://unity3d.com/">unity3d.com</a></li></ul>
+</div>
+</div></div>
+<div class="toolbar"><div class="content">
+<div class="toggle version-number" id="VersionNumber" data-target=".otherversionscontent">
+                                Version: <b>2019.2</b><div class="otherversionscontent" id="OtherVersionsContent" style="display: none;">
+<ul id="OtherVersionsContentUl"></ul>
+<div id="otherVersionsLegend"><ul>
+<li>
+<div id="supportedColour" class="legendBox"></div>Supported</li>
+<li>
+<div id="notFoundColour" class="legendBox"></div>Legacy</li>
+</ul></div>
+</div>
+<div id="VersionSwitcherArrow" class="arrow versionSwitcherArrow"></div>
+</div>
+<div class="lang-switcher"><div class="current toggle" data-target=".lang-list">
+<div class="lbl">Language
+:                <span class="b">English</span>
+</div>
+<div class="arrow"></div>
+<div class="lang-list" style="display:none;"><ul>
+<li><a href="/Manual/windowsstore-buildsettings.html">English</a></li>
+<li><a href="/ja/current/Manual/windowsstore-buildsettings.html">日本語</a></li>
+<li><a href="/es/current/Manual/windowsstore-buildsettings.html">Español</a></li>
+<li><a href="/kr/current/Manual/windowsstore-buildsettings.html">한국어</a></li>
+<li><a href="/ru/current/Manual/windowsstore-buildsettings.html">Русский</a></li>
+</ul></div>
+</div></div>
+</div></div>
+<div class="mobileLogo"><a href="https://docs.unity3d.com"></a></div>
+</div>
+<div id="master-wrapper" class="master-wrapper clear">
+<div id="sidebar" class="sidebar"><div class="sidebar-wrap"><div class="content"><div class="sidebar-menu"><div class="toc" id="customScrollbar">
+<h2>Unity Manual</h2>
+<div class="search-form sidebar-search-form"><form action="30_search.html" method="get" class="apisearch">
+<input type="text" name="q" placeholder="Search manual..." autosave="Unity Reference" results="5" class="sbox field" id="q"><input type="submit" id="mobileSearchBtn" class="submit" value="Search">
+</form></div>
+<div class="toggle version-number sidebar-version-switcher" id="VersionNumber" data-target=".otherversionscontent"><form id="otherVersionsContentMobileForm"><div class="ui-field-contain">
+<label for="select-native-4">Version: 2019.2</label><select name="select-native-4" id="versionsSelectMobile"><option>Select a different version</option>
+<optgroup id="versionsWithThisPageMobile" label="Versions with this page"></optgroup>
+<optgroup id="versionsWithoutThisPageMobile" label="Versions without this page"></optgroup></select>
+</div></form></div>
+<div class="lang-switcher"><div class="current toggle" data-target=".lang-list">
+<div class="lbl">Language
+:                <span class="b">English</span>
+</div>
+<div class="arrow"></div>
+<div class="lang-list" style="display:none;"><ul>
+<li><a href="/Manual/windowsstore-buildsettings.html">English</a></li>
+<li><a href="/ja/current/Manual/windowsstore-buildsettings.html">日本語</a></li>
+<li><a href="/es/current/Manual/windowsstore-buildsettings.html">Español</a></li>
+<li><a href="/kr/current/Manual/windowsstore-buildsettings.html">한국어</a></li>
+<li><a href="/ru/current/Manual/windowsstore-buildsettings.html">Русский</a></li>
+</ul></div>
+</div></div>
+</div></div></div></div></div>
+<div id="content-wrap" class="content-wrap"><div class="content-block">
+<div class="darkCover"></div>
+<div class="content">
+<div class="section">
+<div class="breadcrumbs clear"><ul>
+<li><a href="UnityManual.html">Unity User Manual (2019.2)</a></li>
+<li><a href="PlatformSpecific.html">Platform-specific</a></li>
+<li><a href="Windows.html">Windows</a></li>
+<li><a href="WindowsStore.html">Universal Windows Platform</a></li>
+<li> Universal Windows Platform (UWP) build settings</li>
+</ul></div>
+<div class="mb20"><div class="nextprev clear">
+<div class="icon tt left mr1" data-distance="-40|-30|top">
+<span class="prev"><a href="windowsstore-deployment.html"></a></span><div class="tip">﻿Universal Windows Platform: Deployment</div>
+</div>
+<div class="icon tt right" data-distance="-40|-30|top">
+<span class="next"><a href="windowsstore-profiler.html"></a></span><div class="tip">Universal Windows Platform: Profiler</div>
+</div>
+</div></div>
+<div class="scrollToFeedback"><a id="scrollToFeedback">Leave feedback</a></div>
+<h1>Universal Windows Platform (UWP) build settings</h1>
+<!--BeginSwitchLink--><!--EndSwitchLink-->
+<div class="clear"></div>
+
+<p>To create a build for UWP, go to <strong>Build Settings (</strong>menu: <strong>File</strong> &gt; <strong>Build Settings</strong>). In the <strong>Platform</strong> list, select <span class="tooltip"><strong>Universal Windows Platform</strong><span class="tooltiptext">An IAP feature that supports Microsoft’s In App Purchase simulator, which allows you to test IAP purchase flows on devices before publishing your application. <a href="UnityIAPUniversalWindows.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#UniversalWindowsPlatform">Glossary</a></span></span></span>, then select the <strong>Switch Platform</strong> button.</p>
+
+<p>
+<strong>Note</strong>: <strong>Universal Windows Platform</strong> only shows in the <strong>Platform</strong> list if you’re using Unity on a Windows computer.</p>
+
+<p>Unity doesn’t support Windows Phone development.</p>
+
+<h2>Building UWP applications with Unity</h2>
+
+<p>The main workflow when building a game or application for UWP using Unity is as follows:</p>
+
+<p>When you click <strong>Build </strong>in the <strong>Build Settings</strong> window:</p>
+
+<ol>
+<li><p>Unity generates and exports a Visual Studio Project.</p></li>
+<li><p>Open the generated Project’s <em>.sln</em> file in Visual Studio.</p></li>
+<li><p>Use Visual Studio to build your final application.</p></li>
+</ol>
+
+<p>When you click <strong>Build And Run</strong>, Unity builds an app executable that can run independently.</p>
+
+<h2>UWP Build Settings</h2>
+
+<p>Use these settings to configure how Unity builds your application.</p>
+
+<table>
+<colgroup>
+<col style="text-align:left;">
+<col style="text-align:left;">
+</colgroup>
+
+<thead>
+<tr>
+	<th style="text-align:left;" colspan="2"><strong>Setting</strong></th>
+	<th style="text-align:left;"><strong>Function</strong></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td style="text-align:left;" colspan="2"><strong>Target Device</strong></td>
+	<td style="text-align:left;">Choose from the following options to build your app for any device, or select a specific device: <em>Any device</em>, <em>PC</em>, <em>Mobile</em>, or <em><span class="tooltip"><strong>HoloLens</strong><span class="tooltiptext">An XR headset for using apps made for the Windows Mixed Reality platform. <a href="wmr_sdk_overview.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#HoloLens">Glossary</a></span></span></span></em>.</td>
+</tr>
+<tr>
+	<td style="text-align:left;" colspan="2"><strong>Architecture</strong></td>
+	<td style="text-align:left;">Select the type of CPU to build for (only applies to <strong>Build And Run</strong>).</td>
+</tr>
+<tr>
+	<td style="text-align:left;"></td>
+	<td style="text-align:left;"><em>x64</em></td>
+	<td style="text-align:left;">64-bit CPU.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"></td>
+	<td style="text-align:left;"><em>x86</em></td>
+	<td style="text-align:left;">32-bit CPU.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"></td>
+	<td style="text-align:left;"><em>ARM</em></td>
+	<td style="text-align:left;">32-bit ARM CPU.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"></td>
+	<td style="text-align:left;"><em>ARM64</em></td>
+	<td style="text-align:left;">64-bit ARM CPU.</td>
+</tr>
+<tr>
+	<td style="text-align:left;" colspan="2"><strong>Build Type</strong></td>
+	<td style="text-align:left;">Select the type of Visual Studio project or build to generate.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"></td>
+	<td style="text-align:left;"><em>XAML Project</em></td>
+	<td style="text-align:left;">Visual Studio project that integrates Unity within a full XAML environment. This results in some performance loss, but lets you use XAML elements in your application.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"></td>
+	<td style="text-align:left;"><em>D3D Project</em></td>
+	<td style="text-align:left;">Visual Studio project that integrates Unity in a basic app window. This results in the best performance.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"></td>
+	<td style="text-align:left;"><em>Executable Only</em></td>
+	<td style="text-align:left;">Hosts the project in a pre-built executable for rapid iteration. This setting has the quickest iteration speed because it doesn’t require you to build the generated project in Visual Studio. It offers the same performance as D3D Project builds.</td>
+</tr>
+<tr>
+	<td style="text-align:left;" colspan="2"><strong>Target SDK Version</strong></td>
+	<td style="text-align:left;">The Windows 10 SDK installed on the local PC to build the application against. This setting is only relevant when calling Windows 10 APIs directly from scripts.<br><br><strong>Note</strong>: Unity requires the base Windows 10 SDK version 10.0.10240.0 or higher for building UWP apps, and doesn’t support Windows 8/8.1 SDKs.</td>
+</tr>
+<tr>
+	<td style="text-align:left;" colspan="2"><strong>Minimum Platform Version</strong></td>
+	<td style="text-align:left;">Minimum Windows 10 release version required to run the app.<br><br><strong>Note</strong>: This setting is only relevant if you’re using Windows features or APIs that aren’t available in the base Windows 10 version (10.0.10240).</td>
+</tr>
+<tr>
+	<td style="text-align:left;" colspan="2"><strong>Visual Studio Version</strong></td>
+	<td style="text-align:left;">Target a specific Visual Studio release if you have multiple versions installed.</td>
+</tr>
+<tr>
+	<td style="text-align:left;" colspan="2"><strong>Build and Run on</strong></td>
+	<td style="text-align:left;">Select the target device or transport to deploy and launch the app during <strong>Build And Run</strong>.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"></td>
+	<td style="text-align:left;"><em>Local Machine</em></td>
+	<td style="text-align:left;">Deploys and launches the app on the local PC.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"></td>
+	<td style="text-align:left;"><em>USB Device</em></td>
+	<td style="text-align:left;">Deploys and launches the app on a remote device over a USB connection.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"></td>
+	<td style="text-align:left;"><em>Remote Device (via Device Portal)</em></td>
+	<td style="text-align:left;">Deploys and launches the app to a connected device over the Device Portal transport.<br><br>To deploy over the Device Portal, you must enter the connection and authentication information in these additional fields:<br><br>- <strong>Device Portal Address</strong> (required)<br>- <strong>Device Portal Username</strong> (optional)<br>- <strong>Device Portal Password</strong> (optional)<br><br>For more information, see documentation on <a href="windowsstore-deviceportal.html">Windows Device Portal deployment</a>.</td>
+</tr>
+<tr>
+	<td style="text-align:left;" colspan="2"><strong>Build Configuration</strong></td>
+	<td style="text-align:left;">Select the build type (only applies to <strong>Build And Run</strong>).<br><strong>Note</strong>: These build configurations are the same as those available in the Visual Studio project that Unity generates.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"></td>
+	<td style="text-align:left;"><em>Debug</em></td>
+	<td style="text-align:left;">Produces a build that contains additional code you can use for debugging, and enables the <span class="tooltip"><strong>Profiler</strong><span class="tooltiptext">A window that helps you to optimize your game. It shows how much time is spent in the various areas of your game. For example, it can report the percentage of time spent rendering, animating or in your game logic. <a href="Profiler.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#Profiler">Glossary</a></span></span></span> for your build.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"></td>
+	<td style="text-align:left;"><em>Release</em></td>
+	<td style="text-align:left;">Produces a build that has debug code stripped out, and enables the Profiler for your build.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"></td>
+	<td style="text-align:left;"><em>Master</em></td>
+	<td style="text-align:left;">Produces a build that is fully optimized for release.</td>
+</tr>
+<tr>
+	<td style="text-align:left;" colspan="2"><strong>Copy References</strong></td>
+	<td style="text-align:left;">Disable this setting to allow the generated solution to reference Unity files from Unity’s installation folder instead of copying them to the build folder. This can save up to 10 GB of disk space, but you can’t copy the build folder to another PC. Unity also builds your application faster when you disable this setting.</td>
+</tr>
+<tr>
+	<td style="text-align:left;" colspan="2"><strong>Copy PDB files</strong></td>
+	<td style="text-align:left;">Enable this setting to include Microsoft program database (PDB) files in the built Standalone Player. PDB files contain debugging information for your application, but might increase the size of your Player. For more information, see documentation on <a href="WindowsDebugging.html">Windows debugging</a>.</td>
+</tr>
+<tr>
+	<td style="text-align:left;" colspan="2"><span class="tooltip"><strong>Development Build</strong><span class="tooltiptext">A development build includes debug symbols and enables the Profiler. <a href="UnityCloudBuildDevelopmentBuilds.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#DevelopmentBuild">Glossary</a></span></span></span></td>
+	<td style="text-align:left;">A development build includes scripting debug symbols. When you select the <strong>Development Build</strong> setting, you can also select the <strong>Autoconnect Profiler</strong>, <strong>Script Debugging</strong>, and <strong>Scripts Only Build</strong> setting. It also enables the DEVELOPMENT_BUILD #define.<br><br>For more information about #define directives, see documentation on <a href="PlatformDependentCompilation.html">Platform dependent compilation</a>.</td>
+</tr>
+<tr>
+	<td style="text-align:left;" colspan="2"><strong>Autoconnect Profiler</strong></td>
+	<td style="text-align:left;">Automatically connect the Profiler to the build. Only available if you enable the <strong>Development Build</strong> setting. For more information on the Profiler, see <a href="Profiler.html">Profiler overview</a>.</td>
+</tr>
+<tr>
+	<td style="text-align:left;" colspan="2"><strong>Deep Profiling</strong></td>
+	<td style="text-align:left;">When you enable <strong>Deep Profiling</strong>, Unity profiles all of your script code and records all function calls. This is useful to pinpoint performance issues with your game code. However, it uses a lot of memory and might not work with very complex <span class="tooltip"><strong>scripts</strong><span class="tooltiptext">A piece of code that allows you to create your own Components, trigger game events, modify Component properties over time and respond to user input in any way you like. <a href="CreatingAndUsingScripts.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#Scripts">Glossary</a></span></span></span>. For more information, see documentation on <a href="ProfilerWindow.html#deep-profiling">deep profiling</a>.</td>
+</tr>
+<tr>
+	<td style="text-align:left;" colspan="2"><strong>Script Debugging</strong></td>
+	<td style="text-align:left;">Attach script debuggers to the Player remotely. Only available if you enable the <strong>Development Build</strong> setting.</td>
+</tr>
+<tr>
+	<td style="text-align:left;" colspan="2"><strong>Scripts Only Build</strong></td>
+	<td style="text-align:left;">Enable this setting to build just the scripts in the current Project. Only available if you enable the <strong>Development Build</strong> setting.<br><br>Once enabled, Unity only rebuilds the scripts in your application, and leaves data files from a previously executed build intact. It significantly improves iteration times if you only change the code in your application.<br><br><strong>Note: </strong>You need to build the entire Project once before you can use this setting.</td>
+</tr>
+<tr>
+	<td style="text-align:left;" colspan="2"><strong>Compression Method</strong></td>
+	<td style="text-align:left;">Compress the data in your Project at build time. This includes Assets, <span class="tooltip"><strong>Scenes</strong><span class="tooltiptext">A Scene contains the environments and menus of your game. Think of each unique Scene file as a unique level. In each Scene, you place your environments, obstacles, and decorations, essentially designing and building your game in pieces. <a href="CreatingScenes.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#Scene">Glossary</a></span></span></span>, <span class="tooltip"><strong>Player settings</strong><span class="tooltiptext">Settings that let you set various player-specific options for the final game built by Unity. <a href="class-PlayerSettings.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#PlayerSettings">Glossary</a></span></span></span>, and GI data. Choose between the following methods:</td>
+</tr>
+<tr>
+	<td style="text-align:left;"></td>
+	<td style="text-align:left;"><em>Default</em></td>
+	<td style="text-align:left;">Default <span class="tooltip"><strong>compression</strong><span class="tooltiptext">A method of storing data that reduces the amount of storage space it requires. See <a href="class-TextureImporterOverride.html">Texture Compression</a>, <a href="class-AnimationClip.html#AssetProperties">Animation Compression</a>, <a href="class-AudioClip.html">Audio Compression</a>, <a href="ReducingFilesize.html">Build Compression</a>. <br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#compression">Glossary</a></span></span></span> is set to <em>None</em>.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"></td>
+	<td style="text-align:left;"><em>LZ4</em></td>
+	<td style="text-align:left;">A fast compression format that is useful for development builds. LZ4 compression can significantly improve loading time of applications built with Unity. For more information, see <a href="../ScriptReference/BuildOptions.CompressWithLz4.html">BuildOptions.CompressWithLz4</a>.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"></td>
+	<td style="text-align:left;"><em>LZ4HC</em></td>
+	<td style="text-align:left;">LZ4HC - A high compression variant of LZ4 that is slower to build but produces better results for release builds. LZ4HC compression can significantly improve loading time of applications built with Unity. For more information, see <a href="../ScriptReference/BuildOptions.CompressWithLz4HC.html">BuildOptions.CompressWithLz4HC</a>.</td>
+</tr>
+</tbody>
+</table>
+
+<div class="feedbackbox" id="feedbackbox">
+<div id="rating"><p>Did you find this page useful? Please give it a rating:<br><div id="ratecontent" class="c-rating"></div>
+</p></div>
+<div id="ratingThanks" style="display:none"><p>Thanks for rating this page!</p></div>
+<div id="problem"><p><a name="problem">Report a problem on this page</a></p></div>
+<div id="problemType" style="display:none"><p>What kind of problem would you like to report?<ul type="problems">
+<li><a name="needcode" id="problemneedcode">This page needs code samples</a></li>
+<li><a name="code" id="problemcode">Code samples do not work</a></li>
+<li><a name="missing" id="problemmissing">Information is missing</a></li>
+<li><a name="incorrect" id="problemincorrect">Information is incorrect</a></li>
+<li><a name="unclear" id="problemunclear">Information is unclear or confusing</a></li>
+<li><a name="language" id="problemlanguage">There is a spelling/grammar error on this page</a></li>
+<li><a name="other" id="problemother">Something else</a></li>
+</ul>
+<p><known_issues><p>Is something described here not working as you expect it to? It might be a <b>Known Issue</b>. Please check with the Issue Tracker at <a href="https://issuetracker.unity3d.com">issuetracker.unity3d.com</a>.</p></known_issues></p>
+</p></div>
+<div id="problemThanks" style="display:none"><p>Thanks for letting us know! This page has been marked for review based on your feedback.<br><br>If you have time, you can provide more information to help us fix the problem faster.<br><br><a id="problemThanksMoreInfoButton">Provide more information</a><br>
+</p></div>
+<div id="problemMoreInfo" style="display:none">
+<p id="problemNeedCodeForm" style="display:none">You've told us this page needs code samples. If you'd like to help us further, you could provide a code sample, or tell us about what kind of code sample you'd like to see:</p>
+<p id="problemCodeForm" style="display:none">You've told us there are code samples on this page which don't work. If you know how to fix it, or have something better we could use instead, please let us know:</p>
+<p id="problemMissingForm" style="display:none">You've told us there is information missing from this page. Please tell us more about what's missing:</p>
+<p id="problemIncorrectForm" style="display:none">You've told us there is incorrect information on this page. If you know what we should change to make it correct, please tell us:</p>
+<p id="problemUnclearForm" style="display:none">You've told us this page has unclear or confusing information. Please tell us more about what you found unclear or confusing, or let us know how we could make it clearer:</p>
+<p id="problemLanguageForm" style="display:none">You've told us there is a spelling or grammar error on this page. Please tell us what's wrong:</p>
+<p id="problemOtherForm" style="display:none">You've told us this page has a problem. Please tell us more about what's wrong:</p>
+<form>
+<textarea id="problemFormSuggestionField" cols="40" rows="5"></textarea><input type="hidden" id="problemFormDescription"><input type="submit" id="problemFormDescriptionSubmit" value="Submit">
+</form>
+</div>
+<div id="problemMoreInfoThanks" style="display:none"><p>Thanks for helping to make the Unity documentation better!</p></div>
+<script>InitialiseStarRating();</script>
+</div>
+<div class="nextprev clear">
+<div class="icon tt left mr1" data-distance="-40|-30|top">
+<span class="prev"><a href="windowsstore-deployment.html"></a></span><div class="tip">﻿Universal Windows Platform: Deployment</div>
+</div>
+<div class="icon tt right" data-distance="-40|-30|top">
+<span class="next"><a href="windowsstore-profiler.html"></a></span><div class="tip">Universal Windows Platform: Profiler</div>
+</div>
+</div>
+</div>
+<div class="footer-wrapper"><div class="footer clear">
+<div class="copy">Copyright © 2019 Unity Technologies. Publication: 2019.2-003J. Built: 2019-12-16.</div>
+<div class="menu">
+<a href="https://unity3d.com/learn">Tutorials</a><a href="https://answers.unity3d.com">Community Answers</a><a href="https://support.unity3d.com/hc/en-us">Knowledge Base</a><a href="https://forum.unity3d.com">Forums</a><a href="https://unity3d.com/asset-store">Asset Store</a>
+</div>
+</div></div>
+</div>
+</div></div>
+</div>
+</body>
+</html>

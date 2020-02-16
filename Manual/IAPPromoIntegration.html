@@ -1,0 +1,387 @@
+<!DOCTYPE html><html lang="en" class="no-js">
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+<script>var offline=(location.href.indexOf('docs.unity3d.com')==-1)?true:false;if(!offline){(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);  })(window,document,'script','dataLayer','GTM-5V25JL6');}</script><link href="https://fonts.googleapis.com/css?family=Roboto&amp;display=swap" rel="stylesheet">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unity - Manual:  IAP Promo integration</title>
+<meta property="og:image" content="https://unity3d.com/files/images/ogimg.jpg">
+<meta name="author" content="Unity Technologies">
+<link rel="shortcut icon" href="https://unity.com/themes/contrib/unity_base/images/favicons/favicon.ico">
+<link rel="icon" type="image/png" href="../StaticFilesManual/images/favicons/favicon.png">
+<link rel="apple-touch-icon-precomposed" sizes="152x152" href="../StaticFilesManual/images/favicons/apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../StaticFilesManual/images/favicons/apple-touch-icon-144x144.png">
+<link rel="apple-touch-icon-precomposed" sizes="120x120" href="../StaticFilesManual/images/favicons/apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="../StaticFilesManual/images/favicons/apple-touch-icon-114x114.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="../StaticFilesManual/images/favicons/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon-precomposed" href="../StaticFilesManual/images/favicons/apple-touch-icon.png">
+<meta name="msapplication-TileColor" content="#222c37">
+<meta name="msapplication-TileImage" content="../StaticFilesManual/images/favicons/tileicon-144x144.png">
+<script type="text/javascript" src="https://docs.unity3d.com/StaticFilesConfig/UnityVersionsInfo.js"></script><script type="text/javascript" src="../StaticFilesManual/js/jquery.js?ts=1576442311"></script><script type="text/javascript" src="../StaticFilesManual/js/core.js?ts=1576442311"></script><script type="text/javascript" src="docdata/toc.js?ts=1576442311"></script><script type="text/javascript" src="docdata/global_toc.js?ts=1576442311"></script><link rel="stylesheet" type="text/css" href="../StaticFilesManual/css/core.css?ts=1576442311">
+<link rel="stylesheet" href="../StaticFilesManual/js/feedback/five-star-rating-master/css/rating.min.css">
+<link rel="stylesheet" href="../StaticFilesManual/css/prism.css">
+<script src="../StaticFilesManual/js/prism.js"></script><script src="../StaticFilesManual/js/feedback/five-star-rating-master/js/src/rating.js"></script><script src="../StaticFilesManual/js/jquery.sidebar.min.js"></script><link rel="stylesheet" href="../StaticFilesManual/css/mobileoptimisation.css">
+<script src="../StaticFilesManual/js/mobileoptimisation.js"></script>
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5V25JL6" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<div id="DocsAnalyticsData" data-area="UnityServices" data-pagetype="normal"></div>
+<div class="header-wrapper">
+<div id="header" class="header"><div class="content">
+<div class="spacer"><div class="menu">
+<div id="nav-open" for="nav-input"><span></span></div>
+<div class="logo"><a href="https://docs.unity3d.com"></a></div>
+<div class="search-form"><form action="30_search.html" method="get" class="apisearch">
+<input type="text" name="q" placeholder="Search manual..." autosave="Unity Reference" results="5" class="sbox field" id="q"><input type="submit" class="submit">
+</form></div>
+<ul>
+<li><a href="../Manual/index.html" class="selected">Manual</a></li>
+<li><a href="../ScriptReference/index.html">Scripting API</a></li>
+</ul>
+</div></div>
+<div class="more">
+<div class="filler"></div>
+<ul><li><a href="https://unity3d.com/">unity3d.com</a></li></ul>
+</div>
+</div></div>
+<div class="toolbar"><div class="content">
+<div class="toggle version-number" id="VersionNumber" data-target=".otherversionscontent">
+                                Version: <b>2019.2</b><div class="otherversionscontent" id="OtherVersionsContent" style="display: none;">
+<ul id="OtherVersionsContentUl"></ul>
+<div id="otherVersionsLegend"><ul>
+<li>
+<div id="supportedColour" class="legendBox"></div>Supported</li>
+<li>
+<div id="notFoundColour" class="legendBox"></div>Legacy</li>
+</ul></div>
+</div>
+<div id="VersionSwitcherArrow" class="arrow versionSwitcherArrow"></div>
+</div>
+<div class="lang-switcher"><div class="current toggle" data-target=".lang-list">
+<div class="lbl">Language
+:                <span class="b">English</span>
+</div>
+<div class="arrow"></div>
+<div class="lang-list" style="display:none;"><ul>
+<li><a href="/Manual/IAPPromoIntegration.html">English</a></li>
+<li><a href="/ja/current/Manual/IAPPromoIntegration.html">日本語</a></li>
+<li><a href="/es/current/Manual/IAPPromoIntegration.html">Español</a></li>
+<li><a href="/kr/current/Manual/IAPPromoIntegration.html">한국어</a></li>
+<li><a href="/ru/current/Manual/IAPPromoIntegration.html">Русский</a></li>
+</ul></div>
+</div></div>
+</div></div>
+<div class="mobileLogo"><a href="https://docs.unity3d.com"></a></div>
+</div>
+<div id="master-wrapper" class="master-wrapper clear">
+<div id="sidebar" class="sidebar"><div class="sidebar-wrap"><div class="content"><div class="sidebar-menu"><div class="toc" id="customScrollbar">
+<h2>Unity Manual</h2>
+<div class="search-form sidebar-search-form"><form action="30_search.html" method="get" class="apisearch">
+<input type="text" name="q" placeholder="Search manual..." autosave="Unity Reference" results="5" class="sbox field" id="q"><input type="submit" id="mobileSearchBtn" class="submit" value="Search">
+</form></div>
+<div class="toggle version-number sidebar-version-switcher" id="VersionNumber" data-target=".otherversionscontent"><form id="otherVersionsContentMobileForm"><div class="ui-field-contain">
+<label for="select-native-4">Version: 2019.2</label><select name="select-native-4" id="versionsSelectMobile"><option>Select a different version</option>
+<optgroup id="versionsWithThisPageMobile" label="Versions with this page"></optgroup>
+<optgroup id="versionsWithoutThisPageMobile" label="Versions without this page"></optgroup></select>
+</div></form></div>
+<div class="lang-switcher"><div class="current toggle" data-target=".lang-list">
+<div class="lbl">Language
+:                <span class="b">English</span>
+</div>
+<div class="arrow"></div>
+<div class="lang-list" style="display:none;"><ul>
+<li><a href="/Manual/IAPPromoIntegration.html">English</a></li>
+<li><a href="/ja/current/Manual/IAPPromoIntegration.html">日本語</a></li>
+<li><a href="/es/current/Manual/IAPPromoIntegration.html">Español</a></li>
+<li><a href="/kr/current/Manual/IAPPromoIntegration.html">한국어</a></li>
+<li><a href="/ru/current/Manual/IAPPromoIntegration.html">Русский</a></li>
+</ul></div>
+</div></div>
+</div></div></div></div></div>
+<div id="content-wrap" class="content-wrap"><div class="content-block">
+<div class="darkCover"></div>
+<div class="content">
+<div class="section">
+<div class="breadcrumbs clear"><ul>
+<li><a href="UnityManual.html">Unity User Manual (2019.2)</a></li>
+<li><a href="UnityServices.html">Unity Services</a></li>
+<li><a href="IAPPromo.html">IAP Promo</a></li>
+<li> IAP Promo integration</li>
+</ul></div>
+<div class="mb20"><div class="nextprev clear">
+<div class="icon tt left mr1" data-distance="-40|-30|top">
+<span class="prev"><a href="IAPPromo.html"></a></span><div class="tip">IAP Promo</div>
+</div>
+<div class="icon tt right" data-distance="-40|-30|top">
+<span class="next"><a href="IAPPromoProducts.html"></a></span><div class="tip"> IAP Promo Product Catalogs</div>
+</div>
+</div></div>
+<div class="scrollToFeedback"><a id="scrollToFeedback">Leave feedback</a></div>
+<h1>IAP Promo integration</h1>
+<!--BeginSwitchLink--><!--EndSwitchLink-->
+<div class="clear"></div>
+
+<h2>Overview</h2>
+
+<p>
+<strong>Important note</strong>: Your game must initialize <span class="tooltip"><strong>Unity IAP</strong><span class="tooltiptext">Abbreviation of Unity <strong>In App Purchase</strong><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#UnityIAP">Glossary</a></span></span></span> before initializing Unity Ads for IAP Promo to work. </p>
+
+<p>This integration guide covers four major steps: </p>
+
+<ul>
+<li><a href="#Preparation">Preparing your Project in the Unity Editor</a></li>
+<li>
+<a href="#Implementation">Implementation</a>
+
+<ul>
+<li><a href="#ImplementingIAP">IAP</a></li>
+<li><a href="#ImplementingAds">Ads</a></li>
+</ul>
+</li>
+<li><a href="#ConfiguringPromotions">Configuring Promotions</a></li>
+<li><a href="#Testing">Testing your integration</a></li>
+</ul>
+
+<p><a name="Preparation"></a></p>
+
+<h2>Preparing your Project in the Unity Editor</h2>
+
+<h3>Setting up Unity Services</h3>
+
+<p>To use IAP Promo, you need to:</p>
+
+<ol>
+<li>
+<a href="https://docs.unity3d.com/Manual/SettingUpProjectServices.html">Configure your project for Unity Services</a>.</li>
+<li>Enable the <a href="https://assetstore.unity.com/packages/add-ons/services/billing/unity-iap-68207">Unity IAP SDK</a> (1.2+) and <a href="https://assetstore.unity.com/packages/add-ons/services/unity-ads-66123">Unity Ads SDK</a> (2.3+) in your Project.</li>
+</ol>
+
+<h4>Setting up Unity IAP</h4>
+
+<p>IAP Promo requires a supported version of the Unity IAP SDK (1.17+). To acquire the latest IAP SDK, either enable <strong>In-App Purchasing</strong> in the Services window (<strong>Window</strong> &gt; <strong>Services</strong>), or import it from the <span class="tooltip"><a href="https://assetstore.unity.com/packages/add-ons/services/billing/unity-iap-68207">Asset store</a><span class="tooltiptext">A growing library of free and commercial assets created by Unity and members of the community. Offers a wide variety of assets, from textures, models and animations to whole Project examples, tutorials and Editor extensions. <a href="AssetStore.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#AssetStore">Glossary</a></span></span></span>. If you’re enabling it from the Services window, be sure to <strong>Import</strong> the Asset package when prompted.</p>
+
+<figure>
+<img src="../uploads/Main/Enable_IAP.jpg" alt="Enabling Unity IAP in the Editor’s Services window">
+<figcaption>Enabling Unity IAP in the Editor’s Services window</figcaption>
+</figure>
+
+<p>See documentation on <a href="https://docs.unity3d.com/Manual/UnityIAPSettingUp.html">Setting up IAP</a> for additional information.</p>
+
+<h4>Setting up Unity Ads</h4>
+
+<p>IAP Promo requires a supported version of the Unity Ads SDK. Unity recommends acquiring the latest Ads SDK (3.0+) by importing it from the <a href="https://assetstore.unity.com/packages/add-ons/services/unity-ads-66123">Asset store</a>.</p>
+
+<p>See <a href="https://docs.unity3d.com/Manual/UnityAdsUnityIntegration.html">Setting up Ads for Unity</a> for additional information. </p>
+
+<p><a name="Implementation"></a></p>
+
+<h2>Implementation</h2>
+
+<p>With the required services set up, you can implement them in your game. </p>
+
+<p><a name="ImplementingIAP"></a></p>
+
+<h3>Implementing IAP</h3>
+
+<p>There are two options for initialization: codeless or scripting. </p>
+
+<h4>Using Codeless IAP</h4>
+
+<p>
+<a href="https://docs.unity3d.com/Manual/UnityIAPCodelessIAP.html">Codeless IAP</a> handles initialization for you. If you use Codeless IAP initialization, you must call the Unity Ads initialization method elsewhere in your code.</p>
+
+<p>To use Codeless IAP, populate a <strong>Product Catalog</strong>, then create an <strong>IAP Listener</strong> to fetch that catalog:</p>
+
+<ol>
+<li><p>In the Editor, select <strong>Window</strong> &gt; <strong>UnityIAP</strong> &gt; <strong>IAP Catalog</strong> to open the <strong>IAP Catalog</strong> window. This window lists all of your previously configured Products. You must have at least one <strong>Product</strong> configured in your <strong>Product Catalog</strong>. For a complete walkthrough on setting up Products, see <a href="https://docs.unity3d.com/Manual/UnityIAPCodelessIAP.html">Codeless IAP</a>.</p></li>
+<li><p>In the <strong>IAP Catalog</strong> window, select <strong>App Store Export</strong> &gt; <strong>Cloud JSON</strong> to export a local copy of the <strong>Product Catalog</strong>.<br><img src="../uploads/Main/IAP_Catalog_Window.png" alt="Exporting an IAP Product Catalog to JSON">
+</p></li>
+<li><p>Create an <strong>IAP Listener</strong>. Select <strong>Window</strong> &gt; <strong>Unity IAP</strong> &gt; <strong>Create IAP Listener</strong>, and add it to the first scene of your game. The listener fetches your <strong>Product Catalog</strong> as soon as the game boots. This avoids errors where the game requests <strong>Promotions</strong> but a <strong>Product</strong> isn’t ready because the codeless button hasn’t appeared in the scene yet.</p></li>
+</ol>
+
+<h4>Using scripting</h4>
+
+<p>If you do not use Codeless IAP, you must <a href="https://docs.unity3d.com/Manual/UnityIAPInitialization.html">initialize Unity IAP manually</a> through a script. See the following code example: </p>
+
+<pre><code>using UnityEngine;
+using UnityEngine.Purchasing;
+
+public class IAPManager : MonoBehaviour, IStoreListener {
+  private IStoreController controller;
+  
+  //The following products must be added to the Product Catalog in the Editor:
+  private const string coins100 = &quot;100.gold.coins&quot;;
+  private const string coins500 = &quot;500.gold.coins&quot;;
+
+  public int coin_count = 0;
+
+  void Awake () { 
+    StandardPurchasingModule module = StandardPurchasingModule.Instance (); 
+    ProductCatalog catalog = ProductCatalog.LoadDefaultCatalog (); 
+    ConfigurationBuilder builder = ConfigurationBuilder.Instance (module);
+    IAPConfigurationHelper.PopulateConfigurationBuilder (ref builder, catalog); 
+    UnityPurchasing.Initialize (this, builder); 
+  }
+
+  public void OnInitialized (IStoreController controller, IExtensionProvider extensions) { 
+    this.controller = controller; Debug.Log (&quot;Initialization Successful&quot;); 
+  }
+  
+  public void OnInitializeFailed(InitializationFailureReason error) { 
+    Debug.Log (&quot;UnityIAP.OnInitializeFailed (&quot; + error + &quot;)&quot;)
+  }
+  
+  public void OnPurchaseFailed (Product item, PurchaseFailureReason reason) { 
+    Debug.Log(&quot;UnityIAP.OnPurchaseFailed (&quot; + item + &quot;, &quot; + reason + &quot;)&quot;); 
+  }
+
+  public PurchaseProcessingResult ProcessPurchase (PurchaseEventArgs e) {
+    string purchasedItem = e.purchasedProduct.definition.id;
+    
+    switch (purchasedItem) { 
+      case coins100: Debug.Log (&quot;Congratulations, you are richer!&quot;); 
+      coin_count += 100; 
+      Debug.Log (&quot;IAPLog: Coin count: &quot; + coin_count); 
+      break; 
+      
+      case coins500: Debug.Log (&quot;Congratulations, you are richer!&quot;); 
+      coin_count += 500; 
+      Debug.Log (&quot;IAPLog: Coin count: &quot; + coin_count);
+      break;
+    }
+    return PurchaseProcessingResult.Complete;
+  }
+
+  public void Buy(string productId) { 
+    Debug.Log (&quot;UnityIAP.BuyClicked (&quot; + productId + &quot;)&quot;);
+    controller.InitiatePurchase (productId);
+  }
+}
+</code></pre>
+
+<p><a name="ImplementingAds"></a></p>
+
+<h3>Implementing Unity Ads</h3>
+
+<p>You must also <a href="https://unityads.unity3d.com/help/monetization/integration-guide-unity">initialize Unity Ads</a>, whether or not you use the Codeless or manual IAP initialization method. The following code sample illustrates an initialization method to invoke:</p>
+
+<pre><code>using UnityEngine;
+using UnityEngine.Monetization;
+
+public class AdManager : MonoBehaviour {
+
+  public bool testMode = true;
+  private const string adPlacement = &quot;video&quot;;
+  private const string promoPlacement = &quot;promo&quot;;
+
+  #if UNITY_IOS
+    private string gameId = &quot;0000000&quot;; // Your <span class="tooltip">__iOS__<span class="tooltiptext">Apple's mobile operating system. [More info](iphone.html)&lt;span class=&quot;tooltipGlossaryLink&quot;&gt;See in [Glossary](Glossary.html#iOS)&lt;/span&gt;</span></span> game ID here
+  #elif UNITY_ANDROID
+    private string gameId = &quot;9999999&quot;; // Your Android game ID here
+  #else
+    private string gameId = &quot;0123456&quot;; // Prevents Editor Errors
+  #endif
+
+  private void Awake () {
+    if (Monetization.isSupported &amp;&amp; !Monetization.isInitialized) {
+      Monetization.Initialize (gameId, testMode); 
+    }
+  }
+
+  public void ShowVideoAd () { 
+    ShowAdPlacementContent ad = Monetization.GetPlacementContent (adPlacement) as ShowAdPlacementContent; 
+    ad.Show (); 
+  }
+
+  public void ShowPromo () { 
+    PromoAdPlacementContent promo = Monetization.GetPlacementContent (promoPlacement) as PromoAdPlacementContent; 
+    promo.Show (); 
+  }
+}
+</code></pre>
+
+<p><a name="ConfiguringPromotions"></a></p>
+
+<h2>Configuring Promotions on the Developer Dashboard</h2>
+
+<p>Navigate to the <a href="https://operate.dashboard.unity3d.com/"><strong>Monetization</strong> section of the Operate Dashboard</a> to configure your IAP Promo offers: </p>
+
+<ul>
+<li>Use <strong>Placements</strong> to control when and how your <strong>Promotions</strong> display in-game. Follow the <a href="https://unityads.unity3d.com/help/monetization/placements#placement-settings"><strong>Placements</strong> guide</a> to create and configure your Promo <strong>Placements</strong> for <span class="tooltip"><strong>IAP</strong><span class="tooltiptext">Revenue from “micro-transactions” within a game. <a href="UnityIAP.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#IAP">Glossary</a></span></span></span> content.</li>
+<li>Use the <a href="https://docs.unity3d.com/Manual/IAPPromoProducts">Products</a> interface to import your <strong>Product Catalog</strong> and manage each Product’s creative assets.</li>
+<li>Define the parameters of your <a href="https://docs.unity3d.com/Manual/IAPPromoPromotions">Promotions</a>, such as when to run them, which <strong>Placements</strong> and <strong>Products</strong> they include, and which users they target.</li>
+</ul>
+
+<p><a name="Testing"></a></p>
+
+<h2>Testing your integration</h2>
+
+<p>Use the Editor Play mode to check that a test ad appears when the Placement makes its request.</p>
+
+<p>In order to test Promos, you must have Promo assets configured and build to a device. If you initialize in test mode, you will see a test Promo creative. To see real promotional creative assets, you must build the game to a device in production mode.</p>
+
+<p>
+<br>
+<br>
+</p>
+
+<hr>
+
+<ul>
+<li><span class="page-edit">2019–04–11 Page amended
+</span></li>
+</ul>
+<div class="feedbackbox" id="feedbackbox">
+<div id="rating"><p>Did you find this page useful? Please give it a rating:<br><div id="ratecontent" class="c-rating"></div>
+</p></div>
+<div id="ratingThanks" style="display:none"><p>Thanks for rating this page!</p></div>
+<div id="problem"><p><a name="problem">Report a problem on this page</a></p></div>
+<div id="problemType" style="display:none"><p>What kind of problem would you like to report?<ul type="problems">
+<li><a name="needcode" id="problemneedcode">This page needs code samples</a></li>
+<li><a name="code" id="problemcode">Code samples do not work</a></li>
+<li><a name="missing" id="problemmissing">Information is missing</a></li>
+<li><a name="incorrect" id="problemincorrect">Information is incorrect</a></li>
+<li><a name="unclear" id="problemunclear">Information is unclear or confusing</a></li>
+<li><a name="language" id="problemlanguage">There is a spelling/grammar error on this page</a></li>
+<li><a name="other" id="problemother">Something else</a></li>
+</ul>
+<p><known_issues><p>Is something described here not working as you expect it to? It might be a <b>Known Issue</b>. Please check with the Issue Tracker at <a href="https://issuetracker.unity3d.com">issuetracker.unity3d.com</a>.</p></known_issues></p>
+</p></div>
+<div id="problemThanks" style="display:none"><p>Thanks for letting us know! This page has been marked for review based on your feedback.<br><br>If you have time, you can provide more information to help us fix the problem faster.<br><br><a id="problemThanksMoreInfoButton">Provide more information</a><br>
+</p></div>
+<div id="problemMoreInfo" style="display:none">
+<p id="problemNeedCodeForm" style="display:none">You've told us this page needs code samples. If you'd like to help us further, you could provide a code sample, or tell us about what kind of code sample you'd like to see:</p>
+<p id="problemCodeForm" style="display:none">You've told us there are code samples on this page which don't work. If you know how to fix it, or have something better we could use instead, please let us know:</p>
+<p id="problemMissingForm" style="display:none">You've told us there is information missing from this page. Please tell us more about what's missing:</p>
+<p id="problemIncorrectForm" style="display:none">You've told us there is incorrect information on this page. If you know what we should change to make it correct, please tell us:</p>
+<p id="problemUnclearForm" style="display:none">You've told us this page has unclear or confusing information. Please tell us more about what you found unclear or confusing, or let us know how we could make it clearer:</p>
+<p id="problemLanguageForm" style="display:none">You've told us there is a spelling or grammar error on this page. Please tell us what's wrong:</p>
+<p id="problemOtherForm" style="display:none">You've told us this page has a problem. Please tell us more about what's wrong:</p>
+<form>
+<textarea id="problemFormSuggestionField" cols="40" rows="5"></textarea><input type="hidden" id="problemFormDescription"><input type="submit" id="problemFormDescriptionSubmit" value="Submit">
+</form>
+</div>
+<div id="problemMoreInfoThanks" style="display:none"><p>Thanks for helping to make the Unity documentation better!</p></div>
+<script>InitialiseStarRating();</script>
+</div>
+<div class="nextprev clear">
+<div class="icon tt left mr1" data-distance="-40|-30|top">
+<span class="prev"><a href="IAPPromo.html"></a></span><div class="tip">IAP Promo</div>
+</div>
+<div class="icon tt right" data-distance="-40|-30|top">
+<span class="next"><a href="IAPPromoProducts.html"></a></span><div class="tip"> IAP Promo Product Catalogs</div>
+</div>
+</div>
+</div>
+<div class="footer-wrapper"><div class="footer clear">
+<div class="copy">Copyright © 2019 Unity Technologies. Publication: 2019.2-003J. Built: 2019-12-16.</div>
+<div class="menu">
+<a href="https://unity3d.com/learn">Tutorials</a><a href="https://answers.unity3d.com">Community Answers</a><a href="https://support.unity3d.com/hc/en-us">Knowledge Base</a><a href="https://forum.unity3d.com">Forums</a><a href="https://unity3d.com/asset-store">Asset Store</a>
+</div>
+</div></div>
+</div>
+</div></div>
+</div>
+</body>
+</html>

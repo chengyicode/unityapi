@@ -1,0 +1,377 @@
+<!DOCTYPE html><html lang="en" class="no-js">
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+<script>var offline=(location.href.indexOf('docs.unity3d.com')==-1)?true:false;if(!offline){(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);  })(window,document,'script','dataLayer','GTM-5V25JL6');}</script><link href="https://fonts.googleapis.com/css?family=Roboto&amp;display=swap" rel="stylesheet">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unity - Manual:  Verified and Preview packages</title>
+<meta property="og:image" content="https://unity3d.com/files/images/ogimg.jpg">
+<meta name="author" content="Unity Technologies">
+<link rel="shortcut icon" href="https://unity.com/themes/contrib/unity_base/images/favicons/favicon.ico">
+<link rel="icon" type="image/png" href="../StaticFilesManual/images/favicons/favicon.png">
+<link rel="apple-touch-icon-precomposed" sizes="152x152" href="../StaticFilesManual/images/favicons/apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../StaticFilesManual/images/favicons/apple-touch-icon-144x144.png">
+<link rel="apple-touch-icon-precomposed" sizes="120x120" href="../StaticFilesManual/images/favicons/apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="../StaticFilesManual/images/favicons/apple-touch-icon-114x114.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="../StaticFilesManual/images/favicons/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon-precomposed" href="../StaticFilesManual/images/favicons/apple-touch-icon.png">
+<meta name="msapplication-TileColor" content="#222c37">
+<meta name="msapplication-TileImage" content="../StaticFilesManual/images/favicons/tileicon-144x144.png">
+<script type="text/javascript" src="https://docs.unity3d.com/StaticFilesConfig/UnityVersionsInfo.js"></script><script type="text/javascript" src="../StaticFilesManual/js/jquery.js?ts=1576442311"></script><script type="text/javascript" src="../StaticFilesManual/js/core.js?ts=1576442311"></script><script type="text/javascript" src="docdata/toc.js?ts=1576442311"></script><script type="text/javascript" src="docdata/global_toc.js?ts=1576442311"></script><link rel="stylesheet" type="text/css" href="../StaticFilesManual/css/core.css?ts=1576442311">
+<link rel="stylesheet" href="../StaticFilesManual/js/feedback/five-star-rating-master/css/rating.min.css">
+<link rel="stylesheet" href="../StaticFilesManual/css/prism.css">
+<script src="../StaticFilesManual/js/prism.js"></script><script src="../StaticFilesManual/js/feedback/five-star-rating-master/js/src/rating.js"></script><script src="../StaticFilesManual/js/jquery.sidebar.min.js"></script><link rel="stylesheet" href="../StaticFilesManual/css/mobileoptimisation.css">
+<script src="../StaticFilesManual/js/mobileoptimisation.js"></script>
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5V25JL6" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<div id="DocsAnalyticsData" data-area="PackagesList" data-pagetype="normal"></div>
+<div class="header-wrapper">
+<div id="header" class="header"><div class="content">
+<div class="spacer"><div class="menu">
+<div id="nav-open" for="nav-input"><span></span></div>
+<div class="logo"><a href="https://docs.unity3d.com"></a></div>
+<div class="search-form"><form action="30_search.html" method="get" class="apisearch">
+<input type="text" name="q" placeholder="Search manual..." autosave="Unity Reference" results="5" class="sbox field" id="q"><input type="submit" class="submit">
+</form></div>
+<ul>
+<li><a href="../Manual/index.html" class="selected">Manual</a></li>
+<li><a href="../ScriptReference/index.html">Scripting API</a></li>
+</ul>
+</div></div>
+<div class="more">
+<div class="filler"></div>
+<ul><li><a href="https://unity3d.com/">unity3d.com</a></li></ul>
+</div>
+</div></div>
+<div class="toolbar"><div class="content">
+<div class="toggle version-number" id="VersionNumber" data-target=".otherversionscontent">
+                                Version: <b>2019.2</b><div class="otherversionscontent" id="OtherVersionsContent" style="display: none;">
+<ul id="OtherVersionsContentUl"></ul>
+<div id="otherVersionsLegend"><ul>
+<li>
+<div id="supportedColour" class="legendBox"></div>Supported</li>
+<li>
+<div id="notFoundColour" class="legendBox"></div>Legacy</li>
+</ul></div>
+</div>
+<div id="VersionSwitcherArrow" class="arrow versionSwitcherArrow"></div>
+</div>
+<div class="lang-switcher"><div class="current toggle" data-target=".lang-list">
+<div class="lbl">Language
+:                <span class="b">English</span>
+</div>
+<div class="arrow"></div>
+<div class="lang-list" style="display:none;"><ul>
+<li><a href="/Manual/pack-alpha.html">English</a></li>
+<li><a href="/ja/current/Manual/pack-alpha.html">日本語</a></li>
+<li><a href="/es/current/Manual/pack-alpha.html">Español</a></li>
+<li><a href="/kr/current/Manual/pack-alpha.html">한국어</a></li>
+<li><a href="/ru/current/Manual/pack-alpha.html">Русский</a></li>
+</ul></div>
+</div></div>
+</div></div>
+<div class="mobileLogo"><a href="https://docs.unity3d.com"></a></div>
+</div>
+<div id="master-wrapper" class="master-wrapper clear">
+<div id="sidebar" class="sidebar"><div class="sidebar-wrap"><div class="content"><div class="sidebar-menu"><div class="toc" id="customScrollbar">
+<h2>Unity Manual</h2>
+<div class="search-form sidebar-search-form"><form action="30_search.html" method="get" class="apisearch">
+<input type="text" name="q" placeholder="Search manual..." autosave="Unity Reference" results="5" class="sbox field" id="q"><input type="submit" id="mobileSearchBtn" class="submit" value="Search">
+</form></div>
+<div class="toggle version-number sidebar-version-switcher" id="VersionNumber" data-target=".otherversionscontent"><form id="otherVersionsContentMobileForm"><div class="ui-field-contain">
+<label for="select-native-4">Version: 2019.2</label><select name="select-native-4" id="versionsSelectMobile"><option>Select a different version</option>
+<optgroup id="versionsWithThisPageMobile" label="Versions with this page"></optgroup>
+<optgroup id="versionsWithoutThisPageMobile" label="Versions without this page"></optgroup></select>
+</div></form></div>
+<div class="lang-switcher"><div class="current toggle" data-target=".lang-list">
+<div class="lbl">Language
+:                <span class="b">English</span>
+</div>
+<div class="arrow"></div>
+<div class="lang-list" style="display:none;"><ul>
+<li><a href="/Manual/pack-alpha.html">English</a></li>
+<li><a href="/ja/current/Manual/pack-alpha.html">日本語</a></li>
+<li><a href="/es/current/Manual/pack-alpha.html">Español</a></li>
+<li><a href="/kr/current/Manual/pack-alpha.html">한국어</a></li>
+<li><a href="/ru/current/Manual/pack-alpha.html">Русский</a></li>
+</ul></div>
+</div></div>
+</div></div></div></div></div>
+<div id="content-wrap" class="content-wrap"><div class="content-block">
+<div class="darkCover"></div>
+<div class="content">
+<div class="section">
+<div class="breadcrumbs clear"><ul>
+<li><a href="UnityManual.html">Unity User Manual (2019.2)</a></li>
+<li><a href="PackagesList.html"> Packages</a></li>
+<li> Verified and Preview packages</li>
+</ul></div>
+<div class="mb20"><div class="nextprev clear">
+<div class="icon tt left mr1" data-distance="-40|-30|top">
+<span class="prev"><a href="PackagesList.html"></a></span><div class="tip"> Packages</div>
+</div>
+<div class="icon tt right" data-distance="-40|-30|top">
+<span class="next"><a href="com.unity.2d.animation.html"></a></span><div class="tip"> 2D Animation</div>
+</div>
+</div></div>
+<div class="scrollToFeedback"><a id="scrollToFeedback">Leave feedback</a></div>
+<h1>Verified and Preview packages</h1>
+<!--BeginSwitchLink--><!--EndSwitchLink-->
+<div class="clear"></div>
+
+<p><span class="notooltips"></span></p>
+
+<p>Click on any of the following links to see the documentation for that specific package.</p>
+
+<p>
+<strong>Note:</strong> Each verified package in the list below appears with the <span style="font-weight:bold; color:gray; font-size:75%; vertical-align:super; border-radius:25px; border:2px solid gray; padding:2px;"> 2019.2 verified </span> indicator beside it. Everything else is a preview package.</p>
+
+<ul>
+<li>2D Animation: <a href="http://docs.unity3d.com/Packages/com.unity.2d.animation@2.2/manual/index.html" target="_blank">com.unity.2d.animation</a>
+</li>
+<li>2D IK: <a href="http://docs.unity3d.com/Packages/com.unity.2d.ik@1.2/manual/index.html" target="_blank">com.unity.2d.ik</a>
+</li>
+<li>2D Pixel Perfect: <a href="http://docs.unity3d.com/Packages/com.unity.2d.pixel-perfect@1.0/manual/index.html" target="_blank">com.unity.2d.pixel-perfect</a>
+</li>
+<li>2D PSD Importer: <a href="http://docs.unity3d.com/Packages/com.unity.2d.psdimporter@1.2/manual/index.html" target="_blank">com.unity.2d.psdimporter</a>
+</li>
+<li>2D SpriteShape: <a href="http://docs.unity3d.com/Packages/com.unity.2d.spriteshape@2.1/manual/index.html" target="_blank">com.unity.2d.spriteshape</a>
+</li>
+<li>Adaptive Performance: <a href="http://docs.unity3d.com/Packages/com.unity.adaptiveperformance@1.1/manual/index.html" target="_blank">com.unity.adaptiveperformance</a>
+</li>
+<li>Addressables: <a href="http://docs.unity3d.com/Packages/com.unity.addressables@1.4/manual/index.html" target="_blank">com.unity.addressables</a>
+</li>
+<li>Ads IAP Mediation Adaptor: <a href="http://docs.unity3d.com/Packages/com.unity.ads.mediation@1.0/manual/index.html" target="_blank">com.unity.ads.mediation</a>
+</li>
+<li>Advertisement: <a href="http://docs.unity3d.com/Packages/com.unity.ads@3.4/manual/index.html" target="_blank">com.unity.ads</a> <span style="font-weight:bold; color:gray; font-size:75%; vertical-align:super; border-radius:25px; border:2px solid gray; padding:2px;"> 2019.2 verified </span>
+</li>
+<li>AI Planner: <a href="http://docs.unity3d.com/Packages/com.unity.ai.planner@0.1/manual/index.html" target="_blank">com.unity.ai.planner</a>
+</li>
+<li>Alembic: <a href="http://docs.unity3d.com/Packages/com.unity.formats.alembic@1.0/manual/index.html" target="_blank">com.unity.formats.alembic</a> <span style="font-weight:bold; color:gray; font-size:75%; vertical-align:super; border-radius:25px; border:2px solid gray; padding:2px;"> 2019.2 verified </span>
+</li>
+<li>Analytics Library: <a href="http://docs.unity3d.com/Packages/com.unity.analytics@3.4/manual/index.html" target="_blank">com.unity.analytics</a> <span style="font-weight:bold; color:gray; font-size:75%; vertical-align:super; border-radius:25px; border:2px solid gray; padding:2px;"> 2019.2 verified </span>
+</li>
+<li>Android Logcat: <a href="http://docs.unity3d.com/Packages/com.unity.mobile.android-logcat@1.0/manual/index.html" target="_blank">com.unity.mobile.android-logcat</a>
+</li>
+<li>Animation Rigging: <a href="http://docs.unity3d.com/Packages/com.unity.animation.rigging@0.2/manual/index.html" target="_blank">com.unity.animation.rigging</a>
+</li>
+<li>AP Samsung Android: <a href="http://docs.unity3d.com/Packages/com.unity.adaptiveperformance.samsung.android@1.0/manual/index.html" target="_blank">com.unity.adaptiveperformance.samsung.android</a>
+</li>
+<li>AR Foundation: <a href="http://docs.unity3d.com/Packages/com.unity.xr.arfoundation@3.1/manual/index.html" target="_blank">com.unity.xr.arfoundation</a> <span style="font-weight:bold; color:gray; font-size:75%; vertical-align:super; border-radius:25px; border:2px solid gray; padding:2px;"> 2019.2 verified </span>
+</li>
+<li>AR Subsystems: <a href="http://docs.unity3d.com/Packages/com.unity.xr.arsubsystems@3.1/manual/index.html" target="_blank">com.unity.xr.arsubsystems</a> <span style="font-weight:bold; color:gray; font-size:75%; vertical-align:super; border-radius:25px; border:2px solid gray; padding:2px;"> 2019.2 verified </span>
+</li>
+<li>ARCore XR Plugin: <a href="http://docs.unity3d.com/Packages/com.unity.xr.arcore@3.1/manual/index.html" target="_blank">com.unity.xr.arcore</a> <span style="font-weight:bold; color:gray; font-size:75%; vertical-align:super; border-radius:25px; border:2px solid gray; padding:2px;"> 2019.2 verified </span>
+</li>
+<li>ARKit Face Tracking: <a href="http://docs.unity3d.com/Packages/com.unity.xr.arkit-face-tracking@3.1/manual/index.html" target="_blank">com.unity.xr.arkit-face-tracking</a>
+</li>
+<li>ARKit XR Plugin: <a href="http://docs.unity3d.com/Packages/com.unity.xr.arkit@3.1/manual/index.html" target="_blank">com.unity.xr.arkit</a> <span style="font-weight:bold; color:gray; font-size:75%; vertical-align:super; border-radius:25px; border:2px solid gray; padding:2px;"> 2019.2 verified </span>
+</li>
+<li>Asset Bundle Browser: <a href="http://docs.unity3d.com/Packages/com.unity.assetbundlebrowser@1.7/manual/index.html" target="_blank">com.unity.assetbundlebrowser</a>
+</li>
+<li>Asset Graph: <a href="http://docs.unity3d.com/Packages/com.unity.assetgraph@1.6/manual/index.html" target="_blank">com.unity.assetgraph</a>
+</li>
+<li>Barracuda: <a href="http://docs.unity3d.com/Packages/com.unity.barracuda@0.3/manual/index.html" target="_blank">com.unity.barracuda</a>
+</li>
+<li>Build Report Inspector: <a href="http://docs.unity3d.com/Packages/com.unity.build-report-inspector@0.1/manual/index.html" target="_blank">com.unity.build-report-inspector</a>
+</li>
+<li>Burst: <a href="http://docs.unity3d.com/Packages/com.unity.burst@1.2/manual/index.html" target="_blank">com.unity.burst</a>
+</li>
+<li>Cinemachine: <a href="http://docs.unity3d.com/Packages/com.unity.cinemachine@2.4/manual/index.html" target="_blank">com.unity.cinemachine</a>
+</li>
+<li>Collections: <a href="http://docs.unity3d.com/Packages/com.unity.collections@0.1/manual/index.html" target="_blank">com.unity.collections</a>
+</li>
+<li>Core RP Library: <a href="http://docs.unity3d.com/Packages/com.unity.render-pipelines.core@6.9/manual/index.html" target="_blank">com.unity.render-pipelines.core</a> <span style="font-weight:bold; color:gray; font-size:75%; vertical-align:super; border-radius:25px; border:2px solid gray; padding:2px;"> 2019.2 verified </span>
+</li>
+<li>Custom NUnit: <a href="https://github.com/nunit/docs/wiki/NUnit-Documentation" target="_blank">com.unity.ext.nunit</a> <span style="font-weight:bold; color:gray; font-size:75%; vertical-align:super; border-radius:25px; border:2px solid gray; padding:2px;"> 2019.2 verified </span>
+</li>
+<li>DOTS Android Platform: <a href="http://docs.unity3d.com/Packages/com.unity.platforms.android@0.1/manual/index.html" target="_blank">com.unity.platforms.android</a>
+</li>
+<li>DOTS Editor: <a href="http://docs.unity3d.com/Packages/com.unity.dots.editor@0.1/manual/index.html" target="_blank">com.unity.dots.editor</a>
+</li>
+<li>DOTS Linux Platform: <a href="http://docs.unity3d.com/Packages/com.unity.platforms.linux@0.1/manual/index.html" target="_blank">com.unity.platforms.linux</a>
+</li>
+<li>DOTS macOS Platform: <a href="http://docs.unity3d.com/Packages/com.unity.platforms.macos@0.1/manual/index.html" target="_blank">com.unity.platforms.macos</a>
+</li>
+<li>DOTS Platforms: <a href="http://docs.unity3d.com/Packages/com.unity.platforms@0.1/manual/index.html" target="_blank">com.unity.platforms</a>
+</li>
+<li>DOTS Web Platform: <a href="http://docs.unity3d.com/Packages/com.unity.platforms.web@0.1/manual/index.html" target="_blank">com.unity.platforms.web</a>
+</li>
+<li>DOTS Windows Platform: <a href="http://docs.unity3d.com/Packages/com.unity.platforms.windows@0.1/manual/index.html" target="_blank">com.unity.platforms.windows</a>
+</li>
+<li>Editor Coroutines: <a href="http://docs.unity3d.com/Packages/com.unity.editorcoroutines@0.0/manual/index.html" target="_blank">com.unity.editorcoroutines</a>
+</li>
+<li>Entities: <a href="http://docs.unity3d.com/Packages/com.unity.entities@0.1/manual/index.html" target="_blank">com.unity.entities</a>
+</li>
+<li>FBX Exporter: <a href="http://docs.unity3d.com/Packages/com.unity.formats.fbx@2.0/manual/index.html" target="_blank">com.unity.formats.fbx</a>
+</li>
+<li>Film and TV Toolbox: <a href="http://docs.unity3d.com/Packages/com.unity.film-tv.toolbox@0.2/manual/index.html" target="_blank">com.unity.film-tv.toolbox</a>
+</li>
+<li>Game Foundation: <a href="http://docs.unity3d.com/Packages/com.unity.game.foundation@0.1/manual/index.html" target="_blank">com.unity.game.foundation</a>
+</li>
+<li>Google Resonance Audio: <a href="http://docs.unity3d.com/Packages/com.unity.google.resonance.audio@1.18/manual/index.html" target="_blank">com.unity.google.resonance.audio</a>
+</li>
+<li>Google VR Android: <a href="http://docs.unity3d.com/Packages/com.unity.xr.googlevr.android@1.18/manual/index.html" target="_blank">com.unity.xr.googlevr.android</a>
+</li>
+<li>Google VR iOS: <a href="http://docs.unity3d.com/Packages/com.unity.xr.googlevr.ios@1.18/manual/index.html" target="_blank">com.unity.xr.googlevr.ios</a>
+</li>
+<li>Havok Physics: <a href="http://docs.unity3d.com/Packages/com.havok.physics@0.1/manual/index.html" target="_blank">com.havok.physics</a>
+</li>
+<li>High Definition RP: <a href="http://docs.unity3d.com/Packages/com.unity.render-pipelines.high-definition@6.9/manual/index.html" target="_blank">com.unity.render-pipelines.high-definition</a> <span style="font-weight:bold; color:gray; font-size:75%; vertical-align:super; border-radius:25px; border:2px solid gray; padding:2px;"> 2019.2 verified </span>
+</li>
+<li>Hybrid Renderer: <a href="http://docs.unity3d.com/Packages/com.unity.rendering.hybrid@0.1/manual/index.html" target="_blank">com.unity.rendering.hybrid</a>
+</li>
+<li>Immediate Window: <a href="http://docs.unity3d.com/Packages/com.unity.immediate-window@1.1/manual/index.html" target="_blank">com.unity.immediate-window</a>
+</li>
+<li>In App Purchasing: <a href="http://docs.unity3d.com/2019.2/Documentation/Manual/UnityIAP.html" target="_blank">com.unity.purchasing</a> <span style="font-weight:bold; color:gray; font-size:75%; vertical-align:super; border-radius:25px; border:2px solid gray; padding:2px;"> 2019.2 verified </span>
+</li>
+<li>Input System: <a href="http://docs.unity3d.com/Packages/com.unity.inputsystem@1.0/manual/index.html" target="_blank">com.unity.inputsystem</a>
+</li>
+<li>Jobs: <a href="http://docs.unity3d.com/Packages/com.unity.jobs@0.1/manual/index.html" target="_blank">com.unity.jobs</a>
+</li>
+<li>Lightweight RP: <a href="http://docs.unity3d.com/Packages/com.unity.render-pipelines.lightweight@6.9/manual/index.html" target="_blank">com.unity.render-pipelines.lightweight</a> <span style="font-weight:bold; color:gray; font-size:75%; vertical-align:super; border-radius:25px; border:2px solid gray; padding:2px;"> 2019.2 verified </span>
+</li>
+<li>Mathematics: <a href="http://docs.unity3d.com/Packages/com.unity.mathematics@1.1/manual/index.html" target="_blank">com.unity.mathematics</a>
+</li>
+<li>Memory Profiler: <a href="http://docs.unity3d.com/Packages/com.unity.memoryprofiler@0.1/manual/index.html" target="_blank">com.unity.memoryprofiler</a>
+</li>
+<li>Mobile Notifications: <a href="http://docs.unity3d.com/Packages/com.unity.mobile.notifications@1.0/manual/index.html" target="_blank">com.unity.mobile.notifications</a>
+</li>
+<li>Mono Cecil: <a href="https://www.nuget.org/packages/Mono.cecil/" target="_blank">nuget.mono-cecil</a>
+</li>
+<li>Multiplayer HLAPI: <a href="http://docs.unity3d.com/Packages/com.unity.multiplayer-hlapi@1.0/manual/index.html" target="_blank">com.unity.multiplayer-hlapi</a>
+</li>
+<li>Oculus Android: <a href="http://docs.unity3d.com/Packages/com.unity.xr.oculus.android@1.38/manual/index.html" target="_blank">com.unity.xr.oculus.android</a>
+</li>
+<li>Oculus Desktop: <a href="http://docs.unity3d.com/Packages/com.unity.xr.oculus.standalone@1.38/manual/index.html" target="_blank">com.unity.xr.oculus.standalone</a>
+</li>
+<li>OpenVR (Desktop): <a href="http://docs.unity3d.com/Packages/com.unity.xr.openvr.standalone@1.0/manual/index.html" target="_blank">com.unity.xr.openvr.standalone</a>
+</li>
+<li>Package Validation Suite: <a href="http://docs.unity3d.com/Packages/com.unity.package-validation-suite@0.7/manual/index.html" target="_blank">com.unity.package-validation-suite</a>
+</li>
+<li>PlayableGraph Visualizer: <a href="http://docs.unity3d.com/Packages/com.unity.playablegraph-visualizer@0.2/manual/index.html" target="_blank">com.unity.playablegraph-visualizer</a>
+</li>
+<li>Polybrush: <a href="http://docs.unity3d.com/Packages/com.unity.polybrush@1.0/manual/index.html" target="_blank">com.unity.polybrush</a>
+</li>
+<li>Post Processing: <a href="http://docs.unity3d.com/Packages/com.unity.postprocessing@2.2/manual/index.html" target="_blank">com.unity.postprocessing</a> <span style="font-weight:bold; color:gray; font-size:75%; vertical-align:super; border-radius:25px; border:2px solid gray; padding:2px;"> 2019.2 verified </span>
+</li>
+<li>ProBuilder: <a href="http://docs.unity3d.com/Packages/com.unity.probuilder@4.2/manual/index.html" target="_blank">com.unity.probuilder</a> <span style="font-weight:bold; color:gray; font-size:75%; vertical-align:super; border-radius:25px; border:2px solid gray; padding:2px;"> 2019.2 verified </span>
+</li>
+<li>Profile Analyzer: <a href="http://docs.unity3d.com/Packages/com.unity.performance.profile-analyzer@0.5/manual/index.html" target="_blank">com.unity.performance.profile-analyzer</a>
+</li>
+<li>ProGrids: <a href="http://docs.unity3d.com/Packages/com.unity.progrids@3.0/manual/index.html" target="_blank">com.unity.progrids</a>
+</li>
+<li>Quick Search: <a href="http://docs.unity3d.com/Packages/com.unity.quicksearch@1.5/manual/index.html" target="_blank">com.unity.quicksearch</a>
+</li>
+<li>Remote Config: <a href="http://docs.unity3d.com/Packages/com.unity.remote-config@1.0/manual/index.html" target="_blank">com.unity.remote-config</a>
+</li>
+<li>Scriptable Build Pipeline: <a href="http://docs.unity3d.com/Packages/com.unity.scriptablebuildpipeline@1.5/manual/index.html" target="_blank">com.unity.scriptablebuildpipeline</a>
+</li>
+<li>Shader Graph: <a href="http://docs.unity3d.com/Packages/com.unity.shadergraph@6.9/manual/index.html" target="_blank">com.unity.shadergraph</a> <span style="font-weight:bold; color:gray; font-size:75%; vertical-align:super; border-radius:25px; border:2px solid gray; padding:2px;"> 2019.2 verified </span>
+</li>
+<li>Share WebGL Game: <a href="http://docs.unity3d.com/Packages/com.unity.connect.share@1.0/manual/index.html" target="_blank">com.unity.connect.share</a>
+</li>
+<li>Subsystem Registration: <a href="http://docs.unity3d.com/Packages/com.unity.subsystemregistration@1.0/manual/index.html" target="_blank">com.unity.subsystemregistration</a> <span style="font-weight:bold; color:gray; font-size:75%; vertical-align:super; border-radius:25px; border:2px solid gray; padding:2px;"> 2019.2 verified </span>
+</li>
+<li>Terrain Tools: <a href="http://docs.unity3d.com/Packages/com.unity.terrain-tools@2.0/manual/index.html" target="_blank">com.unity.terrain-tools</a>
+</li>
+<li>Test Framework: <a href="http://docs.unity3d.com/Packages/com.unity.test-framework@1.1/manual/index.html" target="_blank">com.unity.test-framework</a> <span style="font-weight:bold; color:gray; font-size:75%; vertical-align:super; border-radius:25px; border:2px solid gray; padding:2px;"> 2019.2 verified </span>
+</li>
+<li>TextMesh Pro: <a href="http://docs.unity3d.com/Packages/com.unity.textmeshpro@2.1/manual/index.html" target="_blank">com.unity.textmeshpro</a> <span style="font-weight:bold; color:gray; font-size:75%; vertical-align:super; border-radius:25px; border:2px solid gray; padding:2px;"> 2019.2 verified </span>
+</li>
+<li>UI Builder: <a href="http://docs.unity3d.com/Packages/com.unity.ui.builder@0.9/manual/index.html" target="_blank">com.unity.ui.builder</a>
+</li>
+<li>Unity AOV Recorder: <a href="http://docs.unity3d.com/Packages/com.unity.aovrecorder@0.1/manual/index.html" target="_blank">com.unity.aovrecorder</a>
+</li>
+<li>Unity Collaborate: <a href="http://docs.unity3d.com/2019.2/Documentation/Manual/UnityCollaborate.html" target="_blank">com.unity.collab-proxy</a> <span style="font-weight:bold; color:gray; font-size:75%; vertical-align:super; border-radius:25px; border:2px solid gray; padding:2px;"> 2019.2 verified </span>
+</li>
+<li>Unity Distribution Portal: <a href="http://docs.unity3d.com/Packages/com.unity.purchasing.udp@1.2/manual/index.html" target="_blank">com.unity.purchasing.udp</a>
+</li>
+<li>Unity Physics: <a href="http://docs.unity3d.com/Packages/com.unity.physics@0.2/manual/index.html" target="_blank">com.unity.physics</a>
+</li>
+<li>Unity Recorder: <a href="http://docs.unity3d.com/Packages/com.unity.recorder@2.0/manual/index.html" target="_blank">com.unity.recorder</a>
+</li>
+<li>Unity Reflect: <a href="http://docs.unity3d.com/Packages/com.unity.reflect@1.0/manual/index.html" target="_blank">com.unity.reflect</a>
+</li>
+<li>Unity Render Streaming: <a href="http://docs.unity3d.com/Packages/com.unity.renderstreaming@1.1/manual/index.html" target="_blank">com.unity.renderstreaming</a>
+</li>
+<li>Unity User Reporting: <a href="http://docs.unity3d.com/Packages/com.unity.cloud.userreporting@0.2/manual/index.html" target="_blank">com.unity.cloud.userreporting</a>
+</li>
+<li>USD: <a href="http://docs.unity3d.com/Packages/com.unity.formats.usd@1.0/manual/index.html" target="_blank">com.unity.formats.usd</a>
+</li>
+<li>Vector Graphics: <a href="http://docs.unity3d.com/Packages/com.unity.vectorgraphics@2.0/manual/index.html" target="_blank">com.unity.vectorgraphics</a>
+</li>
+<li>Visual Effect Graph: <a href="http://docs.unity3d.com/Packages/com.unity.visualeffectgraph@6.9/manual/index.html" target="_blank">com.unity.visualeffectgraph</a> <span style="font-weight:bold; color:gray; font-size:75%; vertical-align:super; border-radius:25px; border:2px solid gray; padding:2px;"> 2019.2 verified </span>
+</li>
+<li>Vuforia Engine AR: <a href="http://docs.unity3d.com/Packages/com.ptc.vuforia.engine@8.5/manual/index.html" target="_blank">com.ptc.vuforia.engine</a>
+</li>
+<li>WebRTC: <a href="http://docs.unity3d.com/Packages/com.unity.webrtc@1.0/manual/index.html" target="_blank">com.unity.webrtc</a>
+</li>
+<li>Windows Mixed Reality: <a href="http://docs.unity3d.com/Packages/com.unity.xr.windowsmr.metro@3.0/manual/index.html" target="_blank">com.unity.xr.windowsmr.metro</a>
+</li>
+<li>Windows XR Plugin: <a href="http://docs.unity3d.com/Packages/com.unity.xr.windowsmr@1.0/manual/index.html" target="_blank">com.unity.xr.windowsmr</a>
+</li>
+<li>Xiaomi SDK: <a href="https://unity3d.com/partners/xiaomi/guide?_ga=2.256552962.861115613.1571082168-389247850.1524252825" target="_blank">com.unity.xiaomi</a>
+</li>
+<li>XR Interaction Toolkit: <a href="http://docs.unity3d.com/Packages/com.unity.xr.interaction.toolkit@0.0/manual/index.html" target="_blank">com.unity.xr.interaction.toolkit</a>
+</li>
+<li>XR Legacy Input Helpers: <a href="http://docs.unity3d.com/Packages/com.unity.xr.legacyinputhelpers@2.0/manual/index.html" target="_blank">com.unity.xr.legacyinputhelpers</a>
+</li>
+<li>XR Management: <a href="http://docs.unity3d.com/Packages/com.unity.xr.management@3.0/manual/index.html" target="_blank">com.unity.xr.management</a>
+</li>
+</ul>
+<div class="feedbackbox" id="feedbackbox">
+<div id="rating"><p>Did you find this page useful? Please give it a rating:<br><div id="ratecontent" class="c-rating"></div>
+</p></div>
+<div id="ratingThanks" style="display:none"><p>Thanks for rating this page!</p></div>
+<div id="problem"><p><a name="problem">Report a problem on this page</a></p></div>
+<div id="problemType" style="display:none"><p>What kind of problem would you like to report?<ul type="problems">
+<li><a name="needcode" id="problemneedcode">This page needs code samples</a></li>
+<li><a name="code" id="problemcode">Code samples do not work</a></li>
+<li><a name="missing" id="problemmissing">Information is missing</a></li>
+<li><a name="incorrect" id="problemincorrect">Information is incorrect</a></li>
+<li><a name="unclear" id="problemunclear">Information is unclear or confusing</a></li>
+<li><a name="language" id="problemlanguage">There is a spelling/grammar error on this page</a></li>
+<li><a name="other" id="problemother">Something else</a></li>
+</ul>
+<p><known_issues><p>Is something described here not working as you expect it to? It might be a <b>Known Issue</b>. Please check with the Issue Tracker at <a href="https://issuetracker.unity3d.com">issuetracker.unity3d.com</a>.</p></known_issues></p>
+</p></div>
+<div id="problemThanks" style="display:none"><p>Thanks for letting us know! This page has been marked for review based on your feedback.<br><br>If you have time, you can provide more information to help us fix the problem faster.<br><br><a id="problemThanksMoreInfoButton">Provide more information</a><br>
+</p></div>
+<div id="problemMoreInfo" style="display:none">
+<p id="problemNeedCodeForm" style="display:none">You've told us this page needs code samples. If you'd like to help us further, you could provide a code sample, or tell us about what kind of code sample you'd like to see:</p>
+<p id="problemCodeForm" style="display:none">You've told us there are code samples on this page which don't work. If you know how to fix it, or have something better we could use instead, please let us know:</p>
+<p id="problemMissingForm" style="display:none">You've told us there is information missing from this page. Please tell us more about what's missing:</p>
+<p id="problemIncorrectForm" style="display:none">You've told us there is incorrect information on this page. If you know what we should change to make it correct, please tell us:</p>
+<p id="problemUnclearForm" style="display:none">You've told us this page has unclear or confusing information. Please tell us more about what you found unclear or confusing, or let us know how we could make it clearer:</p>
+<p id="problemLanguageForm" style="display:none">You've told us there is a spelling or grammar error on this page. Please tell us what's wrong:</p>
+<p id="problemOtherForm" style="display:none">You've told us this page has a problem. Please tell us more about what's wrong:</p>
+<form>
+<textarea id="problemFormSuggestionField" cols="40" rows="5"></textarea><input type="hidden" id="problemFormDescription"><input type="submit" id="problemFormDescriptionSubmit" value="Submit">
+</form>
+</div>
+<div id="problemMoreInfoThanks" style="display:none"><p>Thanks for helping to make the Unity documentation better!</p></div>
+<script>InitialiseStarRating();</script>
+</div>
+<div class="nextprev clear">
+<div class="icon tt left mr1" data-distance="-40|-30|top">
+<span class="prev"><a href="PackagesList.html"></a></span><div class="tip"> Packages</div>
+</div>
+<div class="icon tt right" data-distance="-40|-30|top">
+<span class="next"><a href="com.unity.2d.animation.html"></a></span><div class="tip"> 2D Animation</div>
+</div>
+</div>
+</div>
+<div class="footer-wrapper"><div class="footer clear">
+<div class="copy">Copyright © 2019 Unity Technologies. Publication: 2019.2-003J. Built: 2019-12-16.</div>
+<div class="menu">
+<a href="https://unity3d.com/learn">Tutorials</a><a href="https://answers.unity3d.com">Community Answers</a><a href="https://support.unity3d.com/hc/en-us">Knowledge Base</a><a href="https://forum.unity3d.com">Forums</a><a href="https://unity3d.com/asset-store">Asset Store</a>
+</div>
+</div></div>
+</div>
+</div></div>
+</div>
+</body>
+</html>

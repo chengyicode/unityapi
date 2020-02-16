@@ -1,0 +1,263 @@
+<!DOCTYPE html><html lang="en" class="no-js">
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+<script>var offline=(location.href.indexOf('docs.unity3d.com')==-1)?true:false;if(!offline){(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);  })(window,document,'script','dataLayer','GTM-5V25JL6');}</script><link href="https://fonts.googleapis.com/css?family=Roboto&amp;display=swap" rel="stylesheet">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unity - Manual: ScriptableObject</title>
+<meta property="og:image" content="https://unity3d.com/files/images/ogimg.jpg">
+<meta name="author" content="Unity Technologies">
+<link rel="shortcut icon" href="https://unity.com/themes/contrib/unity_base/images/favicons/favicon.ico">
+<link rel="icon" type="image/png" href="../StaticFilesManual/images/favicons/favicon.png">
+<link rel="apple-touch-icon-precomposed" sizes="152x152" href="../StaticFilesManual/images/favicons/apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../StaticFilesManual/images/favicons/apple-touch-icon-144x144.png">
+<link rel="apple-touch-icon-precomposed" sizes="120x120" href="../StaticFilesManual/images/favicons/apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="../StaticFilesManual/images/favicons/apple-touch-icon-114x114.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="../StaticFilesManual/images/favicons/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon-precomposed" href="../StaticFilesManual/images/favicons/apple-touch-icon.png">
+<meta name="msapplication-TileColor" content="#222c37">
+<meta name="msapplication-TileImage" content="../StaticFilesManual/images/favicons/tileicon-144x144.png">
+<script type="text/javascript" src="https://docs.unity3d.com/StaticFilesConfig/UnityVersionsInfo.js"></script><script type="text/javascript" src="../StaticFilesManual/js/jquery.js?ts=1576442311"></script><script type="text/javascript" src="../StaticFilesManual/js/core.js?ts=1576442311"></script><script type="text/javascript" src="docdata/toc.js?ts=1576442311"></script><script type="text/javascript" src="docdata/global_toc.js?ts=1576442311"></script><link rel="stylesheet" type="text/css" href="../StaticFilesManual/css/core.css?ts=1576442311">
+<link rel="stylesheet" href="../StaticFilesManual/js/feedback/five-star-rating-master/css/rating.min.css">
+<link rel="stylesheet" href="../StaticFilesManual/css/prism.css">
+<script src="../StaticFilesManual/js/prism.js"></script><script src="../StaticFilesManual/js/feedback/five-star-rating-master/js/src/rating.js"></script><script src="../StaticFilesManual/js/jquery.sidebar.min.js"></script><link rel="stylesheet" href="../StaticFilesManual/css/mobileoptimisation.css">
+<script src="../StaticFilesManual/js/mobileoptimisation.js"></script>
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5V25JL6" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<div id="DocsAnalyticsData" data-area="UnityOverview" data-pagetype="reference"></div>
+<div class="header-wrapper">
+<div id="header" class="header"><div class="content">
+<div class="spacer"><div class="menu">
+<div id="nav-open" for="nav-input"><span></span></div>
+<div class="logo"><a href="https://docs.unity3d.com"></a></div>
+<div class="search-form"><form action="30_search.html" method="get" class="apisearch">
+<input type="text" name="q" placeholder="Search manual..." autosave="Unity Reference" results="5" class="sbox field" id="q"><input type="submit" class="submit">
+</form></div>
+<ul>
+<li><a href="../Manual/index.html" class="selected">Manual</a></li>
+<li><a href="../ScriptReference/index.html">Scripting API</a></li>
+</ul>
+</div></div>
+<div class="more">
+<div class="filler"></div>
+<ul><li><a href="https://unity3d.com/">unity3d.com</a></li></ul>
+</div>
+</div></div>
+<div class="toolbar"><div class="content">
+<div class="toggle version-number" id="VersionNumber" data-target=".otherversionscontent">
+                                Version: <b>2019.2</b><div class="otherversionscontent" id="OtherVersionsContent" style="display: none;">
+<ul id="OtherVersionsContentUl"></ul>
+<div id="otherVersionsLegend"><ul>
+<li>
+<div id="supportedColour" class="legendBox"></div>Supported</li>
+<li>
+<div id="notFoundColour" class="legendBox"></div>Legacy</li>
+</ul></div>
+</div>
+<div id="VersionSwitcherArrow" class="arrow versionSwitcherArrow"></div>
+</div>
+<div class="lang-switcher"><div class="current toggle" data-target=".lang-list">
+<div class="lbl">Language
+:                <span class="b">English</span>
+</div>
+<div class="arrow"></div>
+<div class="lang-list" style="display:none;"><ul>
+<li><a href="/Manual/class-ScriptableObject.html">English</a></li>
+<li><a href="/ja/current/Manual/class-ScriptableObject.html">日本語</a></li>
+<li><a href="/es/current/Manual/class-ScriptableObject.html">Español</a></li>
+<li><a href="/kr/current/Manual/class-ScriptableObject.html">한국어</a></li>
+<li><a href="/ru/current/Manual/class-ScriptableObject.html">Русский</a></li>
+</ul></div>
+</div></div>
+</div></div>
+<div class="mobileLogo"><a href="https://docs.unity3d.com"></a></div>
+</div>
+<div id="master-wrapper" class="master-wrapper clear">
+<div id="sidebar" class="sidebar"><div class="sidebar-wrap"><div class="content"><div class="sidebar-menu"><div class="toc" id="customScrollbar">
+<h2>Unity Manual</h2>
+<div class="search-form sidebar-search-form"><form action="30_search.html" method="get" class="apisearch">
+<input type="text" name="q" placeholder="Search manual..." autosave="Unity Reference" results="5" class="sbox field" id="q"><input type="submit" id="mobileSearchBtn" class="submit" value="Search">
+</form></div>
+<div class="toggle version-number sidebar-version-switcher" id="VersionNumber" data-target=".otherversionscontent"><form id="otherVersionsContentMobileForm"><div class="ui-field-contain">
+<label for="select-native-4">Version: 2019.2</label><select name="select-native-4" id="versionsSelectMobile"><option>Select a different version</option>
+<optgroup id="versionsWithThisPageMobile" label="Versions with this page"></optgroup>
+<optgroup id="versionsWithoutThisPageMobile" label="Versions without this page"></optgroup></select>
+</div></form></div>
+<div class="lang-switcher"><div class="current toggle" data-target=".lang-list">
+<div class="lbl">Language
+:                <span class="b">English</span>
+</div>
+<div class="arrow"></div>
+<div class="lang-list" style="display:none;"><ul>
+<li><a href="/Manual/class-ScriptableObject.html">English</a></li>
+<li><a href="/ja/current/Manual/class-ScriptableObject.html">日本語</a></li>
+<li><a href="/es/current/Manual/class-ScriptableObject.html">Español</a></li>
+<li><a href="/kr/current/Manual/class-ScriptableObject.html">한국어</a></li>
+<li><a href="/ru/current/Manual/class-ScriptableObject.html">Русский</a></li>
+</ul></div>
+</div></div>
+</div></div></div></div></div>
+<div id="content-wrap" class="content-wrap"><div class="content-block">
+<div class="darkCover"></div>
+<div class="content">
+<div class="section">
+<div class="breadcrumbs clear"><ul>
+<li><a href="UnityManual.html">Unity User Manual (2019.2)</a></li>
+<li><a href="UnityOverview.html">Working in Unity</a></li>
+<li><a href="AdvancedDevelopment.html">Advanced Development</a></li>
+<li>ScriptableObject</li>
+</ul></div>
+<div class="mb20"><div class="nextprev clear">
+<div class="icon tt left mr1" data-distance="-40|-30|top">
+<span class="prev"><a href="StreamingAssets.html"></a></span><div class="tip"> Streaming Assets</div>
+</div>
+<div class="icon tt right" data-distance="-40|-30|top">
+<span class="next"><a href="AdvancedEditor.html"></a></span><div class="tip">Advanced Editor Topics</div>
+</div>
+</div></div>
+<div class="scrollToFeedback"><a id="scrollToFeedback">Leave feedback</a></div>
+<h1>ScriptableObject</h1>
+<!--BeginSwitchLink--><a href='../ScriptReference/ScriptableObject.html' title='Go to ScriptableObject page in the Scripting Reference' class='switch-link gray-btn sbtn left'>Switch to Scripting</a><!--EndSwitchLink-->
+<div class="clear"></div>
+
+<p>A ScriptableObject is a data container that you can use to save large amounts of data, independent of class instances. One of the main use cases for ScriptableObjects is to reduce your Project’s memory usage by avoiding copies of values. This is useful if your Project has a <span class="tooltip"><a href="Prefabs.html">Prefab</a><span class="tooltiptext">An asset type that allows you to store a GameObject complete with components and properties. The prefab acts as a template from which you can create new object instances in the scene. <a href="Prefabs.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#Prefab">Glossary</a></span></span></span> that stores unchanging data in attached MonoBehaviour <span class="tooltip"><strong>scripts</strong><span class="tooltiptext">A piece of code that allows you to create your own Components, trigger game events, modify Component properties over time and respond to user input in any way you like. <a href="CreatingAndUsingScripts.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#Scripts">Glossary</a></span></span></span>. </p>
+
+<p>Every time you instantiate that Prefab, it will get its own copy of that data. Instead of using the method, and storing duplicated data, you can use a ScriptableObject to store the data and then access it by reference from all of the Prefabs. This means that there is one copy of the data in memory.</p>
+
+<p>Just like MonoBehaviours, ScriptableObjects derive from the base Unity object but, unlike MonoBehaviours, you can not attach a ScriptableObject to a <span class="tooltip"><a href="class-GameObject.html">GameObject</a><span class="tooltiptext">The fundamental object in Unity scenes, which can represent characters, props, scenery, cameras, waypoints, and more. A GameObject’s functionality is defined by the Components attached to it. <a href="class-GameObject.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#GameObject">Glossary</a></span></span></span>. Instead, you need to save them as Assets in your Project.</p>
+
+<p>When you use the Editor, you can save data to ScriptableObjects while editing and at run time because ScriptableObjects use the Editor namespace and Editor scripting. In a deployed build, however, you can’t use ScriptableObjects to save data, but you can use the saved data from the ScriptableObject Assets that you set up during development.</p>
+
+<p>Data that you save from Editor Tools to ScriptableObjects as an asset is written to disk and is therefore persistent between sessions.</p>
+
+<h2>Using a ScriptableObject</h2>
+
+<p>The main use cases for ScriptableObjects are:</p>
+
+<ul>
+<li>Saving and storing data during an Editor session</li>
+<li>Saving data as an Asset in your Project to use at run time</li>
+</ul>
+
+<p>To use a ScriptableObject, create a script in your application’s <span class="tooltip"><strong>Assets</strong><span class="tooltiptext">Any media or data that can be used in your game or Project. An Asset may come from a file created outside of Unity, such as a 3D model, an audio file or an image. You can also create some asset types in Unity, such as an Animator Controller, an Audio Mixer or a Render Texture. <a href="AssetWorkflow.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#Asset">Glossary</a></span></span></span> folder and make it inherit from the <code>ScriptableObject</code> class. You can use the <a href="../ScriptReference/CreateAssetMenuAttribute.html">CreateAssetMenu</a> attribute to make it easy to create custom assets using your class. For example:</p>
+
+<pre><code>using UnityEngine;
+
+[CreateAssetMenu(fileName = &quot;Data&quot;, menuName = &quot;ScriptableObjects/SpawnManagerScriptableObject&quot;, order = 1)]
+public class SpawnManagerScriptableObject : ScriptableObject
+{
+    public string prefabName;
+
+    public int numberOfPrefabsToCreate;
+    public Vector3[] spawnPoints;
+}
+</code></pre>
+
+<p>With the above script in your <strong>Assets</strong> folder, you can create an instance of your ScriptableObject by navigating to <strong>Assets &gt; Create &gt; ScriptableObjects &gt; SpawnManagerScriptableObject</strong>. Give your new ScriptableObject instance a meaningful name and alter the values. To use these values, you need to create a new script that references your ScriptableObject, in this case, a <code>SpawnManagerScriptableObject</code>. For example:</p>
+
+<pre><code>using UnityEngine;
+
+public class Spawner : MonoBehaviour
+{
+    // The GameObject to instantiate.
+    public GameObject entityToSpawn;
+
+    // An instance of the ScriptableObject defined above.
+    public SpawnManagerScriptableObject spawnManagerValues;
+
+    // This will be appended to the name of the created entities and increment when each is created.
+    int instanceNumber = 1;
+
+    void Start()
+    {
+        SpawnEntities();
+    }
+
+    void SpawnEntities()
+    {
+        int currentSpawnPointIndex = 0;
+
+        for (int i = 0; i &lt; spawnManagerValues.numberOfPrefabsToCreate; i++)
+        {
+            // Creates an instance of the prefab at the current spawn point.
+            GameObject currentEntity = Instantiate(entityToSpawn, spawnManagerValues.spawnPoints[currentSpawnPointIndex], Quaternion.identity);
+
+            // Sets the name of the instantiated entity to be the string defined in the ScriptableObject and then appends it with a unique number. 
+            currentEntity.name = spawnManagerValues.prefabName + instanceNumber;
+
+            // Moves to the next spawn point index. If it goes out of range, it wraps back to the start.
+            currentSpawnPointIndex = (currentSpawnPointIndex + 1) % spawnManagerValues.spawnPoints.Length;
+
+            instanceNumber++;
+        }
+    }
+}
+</code></pre>
+
+<p>Attach the above script to a GameObject in your <span class="tooltip"><a href="CreatingScenes.html">Scene</a><span class="tooltiptext">A Scene contains the environments and menus of your game. Think of each unique Scene file as a unique level. In each Scene, you place your environments, obstacles, and decorations, essentially designing and building your game in pieces. <a href="CreatingScenes.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#Scene">Glossary</a></span></span></span>. Then, in the <span class="tooltip"><strong>Inspector</strong><span class="tooltiptext">A Unity window that displays information about the currently selected GameObject, Asset or Project Settings, alowing you to inspect and edit the values. <a href="UsingTheInspector.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#Inspector">Glossary</a></span></span></span>, set the <strong>Spawn Manager Values</strong> field to the new <code>SpawnManagerScriptableObject</code> that you set up. </p>
+
+<p>Set the <strong>Entity To Spawn</strong> field to any Prefab in your Assets folder, then click <strong>Play</strong> in the Editor. The Prefab you referenced in the <code>Spawner</code> instantiates using the values you set in the <code>SpawnManagerScriptableObject</code> instance.</p>
+
+<p>If you’re working with ScriptableObject references in the Inspector, you can double click the reference field to open the Inspector for your ScriptableObject. You can also create a custom Editor to define the look of the Inspector for your type to help manage the data that it represents.</p>
+
+<hr>
+
+<ul>
+<li><span class="page-edit">2018–10–15 Page published
+</span></li>
+</ul>
+<div class="feedbackbox" id="feedbackbox">
+<div id="rating"><p>Did you find this page useful? Please give it a rating:<br><div id="ratecontent" class="c-rating"></div>
+</p></div>
+<div id="ratingThanks" style="display:none"><p>Thanks for rating this page!</p></div>
+<div id="problem"><p><a name="problem">Report a problem on this page</a></p></div>
+<div id="problemType" style="display:none"><p>What kind of problem would you like to report?<ul type="problems">
+<li><a name="needcode" id="problemneedcode">This page needs code samples</a></li>
+<li><a name="code" id="problemcode">Code samples do not work</a></li>
+<li><a name="missing" id="problemmissing">Information is missing</a></li>
+<li><a name="incorrect" id="problemincorrect">Information is incorrect</a></li>
+<li><a name="unclear" id="problemunclear">Information is unclear or confusing</a></li>
+<li><a name="language" id="problemlanguage">There is a spelling/grammar error on this page</a></li>
+<li><a name="other" id="problemother">Something else</a></li>
+</ul>
+<p><known_issues><p>Is something described here not working as you expect it to? It might be a <b>Known Issue</b>. Please check with the Issue Tracker at <a href="https://issuetracker.unity3d.com">issuetracker.unity3d.com</a>.</p></known_issues></p>
+</p></div>
+<div id="problemThanks" style="display:none"><p>Thanks for letting us know! This page has been marked for review based on your feedback.<br><br>If you have time, you can provide more information to help us fix the problem faster.<br><br><a id="problemThanksMoreInfoButton">Provide more information</a><br>
+</p></div>
+<div id="problemMoreInfo" style="display:none">
+<p id="problemNeedCodeForm" style="display:none">You've told us this page needs code samples. If you'd like to help us further, you could provide a code sample, or tell us about what kind of code sample you'd like to see:</p>
+<p id="problemCodeForm" style="display:none">You've told us there are code samples on this page which don't work. If you know how to fix it, or have something better we could use instead, please let us know:</p>
+<p id="problemMissingForm" style="display:none">You've told us there is information missing from this page. Please tell us more about what's missing:</p>
+<p id="problemIncorrectForm" style="display:none">You've told us there is incorrect information on this page. If you know what we should change to make it correct, please tell us:</p>
+<p id="problemUnclearForm" style="display:none">You've told us this page has unclear or confusing information. Please tell us more about what you found unclear or confusing, or let us know how we could make it clearer:</p>
+<p id="problemLanguageForm" style="display:none">You've told us there is a spelling or grammar error on this page. Please tell us what's wrong:</p>
+<p id="problemOtherForm" style="display:none">You've told us this page has a problem. Please tell us more about what's wrong:</p>
+<form>
+<textarea id="problemFormSuggestionField" cols="40" rows="5"></textarea><input type="hidden" id="problemFormDescription"><input type="submit" id="problemFormDescriptionSubmit" value="Submit">
+</form>
+</div>
+<div id="problemMoreInfoThanks" style="display:none"><p>Thanks for helping to make the Unity documentation better!</p></div>
+<script>InitialiseStarRating();</script>
+</div>
+<div class="nextprev clear">
+<div class="icon tt left mr1" data-distance="-40|-30|top">
+<span class="prev"><a href="StreamingAssets.html"></a></span><div class="tip"> Streaming Assets</div>
+</div>
+<div class="icon tt right" data-distance="-40|-30|top">
+<span class="next"><a href="AdvancedEditor.html"></a></span><div class="tip">Advanced Editor Topics</div>
+</div>
+</div>
+</div>
+<div class="footer-wrapper"><div class="footer clear">
+<div class="copy">Copyright © 2019 Unity Technologies. Publication: 2019.2-003J. Built: 2019-12-16.</div>
+<div class="menu">
+<a href="https://unity3d.com/learn">Tutorials</a><a href="https://answers.unity3d.com">Community Answers</a><a href="https://support.unity3d.com/hc/en-us">Knowledge Base</a><a href="https://forum.unity3d.com">Forums</a><a href="https://unity3d.com/asset-store">Asset Store</a>
+</div>
+</div></div>
+</div>
+</div></div>
+</div>
+</body>
+</html>

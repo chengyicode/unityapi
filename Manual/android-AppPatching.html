@@ -1,0 +1,266 @@
+<!DOCTYPE html><html lang="en" class="no-js">
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+<script>var offline=(location.href.indexOf('docs.unity3d.com')==-1)?true:false;if(!offline){(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);  })(window,document,'script','dataLayer','GTM-5V25JL6');}</script><link href="https://fonts.googleapis.com/css?family=Roboto&amp;display=swap" rel="stylesheet">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unity - Manual:  App patching for fast development iteration</title>
+<meta property="og:image" content="https://unity3d.com/files/images/ogimg.jpg">
+<meta name="author" content="Unity Technologies">
+<link rel="shortcut icon" href="https://unity.com/themes/contrib/unity_base/images/favicons/favicon.ico">
+<link rel="icon" type="image/png" href="../StaticFilesManual/images/favicons/favicon.png">
+<link rel="apple-touch-icon-precomposed" sizes="152x152" href="../StaticFilesManual/images/favicons/apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../StaticFilesManual/images/favicons/apple-touch-icon-144x144.png">
+<link rel="apple-touch-icon-precomposed" sizes="120x120" href="../StaticFilesManual/images/favicons/apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="../StaticFilesManual/images/favicons/apple-touch-icon-114x114.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="../StaticFilesManual/images/favicons/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon-precomposed" href="../StaticFilesManual/images/favicons/apple-touch-icon.png">
+<meta name="msapplication-TileColor" content="#222c37">
+<meta name="msapplication-TileImage" content="../StaticFilesManual/images/favicons/tileicon-144x144.png">
+<script type="text/javascript" src="https://docs.unity3d.com/StaticFilesConfig/UnityVersionsInfo.js"></script><script type="text/javascript" src="../StaticFilesManual/js/jquery.js?ts=1576442311"></script><script type="text/javascript" src="../StaticFilesManual/js/core.js?ts=1576442311"></script><script type="text/javascript" src="docdata/toc.js?ts=1576442311"></script><script type="text/javascript" src="docdata/global_toc.js?ts=1576442311"></script><link rel="stylesheet" type="text/css" href="../StaticFilesManual/css/core.css?ts=1576442311">
+<link rel="stylesheet" href="../StaticFilesManual/js/feedback/five-star-rating-master/css/rating.min.css">
+<link rel="stylesheet" href="../StaticFilesManual/css/prism.css">
+<script src="../StaticFilesManual/js/prism.js"></script><script src="../StaticFilesManual/js/feedback/five-star-rating-master/js/src/rating.js"></script><script src="../StaticFilesManual/js/jquery.sidebar.min.js"></script><link rel="stylesheet" href="../StaticFilesManual/css/mobileoptimisation.css">
+<script src="../StaticFilesManual/js/mobileoptimisation.js"></script>
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5V25JL6" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<div id="DocsAnalyticsData" data-area="PlatformSpecific" data-pagetype="normal"></div>
+<div class="header-wrapper">
+<div id="header" class="header"><div class="content">
+<div class="spacer"><div class="menu">
+<div id="nav-open" for="nav-input"><span></span></div>
+<div class="logo"><a href="https://docs.unity3d.com"></a></div>
+<div class="search-form"><form action="30_search.html" method="get" class="apisearch">
+<input type="text" name="q" placeholder="Search manual..." autosave="Unity Reference" results="5" class="sbox field" id="q"><input type="submit" class="submit">
+</form></div>
+<ul>
+<li><a href="../Manual/index.html" class="selected">Manual</a></li>
+<li><a href="../ScriptReference/index.html">Scripting API</a></li>
+</ul>
+</div></div>
+<div class="more">
+<div class="filler"></div>
+<ul><li><a href="https://unity3d.com/">unity3d.com</a></li></ul>
+</div>
+</div></div>
+<div class="toolbar"><div class="content">
+<div class="toggle version-number" id="VersionNumber" data-target=".otherversionscontent">
+                                Version: <b>2019.2</b><div class="otherversionscontent" id="OtherVersionsContent" style="display: none;">
+<ul id="OtherVersionsContentUl"></ul>
+<div id="otherVersionsLegend"><ul>
+<li>
+<div id="supportedColour" class="legendBox"></div>Supported</li>
+<li>
+<div id="notFoundColour" class="legendBox"></div>Legacy</li>
+</ul></div>
+</div>
+<div id="VersionSwitcherArrow" class="arrow versionSwitcherArrow"></div>
+</div>
+<div class="lang-switcher"><div class="current toggle" data-target=".lang-list">
+<div class="lbl">Language
+:                <span class="b">English</span>
+</div>
+<div class="arrow"></div>
+<div class="lang-list" style="display:none;"><ul>
+<li><a href="/Manual/android-AppPatching.html">English</a></li>
+<li><a href="/ja/current/Manual/android-AppPatching.html">日本語</a></li>
+<li><a href="/es/current/Manual/android-AppPatching.html">Español</a></li>
+<li><a href="/kr/current/Manual/android-AppPatching.html">한국어</a></li>
+<li><a href="/ru/current/Manual/android-AppPatching.html">Русский</a></li>
+</ul></div>
+</div></div>
+</div></div>
+<div class="mobileLogo"><a href="https://docs.unity3d.com"></a></div>
+</div>
+<div id="master-wrapper" class="master-wrapper clear">
+<div id="sidebar" class="sidebar"><div class="sidebar-wrap"><div class="content"><div class="sidebar-menu"><div class="toc" id="customScrollbar">
+<h2>Unity Manual</h2>
+<div class="search-form sidebar-search-form"><form action="30_search.html" method="get" class="apisearch">
+<input type="text" name="q" placeholder="Search manual..." autosave="Unity Reference" results="5" class="sbox field" id="q"><input type="submit" id="mobileSearchBtn" class="submit" value="Search">
+</form></div>
+<div class="toggle version-number sidebar-version-switcher" id="VersionNumber" data-target=".otherversionscontent"><form id="otherVersionsContentMobileForm"><div class="ui-field-contain">
+<label for="select-native-4">Version: 2019.2</label><select name="select-native-4" id="versionsSelectMobile"><option>Select a different version</option>
+<optgroup id="versionsWithThisPageMobile" label="Versions with this page"></optgroup>
+<optgroup id="versionsWithoutThisPageMobile" label="Versions without this page"></optgroup></select>
+</div></form></div>
+<div class="lang-switcher"><div class="current toggle" data-target=".lang-list">
+<div class="lbl">Language
+:                <span class="b">English</span>
+</div>
+<div class="arrow"></div>
+<div class="lang-list" style="display:none;"><ul>
+<li><a href="/Manual/android-AppPatching.html">English</a></li>
+<li><a href="/ja/current/Manual/android-AppPatching.html">日本語</a></li>
+<li><a href="/es/current/Manual/android-AppPatching.html">Español</a></li>
+<li><a href="/kr/current/Manual/android-AppPatching.html">한국어</a></li>
+<li><a href="/ru/current/Manual/android-AppPatching.html">Русский</a></li>
+</ul></div>
+</div></div>
+</div></div></div></div></div>
+<div id="content-wrap" class="content-wrap"><div class="content-block">
+<div class="darkCover"></div>
+<div class="content">
+<div class="section">
+<div class="breadcrumbs clear"><ul>
+<li><a href="UnityManual.html">Unity User Manual (2019.2)</a></li>
+<li><a href="PlatformSpecific.html">Platform-specific</a></li>
+<li><a href="android.html">Android</a></li>
+<li> App patching for fast development iteration</li>
+</ul></div>
+<div class="mb20"><div class="nextprev clear">
+<div class="icon tt left mr1" data-distance="-40|-30|top">
+<span class="prev"><a href="android-RequestingPermissions.html"></a></span><div class="tip"> Requesting Permissions</div>
+</div>
+<div class="icon tt right" data-distance="-40|-30|top">
+<span class="next"><a href="Facebook.html"></a></span><div class="tip"> Facebook</div>
+</div>
+</div></div>
+<div class="scrollToFeedback"><a id="scrollToFeedback">Leave feedback</a></div>
+<h1>App patching for fast development iteration</h1>
+<!--BeginSwitchLink--><!--EndSwitchLink-->
+<div class="clear"></div>
+
+<p>Depending on the Project size, building an app for Android can take a significant amount of time. To perform faster iterations during development, you can choose to patch the app package instead of rebuilding it. When you patch a build, only script-related files are sent to the device.</p>
+
+<figure>
+<img src="../uploads/Main/Build_Settings_Window_Android.jpg" alt="Build settings window for Android.">
+<figcaption>Build settings window for Android.</figcaption>
+</figure>
+
+<h2>Patching your app</h2>
+
+<p>Before you can patch an app, you must have built and installed it on the device. For more information, see <a href="android-BuildProcess.html">Building apps for Android</a>.</p>
+
+<p>To patch your app:</p>
+
+<ol>
+<li>
+<p>Update your script files.</p>
+
+<p>
+<strong>Note</strong>: If you change the layout of a script attached to a <span class="tooltip"><strong>GameObject</strong><span class="tooltiptext">The fundamental object in Unity scenes, which can represent characters, props, scenery, cameras, waypoints, and more. A GameObject’s functionality is defined by the Components attached to it. <a href="class-GameObject.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#GameObject">Glossary</a></span></span></span>, such adding new public variables, the Script Only Build and patching process will fail.</p>
+</li>
+<li><p>In the Editor, click <strong>File &gt; Build Settings</strong>.</p></li>
+<li><p>From the <strong>Build Type</strong> drop-down menu, select <strong>Development</strong>.</p></li>
+<li>
+<p>If you are using the <span class="tooltip"><strong>IL2CPP</strong><span class="tooltiptext">A Unity-developed scripting back-end which you can use as an alternative to Mono when building Projects for some platforms. <a href="IL2CPP.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#IL2CPP">Glossary</a></span></span></span> <span class="tooltip"><strong>scripting backend</strong><span class="tooltiptext">A framework that powers scripting in Unity. Unity supports three different scripting backends depending on target platform: Mono, .NET and IL2CPP. Universal Windows Platform, however, supports only two: .NET and IL2CPP. <a href="windowsstore-il2cpp.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#ScriptingBackend">Glossary</a></span></span></span> (Otherwise move to the next step): </p>
+
+<ol>
+<li>Click the <span class="tooltip"><strong>Player Settings</strong><span class="tooltiptext">Settings that let you set various player-specific options for the final game built by Unity. <a href="class-PlayerSettings.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#PlayerSettings">Glossary</a></span></span></span> button.</li>
+<li>In the <span class="tooltip"><strong>Inspector</strong><span class="tooltiptext">A Unity window that displays information about the currently selected GameObject, Asset or Project Settings, alowing you to inspect and edit the values. <a href="UsingTheInspector.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#Inspector">Glossary</a></span></span></span>, expand the <strong>Other Settings</strong> section.</li>
+<li>If <strong>Strip Engine Code</strong> is checked, uncheck it.</li>
+</ol>
+</li>
+<li><p>Check the <strong>Scripts Only Build</strong> checkbox.</p></li>
+<li><p>Click <strong>Patch</strong> or <strong>Patch &amp; Run</strong>.</p></li>
+</ol>
+
+<p>After building the updated script files, Unity sends updated files to the device specified in the <strong>Run Device</strong> field.</p>
+
+<p>If you have implemented your own build pipeline, you can use the scripting API to patch your app by passing the <code>BuildOptions.BuildScriptsOnly</code> and <code>BuildOptions.PatchPackage</code> options to the <code>BuildPipeline.BuildPlayer</code> method.</p>
+
+<p>For example:</p>
+
+<pre><code>    BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
+    buildPlayerOptions.<span class="tooltip">__scenes__<span class="tooltiptext">A Scene contains the environments and menus of your game. Think of each unique Scene file as a unique level. In each Scene, you place your environments, obstacles, and decorations, essentially designing and building your game in pieces. [More info](CreatingScenes.html)&lt;span class=&quot;tooltipGlossaryLink&quot;&gt;See in [Glossary](Glossary.html#Scene)&lt;/span&gt;</span></span> = new[] { &quot;Assets/Scene1.unity&quot;};
+    buildPlayerOptions.target = BuildTarget.Android;
+
+    // Build &amp; Run the game normally, this will install the application on the android device
+    buildPlayerOptions.options = BuildOptions.AutoRunPlayer
+    BuildPipeline.BuildPlayer(buildPlayerOptions);
+
+    // Modify some <span class="tooltip">__scripts__<span class="tooltiptext">A piece of code that allows you to create your own Components, trigger game events, modify Component properties over time and respond to user input in any way you like. [More info](CreatingAndUsingScripts.html)&lt;span class=&quot;tooltipGlossaryLink&quot;&gt;See in [Glossary](Glossary.html#Scripts)&lt;/span&gt;</span></span> in your Unity Project
+    // Patch &amp; Run the application
+    // (Unity will only recompile script files and push only the necessary files to the android device)
+    buildPlayerOptions.options = BuildOptions.BuildScriptsOnly | BuildOptions.PatchPackage | BuildOptions.AutoRunPlayer;
+    BuildPipeline.BuildPlayer(buildPlayerOptions);
+</code></pre>
+
+<h2>How does app patching work?</h2>
+
+<p>Unity sends the files containing the updated scripts the app’s cache folder. When the app starts, the app checks the cache folder before loading files. If the app finds a required file, the file from cache folder is loaded instead of the app’s data folder.</p>
+
+<p>The files that Unity sends depend on which scripting backend you are using:</p>
+
+<h3>Mono</h3>
+
+<p>Managed assemblies compiled from Project script files, packages script files or <em>asmdef</em> files are sent to <em>/storage/emulated/0/Android/data/&lt;PackageName&gt;/cache/ScriptOnly/&lt;UnityVersion&gt;/mono/Managed</em>
+</p>
+
+<h3>IL2CPP</h3>
+
+<ul>
+<li>
+<p>
+<em>libil2cpp.so</em> is sent to /data/data/&lt;PackageName&gt;/cache/ScriptOnly/&lt;UnityVersion&gt;/il2cpp</p>
+
+<p>
+<strong>Note:</strong> This is an internal cache. Due to security enhancements introduced in Android 7.0, it’s not possible to load a dynamic library from emulated storage. For additional information, see <a href="https://developer.android.com/about/versions/nougat/android-7.0-changes#ndk">Android 7.0 Behavior Changes</a> on the Android developer website.</p>
+</li>
+<li><p>IL2CPP resource files are sent to <em>/storage/emulated/0/Android/data/&lt;PackageName&gt;/cache/ScriptOnly/&lt;UnityVersion&gt;/il2cpp</em>
+</p></li>
+</ul>
+
+<h2>Clearing patch files</h2>
+
+<p>You can use the Android storage settings to clear the app’s cache which removes the patch files installed by the Script Only build process. To clear the cache on the device, go to settings and open your application list. Typically there is an option to clear stored data and/or the cache. In some implementations of the Android OS, you might need to drill down into a storage option to find the option to clear the cache.</p>
+
+<hr>
+
+<p><span class="page-edit">2018–11–13 Page published
+</span></p>
+<div class="feedbackbox" id="feedbackbox">
+<div id="rating"><p>Did you find this page useful? Please give it a rating:<br><div id="ratecontent" class="c-rating"></div>
+</p></div>
+<div id="ratingThanks" style="display:none"><p>Thanks for rating this page!</p></div>
+<div id="problem"><p><a name="problem">Report a problem on this page</a></p></div>
+<div id="problemType" style="display:none"><p>What kind of problem would you like to report?<ul type="problems">
+<li><a name="needcode" id="problemneedcode">This page needs code samples</a></li>
+<li><a name="code" id="problemcode">Code samples do not work</a></li>
+<li><a name="missing" id="problemmissing">Information is missing</a></li>
+<li><a name="incorrect" id="problemincorrect">Information is incorrect</a></li>
+<li><a name="unclear" id="problemunclear">Information is unclear or confusing</a></li>
+<li><a name="language" id="problemlanguage">There is a spelling/grammar error on this page</a></li>
+<li><a name="other" id="problemother">Something else</a></li>
+</ul>
+<p><known_issues><p>Is something described here not working as you expect it to? It might be a <b>Known Issue</b>. Please check with the Issue Tracker at <a href="https://issuetracker.unity3d.com">issuetracker.unity3d.com</a>.</p></known_issues></p>
+</p></div>
+<div id="problemThanks" style="display:none"><p>Thanks for letting us know! This page has been marked for review based on your feedback.<br><br>If you have time, you can provide more information to help us fix the problem faster.<br><br><a id="problemThanksMoreInfoButton">Provide more information</a><br>
+</p></div>
+<div id="problemMoreInfo" style="display:none">
+<p id="problemNeedCodeForm" style="display:none">You've told us this page needs code samples. If you'd like to help us further, you could provide a code sample, or tell us about what kind of code sample you'd like to see:</p>
+<p id="problemCodeForm" style="display:none">You've told us there are code samples on this page which don't work. If you know how to fix it, or have something better we could use instead, please let us know:</p>
+<p id="problemMissingForm" style="display:none">You've told us there is information missing from this page. Please tell us more about what's missing:</p>
+<p id="problemIncorrectForm" style="display:none">You've told us there is incorrect information on this page. If you know what we should change to make it correct, please tell us:</p>
+<p id="problemUnclearForm" style="display:none">You've told us this page has unclear or confusing information. Please tell us more about what you found unclear or confusing, or let us know how we could make it clearer:</p>
+<p id="problemLanguageForm" style="display:none">You've told us there is a spelling or grammar error on this page. Please tell us what's wrong:</p>
+<p id="problemOtherForm" style="display:none">You've told us this page has a problem. Please tell us more about what's wrong:</p>
+<form>
+<textarea id="problemFormSuggestionField" cols="40" rows="5"></textarea><input type="hidden" id="problemFormDescription"><input type="submit" id="problemFormDescriptionSubmit" value="Submit">
+</form>
+</div>
+<div id="problemMoreInfoThanks" style="display:none"><p>Thanks for helping to make the Unity documentation better!</p></div>
+<script>InitialiseStarRating();</script>
+</div>
+<div class="nextprev clear">
+<div class="icon tt left mr1" data-distance="-40|-30|top">
+<span class="prev"><a href="android-RequestingPermissions.html"></a></span><div class="tip"> Requesting Permissions</div>
+</div>
+<div class="icon tt right" data-distance="-40|-30|top">
+<span class="next"><a href="Facebook.html"></a></span><div class="tip"> Facebook</div>
+</div>
+</div>
+</div>
+<div class="footer-wrapper"><div class="footer clear">
+<div class="copy">Copyright © 2019 Unity Technologies. Publication: 2019.2-003J. Built: 2019-12-16.</div>
+<div class="menu">
+<a href="https://unity3d.com/learn">Tutorials</a><a href="https://answers.unity3d.com">Community Answers</a><a href="https://support.unity3d.com/hc/en-us">Knowledge Base</a><a href="https://forum.unity3d.com">Forums</a><a href="https://unity3d.com/asset-store">Asset Store</a>
+</div>
+</div></div>
+</div>
+</div></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,307 @@
+<!DOCTYPE html><html lang="en" class="no-js">
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+<script>var offline=(location.href.indexOf('docs.unity3d.com')==-1)?true:false;if(!offline){(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);  })(window,document,'script','dataLayer','GTM-5V25JL6');}</script><link href="https://fonts.googleapis.com/css?family=Roboto&amp;display=swap" rel="stylesheet">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unity - Manual:  Unity Analytics and the EU General Data Protection Regulation (GDPR)</title>
+<meta property="og:image" content="https://unity3d.com/files/images/ogimg.jpg">
+<meta name="author" content="Unity Technologies">
+<link rel="shortcut icon" href="https://unity.com/themes/contrib/unity_base/images/favicons/favicon.ico">
+<link rel="icon" type="image/png" href="../StaticFilesManual/images/favicons/favicon.png">
+<link rel="apple-touch-icon-precomposed" sizes="152x152" href="../StaticFilesManual/images/favicons/apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../StaticFilesManual/images/favicons/apple-touch-icon-144x144.png">
+<link rel="apple-touch-icon-precomposed" sizes="120x120" href="../StaticFilesManual/images/favicons/apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="../StaticFilesManual/images/favicons/apple-touch-icon-114x114.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="../StaticFilesManual/images/favicons/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon-precomposed" href="../StaticFilesManual/images/favicons/apple-touch-icon.png">
+<meta name="msapplication-TileColor" content="#222c37">
+<meta name="msapplication-TileImage" content="../StaticFilesManual/images/favicons/tileicon-144x144.png">
+<script type="text/javascript" src="https://docs.unity3d.com/StaticFilesConfig/UnityVersionsInfo.js"></script><script type="text/javascript" src="../StaticFilesManual/js/jquery.js?ts=1576442311"></script><script type="text/javascript" src="../StaticFilesManual/js/core.js?ts=1576442311"></script><script type="text/javascript" src="docdata/toc.js?ts=1576442311"></script><script type="text/javascript" src="docdata/global_toc.js?ts=1576442311"></script><link rel="stylesheet" type="text/css" href="../StaticFilesManual/css/core.css?ts=1576442311">
+<link rel="stylesheet" href="../StaticFilesManual/js/feedback/five-star-rating-master/css/rating.min.css">
+<link rel="stylesheet" href="../StaticFilesManual/css/prism.css">
+<script src="../StaticFilesManual/js/prism.js"></script><script src="../StaticFilesManual/js/feedback/five-star-rating-master/js/src/rating.js"></script><script src="../StaticFilesManual/js/jquery.sidebar.min.js"></script><link rel="stylesheet" href="../StaticFilesManual/css/mobileoptimisation.css">
+<script src="../StaticFilesManual/js/mobileoptimisation.js"></script>
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5V25JL6" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<div id="DocsAnalyticsData" data-area="UnityServices" data-pagetype="normal"></div>
+<div class="header-wrapper">
+<div id="header" class="header"><div class="content">
+<div class="spacer"><div class="menu">
+<div id="nav-open" for="nav-input"><span></span></div>
+<div class="logo"><a href="https://docs.unity3d.com"></a></div>
+<div class="search-form"><form action="30_search.html" method="get" class="apisearch">
+<input type="text" name="q" placeholder="Search manual..." autosave="Unity Reference" results="5" class="sbox field" id="q"><input type="submit" class="submit">
+</form></div>
+<ul>
+<li><a href="../Manual/index.html" class="selected">Manual</a></li>
+<li><a href="../ScriptReference/index.html">Scripting API</a></li>
+</ul>
+</div></div>
+<div class="more">
+<div class="filler"></div>
+<ul><li><a href="https://unity3d.com/">unity3d.com</a></li></ul>
+</div>
+</div></div>
+<div class="toolbar"><div class="content">
+<div class="toggle version-number" id="VersionNumber" data-target=".otherversionscontent">
+                                Version: <b>2019.2</b><div class="otherversionscontent" id="OtherVersionsContent" style="display: none;">
+<ul id="OtherVersionsContentUl"></ul>
+<div id="otherVersionsLegend"><ul>
+<li>
+<div id="supportedColour" class="legendBox"></div>Supported</li>
+<li>
+<div id="notFoundColour" class="legendBox"></div>Legacy</li>
+</ul></div>
+</div>
+<div id="VersionSwitcherArrow" class="arrow versionSwitcherArrow"></div>
+</div>
+<div class="lang-switcher"><div class="current toggle" data-target=".lang-list">
+<div class="lbl">Language
+:                <span class="b">English</span>
+</div>
+<div class="arrow"></div>
+<div class="lang-list" style="display:none;"><ul>
+<li><a href="/Manual/UnityAnalyticsDataPrivacy.html">English</a></li>
+<li><a href="/ja/current/Manual/UnityAnalyticsDataPrivacy.html">日本語</a></li>
+<li><a href="/es/current/Manual/UnityAnalyticsDataPrivacy.html">Español</a></li>
+<li><a href="/kr/current/Manual/UnityAnalyticsDataPrivacy.html">한국어</a></li>
+<li><a href="/ru/current/Manual/UnityAnalyticsDataPrivacy.html">Русский</a></li>
+</ul></div>
+</div></div>
+</div></div>
+<div class="mobileLogo"><a href="https://docs.unity3d.com"></a></div>
+</div>
+<div id="master-wrapper" class="master-wrapper clear">
+<div id="sidebar" class="sidebar"><div class="sidebar-wrap"><div class="content"><div class="sidebar-menu"><div class="toc" id="customScrollbar">
+<h2>Unity Manual</h2>
+<div class="search-form sidebar-search-form"><form action="30_search.html" method="get" class="apisearch">
+<input type="text" name="q" placeholder="Search manual..." autosave="Unity Reference" results="5" class="sbox field" id="q"><input type="submit" id="mobileSearchBtn" class="submit" value="Search">
+</form></div>
+<div class="toggle version-number sidebar-version-switcher" id="VersionNumber" data-target=".otherversionscontent"><form id="otherVersionsContentMobileForm"><div class="ui-field-contain">
+<label for="select-native-4">Version: 2019.2</label><select name="select-native-4" id="versionsSelectMobile"><option>Select a different version</option>
+<optgroup id="versionsWithThisPageMobile" label="Versions with this page"></optgroup>
+<optgroup id="versionsWithoutThisPageMobile" label="Versions without this page"></optgroup></select>
+</div></form></div>
+<div class="lang-switcher"><div class="current toggle" data-target=".lang-list">
+<div class="lbl">Language
+:                <span class="b">English</span>
+</div>
+<div class="arrow"></div>
+<div class="lang-list" style="display:none;"><ul>
+<li><a href="/Manual/UnityAnalyticsDataPrivacy.html">English</a></li>
+<li><a href="/ja/current/Manual/UnityAnalyticsDataPrivacy.html">日本語</a></li>
+<li><a href="/es/current/Manual/UnityAnalyticsDataPrivacy.html">Español</a></li>
+<li><a href="/kr/current/Manual/UnityAnalyticsDataPrivacy.html">한국어</a></li>
+<li><a href="/ru/current/Manual/UnityAnalyticsDataPrivacy.html">Русский</a></li>
+</ul></div>
+</div></div>
+</div></div></div></div></div>
+<div id="content-wrap" class="content-wrap"><div class="content-block">
+<div class="darkCover"></div>
+<div class="content">
+<div class="section">
+<div class="breadcrumbs clear"><ul>
+<li><a href="UnityManual.html">Unity User Manual (2019.2)</a></li>
+<li><a href="UnityServices.html">Unity Services</a></li>
+<li><a href="UnityAnalytics.html">Unity Analytics</a></li>
+<li> Unity Analytics and the EU General Data Protection Regulation (GDPR)</li>
+</ul></div>
+<div class="mb20"><div class="nextprev clear">
+<div class="icon tt left mr1" data-distance="-40|-30|top">
+<span class="prev"><a href="UnityAnalyticsCOPPA.html"></a></span><div class="tip"> COPPA Compliance</div>
+</div>
+<div class="icon tt right" data-distance="-40|-30|top">
+<span class="next"><a href="UnityAnalyticsDataPrivacyAPI.html"></a></span><div class="tip"> Unity Analytics DataPrivacy API</div>
+</div>
+</div></div>
+<div class="scrollToFeedback"><a id="scrollToFeedback">Leave feedback</a></div>
+<h1>Unity Analytics and the EU General Data Protection Regulation (GDPR)</h1>
+<!--BeginSwitchLink--><!--EndSwitchLink-->
+<div class="clear"></div>
+
+<p>The General Data Protection Regulation (GDPR) is a European Union law regulating the data privacy of EU citizens. </p>
+
+<ul>
+<li><p>For more information about EU GDPR, see <a href="https://www.eugdpr.org">https://www.eugdpr.org</a>
+</p></li>
+<li><p>For information about Unity and GDPR, see<a href="https://unity3d.com/legal/gdpr"> https://unity3d.com/legal/gdpr</a>
+</p></li>
+<li><p>For Unity’s own privacy policy, see <a href="https://unity3d.com/legal/privacy-policy">https://unity3d.com/legal/privacy-policy</a>
+</p></li>
+</ul>
+
+<p>Maintaining compliance with GDPR when you use Unity <span class="tooltip"><strong>Analytics</strong><span class="tooltiptext">Abbreviation of <strong>Unity Analytics</strong><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#Analytics">Glossary</a></span></span></span> is a shared responsibility. Unity collects data to help you improve the player experience with ads and gameplay. Some of that data includes personally identifiable information (PII) regulated under GDPR. Unity provides the tools to allow a player to opt out of the PII collection, and to manage the personal data that Unity collects about them, as required by the GDPR. Your responsibilities include adding an opt-out button to your app, and providing a link to Unity’s privacy policy from your own privacy policy. </p>
+
+<p>When your app uses Unity Ads, Unity displays a notice to the player the first time an ad is shown on their phone giving them the option to opt in or out of personally identifiable information collection. Subsequent ads also display a button that users can use to manage their data privacy options. For more information about GDPR and the Unity Ads SDK, see <a href="https://unityads.unity3d.com/help/legal/gdpr">Unity Ads Knowledge Base: GDPR Compliance</a>.</p>
+
+<p>If you use both Unity Ads and Analytics, the Unity Ads opt-out mechanism applies to both services.</p>
+
+<p>If you do not use Unity Ads, but do use other Unity services, such as <span class="tooltip"><strong>Unity Analytics</strong><span class="tooltiptext">A data platform that provides analytics for your Unity game. <a href="UnityAnalytics.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#UnityAnalytics">Glossary</a></span></span></span>, IAP, Multiplayer, or Performance Reporting, then you must use the <strong>Unity Analytics Data Privacy</strong> <span class="tooltip"><strong>plug-in</strong><span class="tooltiptext">A set of code created outside of Unity that creates functionality in Unity. There are two kinds of plug-ins you can use in Unity: Managed plug-ins (managed .NET assemblies created with tools like Visual Studio) and Native plug-ins (platform-specific native code libraries). <a href="Plugins.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#Plug-in">Glossary</a></span></span></span> to provide an opt-out choice to your players. The <strong>plug-in</strong> provides a button you can add to your game that opens a Unity web page where players can manage their privacy settings. Players manage their preferences on a per-game, per-device basis. <strong>Unity Analytics</strong> does not track whether the same player plays more than one game made with Unity, or plays the same game on multiple devices.</p>
+
+<p>The above options cover any data collected by Unity for customizing Ads and player services. However, if you collect personally identifiable information data on your own, you are responsible for protecting and managing that data. </p>
+
+<p>Best practices:</p>
+
+<ul>
+<li><p>Solicit your own legal advice. Nothing in this document should be construed as legal advice.</p></li>
+<li><p>Read and understand the <a href="https://unity3d.com/profiles/unity3d/themes/unity/images/pages/gdpr/Controller-Controller-DPA-5-2-2018.pdf">Data Processing Addendum (DPA)</a> [PDF]</p></li>
+<li><p>List Unity as a third-party which collects data in your privacy policy, and include a link to Unity’s <a href="https://unity3d.com/legal/privacy-policy">privacy policy</a> in your privacy policy.</p></li>
+<li><p>Do not send personally identifiable information to Unity Analytics in Standard or Custom Events.</p></li>
+<li><p>Do not use the <code>Analytics.SetUserGender()</code> or <code>Analytics.SetUserBirthYear()</code> to send gender and age information to Unity Analytics. These APIs are deprecated.</p></li>
+</ul>
+
+<h2>The Unity Analytics Data Privacy Plug-in</h2>
+
+<p>If you do not use Unity Ads, then you must use the Unity Analytics Data Privacy plug-in to give your players control over Unity Analytics data collection.</p>
+
+<p>The Data Privacy plug-in is part of the Unity <strong>Analytics Library</strong> package. You can use the Unity Package Manager (menu: <strong>Window</strong> &gt; <strong>Package Manager</strong>) to double-check that the package is enabled in a project. </p>
+
+<p>The plug-in does <strong>not</strong> support the following platforms:</p>
+
+<ul>
+<li>Linux</li>
+<li>Windows Phone</li>
+<li>Tizen</li>
+<li>Apple TV</li>
+<li>Blackberry</li>
+</ul>
+
+<p>The Unity Analytics service deletes personally identifiable information sent from games running on those platforms automatically. Contact <a href="mailto:DPO@unity3d.com">DPO@unity3d.com</a> if you have questions.</p>
+
+<p>If your game displays ads from the Unity Ad network, the Unity Ads SDK already displays a data collection opt-out choice to the player, and configures Unity Analytics based on the player’s data privacy choice. You only need to use the Unity Analytics Data Privacy plug-in when you do not use the Unity Ads service.</p>
+
+<p>
+<strong>Note:</strong> For versions of Unity prior to 2018.3, you must use the Unity Analytics Data Privacy <span class="tooltip"><strong>asset package</strong><span class="tooltiptext">A collection of files and data from Unity Projects, or elements of Projects, which are compressed and stored in one file, similar to Zip files. Asset packages are a handy way of sharing and re-using Unity Projects and collections of Assets. <a href="AssetPackages.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#Assetpackage">Glossary</a></span></span></span> from the <a href="https://www.assetstore.unity3d.com/#!/content/118922">Unity Asset Store</a>. The <span class="tooltip"><strong>Asset Store</strong><span class="tooltiptext">A growing library of free and commercial assets created by Unity and members of the community. Offers a wide variety of assets, from textures, models and animations to whole Project examples, tutorials and Editor extensions. <a href="AssetStore.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#AssetStore">Glossary</a></span></span></span> version can be used with Unity 4.7, 5.1+, 2017.1+, 2018.1, and 2018.2. </p>
+
+<h3>Presenting the opt-out choice to the player</h3>
+
+<p>The Data Privacy plug-in includes a Unity <span class="tooltip"><strong>UI</strong><span class="tooltiptext">(User Interface) Allows a user to interact with your application. <a href="UISystem.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#UI">Glossary</a></span></span></span> button <span class="tooltip"><strong>prefab</strong><span class="tooltiptext">An asset type that allows you to store a GameObject complete with components and properties. The prefab acts as a template from which you can create new object instances in the scene. <a href="Prefabs.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#Prefab">Glossary</a></span></span></span>, which you can place in a suitable location of your user interface. When a player clicks this button, it opens the Player Data Privacy page in a web browser. Players can opt-out of Unity’s data collection on this page as well as view the data that Unity has collected in the past. You can also provide your own user interface and open the Player Data Privacy page using the <a href="UnityAnalyticsDataPrivacyAPI.html">API</a>.</p>
+
+<p>
+<strong>Important:</strong> If a player has a browser pop-up blocker enabled, their browser can prevent the data privacy page from opening. Some browsers note that a page has been blocked, but others provide no notice at all. Consider adding a message in your user interface that warns players that a pop-up blocker might prevent the page from opening.</p>
+
+<p><strong>Method 1: Using Unity UI</strong></p>
+
+<ol>
+<li><p>If you do not already have a <a href="UICanvas.html">Canvas</a> <span class="tooltip"><strong>GameObject</strong><span class="tooltiptext">The fundamental object in Unity scenes, which can represent characters, props, scenery, cameras, waypoints, and more. A GameObject’s functionality is defined by the Components attached to it. <a href="class-GameObject.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#GameObject">Glossary</a></span></span></span> in the <span class="tooltip"><strong>Scene</strong><span class="tooltiptext">A Scene contains the environments and menus of your game. Think of each unique Scene file as a unique level. In each Scene, you place your environments, obstacles, and decorations, essentially designing and building your game in pieces. <a href="CreatingScenes.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#Scene">Glossary</a></span></span></span>, add one. Unity automatically adds an <a href="script-EventSystem.html">EventSystem</a> when you add the <strong>Canvas</strong>.</p></li>
+<li><p>Drag the <strong>DataPrivacyButton</strong> prefab to the <span class="tooltip"><strong>Canvas</strong><span class="tooltiptext">The area that contains all UI elements in a scene. The Canvas area is shown as a rectangle in the Scene View. <a href="UICanvas.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#Canvas">Glossary</a></span></span></span> GameObject in the Scene. Find the prefab in the Project window, in the <strong>Packages/Analytics Library/DataPrivacy</strong> folder.</p></li>
+<li><p>Adjust the position, graphics, and text of the button to suit.</p></li>
+<li><p>The button is already connected to the Data Privacy API, so that it opens the player’s personal data management page when the player clicks it. The page opens in a web browser.</p></li>
+</ol>
+
+<p>
+<strong>Note:</strong> The version of the button prefab under the <strong>Packages</strong> folder is read-only. You can make changes to the instance of the button in the <strong>Scene</strong> hierarchy, but you cannot save those changes back to the original prefab.</p>
+
+<p><strong>Method 2: Using you own UI</strong></p>
+
+<p>To use your own user interface for the button, you can request the URL of the user’s data opt-out page and then open that URL in a browser or web view:</p>
+
+<ol>
+<li>
+<p>Create your own UI control that informs the player of their ability to opt-out of data collection.</p>
+
+<p>
+<strong>Note:</strong> The Data Privacy plug-in includes an icon in the <em>Packages/Analytics Library/DataPrivacy</em> folder. Unity encourages you to use this icon on your data privacy button (or similar control) to provide a consistent graphical cue to players encountering data privacy controls in Unity games.</p>
+</li>
+<li><p>In response to the player’s click or interaction with this control, call the <code>DataPrivacy.FetchPrivacyUrl()</code> function. This function takes an <code>Action&lt;string&gt;</code> object that it invokes when the network request completes. You can optionally pass in a second <code>Action&lt;string&gt;</code> function to handle cases where the network request fails.</p></li>
+<li><p>In your handler for the <code>FetchPrivacyUrl()</code> request, use <code>Application.OpenURL()</code> to open the URL received in a browser.</p></li>
+</ol>
+
+<p>For example, the following script opens the Player Data Privacy page in response to a click on a GameObject:</p>
+
+<pre><code>using System;
+using UnityEngine;
+using UnityEngine.Analytics;
+    
+public class OptOutHandler : MonoBehaviour {
+
+    static void OnFailure(string reason)
+    {
+        Debug.LogWarning(String.Format(&quot;Failed to get data privacy page URL: {0}&quot;, reason));
+    }
+
+    void OnURLReceived(string url)
+    {
+        Application.OpenURL(url);
+    }
+
+    public void OpenDataURL()
+    {
+        DataPrivacy.FetchPrivacyUrl(OnURLReceived, OnFailure);
+    }
+    
+    void OnMouseOver(){
+        if(Input.GetMouseButtonUp(0)){
+            OpenDataURL();
+        }
+    }
+}
+</code></pre>
+
+<p>See <a href="UnityAnalyticsDataPrivacyAPI.html">Unity Analytics DataPrivacy API</a> for more information.</p>
+
+<hr>
+
+<ul>
+<li><span class="page-edit">2018–09–21 Page published
+</span></li>
+<li><span class="page-history">Data Privacy plugin incorporated into Analytics package in 2018.3+.</span></li>
+<li><span class="page-history">Removed Editor menu command for inserting the Data Privacy button. Added the Data Privacy Button prefab.</span></li>
+<li><span class="page-history">New feature in Unity 2018.1</span></li>
+</ul>
+<div class="feedbackbox" id="feedbackbox">
+<div id="rating"><p>Did you find this page useful? Please give it a rating:<br><div id="ratecontent" class="c-rating"></div>
+</p></div>
+<div id="ratingThanks" style="display:none"><p>Thanks for rating this page!</p></div>
+<div id="problem"><p><a name="problem">Report a problem on this page</a></p></div>
+<div id="problemType" style="display:none"><p>What kind of problem would you like to report?<ul type="problems">
+<li><a name="needcode" id="problemneedcode">This page needs code samples</a></li>
+<li><a name="code" id="problemcode">Code samples do not work</a></li>
+<li><a name="missing" id="problemmissing">Information is missing</a></li>
+<li><a name="incorrect" id="problemincorrect">Information is incorrect</a></li>
+<li><a name="unclear" id="problemunclear">Information is unclear or confusing</a></li>
+<li><a name="language" id="problemlanguage">There is a spelling/grammar error on this page</a></li>
+<li><a name="other" id="problemother">Something else</a></li>
+</ul>
+<p><known_issues><p>Is something described here not working as you expect it to? It might be a <b>Known Issue</b>. Please check with the Issue Tracker at <a href="https://issuetracker.unity3d.com">issuetracker.unity3d.com</a>.</p></known_issues></p>
+</p></div>
+<div id="problemThanks" style="display:none"><p>Thanks for letting us know! This page has been marked for review based on your feedback.<br><br>If you have time, you can provide more information to help us fix the problem faster.<br><br><a id="problemThanksMoreInfoButton">Provide more information</a><br>
+</p></div>
+<div id="problemMoreInfo" style="display:none">
+<p id="problemNeedCodeForm" style="display:none">You've told us this page needs code samples. If you'd like to help us further, you could provide a code sample, or tell us about what kind of code sample you'd like to see:</p>
+<p id="problemCodeForm" style="display:none">You've told us there are code samples on this page which don't work. If you know how to fix it, or have something better we could use instead, please let us know:</p>
+<p id="problemMissingForm" style="display:none">You've told us there is information missing from this page. Please tell us more about what's missing:</p>
+<p id="problemIncorrectForm" style="display:none">You've told us there is incorrect information on this page. If you know what we should change to make it correct, please tell us:</p>
+<p id="problemUnclearForm" style="display:none">You've told us this page has unclear or confusing information. Please tell us more about what you found unclear or confusing, or let us know how we could make it clearer:</p>
+<p id="problemLanguageForm" style="display:none">You've told us there is a spelling or grammar error on this page. Please tell us what's wrong:</p>
+<p id="problemOtherForm" style="display:none">You've told us this page has a problem. Please tell us more about what's wrong:</p>
+<form>
+<textarea id="problemFormSuggestionField" cols="40" rows="5"></textarea><input type="hidden" id="problemFormDescription"><input type="submit" id="problemFormDescriptionSubmit" value="Submit">
+</form>
+</div>
+<div id="problemMoreInfoThanks" style="display:none"><p>Thanks for helping to make the Unity documentation better!</p></div>
+<script>InitialiseStarRating();</script>
+</div>
+<div class="nextprev clear">
+<div class="icon tt left mr1" data-distance="-40|-30|top">
+<span class="prev"><a href="UnityAnalyticsCOPPA.html"></a></span><div class="tip"> COPPA Compliance</div>
+</div>
+<div class="icon tt right" data-distance="-40|-30|top">
+<span class="next"><a href="UnityAnalyticsDataPrivacyAPI.html"></a></span><div class="tip"> Unity Analytics DataPrivacy API</div>
+</div>
+</div>
+</div>
+<div class="footer-wrapper"><div class="footer clear">
+<div class="copy">Copyright © 2019 Unity Technologies. Publication: 2019.2-003J. Built: 2019-12-16.</div>
+<div class="menu">
+<a href="https://unity3d.com/learn">Tutorials</a><a href="https://answers.unity3d.com">Community Answers</a><a href="https://support.unity3d.com/hc/en-us">Knowledge Base</a><a href="https://forum.unity3d.com">Forums</a><a href="https://unity3d.com/asset-store">Asset Store</a>
+</div>
+</div></div>
+</div>
+</div></div>
+</div>
+</body>
+</html>

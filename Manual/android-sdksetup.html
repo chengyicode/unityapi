@@ -1,0 +1,307 @@
+<!DOCTYPE html><html lang="en" class="no-js">
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+<script>var offline=(location.href.indexOf('docs.unity3d.com')==-1)?true:false;if(!offline){(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);  })(window,document,'script','dataLayer','GTM-5V25JL6');}</script><link href="https://fonts.googleapis.com/css?family=Roboto&amp;display=swap" rel="stylesheet">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unity - Manual:  Android environment setup</title>
+<meta property="og:image" content="https://unity3d.com/files/images/ogimg.jpg">
+<meta name="author" content="Unity Technologies">
+<link rel="shortcut icon" href="https://unity.com/themes/contrib/unity_base/images/favicons/favicon.ico">
+<link rel="icon" type="image/png" href="../StaticFilesManual/images/favicons/favicon.png">
+<link rel="apple-touch-icon-precomposed" sizes="152x152" href="../StaticFilesManual/images/favicons/apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../StaticFilesManual/images/favicons/apple-touch-icon-144x144.png">
+<link rel="apple-touch-icon-precomposed" sizes="120x120" href="../StaticFilesManual/images/favicons/apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="../StaticFilesManual/images/favicons/apple-touch-icon-114x114.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="../StaticFilesManual/images/favicons/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon-precomposed" href="../StaticFilesManual/images/favicons/apple-touch-icon.png">
+<meta name="msapplication-TileColor" content="#222c37">
+<meta name="msapplication-TileImage" content="../StaticFilesManual/images/favicons/tileicon-144x144.png">
+<script type="text/javascript" src="https://docs.unity3d.com/StaticFilesConfig/UnityVersionsInfo.js"></script><script type="text/javascript" src="../StaticFilesManual/js/jquery.js?ts=1576442311"></script><script type="text/javascript" src="../StaticFilesManual/js/core.js?ts=1576442311"></script><script type="text/javascript" src="docdata/toc.js?ts=1576442311"></script><script type="text/javascript" src="docdata/global_toc.js?ts=1576442311"></script><link rel="stylesheet" type="text/css" href="../StaticFilesManual/css/core.css?ts=1576442311">
+<link rel="stylesheet" href="../StaticFilesManual/js/feedback/five-star-rating-master/css/rating.min.css">
+<link rel="stylesheet" href="../StaticFilesManual/css/prism.css">
+<script src="../StaticFilesManual/js/prism.js"></script><script src="../StaticFilesManual/js/feedback/five-star-rating-master/js/src/rating.js"></script><script src="../StaticFilesManual/js/jquery.sidebar.min.js"></script><link rel="stylesheet" href="../StaticFilesManual/css/mobileoptimisation.css">
+<script src="../StaticFilesManual/js/mobileoptimisation.js"></script>
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5V25JL6" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<div id="DocsAnalyticsData" data-area="PlatformSpecific" data-pagetype="normal"></div>
+<div class="header-wrapper">
+<div id="header" class="header"><div class="content">
+<div class="spacer"><div class="menu">
+<div id="nav-open" for="nav-input"><span></span></div>
+<div class="logo"><a href="https://docs.unity3d.com"></a></div>
+<div class="search-form"><form action="30_search.html" method="get" class="apisearch">
+<input type="text" name="q" placeholder="Search manual..." autosave="Unity Reference" results="5" class="sbox field" id="q"><input type="submit" class="submit">
+</form></div>
+<ul>
+<li><a href="../Manual/index.html" class="selected">Manual</a></li>
+<li><a href="../ScriptReference/index.html">Scripting API</a></li>
+</ul>
+</div></div>
+<div class="more">
+<div class="filler"></div>
+<ul><li><a href="https://unity3d.com/">unity3d.com</a></li></ul>
+</div>
+</div></div>
+<div class="toolbar"><div class="content">
+<div class="toggle version-number" id="VersionNumber" data-target=".otherversionscontent">
+                                Version: <b>2019.2</b><div class="otherversionscontent" id="OtherVersionsContent" style="display: none;">
+<ul id="OtherVersionsContentUl"></ul>
+<div id="otherVersionsLegend"><ul>
+<li>
+<div id="supportedColour" class="legendBox"></div>Supported</li>
+<li>
+<div id="notFoundColour" class="legendBox"></div>Legacy</li>
+</ul></div>
+</div>
+<div id="VersionSwitcherArrow" class="arrow versionSwitcherArrow"></div>
+</div>
+<div class="lang-switcher"><div class="current toggle" data-target=".lang-list">
+<div class="lbl">Language
+:                <span class="b">English</span>
+</div>
+<div class="arrow"></div>
+<div class="lang-list" style="display:none;"><ul>
+<li><a href="/Manual/android-sdksetup.html">English</a></li>
+<li><a href="/ja/current/Manual/android-sdksetup.html">日本語</a></li>
+<li><a href="/es/current/Manual/android-sdksetup.html">Español</a></li>
+<li><a href="/kr/current/Manual/android-sdksetup.html">한국어</a></li>
+<li><a href="/ru/current/Manual/android-sdksetup.html">Русский</a></li>
+</ul></div>
+</div></div>
+</div></div>
+<div class="mobileLogo"><a href="https://docs.unity3d.com"></a></div>
+</div>
+<div id="master-wrapper" class="master-wrapper clear">
+<div id="sidebar" class="sidebar"><div class="sidebar-wrap"><div class="content"><div class="sidebar-menu"><div class="toc" id="customScrollbar">
+<h2>Unity Manual</h2>
+<div class="search-form sidebar-search-form"><form action="30_search.html" method="get" class="apisearch">
+<input type="text" name="q" placeholder="Search manual..." autosave="Unity Reference" results="5" class="sbox field" id="q"><input type="submit" id="mobileSearchBtn" class="submit" value="Search">
+</form></div>
+<div class="toggle version-number sidebar-version-switcher" id="VersionNumber" data-target=".otherversionscontent"><form id="otherVersionsContentMobileForm"><div class="ui-field-contain">
+<label for="select-native-4">Version: 2019.2</label><select name="select-native-4" id="versionsSelectMobile"><option>Select a different version</option>
+<optgroup id="versionsWithThisPageMobile" label="Versions with this page"></optgroup>
+<optgroup id="versionsWithoutThisPageMobile" label="Versions without this page"></optgroup></select>
+</div></form></div>
+<div class="lang-switcher"><div class="current toggle" data-target=".lang-list">
+<div class="lbl">Language
+:                <span class="b">English</span>
+</div>
+<div class="arrow"></div>
+<div class="lang-list" style="display:none;"><ul>
+<li><a href="/Manual/android-sdksetup.html">English</a></li>
+<li><a href="/ja/current/Manual/android-sdksetup.html">日本語</a></li>
+<li><a href="/es/current/Manual/android-sdksetup.html">Español</a></li>
+<li><a href="/kr/current/Manual/android-sdksetup.html">한국어</a></li>
+<li><a href="/ru/current/Manual/android-sdksetup.html">Русский</a></li>
+</ul></div>
+</div></div>
+</div></div></div></div></div>
+<div id="content-wrap" class="content-wrap"><div class="content-block">
+<div class="darkCover"></div>
+<div class="content">
+<div class="section">
+<div class="breadcrumbs clear"><ul>
+<li><a href="UnityManual.html">Unity User Manual (2019.2)</a></li>
+<li><a href="PlatformSpecific.html">Platform-specific</a></li>
+<li><a href="android.html">Android</a></li>
+<li><a href="android-GettingStarted.html"> Getting started with Android development</a></li>
+<li> Android environment setup</li>
+</ul></div>
+<div class="mb20"><div class="nextprev clear">
+<div class="icon tt left mr1" data-distance="-40|-30|top">
+<span class="prev"><a href="android-GettingStarted.html"></a></span><div class="tip"> Getting started with Android development</div>
+</div>
+<div class="icon tt right" data-distance="-40|-30|top">
+<span class="next"><a href="UnityRemote5.html"></a></span><div class="tip"> Unity Remote</div>
+</div>
+</div></div>
+<div class="scrollToFeedback"><a id="scrollToFeedback">Leave feedback</a></div>
+<h1>Android environment setup</h1>
+<!--BeginSwitchLink--><!--EndSwitchLink-->
+<div class="clear"></div>
+
+<p>To build and run for Android, you must install the Unity <strong>Android Build Support</strong> platform module. You also need to install the Android Software Development Kit (SDK) and the Native Development Kit (NDK) to build and run any code on your Android device. By default, Unity installs a Java Development Kit based on <a href="http://openjdk.java.net/">OpenJDK</a>.</p>
+
+<h2>1. Install Android Build Support and the Android SDK &amp; NDK tools</h2>
+
+<p>Use the Unity Hub to install Android Build Support and the required Android SDK &amp; NDK tools. You can also install Android OpenJDK as a separate, optional component.</p>
+
+<figure>
+<img src="../uploads/Main/AddAndroidcomponents.png" alt="Add Android modules">
+<figcaption>Add Android modules</figcaption>
+</figure>
+
+<p>You can install Android Build Support and the Android SDK &amp; NDK tools when you install the Unity Editor, or add them at a later time.</p>
+
+<p>For information on adding the Android modules:</p>
+
+<ul>
+<li>At install time, see <a href="GettingStartedInstallingHub.html">Installing Unity</a>.</li>
+<li>To an existing installation, see <a href="GettingStartedAddingEditorComponents.html">Adding modules to the Editor</a>.</li>
+</ul>
+
+<p>If you are using a 2018 version of Unity, see the <a href="https://docs.unity3d.com/2018.4/Documentation/Manual/android-sdksetup.html">Unity 2018.4 documentation</a> for information on manually installing the Android SDK and NDK.</p>
+
+<h2>2. Enable USB debugging on your device</h2>
+
+<p>To enable USB debugging, you must enable Developer options on your device. To do this, find the build number in your device’s <strong>Settings</strong> menu. The location of the build number varies between devices; for stock Android, it’s usually <strong>Settings &gt; About phone &gt; Build number</strong>. For specific information on your device and Android version, refer to your hardware manufacturer.</p>
+
+<p>After you navigate to the build number using the instructions above, tap on the build number seven times. A pop-up notification saying “You are now X steps away from being a developer” appears, with “X” being a number that counts down with every additional tap. On the seventh tap, Developer options are unlocked.</p>
+
+<p>
+<strong>Note</strong>: On Android versions prior to 4.2 (Jelly Bean), the Developer options are enabled by default. </p>
+
+<p>Go to <strong>Settings</strong> &gt; <strong>Developer options</strong> (or, if this does not work, on some devices the path is <strong>Settings</strong> &gt; <strong>System</strong> &gt; <strong>Developer options</strong>), and check the <strong>USB debugging</strong> checkbox. Android now enters debug mode when it is connected to a computer via USB.</p>
+
+<p>Connect your device to your computer using a USB cable. If you are developing on a Windows computer, you might need to install a device-specific USB driver. See the manufacturer website for your device for additional information.</p>
+
+<p>The setup process differs for Windows and macOS and is explained in detail on the Android developer website. For more information on connecting your Android device to the SDK, refer to the <a href="https://developer.android.com/training/basics/firstapp/running-app.html#Emulator">Running Your App</a> section of the Android Developer documentation.</p>
+
+<h2>Using an alternate Java Development Kit, Android SDK, or NDK</h2>
+
+<p>Unity recommends that you use the Unity Hub to install Android SDK &amp; NDK tools, to ensure that you receive the correct versions and configuration. Unity installs Android SDK &amp; NDK tools respectively in the <em>SDK</em> and <em>NDK</em> folders under <em>/Unity/Hub/Editor/[EditorVersion]/Editor/Data/PlaybackEngines/AndroidPlayer/</em>.</p>
+
+<p>If you manually install the Android SDK &amp; NDK tools in another location, and you do not want to duplicate the installation, you can specify the location in the Unity Preferences window. To do this, go to <strong>Preferences &gt; External tools</strong> and enter the directory paths in the <strong>SDK</strong> and <strong>NDK</strong> fields:</p>
+
+<figure>
+<img src="../uploads/Main/PreferenceesExternalToolsAndroid.png" alt="Preferences window showing external tools settings for Android">
+<figcaption>Preferences window showing external tools settings for Android</figcaption>
+</figure>
+
+<p>
+<strong>Warning</strong>: Unity does not officially support versions of the JDK, SDK, or NDK other than the ones it supplies.</p>
+
+<p>To change the JDK, SDK, or NDK that Unity uses to build Android apps:</p>
+
+<ol>
+<li>Open the Project.</li>
+<li>Open the Preferences window (Windows and Linux: <strong>Edit</strong> &gt; <strong>Preferences</strong>; macOS: <strong>Unity</strong> &gt; <strong>Preferences</strong>).</li>
+<li>In the left navigation column, select <strong>External Tools</strong>.</li>
+</ol>
+
+<h3>Change the JDK</h3>
+
+<ol>
+<li>Uncheck <strong>JDK Installed with Unity (recommended)</strong>.</li>
+<li>In the <strong>JDK</strong> field, enter the path to the JDK or use the <strong>Browse</strong> button to locate it.</li>
+</ol>
+
+<h3>Change the SDK</h3>
+
+<ol>
+<li>Uncheck <strong>Android SDK Tools Installed with Unity (recommended)</strong>.</li>
+<li>In the <strong>SDK</strong> field, enter the path to the SDK or use the <strong>Browse</strong> button to locate it.</li>
+</ol>
+
+<p>Unity works with the most recent version of the Android SDK available at the time of the Unity version release.</p>
+
+<h3>Change the NDK</h3>
+
+<ol>
+<li>Uncheck <strong>Android NDK Installed with Unity (recommended)</strong>.</li>
+<li>In the <strong>NDK</strong> field, enter the path to the NDK or use the <strong>Browse</strong> button to locate it.</li>
+</ol>
+
+<p>Each version of Unity requires a specific version of the Android NDK to be installed: </p>
+
+<table>
+<colgroup>
+<col style="text-align:left;">
+<col style="text-align:left;">
+</colgroup>
+
+<thead>
+<tr>
+	<th style="text-align:left;"><strong>Unity version</strong></th>
+	<th style="text-align:left;"><strong>NDK version</strong></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td style="text-align:left;">2017.4 LTS</td>
+	<td style="text-align:left;">r13d</td>
+</tr>
+<tr>
+	<td style="text-align:left;">2018.4 LTS</td>
+	<td style="text-align:left;">r16b</td>
+</tr>
+<tr>
+	<td style="text-align:left;">2019.1</td>
+	<td style="text-align:left;">r16b</td>
+</tr>
+<tr>
+	<td style="text-align:left;">2019.2</td>
+	<td style="text-align:left;">r16b</td>
+</tr>
+<tr>
+	<td style="text-align:left;">2019.3</td>
+	<td style="text-align:left;">r19</td>
+</tr>
+</tbody>
+</table>
+
+<hr>
+
+<ul>
+<li><span class="page-edit">2019–07–01  Page amended
+</span></li>
+<li><span class="page-edit">2018–11–21  Page amended
+</span></li>
+</ul>
+<div class="feedbackbox" id="feedbackbox">
+<div id="rating"><p>Did you find this page useful? Please give it a rating:<br><div id="ratecontent" class="c-rating"></div>
+</p></div>
+<div id="ratingThanks" style="display:none"><p>Thanks for rating this page!</p></div>
+<div id="problem"><p><a name="problem">Report a problem on this page</a></p></div>
+<div id="problemType" style="display:none"><p>What kind of problem would you like to report?<ul type="problems">
+<li><a name="needcode" id="problemneedcode">This page needs code samples</a></li>
+<li><a name="code" id="problemcode">Code samples do not work</a></li>
+<li><a name="missing" id="problemmissing">Information is missing</a></li>
+<li><a name="incorrect" id="problemincorrect">Information is incorrect</a></li>
+<li><a name="unclear" id="problemunclear">Information is unclear or confusing</a></li>
+<li><a name="language" id="problemlanguage">There is a spelling/grammar error on this page</a></li>
+<li><a name="other" id="problemother">Something else</a></li>
+</ul>
+<p><known_issues><p>Is something described here not working as you expect it to? It might be a <b>Known Issue</b>. Please check with the Issue Tracker at <a href="https://issuetracker.unity3d.com">issuetracker.unity3d.com</a>.</p></known_issues></p>
+</p></div>
+<div id="problemThanks" style="display:none"><p>Thanks for letting us know! This page has been marked for review based on your feedback.<br><br>If you have time, you can provide more information to help us fix the problem faster.<br><br><a id="problemThanksMoreInfoButton">Provide more information</a><br>
+</p></div>
+<div id="problemMoreInfo" style="display:none">
+<p id="problemNeedCodeForm" style="display:none">You've told us this page needs code samples. If you'd like to help us further, you could provide a code sample, or tell us about what kind of code sample you'd like to see:</p>
+<p id="problemCodeForm" style="display:none">You've told us there are code samples on this page which don't work. If you know how to fix it, or have something better we could use instead, please let us know:</p>
+<p id="problemMissingForm" style="display:none">You've told us there is information missing from this page. Please tell us more about what's missing:</p>
+<p id="problemIncorrectForm" style="display:none">You've told us there is incorrect information on this page. If you know what we should change to make it correct, please tell us:</p>
+<p id="problemUnclearForm" style="display:none">You've told us this page has unclear or confusing information. Please tell us more about what you found unclear or confusing, or let us know how we could make it clearer:</p>
+<p id="problemLanguageForm" style="display:none">You've told us there is a spelling or grammar error on this page. Please tell us what's wrong:</p>
+<p id="problemOtherForm" style="display:none">You've told us this page has a problem. Please tell us more about what's wrong:</p>
+<form>
+<textarea id="problemFormSuggestionField" cols="40" rows="5"></textarea><input type="hidden" id="problemFormDescription"><input type="submit" id="problemFormDescriptionSubmit" value="Submit">
+</form>
+</div>
+<div id="problemMoreInfoThanks" style="display:none"><p>Thanks for helping to make the Unity documentation better!</p></div>
+<script>InitialiseStarRating();</script>
+</div>
+<div class="nextprev clear">
+<div class="icon tt left mr1" data-distance="-40|-30|top">
+<span class="prev"><a href="android-GettingStarted.html"></a></span><div class="tip"> Getting started with Android development</div>
+</div>
+<div class="icon tt right" data-distance="-40|-30|top">
+<span class="next"><a href="UnityRemote5.html"></a></span><div class="tip"> Unity Remote</div>
+</div>
+</div>
+</div>
+<div class="footer-wrapper"><div class="footer clear">
+<div class="copy">Copyright © 2019 Unity Technologies. Publication: 2019.2-003J. Built: 2019-12-16.</div>
+<div class="menu">
+<a href="https://unity3d.com/learn">Tutorials</a><a href="https://answers.unity3d.com">Community Answers</a><a href="https://support.unity3d.com/hc/en-us">Knowledge Base</a><a href="https://forum.unity3d.com">Forums</a><a href="https://unity3d.com/asset-store">Asset Store</a>
+</div>
+</div></div>
+</div>
+</div></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,720 @@
+<!DOCTYPE html><html lang="en" class="no-js">
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+<script>var offline=(location.href.indexOf('docs.unity3d.com')==-1)?true:false;if(!offline){(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);  })(window,document,'script','dataLayer','GTM-5V25JL6');}</script><link href="https://fonts.googleapis.com/css?family=Roboto&amp;display=swap" rel="stylesheet">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unity - Manual: Texture Types</title>
+<meta property="og:image" content="https://unity3d.com/files/images/ogimg.jpg">
+<meta name="author" content="Unity Technologies">
+<link rel="shortcut icon" href="https://unity.com/themes/contrib/unity_base/images/favicons/favicon.ico">
+<link rel="icon" type="image/png" href="../StaticFilesManual/images/favicons/favicon.png">
+<link rel="apple-touch-icon-precomposed" sizes="152x152" href="../StaticFilesManual/images/favicons/apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../StaticFilesManual/images/favicons/apple-touch-icon-144x144.png">
+<link rel="apple-touch-icon-precomposed" sizes="120x120" href="../StaticFilesManual/images/favicons/apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="../StaticFilesManual/images/favicons/apple-touch-icon-114x114.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="../StaticFilesManual/images/favicons/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon-precomposed" href="../StaticFilesManual/images/favicons/apple-touch-icon.png">
+<meta name="msapplication-TileColor" content="#222c37">
+<meta name="msapplication-TileImage" content="../StaticFilesManual/images/favicons/tileicon-144x144.png">
+<script type="text/javascript" src="https://docs.unity3d.com/StaticFilesConfig/UnityVersionsInfo.js"></script><script type="text/javascript" src="../StaticFilesManual/js/jquery.js?ts=1576442311"></script><script type="text/javascript" src="../StaticFilesManual/js/core.js?ts=1576442311"></script><script type="text/javascript" src="docdata/toc.js?ts=1576442311"></script><script type="text/javascript" src="docdata/global_toc.js?ts=1576442311"></script><link rel="stylesheet" type="text/css" href="../StaticFilesManual/css/core.css?ts=1576442311">
+<link rel="stylesheet" href="../StaticFilesManual/js/feedback/five-star-rating-master/css/rating.min.css">
+<link rel="stylesheet" href="../StaticFilesManual/css/prism.css">
+<script src="../StaticFilesManual/js/prism.js"></script><script src="../StaticFilesManual/js/feedback/five-star-rating-master/js/src/rating.js"></script><script src="../StaticFilesManual/js/jquery.sidebar.min.js"></script><link rel="stylesheet" href="../StaticFilesManual/css/mobileoptimisation.css">
+<script src="../StaticFilesManual/js/mobileoptimisation.js"></script>
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5V25JL6" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<div id="DocsAnalyticsData" data-area="Graphics" data-pagetype="normal"></div>
+<div class="header-wrapper">
+<div id="header" class="header"><div class="content">
+<div class="spacer"><div class="menu">
+<div id="nav-open" for="nav-input"><span></span></div>
+<div class="logo"><a href="https://docs.unity3d.com"></a></div>
+<div class="search-form"><form action="30_search.html" method="get" class="apisearch">
+<input type="text" name="q" placeholder="Search manual..." autosave="Unity Reference" results="5" class="sbox field" id="q"><input type="submit" class="submit">
+</form></div>
+<ul>
+<li><a href="../Manual/index.html" class="selected">Manual</a></li>
+<li><a href="../ScriptReference/index.html">Scripting API</a></li>
+</ul>
+</div></div>
+<div class="more">
+<div class="filler"></div>
+<ul><li><a href="https://unity3d.com/">unity3d.com</a></li></ul>
+</div>
+</div></div>
+<div class="toolbar"><div class="content">
+<div class="toggle version-number" id="VersionNumber" data-target=".otherversionscontent">
+                                Version: <b>2019.2</b><div class="otherversionscontent" id="OtherVersionsContent" style="display: none;">
+<ul id="OtherVersionsContentUl"></ul>
+<div id="otherVersionsLegend"><ul>
+<li>
+<div id="supportedColour" class="legendBox"></div>Supported</li>
+<li>
+<div id="notFoundColour" class="legendBox"></div>Legacy</li>
+</ul></div>
+</div>
+<div id="VersionSwitcherArrow" class="arrow versionSwitcherArrow"></div>
+</div>
+<div class="lang-switcher"><div class="current toggle" data-target=".lang-list">
+<div class="lbl">Language
+:                <span class="b">English</span>
+</div>
+<div class="arrow"></div>
+<div class="lang-list" style="display:none;"><ul>
+<li><a href="/Manual/TextureTypes.html">English</a></li>
+<li><a href="/ja/current/Manual/TextureTypes.html">日本語</a></li>
+<li><a href="/es/current/Manual/TextureTypes.html">Español</a></li>
+<li><a href="/kr/current/Manual/TextureTypes.html">한국어</a></li>
+<li><a href="/ru/current/Manual/TextureTypes.html">Русский</a></li>
+</ul></div>
+</div></div>
+</div></div>
+<div class="mobileLogo"><a href="https://docs.unity3d.com"></a></div>
+</div>
+<div id="master-wrapper" class="master-wrapper clear">
+<div id="sidebar" class="sidebar"><div class="sidebar-wrap"><div class="content"><div class="sidebar-menu"><div class="toc" id="customScrollbar">
+<h2>Unity Manual</h2>
+<div class="search-form sidebar-search-form"><form action="30_search.html" method="get" class="apisearch">
+<input type="text" name="q" placeholder="Search manual..." autosave="Unity Reference" results="5" class="sbox field" id="q"><input type="submit" id="mobileSearchBtn" class="submit" value="Search">
+</form></div>
+<div class="toggle version-number sidebar-version-switcher" id="VersionNumber" data-target=".otherversionscontent"><form id="otherVersionsContentMobileForm"><div class="ui-field-contain">
+<label for="select-native-4">Version: 2019.2</label><select name="select-native-4" id="versionsSelectMobile"><option>Select a different version</option>
+<optgroup id="versionsWithThisPageMobile" label="Versions with this page"></optgroup>
+<optgroup id="versionsWithoutThisPageMobile" label="Versions without this page"></optgroup></select>
+</div></form></div>
+<div class="lang-switcher"><div class="current toggle" data-target=".lang-list">
+<div class="lbl">Language
+:                <span class="b">English</span>
+</div>
+<div class="arrow"></div>
+<div class="lang-list" style="display:none;"><ul>
+<li><a href="/Manual/TextureTypes.html">English</a></li>
+<li><a href="/ja/current/Manual/TextureTypes.html">日本語</a></li>
+<li><a href="/es/current/Manual/TextureTypes.html">Español</a></li>
+<li><a href="/kr/current/Manual/TextureTypes.html">한국어</a></li>
+<li><a href="/ru/current/Manual/TextureTypes.html">Русский</a></li>
+</ul></div>
+</div></div>
+</div></div></div></div></div>
+<div id="content-wrap" class="content-wrap"><div class="content-block">
+<div class="darkCover"></div>
+<div class="content">
+<div class="section">
+<div class="breadcrumbs clear"><ul>
+<li><a href="UnityManual.html">Unity User Manual (2019.2)</a></li>
+<li><a href="Graphics.html">Graphics</a></li>
+<li><a href="GraphicsReference.html">Graphics Reference</a></li>
+<li><a href="comp-Textures.html">Texture Components</a></li>
+<li><a href="class-TextureImporter.html"> Textures</a></li>
+<li>Texture Types</li>
+</ul></div>
+<div class="mb20"><div class="nextprev clear">
+<div class="icon tt left mr1" data-distance="-40|-30|top">
+<span class="prev"><a href="ImportingTextures.html"></a></span><div class="tip"> Importing Textures</div>
+</div>
+<div class="icon tt right" data-distance="-40|-30|top">
+<span class="next"><a href="class-TextureImporterOverride.html"></a></span><div class="tip">Texture compression formats for platform-specific overrides</div>
+</div>
+</div></div>
+<div class="scrollToFeedback"><a id="scrollToFeedback">Leave feedback</a></div>
+<h1>Texture Types</h1>
+<!--BeginSwitchLink--><!--EndSwitchLink-->
+<div class="clear"></div>
+
+<p>You can import different <span class="tooltip"><a href="Textures.html">Texture</a><span class="tooltiptext">An image used when rendering a GameObject, Sprite, or UI element. Textures are often applied to the surface of a mesh to give it visual detail. <a href="class-TextureImporter.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#texture">Glossary</a></span></span></span> types into the Unity Editor via the <a href="class-TextureImporter.html">Texture Importer</a>.</p>
+
+<p>Below are the properties available to configure the various Texture types in Unity in the Texture <span class="tooltip"><strong>Inspector</strong><span class="tooltiptext">A Unity window that displays information about the currently selected GameObject, Asset or Project Settings, alowing you to inspect and edit the values. <a href="UsingTheInspector.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#Inspector">Glossary</a></span></span></span> window. Scroll down or select from the list below to find details of the Texture type you wish to learn about.</p>
+
+<ul>
+<li><a href="#Default">Default</a></li>
+<li><a href="#NormalMap">Normal Map</a></li>
+<li><a href="#Editor">Editor GUI and Legacy</a></li>
+<li><a href="#Sprite">Sprite (2D and UI)</a></li>
+<li><a href="#Cursor">Cursor</a></li>
+<li><a href="#Cookie">Cookie</a></li>
+<li><a href="#Lightmap">Lightmap</a></li>
+<li><a href="#SingleChannel">Single Channel</a></li>
+<li>
+</ul>
+
+<p>For details on the <strong>Advanced</strong> settings and platform-specific settings, see documentation on the <a href="class-TextureImporter.html">Texture Importer</a>.</p>
+
+<p><a name="Default"></a></p>
+
+<h2>Texture type: Default</h2>
+
+<figure>
+<img src="../uploads/Main/TextureTypes-Default-0.png" alt="Texture Inspector window - Texture Type:Default">
+<figcaption>Texture Inspector window - <strong>Texture Type:Default</strong></figcaption>
+</figure>
+
+<table>
+<colgroup>
+<col style="text-align:left;">
+<col style="text-align:left;">
+</colgroup>
+
+<thead>
+<tr>
+	<th style="text-align:left;"><strong>Property:</strong></th>
+	<th style="text-align:left;"><strong>Function:</strong></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td style="text-align:left;"><strong>Texture Type</strong></td>
+	<td style="text-align:left;">
+<strong>Default</strong> is the most common setting used for all Textures. It provides access to most of the properties for Texture importing.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Texture Shape</strong></td>
+	<td style="text-align:left;">Use this to define the shape of the Texture. See documentation on the <a href="class-TextureImporter.html">Texture Importer</a> for information on all Texture shapes.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>sRGB (Color Texture)</strong></td>
+	<td style="text-align:left;">Check this box to specify that the Texture is stored in gamma space. This should always be checked for non-HDR color Textures (such as Albedo and Specular Color). If the Texture stores information that has a specific meaning, and you need the exact values in the <span class="tooltip"><strong>Shader</strong><span class="tooltiptext">A small script that contains the mathematical calculations and algorithms for calculating the Color of each pixel rendered, based on the lighting input and the Material configuration. <a href="Shaders.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#Shader">Glossary</a></span></span></span> (for example, the smoothness or the metalness), uncheck this box. This box is checked by default.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Alpha Source</strong></td>
+	<td style="text-align:left;">Use this to specify how the alpha channel of the Texture is generated. This is set to <strong>None</strong> by default.</td>
+</tr>
+<tr>
+	<td style="text-align:left;">    None</td>
+	<td style="text-align:left;">The imported Texture does not have an alpha channel, whether or not the input Texture has one.</td>
+</tr>
+<tr>
+	<td style="text-align:left;">    Input Texture Alpha</td>
+	<td style="text-align:left;">This uses the alpha from the input Texture if a Texture is provided.</td>
+</tr>
+<tr>
+	<td style="text-align:left;">    From Gray Scale</td>
+	<td style="text-align:left;">This generates the alpha from the mean (average) of the input Texture RGB values.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Alpha is Transparency</strong></td>
+	<td style="text-align:left;">If the alpha channel you specify is Transparency, enable <strong>Alpha is Transparency</strong> to dilate the color and avoid filtering artifacts on the edges.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Advanced</strong></td>
+	<td style="text-align:left;">See <a href="class-TextureImporter.html">Texture Importer</a>.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Wrap Mode</strong></td>
+	<td style="text-align:left;">See <a href="class-TextureImporter.html">Texture Importer</a>.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Filter Mode</strong></td>
+	<td style="text-align:left;">See <a href="class-TextureImporter.html">Texture Importer</a>.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Aniso Level</strong></td>
+	<td style="text-align:left;">See <a href="class-TextureImporter.html">Texture Importer</a>.</td>
+</tr>
+</tbody>
+</table>
+
+<p><a name="NormalMap"></a></p>
+
+<h2>Texture type: Normal Map</h2>
+
+<figure>
+<img src="../uploads/Main/TextureTypes-NormalMap-1.png" alt="Texture Inspector window - Texture Type:Normal Map">
+<figcaption>Texture Inspector window - <strong>Texture Type:Normal Map</strong></figcaption>
+</figure>
+
+<table>
+<colgroup>
+<col style="text-align:left;">
+<col style="text-align:left;">
+</colgroup>
+
+<thead>
+<tr>
+	<th style="text-align:left;"><strong>Property:</strong></th>
+	<th style="text-align:left;"><strong>Function:</strong></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td style="text-align:left;"><strong>Texture Type</strong></td>
+	<td style="text-align:left;">Select <span class="tooltip"><strong>Normal map</strong><span class="tooltiptext">A type of Bump Map texture that allows you to add surface detail such as bumps, grooves, and scratches to a model which catch the light as if they are represented by real geometry. <a href="StandardShaderMaterialParameterNormalMap.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#Normalmap">Glossary</a></span></span></span> to turn the color channels into a format suitable for real-time normal mapping.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Texture Shape</strong></td>
+	<td style="text-align:left;">Use this to define the shape of the Texture. See documentation on the <a href="class-TextureImporter.html">Texture Importer</a> for information on all Texture shapes.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Create from Greyscale</strong></td>
+	<td style="text-align:left;">This creates the Normal Map from a greyscale <span class="tooltip"><strong>heightmap</strong><span class="tooltiptext">A greyscale Texture that stores height data for an object. Each pixel stores the height difference perpendicular to the face that pixel represents.<br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#Heightmap">Glossary</a></span></span></span>. Check this to enable it and enabled it and see the <strong>Bumpiness</strong> and <strong>Filtering</strong>. This option is unchecked by default.</td>
+</tr>
+<tr>
+	<td style="text-align:left;">    Bumpiness</td>
+	<td style="text-align:left;">Control the amount of bumpiness. A low bumpiness value means that even sharp contrast in the heightmap is translated to gentle angles and bumps. A high value creates exaggerated bumps and very high-contrast lighting responses to the bumps. This option is only visible if Create from Greyscale is checked.</td>
+</tr>
+<tr>
+	<td style="text-align:left;">    Filtering</td>
+	<td style="text-align:left;">Determine how the bumpiness is calculated:</td>
+</tr>
+<tr>
+	<td style="text-align:left;">        <em>Smooth</em>
+</td>
+	<td style="text-align:left;">This generates Normal Maps with standard (forward differences) algorithms.</td>
+</tr>
+<tr>
+	<td style="text-align:left;">        <em>Sharp</em>
+</td>
+	<td style="text-align:left;">Also known as a Sobel filter, this generates Normal Maps that are sharper than Standard.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Advanced</strong></td>
+	<td style="text-align:left;">See <a href="class-TextureImporter.html">Texture Importer</a>.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Wrap Mode</strong></td>
+	<td style="text-align:left;">See <a href="class-TextureImporter.html">Texture Importer</a>.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Filter Mode</strong></td>
+	<td style="text-align:left;">See <a href="class-TextureImporter.html">Texture Importer</a>.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Aniso Level</strong></td>
+	<td style="text-align:left;">See <a href="class-TextureImporter.html">Texture Importer</a>.</td>
+</tr>
+</tbody>
+</table>
+
+<p><a name="Editor"></a></p>
+
+<h2>Texture type: Editor GUI and Legacy GUI</h2>
+
+<figure>
+<img src="../uploads/Main/TextureTypes-Editor-2.png" alt="Texture Inspector window - Texture Type:Editor GUI and Legacy GUI">
+<figcaption>Texture Inspector window - <strong>Texture Type:Editor GUI and Legacy GUI</strong></figcaption>
+</figure>
+
+<table>
+<colgroup>
+<col style="text-align:left;">
+<col style="text-align:left;">
+</colgroup>
+
+<thead>
+<tr>
+	<th style="text-align:left;">Property:</th>
+	<th style="text-align:left;">Function:</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td style="text-align:left;"><strong>Texture Type</strong></td>
+	<td style="text-align:left;">Select <strong>Editor GUI and Legacy GUI</strong> if you are using the Texture on any HUD or GUI controls.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Texture Shape</strong></td>
+	<td style="text-align:left;">Use this to define the shape of the Texture. See documentation on the <a href="class-TextureImporter.html">Texture Importer</a> for information on all Texture shapes.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Advanced</strong></td>
+	<td style="text-align:left;">See <a href="class-TextureImporter.html">Texture Importer</a>.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Wrap Mode</strong></td>
+	<td style="text-align:left;">See <a href="class-TextureImporter.html">Texture Importer</a>.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Filter Mode</strong></td>
+	<td style="text-align:left;">See <a href="class-TextureImporter.html">Texture Importer</a>.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Aniso Level</strong></td>
+	<td style="text-align:left;">See <a href="class-TextureImporter.html">Texture Importer</a>.</td>
+</tr>
+</tbody>
+</table>
+
+<p><a name="Sprite"></a></p>
+
+<h2>Texture type: Sprite (2D and UI)</h2>
+
+<figure>
+<img src="../uploads/Main/TextureTypes-Sprite-3.png" alt="Texture Inspector window - Texture Type:Sprite (2D and UI)">
+<figcaption>Texture Inspector window - <strong>Texture Type:Sprite (2D and UI)</strong></figcaption>
+</figure>
+
+<table>
+<colgroup>
+<col style="text-align:left;">
+<col style="text-align:left;">
+</colgroup>
+
+<thead>
+<tr>
+	<th style="text-align:left;">Property:</th>
+	<th style="text-align:left;">Function:</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td style="text-align:left;"><strong>Texture Type</strong></td>
+	<td style="text-align:left;">Select <strong>Sprite (2D and UI)</strong> if you are using the Texture in a 2D game as a <span class="tooltip"><a href="Sprites.html">Sprite</a><span class="tooltiptext">A 2D graphic objects. If you are used to working in 3D, Sprites are essentially just standard textures but there are special techniques for combining and managing sprite textures for efficiency and convenience during development. <a href="Sprites.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#Sprite">Glossary</a></span></span></span>.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Texture Shape</strong></td>
+	<td style="text-align:left;">Use this to define the shape of the Texture. See documentation on the <a href="class-TextureImporter.html">Texture Importer</a> for information on all Texture shapes.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Sprite mode</strong></td>
+	<td style="text-align:left;">Use this setting to specify how the the Sprite graphic is extracted from the image. The default for this option is <strong>Single</strong>.</td>
+</tr>
+<tr>
+	<td style="text-align:left;">    Single</td>
+	<td style="text-align:left;">Use the Sprite image in isolation.</td>
+</tr>
+<tr>
+	<td style="text-align:left;">    Multiple</td>
+	<td style="text-align:left;">Keep multiple related Sprites together in the same image (for example, animation frames or separate Sprite elements that belong to a single game character).</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Packing Tag</strong></td>
+	<td style="text-align:left;">Specify by name a <span class="tooltip"><strong>Sprite atlas</strong><span class="tooltiptext">A texture that is composed of several smaller textures. Also referred to as a texture atlas, image sprite, sprite sheet or packed texture. <a href="class-SpriteAtlas.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#spriteatlas">Glossary</a></span></span></span> which you want to pack this Texture into. This property is visible only when you enable the <a href="SpritePacker.html">Legacy Sprite Packer</a> in your Project.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Pixels Per Unit</strong></td>
+	<td style="text-align:left;">The number of <span class="tooltip"><strong>pixels</strong><span class="tooltiptext">The smallest unit in a computer image. Pixel size depends on your screen resolution. Pixel lighting is calculated at every screen pixel. <a href="LightPerformance.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#pixel">Glossary</a></span></span></span> of width/height in the Sprite image that correspond to one distance unit in world space.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Mesh Type</strong></td>
+	<td style="text-align:left;">This defines the <span class="tooltip"><strong>Mesh</strong><span class="tooltiptext">The main graphics primitive of Unity. Meshes make up a large part of your 3D worlds. Unity supports triangulated or Quadrangulated polygon meshes. Nurbs, Nurms, Subdiv surfaces must be converted to polygons. <a href="comp-MeshGroup.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#Mesh">Glossary</a></span></span></span> type that is generated for the Sprite. The default for this option is <strong>Tight</strong>.</td>
+</tr>
+<tr>
+	<td style="text-align:left;">    Full Rect</td>
+	<td style="text-align:left;">This creates a <span class="tooltip"><strong>quad</strong><span class="tooltiptext">A primitive object that resembles a plane but its edges are only one unit long, it uses only 4 vertices, and the surface is oriented in the XY plane of the local coordinate space. <a href="PrimitiveObjects.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#Quad">Glossary</a></span></span></span> to map the Sprite onto it.</td>
+</tr>
+<tr>
+	<td style="text-align:left;">    Tight</td>
+	<td style="text-align:left;">This generates a Mesh based on pixel alpha value. The Mesh generated generally follows the shape of the Sprite. <br><strong>Note:</strong> Any Sprite that is smaller than 32x32 uses <strong>Full Rect</strong>, even when <strong>Tight</strong> is specified.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><span class="tooltip"><strong>Extrude Edges</strong><span class="tooltiptext">A Texture property that enables you to define how much area to leave around a sprite in a generated mesh. <br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#ExtrudeEdges">Glossary</a></span></span></span></td>
+	<td style="text-align:left;">Use the slider to determine how much area to leave around the Sprite in the generated Mesh.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Pivot</strong></td>
+	<td style="text-align:left;">The location in the image where the Sprite’s local coordinate system originates. Choose one of the pre-set options, or select <strong>Custom</strong> to set your own Pivot location.</td>
+</tr>
+<tr>
+	<td style="text-align:left;">    Custom</td>
+	<td style="text-align:left;">Define the X and Y to set a custom Pivot location in the image.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Generate Physics Shape</strong></td>
+	<td style="text-align:left;">When this is enabled and you have not defined a <a href="CustomPhysicsShape.html">Custom Physics Shape</a> for this Sprite, Unity generates a default Physics Shape from the outline of the Sprite.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Advanced</strong></td>
+	<td style="text-align:left;">See <a href="class-TextureImporter.html">Texture Importer</a>.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Wrap Mode</strong></td>
+	<td style="text-align:left;">See <a href="class-TextureImporter.html">Texture Importer</a>.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Filter Mode</strong></td>
+	<td style="text-align:left;">See <a href="class-TextureImporter.html">Texture Importer</a>.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Aniso Level</strong></td>
+	<td style="text-align:left;">See <a href="class-TextureImporter.html">Texture Importer</a>.</td>
+</tr>
+</tbody>
+</table>
+
+<p><a name="Cursor"></a></p>
+
+<h2>Texture type: Cursor</h2>
+
+<figure>
+<img src="../uploads/Main/TextureTypes-Cursor-4.png" alt="Texture Inspector window - Texture Type:Cursor ">
+<figcaption>Texture Inspector window - <strong>Texture Type:Cursor</strong> </figcaption>
+</figure>
+
+<table>
+<colgroup>
+<col style="text-align:left;">
+<col style="text-align:left;">
+</colgroup>
+
+<thead>
+<tr>
+	<th style="text-align:left;">Property:</th>
+	<th style="text-align:left;">Function:</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td style="text-align:left;"><strong>Texture Type</strong></td>
+	<td style="text-align:left;">Select <strong>Cursor</strong> if you are using the Texture as a custom cursor.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Texture Shape</strong></td>
+	<td style="text-align:left;">Use this to define the shape of the Texture. See documentation on the <a href="class-TextureImporter.html">Texture Importer</a> for information on all Texture shapes.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Advanced</strong></td>
+	<td style="text-align:left;">See <a href="class-TextureImporter.html">Texture Importer</a>.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Wrap Mode</strong></td>
+	<td style="text-align:left;">See <a href="class-TextureImporter.html">Texture Importer</a>.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Filter Mode</strong></td>
+	<td style="text-align:left;">See <a href="class-TextureImporter.html">Texture Importer</a>.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Aniso Level</strong></td>
+	<td style="text-align:left;">See <a href="class-TextureImporter.html">Texture Importer</a>.</td>
+</tr>
+</tbody>
+</table>
+
+<p><a name="Cookie"></a></p>
+
+<h2>Texture type: Cookie</h2>
+
+<figure>
+<img src="../uploads/Main/TextureTypes-Cookie-5.png" alt="Texture Inspector window - Texture Type:Cookie ">
+<figcaption>Texture Inspector window - <strong>Texture Type:Cookie</strong> </figcaption>
+</figure>
+
+<table>
+<colgroup>
+<col style="text-align:left;">
+<col style="text-align:left;">
+</colgroup>
+
+<thead>
+<tr>
+	<th style="text-align:left;">Property:</th>
+	<th style="text-align:left;">Function:</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td style="text-align:left;"><strong>Texture Type</strong></td>
+	<td style="text-align:left;">Select <strong>Cookie</strong> to set your Texture up with the basic parameters used for the <a href="Cookies.html">Cookies</a> of your <span class="tooltip"><strong>Scene</strong><span class="tooltiptext">A Scene contains the environments and menus of your game. Think of each unique Scene file as a unique level. In each Scene, you place your environments, obstacles, and decorations, essentially designing and building your game in pieces. <a href="CreatingScenes.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#Scene">Glossary</a></span></span></span>’s <a href="class-Light.html">Lights</a>.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Texture Shape</strong></td>
+	<td style="text-align:left;">Use this to define the shape of the Texture. See documentation on the <a href="class-TextureImporter.html">Texture Importer</a> for information on all Texture shapes.</td>
+</tr>
+<tr>
+	<td style="text-align:left;">Light Type</td>
+	<td style="text-align:left;">Define the type of Light that the Texture is applied to. Directional and Spotlight cookies must be 2D Textures, and Point Light Cookies must be cubemaps. The system automatically enforces the right shape depending on the Light type. <br>For Directional Lights this Texture tiles, so in the Texture inspector set the <strong>Edge Mode</strong> to <strong>Repeat</strong>. <br>For Spotlights, keep the edges of your Cookie Texture solid black to get the proper effect. In the Texture Inspector, set the <strong>Edge Mode</strong> to <strong>Clamp</strong>.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Alpha is Transparency</strong></td>
+	<td style="text-align:left;">If the alpha channel you specify is Transparency, enable <strong>Alpha is Transparency</strong> to dilate the color and avoid filtering artifacts on the edges.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Advanced</strong></td>
+	<td style="text-align:left;">See <a href="class-TextureImporter.html">Texture Importer</a>.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Wrap Mode</strong></td>
+	<td style="text-align:left;">See <a href="class-TextureImporter.html">Texture Importer</a>.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Filter Mode</strong></td>
+	<td style="text-align:left;">See <a href="class-TextureImporter.html">Texture Importer</a>.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Aniso Level</strong></td>
+	<td style="text-align:left;">See <a href="class-TextureImporter.html">Texture Importer</a>.</td>
+</tr>
+</tbody>
+</table>
+
+<p><a name="Lightmap"></a></p>
+
+<h2>Texture type: Lightmap</h2>
+
+<figure>
+<img src="../uploads/Main/TextureTypes-Lightmap-6.png" alt="Texture Inspector window - Texture Type:Lightmap">
+<figcaption>Texture Inspector window - <strong>Texture Type:Lightmap</strong></figcaption>
+</figure>
+
+<table>
+<colgroup>
+<col style="text-align:left;">
+<col style="text-align:left;">
+</colgroup>
+
+<thead>
+<tr>
+	<th style="text-align:left;">Property:</th>
+	<th style="text-align:left;">Function:</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td style="text-align:left;"><strong>Texture Type</strong></td>
+	<td style="text-align:left;">Select <span class="tooltip"><strong>Lightmap</strong><span class="tooltiptext">A pre-rendered texture that contains the effects of light sources on static objects in the scene. Lightmaps are overlaid on top of scene geometry to create the effect of lighting. <a href="Lightmapping.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#Lightmap">Glossary</a></span></span></span> if you are using the Texture as a <a href="class-LightmapParameters.html">Lightmap</a>. This option enables encoding into a specific format (RGBM or dLDR, depending on the platform) and a <span class="tooltip"><strong>post-processing</strong><span class="tooltiptext">A process that improves product visuals by applying filters and effects before the image appears on screen. You can use post-processing effects to simulate physical camera and film properties, for example Bloom and Depth of Field. <a href="PostProcessingOverview.html">More info</a> <span class="search-words">post processing, postprocessing, postprocess</span><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#post-processing">Glossary</a></span></span></span> step on Texture data (a push-pull dilation pass).</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Texture Shape</strong></td>
+	<td style="text-align:left;">Use this to define the shape of the Texture. See documentation on the <a href="class-TextureImporter.html">Texture Importer</a> for information on all Texture shapes.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Advanced</strong></td>
+	<td style="text-align:left;">See <a href="class-TextureImporter.html">Texture Importer</a>.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Wrap Mode</strong></td>
+	<td style="text-align:left;">See <a href="class-TextureImporter.html">Texture Importer</a>.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Filter Mode</strong></td>
+	<td style="text-align:left;">See <a href="class-TextureImporter.html">Texture Importer</a>.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Aniso Level</strong></td>
+	<td style="text-align:left;">See <a href="class-TextureImporter.html">Texture Importer</a>.</td>
+</tr>
+</tbody>
+</table>
+
+<p><a name="SingleChannel"></a></p>
+
+<h2>Texture type: Single Channel</h2>
+
+<figure>
+<img src="../uploads/Main/TextureTypes-SingleChannel-7.png" alt="Texture Inspector window - Texture Type:Single Channel">
+<figcaption>Texture Inspector window - <strong>Texture Type:Single Channel</strong></figcaption>
+</figure>
+
+<table>
+<colgroup>
+<col style="text-align:left;">
+<col style="text-align:left;">
+</colgroup>
+
+<thead>
+<tr>
+	<th style="text-align:left;">Property:</th>
+	<th style="text-align:left;">Function:</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td style="text-align:left;"><strong>Texture Type</strong></td>
+	<td style="text-align:left;">Select <strong>Single Channel</strong> if you only need one channel in the Texture.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Texture Shape</strong></td>
+	<td style="text-align:left;">Use this to define the shape of the Texture. See documentation on the <a href="class-TextureImporter.html">Texture Importer</a> for information on all Texture shapes.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Alpha Source</strong></td>
+	<td style="text-align:left;">Use this to specify how the alpha channel of the Texture is generated. This is set to None by default.</td>
+</tr>
+<tr>
+	<td style="text-align:left;">    None</td>
+	<td style="text-align:left;">The imported Texture does not have an alpha channel, whether or not the input Texture has one.</td>
+</tr>
+<tr>
+	<td style="text-align:left;">    Input Texture Alpha</td>
+	<td style="text-align:left;">This uses the alpha from the input Texture if a Texture is provided.</td>
+</tr>
+<tr>
+	<td style="text-align:left;">    From Gray Scale</td>
+	<td style="text-align:left;">This generates the alpha from the mean (average) of the input Texture RGB values.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Alpha is Transparency</strong></td>
+	<td style="text-align:left;">If the alpha channel you specify is Transparency, enable <strong>Alpha is Transparency</strong> to dilate the color and avoid filtering artifacts on the edges.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Advanced</strong></td>
+	<td style="text-align:left;">See <a href="class-TextureImporter.html">Texture Importer</a>.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Wrap Mode</strong></td>
+	<td style="text-align:left;">See <a href="class-TextureImporter.html">Texture Importer</a>.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Filter Mode</strong></td>
+	<td style="text-align:left;">See <a href="class-TextureImporter.html">Texture Importer</a>.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Aniso Level</strong></td>
+	<td style="text-align:left;">See <a href="class-TextureImporter.html">Texture Importer</a>.</td>
+</tr>
+</tbody>
+</table>
+
+<div class="feedbackbox" id="feedbackbox">
+<div id="rating"><p>Did you find this page useful? Please give it a rating:<br><div id="ratecontent" class="c-rating"></div>
+</p></div>
+<div id="ratingThanks" style="display:none"><p>Thanks for rating this page!</p></div>
+<div id="problem"><p><a name="problem">Report a problem on this page</a></p></div>
+<div id="problemType" style="display:none"><p>What kind of problem would you like to report?<ul type="problems">
+<li><a name="needcode" id="problemneedcode">This page needs code samples</a></li>
+<li><a name="code" id="problemcode">Code samples do not work</a></li>
+<li><a name="missing" id="problemmissing">Information is missing</a></li>
+<li><a name="incorrect" id="problemincorrect">Information is incorrect</a></li>
+<li><a name="unclear" id="problemunclear">Information is unclear or confusing</a></li>
+<li><a name="language" id="problemlanguage">There is a spelling/grammar error on this page</a></li>
+<li><a name="other" id="problemother">Something else</a></li>
+</ul>
+<p><known_issues><p>Is something described here not working as you expect it to? It might be a <b>Known Issue</b>. Please check with the Issue Tracker at <a href="https://issuetracker.unity3d.com">issuetracker.unity3d.com</a>.</p></known_issues></p>
+</p></div>
+<div id="problemThanks" style="display:none"><p>Thanks for letting us know! This page has been marked for review based on your feedback.<br><br>If you have time, you can provide more information to help us fix the problem faster.<br><br><a id="problemThanksMoreInfoButton">Provide more information</a><br>
+</p></div>
+<div id="problemMoreInfo" style="display:none">
+<p id="problemNeedCodeForm" style="display:none">You've told us this page needs code samples. If you'd like to help us further, you could provide a code sample, or tell us about what kind of code sample you'd like to see:</p>
+<p id="problemCodeForm" style="display:none">You've told us there are code samples on this page which don't work. If you know how to fix it, or have something better we could use instead, please let us know:</p>
+<p id="problemMissingForm" style="display:none">You've told us there is information missing from this page. Please tell us more about what's missing:</p>
+<p id="problemIncorrectForm" style="display:none">You've told us there is incorrect information on this page. If you know what we should change to make it correct, please tell us:</p>
+<p id="problemUnclearForm" style="display:none">You've told us this page has unclear or confusing information. Please tell us more about what you found unclear or confusing, or let us know how we could make it clearer:</p>
+<p id="problemLanguageForm" style="display:none">You've told us there is a spelling or grammar error on this page. Please tell us what's wrong:</p>
+<p id="problemOtherForm" style="display:none">You've told us this page has a problem. Please tell us more about what's wrong:</p>
+<form>
+<textarea id="problemFormSuggestionField" cols="40" rows="5"></textarea><input type="hidden" id="problemFormDescription"><input type="submit" id="problemFormDescriptionSubmit" value="Submit">
+</form>
+</div>
+<div id="problemMoreInfoThanks" style="display:none"><p>Thanks for helping to make the Unity documentation better!</p></div>
+<script>InitialiseStarRating();</script>
+</div>
+<div class="nextprev clear">
+<div class="icon tt left mr1" data-distance="-40|-30|top">
+<span class="prev"><a href="ImportingTextures.html"></a></span><div class="tip"> Importing Textures</div>
+</div>
+<div class="icon tt right" data-distance="-40|-30|top">
+<span class="next"><a href="class-TextureImporterOverride.html"></a></span><div class="tip">Texture compression formats for platform-specific overrides</div>
+</div>
+</div>
+</div>
+<div class="footer-wrapper"><div class="footer clear">
+<div class="copy">Copyright © 2019 Unity Technologies. Publication: 2019.2-003J. Built: 2019-12-16.</div>
+<div class="menu">
+<a href="https://unity3d.com/learn">Tutorials</a><a href="https://answers.unity3d.com">Community Answers</a><a href="https://support.unity3d.com/hc/en-us">Knowledge Base</a><a href="https://forum.unity3d.com">Forums</a><a href="https://unity3d.com/asset-store">Asset Store</a>
+</div>
+</div></div>
+</div>
+</div></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,251 @@
+<!DOCTYPE html><html lang="en" class="no-js">
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+<script>var offline=(location.href.indexOf('docs.unity3d.com')==-1)?true:false;if(!offline){(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);  })(window,document,'script','dataLayer','GTM-5V25JL6');}</script><link href="https://fonts.googleapis.com/css?family=Roboto&amp;display=swap" rel="stylesheet">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unity - Manual:  Starting Unity for the first time</title>
+<meta property="og:image" content="https://unity3d.com/files/images/ogimg.jpg">
+<meta name="author" content="Unity Technologies">
+<link rel="shortcut icon" href="https://unity.com/themes/contrib/unity_base/images/favicons/favicon.ico">
+<link rel="icon" type="image/png" href="../StaticFilesManual/images/favicons/favicon.png">
+<link rel="apple-touch-icon-precomposed" sizes="152x152" href="../StaticFilesManual/images/favicons/apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../StaticFilesManual/images/favicons/apple-touch-icon-144x144.png">
+<link rel="apple-touch-icon-precomposed" sizes="120x120" href="../StaticFilesManual/images/favicons/apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="../StaticFilesManual/images/favicons/apple-touch-icon-114x114.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="../StaticFilesManual/images/favicons/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon-precomposed" href="../StaticFilesManual/images/favicons/apple-touch-icon.png">
+<meta name="msapplication-TileColor" content="#222c37">
+<meta name="msapplication-TileImage" content="../StaticFilesManual/images/favicons/tileicon-144x144.png">
+<script type="text/javascript" src="https://docs.unity3d.com/StaticFilesConfig/UnityVersionsInfo.js"></script><script type="text/javascript" src="../StaticFilesManual/js/jquery.js?ts=1576442311"></script><script type="text/javascript" src="../StaticFilesManual/js/core.js?ts=1576442311"></script><script type="text/javascript" src="docdata/toc.js?ts=1576442311"></script><script type="text/javascript" src="docdata/global_toc.js?ts=1576442311"></script><link rel="stylesheet" type="text/css" href="../StaticFilesManual/css/core.css?ts=1576442311">
+<link rel="stylesheet" href="../StaticFilesManual/js/feedback/five-star-rating-master/css/rating.min.css">
+<link rel="stylesheet" href="../StaticFilesManual/css/prism.css">
+<script src="../StaticFilesManual/js/prism.js"></script><script src="../StaticFilesManual/js/feedback/five-star-rating-master/js/src/rating.js"></script><script src="../StaticFilesManual/js/jquery.sidebar.min.js"></script><link rel="stylesheet" href="../StaticFilesManual/css/mobileoptimisation.css">
+<script src="../StaticFilesManual/js/mobileoptimisation.js"></script>
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5V25JL6" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<div id="DocsAnalyticsData" data-area="UnityOverview" data-pagetype="normal"></div>
+<div class="header-wrapper">
+<div id="header" class="header"><div class="content">
+<div class="spacer"><div class="menu">
+<div id="nav-open" for="nav-input"><span></span></div>
+<div class="logo"><a href="https://docs.unity3d.com"></a></div>
+<div class="search-form"><form action="30_search.html" method="get" class="apisearch">
+<input type="text" name="q" placeholder="Search manual..." autosave="Unity Reference" results="5" class="sbox field" id="q"><input type="submit" class="submit">
+</form></div>
+<ul>
+<li><a href="../Manual/index.html" class="selected">Manual</a></li>
+<li><a href="../ScriptReference/index.html">Scripting API</a></li>
+</ul>
+</div></div>
+<div class="more">
+<div class="filler"></div>
+<ul><li><a href="https://unity3d.com/">unity3d.com</a></li></ul>
+</div>
+</div></div>
+<div class="toolbar"><div class="content">
+<div class="toggle version-number" id="VersionNumber" data-target=".otherversionscontent">
+                                Version: <b>2019.2</b><div class="otherversionscontent" id="OtherVersionsContent" style="display: none;">
+<ul id="OtherVersionsContentUl"></ul>
+<div id="otherVersionsLegend"><ul>
+<li>
+<div id="supportedColour" class="legendBox"></div>Supported</li>
+<li>
+<div id="notFoundColour" class="legendBox"></div>Legacy</li>
+</ul></div>
+</div>
+<div id="VersionSwitcherArrow" class="arrow versionSwitcherArrow"></div>
+</div>
+<div class="lang-switcher"><div class="current toggle" data-target=".lang-list">
+<div class="lbl">Language
+:                <span class="b">English</span>
+</div>
+<div class="arrow"></div>
+<div class="lang-list" style="display:none;"><ul>
+<li><a href="/Manual/GettingStarted.html">English</a></li>
+<li><a href="/ja/current/Manual/GettingStarted.html">日本語</a></li>
+<li><a href="/es/current/Manual/GettingStarted.html">Español</a></li>
+<li><a href="/kr/current/Manual/GettingStarted.html">한국어</a></li>
+<li><a href="/ru/current/Manual/GettingStarted.html">Русский</a></li>
+</ul></div>
+</div></div>
+</div></div>
+<div class="mobileLogo"><a href="https://docs.unity3d.com"></a></div>
+</div>
+<div id="master-wrapper" class="master-wrapper clear">
+<div id="sidebar" class="sidebar"><div class="sidebar-wrap"><div class="content"><div class="sidebar-menu"><div class="toc" id="customScrollbar">
+<h2>Unity Manual</h2>
+<div class="search-form sidebar-search-form"><form action="30_search.html" method="get" class="apisearch">
+<input type="text" name="q" placeholder="Search manual..." autosave="Unity Reference" results="5" class="sbox field" id="q"><input type="submit" id="mobileSearchBtn" class="submit" value="Search">
+</form></div>
+<div class="toggle version-number sidebar-version-switcher" id="VersionNumber" data-target=".otherversionscontent"><form id="otherVersionsContentMobileForm"><div class="ui-field-contain">
+<label for="select-native-4">Version: 2019.2</label><select name="select-native-4" id="versionsSelectMobile"><option>Select a different version</option>
+<optgroup id="versionsWithThisPageMobile" label="Versions with this page"></optgroup>
+<optgroup id="versionsWithoutThisPageMobile" label="Versions without this page"></optgroup></select>
+</div></form></div>
+<div class="lang-switcher"><div class="current toggle" data-target=".lang-list">
+<div class="lbl">Language
+:                <span class="b">English</span>
+</div>
+<div class="arrow"></div>
+<div class="lang-list" style="display:none;"><ul>
+<li><a href="/Manual/GettingStarted.html">English</a></li>
+<li><a href="/ja/current/Manual/GettingStarted.html">日本語</a></li>
+<li><a href="/es/current/Manual/GettingStarted.html">Español</a></li>
+<li><a href="/kr/current/Manual/GettingStarted.html">한국어</a></li>
+<li><a href="/ru/current/Manual/GettingStarted.html">Русский</a></li>
+</ul></div>
+</div></div>
+</div></div></div></div></div>
+<div id="content-wrap" class="content-wrap"><div class="content-block">
+<div class="darkCover"></div>
+<div class="content">
+<div class="section">
+<div class="breadcrumbs clear"><ul>
+<li><a href="UnityManual.html">Unity User Manual (2019.2)</a></li>
+<li><a href="UnityOverview.html">Working in Unity</a></li>
+<li><a href="UnityBasics.html"> Getting Started</a></li>
+<li> Starting Unity for the first time</li>
+</ul></div>
+<div class="mb20"><div class="nextprev clear">
+<div class="icon tt left mr1" data-distance="-40|-30|top">
+<span class="prev"><a href="UnityBasics.html"></a></span><div class="tip"> Getting Started</div>
+</div>
+<div class="icon tt right" data-distance="-40|-30|top">
+<span class="next"><a href="learn-tab.html"></a></span><div class="tip">The Learn tab</div>
+</div>
+</div></div>
+<div class="scrollToFeedback"><a id="scrollToFeedback">Leave feedback</a></div>
+<h1>Starting Unity for the first time</h1>
+<!--BeginSwitchLink--><!--EndSwitchLink-->
+<div class="clear"></div>
+
+<p>The Unity Hub is a standalone application that streamlines the way you find, download, and manage your Unity projects and installations.</p>
+
+<p>If you start the Unity Editor without the Hub installed, Unity prompts you to install it. If you have a license from a previous version of Unity, you can create an empty project from the Hub installation prompt. If you subsequently try to create or open a project from within the Unity Editor, Unity prompts install the Hub.</p>
+
+<p>For information on installing the Unity Hub, see <a href="GettingStartedInstallingHub.html">Installing Unity using the Hub</a>.</p>
+
+<p>
+<strong>Note</strong>: For information on using Unity versions prior to 2019.1, see the <a href="https://docs.unity3d.com/2018.4/Documentation/Manual">Unity 2018.4 documentation</a>.</p>
+
+<h2>Creating a Project</h2>
+
+<p>To create a new Project (and specify which Editor version to open it in), do one of the following:</p>
+
+<ul>
+<li>Click the <strong>New</strong> button. The title bar of the New Project dialog box displays the Editor version that the project should use.</li>
+<li>Click the drop-down arrow next to the <strong>New</strong> button to select the Editor version that you want to use. <strong>Note</strong>: This drop-down menu is only available if you have installed multiple versions of the Editor in the Hub.</li>
+</ul>
+
+<figure>
+<img src="../uploads/Main/gs_crate_project_hub.png" alt="Create a Project in the Hub">
+<figcaption>Create a Project in the Hub</figcaption>
+</figure>
+
+<table>
+<colgroup>
+<col style="text-align:left;">
+<col style="text-align:left;">
+</colgroup>
+
+<thead>
+<tr>
+	<th style="text-align:left;"><strong>Setting</strong></th>
+	<th style="text-align:left;"><strong>Function</strong></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td style="text-align:left;"><strong>Templates</strong></td>
+	<td style="text-align:left;">Choose a Project Template. Project Templates provide pre-selected settings based on common best practices for Projects. These settings are optimized for 2D and 3D Projects across the full range of platforms that Unity supports. The default Template type is 3D.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Project Name</strong></td>
+	<td style="text-align:left;">Sets the name of your Project. This names the main Project folder, which stores the Assets, <span class="tooltip"><strong>Scenes</strong><span class="tooltiptext">A Scene contains the environments and menus of your game. Think of each unique Scene file as a unique level. In each Scene, you place your environments, obstacles, and decorations, essentially designing and building your game in pieces. <a href="CreatingScenes.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#Scene">Glossary</a></span></span></span>, and other files related to your Project.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Location</strong></td>
+	<td style="text-align:left;">Use this to define where in your computer’s file system to store your Project. The location of your Project defaults to the home folder on your computer. To change it, type the file path to your preferred storage location in the Location field. Alternatively, click the ellipsis icon in the Location field. This opens your computer’s file browser (Explorer, Finder or Files, depending on your computer’s operating system). In your file browser, navigate to the folder that you want to store your Project in, and click Select Folder or Open.</td>
+</tr>
+</tbody>
+</table>
+
+<p><a name="projects"></a></p>
+
+<h2>The Projects tab</h2>
+
+<figure>
+<img src="../uploads/Main/gs_projects_tab_hub.png" alt="The Projects tab">
+<figcaption>The Projects tab</figcaption>
+</figure>
+
+<p>To view the Projects that the Hub is managing, click the <span class="tooltip"><strong>Projects</strong><span class="tooltiptext">In Unity, you use a Project to design and develop a game. A Project stores all of the files that are related to a game, such as the Asset and Scene files. <a href="2Dor3D.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#Project">Glossary</a></span></span></span> tab.</p>
+
+<p>Unity stores Projects on your disk and in the Cloud. You can open both local and Cloud Projects that use <a href="UnityCollaborate.html">Unity Collaborate</a> by clicking the Project name. To open a project that isn’t in the list, click <strong>Add</strong> to browse your computer for the Project folder.</p>
+
+<hr>
+
+<ul>
+<li><p><span class="page-edit">2018–12–18 Page amended
+</span></p></li>
+<li><p><span class="page-edit">2018–06–12 Page published
+</span></p></li>
+<li><p><span class="page-history">Hub design updated in Unity <a href="https://docs.unity3d.com/2019.1/Documentation/Manual/30_search.html?q=newin20191">2019.1</a> <span class="search-words">NewIn20191</span></span></p></li>
+</ul>
+<div class="feedbackbox" id="feedbackbox">
+<div id="rating"><p>Did you find this page useful? Please give it a rating:<br><div id="ratecontent" class="c-rating"></div>
+</p></div>
+<div id="ratingThanks" style="display:none"><p>Thanks for rating this page!</p></div>
+<div id="problem"><p><a name="problem">Report a problem on this page</a></p></div>
+<div id="problemType" style="display:none"><p>What kind of problem would you like to report?<ul type="problems">
+<li><a name="needcode" id="problemneedcode">This page needs code samples</a></li>
+<li><a name="code" id="problemcode">Code samples do not work</a></li>
+<li><a name="missing" id="problemmissing">Information is missing</a></li>
+<li><a name="incorrect" id="problemincorrect">Information is incorrect</a></li>
+<li><a name="unclear" id="problemunclear">Information is unclear or confusing</a></li>
+<li><a name="language" id="problemlanguage">There is a spelling/grammar error on this page</a></li>
+<li><a name="other" id="problemother">Something else</a></li>
+</ul>
+<p><known_issues><p>Is something described here not working as you expect it to? It might be a <b>Known Issue</b>. Please check with the Issue Tracker at <a href="https://issuetracker.unity3d.com">issuetracker.unity3d.com</a>.</p></known_issues></p>
+</p></div>
+<div id="problemThanks" style="display:none"><p>Thanks for letting us know! This page has been marked for review based on your feedback.<br><br>If you have time, you can provide more information to help us fix the problem faster.<br><br><a id="problemThanksMoreInfoButton">Provide more information</a><br>
+</p></div>
+<div id="problemMoreInfo" style="display:none">
+<p id="problemNeedCodeForm" style="display:none">You've told us this page needs code samples. If you'd like to help us further, you could provide a code sample, or tell us about what kind of code sample you'd like to see:</p>
+<p id="problemCodeForm" style="display:none">You've told us there are code samples on this page which don't work. If you know how to fix it, or have something better we could use instead, please let us know:</p>
+<p id="problemMissingForm" style="display:none">You've told us there is information missing from this page. Please tell us more about what's missing:</p>
+<p id="problemIncorrectForm" style="display:none">You've told us there is incorrect information on this page. If you know what we should change to make it correct, please tell us:</p>
+<p id="problemUnclearForm" style="display:none">You've told us this page has unclear or confusing information. Please tell us more about what you found unclear or confusing, or let us know how we could make it clearer:</p>
+<p id="problemLanguageForm" style="display:none">You've told us there is a spelling or grammar error on this page. Please tell us what's wrong:</p>
+<p id="problemOtherForm" style="display:none">You've told us this page has a problem. Please tell us more about what's wrong:</p>
+<form>
+<textarea id="problemFormSuggestionField" cols="40" rows="5"></textarea><input type="hidden" id="problemFormDescription"><input type="submit" id="problemFormDescriptionSubmit" value="Submit">
+</form>
+</div>
+<div id="problemMoreInfoThanks" style="display:none"><p>Thanks for helping to make the Unity documentation better!</p></div>
+<script>InitialiseStarRating();</script>
+</div>
+<div class="nextprev clear">
+<div class="icon tt left mr1" data-distance="-40|-30|top">
+<span class="prev"><a href="UnityBasics.html"></a></span><div class="tip"> Getting Started</div>
+</div>
+<div class="icon tt right" data-distance="-40|-30|top">
+<span class="next"><a href="learn-tab.html"></a></span><div class="tip">The Learn tab</div>
+</div>
+</div>
+</div>
+<div class="footer-wrapper"><div class="footer clear">
+<div class="copy">Copyright © 2019 Unity Technologies. Publication: 2019.2-003J. Built: 2019-12-16.</div>
+<div class="menu">
+<a href="https://unity3d.com/learn">Tutorials</a><a href="https://answers.unity3d.com">Community Answers</a><a href="https://support.unity3d.com/hc/en-us">Knowledge Base</a><a href="https://forum.unity3d.com">Forums</a><a href="https://unity3d.com/asset-store">Asset Store</a>
+</div>
+</div></div>
+</div>
+</div></div>
+</div>
+</body>
+</html>

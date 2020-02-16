@@ -1,0 +1,231 @@
+<!DOCTYPE html><html lang="en" class="no-js">
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+<script>var offline=(location.href.indexOf('docs.unity3d.com')==-1)?true:false;if(!offline){(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);  })(window,document,'script','dataLayer','GTM-5V25JL6');}</script><link href="https://fonts.googleapis.com/css?family=Roboto&amp;display=swap" rel="stylesheet">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unity - Manual:  Modeling characters for optimal performance</title>
+<meta property="og:image" content="https://unity3d.com/files/images/ogimg.jpg">
+<meta name="author" content="Unity Technologies">
+<link rel="shortcut icon" href="https://unity.com/themes/contrib/unity_base/images/favicons/favicon.ico">
+<link rel="icon" type="image/png" href="../StaticFilesManual/images/favicons/favicon.png">
+<link rel="apple-touch-icon-precomposed" sizes="152x152" href="../StaticFilesManual/images/favicons/apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../StaticFilesManual/images/favicons/apple-touch-icon-144x144.png">
+<link rel="apple-touch-icon-precomposed" sizes="120x120" href="../StaticFilesManual/images/favicons/apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="../StaticFilesManual/images/favicons/apple-touch-icon-114x114.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="../StaticFilesManual/images/favicons/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon-precomposed" href="../StaticFilesManual/images/favicons/apple-touch-icon.png">
+<meta name="msapplication-TileColor" content="#222c37">
+<meta name="msapplication-TileImage" content="../StaticFilesManual/images/favicons/tileicon-144x144.png">
+<script type="text/javascript" src="https://docs.unity3d.com/StaticFilesConfig/UnityVersionsInfo.js"></script><script type="text/javascript" src="../StaticFilesManual/js/jquery.js?ts=1576442311"></script><script type="text/javascript" src="../StaticFilesManual/js/core.js?ts=1576442311"></script><script type="text/javascript" src="docdata/toc.js?ts=1576442311"></script><script type="text/javascript" src="docdata/global_toc.js?ts=1576442311"></script><link rel="stylesheet" type="text/css" href="../StaticFilesManual/css/core.css?ts=1576442311">
+<link rel="stylesheet" href="../StaticFilesManual/js/feedback/five-star-rating-master/css/rating.min.css">
+<link rel="stylesheet" href="../StaticFilesManual/css/prism.css">
+<script src="../StaticFilesManual/js/prism.js"></script><script src="../StaticFilesManual/js/feedback/five-star-rating-master/js/src/rating.js"></script><script src="../StaticFilesManual/js/jquery.sidebar.min.js"></script><link rel="stylesheet" href="../StaticFilesManual/css/mobileoptimisation.css">
+<script src="../StaticFilesManual/js/mobileoptimisation.js"></script>
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5V25JL6" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<div id="DocsAnalyticsData" data-area="ImportingAssets" data-pagetype="normal"></div>
+<div class="header-wrapper">
+<div id="header" class="header"><div class="content">
+<div class="spacer"><div class="menu">
+<div id="nav-open" for="nav-input"><span></span></div>
+<div class="logo"><a href="https://docs.unity3d.com"></a></div>
+<div class="search-form"><form action="30_search.html" method="get" class="apisearch">
+<input type="text" name="q" placeholder="Search manual..." autosave="Unity Reference" results="5" class="sbox field" id="q"><input type="submit" class="submit">
+</form></div>
+<ul>
+<li><a href="../Manual/index.html" class="selected">Manual</a></li>
+<li><a href="../ScriptReference/index.html">Scripting API</a></li>
+</ul>
+</div></div>
+<div class="more">
+<div class="filler"></div>
+<ul><li><a href="https://unity3d.com/">unity3d.com</a></li></ul>
+</div>
+</div></div>
+<div class="toolbar"><div class="content">
+<div class="toggle version-number" id="VersionNumber" data-target=".otherversionscontent">
+                                Version: <b>2019.2</b><div class="otherversionscontent" id="OtherVersionsContent" style="display: none;">
+<ul id="OtherVersionsContentUl"></ul>
+<div id="otherVersionsLegend"><ul>
+<li>
+<div id="supportedColour" class="legendBox"></div>Supported</li>
+<li>
+<div id="notFoundColour" class="legendBox"></div>Legacy</li>
+</ul></div>
+</div>
+<div id="VersionSwitcherArrow" class="arrow versionSwitcherArrow"></div>
+</div>
+<div class="lang-switcher"><div class="current toggle" data-target=".lang-list">
+<div class="lbl">Language
+:                <span class="b">English</span>
+</div>
+<div class="arrow"></div>
+<div class="lang-list" style="display:none;"><ul>
+<li><a href="/Manual/ModelingOptimizedCharacters.html">English</a></li>
+<li><a href="/ja/current/Manual/ModelingOptimizedCharacters.html">日本語</a></li>
+<li><a href="/es/current/Manual/ModelingOptimizedCharacters.html">Español</a></li>
+<li><a href="/kr/current/Manual/ModelingOptimizedCharacters.html">한국어</a></li>
+<li><a href="/ru/current/Manual/ModelingOptimizedCharacters.html">Русский</a></li>
+</ul></div>
+</div></div>
+</div></div>
+<div class="mobileLogo"><a href="https://docs.unity3d.com"></a></div>
+</div>
+<div id="master-wrapper" class="master-wrapper clear">
+<div id="sidebar" class="sidebar"><div class="sidebar-wrap"><div class="content"><div class="sidebar-menu"><div class="toc" id="customScrollbar">
+<h2>Unity Manual</h2>
+<div class="search-form sidebar-search-form"><form action="30_search.html" method="get" class="apisearch">
+<input type="text" name="q" placeholder="Search manual..." autosave="Unity Reference" results="5" class="sbox field" id="q"><input type="submit" id="mobileSearchBtn" class="submit" value="Search">
+</form></div>
+<div class="toggle version-number sidebar-version-switcher" id="VersionNumber" data-target=".otherversionscontent"><form id="otherVersionsContentMobileForm"><div class="ui-field-contain">
+<label for="select-native-4">Version: 2019.2</label><select name="select-native-4" id="versionsSelectMobile"><option>Select a different version</option>
+<optgroup id="versionsWithThisPageMobile" label="Versions with this page"></optgroup>
+<optgroup id="versionsWithoutThisPageMobile" label="Versions without this page"></optgroup></select>
+</div></form></div>
+<div class="lang-switcher"><div class="current toggle" data-target=".lang-list">
+<div class="lbl">Language
+:                <span class="b">English</span>
+</div>
+<div class="arrow"></div>
+<div class="lang-list" style="display:none;"><ul>
+<li><a href="/Manual/ModelingOptimizedCharacters.html">English</a></li>
+<li><a href="/ja/current/Manual/ModelingOptimizedCharacters.html">日本語</a></li>
+<li><a href="/es/current/Manual/ModelingOptimizedCharacters.html">Español</a></li>
+<li><a href="/kr/current/Manual/ModelingOptimizedCharacters.html">한국어</a></li>
+<li><a href="/ru/current/Manual/ModelingOptimizedCharacters.html">Русский</a></li>
+</ul></div>
+</div></div>
+</div></div></div></div></div>
+<div id="content-wrap" class="content-wrap"><div class="content-block">
+<div class="darkCover"></div>
+<div class="content">
+<div class="section">
+<div class="breadcrumbs clear"><ul>
+<li><a href="UnityManual.html">Unity User Manual (2019.2)</a></li>
+<li><a href="ImportingAssets.html"> Importing</a></li>
+<li><a href="CreatingDCCAssets.html"> Creating Assets outside of Unity</a></li>
+<li> Modeling characters for optimal performance</li>
+</ul></div>
+<div class="mb20"><div class="nextprev clear">
+<div class="icon tt left mr1" data-distance="-40|-30|top">
+<span class="prev"><a href="CreatingDCCAssets.html"></a></span><div class="tip"> Creating Assets outside of Unity</div>
+</div>
+<div class="icon tt right" data-distance="-40|-30|top">
+<span class="next"><a href="UsingHumanoidChars.html"></a></span><div class="tip"> Preparing Humanoid Assets for export</div>
+</div>
+</div></div>
+<div class="scrollToFeedback"><a id="scrollToFeedback">Leave feedback</a></div>
+<h1>Modeling characters for optimal performance</h1>
+<!--BeginSwitchLink--><!--EndSwitchLink-->
+<div class="clear"></div>
+
+<p>To design character Models for optimal <span class="tooltip"><strong>rendering</strong><span class="tooltiptext">The process of drawing graphics to the screen (or to a render texture). By default, the main camera in Unity renders its view to the screen. <a href="GraphicsOverview.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#Rendering">Glossary</a></span></span></span> and animation speed:</p>
+
+<ul>
+<li><a href="#single">Use a single skinned Mesh Renderer</a></li>
+<li><a href="#mats">Use as few Materials as possible</a></li>
+<li><a href="#bones">Use as few bones as possible</a></li>
+<li><a href="#polygons">Minimize the polygon count</a></li>
+<li><a href="#ikfk">Keep forward and inverse kinematics separate</a></li>
+</ul>
+
+<p>Using these techniques might help increase the animation and rendering speed of your characters, but be aware that they might also reduce the visual fidelity and realistic effects you are trying to achieve. There is no single answer for every situation that can produce a perfect balance between better performance and visual realism. You have to find the perfect balance according to the complexity of your characters and your <span class="tooltip"><strong>scene</strong><span class="tooltiptext">A Scene contains the environments and menus of your game. Think of each unique Scene file as a unique level. In each Scene, you place your environments, obstacles, and decorations, essentially designing and building your game in pieces. <a href="CreatingScenes.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#Scene">Glossary</a></span></span></span>, vs. the overall appearance and realism that you require. </p>
+
+<p><a name="single"></a></p>
+
+<h2>Use a single skinned Mesh Renderer</h2>
+
+<p>Use only a single <a href="class-SkinnedMeshRenderer.html">skinned Mesh Renderer</a> for each character. Unity optimizes animation using visibility culling and <span class="tooltip"><strong>bounding volume</strong><span class="tooltiptext">A closed shape representing the edges and faces of a collider or trigger. <a href="SpatialMappingComponentsGeneralSettings.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#Boundingvolume">Glossary</a></span></span></span> updates, and only activates these optimizations if you use one <a href="class-Animation.html">Animation component</a> and one skinned <span class="tooltip"><strong>Mesh</strong><span class="tooltiptext">The main graphics primitive of Unity. Meshes make up a large part of your 3D worlds. Unity supports triangulated or Quadrangulated polygon meshes. Nurbs, Nurms, Subdiv surfaces must be converted to polygons. <a href="comp-MeshGroup.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#Mesh">Glossary</a></span></span></span> Renderer in conjunction. Using two skinned Meshes in place of a single <strong>Mesh</strong> could roughly double rendering time for a Model, and there is seldom any practical advantage in using multiple Meshes.</p>
+
+<p><a name="mats"></a></p>
+
+<h2>Use as few Materials as possible</h2>
+
+<p>Keep the number of <span class="tooltip"><a href="class-Material.html">Materials</a><span class="tooltiptext">An asset that defines how a surface should be rendered, by including references to the Textures it uses, tiling information, Color tints and more. The available options for a Material depend on which Shader the Material is using. <a href="class-Material.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#Material">Glossary</a></span></span></span> on each Mesh as low as possible. Only have more than one Material on a character when you need to use different Shaders for different parts, such as a special <span class="tooltip"><strong>Shader</strong><span class="tooltiptext">A small script that contains the mathematical calculations and algorithms for calculating the Color of each pixel rendered, based on the lighting input and the Material configuration. <a href="Shaders.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#Shader">Glossary</a></span></span></span> for the eyes. However, two or three Materials per character should be sufficient in almost all cases.</p>
+
+<p><a name="bones"></a></p>
+
+<h2>Use as few bones as possible</h2>
+
+<p>In general, the fewer bones you use, the better the performance is. However, sometimes you need to create characters with a large number of bones: for example, when you want a lot of customizable attachments. These extra bones increase the size of the build, and may have a relative processing cost for each additional bone. For example, 15 additional bones on a rig that already has 30 bones takes Unity 50% more operations to solve in <strong>Generic</strong> mode, which might impact the time it takes to solve. </p>
+
+<p>Note that you can have additional bones for <a href="GenericAnimations.html">Generic</a> and <a href="ConfiguringtheAvatar.html">Humanoid</a> types. When you have no animations playing using the additional bones, the processing cost should be negligible. This cost is even lower if their attachments are non-existent or hidden.</p>
+
+<p>For performance reasons, use linear blend <strong><span class="tooltip"><strong>skinning</strong><span class="tooltiptext">The process of binding bone joints to the vertices of a character’s mesh or ‘skin’. Performed with an external tool, such as Blender or Autodesk Maya. <a href="UsingHumanoidChars.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#Skinning">Glossary</a></span></span></span></strong> with a maximum of four influences per vertex. However, some 3D modeling applications allow more than four bones to influence vertices, so you have to weigh the performance cost against greater control. For more information, see <a href="ImportingSkinnedMeshes.html">Importing skinned Meshes</a>.</p>
+
+<p><a name="polygons"></a></p>
+
+<h2>Minimize the polygon count</h2>
+
+<p>The number of polygons you should use depends on the visual quality you require and the platform you are targeting. These two competing facts are equally true:</p>
+
+<ul>
+<li>The fewer the polygons you use in your Meshes, the faster your application runs. This is because every vertex, edge, or face requires computing resources.</li>
+<li>The more polygons you use in your Meshes, the more detailed and organic your <span class="tooltip"><strong>GameObjects</strong><span class="tooltiptext">The fundamental object in Unity scenes, which can represent characters, props, scenery, cameras, waypoints, and more. A GameObject’s functionality is defined by the Components attached to it. <a href="class-GameObject.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#GameObject">Glossary</a></span></span></span> look, because smaller polygons give you more control over the shape.</li>
+</ul>
+
+<p>Also consider what else is competing for rendering resources. If you have a lot of GameObjects or <span class="tooltip"><strong>Terrain</strong><span class="tooltiptext">The landscape in your scene. A Terrain GameObject adds a large flat plane to your scene and you can use the Terrain’s Inspector window to create a detailed landscape. <a href="terrain-UsingTerrains.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#Terrain">Glossary</a></span></span></span> objects on screen at the same time, consider reducing the polygon count per Mesh. </p>
+
+<p>Desktop platforms can generally handle more complexity than mobile platforms, but performance on mobile platforms can vary enormously depending on the quality and capacity of the device itself.</p>
+
+<p><a name="ikfk"></a></p>
+
+<h2>Keep forward and inverse kinematics separate</h2>
+
+<p>When Unity imports animations, it bakes a Model’s inverse kinematic (IK) nodes into forward <span class="tooltip"><strong>kinematics</strong><span class="tooltiptext">The geometry that describes the position and orientation of a character’s joints and bodies. Used by inverse kinematics to control character movement. <br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#kinematics">Glossary</a></span></span></span> (FK), and so Unity doesn’t need the IK nodes at all. However, if they are left in the Model, then Unity still includes them in calculations, even though they don’t affect the animation. You can either delete the redundant IK nodes in Unity or in your 3D modeling application. To facilitate removing the IK nodes, keep separate IK and FK hierarchies while modeling.</p>
+<div class="feedbackbox" id="feedbackbox">
+<div id="rating"><p>Did you find this page useful? Please give it a rating:<br><div id="ratecontent" class="c-rating"></div>
+</p></div>
+<div id="ratingThanks" style="display:none"><p>Thanks for rating this page!</p></div>
+<div id="problem"><p><a name="problem">Report a problem on this page</a></p></div>
+<div id="problemType" style="display:none"><p>What kind of problem would you like to report?<ul type="problems">
+<li><a name="needcode" id="problemneedcode">This page needs code samples</a></li>
+<li><a name="code" id="problemcode">Code samples do not work</a></li>
+<li><a name="missing" id="problemmissing">Information is missing</a></li>
+<li><a name="incorrect" id="problemincorrect">Information is incorrect</a></li>
+<li><a name="unclear" id="problemunclear">Information is unclear or confusing</a></li>
+<li><a name="language" id="problemlanguage">There is a spelling/grammar error on this page</a></li>
+<li><a name="other" id="problemother">Something else</a></li>
+</ul>
+<p><known_issues><p>Is something described here not working as you expect it to? It might be a <b>Known Issue</b>. Please check with the Issue Tracker at <a href="https://issuetracker.unity3d.com">issuetracker.unity3d.com</a>.</p></known_issues></p>
+</p></div>
+<div id="problemThanks" style="display:none"><p>Thanks for letting us know! This page has been marked for review based on your feedback.<br><br>If you have time, you can provide more information to help us fix the problem faster.<br><br><a id="problemThanksMoreInfoButton">Provide more information</a><br>
+</p></div>
+<div id="problemMoreInfo" style="display:none">
+<p id="problemNeedCodeForm" style="display:none">You've told us this page needs code samples. If you'd like to help us further, you could provide a code sample, or tell us about what kind of code sample you'd like to see:</p>
+<p id="problemCodeForm" style="display:none">You've told us there are code samples on this page which don't work. If you know how to fix it, or have something better we could use instead, please let us know:</p>
+<p id="problemMissingForm" style="display:none">You've told us there is information missing from this page. Please tell us more about what's missing:</p>
+<p id="problemIncorrectForm" style="display:none">You've told us there is incorrect information on this page. If you know what we should change to make it correct, please tell us:</p>
+<p id="problemUnclearForm" style="display:none">You've told us this page has unclear or confusing information. Please tell us more about what you found unclear or confusing, or let us know how we could make it clearer:</p>
+<p id="problemLanguageForm" style="display:none">You've told us there is a spelling or grammar error on this page. Please tell us what's wrong:</p>
+<p id="problemOtherForm" style="display:none">You've told us this page has a problem. Please tell us more about what's wrong:</p>
+<form>
+<textarea id="problemFormSuggestionField" cols="40" rows="5"></textarea><input type="hidden" id="problemFormDescription"><input type="submit" id="problemFormDescriptionSubmit" value="Submit">
+</form>
+</div>
+<div id="problemMoreInfoThanks" style="display:none"><p>Thanks for helping to make the Unity documentation better!</p></div>
+<script>InitialiseStarRating();</script>
+</div>
+<div class="nextprev clear">
+<div class="icon tt left mr1" data-distance="-40|-30|top">
+<span class="prev"><a href="CreatingDCCAssets.html"></a></span><div class="tip"> Creating Assets outside of Unity</div>
+</div>
+<div class="icon tt right" data-distance="-40|-30|top">
+<span class="next"><a href="UsingHumanoidChars.html"></a></span><div class="tip"> Preparing Humanoid Assets for export</div>
+</div>
+</div>
+</div>
+<div class="footer-wrapper"><div class="footer clear">
+<div class="copy">Copyright © 2019 Unity Technologies. Publication: 2019.2-003J. Built: 2019-12-16.</div>
+<div class="menu">
+<a href="https://unity3d.com/learn">Tutorials</a><a href="https://answers.unity3d.com">Community Answers</a><a href="https://support.unity3d.com/hc/en-us">Knowledge Base</a><a href="https://forum.unity3d.com">Forums</a><a href="https://unity3d.com/asset-store">Asset Store</a>
+</div>
+</div></div>
+</div>
+</div></div>
+</div>
+</body>
+</html>

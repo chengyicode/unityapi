@@ -8,44 +8,9 @@
 <script type="text/javascript" src="./js/jquery.autocomplete.js"></script>
 <script type="text/javascript" src="./js/dtree.js"></script>
 <script type="text/javascript" src="./js/Script.js"></script> 
-		
-		<script type="text/javascript">
-			
-			
-			$(function(){ 
-							$("#btn").click(function(){ 
-									$.getJSON("jsonData.json",function(data){ 
-										var well = $(".well"); 
-										var strHtml = "";    
-										well.empty();      
-										
 
-			 
-										
-										$.each(data,function(i,item){ 
-											
-											
-											
-											strHtml += "姓名："+item["name"]+"<br>"; 							
-/* 											strHtml += "性别："+item["sex"]+"<br>"; 
-											strHtml += "邮箱："+item["email"]+"<br>"; 
-											strHtml += "<hr>" */
-
-										}) 
-
-									well.html(strHtml.name);
-								}) 
-							}) 
-							}) 
-
-		</script>
 		
 
-	</head>
-	<body>
-		
-		<input type="button" value="获取数据" id="btn"/> 
-		<div class="well">张国立</div> 
 		
 		
 		<br>

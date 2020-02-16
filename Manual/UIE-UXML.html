@@ -1,0 +1,441 @@
+<!DOCTYPE html><html lang="en" class="no-js">
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+<script>var offline=(location.href.indexOf('docs.unity3d.com')==-1)?true:false;if(!offline){(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);  })(window,document,'script','dataLayer','GTM-5V25JL6');}</script><link href="https://fonts.googleapis.com/css?family=Roboto&amp;display=swap" rel="stylesheet">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unity - Manual:  The UXML format</title>
+<meta property="og:image" content="https://unity3d.com/files/images/ogimg.jpg">
+<meta name="author" content="Unity Technologies">
+<link rel="shortcut icon" href="https://unity.com/themes/contrib/unity_base/images/favicons/favicon.ico">
+<link rel="icon" type="image/png" href="../StaticFilesManual/images/favicons/favicon.png">
+<link rel="apple-touch-icon-precomposed" sizes="152x152" href="../StaticFilesManual/images/favicons/apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../StaticFilesManual/images/favicons/apple-touch-icon-144x144.png">
+<link rel="apple-touch-icon-precomposed" sizes="120x120" href="../StaticFilesManual/images/favicons/apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="../StaticFilesManual/images/favicons/apple-touch-icon-114x114.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="../StaticFilesManual/images/favicons/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon-precomposed" href="../StaticFilesManual/images/favicons/apple-touch-icon.png">
+<meta name="msapplication-TileColor" content="#222c37">
+<meta name="msapplication-TileImage" content="../StaticFilesManual/images/favicons/tileicon-144x144.png">
+<script type="text/javascript" src="https://docs.unity3d.com/StaticFilesConfig/UnityVersionsInfo.js"></script><script type="text/javascript" src="../StaticFilesManual/js/jquery.js?ts=1576442311"></script><script type="text/javascript" src="../StaticFilesManual/js/core.js?ts=1576442311"></script><script type="text/javascript" src="docdata/toc.js?ts=1576442311"></script><script type="text/javascript" src="docdata/global_toc.js?ts=1576442311"></script><link rel="stylesheet" type="text/css" href="../StaticFilesManual/css/core.css?ts=1576442311">
+<link rel="stylesheet" href="../StaticFilesManual/js/feedback/five-star-rating-master/css/rating.min.css">
+<link rel="stylesheet" href="../StaticFilesManual/css/prism.css">
+<script src="../StaticFilesManual/js/prism.js"></script><script src="../StaticFilesManual/js/feedback/five-star-rating-master/js/src/rating.js"></script><script src="../StaticFilesManual/js/jquery.sidebar.min.js"></script><link rel="stylesheet" href="../StaticFilesManual/css/mobileoptimisation.css">
+<script src="../StaticFilesManual/js/mobileoptimisation.js"></script>
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5V25JL6" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<div id="DocsAnalyticsData" data-area="UIToolkits" data-pagetype="normal"></div>
+<div class="header-wrapper">
+<div id="header" class="header"><div class="content">
+<div class="spacer"><div class="menu">
+<div id="nav-open" for="nav-input"><span></span></div>
+<div class="logo"><a href="https://docs.unity3d.com"></a></div>
+<div class="search-form"><form action="30_search.html" method="get" class="apisearch">
+<input type="text" name="q" placeholder="Search manual..." autosave="Unity Reference" results="5" class="sbox field" id="q"><input type="submit" class="submit">
+</form></div>
+<ul>
+<li><a href="../Manual/index.html" class="selected">Manual</a></li>
+<li><a href="../ScriptReference/index.html">Scripting API</a></li>
+</ul>
+</div></div>
+<div class="more">
+<div class="filler"></div>
+<ul><li><a href="https://unity3d.com/">unity3d.com</a></li></ul>
+</div>
+</div></div>
+<div class="toolbar"><div class="content">
+<div class="toggle version-number" id="VersionNumber" data-target=".otherversionscontent">
+                                Version: <b>2019.2</b><div class="otherversionscontent" id="OtherVersionsContent" style="display: none;">
+<ul id="OtherVersionsContentUl"></ul>
+<div id="otherVersionsLegend"><ul>
+<li>
+<div id="supportedColour" class="legendBox"></div>Supported</li>
+<li>
+<div id="notFoundColour" class="legendBox"></div>Legacy</li>
+</ul></div>
+</div>
+<div id="VersionSwitcherArrow" class="arrow versionSwitcherArrow"></div>
+</div>
+<div class="lang-switcher"><div class="current toggle" data-target=".lang-list">
+<div class="lbl">Language
+:                <span class="b">English</span>
+</div>
+<div class="arrow"></div>
+<div class="lang-list" style="display:none;"><ul>
+<li><a href="/Manual/UIE-UXML.html">English</a></li>
+<li><a href="/ja/current/Manual/UIE-UXML.html">日本語</a></li>
+<li><a href="/es/current/Manual/UIE-UXML.html">Español</a></li>
+<li><a href="/kr/current/Manual/UIE-UXML.html">한국어</a></li>
+<li><a href="/ru/current/Manual/UIE-UXML.html">Русский</a></li>
+</ul></div>
+</div></div>
+</div></div>
+<div class="mobileLogo"><a href="https://docs.unity3d.com"></a></div>
+</div>
+<div id="master-wrapper" class="master-wrapper clear">
+<div id="sidebar" class="sidebar"><div class="sidebar-wrap"><div class="content"><div class="sidebar-menu"><div class="toc" id="customScrollbar">
+<h2>Unity Manual</h2>
+<div class="search-form sidebar-search-form"><form action="30_search.html" method="get" class="apisearch">
+<input type="text" name="q" placeholder="Search manual..." autosave="Unity Reference" results="5" class="sbox field" id="q"><input type="submit" id="mobileSearchBtn" class="submit" value="Search">
+</form></div>
+<div class="toggle version-number sidebar-version-switcher" id="VersionNumber" data-target=".otherversionscontent"><form id="otherVersionsContentMobileForm"><div class="ui-field-contain">
+<label for="select-native-4">Version: 2019.2</label><select name="select-native-4" id="versionsSelectMobile"><option>Select a different version</option>
+<optgroup id="versionsWithThisPageMobile" label="Versions with this page"></optgroup>
+<optgroup id="versionsWithoutThisPageMobile" label="Versions without this page"></optgroup></select>
+</div></form></div>
+<div class="lang-switcher"><div class="current toggle" data-target=".lang-list">
+<div class="lbl">Language
+:                <span class="b">English</span>
+</div>
+<div class="arrow"></div>
+<div class="lang-list" style="display:none;"><ul>
+<li><a href="/Manual/UIE-UXML.html">English</a></li>
+<li><a href="/ja/current/Manual/UIE-UXML.html">日本語</a></li>
+<li><a href="/es/current/Manual/UIE-UXML.html">Español</a></li>
+<li><a href="/kr/current/Manual/UIE-UXML.html">한국어</a></li>
+<li><a href="/ru/current/Manual/UIE-UXML.html">Русский</a></li>
+</ul></div>
+</div></div>
+</div></div></div></div></div>
+<div id="content-wrap" class="content-wrap"><div class="content-block">
+<div class="darkCover"></div>
+<div class="content">
+<div class="section">
+<div class="breadcrumbs clear"><ul>
+<li><a href="UnityManual.html">Unity User Manual (2019.2)</a></li>
+<li><a href="UIToolkits.html"> User interfaces (UI)</a></li>
+<li><a href="UIElements.html"> UIElements Developer Guide</a></li>
+<li> The UXML format</li>
+</ul></div>
+<div class="mb20"><div class="nextprev clear">
+<div class="icon tt left mr1" data-distance="-40|-30|top">
+<span class="prev"><a href="UIE-LayoutEngine.html"></a></span><div class="tip"> The Layout Engine</div>
+</div>
+<div class="icon tt right" data-distance="-40|-30|top">
+<span class="next"><a href="UIE-WritingUXMLTemplate.html"></a></span><div class="tip"> Writing UXML Templates</div>
+</div>
+</div></div>
+<div class="scrollToFeedback"><a id="scrollToFeedback">Leave feedback</a></div>
+<h1>The UXML format</h1>
+<!--BeginSwitchLink--><!--EndSwitchLink-->
+<div class="clear"></div>
+
+<p>UXML files are text files that define the logical structure of the user interface. The format used in UXML files is inspired by HTML (HyperText Markup Language), XAML (eXtensible Application Markup Language), and XML (eXtensible Markup Language). If you are familiar with these recognized formats, you should notice lots of similarities in UXML. However, the UXML format includes small differences to provide an efficient way to work with Unity.</p>
+
+<p>This section describes the UXML format that Unity supports and provides details on writing, loading, and defining UXML templates. It also includes information on defining new elements, and how to use UQuery.</p>
+
+<p>UXML makes it is easier for less technical users to build a user interface within Unity. In UXML you can: </p>
+
+<ul>
+<li>define the structure of the user interface (UI) in XML.</li>
+<li>define the <span class="tooltip"><strong>UI</strong><span class="tooltiptext">(User Interface) Allows a user to interact with your application. <a href="UISystem.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#UI">Glossary</a></span></span></span> layout with USS stylesheets.</li>
+</ul>
+
+<p>This leaves developers to do technical tasks, such as importing assets, defining logic, and processing data.</p>
+
+<h1>Defining new elements</h1>
+
+<p>UIElements is extensible. You can define your own user interface components and elements.</p>
+
+<p>Before you can use UXML files to define new elements, you must derive a new class from <code>VisualElement</code> or one of its subclasses, then implement the appropriate functionality within this new class. Your new class must implement a default constructor.</p>
+
+<p>For example, the following code derives the new <code>StatusBar</code> class and implements its default constructor:</p>
+
+<pre><code>class StatusBar : VisualElement
+{
+    public StatusBar()
+    {
+        m_Status = String.Empty;
+    }
+
+    string m_Status;
+    public string status { get; set; }
+}
+</code></pre>
+
+<p>In order for the UIElements to instantiate a new class when reading a UXML file, you must define a factory for your class. Unless your factory needs to do something special, you can derive the factory from <code>UxmlFactoy&lt;T&gt;</code>. It’s recommended that you put the factory class within your component class.</p>
+
+<p>For example, the following code demonstrates how to define a factory for the <code>StatusBar</code> class by deriving its factory from <code>UxmlFactory&lt;T&gt;</code>. The factory is named <code>UxmlFactory</code>: </p>
+
+<pre><code>class StatusBar : VisualElement
+{
+    public new class UxmlFactory : UxmlFactory&lt;StatusBar&gt; {}
+
+    // ...
+}
+</code></pre>
+
+<p>With this factory defined, you can use the <code>&lt;StatusBar&gt;</code> element in UXML files.</p>
+
+<h2>Defining attributes on elements</h2>
+
+<p>You can define UXML traits for a new class and set its factory to use these traits.</p>
+
+<p>For example, the following code demonstrates how to define a UXML traits class to initialize the <code>status</code> property as a property of the <code>StatusBar</code> class. The status property is initialized from XML data.</p>
+
+<pre><code>class StatusBar : VisualElement
+{
+    public new class UxmlFactory : UxmlFactory&lt;StatusBar, UxmlTraits&gt; {}
+
+    public new class UxmlTraits : VisualElement.UxmlTraits
+    {
+        UxmlStringAttributeDescription m_Status = new UxmlStringAttributeDescription { name = &quot;status&quot; };
+        
+        public override IEnumerable&lt;UxmlChildElementDescription&gt; uxmlChildElementsDescription
+        {
+            get { yield break; }
+        }
+
+        public override void Init(VisualElement ve, IUxmlAttributes bag, CreationContext cc)
+        {
+            base.Init(ve, bag, cc);
+            ((StatusBar)ve).status = m_Status.GetValueFromBag(bag, cc);
+        }
+    }
+
+    // ...
+}
+</code></pre>
+
+<p>The <code>UxmlTraits</code> serves two purposes: </p>
+
+<ul>
+<li><p>It is used by the factory to initialize the newly created object.</p></li>
+<li><p>It is analyzed by the schema generation process to get information about the element. This information is translated into XML schema directives.</p></li>
+</ul>
+
+<p>The code example above does the following: </p>
+
+<ul>
+<li>The declaration of <code>m_Status</code> defines an XML attribute named <code>status</code>.</li>
+<li>The <code>uxmlChildElementsDescription</code> returns an empty <code>IEnumerable</code> which indicates that <code>StatusBar</code> element has no child.</li>
+<li>The <code>Init()</code> member reads the value of the <code>status</code> attribute in a property bag from the XML parser and sets the <code>StatusBar.status</code> property to this value.</li>
+<li>By placing the <code>UxmlTraits</code> class inside the <code>StatusBar</code> class allows the <code>Init()</code> method to access the private members of <code>StatusBar</code>.</li>
+<li>The new <code>UxmlTraits</code> class inherits from the base class <code>UxmlTraits</code>, so it shares the attributes of the base class.</li>
+<li>
+<code>Init()</code> calls <code>base.Init()</code> to initialize the base class properties.</li>
+</ul>
+
+<p>The code example above declares a string attribute with the <code>UxmlStringAttributeDescription</code> class. UIElements supports the following types of attributes and each links a C# type to an XML type:</p>
+
+<table>
+<colgroup>
+<col style="text-align:left;">
+<col style="text-align:left;">
+</colgroup>
+
+<thead>
+<tr>
+	<th style="text-align:left;"><strong>Attribute</strong></th>
+	<th style="text-align:left;"><strong>Attribute value</strong></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td style="text-align:left;"><code>UxmlStringAttributeDescription</code></td>
+	<td style="text-align:left;">A string</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>UxmlFloatAttributeDescription</code></td>
+	<td style="text-align:left;">A single precision floating point value in the range of the C# <code>float</code> type.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>UxmlDoubleAttributeDescription</code></td>
+	<td style="text-align:left;">A double precision floating point value in the range of the C# <code>double</code> type.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>UxmlIntAttributeDescription</code></td>
+	<td style="text-align:left;">An integer value in the range of the C# <code>int</code> type.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>UxmlLongAttributeDescription</code></td>
+	<td style="text-align:left;">A long integer value in the range of the C# <code>long</code> type.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>UxmlBoolAttributeDescription</code></td>
+	<td style="text-align:left;">
+<code>true</code> or <code>false</code>
+</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>UxmlColorAttributeDescription</code></td>
+	<td style="text-align:left;">A string representing a color (<code>#FFFFFF</code>)</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>UxmlEnumAttributeDescription&lt;T&gt;</code></td>
+	<td style="text-align:left;">A string representing one of the values for the <code>Enum</code> type <code>T</code>.</td>
+</tr>
+</tbody>
+</table>
+
+<p>In the code example above, the <code>uxmlChildElementsDescription</code> returns an empty <code>IEnumerable</code> which indicates that the <code>StatusBar</code> element does not accept children.</p>
+
+<p>To have an element accept children of any type, you must override the <code>uxmlChildElementsDescription</code> property. For example, for the <code>StatusBar</code> element to accept children of any type, the <code>uxmlChildElementsDescription</code> property must be specified as follows:</p>
+
+<pre><code>public override IEnumerable&lt;UxmlChildElementDescription&gt; uxmlChildElementsDescription
+{
+    get
+    {
+        yield return new UxmlChildElementDescription(typeof(VisualElement));
+    }
+}
+</code></pre>
+
+<h2>Defining a namespace prefix</h2>
+
+<p>Once you have defined a new element in C#, you can start using the element in your UXML files. If your new element is defined in a new namespace, you should define a prefix for the namespace. Namespace prefixes are declared as attributes to the root <code>&lt;UXML&gt;</code> element and replace the full namespace name when scoping elements.</p>
+
+<p>To define a namespace prefix, add a <code>UxmlNamespacePrefix</code> attribute to your assembly for each namespace prefix you want to define.</p>
+
+<pre><code>[assembly: UxmlNamespacePrefix(&quot;My.First.Namespace&quot;, &quot;first&quot;)]
+[assembly: UxmlNamespacePrefix(&quot;My.Second.Namespace&quot;, &quot;second&quot;)]
+</code></pre>
+
+<p>This can be done at the root level (outside any namespace) of any C# file of the assembly.</p>
+
+<p>The schema generation system does the following:</p>
+
+<ul>
+<li>checks for these attributes and uses them to generate the schema.</li>
+<li>adds the namespace prefix definition as an attribute of the <code>&lt;UXML&gt;</code> element in newly created UXML files</li>
+<li>includes the schema file location for the namespace in its <code>xsi:schemaLocation</code> attribute.</li>
+</ul>
+
+<p>You should update the UXML schema of your project. Select <span class="tooltip"><strong>Assets</strong><span class="tooltiptext">Any media or data that can be used in your game or Project. An Asset may come from a file created outside of Unity, such as a 3D model, an audio file or an image. You can also create some asset types in Unity, such as an Animator Controller, an Audio Mixer or a Render Texture. <a href="AssetWorkflow.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#Asset">Glossary</a></span></span></span> &gt; <strong>Update UIElements Schema</strong> to ensure that your text editor recognizes the new element.</p>
+
+<p>The defined prefix is available in the newly created UXML by selecting <strong>Create</strong> &gt; <strong>UIElements Editor Window</strong> in the <code>Project/Assets/Editor</code> folder.</p>
+
+<h2>Advanced usage</h2>
+
+<h3>Customizing a UXML name</h3>
+
+<p>You can customize a UXML name by overriding its <code>IUxmlFactory.uxmlName</code> and <code>IUXmlFactory.uxmlQualifiedName</code> properties. Make sure the <code>uxmlName</code> is unique within your namespace and that the <code>uxmlQualifiedName</code> is unique in your project. </p>
+
+<p>If both names are not unique, an exception is thrown when you attempt to load your assembly.</p>
+
+<p>The following code example demonstrates how to override and custom the UXML name:</p>
+
+<pre><code>public class FactoryWithCustomName : UxmlFactory&lt;..., ...&gt;
+{
+    public override string uxmlName
+    {
+        get { return &quot;UniqueName&quot;; }
+    }
+
+    public override string uxmlQualifiedName
+    {
+        get { return uxmlNamespace + &quot;.&quot; + uxmlName; }
+    }
+}
+</code></pre>
+
+<h3>Selecting a factory for an element</h3>
+
+<p>By default, the <code>IUxmlFactory</code> instantiates an element and selects the element using the name of the element. </p>
+
+<p>You can make the selection process consider attribute values on the element by overriding <code>IUXmlFactory.AcceptsAttributeBag</code>. The factory will then examine the element attributes to decide if it can instantiate an object for the UXML element. </p>
+
+<p>This is useful if, for example, your <code>VisualElement</code> class is generic. In this case, the class factory for a specialization of your class could examine the value of a XML <code>type</code> attribute. Depending on the value, instantiation could be accepted or refused. See the implemenatation of <code>PropertyControl&lt;T&gt;</code> for an example.</p>
+
+<p>In the case where more than one factory can instantiate an element, the first registered factory is selected.</p>
+
+<h3>Overriding the default value of a base class attribute</h3>
+
+<p>You can change the default value of an attribute declared in a base class by setting its <code>defaultValue</code> in the derived <code>UxmlTraits</code> class.</p>
+
+<p>For example, the following code shows how to change the default value of <code>m_TabIndex</code>:</p>
+
+<pre><code>class MyElementTraits : VisualElement.UxmlTraits
+    {
+        public MyElementTraits()
+        {
+            m_TabIndex.defaultValue = 0;
+        }
+    }
+</code></pre>
+
+<h3>Accepting any attribute</h3>
+
+<p>By default, the generated XML schema states that an element can have any attribute. </p>
+
+<p>Values of attributes, other than those declared in the <code>UxmlTraits</code> class, are not restricted. This is in contrast to XML validators that check that the value of a declared attribute matches its declaration.</p>
+
+<p>Additional attributes are included in the <code>IUxmlAttributes</code> bag that is passed to the <code>IUxmlFactory.AcceptsAttributBag()</code> and <code>IUxmlFactory.Init()</code> functions. It is up to the factory implementation whether to use these additional attributes. The default behavior is to discard additonal attributes. </p>
+
+<p>This means that these additional attributes are not attached to the instantiated <code>VisualElement</code> and these atttibutes are not queryable with <code>UQuery</code>.</p>
+
+<p>When defining a new element, you can restrict the accepted attributes to those explicitly declared by setting the <code>UxmlTraits.canHaveAnyAttribute</code> property to <code>false</code> in your <code>UxmlTraits</code> constructor.</p>
+
+<h1>Using Schema definitions</h1>
+
+<p>Schema definition files specify the attributes and which child elements each UXML element can contain. Use schema definition files as a guide for writing correct documents and to validate your documents. </p>
+
+<p>In the UXML template file, the <code>xsi:noNamespaceSchemaLocation</code> and <code>xsi:schemaLocation</code> attributes of the <code>&lt;UXML&gt;</code> root element specify where the schema definition files are located. </p>
+
+<p>Select <strong>Assets</strong> &gt; <strong>Create</strong> &gt; <strong>UIElements Editor Window</strong> to automatically update your schema definition with the latest information from the <code>VisualElement</code> sub-classes used by your project. To force an update of the UXML schema files, select <strong>Assets</strong> &gt; <strong>Update UIElements Schema</strong>.</p>
+
+<p>
+<strong>Note</strong>: Some text editors do not recognize the <code>xsi:noNamespaceSchemaLocation</code> attribute. If your text editor cannot find the schema definition files, you should also specify the <code>xsi:schemaLocation</code> attribute.</p>
+
+<hr>
+
+<ul>
+<li><span class="page-edit">2019–05–23 Page amended
+</span></li>
+</ul>
+<div class="feedbackbox" id="feedbackbox">
+<div id="rating"><p>Did you find this page useful? Please give it a rating:<br><div id="ratecontent" class="c-rating"></div>
+</p></div>
+<div id="ratingThanks" style="display:none"><p>Thanks for rating this page!</p></div>
+<div id="problem"><p><a name="problem">Report a problem on this page</a></p></div>
+<div id="problemType" style="display:none"><p>What kind of problem would you like to report?<ul type="problems">
+<li><a name="needcode" id="problemneedcode">This page needs code samples</a></li>
+<li><a name="code" id="problemcode">Code samples do not work</a></li>
+<li><a name="missing" id="problemmissing">Information is missing</a></li>
+<li><a name="incorrect" id="problemincorrect">Information is incorrect</a></li>
+<li><a name="unclear" id="problemunclear">Information is unclear or confusing</a></li>
+<li><a name="language" id="problemlanguage">There is a spelling/grammar error on this page</a></li>
+<li><a name="other" id="problemother">Something else</a></li>
+</ul>
+<p><known_issues><p>Is something described here not working as you expect it to? It might be a <b>Known Issue</b>. Please check with the Issue Tracker at <a href="https://issuetracker.unity3d.com">issuetracker.unity3d.com</a>.</p></known_issues></p>
+</p></div>
+<div id="problemThanks" style="display:none"><p>Thanks for letting us know! This page has been marked for review based on your feedback.<br><br>If you have time, you can provide more information to help us fix the problem faster.<br><br><a id="problemThanksMoreInfoButton">Provide more information</a><br>
+</p></div>
+<div id="problemMoreInfo" style="display:none">
+<p id="problemNeedCodeForm" style="display:none">You've told us this page needs code samples. If you'd like to help us further, you could provide a code sample, or tell us about what kind of code sample you'd like to see:</p>
+<p id="problemCodeForm" style="display:none">You've told us there are code samples on this page which don't work. If you know how to fix it, or have something better we could use instead, please let us know:</p>
+<p id="problemMissingForm" style="display:none">You've told us there is information missing from this page. Please tell us more about what's missing:</p>
+<p id="problemIncorrectForm" style="display:none">You've told us there is incorrect information on this page. If you know what we should change to make it correct, please tell us:</p>
+<p id="problemUnclearForm" style="display:none">You've told us this page has unclear or confusing information. Please tell us more about what you found unclear or confusing, or let us know how we could make it clearer:</p>
+<p id="problemLanguageForm" style="display:none">You've told us there is a spelling or grammar error on this page. Please tell us what's wrong:</p>
+<p id="problemOtherForm" style="display:none">You've told us this page has a problem. Please tell us more about what's wrong:</p>
+<form>
+<textarea id="problemFormSuggestionField" cols="40" rows="5"></textarea><input type="hidden" id="problemFormDescription"><input type="submit" id="problemFormDescriptionSubmit" value="Submit">
+</form>
+</div>
+<div id="problemMoreInfoThanks" style="display:none"><p>Thanks for helping to make the Unity documentation better!</p></div>
+<script>InitialiseStarRating();</script>
+</div>
+<div class="nextprev clear">
+<div class="icon tt left mr1" data-distance="-40|-30|top">
+<span class="prev"><a href="UIE-LayoutEngine.html"></a></span><div class="tip"> The Layout Engine</div>
+</div>
+<div class="icon tt right" data-distance="-40|-30|top">
+<span class="next"><a href="UIE-WritingUXMLTemplate.html"></a></span><div class="tip"> Writing UXML Templates</div>
+</div>
+</div>
+</div>
+<div class="footer-wrapper"><div class="footer clear">
+<div class="copy">Copyright © 2019 Unity Technologies. Publication: 2019.2-003J. Built: 2019-12-16.</div>
+<div class="menu">
+<a href="https://unity3d.com/learn">Tutorials</a><a href="https://answers.unity3d.com">Community Answers</a><a href="https://support.unity3d.com/hc/en-us">Knowledge Base</a><a href="https://forum.unity3d.com">Forums</a><a href="https://unity3d.com/asset-store">Asset Store</a>
+</div>
+</div></div>
+</div>
+</div></div>
+</div>
+</body>
+</html>

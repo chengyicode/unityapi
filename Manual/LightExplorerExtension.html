@@ -1,0 +1,289 @@
+<!DOCTYPE html><html lang="en" class="no-js">
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+<script>var offline=(location.href.indexOf('docs.unity3d.com')==-1)?true:false;if(!offline){(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);  })(window,document,'script','dataLayer','GTM-5V25JL6');}</script><link href="https://fonts.googleapis.com/css?family=Roboto&amp;display=swap" rel="stylesheet">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unity - Manual:  Light Explorer extension</title>
+<meta property="og:image" content="https://unity3d.com/files/images/ogimg.jpg">
+<meta name="author" content="Unity Technologies">
+<link rel="shortcut icon" href="https://unity.com/themes/contrib/unity_base/images/favicons/favicon.ico">
+<link rel="icon" type="image/png" href="../StaticFilesManual/images/favicons/favicon.png">
+<link rel="apple-touch-icon-precomposed" sizes="152x152" href="../StaticFilesManual/images/favicons/apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../StaticFilesManual/images/favicons/apple-touch-icon-144x144.png">
+<link rel="apple-touch-icon-precomposed" sizes="120x120" href="../StaticFilesManual/images/favicons/apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="../StaticFilesManual/images/favicons/apple-touch-icon-114x114.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="../StaticFilesManual/images/favicons/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon-precomposed" href="../StaticFilesManual/images/favicons/apple-touch-icon.png">
+<meta name="msapplication-TileColor" content="#222c37">
+<meta name="msapplication-TileImage" content="../StaticFilesManual/images/favicons/tileicon-144x144.png">
+<script type="text/javascript" src="https://docs.unity3d.com/StaticFilesConfig/UnityVersionsInfo.js"></script><script type="text/javascript" src="../StaticFilesManual/js/jquery.js?ts=1576442311"></script><script type="text/javascript" src="../StaticFilesManual/js/core.js?ts=1576442311"></script><script type="text/javascript" src="docdata/toc.js?ts=1576442311"></script><script type="text/javascript" src="docdata/global_toc.js?ts=1576442311"></script><link rel="stylesheet" type="text/css" href="../StaticFilesManual/css/core.css?ts=1576442311">
+<link rel="stylesheet" href="../StaticFilesManual/js/feedback/five-star-rating-master/css/rating.min.css">
+<link rel="stylesheet" href="../StaticFilesManual/css/prism.css">
+<script src="../StaticFilesManual/js/prism.js"></script><script src="../StaticFilesManual/js/feedback/five-star-rating-master/js/src/rating.js"></script><script src="../StaticFilesManual/js/jquery.sidebar.min.js"></script><link rel="stylesheet" href="../StaticFilesManual/css/mobileoptimisation.css">
+<script src="../StaticFilesManual/js/mobileoptimisation.js"></script>
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5V25JL6" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<div id="DocsAnalyticsData" data-area="Graphics" data-pagetype="normal"></div>
+<div class="header-wrapper">
+<div id="header" class="header"><div class="content">
+<div class="spacer"><div class="menu">
+<div id="nav-open" for="nav-input"><span></span></div>
+<div class="logo"><a href="https://docs.unity3d.com"></a></div>
+<div class="search-form"><form action="30_search.html" method="get" class="apisearch">
+<input type="text" name="q" placeholder="Search manual..." autosave="Unity Reference" results="5" class="sbox field" id="q"><input type="submit" class="submit">
+</form></div>
+<ul>
+<li><a href="../Manual/index.html" class="selected">Manual</a></li>
+<li><a href="../ScriptReference/index.html">Scripting API</a></li>
+</ul>
+</div></div>
+<div class="more">
+<div class="filler"></div>
+<ul><li><a href="https://unity3d.com/">unity3d.com</a></li></ul>
+</div>
+</div></div>
+<div class="toolbar"><div class="content">
+<div class="toggle version-number" id="VersionNumber" data-target=".otherversionscontent">
+                                Version: <b>2019.2</b><div class="otherversionscontent" id="OtherVersionsContent" style="display: none;">
+<ul id="OtherVersionsContentUl"></ul>
+<div id="otherVersionsLegend"><ul>
+<li>
+<div id="supportedColour" class="legendBox"></div>Supported</li>
+<li>
+<div id="notFoundColour" class="legendBox"></div>Legacy</li>
+</ul></div>
+</div>
+<div id="VersionSwitcherArrow" class="arrow versionSwitcherArrow"></div>
+</div>
+<div class="lang-switcher"><div class="current toggle" data-target=".lang-list">
+<div class="lbl">Language
+:                <span class="b">English</span>
+</div>
+<div class="arrow"></div>
+<div class="lang-list" style="display:none;"><ul>
+<li><a href="/Manual/LightExplorerExtension.html">English</a></li>
+<li><a href="/ja/current/Manual/LightExplorerExtension.html">日本語</a></li>
+<li><a href="/es/current/Manual/LightExplorerExtension.html">Español</a></li>
+<li><a href="/kr/current/Manual/LightExplorerExtension.html">한국어</a></li>
+<li><a href="/ru/current/Manual/LightExplorerExtension.html">Русский</a></li>
+</ul></div>
+</div></div>
+</div></div>
+<div class="mobileLogo"><a href="https://docs.unity3d.com"></a></div>
+</div>
+<div id="master-wrapper" class="master-wrapper clear">
+<div id="sidebar" class="sidebar"><div class="sidebar-wrap"><div class="content"><div class="sidebar-menu"><div class="toc" id="customScrollbar">
+<h2>Unity Manual</h2>
+<div class="search-form sidebar-search-form"><form action="30_search.html" method="get" class="apisearch">
+<input type="text" name="q" placeholder="Search manual..." autosave="Unity Reference" results="5" class="sbox field" id="q"><input type="submit" id="mobileSearchBtn" class="submit" value="Search">
+</form></div>
+<div class="toggle version-number sidebar-version-switcher" id="VersionNumber" data-target=".otherversionscontent"><form id="otherVersionsContentMobileForm"><div class="ui-field-contain">
+<label for="select-native-4">Version: 2019.2</label><select name="select-native-4" id="versionsSelectMobile"><option>Select a different version</option>
+<optgroup id="versionsWithThisPageMobile" label="Versions with this page"></optgroup>
+<optgroup id="versionsWithoutThisPageMobile" label="Versions without this page"></optgroup></select>
+</div></form></div>
+<div class="lang-switcher"><div class="current toggle" data-target=".lang-list">
+<div class="lbl">Language
+:                <span class="b">English</span>
+</div>
+<div class="arrow"></div>
+<div class="lang-list" style="display:none;"><ul>
+<li><a href="/Manual/LightExplorerExtension.html">English</a></li>
+<li><a href="/ja/current/Manual/LightExplorerExtension.html">日本語</a></li>
+<li><a href="/es/current/Manual/LightExplorerExtension.html">Español</a></li>
+<li><a href="/kr/current/Manual/LightExplorerExtension.html">한국어</a></li>
+<li><a href="/ru/current/Manual/LightExplorerExtension.html">Русский</a></li>
+</ul></div>
+</div></div>
+</div></div></div></div></div>
+<div id="content-wrap" class="content-wrap"><div class="content-block">
+<div class="darkCover"></div>
+<div class="content">
+<div class="section">
+<div class="breadcrumbs clear"><ul>
+<li><a href="UnityManual.html">Unity User Manual (2019.2)</a></li>
+<li><a href="Graphics.html">Graphics</a></li>
+<li><a href="ScriptableRenderPipeline.html">Scriptable Render Pipeline</a></li>
+<li> Light Explorer extension</li>
+</ul></div>
+<div class="mb20"><div class="nextprev clear">
+<div class="icon tt left mr1" data-distance="-40|-30|top">
+<span class="prev"><a href="SRPBatcher.html"></a></span><div class="tip"> Scriptable Render Pipeline (SRP) Batcher</div>
+</div>
+<div class="icon tt right" data-distance="-40|-30|top">
+<span class="next"><a href="PhysicsSection.html"></a></span><div class="tip">Physics</div>
+</div>
+</div></div>
+<div class="scrollToFeedback"><a id="scrollToFeedback">Leave feedback</a></div>
+<h1>Light Explorer extension</h1>
+<!--BeginSwitchLink--><!--EndSwitchLink-->
+<div class="clear"></div>
+
+<p>The Light Explorer extension allows you to create your own version of the <a href="#LightingExplorer">Light Explorer window</a>. This window is a powerful visualization and editing tool that you can use to see every <a href="#Lights">Light</a> in your <span class="tooltip"><strong>Scene</strong><span class="tooltiptext">A Scene contains the environments and menus of your game. Think of each unique Scene file as a unique level. In each Scene, you place your environments, obstacles, and decorations, essentially designing and building your game in pieces. <a href="CreatingScenes.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#Scene">Glossary</a></span></span></span> and edit their properties. With this extension, you can extend the current window in multiple ways. For example, you can:</p>
+
+<ul>
+<li>Change the tabs, from simply changing the tab name to adding your own custom tabs that display lists of different types of <span class="tooltip"><strong>GameObject</strong><span class="tooltiptext">The fundamental object in Unity scenes, which can represent characters, props, scenery, cameras, waypoints, and more. A GameObject’s functionality is defined by the Components attached to it. <a href="class-GameObject.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#GameObject">Glossary</a></span></span></span>. This is useful if you want to display property information for your own custom <span class="tooltip"><strong>Reflection Probes</strong><span class="tooltiptext">A rendering component that captures a spherical view of its surroundings in all directions, rather like a camera. The captured image is then stored as a Cubemap that can be used by objects with reflective materials. <a href="class-ReflectionProbe.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#ReflectionProbe">Glossary</a></span></span></span>, for example.</li>
+<li>Change the columns on a tab, again from changing the name to adding your own custom columns. Adding columns is useful if you want to view extra Light properties.</li>
+</ul>
+
+<p>Use this extension to create a Light Explorer within your own custom Scriptable Render Pipeline (SRP), or with the <a href="https://docs.unity3d.com/Packages/com.unity.render-pipelines.high-definition@latest/index.html?preview=1">High Definition Render Pipeline</a>’s custom <a href="https://docs.unity3d.com/Packages/com.unity.render-pipelines.high-definition@latest/index.html?subfolder=/manual/Light-Component.html?">Lights</a>.</p>
+
+<h2>Extending the Light Explorer</h2>
+
+<p>To extend the Light Explorer, you can either inherit from the:</p>
+
+<ul>
+<li>
+<code>ILightingExplorerExtension</code> interface and override the <code>GetContentTabs</code> method.</li>
+<li>
+<code>DefaultLightingExplorerExtension</code> class, which inherits from <code>ILightingExplorerExtension</code>. This class provides you with all of the content that is already in the window. Use this if you only want to override the number of tabs, the titles of each tab, or which Lights to display. To find out how you can extend the Light Explorer this way, see the example below.</li>
+</ul>
+
+<h3>Example code</h3>
+
+<p>The examples in this section show you how to extend the default Light Explorer class to only show the Name column for Lights, and change the number of tabs. In your own implementation, you can override as many or as few methods as you want.</p>
+
+<p>The following example only shows the name column for Lights:</p>
+
+<pre><code>namespace UnityEditor
+{
+    [LightingExplorerExtensionAttribute(typeof(SomeRenderPipelineAsset))]
+    public class SimpleExplorerExtension : DefaultLightingExplorerExtension
+    {
+        protected override LightingExplorerTableColumn[] GetLightColumns()
+        {
+            return new[]
+            {
+                new LightingExplorerTableColumn(LightingExplorerTableColumn.DataType.Name, Styles.Name, null, 200), // 0: Name
+            }
+        }
+    }
+}
+</code></pre>
+
+<p>The following example only shows the name and enabled status for Lights, and hides the Emissive Materials tab (only shows 3 tabs instead of 4)</p>
+
+<pre><code>namespace UnityEditor
+{
+    [LightingExplorerExtensionAttribute(typeof(SomeOtherRenderPipelineAsset))]
+    public class ComplexLightExplorerExtension : DefaultLightingExplorerExtension
+    {
+       protected virtual UnityEngine.Object[] GetLights()
+        {
+            return Resources.FindObjectsOfTypeAll&lt;Light&gt;();
+        }
+
+        protected virtual LightingExplorerTableColumn[] GetLightColumns()
+        {
+            return new[]
+            {
+                new LightingExplorerTableColumn(LightingExplorerTableColumn.DataType.Name, Styles.Name, null, 200), // 0: Name
+                new LightingExplorerTableColumn(LightingExplorerTableColumn.DataType.Checkbox, Styles.On, &quot;m_Enabled&quot;, 25), // 1: Enabled
+            {
+        {
+
+        public virtual LightingExplorerTab[] GetContentTabs()
+        {
+            return new[]
+            {
+                new LightingExplorerTab(&quot;Light Table&quot;, GetLights, GetLightColumns),
+                new LightingExplorerTab(&quot;Reflection Probes&quot;, GetReflectionProbes, GetReflectionProbeColumns),
+                new LightingExplorerTab(&quot;Light Probes&quot;, GetLightProbes, GetLightProbeColumns)            };
+        }
+    }
+}
+</code></pre>
+
+<h3>Useful classes and methods</h3>
+
+<p>Here is a list of classes and methods that you can use to extend the Light Explorer:</p>
+
+<p>ILightingExplorerExtension:</p>
+
+<pre><code>public virtual LightingExplorerTab[] GetContentTabs();
+public virtual void OnEnable() {}
+public virtual void OnDisable() {}
+</code></pre>
+
+<p>DefaultLightingExplorerExtension (inherit from ILightingExplorerExtension):</p>
+
+<pre><code>public virtual LightingExplorerTab[] GetContentTabs();
+public virtual void OnEnable() {}
+public virtual void OnDisable() {}
+
+protected virtual UnityEngine.Object[] GetLights();
+protected virtual LightingExplorerTableColumn[] GetLightColumns();
+
+protected virtual UnityEngine.Object[] GetReflectionProbes();
+protected virtual LightingExplorerTableColumn[] GetReflectionProbeColumns();
+
+protected virtual UnityEngine.Object[] GetLightProbes();
+protected virtual LightingExplorerTableColumn[] GetLightProbeColumns();
+
+protected virtual UnityEngine.Object[] GetEmissives();
+protected virtual LightingExplorerTableColumn[] GetEmissivesColumns();
+</code></pre>
+
+<hr>
+
+<ul>
+<li><span class="page-edit">2019–08–13 Page published
+</span></li>
+<li><span class="page-history">Light Explorer extension added in <a href="https://docs.unity3d.com/2018.3/Documentation/Manual/30_search.html?q=newin20183">2018.3</a> <span class="search-words">NewIn20183</span></span></li>
+</ul>
+<div class="feedbackbox" id="feedbackbox">
+<div id="rating"><p>Did you find this page useful? Please give it a rating:<br><div id="ratecontent" class="c-rating"></div>
+</p></div>
+<div id="ratingThanks" style="display:none"><p>Thanks for rating this page!</p></div>
+<div id="problem"><p><a name="problem">Report a problem on this page</a></p></div>
+<div id="problemType" style="display:none"><p>What kind of problem would you like to report?<ul type="problems">
+<li><a name="needcode" id="problemneedcode">This page needs code samples</a></li>
+<li><a name="code" id="problemcode">Code samples do not work</a></li>
+<li><a name="missing" id="problemmissing">Information is missing</a></li>
+<li><a name="incorrect" id="problemincorrect">Information is incorrect</a></li>
+<li><a name="unclear" id="problemunclear">Information is unclear or confusing</a></li>
+<li><a name="language" id="problemlanguage">There is a spelling/grammar error on this page</a></li>
+<li><a name="other" id="problemother">Something else</a></li>
+</ul>
+<p><known_issues><p>Is something described here not working as you expect it to? It might be a <b>Known Issue</b>. Please check with the Issue Tracker at <a href="https://issuetracker.unity3d.com">issuetracker.unity3d.com</a>.</p></known_issues></p>
+</p></div>
+<div id="problemThanks" style="display:none"><p>Thanks for letting us know! This page has been marked for review based on your feedback.<br><br>If you have time, you can provide more information to help us fix the problem faster.<br><br><a id="problemThanksMoreInfoButton">Provide more information</a><br>
+</p></div>
+<div id="problemMoreInfo" style="display:none">
+<p id="problemNeedCodeForm" style="display:none">You've told us this page needs code samples. If you'd like to help us further, you could provide a code sample, or tell us about what kind of code sample you'd like to see:</p>
+<p id="problemCodeForm" style="display:none">You've told us there are code samples on this page which don't work. If you know how to fix it, or have something better we could use instead, please let us know:</p>
+<p id="problemMissingForm" style="display:none">You've told us there is information missing from this page. Please tell us more about what's missing:</p>
+<p id="problemIncorrectForm" style="display:none">You've told us there is incorrect information on this page. If you know what we should change to make it correct, please tell us:</p>
+<p id="problemUnclearForm" style="display:none">You've told us this page has unclear or confusing information. Please tell us more about what you found unclear or confusing, or let us know how we could make it clearer:</p>
+<p id="problemLanguageForm" style="display:none">You've told us there is a spelling or grammar error on this page. Please tell us what's wrong:</p>
+<p id="problemOtherForm" style="display:none">You've told us this page has a problem. Please tell us more about what's wrong:</p>
+<form>
+<textarea id="problemFormSuggestionField" cols="40" rows="5"></textarea><input type="hidden" id="problemFormDescription"><input type="submit" id="problemFormDescriptionSubmit" value="Submit">
+</form>
+</div>
+<div id="problemMoreInfoThanks" style="display:none"><p>Thanks for helping to make the Unity documentation better!</p></div>
+<script>InitialiseStarRating();</script>
+</div>
+<div class="nextprev clear">
+<div class="icon tt left mr1" data-distance="-40|-30|top">
+<span class="prev"><a href="SRPBatcher.html"></a></span><div class="tip"> Scriptable Render Pipeline (SRP) Batcher</div>
+</div>
+<div class="icon tt right" data-distance="-40|-30|top">
+<span class="next"><a href="PhysicsSection.html"></a></span><div class="tip">Physics</div>
+</div>
+</div>
+</div>
+<div class="footer-wrapper"><div class="footer clear">
+<div class="copy">Copyright © 2019 Unity Technologies. Publication: 2019.2-003J. Built: 2019-12-16.</div>
+<div class="menu">
+<a href="https://unity3d.com/learn">Tutorials</a><a href="https://answers.unity3d.com">Community Answers</a><a href="https://support.unity3d.com/hc/en-us">Knowledge Base</a><a href="https://forum.unity3d.com">Forums</a><a href="https://unity3d.com/asset-store">Asset Store</a>
+</div>
+</div></div>
+</div>
+</div></div>
+</div>
+</body>
+</html>

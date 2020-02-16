@@ -1,0 +1,305 @@
+<!DOCTYPE html><html lang="en" class="no-js">
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+<script>var offline=(location.href.indexOf('docs.unity3d.com')==-1)?true:false;if(!offline){(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);  })(window,document,'script','dataLayer','GTM-5V25JL6');}</script><link href="https://fonts.googleapis.com/css?family=Roboto&amp;display=swap" rel="stylesheet">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unity - Manual:  Timeline Playback Controls</title>
+<meta property="og:image" content="https://unity3d.com/files/images/ogimg.jpg">
+<meta name="author" content="Unity Technologies">
+<link rel="shortcut icon" href="https://unity.com/themes/contrib/unity_base/images/favicons/favicon.ico">
+<link rel="icon" type="image/png" href="../StaticFilesManual/images/favicons/favicon.png">
+<link rel="apple-touch-icon-precomposed" sizes="152x152" href="../StaticFilesManual/images/favicons/apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../StaticFilesManual/images/favicons/apple-touch-icon-144x144.png">
+<link rel="apple-touch-icon-precomposed" sizes="120x120" href="../StaticFilesManual/images/favicons/apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="../StaticFilesManual/images/favicons/apple-touch-icon-114x114.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="../StaticFilesManual/images/favicons/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon-precomposed" href="../StaticFilesManual/images/favicons/apple-touch-icon.png">
+<meta name="msapplication-TileColor" content="#222c37">
+<meta name="msapplication-TileImage" content="../StaticFilesManual/images/favicons/tileicon-144x144.png">
+<script type="text/javascript" src="https://docs.unity3d.com/StaticFilesConfig/UnityVersionsInfo.js"></script><script type="text/javascript" src="../StaticFilesManual/js/jquery.js?ts=1576442311"></script><script type="text/javascript" src="../StaticFilesManual/js/core.js?ts=1576442311"></script><script type="text/javascript" src="docdata/toc.js?ts=1576442311"></script><script type="text/javascript" src="docdata/global_toc.js?ts=1576442311"></script><link rel="stylesheet" type="text/css" href="../StaticFilesManual/css/core.css?ts=1576442311">
+<link rel="stylesheet" href="../StaticFilesManual/js/feedback/five-star-rating-master/css/rating.min.css">
+<link rel="stylesheet" href="../StaticFilesManual/css/prism.css">
+<script src="../StaticFilesManual/js/prism.js"></script><script src="../StaticFilesManual/js/feedback/five-star-rating-master/js/src/rating.js"></script><script src="../StaticFilesManual/js/jquery.sidebar.min.js"></script><link rel="stylesheet" href="../StaticFilesManual/css/mobileoptimisation.css">
+<script src="../StaticFilesManual/js/mobileoptimisation.js"></script>
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5V25JL6" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<div id="DocsAnalyticsData" data-area="TimelineSection" data-pagetype="normal"></div>
+<div class="header-wrapper">
+<div id="header" class="header"><div class="content">
+<div class="spacer"><div class="menu">
+<div id="nav-open" for="nav-input"><span></span></div>
+<div class="logo"><a href="https://docs.unity3d.com"></a></div>
+<div class="search-form"><form action="30_search.html" method="get" class="apisearch">
+<input type="text" name="q" placeholder="Search manual..." autosave="Unity Reference" results="5" class="sbox field" id="q"><input type="submit" class="submit">
+</form></div>
+<ul>
+<li><a href="../Manual/index.html" class="selected">Manual</a></li>
+<li><a href="../ScriptReference/index.html">Scripting API</a></li>
+</ul>
+</div></div>
+<div class="more">
+<div class="filler"></div>
+<ul><li><a href="https://unity3d.com/">unity3d.com</a></li></ul>
+</div>
+</div></div>
+<div class="toolbar"><div class="content">
+<div class="toggle version-number" id="VersionNumber" data-target=".otherversionscontent">
+                                Version: <b>2019.2</b><div class="otherversionscontent" id="OtherVersionsContent" style="display: none;">
+<ul id="OtherVersionsContentUl"></ul>
+<div id="otherVersionsLegend"><ul>
+<li>
+<div id="supportedColour" class="legendBox"></div>Supported</li>
+<li>
+<div id="notFoundColour" class="legendBox"></div>Legacy</li>
+</ul></div>
+</div>
+<div id="VersionSwitcherArrow" class="arrow versionSwitcherArrow"></div>
+</div>
+<div class="lang-switcher"><div class="current toggle" data-target=".lang-list">
+<div class="lbl">Language
+:                <span class="b">English</span>
+</div>
+<div class="arrow"></div>
+<div class="lang-list" style="display:none;"><ul>
+<li><a href="/Manual/TimelinePlaybackControls.html">English</a></li>
+<li><a href="/ja/current/Manual/TimelinePlaybackControls.html">日本語</a></li>
+<li><a href="/es/current/Manual/TimelinePlaybackControls.html">Español</a></li>
+<li><a href="/kr/current/Manual/TimelinePlaybackControls.html">한국어</a></li>
+<li><a href="/ru/current/Manual/TimelinePlaybackControls.html">Русский</a></li>
+</ul></div>
+</div></div>
+</div></div>
+<div class="mobileLogo"><a href="https://docs.unity3d.com"></a></div>
+</div>
+<div id="master-wrapper" class="master-wrapper clear">
+<div id="sidebar" class="sidebar"><div class="sidebar-wrap"><div class="content"><div class="sidebar-menu"><div class="toc" id="customScrollbar">
+<h2>Unity Manual</h2>
+<div class="search-form sidebar-search-form"><form action="30_search.html" method="get" class="apisearch">
+<input type="text" name="q" placeholder="Search manual..." autosave="Unity Reference" results="5" class="sbox field" id="q"><input type="submit" id="mobileSearchBtn" class="submit" value="Search">
+</form></div>
+<div class="toggle version-number sidebar-version-switcher" id="VersionNumber" data-target=".otherversionscontent"><form id="otherVersionsContentMobileForm"><div class="ui-field-contain">
+<label for="select-native-4">Version: 2019.2</label><select name="select-native-4" id="versionsSelectMobile"><option>Select a different version</option>
+<optgroup id="versionsWithThisPageMobile" label="Versions with this page"></optgroup>
+<optgroup id="versionsWithoutThisPageMobile" label="Versions without this page"></optgroup></select>
+</div></form></div>
+<div class="lang-switcher"><div class="current toggle" data-target=".lang-list">
+<div class="lbl">Language
+:                <span class="b">English</span>
+</div>
+<div class="arrow"></div>
+<div class="lang-list" style="display:none;"><ul>
+<li><a href="/Manual/TimelinePlaybackControls.html">English</a></li>
+<li><a href="/ja/current/Manual/TimelinePlaybackControls.html">日本語</a></li>
+<li><a href="/es/current/Manual/TimelinePlaybackControls.html">Español</a></li>
+<li><a href="/kr/current/Manual/TimelinePlaybackControls.html">한국어</a></li>
+<li><a href="/ru/current/Manual/TimelinePlaybackControls.html">Русский</a></li>
+</ul></div>
+</div></div>
+</div></div></div></div></div>
+<div id="content-wrap" class="content-wrap"><div class="content-block">
+<div class="darkCover"></div>
+<div class="content">
+<div class="section">
+<div class="breadcrumbs clear"><ul>
+<li><a href="UnityManual.html">Unity User Manual (2019.2)</a></li>
+<li><a href="TimelineSection.html"> Timeline</a></li>
+<li><a href="TimelineEditorWindow.html"> Timeline window</a></li>
+<li> Timeline Playback Controls</li>
+</ul></div>
+<div class="mb20"><div class="nextprev clear">
+<div class="icon tt left mr1" data-distance="-40|-30|top">
+<span class="prev"><a href="TimelinePreviewSelector.html"></a></span><div class="tip"> Timeline Preview and Timeline Selector</div>
+</div>
+<div class="icon tt right" data-distance="-40|-30|top">
+<span class="next"><a href="TimelineTrackList.html"></a></span><div class="tip"> Track list and Track headers</div>
+</div>
+</div></div>
+<div class="scrollToFeedback"><a id="scrollToFeedback">Leave feedback</a></div>
+<h1>Timeline Playback Controls</h1>
+<!--BeginSwitchLink--><!--EndSwitchLink-->
+<div class="clear"></div>
+
+<p>To play the <span class="tooltip"><strong>Timeline instance</strong><span class="tooltiptext">Refers to the link between a Timeline Asset and the GameObjects that the Timeline Asset animates in the scene. You create a Timeline instance by associating a Timeline Asset to a GameObject through a Playable Director component. The Timeline instance is scene-based. <a href="TimelineOverview.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#Timelineinstance">Glossary</a></span></span></span> and to control the location of the <span class="tooltip"><strong>Timeline Playhead</strong><span class="tooltiptext">The white marker and line that indicates the exact point in time being previewed in the Timeline Editor window. <a href="TimelinePositioningClips.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#TimelinePlayhead">Glossary</a></span></span></span>, use the <span class="tooltip"><strong>Timeline</strong><span class="tooltiptext">Generic term within Unity that refers to all features, windows, editors, and components related to creating, modifying, or reusing cut-scenes, cinematics, and game-play sequences. <a href="TimelineSection.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#Timeline">Glossary</a></span></span></span> Playback Controls.</p>
+
+<figure>
+<img src="../uploads/Main/timeline_playback_controls.png" alt="Timeline Playback Controls">
+<figcaption>Timeline Playback Controls</figcaption>
+</figure>
+
+<h2>Timeline Start button</h2>
+
+<figure>
+<img src="../uploads/Main/timeline_start_button.png" alt="">
+</figure>
+
+<p>To move the Timeline Playhead to the start of the Timeline instance, click the Timeline Start button, or hold Shift and press Comma (,).</p>
+
+<h2>Previous Frame button</h2>
+
+<figure>
+<img src="../uploads/Main/timeline_previous_frame_button.png" alt="">
+</figure>
+
+<p>To move the Timeline Playhead to the previous frame, click the Previous Frame button, or press Comma (,).</p>
+
+<h2>Timeline Play button</h2>
+
+<figure>
+<img src="../uploads/Main/timeline_play_button.png" alt="">
+</figure>
+
+<p>To preview the Timeline instance in <strong>Timeline Playback mode</strong>, click the Timeline Play button, or press the Spacebar. <strong>Timeline Playback mode</strong> does the following:</p>
+
+<ul>
+<li><p>Begins playback at the current location of the Timeline Playhead and continues to the end of the Timeline instance. If the Play Range button is enabled, playback is restricted to a specified time range.</p></li>
+<li><p>The Timeline Playhead position moves along the Timeline instance. The <strong>Playhead Location field</strong> shows the position of the Timeline Playhead in either frames or seconds, depending on the <a href="TimelineSettings.html">Timeline settings</a>. </p></li>
+<li><p>To pause playback, click the Timeline Play button again, or press the Spacebar. </p></li>
+<li><p>When playback reaches the end of the Timeline instance, the Wrap Mode determines whether playback should hold, repeat, or do nothing. The Wrap Mode setting is a <a href="class-PlayableDirector.html">Playable Director component</a> property.</p></li>
+</ul>
+
+<p>Timeline Playback mode provides a preview of the Timeline instance while in the Timeline window. Timeline Playback mode is only a simulation of <a href="GameView.html">Play Mode in the Game View</a>. </p>
+
+<p>The Timeline Playback mode does not support audio playback. To preview a Timeline instance with audio, enable the <span class="tooltip"><strong>Play on Awake</strong><span class="tooltiptext">Set this to true to make an Audio Source start playing on awake <a href="class-AudioClip.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#PlayOnAwake">Glossary</a></span></span></span> option in the <a href="class-PlayableDirector.html">Playable Director component</a> and preview game play in Play Mode.</p>
+
+<h2>Next Frame button</h2>
+
+<figure>
+<img src="../uploads/Main/timeline_next_frame_button.png" alt="">
+</figure>
+
+<p>To move the Timeline Playhead to the next frame, click the Next Frame button, or press Period (.).</p>
+
+<h2>Timeline End button</h2>
+
+<figure>
+<img src="../uploads/Main/timeline_end_button.png" alt="">
+</figure>
+
+<p>To move the Timeline Playhead to the end of the Timeline instance, click the Timeline End button, or hold Shift and press Period (.).</p>
+
+<h2>Play Range button</h2>
+
+<figure>
+<img src="../uploads/Main/timeline_play_range_button.png" alt="">
+</figure>
+
+<p>Enable the <strong>Play Range</strong> button to restrict playback to a specific range of seconds or frames. You can only set a play range when previewing a Timeline instance within the Timeline window. Unity ignores the play range in <a href="GameView.html">Play Mode</a>.</p>
+
+<p>The Timeline ruler highlights the play range and indicates its start and end with white markers. To modify the play range, drag either marker.</p>
+
+<figure>
+<img src="../uploads/Main/timeline_play_range.png" alt="Play Range (red circle) enabled with while markers and highlighted area defining range">
+<figcaption>Play Range (red circle) enabled with while markers and highlighted area defining range</figcaption>
+</figure>
+
+<p>Use <strong>Play Range Mode</strong>, in the <a href="TimelineSettings.html">Timeline Settings</a>, to set whether the play range plays once or repeatedly.</p>
+
+<h2>Timeline Playhead and Playhead Location field</h2>
+
+<p>The Timeline Playhead indicates the exact point in time being previewed in the Timeline window. The Playhead Location field expresses the location of the Timeline Playhead in either frames or seconds. </p>
+
+<figure>
+<img src="../uploads/Main/timeline_playhead_location.png" alt="Playhead Location field and Timeline Playhead (red). The Timeline Playhead also appears on the Zoombar (red arrow).">
+<figcaption>Playhead Location field and Timeline Playhead (red). The Timeline Playhead also appears on the Zoombar (red arrow).</figcaption>
+</figure>
+
+<p>Use the <a href="TimelineNavigatingClipsView.html">Zoombar to navigate, scroll, and zoom</a> the <span class="tooltip"><strong>Clips view</strong><span class="tooltiptext">The area in the Timeline Editor window where you add, position, and manipulate clips. <a href="TimelineClipsView.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#Clipsview">Glossary</a></span></span></span>. A white line indicates the location of the Timeline Playhead in relation to the entire Timeline instance.</p>
+
+<p>To jump the Timeline Playhead to a specific time, click the Timeline ruler. You can also enter the time value in the Playhead Location field and press Enter. When entering a value, frames are converted to seconds or seconds are converted to frames, based on the Timeline settings. For example, if the Timeline ruler is expressed as seconds with a frame rate of 30 <span class="tooltip"><strong>frames per second</strong><span class="tooltiptext">The frequency at which consecutive frames are displayed in a running game. <a href="RenderingStatistics.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#framespersecond">Glossary</a></span></span></span>, entering 180 in the Playhead Location field converts 180 frames to seconds and moves the Timeline Playhead to 6:00. To set the time format that the Timeline window uses, configure the <a href="TimelineSettings.html">Timeline Settings</a>.</p>
+
+<h2>Switching between Local and Global</h2>
+
+<p>Use the Local or Global button to change the Timeline ruler from local time to global time. Local time and global time are only relevant when editing a nested Timeline instance. </p>
+
+<p>
+<a href="TimelineNestingInstances.html">To create a nested Timeline instance</a>, drag a <span class="tooltip"><strong>GameObject</strong><span class="tooltiptext">The fundamental object in Unity scenes, which can represent characters, props, scenery, cameras, waypoints, and more. A GameObject’s functionality is defined by the Components attached to it. <a href="class-GameObject.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#GameObject">Glossary</a></span></span></span> associated with a Timeline instance into another Timeline instance. The Timeline instance you are dragging into becomes the master Timeline instance. The Timeline instance associated with the <strong>GameObject</strong> becomes a nested Timeline instance.</p>
+
+<figure>
+<img src="../uploads/Main/timeline_nesting_example.png" alt="A nested Timeline instance appears as a Control clip on a Control track (red arrow)">
+<figcaption>A nested Timeline instance appears as a Control clip on a Control track (red arrow)</figcaption>
+</figure>
+
+<p>To edit a nested Timeline instance, double-click the Control clip that contains the nested Timeline instance. The Timeline window switches to the nested Timeline instance, indicated by the Timeline title which shows the name and GameObject of the master Timeline instance, followed by the name and GameObject of the nested Timeline instance.</p>
+
+<figure>
+<img src="../uploads/Main/timeline_nesting_editing.png" alt="The Timeline title indicates that you are editing a nested Timeline instance (red outline). The Global button (red arrow) indicates that the nested Timeline instance is shown using global time.">
+<figcaption>The Timeline title indicates that you are editing a nested Timeline instance (red outline). The Global button (red arrow) indicates that the nested Timeline instance is shown using global time.</figcaption>
+</figure>
+
+<p>When editing a nested Timeline instance, click <strong>Global</strong> to switch the Timeline ruler to Local time. Local time is relative to the nested Timeline. This means that the Timeline ruler starts at zero.</p>
+
+<figure>
+<img src="../uploads/Main/timeline_nesting_local.png" alt="A nested Timeline instance in Local time.">
+<figcaption>A nested Timeline instance in Local time.</figcaption>
+</figure>
+
+<p>Click <strong>Local</strong> to view the Timeline ruler in relation to the placement of the nested Timeline in the master Timeline instance. This means that if, for example, if the Control clip is placed at frame 70 of the master Timeline then the Timeline ruler starts at 70 at the beginning of the nested Timeline instance.</p>
+
+<figure>
+<img src="../uploads/Main/timeline_nesting_global.png" alt="A nested Timeline instance in Global time.">
+<figcaption>A nested Timeline instance in Global time.</figcaption>
+</figure>
+
+<hr>
+
+<ul>
+<li><p><span class="page-edit">2017–08–10 Page published
+</span></p></li>
+<li><p><span class="page-history">Switching between Local and Global, new feature in Unity <a href="https://docs.unity3d.com/2018.2/Documentation/Manual/30_search.html?q=newin20182">2018.2</a> <span class="search-words">NewIn20182</span></span></p></li>
+</ul>
+<div class="feedbackbox" id="feedbackbox">
+<div id="rating"><p>Did you find this page useful? Please give it a rating:<br><div id="ratecontent" class="c-rating"></div>
+</p></div>
+<div id="ratingThanks" style="display:none"><p>Thanks for rating this page!</p></div>
+<div id="problem"><p><a name="problem">Report a problem on this page</a></p></div>
+<div id="problemType" style="display:none"><p>What kind of problem would you like to report?<ul type="problems">
+<li><a name="needcode" id="problemneedcode">This page needs code samples</a></li>
+<li><a name="code" id="problemcode">Code samples do not work</a></li>
+<li><a name="missing" id="problemmissing">Information is missing</a></li>
+<li><a name="incorrect" id="problemincorrect">Information is incorrect</a></li>
+<li><a name="unclear" id="problemunclear">Information is unclear or confusing</a></li>
+<li><a name="language" id="problemlanguage">There is a spelling/grammar error on this page</a></li>
+<li><a name="other" id="problemother">Something else</a></li>
+</ul>
+<p><known_issues><p>Is something described here not working as you expect it to? It might be a <b>Known Issue</b>. Please check with the Issue Tracker at <a href="https://issuetracker.unity3d.com">issuetracker.unity3d.com</a>.</p></known_issues></p>
+</p></div>
+<div id="problemThanks" style="display:none"><p>Thanks for letting us know! This page has been marked for review based on your feedback.<br><br>If you have time, you can provide more information to help us fix the problem faster.<br><br><a id="problemThanksMoreInfoButton">Provide more information</a><br>
+</p></div>
+<div id="problemMoreInfo" style="display:none">
+<p id="problemNeedCodeForm" style="display:none">You've told us this page needs code samples. If you'd like to help us further, you could provide a code sample, or tell us about what kind of code sample you'd like to see:</p>
+<p id="problemCodeForm" style="display:none">You've told us there are code samples on this page which don't work. If you know how to fix it, or have something better we could use instead, please let us know:</p>
+<p id="problemMissingForm" style="display:none">You've told us there is information missing from this page. Please tell us more about what's missing:</p>
+<p id="problemIncorrectForm" style="display:none">You've told us there is incorrect information on this page. If you know what we should change to make it correct, please tell us:</p>
+<p id="problemUnclearForm" style="display:none">You've told us this page has unclear or confusing information. Please tell us more about what you found unclear or confusing, or let us know how we could make it clearer:</p>
+<p id="problemLanguageForm" style="display:none">You've told us there is a spelling or grammar error on this page. Please tell us what's wrong:</p>
+<p id="problemOtherForm" style="display:none">You've told us this page has a problem. Please tell us more about what's wrong:</p>
+<form>
+<textarea id="problemFormSuggestionField" cols="40" rows="5"></textarea><input type="hidden" id="problemFormDescription"><input type="submit" id="problemFormDescriptionSubmit" value="Submit">
+</form>
+</div>
+<div id="problemMoreInfoThanks" style="display:none"><p>Thanks for helping to make the Unity documentation better!</p></div>
+<script>InitialiseStarRating();</script>
+</div>
+<div class="nextprev clear">
+<div class="icon tt left mr1" data-distance="-40|-30|top">
+<span class="prev"><a href="TimelinePreviewSelector.html"></a></span><div class="tip"> Timeline Preview and Timeline Selector</div>
+</div>
+<div class="icon tt right" data-distance="-40|-30|top">
+<span class="next"><a href="TimelineTrackList.html"></a></span><div class="tip"> Track list and Track headers</div>
+</div>
+</div>
+</div>
+<div class="footer-wrapper"><div class="footer clear">
+<div class="copy">Copyright © 2019 Unity Technologies. Publication: 2019.2-003J. Built: 2019-12-16.</div>
+<div class="menu">
+<a href="https://unity3d.com/learn">Tutorials</a><a href="https://answers.unity3d.com">Community Answers</a><a href="https://support.unity3d.com/hc/en-us">Knowledge Base</a><a href="https://forum.unity3d.com">Forums</a><a href="https://unity3d.com/asset-store">Asset Store</a>
+</div>
+</div></div>
+</div>
+</div></div>
+</div>
+</body>
+</html>

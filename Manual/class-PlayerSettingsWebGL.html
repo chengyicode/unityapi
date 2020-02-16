@@ -1,0 +1,579 @@
+<!DOCTYPE html><html lang="en" class="no-js">
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+<script>var offline=(location.href.indexOf('docs.unity3d.com')==-1)?true:false;if(!offline){(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);  })(window,document,'script','dataLayer','GTM-5V25JL6');}</script><link href="https://fonts.googleapis.com/css?family=Roboto&amp;display=swap" rel="stylesheet">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unity - Manual:  WebGL Player settings</title>
+<meta property="og:image" content="https://unity3d.com/files/images/ogimg.jpg">
+<meta name="author" content="Unity Technologies">
+<link rel="shortcut icon" href="https://unity.com/themes/contrib/unity_base/images/favicons/favicon.ico">
+<link rel="icon" type="image/png" href="../StaticFilesManual/images/favicons/favicon.png">
+<link rel="apple-touch-icon-precomposed" sizes="152x152" href="../StaticFilesManual/images/favicons/apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../StaticFilesManual/images/favicons/apple-touch-icon-144x144.png">
+<link rel="apple-touch-icon-precomposed" sizes="120x120" href="../StaticFilesManual/images/favicons/apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="../StaticFilesManual/images/favicons/apple-touch-icon-114x114.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="../StaticFilesManual/images/favicons/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon-precomposed" href="../StaticFilesManual/images/favicons/apple-touch-icon.png">
+<meta name="msapplication-TileColor" content="#222c37">
+<meta name="msapplication-TileImage" content="../StaticFilesManual/images/favicons/tileicon-144x144.png">
+<script type="text/javascript" src="https://docs.unity3d.com/StaticFilesConfig/UnityVersionsInfo.js"></script><script type="text/javascript" src="../StaticFilesManual/js/jquery.js?ts=1576442311"></script><script type="text/javascript" src="../StaticFilesManual/js/core.js?ts=1576442311"></script><script type="text/javascript" src="docdata/toc.js?ts=1576442311"></script><script type="text/javascript" src="docdata/global_toc.js?ts=1576442311"></script><link rel="stylesheet" type="text/css" href="../StaticFilesManual/css/core.css?ts=1576442311">
+<link rel="stylesheet" href="../StaticFilesManual/js/feedback/five-star-rating-master/css/rating.min.css">
+<link rel="stylesheet" href="../StaticFilesManual/css/prism.css">
+<script src="../StaticFilesManual/js/prism.js"></script><script src="../StaticFilesManual/js/feedback/five-star-rating-master/js/src/rating.js"></script><script src="../StaticFilesManual/js/jquery.sidebar.min.js"></script><link rel="stylesheet" href="../StaticFilesManual/css/mobileoptimisation.css">
+<script src="../StaticFilesManual/js/mobileoptimisation.js"></script>
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5V25JL6" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<div id="DocsAnalyticsData" data-area="PlatformSpecific" data-pagetype="reference"></div>
+<div class="header-wrapper">
+<div id="header" class="header"><div class="content">
+<div class="spacer"><div class="menu">
+<div id="nav-open" for="nav-input"><span></span></div>
+<div class="logo"><a href="https://docs.unity3d.com"></a></div>
+<div class="search-form"><form action="30_search.html" method="get" class="apisearch">
+<input type="text" name="q" placeholder="Search manual..." autosave="Unity Reference" results="5" class="sbox field" id="q"><input type="submit" class="submit">
+</form></div>
+<ul>
+<li><a href="../Manual/index.html" class="selected">Manual</a></li>
+<li><a href="../ScriptReference/index.html">Scripting API</a></li>
+</ul>
+</div></div>
+<div class="more">
+<div class="filler"></div>
+<ul><li><a href="https://unity3d.com/">unity3d.com</a></li></ul>
+</div>
+</div></div>
+<div class="toolbar"><div class="content">
+<div class="toggle version-number" id="VersionNumber" data-target=".otherversionscontent">
+                                Version: <b>2019.2</b><div class="otherversionscontent" id="OtherVersionsContent" style="display: none;">
+<ul id="OtherVersionsContentUl"></ul>
+<div id="otherVersionsLegend"><ul>
+<li>
+<div id="supportedColour" class="legendBox"></div>Supported</li>
+<li>
+<div id="notFoundColour" class="legendBox"></div>Legacy</li>
+</ul></div>
+</div>
+<div id="VersionSwitcherArrow" class="arrow versionSwitcherArrow"></div>
+</div>
+<div class="lang-switcher"><div class="current toggle" data-target=".lang-list">
+<div class="lbl">Language
+:                <span class="b">English</span>
+</div>
+<div class="arrow"></div>
+<div class="lang-list" style="display:none;"><ul>
+<li><a href="/Manual/class-PlayerSettingsWebGL.html">English</a></li>
+<li><a href="/ja/current/Manual/class-PlayerSettingsWebGL.html">日本語</a></li>
+<li><a href="/es/current/Manual/class-PlayerSettingsWebGL.html">Español</a></li>
+<li><a href="/kr/current/Manual/class-PlayerSettingsWebGL.html">한국어</a></li>
+<li><a href="/ru/current/Manual/class-PlayerSettingsWebGL.html">Русский</a></li>
+</ul></div>
+</div></div>
+</div></div>
+<div class="mobileLogo"><a href="https://docs.unity3d.com"></a></div>
+</div>
+<div id="master-wrapper" class="master-wrapper clear">
+<div id="sidebar" class="sidebar"><div class="sidebar-wrap"><div class="content"><div class="sidebar-menu"><div class="toc" id="customScrollbar">
+<h2>Unity Manual</h2>
+<div class="search-form sidebar-search-form"><form action="30_search.html" method="get" class="apisearch">
+<input type="text" name="q" placeholder="Search manual..." autosave="Unity Reference" results="5" class="sbox field" id="q"><input type="submit" id="mobileSearchBtn" class="submit" value="Search">
+</form></div>
+<div class="toggle version-number sidebar-version-switcher" id="VersionNumber" data-target=".otherversionscontent"><form id="otherVersionsContentMobileForm"><div class="ui-field-contain">
+<label for="select-native-4">Version: 2019.2</label><select name="select-native-4" id="versionsSelectMobile"><option>Select a different version</option>
+<optgroup id="versionsWithThisPageMobile" label="Versions with this page"></optgroup>
+<optgroup id="versionsWithoutThisPageMobile" label="Versions without this page"></optgroup></select>
+</div></form></div>
+<div class="lang-switcher"><div class="current toggle" data-target=".lang-list">
+<div class="lbl">Language
+:                <span class="b">English</span>
+</div>
+<div class="arrow"></div>
+<div class="lang-list" style="display:none;"><ul>
+<li><a href="/Manual/class-PlayerSettingsWebGL.html">English</a></li>
+<li><a href="/ja/current/Manual/class-PlayerSettingsWebGL.html">日本語</a></li>
+<li><a href="/es/current/Manual/class-PlayerSettingsWebGL.html">Español</a></li>
+<li><a href="/kr/current/Manual/class-PlayerSettingsWebGL.html">한국어</a></li>
+<li><a href="/ru/current/Manual/class-PlayerSettingsWebGL.html">Русский</a></li>
+</ul></div>
+</div></div>
+</div></div></div></div></div>
+<div id="content-wrap" class="content-wrap"><div class="content-block">
+<div class="darkCover"></div>
+<div class="content">
+<div class="section">
+<div class="breadcrumbs clear"><ul>
+<li><a href="UnityManual.html">Unity User Manual (2019.2)</a></li>
+<li><a href="PlatformSpecific.html">Platform-specific</a></li>
+<li><a href="webgl.html">WebGL</a></li>
+<li> WebGL Player settings</li>
+</ul></div>
+<div class="mb20"><div class="nextprev clear">
+<div class="icon tt left mr1" data-distance="-40|-30|top">
+<span class="prev"><a href="webgl.html"></a></span><div class="tip">WebGL</div>
+</div>
+<div class="icon tt right" data-distance="-40|-30|top">
+<span class="next"><a href="webgl-gettingstarted.html"></a></span><div class="tip">Getting started with WebGL development</div>
+</div>
+</div></div>
+<div class="scrollToFeedback"><a id="scrollToFeedback">Leave feedback</a></div>
+<h1>WebGL Player settings</h1>
+<!--BeginSwitchLink--><!--EndSwitchLink-->
+<div class="clear"></div>
+
+<p>This page details the <strong>Player</strong> settings specific to the <span class="tooltip"><strong>WebGL</strong><span class="tooltiptext">A JavaScript API that renders 2D and 3D graphics in a web browser. The Unity WebGL build option allows Unity to publish content as JavaScript programs which use HTML5 technologies and the WebGL rendering API to run Unity content in a web browser. <a href="webgl-gettingstarted.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#WebGL">Glossary</a></span></span></span> platform. For a description of the general <strong>Player</strong> settings, see <a href="class-PlayerSettings.html#general">Player</a>.</p>
+
+<figure>
+<img src="../uploads/Main/class-PlayerSettingsWebGL.png" alt="WebGL Player settings">
+<figcaption>WebGL Player settings</figcaption>
+</figure>
+
+<p>You can find documentation for the properties in the following sections:</p>
+
+<ul>
+<li><a href="#Resolution">Resolution and Presentation</a></li>
+<li><a href="#Other">Other Settings</a></li>
+<li><a href="#Publishing">Publishing Settings</a></li>
+</ul>
+
+<p>
+<strong>Note:</strong> Although the <strong>Icon</strong> panel appears on the WebGL <strong>Player</strong> settings, there are no icon settings because WebGL games don’t use icons. Also, the only settings on the <strong>Splash Image</strong> panel are the <a href="class-PlayerSettingsSplashScreen.html">common Splash Screen</a> settings.</p>
+
+<p>For more information about WebGL <strong>Publishing Settings</strong>, see the <a href="webgl-building.html">WebGL Building and Running</a> page.</p>
+
+<p><a name="Resolution"></a></p>
+
+<h2>Resolution and Presentation</h2>
+
+<p>This section allows you to customize the size and style.</p>
+
+<figure>
+<img src="../uploads/Main/PlayerSetWebGLRes.png" alt="Resolution section for the WebGL Player platform">
+<figcaption>Resolution section for the WebGL Player platform</figcaption>
+</figure>
+
+<h3>Resolution</h3>
+
+<table>
+<colgroup>
+<col style="text-align:left;">
+<col style="text-align:left;">
+</colgroup>
+
+<thead>
+<tr>
+	<th style="text-align:left;"><strong>Setting</strong></th>
+	<th style="text-align:left;"><strong>Function</strong></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td style="text-align:left;"><strong>Default Canvas Width</strong></td>
+	<td style="text-align:left;">Set the width of the WebGL canvas element.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Default Canvas Height</strong></td>
+	<td style="text-align:left;">Set the height of the WebGL canvas element.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Run In Background</strong></td>
+	<td style="text-align:left;">Enable this option to allow your content to continue to run when the canvas or the browser window loses focus.</td>
+</tr>
+</tbody>
+</table>
+
+<h3>WebGL Template</h3>
+
+<p>Select a template to use for your WebGL Project:</p>
+
+<ul>
+<li>The <strong>Default</strong> page is a simple white page with a loading bar on a grey canvas.</li>
+<li>The <strong>Minimal</strong> page has only the necessary boilerplate code to run the WebGL content.</li>
+</ul>
+
+<p>You can specify your own template so that you can run your game in a similar environment to the finished game. Follow the instructions in <a href="webgl-templates.html">Using WebGL Templates</a>.</p>
+
+<p><a name="Other"></a></p>
+
+<h2>Other Settings</h2>
+
+<p>This section allows you to customize a range of options organized into the following groups:</p>
+
+<ul>
+<li><span class="tooltip"><a href="#Rendering">Rendering</a><span class="tooltiptext">The process of drawing graphics to the screen (or to a render texture). By default, the main camera in Unity renders its view to the screen. <a href="GraphicsOverview.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#Rendering">Glossary</a></span></span></span></li>
+<li><a href="#Configuration">Configuration</a></li>
+<li><a href="#Optimization">Optimization</a></li>
+<li><a href="#Logging">Logging</a></li>
+<li><a href="#Legacy">Legacy</a></li>
+</ul>
+
+<p><a name="Rendering"></a></p>
+
+<h3>Rendering</h3>
+
+<p>Use these settings to customize how Unity renders your game for the WebGL platform.</p>
+
+<figure>
+<img src="../uploads/Main/PlayerSetWebGLOther-Rendering.png" alt="Rendering Player settings for the WebGL platform">
+<figcaption>Rendering Player settings for the WebGL platform</figcaption>
+</figure>
+
+<table>
+<colgroup>
+<col style="text-align:left;">
+<col style="text-align:left;">
+</colgroup>
+
+<thead>
+<tr>
+	<th style="text-align:left;"><strong>Property</strong></th>
+	<th style="text-align:left;"><strong>Function</strong></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td style="text-align:left;"><strong>Color Space</strong></td>
+	<td style="text-align:left;">Choose which color space should be used for rendering: <em>Gamma</em> or <em>Linear</em>. <br>See the <a href="LinearLighting.html">Linear rendering overview</a> for an explanation of the difference between the two.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Auto Graphics API</strong></td>
+	<td style="text-align:left;">Disable this option to manually pick and reorder the graphics APIs. By default this option is enabled, and Unity includes WebGL2.0, with WebGL1.0 as a fallback for devices where WebGL2.0 is not supported.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><span class="tooltip"><strong>Static Batching</strong><span class="tooltiptext">A technique Unity uses to draw GameObjects on the screen that combines static (non-moving) GameObjects into big Meshes, and renders them in a faster way. <a href="DrawCallBatching.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#StaticBatching">Glossary</a></span></span></span></td>
+	<td style="text-align:left;">Enable this option to use <a href="DrawCallBatching.html">Static batching</a>.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><span class="tooltip"><strong>Dynamic Batching</strong><span class="tooltiptext">An automatic Unity process which attempts to render multiple meshes as if they were a single mesh for optimized graphics performance. The technique transforms all of the GameObject vertices on the CPU and groups many similar vertices together. <a href="DrawCallBatching.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#DynamicBatching">Glossary</a></span></span></span></td>
+	<td style="text-align:left;">Enable this option to use <a href="DrawCallBatching.html">Dynamic Batching</a> on your build (enabled by default).<br><strong>Note:</strong> Dynamic batching has no effect when a <a href="ScriptableRenderPipeline.html">Scriptable Render Pipeline</a> is active, so this setting is only visible when nothing is set in the <strong>Scriptable Render Pipeline Asset</strong> <a href="class-GraphicsSettings.html#SRLoop">Graphics</a> setting.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Graphics Jobs (Experimental)</strong></td>
+	<td style="text-align:left;">Enable this option to instruct Unity to offload graphics tasks (render loops) to worker threads running on other CPU cores. This is intended to reduce the time spent in <code>Camera.Render</code> on the main thread, which is often a bottleneck. <br><strong>Note:</strong> This feature is experimental. It may not deliver a performance improvement for your project, and may introduce instability.<br>Unity currently only supports Graphics Jobs when using <a href="https://www.khronos.org/vulkan/">Vulkan</a> and this setting has no effect when using <a href="https://developer.android.com/guide/topics/graphics/opengl.html">OpenGL</a> ES.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Lightmap Streaming Enabled</strong></td>
+	<td style="text-align:left;">Enable this option to load only the lightmap mip maps as needed to render the current game Cameras. This value applies to the lightmap textures as they are generated.<br><strong>Note:</strong> To use this setting, you must enable the <a href="class-QualitySettings.html#texStream">Texture Streaming Quality</a> setting.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Streaming Priority</strong></td>
+	<td style="text-align:left;">Set the lightmap mip map streaming priority to resolve resource conflicts. These values are applied to the light map textures as they are generated.<br>Positive numbers give higher priority. Valid values range from –128 to 127.</td>
+</tr>
+</tbody>
+</table>
+
+<p><a name="Configuration"></a></p>
+
+<h3>Configuration</h3>
+
+<figure>
+<img src="../uploads/Main/PlayerSetWebGLOther-Config.png" alt="Configuration settings for the WebGL platform">
+<figcaption>Configuration settings for the WebGL platform</figcaption>
+</figure>
+
+<table>
+<colgroup>
+<col style="text-align:left;">
+<col style="text-align:left;">
+<col style="text-align:left;">
+</colgroup>
+
+<thead>
+<tr>
+	<th style="text-align:left;" colspan="2"><strong>Setting</strong></th>
+	<th style="text-align:left;"><strong>Function</strong></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td style="text-align:left;" colspan="2">
+<a name="backend"></a><span class="tooltip"><strong>Scripting Backend</strong><span class="tooltiptext">A framework that powers scripting in Unity. Unity supports three different scripting backends depending on target platform: Mono, .NET and IL2CPP. Universal Windows Platform, however, supports only two: .NET and IL2CPP. <a href="windowsstore-il2cpp.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#ScriptingBackend">Glossary</a></span></span></span></td>
+	<td style="text-align:left;">This option is not available for WebGL because WebGL always uses the <span class="tooltip"><a href="IL2CPP.html">IL2CPP</a><span class="tooltiptext">A Unity-developed scripting back-end which you can use as an alternative to Mono when building Projects for some platforms. <a href="IL2CPP.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#IL2CPP">Glossary</a></span></span></span> Scripting backend.</td>
+</tr>
+<tr>
+	<td style="text-align:left;" colspan="2"><strong>API Compatibility Level</strong></td>
+	<td style="text-align:left;">Choose which .NET APIs you can use in your Project. This setting can affect compatibility with 3rd-party libraries.<br><strong>Tip:</strong> If you are having problems with a third-party assembly, you can try the suggestion in the <a href="#apiComp">API Compatibility Level</a> section below.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"></td>
+	<td style="text-align:left;"><em>.Net 2.0</em></td>
+	<td style="text-align:left;">Maximum .net compatibility, biggest file sizes. Part of the deprecated .NET 3.5 runtime.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"></td>
+	<td style="text-align:left;"><em>.Net 2.0 Subset</em></td>
+	<td style="text-align:left;">Subset of full .net compatibility, smaller file sizes. Part of the deprecated .NET 3.5 runtime.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"></td>
+	<td style="text-align:left;"><em>.Net Standard 2.0</em></td>
+	<td style="text-align:left;">Compatible with <a href="https://docs.microsoft.com/en-us/dotnet/standard/net-standard">.NET Standard 2.0</a>. Produces smaller builds and has full cross-platform support.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"></td>
+	<td style="text-align:left;"><em>.Net 4.x</em></td>
+	<td style="text-align:left;">Choose this option when using libraries that access APIs not included in .NET Standard 2.0. This option is compatible with the .NET Framework 4, which includes everything in the .NET Standard 2.0 profile as well as additional APIs.<br>Produces larger builds and any additional APIs available are not necessarily supported on all platforms. See <a href="dotnetProfileAssemblies.html">Referencing additional class library assemblies</a> for more information.</td>
+</tr>
+<tr>
+	<td style="text-align:left;" colspan="2"><strong>Use incremental GC</strong></td>
+	<td style="text-align:left;">Not supported.</td>
+</tr>
+<tr>
+	<td style="text-align:left;" colspan="2"><strong>Disable HW Statistics</strong></td>
+	<td style="text-align:left;">Enable this option to instruct the application not to send information about the hardware to Unity. By default, Unity Android applications send anonymous HW statistics to Unity. This provides you with aggregated information to help you make decisions as a developer.</td>
+</tr>
+<tr>
+	<td style="text-align:left;" colspan="2"><strong>Scripting Define Symbols</strong></td>
+	<td style="text-align:left;">Set custom compilation flags. For more details, see <a href="PlatformDependentCompilation.html">Platform dependent compilation</a>.</td>
+</tr>
+<tr>
+	<td style="text-align:left;" colspan="2"><strong>Allow ‘unsafe’ Code</strong></td>
+	<td style="text-align:left;">Enable support for compiling <a href="https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/unsafe">‘unsafe’ C# code</a> in a pre-defined assembly (for example, <code>Assembly-CSharp.dll</code>). <br>For Assembly Definition Files (<code>.asmdef</code>), click on one of your <code>.asmdef</code> files and enable the option in the Inspector window that appears.</td>
+</tr>
+<tr>
+	<td style="text-align:left;" colspan="2"><strong>Active Input Handling</strong></td>
+	<td style="text-align:left;">Choose how you want to handle input from users.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"></td>
+	<td style="text-align:left;"><em>Input Manager</em></td>
+	<td style="text-align:left;">Use the traditional <a href="class-InputManager.html">Input</a> settings.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"></td>
+	<td style="text-align:left;"><em>Input System (Preview)</em></td>
+	<td style="text-align:left;">Use the newer <a href="../ScriptReference/Input.html">Input</a> system. The Input System is provided as a <span class="tooltip"><strong>preview package</strong><span class="tooltiptext">A <em>preview</em> package is in development and not yet ready for production. A package in preview might be at any stage of development, from the initial stages to near completion.<br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#Previewpackage">Glossary</a></span></span></span> for this release. To try a preview of the Input System, install the <a href="https://github.com/Unity-Technologies/InputSystem">InputSystem package</a>.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"></td>
+	<td style="text-align:left;"><em>Both</em></td>
+	<td style="text-align:left;">Use both systems side by side.</td>
+</tr>
+</tbody>
+</table>
+
+<p><a name="apiComp"></a></p>
+
+<h4>API Compatibility Level</h4>
+
+<p>You can choose your mono API compatibility level for all targets. Sometimes a 3rd-party .NET library uses functionality that is outside of your .NET compatibility level. In order to understand what is going on in such cases, and how to best fix it, try following these suggestions: </p>
+
+<ol>
+<li>Install <a href="http://www.airsquirrels.com/reflector/">Reflector</a> for Windows.</li>
+<li>Drag the .NET assemblies for the API compatilibity level you are having issues with into Reflector. You can find these under <code>Frameworks/Mono/lib/mono/YOURSUBSET/</code>.</li>
+<li>Drag in your 3rd-party assembly.</li>
+<li>Right-click your 3rd-party assembly and select <strong>Analyze</strong>.</li>
+<li>In the analysis report, inspect the <strong>Depends on</strong> section. The report highlights anything that the 3rd-party assembly depends on, but that is not available in the .NET compatibility level of your choice in red.</li>
+</ol>
+
+<p><a name="Optimization"></a></p>
+
+<h3>Optimization</h3>
+
+<figure>
+<img src="../uploads/Main/PlayerSetWebGLOther-Optimization.png" alt="Optimization settings for the WebGL platform">
+<figcaption>Optimization settings for the WebGL platform</figcaption>
+</figure>
+
+<table>
+<colgroup>
+<col style="text-align:left;">
+<col style="text-align:left;">
+<col style="text-align:left;">
+</colgroup>
+
+<thead>
+<tr>
+	<th style="text-align:left;" colspan="2"><strong>Setting</strong></th>
+	<th style="text-align:left;"><strong>Function</strong></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td style="text-align:left;" colspan="2"><strong>Prebake <strong>Collision</strong> Meshes</strong></td>
+	<td style="text-align:left;">Enable this option to add <span class="tooltip"><strong>collision</strong><span class="tooltiptext">A collision occurs when the physics engine detects that the colliders of two GameObjects make contact or overlap, when at least one has a rigidbody component and is in motion. <a href="CollidersOverview.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#Collision">Glossary</a></span></span></span> data to Meshes at build time.</td>
+</tr>
+<tr>
+	<td style="text-align:left;" colspan="2"><strong>Keep Loaded <strong>Shaders</strong> Alive</strong></td>
+	<td style="text-align:left;">Enable this option to prevent <span class="tooltip"><strong>shaders</strong><span class="tooltiptext">A small script that contains the mathematical calculations and algorithms for calculating the Color of each pixel rendered, based on the lighting input and the Material configuration. <a href="Shaders.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#Shader">Glossary</a></span></span></span> from being unloaded.</td>
+</tr>
+<tr>
+	<td style="text-align:left;" colspan="2"><strong>Preloaded Assets</strong></td>
+	<td style="text-align:left;">Set an array of Assets for the player to load on startup. <br>To add new Assets, increase the value of the <strong>Size</strong> property and then set a reference to the Asset to load in the new <strong>Element</strong> box that appears.</td>
+</tr>
+<tr>
+	<td style="text-align:left;" colspan="2"><strong>Strip Engine Code</strong></td>
+	<td style="text-align:left;">Enable code stripping. This setting is only available with the <em>IL2CPP</em> <a href="#backend">Scripting Backend</a>. <br>Most games don’t use all necessary DLLs. With the <strong>Strip Engine Code</strong> option enabled, you can strip out unused parts to reduce the size of the built player on iOS devices. If your game is using classes that would normally be stripped out by the option you currently have selected, you’ll be presented with a Debug message when you make a build.</td>
+</tr>
+<tr>
+	<td style="text-align:left;" colspan="2"><strong>Managed Stripping Level</strong></td>
+	<td style="text-align:left;">Choose how aggressively Unity strips unused managed (C#) code. <br>When Unity builds your game or application, the Unity Linker process can strip unused code from the managed dynamically linked libraries used in the project. Stripping code can make the resulting executable significantly smaller, but can sometimes mistakenly remove code that is actually used.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"></td>
+	<td style="text-align:left;"><em>Normal</em></td>
+	<td style="text-align:left;">Remove unreachable managed code to reduce build size and .NET/IL2CPP build times.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"></td>
+	<td style="text-align:left;"><em>Aggressive</em></td>
+	<td style="text-align:left;">Remove code more aggressively than under the normal option. Code size is further reduced, but this additional reduction may have side effects. For example, some methods may no longer be visible in the debugger and code accessed through reflection can be stripped. You can create a custom <code>link.xml</code> file to preserve specific classes and methods. See <a href="IL2CPP-BytecodeStripping.html">Managed bytecode stripping with IL2CPP</a> for more information</td>
+</tr>
+<tr>
+	<td style="text-align:left;" colspan="2"><strong>Vertex Compression</strong></td>
+	<td style="text-align:left;">Select which vertex channels should be compressed. For example, you can enable compression for everything except positions and lightmap UVs. <br>Compression can save memory and bandwidth but lowers precision. Whole Mesh compression set per imported object overrides where vertex compression is set on objects. Everything else obeys these vertex compression settings.</td>
+</tr>
+<tr>
+	<td style="text-align:left;" colspan="2">
+<strong>Optimize </strong>Mesh__ Data__</td>
+	<td style="text-align:left;">Enable this option to remove any data from Meshes that is not required by the Material applied to them (such as tangents, normals, colors, and UVs).</td>
+</tr>
+</tbody>
+</table>
+
+<p><a name="Logging"></a></p>
+
+<h3>Logging</h3>
+
+<p>Select what type of logging to allow in specific contexts.</p>
+
+<figure>
+<img src="../uploads/Main/PlayerSetPCOther-Logging.png" alt="Logging settings for the WebGL platform">
+<figcaption>Logging settings for the WebGL platform</figcaption>
+</figure>
+
+<p>Check one box that corresponds to each Log Type (<strong>Error</strong>, <strong>Assert</strong>, <strong>Warning</strong>, <strong>Log</strong>, and <strong>Exception</strong>) when running <span class="tooltip"><strong>scripts</strong><span class="tooltiptext">A piece of code that allows you to create your own Components, trigger game events, modify Component properties over time and respond to user input in any way you like. <a href="CreatingAndUsingScripts.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#Scripts">Glossary</a></span></span></span> (<strong>ScriptOnly</strong>) , all the time (<strong>Full</strong>), or never (<strong>None</strong>).</p>
+
+<p><a name="Legacy"></a></p>
+
+<h3>Legacy</h3>
+
+<p>Enable the <strong>Clamp BlendShapes (Deprecated)</strong> option to clamp the range of blend shape weights in <a href="class-SkinnedMeshRenderer.html">SkinnedMeshRenderers</a>.</p>
+
+<figure>
+<img src="../uploads/Main/PlayerSetPCOther-Legacy.png" alt="Legacy settings for the WebGL platform">
+<figcaption>Legacy settings for the WebGL platform</figcaption>
+</figure>
+
+<p><a name="Publishing"></a></p>
+
+<h2>Publishing settings</h2>
+
+<figure>
+<img src="../uploads/Main/WebGLBuilding-PublishingSettings.png" alt="Publishing settings for the WebGL platform">
+<figcaption>Publishing settings for the WebGL platform</figcaption>
+</figure>
+
+<table>
+<colgroup>
+<col style="text-align:left;">
+<col style="text-align:left;">
+</colgroup>
+
+<thead>
+<tr>
+	<th style="text-align:left;"><strong>Setting</strong></th>
+	<th style="text-align:left;"><strong>Function</strong></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td style="text-align:left;"><strong>Enable Exceptions</strong></td>
+	<td style="text-align:left;">Choose how to handle unexpected code behavior (generally considered errors) at run time. The options are: <em>None</em>, <em>Explicitly Thrown Exceptions Only</em>, <em>Full Without Stacktrace</em>, and <em>Full With Stacktrace</em>. See the <a href="webgl-building.html">Building and running a WebGL project</a> page for details.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Compression Format</strong></td>
+	<td style="text-align:left;">Choose the <span class="tooltip"><strong>compression</strong><span class="tooltiptext">A method of storing data that reduces the amount of storage space it requires. See <a href="class-TextureImporterOverride.html">Texture Compression</a>, <a href="class-AnimationClip.html#AssetProperties">Animation Compression</a>, <a href="class-AudioClip.html">Audio Compression</a>, <a href="ReducingFilesize.html">Build Compression</a>. <br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#compression">Glossary</a></span></span></span> format to use for release build files. The options are: <em>Gzip</em>, <em>Brotli</em>, or <em>Disabled</em> (none). Note that this option does not affect <span class="tooltip"><strong>development builds</strong><span class="tooltiptext">A development build includes debug symbols and enables the Profiler. <a href="UnityCloudBuildDevelopmentBuilds.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#DevelopmentBuild">Glossary</a></span></span></span>.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Name Files As Hashes</strong></td>
+	<td style="text-align:left;">Enable this option to use an MD5 hash of the uncompressed file contents as a filename for each file in the build.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Data caching</strong></td>
+	<td style="text-align:left;">Enable this option to automatically cache your contents Asset data on the user’s machine so it doesn’t have to be re-downloaded on subsequent runs (unless the contents have changed). <br>Caching is implemented using the IndexedDB API provided by the browser. Some browsers may implement restrictions around this, such as asking the user for permission to cache data over a specific size.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Debug Symbols</strong></td>
+	<td style="text-align:left;">Enable this option to preserve debug symbols and perform demangling (displaying the original function names) of the stack trace when an error occurs. For release builds, all the debug information is stored in a separate file which is downloaded from the server on demand when an error occurs. Development builds always have demangling support embedded in the main module and therefore are not affected by this option.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>WebAssembly Streaming</strong></td>
+	<td style="text-align:left;">Allows supporting browsers to compile and instantiate a WebAssembly module directly from a streamed underlying source.</td>
+</tr>
+</tbody>
+</table>
+
+<hr>
+
+<ul>
+<li><p><span class="page-edit">2019–06–10 Page amended
+</span></p></li>
+<li><p><span class="page-history">Publishing settings updated in Unity <a href="https://docs.unity3d.com/2017.3/Documentation/Manual/30_search.html?q=newin20171">2017.3</a> <span class="search-words">NewIn20173</span></span></p></li>
+<li><p><span class="page-history">Allow ‘unsafe’ code checkbox added in Unity 2018.1</span></p></li>
+<li><p><span class="page-history">.NET 4.x runtime added in 2018.1</span></p></li>
+<li><p><span class="page-history"></span></p></li>
+<li><p><span class="page-history">.Net 3.5 scripting runtime deprecated in Unity <a href="../Manual/30_search.html?q=newin20183">2018.3</a> <span class="search-words">NewIn20183</span></span></p></li>
+<li><p><span class="page-history">WebAssembly Streaming setting added <a href="../Manual/30_search.html?q=newin20191">2019.1</a> <span class="search-words">NewIn20191</span></span></p></li>
+<li><p><span class="page-history">Input System preview added in Unity 2019.1</span></p></li>
+<li><p><span class="page-history">Removed asm.js linker target in Unity 2019.1</span></p></li>
+</ul>
+<div class="feedbackbox" id="feedbackbox">
+<div id="rating"><p>Did you find this page useful? Please give it a rating:<br><div id="ratecontent" class="c-rating"></div>
+</p></div>
+<div id="ratingThanks" style="display:none"><p>Thanks for rating this page!</p></div>
+<div id="problem"><p><a name="problem">Report a problem on this page</a></p></div>
+<div id="problemType" style="display:none"><p>What kind of problem would you like to report?<ul type="problems">
+<li><a name="needcode" id="problemneedcode">This page needs code samples</a></li>
+<li><a name="code" id="problemcode">Code samples do not work</a></li>
+<li><a name="missing" id="problemmissing">Information is missing</a></li>
+<li><a name="incorrect" id="problemincorrect">Information is incorrect</a></li>
+<li><a name="unclear" id="problemunclear">Information is unclear or confusing</a></li>
+<li><a name="language" id="problemlanguage">There is a spelling/grammar error on this page</a></li>
+<li><a name="other" id="problemother">Something else</a></li>
+</ul>
+<p><known_issues><p>Is something described here not working as you expect it to? It might be a <b>Known Issue</b>. Please check with the Issue Tracker at <a href="https://issuetracker.unity3d.com">issuetracker.unity3d.com</a>.</p></known_issues></p>
+</p></div>
+<div id="problemThanks" style="display:none"><p>Thanks for letting us know! This page has been marked for review based on your feedback.<br><br>If you have time, you can provide more information to help us fix the problem faster.<br><br><a id="problemThanksMoreInfoButton">Provide more information</a><br>
+</p></div>
+<div id="problemMoreInfo" style="display:none">
+<p id="problemNeedCodeForm" style="display:none">You've told us this page needs code samples. If you'd like to help us further, you could provide a code sample, or tell us about what kind of code sample you'd like to see:</p>
+<p id="problemCodeForm" style="display:none">You've told us there are code samples on this page which don't work. If you know how to fix it, or have something better we could use instead, please let us know:</p>
+<p id="problemMissingForm" style="display:none">You've told us there is information missing from this page. Please tell us more about what's missing:</p>
+<p id="problemIncorrectForm" style="display:none">You've told us there is incorrect information on this page. If you know what we should change to make it correct, please tell us:</p>
+<p id="problemUnclearForm" style="display:none">You've told us this page has unclear or confusing information. Please tell us more about what you found unclear or confusing, or let us know how we could make it clearer:</p>
+<p id="problemLanguageForm" style="display:none">You've told us there is a spelling or grammar error on this page. Please tell us what's wrong:</p>
+<p id="problemOtherForm" style="display:none">You've told us this page has a problem. Please tell us more about what's wrong:</p>
+<form>
+<textarea id="problemFormSuggestionField" cols="40" rows="5"></textarea><input type="hidden" id="problemFormDescription"><input type="submit" id="problemFormDescriptionSubmit" value="Submit">
+</form>
+</div>
+<div id="problemMoreInfoThanks" style="display:none"><p>Thanks for helping to make the Unity documentation better!</p></div>
+<script>InitialiseStarRating();</script>
+</div>
+<div class="nextprev clear">
+<div class="icon tt left mr1" data-distance="-40|-30|top">
+<span class="prev"><a href="webgl.html"></a></span><div class="tip">WebGL</div>
+</div>
+<div class="icon tt right" data-distance="-40|-30|top">
+<span class="next"><a href="webgl-gettingstarted.html"></a></span><div class="tip">Getting started with WebGL development</div>
+</div>
+</div>
+</div>
+<div class="footer-wrapper"><div class="footer clear">
+<div class="copy">Copyright © 2019 Unity Technologies. Publication: 2019.2-003J. Built: 2019-12-16.</div>
+<div class="menu">
+<a href="https://unity3d.com/learn">Tutorials</a><a href="https://answers.unity3d.com">Community Answers</a><a href="https://support.unity3d.com/hc/en-us">Knowledge Base</a><a href="https://forum.unity3d.com">Forums</a><a href="https://unity3d.com/asset-store">Asset Store</a>
+</div>
+</div></div>
+</div>
+</div></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,425 @@
+<!DOCTYPE html><html lang="en" class="no-js">
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+<script>var offline=(location.href.indexOf('docs.unity3d.com')==-1)?true:false;if(!offline){(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);  })(window,document,'script','dataLayer','GTM-5V25JL6');}</script><link href="https://fonts.googleapis.com/css?family=Roboto&amp;display=swap" rel="stylesheet">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unity - Manual:  Console Window</title>
+<meta property="og:image" content="https://unity3d.com/files/images/ogimg.jpg">
+<meta name="author" content="Unity Technologies">
+<link rel="shortcut icon" href="https://unity.com/themes/contrib/unity_base/images/favicons/favicon.ico">
+<link rel="icon" type="image/png" href="../StaticFilesManual/images/favicons/favicon.png">
+<link rel="apple-touch-icon-precomposed" sizes="152x152" href="../StaticFilesManual/images/favicons/apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../StaticFilesManual/images/favicons/apple-touch-icon-144x144.png">
+<link rel="apple-touch-icon-precomposed" sizes="120x120" href="../StaticFilesManual/images/favicons/apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="../StaticFilesManual/images/favicons/apple-touch-icon-114x114.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="../StaticFilesManual/images/favicons/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon-precomposed" href="../StaticFilesManual/images/favicons/apple-touch-icon.png">
+<meta name="msapplication-TileColor" content="#222c37">
+<meta name="msapplication-TileImage" content="../StaticFilesManual/images/favicons/tileicon-144x144.png">
+<script type="text/javascript" src="https://docs.unity3d.com/StaticFilesConfig/UnityVersionsInfo.js"></script><script type="text/javascript" src="../StaticFilesManual/js/jquery.js?ts=1576442311"></script><script type="text/javascript" src="../StaticFilesManual/js/core.js?ts=1576442311"></script><script type="text/javascript" src="docdata/toc.js?ts=1576442311"></script><script type="text/javascript" src="docdata/global_toc.js?ts=1576442311"></script><link rel="stylesheet" type="text/css" href="../StaticFilesManual/css/core.css?ts=1576442311">
+<link rel="stylesheet" href="../StaticFilesManual/js/feedback/five-star-rating-master/css/rating.min.css">
+<link rel="stylesheet" href="../StaticFilesManual/css/prism.css">
+<script src="../StaticFilesManual/js/prism.js"></script><script src="../StaticFilesManual/js/feedback/five-star-rating-master/js/src/rating.js"></script><script src="../StaticFilesManual/js/jquery.sidebar.min.js"></script><link rel="stylesheet" href="../StaticFilesManual/css/mobileoptimisation.css">
+<script src="../StaticFilesManual/js/mobileoptimisation.js"></script>
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5V25JL6" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<div id="DocsAnalyticsData" data-area="ScriptingSection" data-pagetype="normal"></div>
+<div class="header-wrapper">
+<div id="header" class="header"><div class="content">
+<div class="spacer"><div class="menu">
+<div id="nav-open" for="nav-input"><span></span></div>
+<div class="logo"><a href="https://docs.unity3d.com"></a></div>
+<div class="search-form"><form action="30_search.html" method="get" class="apisearch">
+<input type="text" name="q" placeholder="Search manual..." autosave="Unity Reference" results="5" class="sbox field" id="q"><input type="submit" class="submit">
+</form></div>
+<ul>
+<li><a href="../Manual/index.html" class="selected">Manual</a></li>
+<li><a href="../ScriptReference/index.html">Scripting API</a></li>
+</ul>
+</div></div>
+<div class="more">
+<div class="filler"></div>
+<ul><li><a href="https://unity3d.com/">unity3d.com</a></li></ul>
+</div>
+</div></div>
+<div class="toolbar"><div class="content">
+<div class="toggle version-number" id="VersionNumber" data-target=".otherversionscontent">
+                                Version: <b>2019.2</b><div class="otherversionscontent" id="OtherVersionsContent" style="display: none;">
+<ul id="OtherVersionsContentUl"></ul>
+<div id="otherVersionsLegend"><ul>
+<li>
+<div id="supportedColour" class="legendBox"></div>Supported</li>
+<li>
+<div id="notFoundColour" class="legendBox"></div>Legacy</li>
+</ul></div>
+</div>
+<div id="VersionSwitcherArrow" class="arrow versionSwitcherArrow"></div>
+</div>
+<div class="lang-switcher"><div class="current toggle" data-target=".lang-list">
+<div class="lbl">Language
+:                <span class="b">English</span>
+</div>
+<div class="arrow"></div>
+<div class="lang-list" style="display:none;"><ul>
+<li><a href="/Manual/Console.html">English</a></li>
+<li><a href="/ja/current/Manual/Console.html">日本語</a></li>
+<li><a href="/es/current/Manual/Console.html">Español</a></li>
+<li><a href="/kr/current/Manual/Console.html">한국어</a></li>
+<li><a href="/ru/current/Manual/Console.html">Русский</a></li>
+</ul></div>
+</div></div>
+</div></div>
+<div class="mobileLogo"><a href="https://docs.unity3d.com"></a></div>
+</div>
+<div id="master-wrapper" class="master-wrapper clear">
+<div id="sidebar" class="sidebar"><div class="sidebar-wrap"><div class="content"><div class="sidebar-menu"><div class="toc" id="customScrollbar">
+<h2>Unity Manual</h2>
+<div class="search-form sidebar-search-form"><form action="30_search.html" method="get" class="apisearch">
+<input type="text" name="q" placeholder="Search manual..." autosave="Unity Reference" results="5" class="sbox field" id="q"><input type="submit" id="mobileSearchBtn" class="submit" value="Search">
+</form></div>
+<div class="toggle version-number sidebar-version-switcher" id="VersionNumber" data-target=".otherversionscontent"><form id="otherVersionsContentMobileForm"><div class="ui-field-contain">
+<label for="select-native-4">Version: 2019.2</label><select name="select-native-4" id="versionsSelectMobile"><option>Select a different version</option>
+<optgroup id="versionsWithThisPageMobile" label="Versions with this page"></optgroup>
+<optgroup id="versionsWithoutThisPageMobile" label="Versions without this page"></optgroup></select>
+</div></form></div>
+<div class="lang-switcher"><div class="current toggle" data-target=".lang-list">
+<div class="lbl">Language
+:                <span class="b">English</span>
+</div>
+<div class="arrow"></div>
+<div class="lang-list" style="display:none;"><ul>
+<li><a href="/Manual/Console.html">English</a></li>
+<li><a href="/ja/current/Manual/Console.html">日本語</a></li>
+<li><a href="/es/current/Manual/Console.html">Español</a></li>
+<li><a href="/kr/current/Manual/Console.html">한국어</a></li>
+<li><a href="/ru/current/Manual/Console.html">Русский</a></li>
+</ul></div>
+</div></div>
+</div></div></div></div></div>
+<div id="content-wrap" class="content-wrap"><div class="content-block">
+<div class="darkCover"></div>
+<div class="content">
+<div class="section">
+<div class="breadcrumbs clear"><ul>
+<li><a href="UnityManual.html">Unity User Manual (2019.2)</a></li>
+<li><a href="ScriptingSection.html">Scripting</a></li>
+<li><a href="ScriptingTools.html"> Scripting Tools</a></li>
+<li> Console Window</li>
+</ul></div>
+<div class="mb20"><div class="nextprev clear">
+<div class="icon tt left mr1" data-distance="-40|-30|top">
+<span class="prev"><a href="ScriptingTools.html"></a></span><div class="tip"> Scripting Tools</div>
+</div>
+<div class="icon tt right" data-distance="-40|-30|top">
+<span class="next"><a href="LogFiles.html"></a></span><div class="tip">Log Files</div>
+</div>
+</div></div>
+<div class="scrollToFeedback"><a id="scrollToFeedback">Leave feedback</a></div>
+<h1>Console Window</h1>
+<!--BeginSwitchLink--><!--EndSwitchLink-->
+<div class="clear"></div>
+
+<p>The <strong>Console</strong> Window shows errors, warnings and other messages generated by Unity.</p>
+
+<p>You can also show your own messages in the Console using the <a href="../ScriptReference/Debug.Log.html">Debug.Log</a>, <a href="../ScriptReference/Debug.LogWarning.html">Debug.LogWarning</a> and <a href="../ScriptReference/Debug.LogError.html">Debug.LogError</a> functions.</p>
+
+<p>To open the Console from Unity’s main menu, select <strong>Window &gt; General &gt; Console</strong>.</p>
+
+<figure>
+<img src="../uploads/Main/Console.png" alt="">
+</figure>
+
+<p>
+<strong>A.</strong> The <strong>Console window</strong> menu has options for <a href="#LogFiles">opening Log files</a>, controlling <a href="#LineCount">how much of each message</a> is visible in the list, and setting <a href="#StackTraceLogging">stack trace</a> options.</p>
+
+<p>
+<strong>B.</strong> The Console <span class="tooltip"><strong>toolbar</strong><span class="tooltiptext">A row of buttons and basic controls at the top of the Unity Editor that allows you to interact with the Editor in various ways (e.g. scaling, translation). <a href="Toolbar.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#Toolbar">Glossary</a></span></span></span> has options for controlling how messages are displayed, and for <a href="#Search">searching and filtering</a> messages.</p>
+
+<p>
+<strong>C.</strong> The Console list displays an entry for each logged message.<br><br>Select a message to display its entire text in the detail area.You can choose how many lines of each message to display here.<br><br>See <a href="#LineCount">Adjusting the line count</a>, below, for further information. </p>
+
+<p>
+<strong>D.</strong> The detail area shows the full text of the selected message.<br><br>If <a href="#StackTraceLogging">stack trace</a> is enabled, references to specific lines in code files show up as clickable links here.</p>
+
+<h2>Console toolbar options</h2>
+
+<p>The toolbar of the Console window has options for controlling how messages are displayed, and for searching and filtering messages.</p>
+
+<table>
+<colgroup>
+<col style="text-align:left;">
+<col style="text-align:left;">
+<col style="text-align:left;">
+</colgroup>
+
+<thead>
+<tr>
+	<th style="text-align:left;" colspan="2">Option:</th>
+	<th style="text-align:left;">Function:</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td style="text-align:left;" colspan="2"><strong>Clear</strong></td>
+	<td style="text-align:left;">Removes any messages generated from your code but retains compiler errors.</td>
+</tr>
+<tr>
+	<td style="text-align:left;" colspan="2"><strong>Collapse</strong></td>
+	<td style="text-align:left;">Shows only the first instance of recurring error messages.<br><br>This is useful for run-time errors, such as null references, that are sometimes generated on each frame update.</td>
+</tr>
+<tr>
+	<td style="text-align:left;" colspan="2"><strong>Clear On Play</strong></td>
+	<td style="text-align:left;">Clears the Console automatically whenever you enter Play mode.</td>
+</tr>
+<tr>
+	<td style="text-align:left;" colspan="2"><strong>Clear on Build</strong></td>
+	<td style="text-align:left;">Clears the Console when you build the Project.</td>
+</tr>
+<tr>
+	<td style="text-align:left;" colspan="2"><strong>Error Pause</strong></td>
+	<td style="text-align:left;">Pauses playback whenever <a href="../ScriptReference/Debug.LogError.html"><code>Debug.LogError</code></a> is called from a script.<br><br>This is useful when you want to freeze playback at a specific point in the execution and inspect the Scene.<br><br>This option does not pause playback when <a href="../ScriptReference/Debug.Log.html"><code>Debug.Log</code></a> is called.</td>
+</tr>
+<tr>
+	<td style="text-align:left;" colspan="2"><strong>[Attach-to-Player]</strong></td>
+	<td style="text-align:left;">Opens a drop-down menu with options for connecting to development builds that are running on remote devices, and displaying their Player logs in the Console.<br><br>This option is labeled with the name of the target development build (which is the build of the log that is displayed in the Console window). If the Console is not connected to a remote build, it is labeled <strong>Editor</strong> to indicate that the log displayed in the Console window is from the local Unity Editor.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"></td>
+	<td style="text-align:left;">Player Logging</td>
+	<td style="text-align:left;">If the Console is connected to a remote development build, this enables Player logging for the build.<br><br>Disabling this option suspends logging, but the Console remains connected to the target build.<br><br>Disabling this option also hides the rest of the options in this drop-down menu.<br><br>Select any build listed below <strong>Player Logging</strong> to display its log in the Console window.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"></td>
+	<td style="text-align:left;">Editor</td>
+	<td style="text-align:left;">If the Console is connected to a remote <span class="tooltip"><strong>development build</strong><span class="tooltiptext">A development build includes debug symbols and enables the Profiler. <a href="UnityCloudBuildDevelopmentBuilds.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#DevelopmentBuild">Glossary</a></span></span></span>, select this option to display the log from the local Unity Player instead of the log from the remote build.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"></td>
+	<td style="text-align:left;">&lt;Enter IP&gt;</td>
+	<td style="text-align:left;">Opens the <strong>Enter Player</strong> IP dialog, where you can specify the IP address of a development build on a remote device.<br><br>Click the <strong>Connect</strong> button in the dialog to connect to the build, and add it to the list of development builds at the bottom of the drop-down menu.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"></td>
+	<td style="text-align:left;">[DEVELOPMENT BUILDS]</td>
+	<td style="text-align:left;">Lists the available development builds. This includes auto-detected builds as well as those that you add using the <strong>Enter IP</strong> option.</td>
+</tr>
+<tr>
+	<td style="text-align:left;" colspan="2">
+<img src="../uploads/Main/ConsoleFilterMessage.png" alt=""><strong>Messages switch</strong>
+</td>
+	<td style="text-align:left;">Displays the number of messages in the Console. Click to show/hide messages.</td>
+</tr>
+<tr>
+	<td style="text-align:left;" colspan="2">
+<img src="../uploads/Main/ConsoleFilterWarning.png" alt=""><strong>Warnings switch</strong>
+</td>
+	<td style="text-align:left;">Displays the number of warnings in the Console. Click to show/hide warnings.</td>
+</tr>
+<tr>
+	<td style="text-align:left;" colspan="2">
+<img src="../uploads/Main/ConsoleFilterError.png" alt=""><strong>Errors switch</strong>
+</td>
+	<td style="text-align:left;">Displays the number of errors in the Console. Click to show/hide errors.</td>
+</tr>
+</tbody>
+</table>
+
+<p><a name="Search"></a></p>
+
+<h2>Searching and filtering Console output</h2>
+
+<p>You can search Console messages for specific keywords from the Console search bar. As you type a search term, the Console filters messages to display only those that contain matching text. The Console highlights the first match in the message text when it is in the visible part of the message (see <a href="#LineCount">Adjusting the Line Count</a> below). It does not highlight subsequent matches in the same message.</p>
+
+<figure>
+<img src="../uploads/Main/ConsoleSearch.png" alt="Searching for the term “animation” highlights the first match in each message (blue), but not subsequent matches (red)">
+<figcaption>Searching for the term “animation” highlights the first match in each message (blue), but not subsequent matches (red)</figcaption>
+</figure>
+
+<p>You can search for anything that appears in any Console message, including numerals and special characters. For example, you might want to search for the time a message was logged rather than a keyword contained in the message.</p>
+
+<p>The search looks for exact matches of whatever you type in the search bar. You cannot search for two different terms at once, or use common search engine operators.</p>
+
+<p>You can also filter Console message by type. Click the buttons beside the search bar to toggle:</p>
+
+<table>
+<colgroup>
+<col style="text-align:left;">
+<col style="text-align:left;">
+</colgroup>
+
+<thead>
+<tr>
+	<th style="text-align:left;">Button</th>
+	<th style="text-align:left;">Message type</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td style="text-align:left;"><img src="../uploads/Main/ConsoleFilterMessage.png" alt=""></td>
+	<td style="text-align:left;">Messages</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><img src="../uploads/Main/ConsoleFilterWarning.png" alt=""></td>
+	<td style="text-align:left;">Warnings</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><img src="../uploads/Main/ConsoleFilterError.png" alt=""></td>
+	<td style="text-align:left;">Errors</td>
+</tr>
+</tbody>
+</table>
+
+<p><a name="LineCount"></a></p>
+
+<h2>Adjusting the line count</h2>
+
+<p>Each Console entry can be up to 10 lines long.</p>
+
+<p>To control how many lines of each entry are visible in the list, click the Console menu button, and select <strong>Log Entry &gt; [X] Lines</strong> from the menu, where <strong>[X]</strong> is the number of lines you wish to display for each entry.</p>
+
+<figure>
+<img src="../uploads/Main/ConsoleAdjustLineCount.png" alt="Log entry line count">
+<figcaption>Log entry line count</figcaption>
+</figure>
+
+<p>A larger line count displays more of the text of each entry, but reduces the number of entries visible at any given time.</p>
+
+<p>Line count does not affect the Console search function, which always searches the full message text. If the matching text is on a hidden line, the search returns the message in the results, but does not expand it to reveal/highlight the matching text. You can see the full message text in the detail area, but the matching text is not highlighted there.</p>
+
+<p><a name="StackTraceLogging"></a></p>
+
+<h2>Stack trace logging</h2>
+
+<p>Unity can include detailed stack trace information when it prints messages to the Console or Log file. This is useful when, for example, an error message is not very clear. In that case, the stack trace can help you determine the source of the error.</p>
+
+<h3>Managed vs. unmanaged stack trace</h3>
+
+<p>The Console can provide stack trace information for managed code and unmanaged code.</p>
+
+<ul>
+<li><p>
+<strong>Managed code</strong> means C# scripts running in Unity. These can be scripts that ship with Unity, custom scripts that you write, third-party scripts included with an Asset store plug-in, or any other type of C# script that runs in the engine. <br><br>In some cases, you have access to managed code, and can modify it when debugging. In other cases, you don’t—for example when managed scripts are compiled into a managed .dll, you can see managed stack trace information, but you cannot modify the managed code unless you have access to the original source files.</p></li>
+<li><p>
+<strong>Unmanaged code</strong> means native Unity engine code, or code from a native plugin running directly on your machine, or on a target build platform.<br><br> Unmanaged code is usually compiled from C or C++ code. You cannot access it unless you have the original source code of the native binary.</p></li>
+</ul>
+
+<p>In most cases, you only use the managed stack trace to help debug your C# code. However, the full stack trace can be useful in some circumstances.</p>
+
+<p>For example, unmanaged stack trace can help you determine whether an error is caused by your code or the engine. It can also help you identify the area of the engine that an error originates from. This is especially useful when no managed stack trace information is available, and the error message is not very descriptive.</p>
+
+<p>
+<strong>NOTE:</strong> Resolving a stack trace, especially a full stack trace, is a resource-intensive operation. Use these options for debugging purposes only.</p>
+
+<h3>Setting the stack trace type</h3>
+
+<p>To specify how much detail to include in the stack trace, click the Console menu button, and select <strong>Stack Trace Logging &gt; <em>[MESSAGE TYPE]</em></strong> from the menu, where <strong><em>[MESSAGE TYPE]</em></strong> is the type of message you want to include stack trace information for. Then select one of the following options:</p>
+
+<figure>
+<img src="../uploads/Main/ConsoleStackTrace.png" alt="Stack trace logging options">
+<figcaption>Stack trace logging options</figcaption>
+</figure>
+
+<ul>
+<li><p>
+<strong>None:</strong> Unity does not output stack trace information.</p></li>
+<li><p>
+<strong>ScriptOnly:</strong> Unity outputs stack trace information for managed code.</p></li>
+<li><p>
+<strong>Full:</strong> Unity outputs stack trace information for both managed <em>and</em> unmanaged code.</p></li>
+</ul>
+
+<p>You can also control stack trace logging via scripting API. See the API reference documentation on <a href="../ScriptReference/Application.SetStackTraceLogType.html">Application.SetStackTraceLogType</a> for more details.</p>
+
+<h3>Opening source files from the stack trace output</h3>
+
+<p>When you select a message and view the full text in the detail area at the bottom of the Console window, stack trace references to specific lines in code files become clickable links. Click any link to open the file in your IDE at the referenced line.</p>
+
+<p><a name="LogFiles"></a></p>
+
+<h2>Opening Log files from the Console</h2>
+
+<p>You can open <a href="LogFiles.html">Log files</a> from the Console window menu. Choose <strong>Open <span class="tooltip"><strong>Player Log</strong><span class="tooltiptext">The .log file created by a Standalone Player that contains a record of events, such as script execution times, the compiler version, and AssetImport time. Log files can help diagnose problems. <a href="LogFiles.html#Player">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#PlayerLog">Glossary</a></span></span></span></strong> or <strong>Open Editor Log</strong>.</p>
+
+<h2>Obsolete API warnings and automatic updates</h2>
+
+<p>Among other messages, Unity shows warnings about the usage of obsolete API calls in your code. For example, Unity previously had “shortcuts” in MonoBehaviour and other classes to access common component types. So, for example, you could access a <span class="tooltip"><a href="class-Rigidbody.html">Rigidbody</a><span class="tooltiptext">A component that allows a GameObject to be affected by simulated gravity and other forces. <a href="class-Rigidbody.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#Rigidbody">Glossary</a></span></span></span> on the object using code like:</p>
+
+<pre><code>    // The &quot;rigidbody&quot; variable is part of the class and not declared in the user script.
+    Vector3 v = rigidbody.velocity;
+</code></pre>
+
+<p>These shortcuts have been deprecated, so you should now use code like:</p>
+
+<pre><code>    // Use GetComponent to access the component.
+    Rigidbody rb = GetComponent&lt;Rigidbody&gt;();
+    Vector3 v = rb.velocity;
+</code></pre>
+
+<p>When the Console detects obsolete API calls, Unity shows a warning message about them. When you double-click this message, Unity automatically attempts to upgrade the deprecated usage to the recommended equivalent .</p>
+
+<hr>
+
+<ul>
+<li><p><span class="page-edit">2019–03–11 Page amended
+</span></p></li>
+<li><p><span class="page-history">Log entry line count added in <a href="https://docs.unity3d.com/2017.3/Documentation/Manual/30_search.html?q=newin20173">2017.3</a> <span class="search-words">NewIn20173</span></span></p></li>
+<li><p><span class="page-history">Search bar and clickable stack trace messages added in <a href="https://docs.unity3d.com/2019.1/Documentation/Manual/30_search.html?q=newin20191">2019.1</a> <span class="search-words">NewIn20191</span></span></p></li>
+</ul>
+<div class="feedbackbox" id="feedbackbox">
+<div id="rating"><p>Did you find this page useful? Please give it a rating:<br><div id="ratecontent" class="c-rating"></div>
+</p></div>
+<div id="ratingThanks" style="display:none"><p>Thanks for rating this page!</p></div>
+<div id="problem"><p><a name="problem">Report a problem on this page</a></p></div>
+<div id="problemType" style="display:none"><p>What kind of problem would you like to report?<ul type="problems">
+<li><a name="needcode" id="problemneedcode">This page needs code samples</a></li>
+<li><a name="code" id="problemcode">Code samples do not work</a></li>
+<li><a name="missing" id="problemmissing">Information is missing</a></li>
+<li><a name="incorrect" id="problemincorrect">Information is incorrect</a></li>
+<li><a name="unclear" id="problemunclear">Information is unclear or confusing</a></li>
+<li><a name="language" id="problemlanguage">There is a spelling/grammar error on this page</a></li>
+<li><a name="other" id="problemother">Something else</a></li>
+</ul>
+<p><known_issues><p>Is something described here not working as you expect it to? It might be a <b>Known Issue</b>. Please check with the Issue Tracker at <a href="https://issuetracker.unity3d.com">issuetracker.unity3d.com</a>.</p></known_issues></p>
+</p></div>
+<div id="problemThanks" style="display:none"><p>Thanks for letting us know! This page has been marked for review based on your feedback.<br><br>If you have time, you can provide more information to help us fix the problem faster.<br><br><a id="problemThanksMoreInfoButton">Provide more information</a><br>
+</p></div>
+<div id="problemMoreInfo" style="display:none">
+<p id="problemNeedCodeForm" style="display:none">You've told us this page needs code samples. If you'd like to help us further, you could provide a code sample, or tell us about what kind of code sample you'd like to see:</p>
+<p id="problemCodeForm" style="display:none">You've told us there are code samples on this page which don't work. If you know how to fix it, or have something better we could use instead, please let us know:</p>
+<p id="problemMissingForm" style="display:none">You've told us there is information missing from this page. Please tell us more about what's missing:</p>
+<p id="problemIncorrectForm" style="display:none">You've told us there is incorrect information on this page. If you know what we should change to make it correct, please tell us:</p>
+<p id="problemUnclearForm" style="display:none">You've told us this page has unclear or confusing information. Please tell us more about what you found unclear or confusing, or let us know how we could make it clearer:</p>
+<p id="problemLanguageForm" style="display:none">You've told us there is a spelling or grammar error on this page. Please tell us what's wrong:</p>
+<p id="problemOtherForm" style="display:none">You've told us this page has a problem. Please tell us more about what's wrong:</p>
+<form>
+<textarea id="problemFormSuggestionField" cols="40" rows="5"></textarea><input type="hidden" id="problemFormDescription"><input type="submit" id="problemFormDescriptionSubmit" value="Submit">
+</form>
+</div>
+<div id="problemMoreInfoThanks" style="display:none"><p>Thanks for helping to make the Unity documentation better!</p></div>
+<script>InitialiseStarRating();</script>
+</div>
+<div class="nextprev clear">
+<div class="icon tt left mr1" data-distance="-40|-30|top">
+<span class="prev"><a href="ScriptingTools.html"></a></span><div class="tip"> Scripting Tools</div>
+</div>
+<div class="icon tt right" data-distance="-40|-30|top">
+<span class="next"><a href="LogFiles.html"></a></span><div class="tip">Log Files</div>
+</div>
+</div>
+</div>
+<div class="footer-wrapper"><div class="footer clear">
+<div class="copy">Copyright © 2019 Unity Technologies. Publication: 2019.2-003J. Built: 2019-12-16.</div>
+<div class="menu">
+<a href="https://unity3d.com/learn">Tutorials</a><a href="https://answers.unity3d.com">Community Answers</a><a href="https://support.unity3d.com/hc/en-us">Knowledge Base</a><a href="https://forum.unity3d.com">Forums</a><a href="https://unity3d.com/asset-store">Asset Store</a>
+</div>
+</div></div>
+</div>
+</div></div>
+</div>
+</body>
+</html>

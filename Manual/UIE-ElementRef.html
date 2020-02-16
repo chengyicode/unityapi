@@ -1,0 +1,857 @@
+<!DOCTYPE html><html lang="en" class="no-js">
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+<script>var offline=(location.href.indexOf('docs.unity3d.com')==-1)?true:false;if(!offline){(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);  })(window,document,'script','dataLayer','GTM-5V25JL6');}</script><link href="https://fonts.googleapis.com/css?family=Roboto&amp;display=swap" rel="stylesheet">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unity - Manual:  UXML elements reference</title>
+<meta property="og:image" content="https://unity3d.com/files/images/ogimg.jpg">
+<meta name="author" content="Unity Technologies">
+<link rel="shortcut icon" href="https://unity.com/themes/contrib/unity_base/images/favicons/favicon.ico">
+<link rel="icon" type="image/png" href="../StaticFilesManual/images/favicons/favicon.png">
+<link rel="apple-touch-icon-precomposed" sizes="152x152" href="../StaticFilesManual/images/favicons/apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../StaticFilesManual/images/favicons/apple-touch-icon-144x144.png">
+<link rel="apple-touch-icon-precomposed" sizes="120x120" href="../StaticFilesManual/images/favicons/apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="../StaticFilesManual/images/favicons/apple-touch-icon-114x114.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="../StaticFilesManual/images/favicons/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon-precomposed" href="../StaticFilesManual/images/favicons/apple-touch-icon.png">
+<meta name="msapplication-TileColor" content="#222c37">
+<meta name="msapplication-TileImage" content="../StaticFilesManual/images/favicons/tileicon-144x144.png">
+<script type="text/javascript" src="https://docs.unity3d.com/StaticFilesConfig/UnityVersionsInfo.js"></script><script type="text/javascript" src="../StaticFilesManual/js/jquery.js?ts=1576442311"></script><script type="text/javascript" src="../StaticFilesManual/js/core.js?ts=1576442311"></script><script type="text/javascript" src="docdata/toc.js?ts=1576442311"></script><script type="text/javascript" src="docdata/global_toc.js?ts=1576442311"></script><link rel="stylesheet" type="text/css" href="../StaticFilesManual/css/core.css?ts=1576442311">
+<link rel="stylesheet" href="../StaticFilesManual/js/feedback/five-star-rating-master/css/rating.min.css">
+<link rel="stylesheet" href="../StaticFilesManual/css/prism.css">
+<script src="../StaticFilesManual/js/prism.js"></script><script src="../StaticFilesManual/js/feedback/five-star-rating-master/js/src/rating.js"></script><script src="../StaticFilesManual/js/jquery.sidebar.min.js"></script><link rel="stylesheet" href="../StaticFilesManual/css/mobileoptimisation.css">
+<script src="../StaticFilesManual/js/mobileoptimisation.js"></script>
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5V25JL6" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<div id="DocsAnalyticsData" data-area="UIToolkits" data-pagetype="normal"></div>
+<div class="header-wrapper">
+<div id="header" class="header"><div class="content">
+<div class="spacer"><div class="menu">
+<div id="nav-open" for="nav-input"><span></span></div>
+<div class="logo"><a href="https://docs.unity3d.com"></a></div>
+<div class="search-form"><form action="30_search.html" method="get" class="apisearch">
+<input type="text" name="q" placeholder="Search manual..." autosave="Unity Reference" results="5" class="sbox field" id="q"><input type="submit" class="submit">
+</form></div>
+<ul>
+<li><a href="../Manual/index.html" class="selected">Manual</a></li>
+<li><a href="../ScriptReference/index.html">Scripting API</a></li>
+</ul>
+</div></div>
+<div class="more">
+<div class="filler"></div>
+<ul><li><a href="https://unity3d.com/">unity3d.com</a></li></ul>
+</div>
+</div></div>
+<div class="toolbar"><div class="content">
+<div class="toggle version-number" id="VersionNumber" data-target=".otherversionscontent">
+                                Version: <b>2019.2</b><div class="otherversionscontent" id="OtherVersionsContent" style="display: none;">
+<ul id="OtherVersionsContentUl"></ul>
+<div id="otherVersionsLegend"><ul>
+<li>
+<div id="supportedColour" class="legendBox"></div>Supported</li>
+<li>
+<div id="notFoundColour" class="legendBox"></div>Legacy</li>
+</ul></div>
+</div>
+<div id="VersionSwitcherArrow" class="arrow versionSwitcherArrow"></div>
+</div>
+<div class="lang-switcher"><div class="current toggle" data-target=".lang-list">
+<div class="lbl">Language
+:                <span class="b">English</span>
+</div>
+<div class="arrow"></div>
+<div class="lang-list" style="display:none;"><ul>
+<li><a href="/Manual/UIE-ElementRef.html">English</a></li>
+<li><a href="/ja/current/Manual/UIE-ElementRef.html">日本語</a></li>
+<li><a href="/es/current/Manual/UIE-ElementRef.html">Español</a></li>
+<li><a href="/kr/current/Manual/UIE-ElementRef.html">한국어</a></li>
+<li><a href="/ru/current/Manual/UIE-ElementRef.html">Русский</a></li>
+</ul></div>
+</div></div>
+</div></div>
+<div class="mobileLogo"><a href="https://docs.unity3d.com"></a></div>
+</div>
+<div id="master-wrapper" class="master-wrapper clear">
+<div id="sidebar" class="sidebar"><div class="sidebar-wrap"><div class="content"><div class="sidebar-menu"><div class="toc" id="customScrollbar">
+<h2>Unity Manual</h2>
+<div class="search-form sidebar-search-form"><form action="30_search.html" method="get" class="apisearch">
+<input type="text" name="q" placeholder="Search manual..." autosave="Unity Reference" results="5" class="sbox field" id="q"><input type="submit" id="mobileSearchBtn" class="submit" value="Search">
+</form></div>
+<div class="toggle version-number sidebar-version-switcher" id="VersionNumber" data-target=".otherversionscontent"><form id="otherVersionsContentMobileForm"><div class="ui-field-contain">
+<label for="select-native-4">Version: 2019.2</label><select name="select-native-4" id="versionsSelectMobile"><option>Select a different version</option>
+<optgroup id="versionsWithThisPageMobile" label="Versions with this page"></optgroup>
+<optgroup id="versionsWithoutThisPageMobile" label="Versions without this page"></optgroup></select>
+</div></form></div>
+<div class="lang-switcher"><div class="current toggle" data-target=".lang-list">
+<div class="lbl">Language
+:                <span class="b">English</span>
+</div>
+<div class="arrow"></div>
+<div class="lang-list" style="display:none;"><ul>
+<li><a href="/Manual/UIE-ElementRef.html">English</a></li>
+<li><a href="/ja/current/Manual/UIE-ElementRef.html">日本語</a></li>
+<li><a href="/es/current/Manual/UIE-ElementRef.html">Español</a></li>
+<li><a href="/kr/current/Manual/UIE-ElementRef.html">한국어</a></li>
+<li><a href="/ru/current/Manual/UIE-ElementRef.html">Русский</a></li>
+</ul></div>
+</div></div>
+</div></div></div></div></div>
+<div id="content-wrap" class="content-wrap"><div class="content-block">
+<div class="darkCover"></div>
+<div class="content">
+<div class="section">
+<div class="breadcrumbs clear"><ul>
+<li><a href="UnityManual.html">Unity User Manual (2019.2)</a></li>
+<li><a href="UIToolkits.html"> User interfaces (UI)</a></li>
+<li><a href="UIElements.html"> UIElements Developer Guide</a></li>
+<li><a href="UIE-UXML.html"> The UXML format</a></li>
+<li> UXML elements reference</li>
+</ul></div>
+<div class="mb20"><div class="nextprev clear">
+<div class="icon tt left mr1" data-distance="-40|-30|top">
+<span class="prev"><a href="UIE-LoadingUXMLcsharp.html"></a></span><div class="tip">Loading UXML from C#</div>
+</div>
+<div class="icon tt right" data-distance="-40|-30|top">
+<span class="next"><a href="UIE-UQuery.html"></a></span><div class="tip"> UQuery</div>
+</div>
+</div></div>
+<div class="scrollToFeedback"><a id="scrollToFeedback">Leave feedback</a></div>
+<h1>UXML elements reference</h1>
+<!--BeginSwitchLink--><!--EndSwitchLink-->
+<div class="clear"></div>
+
+<p>The following tables outline the UXML elements available in the <code>UnityEngine.UIElements</code> and <code>UnityEditor.UIElements</code> namespaces.</p>
+
+<h2>Base elements</h2>
+
+<table>
+<colgroup>
+<col style="text-align:left;">
+<col style="text-align:left;">
+<col style="text-align:left;">
+<col style="text-align:left;">
+</colgroup>
+
+<thead>
+<tr>
+	<th style="text-align:left;"><strong>Element</strong></th>
+	<th style="text-align:left;"><strong>Function</strong></th>
+	<th style="text-align:left;"><strong>Namespace</strong></th>
+	<th style="text-align:left;"><strong>Permitted child elements</strong></th>
+	<th style="text-align:left;"><strong>Attributes</strong></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td style="text-align:left;"><code>VisualElement</code></td>
+	<td style="text-align:left;">The base class for all visual elements.</td>
+	<td style="text-align:left;"><code>UnityEngine.UIElements</code></td>
+	<td style="text-align:left;">Any number of <code>VisualElement</code>
+</td>
+	<td style="text-align:left;">
+<code>class</code>: A list of space separated names.<br><code>style</code>: USS directives to style the element.<br><code>name</code>: A unique string identifier for this element.<br><code>picking-mode</code>: Set to <code>Position</code> or <code>Ignore</code>. The default value is <code>Position</code>.<br><code>tooltip</code>: When the mouse hovers the element a string displays.<br><code>focusable</code>: A boolean that indicates whether the element is focusable. The default is set to <code>false</code> (not focusable). This replaces the obsolete <code>focus-index</code> element.<br><code>tabindex</code>: An integer that defines the tabbing position of the element and the position in the tree. A positive value increases tabbing priority. The default is 0. This replaces the obsolete <code>focus-index</code> element.<br><code>view-data-key</code> : A string that defines the key used for serialization of the element.<br>This element also accepts any other attribute.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>BindableElement</code></td>
+	<td style="text-align:left;">An element that can be bound to a <code>SerializedProperty</code>. The value of the property and the value displayed are synchronized.</td>
+	<td style="text-align:left;"><code>UnityEngine.UIElements</code></td>
+	<td style="text-align:left;">Any number of <code>VisualElement</code>
+</td>
+	<td style="text-align:left;">
+<code>binding-path</code>: The path of the property that this element is bound to.</td>
+</tr>
+</tbody>
+</table>
+
+<h2>Utilities</h2>
+
+<table>
+<colgroup>
+<col style="text-align:left;">
+<col style="text-align:left;">
+<col style="text-align:left;">
+<col style="text-align:left;">
+</colgroup>
+
+<thead>
+<tr>
+	<th style="text-align:left;"><strong>Element</strong></th>
+	<th style="text-align:left;"><strong>Function</strong></th>
+	<th style="text-align:left;"><strong>Namespace</strong></th>
+	<th style="text-align:left;"><strong>Permitted child elements</strong></th>
+	<th style="text-align:left;"><strong>Attributes</strong></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td style="text-align:left;"><code>Box</code></td>
+	<td style="text-align:left;">This element is similar to <code>VisualElement</code> but draws a box around its content.</td>
+	<td style="text-align:left;"><code>UnityEngine.UIElements</code></td>
+	<td style="text-align:left;">Any number of <code>VisualElement</code>
+</td>
+	<td style="text-align:left;">All attributes of <code>VisualElement</code>
+</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>TextElement</code></td>
+	<td style="text-align:left;">An element that displays text.</td>
+	<td style="text-align:left;"><code>UnityEngine.UIElements</code></td>
+	<td style="text-align:left;">None</td>
+	<td style="text-align:left;">All attributes of <code>VisualElement</code><br><code>text</code>: The text the element should display.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>Label</code></td>
+	<td style="text-align:left;">A text label.</td>
+	<td style="text-align:left;"><code>UnityEngine.UIElements</code></td>
+	<td style="text-align:left;">None</td>
+	<td style="text-align:left;">All attributes of <code>TextElement</code>
+</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>Image</code></td>
+	<td style="text-align:left;">Displays an image.</td>
+	<td style="text-align:left;"><code>UnityEngine.UIElements</code></td>
+	<td style="text-align:left;">None</td>
+	<td style="text-align:left;">All attributes of <code>VisualElement</code>
+</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>IMGUIContainer</code></td>
+	<td style="text-align:left;">Draws <a href="GUIScriptingGuide.html">IMGUI</a> content</td>
+	<td style="text-align:left;"><code>UnityEngine.UIElements</code></td>
+	<td style="text-align:left;">None</td>
+	<td style="text-align:left;">All attributes of <code>VisualElement</code><br><code>focus-index</code> default value is <code>0</code><br> <code>focusable</code> default value is <code>true</code>
+</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>Foldout</code></td>
+	<td style="text-align:left;">An element that has a toggle button to show or hide its content.</td>
+	<td style="text-align:left;"><code>UnityEngine.UIElements</code></td>
+	<td style="text-align:left;">Any number of <code>VisualElement</code>
+</td>
+	<td style="text-align:left;">All attributes of <code>BindableElement</code>
+</td>
+</tr>
+</tbody>
+</table>
+
+<h2>Templates</h2>
+
+<table>
+<colgroup>
+<col style="text-align:left;">
+<col style="text-align:left;">
+<col style="text-align:left;">
+<col style="text-align:left;">
+</colgroup>
+
+<thead>
+<tr>
+	<th style="text-align:left;"><strong>Element</strong></th>
+	<th style="text-align:left;"><strong>Function</strong></th>
+	<th style="text-align:left;"><strong>Namespace</strong></th>
+	<th style="text-align:left;"><strong>Permitted child elements</strong></th>
+	<th style="text-align:left;"><strong>Attributes</strong></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td style="text-align:left;"><code>Template</code></td>
+	<td style="text-align:left;">A reference to another UXML template that can be instantiated using the <code>Instance</code> element.</td>
+	<td style="text-align:left;"><code>UnityEngine.UIElements</code></td>
+	<td style="text-align:left;">None</td>
+	<td style="text-align:left;">
+<code>name</code>: A unique string identifier for this element<br><code>path</code>: The path of the UXML file to load</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>Instance</code></td>
+	<td style="text-align:left;">Instance of a <code>Template</code>
+</td>
+	<td style="text-align:left;"><code>UnityEngine.UIElements</code></td>
+	<td style="text-align:left;">None</td>
+	<td style="text-align:left;">
+<code>template</code>: The <code>name</code> of the <code>Template</code> to instantiate</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>TemplateContainer</code></td>
+	<td style="text-align:left;">A template container.</td>
+	<td style="text-align:left;"><code>UnityEngine.UIElements</code></td>
+	<td style="text-align:left;">None</td>
+	<td style="text-align:left;">All attributes of <code>BindableElement</code><br><code>template</code>: A string identifier for this template</td>
+</tr>
+</tbody>
+</table>
+
+<h2>Controls</h2>
+
+<table>
+<colgroup>
+<col style="text-align:left;">
+<col style="text-align:left;">
+<col style="text-align:left;">
+<col style="text-align:left;">
+</colgroup>
+
+<thead>
+<tr>
+	<th style="text-align:left;"><strong>Element</strong></th>
+	<th style="text-align:left;"><strong>Function</strong></th>
+	<th style="text-align:left;"><strong>Namespace</strong></th>
+	<th style="text-align:left;"><strong>Permitted child elements</strong></th>
+	<th style="text-align:left;"><strong>Attributes</strong></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td style="text-align:left;"><code>BaseField&lt;T&gt;</code></td>
+	<td style="text-align:left;">The abstract base class of all fields.</td>
+	<td style="text-align:left;"><code>UnityEngine.UIElements</code></td>
+	<td style="text-align:left;">None</td>
+	<td style="text-align:left;">All attributes of <code>BindableElement</code><br> <code>focus-index</code> default value is <code>0</code><br> <code>focusable</code> default value is <code>true</code><br> <code>label</code>: The text of the label that is associated with the field</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>BaseFieldTraits&lt;ValueType, UxmlType&gt;</code></td>
+	<td style="text-align:left;"></td>
+	<td style="text-align:left;"><code>UnityEngine.UIElements</code></td>
+	<td style="text-align:left;">None</td>
+	<td style="text-align:left;">All attributes of <code>BaseField&lt;ValueType&gt;</code><br><code>value</code>: The base value of the field, of type <code>ValueType</code>
+</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>Button</code></td>
+	<td style="text-align:left;">A standard push button.</td>
+	<td style="text-align:left;"><code>UnityEngine.UIElements</code></td>
+	<td style="text-align:left;">None</td>
+	<td style="text-align:left;">All attributes of <code>TextElement</code>
+</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>RepeatButton</code></td>
+	<td style="text-align:left;">A button that executes an action repeatedly while pressed.</td>
+	<td style="text-align:left;"><code>UnityEngine.UIElements</code></td>
+	<td style="text-align:left;">None</td>
+	<td style="text-align:left;">All attributes of <code>TextElement</code><br> <code>delay</code>: The initial delay in milliseconds before the element executes the action is executed. The default value is <code>0</code><br><code>interval</code>: The interval in milliseconds between repeating each action. The default value is <code>0</code>
+</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>Toggle</code></td>
+	<td style="text-align:left;">A toggle button, displayed as a checkbox.</td>
+	<td style="text-align:left;"><code>UnityEngine.UIElements</code></td>
+	<td style="text-align:left;">None</td>
+	<td style="text-align:left;">All attributes of <code>BaseFieldTraits&lt;bool, UxmlBoolAttributeDescription&gt;</code><br> <code>text</code> : Right side label of the toggle.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>Scroller</code></td>
+	<td style="text-align:left;">A scroll bar.</td>
+	<td style="text-align:left;"><code>UnityEngine.UIElements</code></td>
+	<td style="text-align:left;">None</td>
+	<td style="text-align:left;">All attributes of <code>VisualElement</code><br> <code>low-value</code>: The minimum value of the scroller<br> <code>high-value</code>: The maximum value of the scroller<br> <code>direction</code>: Set to <code>Horizontal</code> or <code>Vertical</code>. The default is <code>Vertical</code>.<br> <code>value</code>: The position of the scroller cursor</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>Slider</code></td>
+	<td style="text-align:left;">A slider.</td>
+	<td style="text-align:left;"><code>UnityEngine.UIElements</code></td>
+	<td style="text-align:left;">None</td>
+	<td style="text-align:left;">All attributes of <code>BaseFieldTraits&lt;float, UxmlFloatAttributeDescription&gt;</code><br> <code>low-value</code>: The minimum value of the slider<br> <code>high-value</code>: The maximum value of the slider<br> <code>direction</code>: Set to <code>Horizontal</code> or <code>Vertical</code>. The default is <code>Horizontal</code>.<br> <code>page-size</code>: The page size of the slider</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>SliderInt</code></td>
+	<td style="text-align:left;">A slider for integer values.</td>
+	<td style="text-align:left;"><code>UnityEngine.UIElements</code></td>
+	<td style="text-align:left;">None</td>
+	<td style="text-align:left;">All attributes of <code>BaseFieldTraits&lt;int, UxmlIntAttributeDescription&gt;</code><br> <code>low-value</code>: The minimum value of the slider<br> <code>high-value</code>: The maximum value of the slider<br> <code>direction</code>: Set to <code>Horizontal</code> or <code>Vertical</code>. The default is <code>Horizontal</code>.<br> <code>page-size</code>: The page size of the slider</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>MinMaxSlider</code></td>
+	<td style="text-align:left;">A slider that lets the user specify a minimum and a maximum value.</td>
+	<td style="text-align:left;"><code>UnityEngine.UIElements</code></td>
+	<td style="text-align:left;">None</td>
+	<td style="text-align:left;">All attributes of <code>BaseField&lt;Vector2&gt;</code><br> <code>low-limit</code>: The minimum value of the scroller<br> <code>high-limit</code>: The maximum value of the scroller<br> <code>min-value</code>: The minimum value of the slider cursor<br><code>max-value</code>: The maximum value of the slider cursor</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>EnumField</code></td>
+	<td style="text-align:left;">A field that takes the string values of an underlying <code>Enum</code>.</td>
+	<td style="text-align:left;"><code>UnityEditor.UIElements</code></td>
+	<td style="text-align:left;">None</td>
+	<td style="text-align:left;">All attributes of <code>BaseField&lt;Enum&gt;</code><br> <code>type</code>: A string representing the C# type of the underlying <code>Enum</code>. If the type is in a user assembly, the assembly name must be added to the type name: <code>MyNamespace.MyEnum, MyAssembly</code>. The <code>type</code> string is always required. <br><code>value</code>: A string that represents the value of the field</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>MaskField</code></td>
+	<td style="text-align:left;">A popup menu that the user can select a group of values from.</td>
+	<td style="text-align:left;"><code>UnityEditor.UIElements</code></td>
+	<td style="text-align:left;">None</td>
+	<td style="text-align:left;">All attributes of <code>BaseField&lt;int&gt;</code><br> <code>choices</code>: A comma separated list of up to 32 choices to display in the popup menu<br> <code>value</code>: An integer that represents the value of the field as a 32-bit mask.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>LayerField</code></td>
+	<td style="text-align:left;">A popup menu that the user can select a <span class="tooltip"><a href="Layers.html">layer</a><span class="tooltiptext">Layers in Unity can be used to selectively opt groups of GameObjects in or out of certain processes or calculations. This includes camera rendering, lighting, physics collisions, or custom calculations in your own code. <a href="Layers.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#Layer">Glossary</a></span></span></span> from.</td>
+	<td style="text-align:left;"><code>UnityEditor.UIElements</code></td>
+	<td style="text-align:left;">None</td>
+	<td style="text-align:left;">All attributes of <code>BaseField&lt;int&gt;</code><br> <code>value</code>: An integer that represents the value of the field (the selected layer number).</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>LayerMaskField</code></td>
+	<td style="text-align:left;">A popup menu that the user can select a group of <a href="Layers.html">layers</a> from.</td>
+	<td style="text-align:left;"><code>UnityEditor.UIElements</code></td>
+	<td style="text-align:left;">None</td>
+	<td style="text-align:left;">All attributes of <code>MaskField</code>
+</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>TagField</code></td>
+	<td style="text-align:left;">A popup menu that the user can select a <span class="tooltip"><a href="Tags.html">tag</a><span class="tooltiptext">A reference word which you can assign to one or more GameObjects to help you identify GameObjects for scripting purposes. For example, you might define and “Edible” Tag for any item the player can eat in your game. <a href="Tags.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#Tag">Glossary</a></span></span></span> from.</td>
+	<td style="text-align:left;"><code>UnityEditor.UIElements</code></td>
+	<td style="text-align:left;">None</td>
+	<td style="text-align:left;">All attributes of <code>BaseField&lt;string&gt;</code><br><code>value</code>: A string that represents the value of the field (the selected tag name).</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>ProgressBar</code></td>
+	<td style="text-align:left;">A progress bar that shows the progression of an operation.</td>
+	<td style="text-align:left;"><code>UnityEditor.UIElements</code></td>
+	<td style="text-align:left;">None</td>
+	<td style="text-align:left;">All attributes of <code>BindableElement</code><br><code>low-value</code>: A float that represents the lowest value of the progress bar. The default is 0.<br><code>high-value</code>: A float that represents the highest value of the progress bar. The default is 100.<br><code>title</code>: A string that represents the title of the progress bar.</td>
+</tr>
+</tbody>
+</table>
+
+<h2>Text input</h2>
+
+<table>
+<colgroup>
+<col style="text-align:left;">
+<col style="text-align:left;">
+<col style="text-align:left;">
+<col style="text-align:left;">
+</colgroup>
+
+<thead>
+<tr>
+	<th style="text-align:left;"><strong>Element</strong></th>
+	<th style="text-align:left;"><strong>Function</strong></th>
+	<th style="text-align:left;"><strong>Namespace</strong></th>
+	<th style="text-align:left;"><strong>Permitted child elements</strong></th>
+	<th style="text-align:left;"><strong>Attributes</strong></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td style="text-align:left;"><code>TextInputBaseField&lt;TValueType&gt;</code></td>
+	<td style="text-align:left;">An abstract base class for all text fields.</td>
+	<td style="text-align:left;"><code>UnityEngine.UIElements</code></td>
+	<td style="text-align:left;">None</td>
+	<td style="text-align:left;">All attributes of <code>BaseFieldTraits&lt;string, UxmlStringAttributeDescription&gt;</code><br><code>text</code>: The text value of the field<br><code>max-length</code>: The maximum number of characters that the field can contain. Default value of <code>-1</code> sets no limits on the text length.<br> <code>password</code>: A boolean that indicates whether the field content should be shown or displayed using the <code>maskCharacter</code> character. <code>false</code> is the default setting.<br><code>mask-character</code>: A character that displays the field content when <code>password</code> is <code>true</code>. Default is the character <code>*</code>.<br><code>readonly</code>: A boolean that indicates that the field is read-only. The default value is <code>false</code>
+</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>TextField</code></td>
+	<td style="text-align:left;">An editable text field.</td>
+	<td style="text-align:left;"><code>UnityEngine.UIElements</code></td>
+	<td style="text-align:left;">None</td>
+	<td style="text-align:left;">All attributes of <code>TextInputBaseField&lt;string&gt;</code><br> <code>multiline</code>: A boolean that indicates whether the text field displays its text on multiple lines. Set to <code>true</code> to display on multiple lines, or set to <code>false</code> to display or on a single line, ignoring any line break in the text. <code>false</code> is the default.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>IntegerField</code></td>
+	<td style="text-align:left;">A text field that accepts an integer (32-bit) value.</td>
+	<td style="text-align:left;"><code>UnityEditor.UIElements</code></td>
+	<td style="text-align:left;">None</td>
+	<td style="text-align:left;">All attributes of <code>BaseFieldTraits&lt;int, UxmlIntAttributeDescription&gt;</code>
+</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>LongField</code></td>
+	<td style="text-align:left;">A text field that accepts a long integer (64 bits) value.</td>
+	<td style="text-align:left;"><code>UnityEditor.UIElements</code></td>
+	<td style="text-align:left;">None</td>
+	<td style="text-align:left;">All attributes of <code>BaseFieldTraits&lt;long, UxmlLongAttributeDescription&gt;</code>
+</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>FloatField</code></td>
+	<td style="text-align:left;">A text field that accepts a single precision floating point value.</td>
+	<td style="text-align:left;"><code>UnityEditor.UIElements</code></td>
+	<td style="text-align:left;">None</td>
+	<td style="text-align:left;">All attributes of <code>BaseFieldTraits&lt;float, UxmlFloatAttributeDescription&gt;</code>
+</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>DoubleField</code></td>
+	<td style="text-align:left;">A text field that accepts a double precision floating point value.</td>
+	<td style="text-align:left;"><code>UnityEditor.UIElements</code></td>
+	<td style="text-align:left;">None</td>
+	<td style="text-align:left;">All attributes of <code>BaseFieldTraits&lt;double, UxmlDoubleAttributeDescription&gt;</code>
+</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>Vector2Field</code></td>
+	<td style="text-align:left;">A set of two text fields that accept floating point values to edit the value of a <code>Vector2</code>.</td>
+	<td style="text-align:left;"><code>UnityEditor.UIElements</code></td>
+	<td style="text-align:left;">None</td>
+	<td style="text-align:left;">All attributes of <code>BaseField&lt;Vector2&gt;</code><br><code>x</code>: The value of the X coordinate<br><code>y</code>: The value of the Y coordinate</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>Vector2IntField</code></td>
+	<td style="text-align:left;">A set of two text fields that accept integer values to edit the value of a <code>Vector2Int</code>.</td>
+	<td style="text-align:left;"><code>UnityEditor.UIElements</code></td>
+	<td style="text-align:left;">None</td>
+	<td style="text-align:left;">All attributes of <code>BaseField&lt;Vector2Int&gt;</code><br><code>x</code>: The value of the X coordinate<br><code>y</code>: The value of the Y coordinate</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>Vector3Field</code></td>
+	<td style="text-align:left;">A set of three text fields that accept floating point values to edit the value of a <code>Vector3</code>.</td>
+	<td style="text-align:left;"><code>UnityEditor.UIElements</code></td>
+	<td style="text-align:left;">None</td>
+	<td style="text-align:left;">All attributes of <code>BaseField&lt;Vector3&gt;</code><br><code>x</code>: The value of the X coordinate<br><code>y</code>: The value of the Y coordinate<br><code>z</code>: The value of the Z coordinate</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>Vector3IntField</code></td>
+	<td style="text-align:left;">A set of three text fields that accept integer values to edit the value of a <code>Vector3Int</code>.</td>
+	<td style="text-align:left;"><code>UnityEditor.UIElements</code></td>
+	<td style="text-align:left;">None</td>
+	<td style="text-align:left;">All attributes of <code>BaseField&lt;Vector3Int&gt;</code><br><code>x</code>: The value of the X coordinate<br><code>y</code>: The value of the Y coordinate<br><code>z</code>: The value of the Z coordinate</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>Vector4Field</code></td>
+	<td style="text-align:left;">A set of four text fields that accept floating point values to edit the value of a <code>Vector4</code>.</td>
+	<td style="text-align:left;"><code>UnityEditor.UIElements</code></td>
+	<td style="text-align:left;">None</td>
+	<td style="text-align:left;">All attributes of <code>BaseField&lt;Vector4&gt;</code><br><code>x</code>: The value of the X coordinate<br><code>y</code>: The value of the Y coordinate<br><code>z</code>: The value of the Z coordinate<br><code>w</code>: The value of the W coordinate</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>RectField</code></td>
+	<td style="text-align:left;">A set of four text fields that accept floating point values to edit the value of a rectangle.</td>
+	<td style="text-align:left;"><code>UnityEditor.UIElements</code></td>
+	<td style="text-align:left;">None</td>
+	<td style="text-align:left;">All attributes of <code>BaseField&lt;Rect&gt;</code><br><code>x</code>: The value of the top left corner X coordinate<br><code>y</code>: The value of the top left corner Y coordinate<br><code>w</code>: The width of the rectangle<br> <code>h</code>: the height of the rectangle</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>RectIntField</code></td>
+	<td style="text-align:left;">A set of four text fields that accept integer values to edit the value of a rectangle.</td>
+	<td style="text-align:left;"><code>UnityEditor.UIElements</code></td>
+	<td style="text-align:left;">None</td>
+	<td style="text-align:left;">All attributes of <code>BaseField&lt;RectInt&gt;</code><br><code>x</code>: The value of the top left corner X coordinate<br><code>y</code>: The value of the top left corner Y coordinate<br><code>w</code>: The width of the rectangle<br> <code>h</code>: the height of the rectangle</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>BoundsField</code></td>
+	<td style="text-align:left;">A set of six text fields that accept floating point values to edit the value of a bounding rectangle.</td>
+	<td style="text-align:left;"><code>UnityEditor.UIElements</code></td>
+	<td style="text-align:left;">None</td>
+	<td style="text-align:left;">All attributes of <code>BaseField&lt;Bounds&gt;</code><br><code>cx</code>: The value of the center X coordinate<br><code>cy</code>: The value of the center Y coordinate<br><code>cz</code>: The value of the center Z coordinate<br><code>ex</code>: The value of the extent X coordinate<br><code>ey</code>: The value of the extent Y coordinate<br><code>ez</code>: The value of the extent Z coordinate</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>BoundsIntField</code></td>
+	<td style="text-align:left;">A set of six text fields that accept integer values to edit the value of a bounding rectangle.</td>
+	<td style="text-align:left;"><code>UnityEditor.UIElements</code></td>
+	<td style="text-align:left;">None</td>
+	<td style="text-align:left;">All attributes of <code>BaseField&lt;BoundsInt&gt;</code><br><code>px</code>: The value of the position X coordinate<br><code>py</code>: The value of the postion Y coordinate<br><code>pz</code>: The value of the position Z coordinate<br><code>sx</code>: The value of the size X coordinate<br><code>sy</code>: The value of the size Y coordinate<br><code>sz</code>: The value of the size Z coordinate</td>
+</tr>
+</tbody>
+</table>
+
+<h2>Complex widgets</h2>
+
+<table>
+<colgroup>
+<col style="text-align:left;">
+<col style="text-align:left;">
+<col style="text-align:left;">
+<col style="text-align:left;">
+</colgroup>
+
+<thead>
+<tr>
+	<th style="text-align:left;"><strong>Element</strong></th>
+	<th style="text-align:left;"><strong>Function</strong></th>
+	<th style="text-align:left;"><strong>Namespace</strong></th>
+	<th style="text-align:left;"><strong>Permitted child elements</strong></th>
+	<th style="text-align:left;"><strong>Attributes</strong></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td style="text-align:left;"><code>PropertyField</code></td>
+	<td style="text-align:left;">A label and a field to edit a value.</td>
+	<td style="text-align:left;"><code>UnityEditor.UIElements</code></td>
+	<td style="text-align:left;">None</td>
+	<td style="text-align:left;">All attributes of <code>VisualElement</code><br> <code>binding-path</code>: The path of the property this element is bound to<br> <code>label</code>: The label for the field</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>PropertyControl&lt;int&gt;</code></td>
+	<td style="text-align:left;">A label and a field to edit a value of type <code>int</code>.</td>
+	<td style="text-align:left;"><code>UnityEditor.UIElements</code></td>
+	<td style="text-align:left;">None</td>
+	<td style="text-align:left;">All attributes of <code>BaseField&lt;int&gt;</code><br> <code>value-type</code>: A string that represents the type of value<br> <code>value</code>: The value for the field</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>PropertyControl&lt;long&gt;</code></td>
+	<td style="text-align:left;">A label and a field to edit a value of type <code>long</code>.</td>
+	<td style="text-align:left;"><code>UnityEditor.UIElements</code></td>
+	<td style="text-align:left;">None</td>
+	<td style="text-align:left;">All attributes of <code>BaseField&lt;long&gt;</code><br> <code>value-type</code>: A string that represents the type of value<br> <code>value</code>: The value for the field</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>PropertyControl&lt;float&gt;</code></td>
+	<td style="text-align:left;">A label and a field to edit a value of type <code>float</code>.</td>
+	<td style="text-align:left;"><code>UnityEditor.UIElements</code></td>
+	<td style="text-align:left;">None</td>
+	<td style="text-align:left;">All attributes of <code>BaseField&lt;float&gt;</code><br> <code>value-type</code>: A string that represents the type of value<br> <code>value</code>: The value for the field</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>PropertyControl&lt;double&gt;</code></td>
+	<td style="text-align:left;">A label and a field to edit a value of type <code>double</code>.</td>
+	<td style="text-align:left;"><code>UnityEditor.UIElements</code></td>
+	<td style="text-align:left;">None</td>
+	<td style="text-align:left;">All attributes of <code>BaseField&lt;double&gt;</code><br> <code>value-type</code>: A string that represents the type of value<br> <code>value</code>: The value for the field</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>PropertyControl&lt;string&gt;</code></td>
+	<td style="text-align:left;">A label and a field to edit a value of type <code>string</code>.</td>
+	<td style="text-align:left;"><code>UnityEditor.UIElements</code></td>
+	<td style="text-align:left;">None</td>
+	<td style="text-align:left;">All attributes of <code>BaseField&lt;string&gt;</code><br> <code>value-type</code>: A string that represents the type of value<br> <code>value</code>: The value for the field</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>ColorField</code></td>
+	<td style="text-align:left;">A color picker field.</td>
+	<td style="text-align:left;"><code>UnityEditor.UIElements</code></td>
+	<td style="text-align:left;">None</td>
+	<td style="text-align:left;">All attributes of <code>BaseFieldTraits&lt;Color, UxmlColorAttributeDescription&gt;</code><br><code>show-eye-dropper</code>: A boolean that indicates whether to show the eye dropper or not. Set to <code>true</code> to display the eye dropper, and <code>false</code> to hide it. By default this is set to <code>true</code>.<br><code>show-alpha</code>: A boolean that indicates whether to show the alpha control. Set to <code>true</code> to show the control or <code>false</code> to hide it. By default this is set to <code>true</code>.<br> <code>hdr</code>: A boolean that indicates whether to use the high dynamic range color picker. Set to <code>true</code> to use the picker. By default this is set to <code>false</code>.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>CurveField</code></td>
+	<td style="text-align:left;">A curve editor field.</td>
+	<td style="text-align:left;"><code>UnityEditor.UIElements</code></td>
+	<td style="text-align:left;">None</td>
+	<td style="text-align:left;">All attributes of <code>BaseField&lt;AnimationCurve&gt;</code>
+</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>GradientField</code></td>
+	<td style="text-align:left;">A gradient editor field.</td>
+	<td style="text-align:left;"><code>UnityEditor.UIElements</code></td>
+	<td style="text-align:left;">None</td>
+	<td style="text-align:left;">All attributes of <code>BaseField&lt;Gradient&gt;</code>
+</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>ObjectField</code></td>
+	<td style="text-align:left;">An object selector field.</td>
+	<td style="text-align:left;"><code>UnityEditor.UIElements</code></td>
+	<td style="text-align:left;">None</td>
+	<td style="text-align:left;">All attributes of <code>BaseField&lt;Object&gt;</code><br> <code>allow-scene-objects</code>: A boolean that indicates whether objects from the scene can be selected. Set to <code>true</code> to enable object selection or <code>false</code> disable it. By default this is set to <code>true</code>.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>InspectorElement</code></td>
+	<td style="text-align:left;">An element that displays a property in an <span class="tooltip"><strong>inspector</strong><span class="tooltiptext">A Unity window that displays information about the currently selected GameObject, Asset or Project Settings, alowing you to inspect and edit the values. <a href="UsingTheInspector.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#Inspector">Glossary</a></span></span></span> window.</td>
+	<td style="text-align:left;"><code>UnityEditor.UIElements</code></td>
+	<td style="text-align:left;">Any number of <code>VisualElement</code>
+</td>
+	<td style="text-align:left;">All attributes of <code>BindableElement</code>
+</td>
+</tr>
+</tbody>
+</table>
+
+<h2>Toolbar</h2>
+
+<table>
+<colgroup>
+<col style="text-align:left;">
+<col style="text-align:left;">
+<col style="text-align:left;">
+<col style="text-align:left;">
+</colgroup>
+
+<thead>
+<tr>
+	<th style="text-align:left;"><strong>Element</strong></th>
+	<th style="text-align:left;"><strong>Function</strong></th>
+	<th style="text-align:left;"><strong>Namespace</strong></th>
+	<th style="text-align:left;"><strong>Permitted child elements</strong></th>
+	<th style="text-align:left;"><strong>Attributes</strong></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td style="text-align:left;"><code>Toolbar</code></td>
+	<td style="text-align:left;">A container to hold <span class="tooltip"><strong>toolbar</strong><span class="tooltiptext">A row of buttons and basic controls at the top of the Unity Editor that allows you to interact with the Editor in various ways (e.g. scaling, translation). <a href="Toolbar.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#Toolbar">Glossary</a></span></span></span> items.</td>
+	<td style="text-align:left;"><code>UnityEditor.UIElements</code></td>
+	<td style="text-align:left;">Any <code>VisualElement</code>
+</td>
+	<td style="text-align:left;">All attributes of <code>VisualElement</code>
+</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>ToolbarButton</code></td>
+	<td style="text-align:left;">A button for the toolbar.</td>
+	<td style="text-align:left;"><code>UnityEditor.UIElements</code></td>
+	<td style="text-align:left;">None</td>
+	<td style="text-align:left;">All attributes of <code>Button</code>
+</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>ToolbarToggle</code></td>
+	<td style="text-align:left;">A toggle for the toolbar.</td>
+	<td style="text-align:left;"><code>UnityEditor.UIElements</code></td>
+	<td style="text-align:left;">None</td>
+	<td style="text-align:left;">All attributes of <code>Toggle</code>
+</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>ToolbarMenu</code></td>
+	<td style="text-align:left;">A drop down menu for the toolbar. The menu has a single arrow pointing down.</td>
+	<td style="text-align:left;"><code>UnityEditor.UIElements</code></td>
+	<td style="text-align:left;">None</td>
+	<td style="text-align:left;">All attributes of <code>TextElement</code>
+</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>ToolbarSearchField</code></td>
+	<td style="text-align:left;">A search field for the toolbar.</td>
+	<td style="text-align:left;"><code>UnityEditor.UIElements</code></td>
+	<td style="text-align:left;">None</td>
+	<td style="text-align:left;">All attributes of <code>VisualElement</code>
+</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>ToolbarPopupSearchField</code></td>
+	<td style="text-align:left;">A search field with a popup menu of search options.</td>
+	<td style="text-align:left;"><code>UnityEditor.UIElements</code></td>
+	<td style="text-align:left;">None</td>
+	<td style="text-align:left;">All attributes of <code>VisualElement</code>
+</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>ToolbarSpacer</code></td>
+	<td style="text-align:left;">An element that inserts a fixed amount of whitespace between toolbar buttons.</td>
+	<td style="text-align:left;"><code>UnityEditor.UIElements</code></td>
+	<td style="text-align:left;">None</td>
+	<td style="text-align:left;">All attributes of <code>VisualElement</code>
+</td>
+</tr>
+</tbody>
+</table>
+
+<h2>Views and windows</h2>
+
+<table>
+<colgroup>
+<col style="text-align:left;">
+<col style="text-align:left;">
+<col style="text-align:left;">
+<col style="text-align:left;">
+</colgroup>
+
+<thead>
+<tr>
+	<th style="text-align:left;"><strong>Element</strong></th>
+	<th style="text-align:left;"><strong>Function</strong></th>
+	<th style="text-align:left;"><strong>Namespace</strong></th>
+	<th style="text-align:left;"><strong>Permitted child elements</strong></th>
+	<th style="text-align:left;"><strong>Attributes</strong></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td style="text-align:left;"><code>ListView</code></td>
+	<td style="text-align:left;">Displays a list of elements.</td>
+	<td style="text-align:left;"><code>UnityEngine.UIElements</code></td>
+	<td style="text-align:left;">None</td>
+	<td style="text-align:left;">All attributes of <code>VisualElement</code><br><code>item-height</code>: The height in pixels of each item in the list</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>ScrollView</code></td>
+	<td style="text-align:left;">A scrollable view, with horizontal and vertical scrollers.</td>
+	<td style="text-align:left;"><code>UnityEngine.UIElements</code></td>
+	<td style="text-align:left;">Any number of <code>VisualElement</code>
+</td>
+	<td style="text-align:left;">All attributes of <code>VisualElement</code><br><code>mode</code>: the mode of the scroll view. By default this is set to <code>ScrollViewMode.Vertical</code><br><code>show-horizontal-scroller</code>: A boolean that indicates whether to show the horizontal scroller. By default this is set to <code>false</code><br> <code>show-vertical-scroller</code>: A boolean that indicates whether to show the vertical scroller. By default this is set to <code>false</code><br> <code>horizontal-page-size</code>: The page size value of the horizontal scroller<br> <code>vertical-page-size</code>: The page size of the vertical scroller</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>TreeView</code></td>
+	<td style="text-align:left;">A view for displaying elements in a tree hierarchy.</td>
+	<td style="text-align:left;"><code>UnityEngine.UIElements</code></td>
+	<td style="text-align:left;">Any number of <code>VisualElement</code>
+</td>
+	<td style="text-align:left;">All attributes of <code>VisualElement</code><br><code>item-height</code>: The height of an item in the underlying list shown</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><code>PopupWindow</code></td>
+	<td style="text-align:left;">A UIElements window, displayed on top of other content.</td>
+	<td style="text-align:left;"><code>UnityEditor.UIElements</code></td>
+	<td style="text-align:left;">None</td>
+	<td style="text-align:left;">All attributes of <code>TextElement</code>
+</td>
+</tr>
+</tbody>
+</table>
+
+<hr>
+
+<ul>
+<li><span class="page-edit">2019–05–20 Page amended
+</span></li>
+</ul>
+<div class="feedbackbox" id="feedbackbox">
+<div id="rating"><p>Did you find this page useful? Please give it a rating:<br><div id="ratecontent" class="c-rating"></div>
+</p></div>
+<div id="ratingThanks" style="display:none"><p>Thanks for rating this page!</p></div>
+<div id="problem"><p><a name="problem">Report a problem on this page</a></p></div>
+<div id="problemType" style="display:none"><p>What kind of problem would you like to report?<ul type="problems">
+<li><a name="needcode" id="problemneedcode">This page needs code samples</a></li>
+<li><a name="code" id="problemcode">Code samples do not work</a></li>
+<li><a name="missing" id="problemmissing">Information is missing</a></li>
+<li><a name="incorrect" id="problemincorrect">Information is incorrect</a></li>
+<li><a name="unclear" id="problemunclear">Information is unclear or confusing</a></li>
+<li><a name="language" id="problemlanguage">There is a spelling/grammar error on this page</a></li>
+<li><a name="other" id="problemother">Something else</a></li>
+</ul>
+<p><known_issues><p>Is something described here not working as you expect it to? It might be a <b>Known Issue</b>. Please check with the Issue Tracker at <a href="https://issuetracker.unity3d.com">issuetracker.unity3d.com</a>.</p></known_issues></p>
+</p></div>
+<div id="problemThanks" style="display:none"><p>Thanks for letting us know! This page has been marked for review based on your feedback.<br><br>If you have time, you can provide more information to help us fix the problem faster.<br><br><a id="problemThanksMoreInfoButton">Provide more information</a><br>
+</p></div>
+<div id="problemMoreInfo" style="display:none">
+<p id="problemNeedCodeForm" style="display:none">You've told us this page needs code samples. If you'd like to help us further, you could provide a code sample, or tell us about what kind of code sample you'd like to see:</p>
+<p id="problemCodeForm" style="display:none">You've told us there are code samples on this page which don't work. If you know how to fix it, or have something better we could use instead, please let us know:</p>
+<p id="problemMissingForm" style="display:none">You've told us there is information missing from this page. Please tell us more about what's missing:</p>
+<p id="problemIncorrectForm" style="display:none">You've told us there is incorrect information on this page. If you know what we should change to make it correct, please tell us:</p>
+<p id="problemUnclearForm" style="display:none">You've told us this page has unclear or confusing information. Please tell us more about what you found unclear or confusing, or let us know how we could make it clearer:</p>
+<p id="problemLanguageForm" style="display:none">You've told us there is a spelling or grammar error on this page. Please tell us what's wrong:</p>
+<p id="problemOtherForm" style="display:none">You've told us this page has a problem. Please tell us more about what's wrong:</p>
+<form>
+<textarea id="problemFormSuggestionField" cols="40" rows="5"></textarea><input type="hidden" id="problemFormDescription"><input type="submit" id="problemFormDescriptionSubmit" value="Submit">
+</form>
+</div>
+<div id="problemMoreInfoThanks" style="display:none"><p>Thanks for helping to make the Unity documentation better!</p></div>
+<script>InitialiseStarRating();</script>
+</div>
+<div class="nextprev clear">
+<div class="icon tt left mr1" data-distance="-40|-30|top">
+<span class="prev"><a href="UIE-LoadingUXMLcsharp.html"></a></span><div class="tip">Loading UXML from C#</div>
+</div>
+<div class="icon tt right" data-distance="-40|-30|top">
+<span class="next"><a href="UIE-UQuery.html"></a></span><div class="tip"> UQuery</div>
+</div>
+</div>
+</div>
+<div class="footer-wrapper"><div class="footer clear">
+<div class="copy">Copyright © 2019 Unity Technologies. Publication: 2019.2-003J. Built: 2019-12-16.</div>
+<div class="menu">
+<a href="https://unity3d.com/learn">Tutorials</a><a href="https://answers.unity3d.com">Community Answers</a><a href="https://support.unity3d.com/hc/en-us">Knowledge Base</a><a href="https://forum.unity3d.com">Forums</a><a href="https://unity3d.com/asset-store">Asset Store</a>
+</div>
+</div></div>
+</div>
+</div></div>
+</div>
+</body>
+</html>

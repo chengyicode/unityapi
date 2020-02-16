@@ -1,6 +1,71 @@
-<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: ForcedCrashCategory</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">ForcedCrashCategory</h1><div class="clear"></div><p class="cl mb0 left mr10">enumeration</p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Specifies the category of crash to cause when calling ForceCrash().</p></div><div class="subsection"><h2>Properties   属性</h2><table class="list">
-      <tr><td class="descn"></td><td class="lbl"><a href="Diagnostics.ForcedCrashCategory.AccessViolation.html">AccessViolation</a></td><td class="desc"></td><td class="desc1">Cause a crash by performing an invalid memory access.The invalid memory access is performed on each platform as follows:</td></tr>
-      <tr><td class="descn"></td><td class="lbl"><a href="Diagnostics.ForcedCrashCategory.FatalError.html">FatalError</a></td><td class="desc"></td><td class="desc1">Cause a crash using Unity's native fatal error implementation.</td></tr>
-      <tr><td class="descn"></td><td class="lbl"><a href="Diagnostics.ForcedCrashCategory.Abort.html">Abort</a></td><td class="desc"></td><td class="desc1">Cause a crash by calling the abort() function.</td></tr>
-      <tr><td class="descn"></td><td class="lbl"><a href="Diagnostics.ForcedCrashCategory.PureVirtualFunction.html">PureVirtualFunction</a></td><td class="desc"></td><td class="desc1">Cause a crash by calling a pure virtual function to raise an exception.</td></tr>
-    </table></div></div></div></div></body></html>
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link href="./css/stylesheet.css" rel="stylesheet" type="text/css">
+		<title>Unity - Scripting API: ForcedCrashCategory</title>
+	</head>
+	<body>
+		<div class="content">
+			<div class="section">
+				<div class="mb20 clear" id="">
+					<h1 class="heading inherit">ForcedCrashCategory   强制崩溃类别</h1>
+					<div class="clear"></div>
+					<p class="cl mb0 left mr10">enumeration</p>
+					<div class="clear"></div>
+					<div class="suggest">
+						<div class="suggest-wrap rel hide">
+							<div class="loading hide">
+								<div></div>
+								<div></div>
+								<div></div>
+							</div>
+						</div>
+					</div><a href="" class="switch-link gray-btn sbtn left hide"></a>
+					<div class="clear"></div>
+				</div>
+				<div class="subsection">
+					<div class="signature">
+						<div class="signature-CS sig-block"><span style="color:red;"></span></div>
+					</div>
+				</div>
+				<div class="subsection">
+					<h2>Description 描述</h2>
+					<p>Specifies the category of crash to cause when calling ForceCrash().</p>
+					<p>指定调用ForceCrash()时要引起的崩溃类别。</p>
+				</div>
+				<div class="subsection">
+					<h2>Properties 属性</h2>
+					<table class="list">
+						<tr>
+							<td class="descn">非法访问(访问违规)</td>
+							<td class="lbl"><a href="Diagnostics.ForcedCrashCategory.AccessViolation.html">AccessViolation</a></td>
+							<td class="desc">通过执行无效的内存访问导致的崩溃。无效内存访问在每个平台上执行如下操作:</td>
+							<td class="desc1">Cause a crash by performing an invalid memory access.The invalid memory access is performed on
+								each platform as follows:</td>
+						</tr>
+						<tr>
+							<td class="descn">致命错误</td>
+							<td class="lbl"><a href="Diagnostics.ForcedCrashCategory.FatalError.html">FatalError</a></td>
+							<td class="desc">使用Unity的本地致命错误实现导致的崩溃。</td>
+							<td class="desc1">Cause a crash using Unity's native fatal error implementation.</td>
+						</tr>
+						<tr>
+							<td class="descn">终止</td>
+							<td class="lbl"><a href="Diagnostics.ForcedCrashCategory.Abort.html">Abort</a></td>
+							<td class="desc">通过调用  abort()  中止函数导致的崩溃</td>
+							<td class="desc1">Cause a crash by calling the abort() function.</td>
+						</tr>
+						<tr>
+							<td class="descn">纯虚函数</td>
+							<td class="lbl"><a href="Diagnostics.ForcedCrashCategory.PureVirtualFunction.html">PureVirtualFunction</a></td>
+							<td class="desc">通过调用纯虚函数来引发异常，从而导致崩溃。</td>
+							<td class="desc1">Cause a crash by calling a pure virtual function to raise an exception.</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+		</div>
+	</body>
+</html>

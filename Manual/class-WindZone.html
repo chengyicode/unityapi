@@ -1,0 +1,257 @@
+<!DOCTYPE html><html lang="en" class="no-js">
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+<script>var offline=(location.href.indexOf('docs.unity3d.com')==-1)?true:false;if(!offline){(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);  })(window,document,'script','dataLayer','GTM-5V25JL6');}</script><link href="https://fonts.googleapis.com/css?family=Roboto&amp;display=swap" rel="stylesheet">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unity - Manual: Wind Zones</title>
+<meta property="og:image" content="https://unity3d.com/files/images/ogimg.jpg">
+<meta name="author" content="Unity Technologies">
+<link rel="shortcut icon" href="https://unity.com/themes/contrib/unity_base/images/favicons/favicon.ico">
+<link rel="icon" type="image/png" href="../StaticFilesManual/images/favicons/favicon.png">
+<link rel="apple-touch-icon-precomposed" sizes="152x152" href="../StaticFilesManual/images/favicons/apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../StaticFilesManual/images/favicons/apple-touch-icon-144x144.png">
+<link rel="apple-touch-icon-precomposed" sizes="120x120" href="../StaticFilesManual/images/favicons/apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="../StaticFilesManual/images/favicons/apple-touch-icon-114x114.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="../StaticFilesManual/images/favicons/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon-precomposed" href="../StaticFilesManual/images/favicons/apple-touch-icon.png">
+<meta name="msapplication-TileColor" content="#222c37">
+<meta name="msapplication-TileImage" content="../StaticFilesManual/images/favicons/tileicon-144x144.png">
+<script type="text/javascript" src="https://docs.unity3d.com/StaticFilesConfig/UnityVersionsInfo.js"></script><script type="text/javascript" src="../StaticFilesManual/js/jquery.js?ts=1576442311"></script><script type="text/javascript" src="../StaticFilesManual/js/core.js?ts=1576442311"></script><script type="text/javascript" src="docdata/toc.js?ts=1576442311"></script><script type="text/javascript" src="docdata/global_toc.js?ts=1576442311"></script><link rel="stylesheet" type="text/css" href="../StaticFilesManual/css/core.css?ts=1576442311">
+<link rel="stylesheet" href="../StaticFilesManual/js/feedback/five-star-rating-master/css/rating.min.css">
+<link rel="stylesheet" href="../StaticFilesManual/css/prism.css">
+<script src="../StaticFilesManual/js/prism.js"></script><script src="../StaticFilesManual/js/feedback/five-star-rating-master/js/src/rating.js"></script><script src="../StaticFilesManual/js/jquery.sidebar.min.js"></script><link rel="stylesheet" href="../StaticFilesManual/css/mobileoptimisation.css">
+<script src="../StaticFilesManual/js/mobileoptimisation.js"></script>
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5V25JL6" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<div id="DocsAnalyticsData" data-area="Graphics" data-pagetype="reference"></div>
+<div class="header-wrapper">
+<div id="header" class="header"><div class="content">
+<div class="spacer"><div class="menu">
+<div id="nav-open" for="nav-input"><span></span></div>
+<div class="logo"><a href="https://docs.unity3d.com"></a></div>
+<div class="search-form"><form action="30_search.html" method="get" class="apisearch">
+<input type="text" name="q" placeholder="Search manual..." autosave="Unity Reference" results="5" class="sbox field" id="q"><input type="submit" class="submit">
+</form></div>
+<ul>
+<li><a href="../Manual/index.html" class="selected">Manual</a></li>
+<li><a href="../ScriptReference/index.html">Scripting API</a></li>
+</ul>
+</div></div>
+<div class="more">
+<div class="filler"></div>
+<ul><li><a href="https://unity3d.com/">unity3d.com</a></li></ul>
+</div>
+</div></div>
+<div class="toolbar"><div class="content">
+<div class="toggle version-number" id="VersionNumber" data-target=".otherversionscontent">
+                                Version: <b>2019.2</b><div class="otherversionscontent" id="OtherVersionsContent" style="display: none;">
+<ul id="OtherVersionsContentUl"></ul>
+<div id="otherVersionsLegend"><ul>
+<li>
+<div id="supportedColour" class="legendBox"></div>Supported</li>
+<li>
+<div id="notFoundColour" class="legendBox"></div>Legacy</li>
+</ul></div>
+</div>
+<div id="VersionSwitcherArrow" class="arrow versionSwitcherArrow"></div>
+</div>
+<div class="lang-switcher"><div class="current toggle" data-target=".lang-list">
+<div class="lbl">Language
+:                <span class="b">English</span>
+</div>
+<div class="arrow"></div>
+<div class="lang-list" style="display:none;"><ul>
+<li><a href="/Manual/class-WindZone.html">English</a></li>
+<li><a href="/ja/current/Manual/class-WindZone.html">日本語</a></li>
+<li><a href="/es/current/Manual/class-WindZone.html">Español</a></li>
+<li><a href="/kr/current/Manual/class-WindZone.html">한국어</a></li>
+<li><a href="/ru/current/Manual/class-WindZone.html">Русский</a></li>
+</ul></div>
+</div></div>
+</div></div>
+<div class="mobileLogo"><a href="https://docs.unity3d.com"></a></div>
+</div>
+<div id="master-wrapper" class="master-wrapper clear">
+<div id="sidebar" class="sidebar"><div class="sidebar-wrap"><div class="content"><div class="sidebar-menu"><div class="toc" id="customScrollbar">
+<h2>Unity Manual</h2>
+<div class="search-form sidebar-search-form"><form action="30_search.html" method="get" class="apisearch">
+<input type="text" name="q" placeholder="Search manual..." autosave="Unity Reference" results="5" class="sbox field" id="q"><input type="submit" id="mobileSearchBtn" class="submit" value="Search">
+</form></div>
+<div class="toggle version-number sidebar-version-switcher" id="VersionNumber" data-target=".otherversionscontent"><form id="otherVersionsContentMobileForm"><div class="ui-field-contain">
+<label for="select-native-4">Version: 2019.2</label><select name="select-native-4" id="versionsSelectMobile"><option>Select a different version</option>
+<optgroup id="versionsWithThisPageMobile" label="Versions with this page"></optgroup>
+<optgroup id="versionsWithoutThisPageMobile" label="Versions without this page"></optgroup></select>
+</div></form></div>
+<div class="lang-switcher"><div class="current toggle" data-target=".lang-list">
+<div class="lbl">Language
+:                <span class="b">English</span>
+</div>
+<div class="arrow"></div>
+<div class="lang-list" style="display:none;"><ul>
+<li><a href="/Manual/class-WindZone.html">English</a></li>
+<li><a href="/ja/current/Manual/class-WindZone.html">日本語</a></li>
+<li><a href="/es/current/Manual/class-WindZone.html">Español</a></li>
+<li><a href="/kr/current/Manual/class-WindZone.html">한국어</a></li>
+<li><a href="/ru/current/Manual/class-WindZone.html">Русский</a></li>
+</ul></div>
+</div></div>
+</div></div></div></div></div>
+<div id="content-wrap" class="content-wrap"><div class="content-block">
+<div class="darkCover"></div>
+<div class="content">
+<div class="section">
+<div class="breadcrumbs clear"><ul>
+<li><a href="UnityManual.html">Unity User Manual (2019.2)</a></li>
+<li><a href="Graphics.html">Graphics</a></li>
+<li><a href="GraphicsOverview.html">Graphics Overview</a></li>
+<li><a href="script-Terrain.html">Terrain Engine</a></li>
+<li>Wind Zones</li>
+</ul></div>
+<div class="mb20"><div class="nextprev clear">
+<div class="icon tt left mr1" data-distance="-40|-30|top">
+<span class="prev"><a href="SpeedTree.html"></a></span><div class="tip">SpeedTree</div>
+</div>
+<div class="icon tt right" data-distance="-40|-30|top">
+<span class="next"><a href="terrain-Grass.html"></a></span><div class="tip">Grass and other details</div>
+</div>
+</div></div>
+<div class="scrollToFeedback"><a id="scrollToFeedback">Leave feedback</a></div>
+<h1>Wind Zones</h1>
+<!--BeginSwitchLink--><a href='../ScriptReference/WindZone.html' title='Go to WindZone page in the Scripting Reference' class='switch-link gray-btn sbtn left'>Switch to Scripting</a><!--EndSwitchLink-->
+<div class="clear"></div>
+
+<p>To create the effect of wind on your <span class="tooltip"><strong>Terrain</strong><span class="tooltiptext">The landscape in your scene. A Terrain GameObject adds a large flat plane to your scene and you can use the Terrain’s Inspector window to create a detailed landscape. <a href="terrain-UsingTerrains.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#Terrain">Glossary</a></span></span></span> and Particle Systems, you can add one or more GameObjects with <a href="class-WindZone.html">Wind Zone</a> components. Trees within a wind zone bend in a realistic animated fashion, and the wind itself moves in pulses to create natural patterns of movement among the trees.</p>
+
+<h2>Using Wind Zones</h2>
+
+<p>To create a Wind Zone GameObject directly, go to Unity’s top menu and go to <span class="tooltip"><strong>GameObject</strong><span class="tooltiptext">The fundamental object in Unity scenes, which can represent characters, props, scenery, cameras, waypoints, and more. A GameObject’s functionality is defined by the Components attached to it. <a href="class-GameObject.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#GameObject">Glossary</a></span></span></span> &gt; <span class="tooltip"><strong>3D Object</strong><span class="tooltiptext">A 3D GameObject such as a cube, terrain or ragdoll. <a href="GameObjects.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#3DObject">Glossary</a></span></span></span> &gt; <span class="tooltip"><strong>Wind Zone</strong><span class="tooltiptext">A GameObject that adds the effect of wind to your terrain. For instance, Trees within a wind zone will bend in a realistic animated fashion and the wind itself will move in pulses to create natural patterns of movement among the tree. <a href="terrain-WindZones">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#windzone">Glossary</a></span></span></span>. You can add the Wind Zone component to any suitable GameObject already in the <span class="tooltip"><strong>Scene</strong><span class="tooltiptext">A Scene contains the environments and menus of your game. Think of each unique Scene file as a unique level. In each Scene, you place your environments, obstacles, and decorations, essentially designing and building your game in pieces. <a href="CreatingScenes.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#Scene">Glossary</a></span></span></span> (menu: <span class="tooltip"><strong>Component</strong><span class="tooltiptext">A functional part of a GameObject. A GameObject can contain any number of components. Unity has many built-in components, and you can create your own by writing scripts that inherit from MonoBehaviour. <a href="UsingComponents.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#component">Glossary</a></span></span></span> &gt; <strong>Miscellaneous</strong> &gt; <strong>Wind Zone</strong>). The <span class="tooltip"><strong>Inspector</strong><span class="tooltiptext">A Unity window that displays information about the currently selected GameObject, Asset or Project Settings, alowing you to inspect and edit the values. <a href="UsingTheInspector.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#Inspector">Glossary</a></span></span></span> for the Wind Zone has a number of settings to control its behavior.</p>
+
+<figure>
+<img src="../uploads/Main/1.7-WindZones_grey.png" alt="Wind Zone inspector">
+<figcaption>Wind Zone inspector</figcaption>
+</figure>
+
+<p>For details on all of the Wind Zone settings, see documentation on the <a href="class-WindZone.html">Wind Zone</a> component.</p>
+
+<p>You can set the <strong>Mode</strong> to <strong>Directional</strong> or <strong>Spherical</strong>. </p>
+
+<ul>
+<li>In <strong>Directional</strong> mode, the wind affects the whole Terrain at once. This is useful for creating effects like the natural movement of the trees.</li>
+<li>In <strong>Spherical</strong> mode, the wind blows outwards within a sphere defined by the <strong>Radius</strong> property. This is useful for creating special effects like explosions.</li>
+</ul>
+
+<p>The <strong>Main</strong> property determines the overall strength of the wind, and you can use <strong>Turbulence</strong> to give these some random variation. </p>
+
+<p>The wind blows over the trees in pulses to create a more natural effect. You can control the strength of the pulses with <strong>Pulse Magnitude</strong>, and the time interval between them with <strong>Pulse Frequency</strong>.</p>
+
+<h2>Properties</h2>
+
+<table>
+<colgroup>
+<col style="text-align:left;">
+<col style="text-align:left;">
+</colgroup>
+
+<thead>
+<tr>
+	<th style="text-align:left;"><strong><em>Property:</em></strong></th>
+	<th style="text-align:left;"><strong><em>Function:</em></strong></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td style="text-align:left;" colspan="2"><strong>Mode</strong></td>
+</tr>
+<tr>
+	<td style="text-align:left;">        <strong>Spherical</strong>
+</td>
+	<td style="text-align:left;">Wind zone only has an effect inside the radius, and has a falloff from the center towards the edge.</td>
+</tr>
+<tr>
+	<td style="text-align:left;">        <strong>Directional</strong>
+</td>
+	<td style="text-align:left;">Wind zone affects the entire scene in one direction.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Radius</strong></td>
+	<td style="text-align:left;">Radius of the Spherical Wind Zone (only active if the mode is set to Spherical).</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Main</strong></td>
+	<td style="text-align:left;">The primary wind force. Produces a softly changing wind pressure.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Turbulence</strong></td>
+	<td style="text-align:left;">The turbulence wind force. Produces a rapidly changing wind pressure.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Pulse Magnitude</strong></td>
+	<td style="text-align:left;">Defines how much the wind changes over time.</td>
+</tr>
+<tr>
+	<td style="text-align:left;"><strong>Pulse Frequency</strong></td>
+	<td style="text-align:left;">Defines the frequency of the wind changes.</td>
+</tr>
+</tbody>
+</table>
+
+<h2>Particle Systems</h2>
+
+<p>The main use of wind is to animate trees, but it can also affect particles in a Particle System if that Particle System uses the <a href="PartSysExtForceModule.html">External Forces module</a> module. See the <span class="tooltip"><a href="class-ParticleSystem.html">Particle System</a><span class="tooltiptext">A component that simulates fluid entities such as liquids, clouds and flames by generating and animating large numbers of small 2D images in the scene. <a href="class-ParticleSystem.html">More info</a><br/><span class="tooltipGlossaryLink">See in <a href="Glossary.html#particlesystem">Glossary</a></span></span></span> reference page for further details.</p>
+<div class="feedbackbox" id="feedbackbox">
+<div id="rating"><p>Did you find this page useful? Please give it a rating:<br><div id="ratecontent" class="c-rating"></div>
+</p></div>
+<div id="ratingThanks" style="display:none"><p>Thanks for rating this page!</p></div>
+<div id="problem"><p><a name="problem">Report a problem on this page</a></p></div>
+<div id="problemType" style="display:none"><p>What kind of problem would you like to report?<ul type="problems">
+<li><a name="needcode" id="problemneedcode">This page needs code samples</a></li>
+<li><a name="code" id="problemcode">Code samples do not work</a></li>
+<li><a name="missing" id="problemmissing">Information is missing</a></li>
+<li><a name="incorrect" id="problemincorrect">Information is incorrect</a></li>
+<li><a name="unclear" id="problemunclear">Information is unclear or confusing</a></li>
+<li><a name="language" id="problemlanguage">There is a spelling/grammar error on this page</a></li>
+<li><a name="other" id="problemother">Something else</a></li>
+</ul>
+<p><known_issues><p>Is something described here not working as you expect it to? It might be a <b>Known Issue</b>. Please check with the Issue Tracker at <a href="https://issuetracker.unity3d.com">issuetracker.unity3d.com</a>.</p></known_issues></p>
+</p></div>
+<div id="problemThanks" style="display:none"><p>Thanks for letting us know! This page has been marked for review based on your feedback.<br><br>If you have time, you can provide more information to help us fix the problem faster.<br><br><a id="problemThanksMoreInfoButton">Provide more information</a><br>
+</p></div>
+<div id="problemMoreInfo" style="display:none">
+<p id="problemNeedCodeForm" style="display:none">You've told us this page needs code samples. If you'd like to help us further, you could provide a code sample, or tell us about what kind of code sample you'd like to see:</p>
+<p id="problemCodeForm" style="display:none">You've told us there are code samples on this page which don't work. If you know how to fix it, or have something better we could use instead, please let us know:</p>
+<p id="problemMissingForm" style="display:none">You've told us there is information missing from this page. Please tell us more about what's missing:</p>
+<p id="problemIncorrectForm" style="display:none">You've told us there is incorrect information on this page. If you know what we should change to make it correct, please tell us:</p>
+<p id="problemUnclearForm" style="display:none">You've told us this page has unclear or confusing information. Please tell us more about what you found unclear or confusing, or let us know how we could make it clearer:</p>
+<p id="problemLanguageForm" style="display:none">You've told us there is a spelling or grammar error on this page. Please tell us what's wrong:</p>
+<p id="problemOtherForm" style="display:none">You've told us this page has a problem. Please tell us more about what's wrong:</p>
+<form>
+<textarea id="problemFormSuggestionField" cols="40" rows="5"></textarea><input type="hidden" id="problemFormDescription"><input type="submit" id="problemFormDescriptionSubmit" value="Submit">
+</form>
+</div>
+<div id="problemMoreInfoThanks" style="display:none"><p>Thanks for helping to make the Unity documentation better!</p></div>
+<script>InitialiseStarRating();</script>
+</div>
+<div class="nextprev clear">
+<div class="icon tt left mr1" data-distance="-40|-30|top">
+<span class="prev"><a href="SpeedTree.html"></a></span><div class="tip">SpeedTree</div>
+</div>
+<div class="icon tt right" data-distance="-40|-30|top">
+<span class="next"><a href="terrain-Grass.html"></a></span><div class="tip">Grass and other details</div>
+</div>
+</div>
+</div>
+<div class="footer-wrapper"><div class="footer clear">
+<div class="copy">Copyright © 2019 Unity Technologies. Publication: 2019.2-003J. Built: 2019-12-16.</div>
+<div class="menu">
+<a href="https://unity3d.com/learn">Tutorials</a><a href="https://answers.unity3d.com">Community Answers</a><a href="https://support.unity3d.com/hc/en-us">Knowledge Base</a><a href="https://forum.unity3d.com">Forums</a><a href="https://unity3d.com/asset-store">Asset Store</a>
+</div>
+</div></div>
+</div>
+</div></div>
+</div>
+</body>
+</html>
