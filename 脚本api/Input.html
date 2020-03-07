@@ -1,22 +1,149 @@
-<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: Input</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">Input</h1><div class="clear"></div><p class="cl mb0 left mr10">class in
-          UnityEngine</p><p class="cl mb0 left mr10">/</p><p class="cl mb0 left">Implemented in:<a href="UnityEngine.InputLegacyModule.html" class="cl">UnityEngine.InputLegacyModule</a></p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Interface into the Input system.</p></div><div class="subsection"><p>Use this class to read the axes set up in the <a href="../Manual/ConventionalGameInput.html">Conventional Game Input</a>, and to access multi-touch/accelerometer data on mobile devices.<br /><br />To read an axis use <a href="Input.GetAxis.html">Input.GetAxis</a> with one of the following default axes:
-"Horizontal" and "Vertical" are mapped to joystick, <code class="varname">A</code>, <code class="varname">W</code>, <code class="varname">S</code>, <code class="varname">D</code> and the arrow keys.
-"Mouse X" and "Mouse Y" are mapped to the mouse delta.
-"Fire1", "Fire2" "Fire3" are mapped to <code class="varname">Ctrl</code>, <code class="varname">Alt</code>, <code class="varname">Cmd</code> keys and three mouse or joystick buttons.
-New input axes can be added. See <a href="../Manual/class-InputManager.html">Input Manager</a> for this.<br /><br />If you are using input for any kind of movement behaviour use <a href="Input.GetAxis.html">Input.GetAxis</a>.
-It gives you smoothed and configurable input that can be mapped to keyboard, joystick or mouse.
-Use <a href="Input.GetButton.html">Input.GetButton</a> for action like events only. Do not use it for movement. <a href="Input.GetAxis.html">Input.GetAxis</a> will make the script code more small and simple.<br /><br />Note also that the <a href="Input.html">Input</a> flags are not reset until <code class="varname">Update</code>. It is suggested you make all the <a href="Input.html">Input</a> calls in the <code class="varname">Update</code> Loop.<br /><br />See Also: <a href="KeyCode.html">KeyCode</a> which lists all of the key press, mouse and joystick options.<br /><br /><strong>Mobile Devices:</strong><br /><br />iOS and Android devices are capable of tracking multiple fingers touching the screen simultaneously.
-You can access data on the status of each finger touching screen during the last frame by accessing the <a href="Input-touches.html">Input.touches</a> property array.<br /><br />As a device moves, its accelerometer hardware reports linear acceleration changes along the three primary axes in three-dimensional space.
-You can use this data to detect both the current orientation of the device (relative to the ground) and any immediate changes to that orientation.<br /><br />Acceleration along each axis is reported directly by the hardware as G-force values.
-A value of 1.0 represents a load of about +1g along a given axis while a value of -1.0 represents -1g.
-If you hold the device upright (with the home button at the bottom) in front of you, the X axis is positive along the right,
-the Y axis is positive directly up, and the Z axis is positive pointing toward you.<br /><br />You can read the <a href="Input-acceleration.html">Input.acceleration</a> property to get the accelerometer reading.
-You can also use the <a href="Input-deviceOrientation.html">Input.deviceOrientation</a> property to get a discrete evaluation of the device's orientation in three-dimensional space.
-Detecting a change in orientation can be useful if you want to create game behaviors when the user rotates the device to hold it differently.<br /><br />Note that the accelerometer hardware can be polled more than once per frame.
-To access all accelerometer samples since the last frame, you can read the <a href="Input-accelerationEvents.html">Input.accelerationEvents</a> property array.
-This can be useful when reconstructing player motions, feeding acceleration data into a predictor, or implementing other precise motion analysis.</p></div><div class="subsection">
-        
-        <pre class="codeExampleCS">
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link href="./css/stylesheet.css" rel="stylesheet" type="text/css">
+		<title>Unity - Scripting API: Input</title>
+	</head>
+	<body>
+		<div class="content">
+			<div class="section">
+				<div class="mb20 clear" id="">
+					<h1 class="heading inherit">Input   输入</h1>
+					<div class="clear"></div>
+					<p class="cl mb0 left mr10">class in
+						UnityEngine</p>
+					<p class="cl mb0 left mr10">/</p>
+					<p class="cl mb0 left">Implemented in:<a href="UnityEngine.InputLegacyModule.html" class="cl">UnityEngine.InputLegacyModule</a></p>
+					
+					<div class="clear"></div>
+					<p class="cl mb0 left mr10">
+						UnityEngine 中的类</p>
+					<p class="cl mb0 left mr10">/</p>
+					<p class="cl mb0 left">实现于：<a href="UnityEngine.InputLegacyModule.html" class="cl">UnityEngine.InputLegacyModule</a></p>
+					
+					<div class="clear"></div>
+					<div class="suggest">
+						<div class="suggest-wrap rel hide">
+							<div class="loading hide">
+								<div></div>
+								<div></div>
+								<div></div>
+							</div>
+						</div>
+					</div><a href="" class="switch-link gray-btn sbtn left hide"></a>
+					<div class="clear"></div>
+				</div>
+				<div class="subsection">
+					<div class="signature">
+						<div class="signature-CS sig-block"><span style="color:red;"></span></div>
+					</div>
+				</div>
+				<div class="subsection">
+					<h2>Description 描述</h2>
+					<p>Interface into the Input system.</p>
+					
+
+				</div>
+				<div class="subsection">
+					<p>Use this class to read the axes set up in the <a href="../Manual/ConventionalGameInput.html">Conventional Game
+							Input</a>, and to access multi-touch/accelerometer data on mobile devices.<br /><br />
+							
+						To read an axis use <ahref="Input.GetAxis.html">Input.GetAxis</a> with one of the following default axes:
+						"Horizontal" and "Vertical" are mapped to joystick, <code class="varname">A</code>, <code class="varname">W</code>,
+						<code class="varname">S</code>, <code class="varname">D</code> and the arrow keys.
+						"Mouse X" and "Mouse Y" are mapped to the mouse delta.
+						"Fire1", "Fire2" "Fire3" are mapped to <code class="varname">Ctrl</code>, <code class="varname">Alt</code>, <code
+						 class="varname">Cmd</code> keys and three mouse or joystick buttons.
+						New input axes can be added. See <a href="../Manual/class-InputManager.html">Input Manager</a> for this.<br /><br />
+						
+						If you are using input for any kind of movement behaviour use <a href="Input.GetAxis.html">Input.GetAxis</a>.
+						It gives you smoothed and configurable input that can be mapped to keyboard, joystick or mouse.
+						Use <a href="Input.GetButton.html">Input.GetButton</a> for action like events only. Do not use it for movement.
+						<a href="Input.GetAxis.html">Input.GetAxis</a> will make the script code more small and simple.<br /><br />
+						
+						Note also that the <a href="Input.html">Input</a> flags are not reset until <code class="varname">Update</code>. It is
+						suggested you make all the <a href="Input.html">Input</a> calls in the <code class="varname">Update</code> Loop.<br /><br />
+						
+						See Also: <a href="KeyCode.html">KeyCode</a> which lists all of the key press, mouse and joystick options.<br /><br />
+						
+						
+						
+						
+							<p>输入系统的接口。</p>
+						
+						<p>使用此类可以读取 <a href="../Manual/ConventionalGameInput.html">Conventional Game
+								Input</a> 中设置的轴, 并访问移动设备上的多点触摸/加速度计数据。<br /><br />
+								
+							读取一个轴使用 <ahref="Input.GetAxis.html">Input.GetAxis</a> 使用下列默认轴中的一个：“Horizontal”和“Vertical”被映射到操纵杆, <code class="varname">A</code>, <code class="varname">W</code>,
+							<code class="varname">S</code>, <code class="varname">D</code> 和箭头键。“Mouse X”和“Mouse Y”映射到鼠标增量。“Fire1”，“Fire2”，“Fire3”被映射到 <code class="varname">Ctrl</code>, <code class="varname">Alt</code>, <code
+							 class="varname">Cmd</code> 键和三个鼠标或操纵杆的按钮。可以添加新的输入轴, 请参见 <a href="../Manual/class-InputManager.html">Input Manager</a><br /><br />
+							
+							如果将输入用于任何类型的移动行为，请使用 <a href="Input.GetAxis.html">Input.GetAxis</a>.
+							。它为您提供了平滑且可配置的输入，可以将其映射到键盘，操纵杆或鼠标。使用 <a href="Input.GetButton.html">Input.GetButton</a> 只能执行类似事件的操作。请勿将其用于运动。
+							<a href="Input.GetAxis.html">Input.GetAxis</a> 将使脚本代码更小，更简单。<br /><br />
+							
+							还要注意，在 <code class="varname">Update</code> 之前不会重置 <a href="Input.html">Input</a>标记 。建议您在 <code class="varname">Update</code> 循环中进行所有 <a href="Input.html">Input</a> 调用 。<br /><br />
+							
+							另请参见：<a href="KeyCode.html">KeyCode</a> ，其中列出了所有按键，鼠标和​​操纵杆选项。<br /><br />
+						
+						<br /><br /><br />
+						
+						<strong>Mobile Devices ( 移动设备 ) :</strong><br /><br />
+						
+						
+						iOS and Android devices are capable of tracking multiple fingers touching the
+						screen simultaneously.
+						You can access data on the status of each finger touching screen during the last frame by accessing the <a href="Input-touches.html">Input.touches</a>
+						property array.<br /><br />As a device moves, its accelerometer hardware reports linear acceleration changes
+						along the three primary axes in three-dimensional space.
+						You can use this data to detect both the current orientation of the device (relative to the ground) and any
+						immediate changes to that orientation.<br /><br />Acceleration along each axis is reported directly by the
+						hardware as G-force values.
+						A value of 1.0 represents a load of about +1g along a given axis while a value of -1.0 represents -1g.
+						If you hold the device upright (with the home button at the bottom) in front of you, the X axis is positive along
+						the right,
+						the Y axis is positive directly up, and the Z axis is positive pointing toward you.<br /><br />You can read the
+						<a href="Input-acceleration.html">Input.acceleration</a> property to get the accelerometer reading.
+						You can also use the <a href="Input-deviceOrientation.html">Input.deviceOrientation</a> property to get a
+						discrete evaluation of the device's orientation in three-dimensional space.
+						Detecting a change in orientation can be useful if you want to create game behaviors when the user rotates the
+						device to hold it differently.<br /><br />Note that the accelerometer hardware can be polled more than once per
+						frame.
+						To access all accelerometer samples since the last frame, you can read the <a href="Input-accelerationEvents.html">Input.accelerationEvents</a>
+						property array.
+						This can be useful when reconstructing player motions, feeding acceleration data into a predictor, or
+						implementing other precise motion analysis.</p>
+				
+				
+				<br /><br />
+				<strong>Mobile Devices ( 移动设备 ) :</strong><br /><br />
+				
+				iOS和Android设备能够跟踪同时触摸屏幕的多个手指。您可以通过访问 <a href="Input-touches.html">Input.touches</a>
+						属性数组来访问最后一帧期间每个手指触摸屏状态的数据。<br /><br />随着设备的移动，其加速度计硬件报告了三维空间中沿三个主轴的线性加速度变化。您可以使用此数据来检测设备的当前方向（相对于地面）以及对该方向的任何立即更改。<br /><br />
+						
+						硬件将沿每个轴的加速度直接报告为G力值。值1.0表示沿给定轴的大约+ 1g负载，而值-1.0表示-1g。如果将设备竖直摆放在前面（主页按钮位于底部），则X轴沿右侧为正，Y轴正上方为正，Z轴为正指向您。<br /><br />
+						
+						您可以读取
+						<a href="Input-acceleration.html">Input.acceleration</a> 属性以获取加速度计读数。您还可以使用 <a href="Input-deviceOrientation.html">Input.deviceOrientation</a> 属性来获取三维空间中设备方向的离散评估。如果要在用户旋转设备以不同的方式握持设备时创建游戏行为，则检测方向变化可能很有用。<br /><br />
+						
+						请注意，加速度计硬件每帧可以被轮询多次。要访问自上一帧以来的所有加速度计样本，可以读取 <a href="Input-accelerationEvents.html">Input.accelerationEvents</a>
+						属性数组。这在重建玩家运动，将加速度数据输入到预测变量或实施其他精确运动分析时很有用。</p>
+				</div>
+				
+				
+				
+				
+				<div class="subsection">
+					
+					
+					
+					
+					
+					
+					
+
+					<pre class="codeExampleCS">
 using UnityEngine;
 using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBehaviour.html">MonoBehaviour</a>
 {
@@ -29,50 +156,285 @@ using System.Collections;<br /><br />public class ExampleClass : <a href="MonoBe
     }
 }
 </pre>
-      </div><div class="subsection"><p>This component relates to legacy methods for drawing UI textures and images to
-the screen. You should instead use UI system. This is also
-unrelated to the IMGUI system.</p></div><div class="subsection"><h2>Static Properties</h2><table class="list">
-      <tr><td class="descn"></td><td class="lbl"><a href="Input-acceleration.html">acceleration</a></td><td class="desc"></td><td class="desc1">Last measured linear acceleration of a device in three-dimensional space. (Read Only)</td></tr>
-      <tr><td class="descn"></td><td class="lbl"><a href="Input-accelerationEventCount.html">accelerationEventCount</a></td><td class="desc"></td><td class="desc1">Number of acceleration measurements which occurred during last frame.</td></tr>
-      <tr><td class="descn"></td><td class="lbl"><a href="Input-accelerationEvents.html">accelerationEvents</a></td><td class="desc"></td><td class="desc1">Returns list of acceleration measurements which occurred during the last frame. (Read Only) (Allocates temporary variables).</td></tr>
-      <tr><td class="descn"></td><td class="lbl"><a href="Input-anyKey.html">anyKey</a></td><td class="desc"></td><td class="desc1">Is any key or mouse button currently held down? (Read Only)</td></tr>
-      <tr><td class="descn"></td><td class="lbl"><a href="Input-anyKeyDown.html">anyKeyDown</a></td><td class="desc"></td><td class="desc1">Returns true the first frame the user hits any key or mouse button. (Read Only)</td></tr>
-      <tr><td class="descn"></td><td class="lbl"><a href="Input-backButtonLeavesApp.html">backButtonLeavesApp</a></td><td class="desc"></td><td class="desc1">Should  Back button quit the application?Only usable on Android, Windows Phone or Windows Tablets.</td></tr>
-      <tr><td class="descn"></td><td class="lbl"><a href="Input-compass.html">compass</a></td><td class="desc"></td><td class="desc1">Property for accessing compass (handheld devices only). (Read Only)</td></tr>
-      <tr><td class="descn"></td><td class="lbl"><a href="Input-compensateSensors.html">compensateSensors</a></td><td class="desc"></td><td class="desc1">This property controls if input sensors should be compensated for screen orientation.</td></tr>
-      <tr><td class="descn"></td><td class="lbl"><a href="Input-compositionCursorPos.html">compositionCursorPos</a></td><td class="desc"></td><td class="desc1">The current text input position used by IMEs to open windows.</td></tr>
-      <tr><td class="descn"></td><td class="lbl"><a href="Input-compositionString.html">compositionString</a></td><td class="desc"></td><td class="desc1">The current IME composition string being typed by the user.</td></tr>
-      <tr><td class="descn"></td><td class="lbl"><a href="Input-deviceOrientation.html">deviceOrientation</a></td><td class="desc"></td><td class="desc1">Device physical orientation as reported by OS. (Read Only)</td></tr>
-      <tr><td class="descn"></td><td class="lbl"><a href="Input-gyro.html">gyro</a></td><td class="desc"></td><td class="desc1">Returns default gyroscope.</td></tr>
-      <tr><td class="descn"></td><td class="lbl"><a href="Input-imeCompositionMode.html">imeCompositionMode</a></td><td class="desc"></td><td class="desc1">Controls enabling and disabling of IME input composition.</td></tr>
-      <tr><td class="descn"></td><td class="lbl"><a href="Input-imeIsSelected.html">imeIsSelected</a></td><td class="desc"></td><td class="desc1">Does the user have an IME keyboard input source selected?</td></tr>
-      <tr><td class="descn"></td><td class="lbl"><a href="Input-inputString.html">inputString</a></td><td class="desc"></td><td class="desc1">Returns the keyboard input entered this frame. (Read Only)</td></tr>
-      <tr><td class="descn"></td><td class="lbl"><a href="Input-location.html">location</a></td><td class="desc"></td><td class="desc1">Property for accessing device location (handheld devices only). (Read Only)</td></tr>
-      <tr><td class="descn"></td><td class="lbl"><a href="Input-mousePosition.html">mousePosition</a></td><td class="desc"></td><td class="desc1">The current mouse position in pixel coordinates. (Read Only)</td></tr>
-      <tr><td class="descn"></td><td class="lbl"><a href="Input-mousePresent.html">mousePresent</a></td><td class="desc"></td><td class="desc1">Indicates if a mouse device is detected.</td></tr>
-      <tr><td class="descn"></td><td class="lbl"><a href="Input-mouseScrollDelta.html">mouseScrollDelta</a></td><td class="desc"></td><td class="desc1">The current mouse scroll delta. (Read Only)</td></tr>
-      <tr><td class="descn"></td><td class="lbl"><a href="Input-multiTouchEnabled.html">multiTouchEnabled</a></td><td class="desc"></td><td class="desc1">Property indicating whether the system handles multiple touches.</td></tr>
-      <tr><td class="descn"></td><td class="lbl"><a href="Input-simulateMouseWithTouches.html">simulateMouseWithTouches</a></td><td class="desc"></td><td class="desc1">Enables/Disables mouse simulation with touches. By default this option is enabled.</td></tr>
-      <tr><td class="descn"></td><td class="lbl"><a href="Input-stylusTouchSupported.html">stylusTouchSupported</a></td><td class="desc"></td><td class="desc1">Returns true when Stylus Touch is supported by a device or platform.</td></tr>
-      <tr><td class="descn"></td><td class="lbl"><a href="Input-touchCount.html">touchCount</a></td><td class="desc"></td><td class="desc1">Number of touches. Guaranteed not to change throughout the frame. (Read Only)</td></tr>
-      <tr><td class="descn"></td><td class="lbl"><a href="Input-touches.html">touches</a></td><td class="desc"></td><td class="desc1">Returns list of objects representing status of all touches during last frame. (Read Only) (Allocates temporary variables).</td></tr>
-      <tr><td class="descn"></td><td class="lbl"><a href="Input-touchPressureSupported.html">touchPressureSupported</a></td><td class="desc"></td><td class="desc1">Bool value which let's users check if touch pressure is supported.</td></tr>
-      <tr><td class="descn"></td><td class="lbl"><a href="Input-touchSupported.html">touchSupported</a></td><td class="desc"></td><td class="desc1">Returns whether the device on which application is currently running supports touch input.</td></tr>
-    </table></div><div class="subsection"><h2>Static Methods   静态方法</h2><table class="list">
-      <tr><td class="descn"></td><td class="lbl"><a href="Input.GetAccelerationEvent.html">GetAccelerationEvent</a></td><td class="desc"></td><td class="desc1">Returns specific acceleration measurement which occurred during last frame. (Does not allocate temporary variables).</td></tr>
-      <tr><td class="descn"></td><td class="lbl"><a href="Input.GetAxis.html">GetAxis</a></td><td class="desc"></td><td class="desc1">Returns the value of the virtual axis identified by axisName.</td></tr>
-      <tr><td class="descn"></td><td class="lbl"><a href="Input.GetAxisRaw.html">GetAxisRaw</a></td><td class="desc"></td><td class="desc1">Returns the value of the virtual axis identified by axisName with no smoothing filtering applied.</td></tr>
-      <tr><td class="descn"></td><td class="lbl"><a href="Input.GetButton.html">GetButton</a></td><td class="desc"></td><td class="desc1">Returns true while the virtual button identified by buttonName is held down.</td></tr>
-      <tr><td class="descn"></td><td class="lbl"><a href="Input.GetButtonDown.html">GetButtonDown</a></td><td class="desc"></td><td class="desc1">Returns true during the frame the user pressed down the virtual button identified by buttonName.</td></tr>
-      <tr><td class="descn"></td><td class="lbl"><a href="Input.GetButtonUp.html">GetButtonUp</a></td><td class="desc"></td><td class="desc1">Returns true the first frame the user releases the virtual button identified by buttonName.</td></tr>
-      <tr><td class="descn"></td><td class="lbl"><a href="Input.GetJoystickNames.html">GetJoystickNames</a></td><td class="desc"></td><td class="desc1">Returns an array of strings describing the connected joysticks.</td></tr>
-      <tr><td class="descn"></td><td class="lbl"><a href="Input.GetKey.html">GetKey</a></td><td class="desc"></td><td class="desc1">Returns true while the user holds down the key identified by name.</td></tr>
-      <tr><td class="descn"></td><td class="lbl"><a href="Input.GetKeyDown.html">GetKeyDown</a></td><td class="desc"></td><td class="desc1">Returns true during the frame the user starts pressing down the key identified by name.</td></tr>
-      <tr><td class="descn"></td><td class="lbl"><a href="Input.GetKeyUp.html">GetKeyUp</a></td><td class="desc"></td><td class="desc1">Returns true during the frame the user releases the key identified by name.</td></tr>
-      <tr><td class="descn"></td><td class="lbl"><a href="Input.GetMouseButton.html">GetMouseButton</a></td><td class="desc"></td><td class="desc1">Returns whether the given mouse button is held down.</td></tr>
-      <tr><td class="descn"></td><td class="lbl"><a href="Input.GetMouseButtonDown.html">GetMouseButtonDown</a></td><td class="desc"></td><td class="desc1">Returns true during the frame the user pressed the given mouse button.</td></tr>
-      <tr><td class="descn"></td><td class="lbl"><a href="Input.GetMouseButtonUp.html">GetMouseButtonUp</a></td><td class="desc"></td><td class="desc1">Returns true during the frame the user releases the given mouse button.</td></tr>
-      <tr><td class="descn"></td><td class="lbl"><a href="Input.GetTouch.html">GetTouch</a></td><td class="desc"></td><td class="desc1">Call Input.GetTouch to obtain a Touch struct.</td></tr>
-      <tr><td class="descn"></td><td class="lbl"><a href="Input.IsJoystickPreconfigured.html">IsJoystickPreconfigured</a></td><td class="desc"></td><td class="desc1">Determine whether a particular joystick model has been preconfigured by Unity. (Linux-only).</td></tr>
-      <tr><td class="descn"></td><td class="lbl"><a href="Input.ResetInputAxes.html">ResetInputAxes</a></td><td class="desc"></td><td class="desc1">Resets all input. After ResetInputAxes all axes return to 0 and all buttons return to 0 for one frame.</td></tr>
-    </table></div></div></div></div></body></html>
+				</div>
+				<div class="subsection">
+					<p>This component relates to legacy methods for drawing UI textures and images to
+						the screen. You should instead use UI system. This is also
+						unrelated to the IMGUI system.</p>
+						<p>这个组件与用于将UI纹理和图像绘制到屏幕上的旧方法有关。您应该改用UI系统。这也与IMGUI系统无关。</p>
+						
+				</div>
+				<div class="subsection">
+					<h2>Static Properties   静态属性</h2>
+					<table class="list">
+						<tr>
+							<td class="descn">加速度</td>
+							<td class="lbl"><a href="Input-acceleration.html">acceleration</a></td>
+							<td class="desc">上次测量的设备在三维空间中的线性加速度。（只读）</td>
+							<td class="desc1">Last measured linear acceleration of a device in three-dimensional space. (Read Only)</td>
+						</tr>
+						<tr>
+							<td class="descn">加速事件计数</td>
+							<td class="lbl"><a href="Input-accelerationEventCount.html">accelerationEventCount</a></td>
+							<td class="desc">	在最后一帧期间发生的加速度测量次数。</td>
+							<td class="desc1">Number of acceleration measurements which occurred during last frame.</td>
+						</tr>
+						<tr>
+							<td class="descn">加速度事件(s)</td>
+							<td class="lbl"><a href="Input-accelerationEvents.html">accelerationEvents</a></td>
+							<td class="desc">返回在最后一帧期间发生的加速度测量的列表。（只读）（分配临时变量）。</td>
+							<td class="desc1">Returns list of acceleration measurements which occurred during the last frame. (Read Only)
+								(Allocates temporary variables).</td>
+						</tr>
+						<tr>
+							<td class="descn">任何键</td>
+							<td class="lbl"><a href="Input-anyKey.html">anyKey</a></td>
+							<td class="desc">当前是否按住任何键或鼠标按钮？（只读）</td>
+							<td class="desc1">Is any key or mouse button currently held down? (Read Only)</td>
+						</tr>
+						<tr>
+							<td class="descn">任何键按下</td>
+							<td class="lbl"><a href="Input-anyKeyDown.html">anyKeyDown</a></td>
+							<td class="desc">当用户按下任何键或鼠标按钮的第一帧时返回true。（只读）</td>
+							<td class="desc1">Returns true the first frame the user hits any key or mouse button. (Read Only)</td>
+						</tr>
+						<tr>
+							<td class="descn">后退按钮应用程序</td>
+							<td class="lbl"><a href="Input-backButtonLeavesApp.html">backButtonLeavesApp</a></td>
+							<td class="desc">	是否应使用“后退”按钮退出该应用程序？仅在Android，Windows Phone或Windows Tablets上可用。</td>
+							<td class="desc1">Should Back button quit the application?Only usable on Android, Windows Phone or Windows
+								Tablets.</td>
+						</tr>
+						<tr>
+							<td class="descn">指南针(罗盘)</td>
+							<td class="lbl"><a href="Input-compass.html">compass</a></td>
+							<td class="desc">	访问指南针的属性（仅限手持设备）。（只读）</td>
+							<td class="desc1">Property for accessing compass (handheld devices only). (Read Only)</td>
+						</tr>
+						<tr>
+							<td class="descn">补偿传感器</td>
+							<td class="lbl"><a href="Input-compensateSensors.html">compensateSensors</a></td>
+							<td class="desc">此属性控制是否应针对屏幕方向补偿输入传感器。</td>
+							<td class="desc1">This property controls if input sensors should be compensated for screen orientation.</td>
+						</tr>
+						<tr>
+							<td class="descn">组成光标位置</td>
+							<td class="lbl"><a href="Input-compositionCursorPos.html">compositionCursorPos</a></td>
+							<td class="desc">IME用于打开窗口的当前文本输入位置。</td>
+							<td class="desc1">The current text input position used by IMEs to open windows.</td>
+						</tr>
+						<tr>
+							<td class="descn">组成字符串</td>
+							<td class="lbl"><a href="Input-compositionString.html">compositionString</a></td>
+							<td class="desc">	用户正在输入当前的IME组成字符串。</td>
+							<td class="desc1">The current IME composition string being typed by the user.</td>
+						</tr>
+						<tr>
+							<td class="descn">设备定位</td>
+							<td class="lbl"><a href="Input-deviceOrientation.html">deviceOrientation</a></td>
+							<td class="desc">	操作系统报告的设备物理方向。（只读）</td>
+							<td class="desc1">Device physical orientation as reported by OS. (Read Only)</td>
+						</tr>
+						<tr>
+							<td class="descn">陀螺仪</td>
+							<td class="lbl"><a href="Input-gyro.html">gyro</a></td>
+							<td class="desc">	返回默认陀螺仪。</td>
+							<td class="desc1">Returns default gyroscope.</td>
+						</tr>
+						<tr>
+							<td class="descn">IME组合模式</td>
+							<td class="lbl"><a href="Input-imeCompositionMode.html">imeCompositionMode</a></td>
+							<td class="desc">控制启用和禁用IME输入构成。</td>
+							<td class="desc1">Controls enabling and disabling of IME input composition.</td>
+						</tr>
+						<tr>
+							<td class="descn">IME是否选中</td>
+							<td class="lbl"><a href="Input-imeIsSelected.html">imeIsSelected</a></td>
+							<td class="desc">	用户是否选择了IME键盘输入源？</td>
+							<td class="desc1">Does the user have an IME keyboard input source selected?</td>
+						</tr>
+						<tr>
+							<td class="descn">输入字符串</td>
+							<td class="lbl"><a href="Input-inputString.html">inputString</a></td>
+							<td class="desc">	返回在此帧中输入的键盘输入。（只读）</td>
+							<td class="desc1">Returns the keyboard input entered this frame. (Read Only)</td>
+						</tr>
+						<tr>
+							<td class="descn">(地理)位置</td>
+							<td class="lbl"><a href="Input-location.html">location</a></td>
+							<td class="desc">	用于访问设备位置的属性（仅限手持设备）。（只读）</td>
+							<td class="desc1">Property for accessing device location (handheld devices only). (Read Only)</td>
+						</tr>
+						<tr>
+							<td class="descn">鼠标位置</td>
+							<td class="lbl"><a href="Input-mousePosition.html">mousePosition</a></td>
+							<td class="desc">以像素坐标表示的当前鼠标位置。（只读）</td>
+							<td class="desc1">The current mouse position in pixel coordinates. (Read Only)</td>
+						</tr>
+						<tr>
+							<td class="descn">鼠标现状</td>
+							<td class="lbl"><a href="Input-mousePresent.html">mousePresent</a></td>
+							<td class="desc">	指示是否检测到鼠标设备。</td>
+							<td class="desc1">Indicates if a mouse device is detected.</td>
+						</tr>
+						<tr>
+							<td class="descn">鼠标滚动增量</td>
+							<td class="lbl"><a href="Input-mouseScrollDelta.html">mouseScrollDelta</a></td>
+							<td class="desc">	当前的鼠标滚动增量。（只读）</td>
+							<td class="desc1">The current mouse scroll delta. (Read Only)</td>
+						</tr>
+						<tr>
+							<td class="descn">多点触摸启用</td>
+							<td class="lbl"><a href="Input-multiTouchEnabled.html">multiTouchEnabled</a></td>
+							<td class="desc">	指示系统是否处理多次触摸的属性。</td>
+							<td class="desc1">Property indicating whether the system handles multiple touches.</td>
+						</tr>
+						<tr>
+							<td class="descn">用触摸来模拟鼠标</td>
+							<td class="lbl"><a href="Input-simulateMouseWithTouches.html">simulateMouseWithTouches</a></td>
+							<td class="desc">	启用/禁用带有触摸的鼠标模拟。默认情况下启用此选项。</td>
+							<td class="desc1">Enables/Disables mouse simulation with touches. By default this option is enabled.</td>
+						</tr>
+						<tr>
+							<td class="descn">笔触摸支持</td>
+							<td class="lbl"><a href="Input-stylusTouchSupported.html">stylusTouchSupported</a></td>
+							<td class="desc">	当设备或平台支持Stylus Touch时，返回true。</td>
+							<td class="desc1">Returns true when Stylus Touch is supported by a device or platform.</td>
+						</tr>
+						<tr>
+							<td class="descn">触摸数</td>
+							<td class="lbl"><a href="Input-touchCount.html">touchCount</a></td>
+							<td class="desc">	触摸次数。保证在整个框架中不变。（只读）</td>
+							<td class="desc1">Number of touches. Guaranteed not to change throughout the frame. (Read Only)</td>
+						</tr>
+						<tr>
+							<td class="descn">触摸列表</td>
+							<td class="lbl"><a href="Input-touches.html">touches</a></td>
+							<td class="desc">	返回代表上一帧中所有触摸状态的对象列表。（只读）（分配临时变量）。</td>
+							<td class="desc1">Returns list of objects representing status of all touches during last frame. (Read Only)
+								(Allocates temporary variables).</td>
+						</tr>
+						<tr>
+							<td class="descn">接触压力支持</td>
+							<td class="lbl"><a href="Input-touchPressureSupported.html">touchPressureSupported</a></td>
+							<td class="desc">	布尔值，可让用户检查是否支持触摸压力。</td>
+							<td class="desc1">Bool value which let's users check if touch pressure is supported.</td>
+						</tr>
+						<tr>
+							<td class="descn">触摸支持</td>
+							<td class="lbl"><a href="Input-touchSupported.html">touchSupported</a></td>
+							<td class="desc">	返回当前正在运行应用程序的设备是否支持触摸输入。</td>
+							<td class="desc1">Returns whether the device on which application is currently running supports touch input.</td>
+						</tr>
+					</table>
+				</div>
+				<div class="subsection">
+					<h2>Static Methods 静态方法</h2>
+					<table class="list">
+						<tr>
+							<td class="descn">获取加速度事件</td>
+							<td class="lbl"><a href="Input.GetAccelerationEvent.html">GetAccelerationEvent</a></td>
+							<td class="desc">返回在上一帧期间发生的特定加速度测量。（不分配临时变量）。</td>
+							<td class="desc1">Returns specific acceleration measurement which occurred during last frame. (Does not allocate
+								temporary variables).</td>
+						</tr>
+						<tr>
+							<td class="descn">获取轴</td>
+							<td class="lbl"><a href="Input.GetAxis.html">GetAxis</a></td>
+							<td class="desc">返回由axisName标识的虚拟轴的值。</td>
+							<td class="desc1">Returns the value of the virtual axis identified by axisName.</td>
+						</tr>
+						<tr>
+							<td class="descn">获取轴(未加工的:[0,1]直接获取边缘值，没有补全中间值</td>
+							<td class="lbl"><a href="Input.GetAxisRaw.html">GetAxisRaw</a></td>
+							<td class="desc">	返回由axisName标识的虚拟轴的值，不应用平滑过滤。</td>
+							<td class="desc1">Returns the value of the virtual axis identified by axisName with no smoothing filtering
+								applied.</td>
+						</tr>
+						<tr>
+							<td class="descn">获取按钮</td>
+							<td class="lbl"><a href="Input.GetButton.html">GetButton</a></td>
+							<td class="desc">	按住buttonName标识的虚拟按钮时，返回true。</td>
+							<td class="desc1">Returns true while the virtual button identified by buttonName is held down.</td>
+						</tr>
+						<tr>
+							<td class="descn">获取按钮按下</td>
+							<td class="lbl"><a href="Input.GetButtonDown.html">GetButtonDown</a></td>
+							<td class="desc">在用户按下由buttonName标识的虚拟按钮的帧期间，返回true。</td>
+							<td class="desc1">Returns true during the frame the user pressed down the virtual button identified by
+								buttonName.</td>
+						</tr>
+						<tr>
+							<td class="descn">获取按钮抬起</td>
+							<td class="lbl"><a href="Input.GetButtonUp.html">GetButtonUp</a></td>
+							<td class="desc">当用户释放由buttonName标识的虚拟按钮的第一帧时，返回true。</td>
+							<td class="desc1">Returns true the first frame the user releases the virtual button identified by buttonName.</td>
+						</tr>
+						<tr>
+							<td class="descn">获得操纵杆名称</td>
+							<td class="lbl"><a href="Input.GetJoystickNames.html">GetJoystickNames</a></td>
+							<td class="desc">	返回描述连接的操纵杆的字符串数组。</td>
+							<td class="desc1">Returns an array of strings describing the connected joysticks.</td>
+						</tr>
+						<tr>
+							<td class="descn">获取键值</td>
+							<td class="lbl"><a href="Input.GetKey.html">GetKey</a></td>
+							<td class="desc">	当用户按住名称标识的键时，返回true。</td>
+							<td class="desc1">Returns true while the user holds down the key identified by name.</td>
+						</tr>
+						<tr>
+							<td class="descn">获取键值按下</td>
+							<td class="lbl"><a href="Input.GetKeyDown.html">GetKeyDown</a></td>
+							<td class="desc">	在用户开始按下名称标识的帧期间，返回true。</td>
+							<td class="desc1">Returns true during the frame the user starts pressing down the key identified by name.</td>
+						</tr>
+						<tr>
+							<td class="descn">获取键值抬起</td>
+							<td class="lbl"><a href="Input.GetKeyUp.html">GetKeyUp</a></td>
+							<td class="desc">	在用户释放由名称标识的密钥的帧期间，返回true。</td>
+							<td class="desc1">Returns true during the frame the user releases the key identified by name.</td>
+						</tr>
+						<tr>
+							<td class="descn">获取鼠标按钮</td>
+							<td class="lbl"><a href="Input.GetMouseButton.html">GetMouseButton</a></td>
+							<td class="desc">	返回是否按住给定的鼠标按钮。</td>
+							<td class="desc1">Returns whether the given mouse button is held down.</td>
+						</tr>
+						<tr>
+							<td class="descn">获取鼠标按钮按下</td>
+							<td class="lbl"><a href="Input.GetMouseButtonDown.html">GetMouseButtonDown</a></td>
+							<td class="desc">在用户按下给定的鼠标按钮的帧期间返回true。</td>
+							<td class="desc1">Returns true during the frame the user pressed the given mouse button.</td>
+						</tr>
+						<tr>
+							<td class="descn">获取鼠标按钮抬起</td>
+							<td class="lbl"><a href="Input.GetMouseButtonUp.html">GetMouseButtonUp</a></td>
+							<td class="desc">在用户释放给定鼠标键的帧期间，返回true。</td>
+							<td class="desc1">Returns true during the frame the user releases the given mouse button.</td>
+						</tr>
+						<tr>
+							<td class="descn">获取触摸</td>
+							<td class="lbl"><a href="Input.GetTouch.html">GetTouch</a></td>
+							<td class="desc">	调用Input.GetTouch以获取Touch结构。</td>
+							<td class="desc1">Call Input.GetTouch to obtain a Touch struct.</td>
+						</tr>
+						<tr>
+							<td class="descn">是否操纵预杆配置</td>
+							<td class="lbl"><a href="Input.IsJoystickPreconfigured.html">IsJoystickPreconfigured</a></td>
+							<td class="desc">	确定Unity是否已预先配置了特定的操纵杆模型。（仅Linux）。</td>
+							<td class="desc1">Determine whether a particular joystick model has been preconfigured by Unity. (Linux-only).</td>
+						</tr>
+						<tr>
+							<td class="descn">重置输入轴</td>
+							<td class="lbl"><a href="Input.ResetInputAxes.html">ResetInputAxes</a></td>
+							<td class="desc">重置所有输入。在ResetInputAxes之后，一帧中所有轴都返回0，所有按钮都返回0。</td>
+							<td class="desc1">Resets all input. After ResetInputAxes all axes return to 0 and all buttons return to 0 for
+								one frame.</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+		</div>
+	</body>
+</html>

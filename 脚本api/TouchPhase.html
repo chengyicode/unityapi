@@ -1,9 +1,69 @@
-<!DOCTYPE html> <html> <head> <meta charset="utf-8"> <link href="./css/stylesheet.css" rel="stylesheet" type="text/css"><title>Unity - Scripting API: TouchPhase</title></head> <body> <div class="content"><div class="section"><div class="mb20 clear" id=""><h1 class="heading inherit">TouchPhase</h1><div class="clear"></div><p class="cl mb0 left mr10">enumeration</p><div class="clear"></div><div class="suggest"><div class="suggest-wrap rel hide"><div class="loading hide"><div></div><div></div><div></div></div></div></div><a href="" class="switch-link gray-btn sbtn left hide"></a><div class="clear"></div></div><div class="subsection"><div class="signature"><div class="signature-CS sig-block"><span style="color:red;"></span></div></div></div><div class="subsection"><h2>Description   描述</h2><p>Describes phase of a finger touch.</p></div><div class="subsection"><p>TouchPhase is an enum type that contains the states of possible finger touches. The states represent each action the finger can take on the most recent frame update. Since a touch is tracked over its "lifetime" by the device, the start and end of a touch and movements in between can be reported on the frames they occur.</p></div><div class="subsection">
-        
-        <pre class="codeExampleCS">
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link href="./css/stylesheet.css" rel="stylesheet" type="text/css">
+		<title>Unity - Scripting API: TouchPhase</title>
+	</head>
+	<body>
+		<div class="content">
+			<div class="section">
+				<div class="mb20 clear" id="">
+					<h1 class="heading inherit">TouchPhase   触摸阶段(状态)</h1>
+					<div class="clear"></div>
+					<p class="cl mb0 left mr10">enumeration</p>
+					<div class="clear"></div>
+					<p class="cl mb0 left mr10">枚举</p>
+					<div class="clear"></div>
+					<div class="suggest">
+						<div class="suggest-wrap rel hide">
+							<div class="loading hide">
+								<div></div>
+								<div></div>
+								<div></div>
+							</div>
+						</div>
+					</div><a href="" class="switch-link gray-btn sbtn left hide"></a>
+					<div class="clear"></div>
+				</div>
+				<div class="subsection">
+					<div class="signature">
+						<div class="signature-CS sig-block"><span style="color:red;"></span></div>
+					</div>
+				</div>
+				<div class="subsection">
+					<h2>Description 描述</h2>
+					<p>Describes phase of a finger touch.</p>		
+				</div>
+				<div class="subsection">
+					<p>TouchPhase is an enum type that contains the states of possible finger touches. The states represent each
+						action the finger can take on the most recent frame update. Since a touch is tracked over its "lifetime" by the
+						device, the start and end of a touch and movements in between can be reported on the frames they occur.</p>
+				</div>
+				
+				<div class="subsection">
+
+					<p>描述手指触摸的阶段。</p>		
+				</div>
+				<div class="subsection">
+					<p>TouchPhase是一种枚举类型，包含可能的手指触摸状态。状态代表手指在最近的帧更新时可以执行的每个动作。由于设备会在触摸的“生命周期”内跟踪触摸，因此可以在触摸发生的帧上报告触摸的开始和结束以及之间的移动。</p>
+				</div>
+				
+				
+				
+				<div class="subsection">
+
+					<pre class="codeExampleCS">
 //Attach this script to an empty <a href="GameObject.html">GameObject</a>
 //Create some UI Text by going to <strong>Create</strong>&gt;<strong>UI</strong>&gt;<strong>Text</strong>.
-//Drag this <a href="GameObject.html">GameObject</a> into the Text field to the Inspector window of your <a href="GameObject.html">GameObject</a>.<br /><br />using UnityEngine;
+//Drag this <a href="GameObject.html">GameObject</a> into the Text field to the Inspector window of your <a href="GameObject.html">GameObject</a>.<br />
+
+
+//将此脚本附加到一个空的 <a href="GameObject.html">GameObject</a>
+//通过转到 <strong>Create</strong>&gt;<strong>UI</strong>&gt;<strong>Text</strong>.
+//将此 <a href="GameObject.html">GameObject</a> 拖到 <a href="GameObject.html">GameObject</a>的“检查器”窗口的“文本”字段中.<br /><br />using UnityEngine;
+
+
 using System.Collections;
 using UnityEngine.UI;<br /><br />public class TouchPhaseExample : <a href="MonoBehaviour.html">MonoBehaviour</a>
 {
@@ -11,25 +71,26 @@ using UnityEngine.UI;<br /><br />public class TouchPhaseExample : <a href="MonoB
     public <a href="Vector2.html">Vector2</a> direction;<br /><br />    public Text m_Text;
     string message;<br /><br />    void <a href="Experimental.PlayerLoop.Update.html">Update</a>()
     {
-        //<a href="Experimental.PlayerLoop.Update.html">Update</a> the Text on the screen depending on current <a href="TouchPhase.html">TouchPhase</a>, and the current direction vector
-        m_Text.text = "<a href="Touch.html">Touch</a> : " + message + "in direction" + direction;<br /><br />        // Track a single touch as a direction control.
+        //根据当前 <a href="TouchPhase.html">TouchPhase</a> 和当前方向向量 <a href="Experimental.PlayerLoop.Update.html">Update</a> 屏幕上的文本（<a href="Experimental.PlayerLoop.Update.html">Update</a> the Text on the screen depending on current <a href="TouchPhase.html">TouchPhase</a>, and the current direction vector）
+								
+        m_Text.text = "<a href="Touch.html">Touch</a> : " + message + "in direction" + direction;<br /><br />        //跟踪一次触摸作为方向控制（Track a single touch as a direction control.）
         if (<a href="Input-touchCount.html">Input.touchCount</a> &gt; 0)
         {
-            <a href="Touch.html">Touch</a> touch = <a href="Input.GetTouch.html">Input.GetTouch</a>(0);<br /><br />            // Handle finger movements based on <a href="TouchPhase.html">TouchPhase</a>
+            <a href="Touch.html">Touch</a> touch = <a href="Input.GetTouch.html">Input.GetTouch</a>(0);<br /><br />            //处理基于 <a href="TouchPhase.html">TouchPhase</a> 的手指移动（Handle finger movements based on <a href="TouchPhase.html">TouchPhase</a>）
             switch (touch.phase)
             {
-                //When a touch has first been detected, change the message and record the starting position
+                //当首次检测到触摸时，更改消息并记录开始位置（When a touch has first been detected, change the message and record the starting position）
                 case <a href="TouchPhase.Began.html">TouchPhase.Began</a>:
-                    // Record initial touch position.
+                    //记录初始触摸位置（Record initial touch position.）
                     startPos = touch.position;
                     message = "Begun ";
-                    break;<br /><br />                //Determine if the touch is a moving touch
+                    break;<br /><br />                //确定触摸是否为移动触摸（Determine if the touch is a moving touch）
                 case <a href="TouchPhase.Moved.html">TouchPhase.Moved</a>:
-                    // Determine direction by comparing the current touch position with the initial one
+                    //通过比较当前触摸位置和初始触摸位置来确定方向（Determine direction by comparing the current touch position with the initial one）
                     direction = touch.position - startPos;
                     message = "Moving ";
                     break;<br /><br />                case <a href="TouchPhase.Ended.html">TouchPhase.Ended</a>:
-                    // Report that the touch has ended when it ends
+                    //返回 触摸结束时 结束 （Report that the touch has ended when it ends ）
                     message = "Ending ";
                     break;
             }
@@ -37,10 +98,44 @@ using UnityEngine.UI;<br /><br />public class TouchPhaseExample : <a href="MonoB
     }
 }
 </pre>
-      </div><div class="subsection"><h2>Properties   属性</h2><table class="list">
-      <tr><td class="descn"></td><td class="lbl"><a href="TouchPhase.Began.html">Began</a></td><td class="desc"></td><td class="desc1">A finger touched the screen.</td></tr>
-      <tr><td class="descn"></td><td class="lbl"><a href="TouchPhase.Moved.html">Moved</a></td><td class="desc"></td><td class="desc1">A finger moved on the screen.</td></tr>
-      <tr><td class="descn"></td><td class="lbl"><a href="TouchPhase.Stationary.html">Stationary</a></td><td class="desc"></td><td class="desc1">A finger is touching the screen but hasn't moved.</td></tr>
-      <tr><td class="descn"></td><td class="lbl"><a href="TouchPhase.Ended.html">Ended</a></td><td class="desc"></td><td class="desc1">A finger was lifted from the screen. This is the final phase of a touch.</td></tr>
-      <tr><td class="descn"></td><td class="lbl"><a href="TouchPhase.Canceled.html">Canceled</a></td><td class="desc"></td><td class="desc1">The system cancelled tracking for the touch.</td></tr>
-    </table></div></div></div></div></body></html>
+				</div>
+				<div class="subsection">
+					<h2>Properties 属性</h2>
+					<table class="list">
+						<tr>
+							<td class="descn">开始时</td>
+							<td class="lbl"><a href="TouchPhase.Began.html">Began</a></td>
+							<td class="desc">一个手指碰到了屏幕。（手指刚刚触摸屏幕）</td>
+							<td class="desc1">A finger touched the screen.</td>
+						</tr>
+						<tr>
+							<td class="descn">移动时</td>
+							<td class="lbl"><a href="TouchPhase.Moved.html">Moved</a></td>
+							<td class="desc">一手指在屏幕上移动。</td>
+							<td class="desc1">A finger moved on the screen.</td>
+						</tr>
+						<tr>
+							<td class="descn">静止时</td>
+							<td class="lbl"><a href="TouchPhase.Stationary.html">Stationary</a></td>
+							<td class="desc">一手指正在接触屏幕，但没有移动。</td>
+							<td class="desc1">A finger is touching the screen but hasn't moved.</td>
+						</tr>
+						<tr>
+							<td class="descn">结束时</td>
+							<td class="lbl"><a href="TouchPhase.Ended.html">Ended</a></td>
+							<td class="desc">一手指从屏幕上抬了起来。这是触摸的最后阶段。（手指离开屏幕）</td>
+							<td class="desc1">A finger was lifted from the screen. This is the final phase of a touch.</td>
+						</tr>
+						<tr>
+							<td class="descn">取消时</td>
+							<td class="lbl"><a href="TouchPhase.Canceled.html">Canceled</a></td>
+							<td class="desc">系统取消了对触摸的跟踪。（系统取消触控跟踪，原因如把设备放在脸上或同时超过5个触摸点）</td>
+							<td class="desc1">The system cancelled tracking for the touch.</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+		</div>
+	</body>
+</html>
